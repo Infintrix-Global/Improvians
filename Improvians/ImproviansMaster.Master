@@ -1,0 +1,136 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ImproviansMaster.master.cs" Inherits="Improvians.ImproviansMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Improvians</title>
+
+        <!-- Cross platform favicon setup & app themeing -->
+        <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+        <link rel="manifest" href="manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#005a01">
+
+        <!-- SEO tags -->
+        <meta name="description" content="Growers Transplanting, Inc">
+
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Dashboard - Growers Transplanting, Inc" />
+        <meta property="og:description" content="Growers Transplanting, Inc" />
+        <meta property="og:url" content="/" />
+        <meta property="og:site_name" content="Growers Transplanting" />
+        <meta property="og:image" content="growers-transplanting.jpg" />
+        <meta property="og:image:secure_url" content="growers-transplanting.jpg" />
+        <meta property="og:image:width" content="1104" />
+        <meta property="og:image:height" content="736" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:description" content="Growers Transplanting, Inc" />
+        <meta name="twitter:title" content="Dashboard - Growers Transplanting, Inc" />
+        <meta name="twitter:site" content="@growerstransplanting" />
+        <meta name="twitter:image" content="growers-transplanting.jpg" />
+        <meta name="twitter:creator" content="@growerstransplanting" />
+
+        <link rel="preload" href="fonts/fa/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/fa/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/fa/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+         <header>
+            <div class="site__container">
+                <div class="d-flex align-items-center">
+                    <a href="#" title="Growers Transplanting Inc">
+                        <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
+                    </a>
+
+                    <div class="dropdown account__dropdown ml-auto">
+                        <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />
+                            <span class="account__user robotomd">John Smith</span>
+                        </div>
+
+                        <div class="dropdown-menu" aria-labelledby="account__dropdown">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="Login.aspx">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+       
+
+        <div class="main">
+             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+
+        <footer class="floating__footer">
+            <ul class="list-inline dark__bg robotomd">
+                <li>
+                    <a class="active" href="#">
+                        <i class="rxicon-icon-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <i class="rxicon-icon-greenhouse-control"></i>
+                        <span>Greenhouse Control</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="MyTask.aspx">
+                        <i class="rxicon-icon-mytasks"></i>
+                        <span>My Tasks</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#">
+                        <i class="rxicon-icon-account"></i>
+                        <span>Account</span>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+
+        <script src="js/jquery.min.js"></script>
+        <script defer="defer" src="js/popper.min.js"></script>
+        <script defer="defer" src="js/bootstrap.min.js"></script>
+        <script defer="defer" src="js/custom.js"></script>
+       
+    </form>
+</body>
+</html>
