@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ImproviansMaster.Master" AutoEventWireup="true" CodeBehind="GerminationTaskAssignment.aspx.cs" Inherits="Improvians.GerminationTaskAssignment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="GerminationTaskAssignment.aspx.cs" Inherits="Improvians.GerminationTaskAssignment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
