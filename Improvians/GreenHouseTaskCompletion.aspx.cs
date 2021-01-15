@@ -74,7 +74,7 @@ namespace Improvians
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
-          
+
             // Current row count.
             int rowCtr;
             // Total number of cells per row (columns).
@@ -116,7 +116,7 @@ namespace Improvians
                         // Create a new cell and add it to the row.
                         TableCell tCell = new TableCell();
                         TextBox tb = new TextBox();
-                        tb.Width=25;
+                        tb.Width = 50;
                         // Set a unique ID for each TextBox added
                         tb.ID = "TextBoxRow_" + rowCtr + "Col_" + cellCtr;
                         // Add the control to the TableCell
@@ -134,7 +134,7 @@ namespace Improvians
 
             Table table = (Table)Page.FindControl("tbltray");
             int count = 0;
-            for (int j = 1; j < int.Parse(txtTrays.Text) +1; j++)
+            for (int j = 1; j < int.Parse(txtTrays.Text) + 1; j++)
             {
                 //Print the values entered
 
