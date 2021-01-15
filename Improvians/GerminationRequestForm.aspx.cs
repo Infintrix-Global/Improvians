@@ -85,5 +85,11 @@ namespace Improvians
         {
             clear();
         }
+
+        protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvGerm.PageIndex = e.NewPageIndex;
+            BindGridGerm();
+        }
     }
 }

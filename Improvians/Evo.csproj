@@ -174,12 +174,12 @@
     <Compile Include="GreenHouseTaskCompletion.aspx.designer.cs">
       <DependentUpon>GreenHouseTaskCompletion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ImproviansMaster.Master.cs">
-      <DependentUpon>ImproviansMaster.Master</DependentUpon>
+    <Compile Include="EvoMaster.Master.cs">
+      <DependentUpon>EvoMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ImproviansMaster.Master.designer.cs">
-      <DependentUpon>ImproviansMaster.Master</DependentUpon>
+    <Compile Include="EvoMaster.Master.designer.cs">
+      <DependentUpon>EvoMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -233,7 +233,7 @@
     <Content Include="images\rxicons-v1.0\fonts\rxicons.ttf" />
     <Content Include="images\rxicons-v1.0\fonts\rxicons.woff" />
     <Content Include="images\Thumbs.db" />
-    <Content Include="ImproviansMaster.Master" />
+    <Content Include="EvoMaster.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

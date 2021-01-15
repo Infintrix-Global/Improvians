@@ -148,5 +148,11 @@ namespace Improvians
             Decimal germ = Convert.ToDecimal(count) / (Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(txtTrays.Text));
             lblGerm.Text = ((1 - germ) * 100).ToString();
         }
+
+        protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvGerm.PageIndex = e.NewPageIndex;
+            BindGridGerm();
+        }
     }
 }
