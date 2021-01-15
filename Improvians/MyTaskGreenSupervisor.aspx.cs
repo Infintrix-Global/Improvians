@@ -42,7 +42,13 @@ namespace Improvians
             }
             if (e.CommandName == "Select")
             {
-
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
+                nv.Add("@Notes", "");
+                nv.Add("@JobID", Session["JobID"].ToString());
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
                 Session["JobID"] = e.CommandArgument.ToString();
                 Response.Redirect("~/GreenHouseTaskCompletion.aspx");
             }
