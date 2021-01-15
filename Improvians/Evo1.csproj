@@ -234,6 +234,7 @@
     <Content Include="images\rxicons-v1.0\fonts\rxicons.woff" />
     <Content Include="images\Thumbs.db" />
     <Content Include="ImproviansMaster.Master" />
+    <Content Include="manifest.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

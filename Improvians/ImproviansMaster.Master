@@ -6,7 +6,7 @@
 <head runat="server">
          <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Improvians</title>
+        <title>Growers Transplanting, Inc</title>
 
         <!-- Cross platform favicon setup & app themeing -->
         <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
@@ -62,7 +62,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body class="has__footer">
     <form id="form1" runat="server">
          <header>
             <div class="site__container">
@@ -74,7 +74,7 @@
                     <div class="dropdown account__dropdown ml-auto">
                         <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />
-                            <span class="account__user robotomd">John Smith</span>
+                            <span class="account__user robotomd"><asp:Label ID="lblEmpName" runat="server"></asp:Label></span>
                         </div>
 
                         <div class="dropdown-menu" aria-labelledby="account__dropdown">
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </header>
-
+       
        
 
         <div class="main">
@@ -97,7 +97,7 @@
         <footer class="floating__footer">
             <ul class="list-inline dark__bg robotomd">
                 <li>
-                    <a class="active" href="#">
+                    <a class="active" href="Dashboard.aspx">
                         <i class="rxicon-icon-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -111,10 +111,11 @@
                 </li>
                 
                 <li>
-                    <a href="MyTask.aspx">
+                  
                         <i class="rxicon-icon-mytasks"></i>
-                        <span>My Tasks</span>
-                    </a>
+                       <span> <asp:LinkButton ID="lnkmytask" runat="server" Text="Tasks & Reports" OnClick="lnkmytask_Click"></asp:LinkButton></span>
+                       <%-- <span>My Tasks</span>--%>
+                   
                 </li>
                 
                 <li>

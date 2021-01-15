@@ -23,7 +23,7 @@ namespace Improvians
     {
         #region "Common functions"
 
-        string CS = ConfigurationManager.ConnectionStrings["IGPortal"].ToString();
+        string CS = ConfigurationManager.ConnectionStrings["Improvians"].ToString();
         CultureInfo CurrentCulture = CultureInfo.GetCultureInfo(ConfigurationManager.AppSettings["Culture"]);
 
         public CultureInfo GetCurrentCulture()

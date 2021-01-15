@@ -15,6 +15,31 @@ namespace Improvians
             {
                 Response.Redirect("~/Login.aspx");
             }
+            if (!IsPostBack)
+            {
+
+                lblEmpName.Text = Session["EmployeeName"].ToString();
+            }
+        }
+
+        protected void lnkmytask_Click(object sender, EventArgs e)
+        {
+            if (Session["Role"].ToString() == "1")
+            {
+                Response.Redirect("MyTaskGrower.aspx");
+            }
+            if (Session["Role"].ToString() == "2")
+            {
+                Response.Redirect("MyTaskGreenSupervisor.aspx");
+            }
+            if (Session["Role"].ToString() == "3")
+            {
+                Response.Redirect("MyTaskGreenOperator.aspx");
+            }
+        }
+        protected void lnkdashboard_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Dashboard.aspx");
         }
     }
 }
