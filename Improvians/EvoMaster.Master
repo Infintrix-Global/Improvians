@@ -66,15 +66,64 @@
     <form id="form1" runat="server">
          <header>
             <div class="site__container">
-                <div class="d-flex align-items-center">
-                    <a href="#" title="Growers Transplanting Inc">
+             
+
+                        <div class="d-flex align-items-center">
+                    <a href="login.html" title="Growers Transplanting Inc">
                         <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
                     </a>
 
-                    <div class="dropdown account__dropdown ml-auto">
+                    <div class="dropdown alert__dropdown ml-auto">
+                        <div class="dropdown-toggle" data-display="static" id="alert__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-bell"></i>
+                            <span class="alert__badge">2</span>
+                        </div>
+
+                        <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="alert__dropdown">
+                            <div class="dropdown__head">
+                                <div>Notifications</div>
+                            </div>
+
+                            <div class="dropdown__body">
+                                <div class="alert__bar alert__bar--unread">
+                                    <i class="fas fa-tasks"></i>
+                                    <div class="alert__info">
+                                        You have assigned new task. <strong>Job: #JB025437</strong>
+                                    </div>
+                                    <div class="alert__stamp">
+                                        <span>16 Jan 2021 - 10:05 AM</span>
+                                    </div>
+                                </div>
+                                <div class="alert__bar alert__bar--unread">
+                                    <i class="fas fa-tasks"></i>
+                                    <div class="alert__info">
+                                        You have assigned new task. <strong>Job: #JB025437</strong>
+                                    </div>
+                                    <div class="alert__stamp">
+                                        <span>16 Jan 2021 - 10:05 AM</span>
+                                    </div>
+                                </div>
+                                <div class="alert__bar alert__bar">
+                                    <i class="fas fa-tasks"></i>
+                                    <div class="alert__info">
+                                        You have assigned new task. <strong>Job: #JB025437</strong>
+                                    </div>
+                                    <div class="alert__stamp">
+                                        <span>16 Jan 2021 - 10:05 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown__foo text-center">
+                                <button>CLEAR ALL</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown account__dropdown ml-3">
                         <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />
-                            <span class="account__user robotomd"><asp:Label ID="lblEmpName" runat="server"></asp:Label></span>
+                            <span class="account__user robotomd">  <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
                         </div>
 
                         <div class="dropdown-menu" aria-labelledby="account__dropdown">
@@ -83,6 +132,7 @@
                         </div>
                     </div>
                 </div>
+           
             </div>
         </header>
        

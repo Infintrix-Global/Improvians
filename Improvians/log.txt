@@ -531,3 +531,8 @@
 *****Error message=****@GermHealth: at 15-Jan-21 02:47:00 PM
 *****Error message=****@JobID:JB030121 at 15-Jan-21 02:47:00 PM
 *****Error message=****@LoginID:2 at 15-Jan-21 02:47:00 PM
+*****Error message=****@SupervisorID:3 at 18-Jan-21 03:53:04 PM
+*****Error message=****@InspectionDueDate:2021-01-21 at 18-Jan-21 03:53:05 PM
+*****Error message=****@#TraysInspected:20 at 18-Jan-21 03:53:05 PM
+*****Error message=****@JobID:JB030124 at 18-Jan-21 03:53:05 PM
+*****Error message=****@LoginID:1 at 18-Jan-21 03:53:05 PM

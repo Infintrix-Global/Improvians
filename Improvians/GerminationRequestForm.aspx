@@ -61,7 +61,7 @@
 
                                         <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("PutAwayMainLocation")  %>'></asp:Label>
+                                                <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("PutAwayMainLocation")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
@@ -96,7 +96,7 @@
 
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("JobID")  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -134,8 +134,10 @@
                                 <h3 class="robotobold"><asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
                             </div>
                             <div class="col m6">
-                                <label>Greenhouse Supervisor</label>
-                                <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                <label runat="server" id="lblfacsupervisor">Greenhouse Supervisor</label>
+                                 <h3 class="robotobold"><asp:Label ID="lblSupervisorName" runat="server" ></asp:Label></h3>
+                                <asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>
+                               <%-- <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
                             </div>
                             <div class="col m6">
                                 <label>Inspection Due Date </label>
