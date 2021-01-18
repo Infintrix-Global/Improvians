@@ -119,6 +119,8 @@
     <Content Include="images\link-my-task.svg" />
     <Content Include="images\link-site-tasks.svg" />
     <Content Include="images\link-track-tasks.svg" />
+    <Content Include="images\login-bg.jpg" />
+    <Content Include="images\logo-vertical.svg" />
     <Content Include="images\logo.png" />
     <Content Include="images\rxicons-v1.0\demo-files\demo.css" />
     <Content Include="images\rxicons-v1.0\demo-files\demo.js" />
