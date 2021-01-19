@@ -91,6 +91,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                          <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                     </Columns>
 
