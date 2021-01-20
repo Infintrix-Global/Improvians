@@ -67,7 +67,7 @@
              <div class="admin__page">
             <aside class="admin__sidebar site__transition">
                 <div class="admin__logo">
-                    <a href="login.html" title="Growers Transplanting Inc">
+                    <a href="~/Admin/AdminDashBoard.aspx" title="Growers Transplanting Inc">
                         <img src="images/logo-vertical.svg" alt="Growers Transplanting Inc" width="120" height="90" />
                     </a>
                 </div>

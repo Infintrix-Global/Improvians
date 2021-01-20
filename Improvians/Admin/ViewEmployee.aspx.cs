@@ -61,7 +61,7 @@ namespace Improvians.Admin
             {
                 int eid = Convert.ToInt32(e.CommandArgument);
                 Session["EmployeeID"] = eid;
-                Response.Redirect("~/EditProfile.aspx");
+                Response.Redirect("~/Admin/EditProfile.aspx");
             }
 
             if (e.CommandName == "RemoveProfile")
