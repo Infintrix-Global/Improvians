@@ -135,7 +135,7 @@
                             </div>
                                  <div class="col m3">
                                 <label>To Facility </label>
-                                <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
                                       <span class="help-block">
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
                                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -160,7 +160,7 @@
                             </div>
                             <div class="col m2">
                                     
-                                        <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click"  runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
+                                        <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary"  runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                                     </div>
 
 

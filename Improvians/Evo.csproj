@@ -218,6 +218,7 @@
     <Content Include="js\popper.min.js" />
     <Content Include="js\slick.min.js" />
     <Content Include="Login.aspx" />
+    <Content Include="MoveCompletionForm.aspx" />
     <Content Include="MoveForm.aspx" />
     <Content Include="MyTaskGreenOperator.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
@@ -319,6 +320,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoveCompletionForm.aspx.cs">
+      <DependentUpon>MoveCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoveCompletionForm.aspx.designer.cs">
+      <DependentUpon>MoveCompletionForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="MoveForm.aspx.cs">
       <DependentUpon>MoveForm.aspx</DependentUpon>

@@ -109,11 +109,35 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString());
+            Clear();
+        }
+
+        public void Clear()
+        {
+            dtTrays.Clear();
+            txtReqDate.Text = "";
+            ddlToGreenHouse.SelectedIndex = 0;
+            ddlToFacility.SelectedIndex = 0;
+
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
+            Clear();
+        }
 
+        protected void ddlToFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlToFacility.SelectedIndex != 0)
+            {
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@FacilityID", ddlToFacility.SelectedValue);
+            ddlToGreenHouse.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+                ddlToGreenHouse.DataTextField = "GreenHouseName";
+                ddlToGreenHouse.DataValueField = "GreenHouseID";
+                ddlToGreenHouse.DataBind();
+                ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            }
         }
     }
 }
