@@ -126,7 +126,7 @@
                             </div>
                               <div class="col m4">
                                 <label>Put Away Location</label>
-                                <asp:DropDownList ID="ddlLocation" TextMode="Date" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlLocation" TextMode="Date" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
                             <div class="col m4">
                                 <label># Trays Moved</label>

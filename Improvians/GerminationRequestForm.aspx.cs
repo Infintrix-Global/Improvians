@@ -56,7 +56,7 @@ namespace Improvians
                 dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblJobID.Text = (row.FindControl("lblID") as Label).Text;
                 lblfacsupervisor.InnerText = "Green House Supervisor-" + facName;
-                lblSupervisorID.Text = dt.Rows[0]["FacilityID"].ToString();
+                lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
             }

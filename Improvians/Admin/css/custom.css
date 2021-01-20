@@ -444,13 +444,16 @@ header {
 
 .admin__form label { width: 100%; margin-bottom: 30px; position: relative; }
 
+.error_message {
+    color: red;
+    font-size: 14px;
+    line-height: 18px;
+}
+
 .admin__form label .error_message {
     position: absolute;
     top: calc(100% + 3px);
     left: 2px;
-    color: red;
-    font-size: 14px;
-    line-height: 18px;
 }
 
 .valid__error .custom__dropdown, .valid__error .input__control, .valid__error .custom-control-label::before {
@@ -460,6 +463,18 @@ header {
 .control__inline {
     display: flex;
     align-items: center;
+}
+
+.control__box {
+    padding-left: 5px;
+    max-height: 110px;
+    overflow: auto;
+    width: 100%;
+    max-width: calc(50% - 17px);
+}
+
+.control__box .custom-checkbox label {
+    margin-bottom: 10px;
 }
 
 .admin__form label h3 {
@@ -603,7 +618,8 @@ header {
 
 @media only screen and (max-width: 767px) {
     header { position: sticky; top:0; z-index: 5; padding-top: 15px; padding-bottom: 15px; }
-    .input__control-icon { background-position: left 12px center; padding-left: 46px; }
+    .input__control-icon { background-position: left 12px center; padding-left: 46px; }    
+    .control__box { max-width: 100%;  }
 }
 
 @media only screen and (max-width: 639px) {

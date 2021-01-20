@@ -92,7 +92,7 @@ namespace Improvians
         {
             try
             {
-                dtTrays.Rows.Add(lblFromFacility.Text,ddlToFacility.SelectedItem.Text,ddlToGreenHouse.SelectedItem.Text);
+                dtTrays.Rows.Add(lblFromFacility.Text,ddlToFacility.SelectedItem.Text,ddlToGreenHouse.SelectedItem.Text,txtTrays.Text);
                 GridMove.DataSource = dtTrays;
                 GridMove.DataBind();
                 txtTrays.Text = "";
@@ -110,6 +110,7 @@ namespace Improvians
         {
             objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString());
             Clear();
+            userinput.Visible = false;
         }
 
         public void Clear()
