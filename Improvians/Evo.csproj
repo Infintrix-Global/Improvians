@@ -80,9 +80,7 @@
     <Content Include="Admin\EditProfile.aspx" />
     <Content Include="Admin\EmployeeProfile\data-privacy-and-security-features-you-should-know.jpg" />
     <Content Include="Admin\EmployeeProfile\Screenshot %289%29.png" />
-    <Content Include="Admin\EvoAdmin.csproj.user" />
     <Content Include="Admin\fonts\icons\rxicons.svg" />
-    <Content Include="Admin\growers-transplanting.jpg" />
     <Content Include="Admin\images\delete.png" />
     <Content Include="Admin\images\edit.png" />
     <Content Include="Admin\images\favicon\android-icon-144x144.png" />
