@@ -37,7 +37,7 @@
                             <label class="custom-file-label text-center"><h4>Profile Image</h4></label>
 
                                      <div class="profile-picture">
-                                            <asp:Image ID="ImageProfile" runat="server" Height="200px" Width="200px" GenerateEmptyAlternateText="True" ImageUrl="~/Images/no-photo.jpg" />
+                                            <asp:Image ID="ImageProfile" runat="server" Height="200px" Width="200px" GenerateEmptyAlternateText="True" ImageUrl="~/Admin/Images/no-photo.jpg" />
                             </div>
 
                                     <asp:FileUpload ID="FileUpProfile"  runat="server" ClientIDMode="Static" />

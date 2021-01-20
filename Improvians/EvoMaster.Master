@@ -69,7 +69,7 @@
              
 
                         <div class="d-flex align-items-center">
-                    <a href="login.html" title="Growers Transplanting Inc">
+                    <a href="~/Dashboard.aspx" title="Growers Transplanting Inc">
                         <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
                     </a>
 
