@@ -36,6 +36,7 @@
                             <asp:ListItem Text="Seedline Request " Value="2"></asp:ListItem>
                             <asp:ListItem Text="Seedline Move Request " Value="3"></asp:ListItem>
                             <asp:ListItem Text="Germination Request" Value="4"></asp:ListItem>
+                              <asp:ListItem Text="Move Request" Value="5"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
 

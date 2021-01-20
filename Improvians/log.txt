@@ -536,3 +536,8 @@
 *****Error message=****@#TraysInspected:20 at 18-Jan-21 03:53:05 PM
 *****Error message=****@JobID:JB030124 at 18-Jan-21 03:53:05 PM
 *****Error message=****@LoginID:1 at 18-Jan-21 03:53:05 PM
+*****Error message=****@SupervisorID:3 at 20-Jan-21 11:06:48 AM
+*****Error message=****@InspectionDueDate:2021-01-22 at 20-Jan-21 11:06:48 AM
+*****Error message=****@#TraysInspected:20 at 20-Jan-21 11:06:48 AM
+*****Error message=****@JobID:JB030131 at 20-Jan-21 11:06:48 AM
+*****Error message=****@LoginID:1 at 20-Jan-21 11:06:48 AM

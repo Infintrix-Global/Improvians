@@ -46,7 +46,7 @@ namespace Improvians
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Notes", "");
-                nv.Add("@JobID", Session["JobID"].ToString());
+                nv.Add("@JobID", e.CommandArgument.ToString());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
                 Session["JobID"] = e.CommandArgument.ToString();

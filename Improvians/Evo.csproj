@@ -71,6 +71,88 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AddEmployee.aspx" />
+    <Content Include="Admin\AdminDashBoard.aspx" />
+    <Content Include="Admin\css\all.min.css" />
+    <Content Include="Admin\css\aos.css" />
+    <Content Include="Admin\css\bootstrap.min.css" />
+    <Content Include="Admin\css\custom.css" />
+    <Content Include="Admin\EditProfile.aspx" />
+    <Content Include="Admin\EmployeeProfile\data-privacy-and-security-features-you-should-know.jpg" />
+    <Content Include="Admin\EmployeeProfile\Screenshot %289%29.png" />
+    <Content Include="Admin\EvoAdmin.csproj.user" />
+    <Content Include="Admin\fonts\icons\rxicons.svg" />
+    <Content Include="Admin\growers-transplanting.jpg" />
+    <Content Include="Admin\images\delete.png" />
+    <Content Include="Admin\images\edit.png" />
+    <Content Include="Admin\images\favicon\android-icon-144x144.png" />
+    <Content Include="Admin\images\favicon\android-icon-192x192.png" />
+    <Content Include="Admin\images\favicon\android-icon-36x36.png" />
+    <Content Include="Admin\images\favicon\android-icon-48x48.png" />
+    <Content Include="Admin\images\favicon\android-icon-72x72.png" />
+    <Content Include="Admin\images\favicon\android-icon-96x96.png" />
+    <Content Include="Admin\images\favicon\apple-icon-114x114.png" />
+    <Content Include="Admin\images\favicon\apple-icon-120x120.png" />
+    <Content Include="Admin\images\favicon\apple-icon-144x144.png" />
+    <Content Include="Admin\images\favicon\apple-icon-152x152.png" />
+    <Content Include="Admin\images\favicon\apple-icon-180x180.png" />
+    <Content Include="Admin\images\favicon\apple-icon-57x57.png" />
+    <Content Include="Admin\images\favicon\apple-icon-60x60.png" />
+    <Content Include="Admin\images\favicon\apple-icon-72x72.png" />
+    <Content Include="Admin\images\favicon\apple-icon-76x76.png" />
+    <Content Include="Admin\images\favicon\apple-icon-precomposed.png" />
+    <Content Include="Admin\images\favicon\apple-icon.png" />
+    <Content Include="Admin\images\favicon\favicon-16x16.png" />
+    <Content Include="Admin\images\favicon\favicon-32x32.png" />
+    <Content Include="Admin\images\favicon\favicon-96x96.png" />
+    <Content Include="Admin\images\favicon\favicon.ico" />
+    <Content Include="Admin\images\favicon\ms-icon-144x144.png" />
+    <Content Include="Admin\images\favicon\ms-icon-150x150.png" />
+    <Content Include="Admin\images\favicon\ms-icon-310x310.png" />
+    <Content Include="Admin\images\favicon\ms-icon-70x70.png" />
+    <Content Include="Admin\images\icon-dropdown.svg" />
+    <Content Include="Admin\images\icons\icon-account.svg" />
+    <Content Include="Admin\images\icons\icon-dashboard.svg" />
+    <Content Include="Admin\images\icons\icon-dropdown.svg" />
+    <Content Include="Admin\images\icons\icon-email.svg" />
+    <Content Include="Admin\images\icons\icon-facility-probability.svg" />
+    <Content Include="Admin\images\icons\icon-germination-seed.svg" />
+    <Content Include="Admin\images\icons\icon-greenhouse-control.svg" />
+    <Content Include="Admin\images\icons\icon-labor-efficiency.svg" />
+    <Content Include="Admin\images\icons\icon-mytasks.svg" />
+    <Content Include="Admin\images\icons\icon-password.svg" />
+    <Content Include="Admin\images\icons\icon-phone.svg" />
+    <Content Include="Admin\images\icons\icon-plant-quality.svg" />
+    <Content Include="Admin\images\icons\icon-search.svg" />
+    <Content Include="Admin\images\icons\icon-site-capacity.svg" />
+    <Content Include="Admin\images\icons\icon-user.svg" />
+    <Content Include="Admin\images\link-assign-task.svg" />
+    <Content Include="Admin\images\link-my-task.svg" />
+    <Content Include="Admin\images\link-site-tasks.svg" />
+    <Content Include="Admin\images\link-track-tasks.svg" />
+    <Content Include="Admin\images\login-bg.jpg" />
+    <Content Include="Admin\images\logo-vertical.svg" />
+    <Content Include="Admin\images\logo.png" />
+    <Content Include="Admin\images\no-photo.jpg" />
+    <Content Include="Admin\images\profile-picture.jpg" />
+    <Content Include="Admin\images\rxicons-v1.0\demo-files\demo.css" />
+    <Content Include="Admin\images\rxicons-v1.0\demo-files\demo.js" />
+    <Content Include="Admin\images\rxicons-v1.0\demo.html" />
+    <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.svg" />
+    <Content Include="Admin\images\rxicons-v1.0\Read Me.txt" />
+    <Content Include="Admin\images\rxicons-v1.0\style.css" />
+    <Content Include="Admin\images\user-profile.jpg" />
+    <Content Include="Admin\images\view.png" />
+    <Content Include="Admin\js\aos.js" />
+    <Content Include="Admin\js\bootstrap.min.js" />
+    <Content Include="Admin\js\custom.js" />
+    <Content Include="Admin\js\jquery.min.js" />
+    <Content Include="Admin\js\popper.min.js" />
+    <Content Include="Admin\js\slick.min.js" />
+    <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\login.html" />
+    <Content Include="Admin\sw.js" />
+    <Content Include="Admin\ViewEmployee.aspx" />
     <Content Include="css\all.min.css" />
     <Content Include="css\aos.css" />
     <Content Include="css\bootstrap.min.css" />
@@ -136,12 +218,60 @@
     <Content Include="js\popper.min.js" />
     <Content Include="js\slick.min.js" />
     <Content Include="Login.aspx" />
+    <Content Include="MoveForm.aspx" />
     <Content Include="MyTaskGreenOperator.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
     <Content Include="MyTaskGrower.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AddEmployee.aspx.cs">
+      <DependentUpon>AddEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddEmployee.aspx.designer.cs">
+      <DependentUpon>AddEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminDashBoard.aspx.cs">
+      <DependentUpon>AdminDashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminDashBoard.aspx.designer.cs">
+      <DependentUpon>AdminDashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminMaster.Master.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminMaster.Master.designer.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BAL_Classes\BAL_Login.cs" />
+    <Compile Include="Admin\BAL_Classes\BAL_Task.cs" />
+    <Compile Include="Admin\BAL_Classes\clsCommonMasters.cs" />
+    <Compile Include="Admin\BAL_Classes\General.cs" />
+    <Compile Include="Admin\CommonControl.cs" />
+    <Compile Include="Admin\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewEmployee.aspx.cs">
+      <DependentUpon>ViewEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewEmployee.aspx.designer.cs">
+      <DependentUpon>ViewEmployee.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BAL_Classes\BAL_Login.cs" />
     <Compile Include="BAL_Classes\BAL_Task.cs" />
     <Compile Include="BAL_Classes\clsCommonMasters.cs" />
@@ -190,6 +320,13 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MoveForm.aspx.cs">
+      <DependentUpon>MoveForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoveForm.aspx.designer.cs">
+      <DependentUpon>MoveForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyTaskGreenOperator.aspx.cs">
       <DependentUpon>MyTaskGreenOperator.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -236,6 +373,35 @@
     <Content Include="images\rxicons-v1.0\fonts\rxicons.woff" />
     <Content Include="images\Thumbs.db" />
     <Content Include="EvoMaster.Master" />
+    <Content Include="Admin\AdminMaster.Master" />
+    <Content Include="Admin\EvoAdmin.csproj" />
+    <Content Include="Admin\fonts\fa\fa-brands-400.ttf" />
+    <Content Include="Admin\fonts\fa\fa-brands-400.woff2" />
+    <Content Include="Admin\fonts\fa\fa-regular-400.ttf" />
+    <Content Include="Admin\fonts\fa\fa-regular-400.woff2" />
+    <Content Include="Admin\fonts\fa\fa-solid-900.ttf" />
+    <Content Include="Admin\fonts\fa\fa-solid-900.woff2" />
+    <Content Include="Admin\fonts\icons\rxicons.eot" />
+    <Content Include="Admin\fonts\icons\rxicons.ttf" />
+    <Content Include="Admin\fonts\icons\rxicons.woff" />
+    <Content Include="Admin\fonts\Roboto-Bold.ttf" />
+    <Content Include="Admin\fonts\Roboto-Bold.woff2" />
+    <Content Include="Admin\fonts\Roboto-Medium.ttf" />
+    <Content Include="Admin\fonts\Roboto-Medium.woff2" />
+    <Content Include="Admin\fonts\Roboto-Regular.ttf" />
+    <Content Include="Admin\fonts\Roboto-Regular.woff2" />
+    <Content Include="Admin\fonts\selection.json" />
+    <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.eot" />
+    <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.ttf" />
+    <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.woff" />
+    <None Include="Admin\packages.config" />
+    <Content Include="Admin\Web.config" />
+    <None Include="Admin\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Admin\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -244,6 +410,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

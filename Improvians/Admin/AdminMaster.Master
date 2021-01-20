@@ -1,0 +1,145 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="Improvians.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+            <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Panel - Growers Transplanting, Inc</title>
+
+        <!-- Cross platform favicon setup & app themeing -->
+        <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+        <link rel="manifest" href="manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#005a01">
+
+        <!-- SEO tags -->
+        <meta name="description" content="Growers Transplanting, Inc">
+
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Admin Panel - Growers Transplanting, Inc" />
+        <meta property="og:description" content="Growers Transplanting, Inc" />
+        <meta property="og:url" content="/" />
+        <meta property="og:site_name" content="Growers Transplanting" />
+        <meta property="og:image" content="growers-transplanting.jpg" />
+        <meta property="og:image:secure_url" content="growers-transplanting.jpg" />
+        <meta property="og:image:width" content="1104" />
+        <meta property="og:image:height" content="736" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:description" content="Growers Transplanting, Inc" />
+        <meta name="twitter:title" content="Admin Panel - Growers Transplanting, Inc" />
+        <meta name="twitter:site" content="@growerstransplanting" />
+        <meta name="twitter:image" content="growers-transplanting.jpg" />
+        <meta name="twitter:creator" content="@growerstransplanting" />
+
+        <link rel="preload" href="fonts/fa/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/fa/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/fa/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head><body>
+    <form id="form1" runat="server">
+        <div>
+             <div class="admin__page">
+            <aside class="admin__sidebar site__transition">
+                <div class="admin__logo">
+                    <a href="login.html" title="Growers Transplanting Inc">
+                        <img src="images/logo-vertical.svg" alt="Growers Transplanting Inc" width="120" height="90" />
+                    </a>
+                </div>
+
+                <div class="aside__list">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a class="current" href="AddEmployee.aspx" title="Add Employee">
+                                <i class="side-icon far fa-user"></i>
+                                <span class="side-title">Add Employee</span>
+                                <i class="side-control fas fa-angle-right"></i>
+                            </a>
+                        </li>
+
+                         <li>
+                            <a class="current" href="ViewEmployee.aspx" title="View Employee">
+                                <i class="side-icon far fa-user"></i>
+                                <span class="side-title">View Employee</span>
+                                <i class="side-control fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+                   <div class="admin__main">
+                    <header class="admin__header">
+                    <div class="admin__container">
+                        <div class="d-flex align-items-center">
+
+                            <button class="menu-toggle">
+                                <i class="fas fa-bars"></i>
+                            </button>
+
+                       
+                            
+                            <div class="dropdown account__dropdown ml-3">
+                                <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />
+                                    <span class="account__user robotomd"><asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
+                                </div>
+
+                                <div class="dropdown-menu" aria-labelledby="account__dropdown">
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" href="Login.aspx">Log Out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+           
+          
+     
+
+     
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                  
+            </asp:ContentPlaceHolder>
+
+
+             <footer class="admin__footer">
+                    <div class="footer__copyright text-center">
+                        Designed by <a href="https://www.infintrixglobal.com" target="_blank" title="Infintrix Global Private Limited">Infintrix Global Private Limited</a>
+                    </div>
+                </footer>
+                       </div>
+               <script src="js/jquery.min.js"></script>
+        <script defer="defer" src="js/popper.min.js"></script>
+        <script defer="defer" src="js/bootstrap.min.js"></script>
+        <script defer="defer" src="js/custom.js"></script>
+                   </div>
+       </div>
+    </form>
+</body>
+</html>
