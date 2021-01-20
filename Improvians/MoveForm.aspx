@@ -154,6 +154,7 @@
                        
                             <div class="col m3">
                                 <label>Number Of Trays </label>
+                                 <asp:Label ID="lblUnmovedTrays" visible="false" runat="server"></asp:Label>
                                 <asp:TextBox ID="txtTrays" TextMode="Number" runat="server"></asp:TextBox>
                                  <span class="help-block">
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"

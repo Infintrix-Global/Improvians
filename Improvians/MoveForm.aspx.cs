@@ -58,10 +58,16 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
                 userinput.Visible = true;
+               
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvMove.Rows[rowIndex];
                 lblFromFacility.Text = (row.FindControl("lblFacility") as Label).Text;
                 lbljobid.Text = (row.FindControl("lblID") as Label).Text;
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@JobID", (row.FindControl("lblID") as Label).Text);
+                dt = objCommon.GetDataTable("SP_GetUnMovedTraysByJobID", nv);
+                lblUnmovedTrays.Text = dt.Rows[0]["UnMovedTrays"].ToString();
                 ddlToFacility.Focus();
             }
         }
@@ -92,13 +98,21 @@ namespace Improvians
         {
             try
             {
-                dtTrays.Rows.Add(lblFromFacility.Text,ddlToFacility.SelectedItem.Text,ddlToGreenHouse.SelectedItem.Text,txtTrays.Text);
-                GridMove.DataSource = dtTrays;
-                GridMove.DataBind();
-                txtTrays.Text = "";
-                ddlToFacility.SelectedIndex = 0;
-                ddlToGreenHouse.SelectedIndex = 0;
-
+                if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblUnmovedTrays.Text))
+                {
+                    dtTrays.Rows.Add(lblFromFacility.Text, ddlToFacility.SelectedItem.Text, ddlToGreenHouse.SelectedItem.Text, txtTrays.Text);
+                    GridMove.DataSource = dtTrays;
+                    GridMove.DataBind();
+                    txtTrays.Text = "";
+                    ddlToFacility.SelectedIndex = 0;
+                    ddlToGreenHouse.SelectedIndex = 0;
+                    lblUnmovedTrays.Text = (Convert.ToInt32(lblUnmovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+                }
+                else
+                {
+                    RequiredFieldValidator2.ErrorMessage = "Number of Trays exceed Remaing trays";
+                   
+                }
             }
             catch (Exception ex)
             {

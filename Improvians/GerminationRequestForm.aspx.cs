@@ -31,15 +31,15 @@ namespace Improvians
             gvGerm.DataBind();
            
         }
-        //public void BindSupervisorList()
-        //{
-        //    NameValueCollection nv = new NameValueCollection();
-        //    ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-        //    ddlSupervisor.DataTextField = "EmployeeName";
-        //    ddlSupervisor.DataValueField = "ID";
-        //    ddlSupervisor.DataBind();
-        //    ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-        //}
+        public void BindSupervisorList()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlSupervisor.DataTextField = "EmployeeName";
+            ddlSupervisor.DataValueField = "ID";
+            ddlSupervisor.DataBind();
+            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+        }
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -56,8 +56,8 @@ namespace Improvians
                 dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblJobID.Text = (row.FindControl("lblID") as Label).Text;
                 lblfacsupervisor.InnerText = "Green House Supervisor-" + facName;
-                lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
-                lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
+               // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
+                //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
             }
         }
@@ -68,7 +68,7 @@ namespace Improvians
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SupervisorID", lblSupervisorID.Text);
+            nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             nv.Add("@InspectionDueDate", txtDate.Text);
             nv.Add("@#TraysInspected", txtTrays.Text);
             nv.Add("@JobID", lblJobID.Text);
@@ -89,10 +89,10 @@ namespace Improvians
         {
             txtDate.Text = "";
             txtTrays.Text = "";
-            lblSupervisorID.Text = "";
-            lblSupervisorName.Text = "";
+            //lblSupervisorID.Text = "";
+           // lblSupervisorName.Text = "";
             lblfacsupervisor.InnerText = "";
-            //ddlSupervisor.SelectedIndex = 0;
+            ddlSupervisor.SelectedIndex = 0;
             Response.Redirect("~/MyTaskGrower.aspx");
         }
 

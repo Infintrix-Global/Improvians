@@ -72,29 +72,25 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="From Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Trays inspected" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="To Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("#TraysInspected")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Due Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Trays To be Moved" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("InspectionDueDate")  %>'></asp:Label>
+                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("TrayRequest")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                   
 
                                     </Columns>
 
