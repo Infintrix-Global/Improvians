@@ -62,8 +62,15 @@ namespace Improvians
                     Session["Mobile"] = _dtLogin.Rows[0]["EmployeeCode"].ToString();
 
                     Session["EmployeeName"] = _dtLogin.Rows[0]["EmployeeName"].ToString();
-                    /*admin */
+                /*admin */
+                if (_dtLogin.Rows[0]["RoleID"].ToString() == "4")
+                {
+                    Response.Redirect("~/Admin/AdminDashBoard.aspx");
+                }
+                else
+                {
                     Response.Redirect("~/DashBoard.aspx");
+                }
                 //}
                 //else
                 //{
