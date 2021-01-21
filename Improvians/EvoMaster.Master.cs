@@ -20,6 +20,19 @@ namespace Improvians
 
                 lblEmpName.Text = Session["EmployeeName"].ToString();
             }
+
+            String activepage = Request.RawUrl;
+            if (activepage.Contains("Dashboard"))
+            {
+                dashlink.Attributes.Add("class", "active");
+                lnkmytask.Attributes.Remove("class");
+            }
+            else
+            {
+                dashlink.Attributes.Remove("class");
+                lnkmytask.Attributes.Add("class", "active");
+            }
+
         }
 
         protected void lnkmytask_Click(object sender, EventArgs e)

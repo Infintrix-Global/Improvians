@@ -12,9 +12,9 @@ namespace Improvians
     public partial class MoveForm : System.Web.UI.Page
     {
         public static DataTable dtTrays = new DataTable()
-        { Columns = { "FromFacility", "ToFacility","ToFacilityID","Greenhouse","GreenHouseID","Trays" } };
+        { Columns = { "FromFacility", "ToFacility", "ToFacilityID", "Greenhouse", "GreenHouseID", "Trays" } };
         CommonControl objCommon = new CommonControl();
-       BAL_Task objTask = new BAL_Task();
+        BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -69,7 +69,7 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
                 userinput.Visible = true;
-               
+
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvMove.Rows[rowIndex];
                 lblFromFacility.Text = (row.FindControl("lblFacility") as Label).Text;
@@ -81,12 +81,12 @@ namespace Improvians
                 if (string.IsNullOrEmpty(dt.Rows[0]["UnMovedTrays"].ToString()))
                 {
 
-                    lblUnmovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text; 
-                   
+                    lblUnmovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text;
+
                 }
                 else
                 {
-                    lblUnmovedTrays.Text = (Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text)- (Convert.ToInt32(dt.Rows[0]["UnMovedTrays"].ToString()))).ToString();
+                    lblUnmovedTrays.Text = (Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text) - (Convert.ToInt32(dt.Rows[0]["UnMovedTrays"].ToString()))).ToString();
                 }
                 ddlToFacility.Focus();
             }
@@ -108,14 +108,7 @@ namespace Improvians
             }
         }
 
-        protected void GridMove_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != GridMove.EditIndex)
-            {
-                (e.Row.Cells[0].Controls[0] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this record?');";
-            }
-        }
-
+      
         protected void btnAddTray_Click(object sender, EventArgs e)
         {
             try
@@ -123,20 +116,20 @@ namespace Improvians
                 if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblUnmovedTrays.Text))
                 {
                     lblerrmsg.Text = "";
-                    dtTrays.Rows.Add(lblFromFacility.Text, ddlToFacility.SelectedItem.Text,ddlToFacility.SelectedValue, ddlToGreenHouse.SelectedItem.Text,ddlToGreenHouse.SelectedValue, txtTrays.Text);
+                    dtTrays.Rows.Add(lblFromFacility.Text, ddlToFacility.SelectedItem.Text, ddlToFacility.SelectedValue, ddlToGreenHouse.SelectedItem.Text, ddlToGreenHouse.SelectedValue, txtTrays.Text);
                     GridMove.DataSource = dtTrays;
                     GridMove.DataBind();
                     lblUnmovedTrays.Text = (Convert.ToInt32(lblUnmovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
                     txtTrays.Text = "";
                     ddlToFacility.SelectedIndex = 0;
                     ddlToGreenHouse.SelectedIndex = 0;
-               
+
                 }
                 else
                 {
-                   
+
                     lblerrmsg.Text = "Number of Trays exceed Remaining trays";
-                   
+
                 }
             }
             catch (Exception ex)
@@ -148,7 +141,7 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-            result=objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(),ddlLogisticManager.SelectedValue);
+            result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue);
             if (result > 0)
             {
                 lblmsg.Text = "Request Successful";
@@ -159,8 +152,8 @@ namespace Improvians
             {
                 lblmsg.Text = "Request Not Successful";
             }
-            
-          
+
+
         }
 
         public void Clear()
@@ -169,6 +162,8 @@ namespace Improvians
             txtReqDate.Text = "";
             ddlToGreenHouse.SelectedIndex = 0;
             ddlToFacility.SelectedIndex = 0;
+            txtTrays.Text = 0;
+
 
         }
 
@@ -183,7 +178,7 @@ namespace Improvians
             {
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@FacilityID", ddlToFacility.SelectedValue);
-            ddlToGreenHouse.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+                ddlToGreenHouse.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
                 ddlToGreenHouse.DataTextField = "GreenHouseName";
                 ddlToGreenHouse.DataValueField = "GreenHouseID";
                 ddlToGreenHouse.DataBind();
