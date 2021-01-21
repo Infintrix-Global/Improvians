@@ -22,7 +22,7 @@ namespace Improvians
             }
 
             String activepage = Request.RawUrl;
-            if (activepage.Contains("Dashboard"))
+            if (activepage.Contains("Dash"))
             {
                 dashlink.Attributes.Add("class", "active");
                 lnkmytask.Attributes.Remove("class");

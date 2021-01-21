@@ -99,7 +99,7 @@ namespace Improvians.Admin
                             }
                         }
                         // objCommon.AddEmployeeFacility(_isInserted, ddlFacility.SelectedValue);
-                        Response.Redirect("~/ViewEmployee.aspx");
+                        Response.Redirect("~/Admin/ViewEmployee.aspx");
                         btclear_Click(sender, e);
                     }
                 }

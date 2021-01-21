@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
-        function ValidateCheckBoxList(sender, args) {
+       <%-- function ValidateCheckBoxList(sender, args) {
             var checkBoxList = document.getElementById("<%=repFacility.ClientID %>");            
             var checkboxes = checkBoxList.getElementsByTagName("input");
             var isValid = false;
@@ -14,7 +14,7 @@
                 }
             }
             args.IsValid = isValid;
-        }
+        }--%>
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -140,10 +140,10 @@
                             </asp:Repeater>
                         </div>
                        
-                         <span class="error_message d-block">
+                        <%-- <span class="error_message d-block">
                             <asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one facility."
                                 ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" ValidationGroup="e" />
-                        </span>
+                        </span>--%>
                     </div>
                     
 
