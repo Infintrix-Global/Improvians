@@ -40,13 +40,9 @@ namespace Improvians
                 if (Session["Role"].ToString() == "2")
                 {
                     Session["JobID"] = e.CommandArgument.ToString();
-                    Response.Redirect("~/MoveTaskAssignment.aspx");
+                    Response.Redirect("~/GerminationTaskAssignment.aspx");
                 }
-                if (Session["Role"].ToString() == "5")
-                {
-                    Session["JobID"] = e.CommandArgument.ToString();
-                    Response.Redirect("~/MoveTaskAssignment.aspx");
-                }
+               
             }
             if (e.CommandName == "Select")
             {
