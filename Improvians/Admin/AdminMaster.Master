@@ -103,7 +103,7 @@
 
                        
                             
-                            <div class="dropdown account__dropdown ml-3">
+                            <div class="dropdown account__dropdown ml-auto">
                                 <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />
                                     <span class="account__user robotomd"><asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
