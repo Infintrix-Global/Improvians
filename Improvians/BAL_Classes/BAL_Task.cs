@@ -13,7 +13,7 @@ namespace Improvians.BAL_Classes
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
 
-        public int AddMoveRequest(DataTable dt, string jobID, string reqDate,string LoginID)
+        public int AddMoveRequest(DataTable dt, string jobID, string reqDate,string LoginID,string LogisticID)
         {
             int _isInserted = -1;
             try
@@ -24,10 +24,11 @@ namespace Improvians.BAL_Classes
                     objGeneral.AddParameterWithValueToSQLCommand("@JobID", jobID);
                     objGeneral.AddParameterWithValueToSQLCommand("@RequestDate", reqDate);
                     objGeneral.AddParameterWithValueToSQLCommand("@FromFacility", dt.Rows[i]["FromFacility"].ToString());
-                    objGeneral.AddParameterWithValueToSQLCommand("@ToFacility", dt.Rows[i]["ToFacility"].ToString());
-                    objGeneral.AddParameterWithValueToSQLCommand("@Greenhouse", dt.Rows[i]["Greenhouse"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@ToFacility", dt.Rows[i]["ToFacilityID"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@Greenhouse", dt.Rows[i]["GreenhouseID"].ToString());
                     objGeneral.AddParameterWithValueToSQLCommand("@Trays", dt.Rows[i]["Trays"].ToString());
                     objGeneral.AddParameterWithValueToSQLCommand("@LoginID", LoginID);
+                    objGeneral.AddParameterWithValueToSQLCommand("@LogisticID", LogisticID);
                     _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddMoveRequest");
                 }
             }

@@ -11,7 +11,7 @@ namespace Improvians
 {
 
 
-    public partial class MoveCompletionForm
+    public partial class MoveTaskAssignment
     {
 
         /// <summary>
@@ -51,40 +51,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Panel pnlint;
 
         /// <summary>
-        /// txtMoveDate control.
+        /// ddlShippingCoordinator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMoveDate;
-
-        /// <summary>
-        /// lblToFacility control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblToFacility;
-
-        /// <summary>
-        /// ddlLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
-
-        /// <summary>
-        /// txtTrays control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTrays;
+        protected global::System.Web.UI.WebControls.DropDownList ddlShippingCoordinator;
 
         /// <summary>
         /// btnSubmit control.

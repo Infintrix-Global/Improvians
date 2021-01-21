@@ -46,6 +46,14 @@ namespace Improvians
             {
                 amytask.HRef = "MyTaskGreenOperator.aspx";
             }
+            if (Session["Role"].ToString() == "5")
+            {
+                amytask.HRef = "MyTaskLogisticManager.aspx";
+            }
+            if (Session["Role"].ToString() == "6")
+            {
+                amytask.HRef = "MyTaskShippingCoordinator.aspx";
+            }
         }
     }
 }

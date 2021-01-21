@@ -24,7 +24,8 @@ namespace Improvians
         public void BindOperatorList()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlOperator.DataSource = objCommon.GetDataTable("SP_GetGreenHouseOperator", nv); ;
+            nv.Add("@RoleID", "3");
+            ddlOperator.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
             ddlOperator.DataTextField = "EmployeeName";
             ddlOperator.DataValueField = "ID";
             ddlOperator.DataBind();

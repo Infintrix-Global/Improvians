@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Improvians
 {
-    public partial class MyTaskGreenSupervisor : System.Web.UI.Page
+    public partial class MyTaskLogisticManager : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorTask", nv);
+            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -34,39 +34,25 @@ namespace Improvians
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            
+
             if (e.CommandName == "Assign")
             {
-                if (Session["Role"].ToString() == "2")
-                {
-                    Session["JobID"] = e.CommandArgument.ToString();
-                    Response.Redirect("~/MoveTaskAssignment.aspx");
-                }
+                
                 if (Session["Role"].ToString() == "5")
                 {
-                    Session["JobID"] = e.CommandArgument.ToString();
+                    Session["MoveID"] = e.CommandArgument.ToString();
                     Response.Redirect("~/MoveTaskAssignment.aspx");
                 }
             }
             if (e.CommandName == "Select")
             {
-                if (Session["Role"].ToString() == "2")
-                {
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@OperatorID", Session["LoginID"].ToString());
-                    nv.Add("@Notes", "");
-                    nv.Add("@JobID", e.CommandArgument.ToString());
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
-                    Session["JobID"] = e.CommandArgument.ToString();
-                    Response.Redirect("~/GreenHouseTaskCompletion.aspx");
-                }
+                
                 if (Session["Role"].ToString() == "5")
                 {
-
+                    Session["MoveID"] = e.CommandArgument.ToString();
+                    Response.Redirect("~/MoveCompletionForm.aspx");
                 }
-                }
+            }
         }
     }
 }

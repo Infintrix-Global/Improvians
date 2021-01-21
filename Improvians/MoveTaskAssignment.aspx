@@ -1,12 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MoveCompletionForm.aspx.cs" Inherits="Improvians.MoveCompletionForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MoveTaskAssignment.aspx.cs" Inherits="Improvians.MoveTaskAssignment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <div class="main">
+      <div class="main">
         <div class="site__container">
-            <h2>Move Completion</h2>
+            <h2>Move Task Assignment</h2>
 
-            <div class="row">
+         <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
@@ -81,7 +81,6 @@
                                         <asp:TemplateField HeaderText="To Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("FacilityTo")  %>'></asp:Label>
-                                                  <asp:Label ID="lblToFacilityID" runat="server" Visible="false" Text='<%# Eval("FacilityToID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -113,36 +112,29 @@
             </div>
 
             <div class="dashboard__block dashboard__block--asign">
-                <h3></h3>
-                <div id="userinput"  runat="server" class="assign__task d-flex">
+                <h3>Assign Task</h3>
+                <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                            <div class="col m4">
-                                <label>Move Date </label>
-                                <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server"></asp:TextBox>
+                            <div class="col m3">
+                                <label>Shipping Coordinator </label>
+
+                                <asp:DropDownList ID="ddlShippingCoordinator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
-                              <div class="col m4">
-                                <label>Put Away Location</label>
-                                  <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>
-                                <asp:DropDownList ID="ddlLocation"  runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                            </div>
+                           <%-- <div class="col m3">
+                                <label>Notes</label>
+                                <asp:TextBox ID="txtNotes" TextMode="Multiline" runat="server"></asp:TextBox>
+                            </div>--%>
+
+                            <div class="clearfix"></div>
+
                             <div class="col m4">
-                                <label># Trays Moved</label>
-                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" ></asp:TextBox>
-                               
-                            </div>
-                          
-                        </div>
-                    
-                        <div class="clearfix"></div>
-                        <br />
-                        <div class="row">
-                            <div class="col m4">
+                                <br />
                                 <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             </div>
                             <div class="col m4">
-                                <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click"
-                                    />
+                                <br />
+                                <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
                             </div>
                         </div>
                     </asp:Panel>

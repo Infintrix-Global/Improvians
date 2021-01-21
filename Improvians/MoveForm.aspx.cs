@@ -12,7 +12,7 @@ namespace Improvians
     public partial class MoveForm : System.Web.UI.Page
     {
         public static DataTable dtTrays = new DataTable()
-        { Columns = { "FromFacility", "ToFacility","Greenhouse","Trays" } };
+        { Columns = { "FromFacility", "ToFacility","ToFacilityID","Greenhouse","GreenHouseID","Trays" } };
         CommonControl objCommon = new CommonControl();
        BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
@@ -21,9 +21,20 @@ namespace Improvians
             {
                 BindGridMoveReq();
                 BindFacility();
+                BindLogisticList();
             }
         }
 
+        public void BindLogisticList()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@RoleID", "5");
+            ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+            ddlLogisticManager.DataTextField = "EmployeeName";
+            ddlLogisticManager.DataValueField = "ID";
+            ddlLogisticManager.DataBind();
+            ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+        }
         public void BindFacility()
         {
             NameValueCollection nv = new NameValueCollection();
@@ -67,7 +78,15 @@ namespace Improvians
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@JobID", (row.FindControl("lblID") as Label).Text);
                 dt = objCommon.GetDataTable("SP_GetUnMovedTraysByJobID", nv);
-                lblUnmovedTrays.Text = dt.Rows[0]["UnMovedTrays"].ToString();
+                if (dt.Rows[0]["UnMovedTrays"].ToString() is  null)
+                {
+                    lblUnmovedTrays.Text = "";
+                   
+                }
+                else
+                {
+                    lblUnmovedTrays.Text = dt.Rows[0]["UnMovedTrays"].ToString();
+                }
                 ddlToFacility.Focus();
             }
         }
@@ -100,7 +119,8 @@ namespace Improvians
             {
                 if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblUnmovedTrays.Text))
                 {
-                    dtTrays.Rows.Add(lblFromFacility.Text, ddlToFacility.SelectedItem.Text, ddlToGreenHouse.SelectedItem.Text, txtTrays.Text);
+                    lblerrmsg.Text = "";
+                    dtTrays.Rows.Add(lblFromFacility.Text, ddlToFacility.SelectedItem.Text,ddlToFacility.SelectedValue, ddlToGreenHouse.SelectedItem.Text,ddlToGreenHouse.SelectedValue, txtTrays.Text);
                     GridMove.DataSource = dtTrays;
                     GridMove.DataBind();
                     txtTrays.Text = "";
@@ -110,7 +130,8 @@ namespace Improvians
                 }
                 else
                 {
-                    RequiredFieldValidator2.ErrorMessage = "Number of Trays exceed Remaing trays";
+                   
+                    lblerrmsg.Text = "Number of Trays exceed Remaing trays";
                    
                 }
             }
@@ -122,9 +143,20 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString());
-            Clear();
-            userinput.Visible = false;
+            long result = 0;
+            result=objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(),ddlLogisticManager.SelectedValue);
+            if (result > 0)
+            {
+                lblmsg.Text = "Request Successful";
+                Clear();
+                userinput.Visible = false;
+            }
+            else
+            {
+                lblmsg.Text = "Request Not Successful";
+            }
+            
+          
         }
 
         public void Clear()

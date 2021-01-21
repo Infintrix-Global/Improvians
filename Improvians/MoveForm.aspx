@@ -138,7 +138,7 @@
                                  <div class="col m3">
                                 <label>To Facility </label>
                                 <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
-                                      <span class="help-block">
+                                      <span class="error_message">
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
                                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </span>
@@ -146,7 +146,7 @@
                             <div class="col m3">
                                 <label>Greenhouse </label>
                                 <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                  <span class="help-block">
+                                  <span class="error_message">
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
                                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </span>
@@ -156,7 +156,8 @@
                                 <label>Number Of Trays </label>
                                  <asp:Label ID="lblUnmovedTrays" visible="false" runat="server"></asp:Label>
                                 <asp:TextBox ID="txtTrays" TextMode="Number" runat="server"></asp:TextBox>
-                                 <span class="help-block">
+                                 <span class="error_message">
+                                     <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
                                                         SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </span>
@@ -219,12 +220,22 @@
                             <div class="col m6">
                                 <label>Move Request Date</label>
                                 <asp:TextBox ID="txtReqDate" runat="server"  TextMode="Date" ></asp:TextBox>
-                                  <span class="help-block">
+                                  <span class="error_message">
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtReqDate" ValidationGroup="e"
                                                         SetFocusOnError="true" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </span>
                             </div>
 
+                              <div class="col m6">
+                                <label runat="server" id="lblfacsupervisor">Greenhouse Supervisor</label>
+                                <%-- <h3 class="robotobold"><asp:Label ID="lblSupervisorName" runat="server" ></asp:Label></h3>--%>
+                                <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                   <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
+                                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                            </div>
 
                             <div class="col m6">
                                 <br />

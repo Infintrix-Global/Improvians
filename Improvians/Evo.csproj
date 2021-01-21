@@ -218,9 +218,12 @@
     <Content Include="Login.aspx" />
     <Content Include="MoveCompletionForm.aspx" />
     <Content Include="MoveForm.aspx" />
+    <Content Include="MoveTaskAssignment.aspx" />
     <Content Include="MyTaskGreenOperator.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
     <Content Include="MyTaskGrower.aspx" />
+    <Content Include="MyTaskLogisticManager.aspx" />
+    <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +336,13 @@
     <Compile Include="MoveForm.aspx.designer.cs">
       <DependentUpon>MoveForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MoveTaskAssignment.aspx.cs">
+      <DependentUpon>MoveTaskAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoveTaskAssignment.aspx.designer.cs">
+      <DependentUpon>MoveTaskAssignment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyTaskGreenOperator.aspx.cs">
       <DependentUpon>MyTaskGreenOperator.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -353,6 +363,20 @@
     </Compile>
     <Compile Include="MyTaskGrower.aspx.designer.cs">
       <DependentUpon>MyTaskGrower.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskLogisticManager.aspx.cs">
+      <DependentUpon>MyTaskLogisticManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskLogisticManager.aspx.designer.cs">
+      <DependentUpon>MyTaskLogisticManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskShippingCoordinator.aspx.cs">
+      <DependentUpon>MyTaskShippingCoordinator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskShippingCoordinator.aspx.designer.cs">
+      <DependentUpon>MyTaskShippingCoordinator.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
