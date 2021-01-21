@@ -128,7 +128,10 @@
 
 
                 <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
-                    <div class="row">
+                   
+                    <asp:Panel ID="pnlint" runat="server">
+                          <h3>Move Request</h3>
+                         <div class="row">
                         <div class="col m3">
                             <label>Job ID</label>
                               <asp:Label ID="lbljobid" runat="server" ></asp:Label>
@@ -138,8 +141,6 @@
                              <asp:Label ID="lblUnmovedTrays"  runat="server"></asp:Label>
                         </div>
                     </div>
-                    <asp:Panel ID="pnlint" runat="server">
-                          <h3>Move Request</h3>
                         <div class="row">
                             <div class="col m3">
                              
@@ -166,14 +167,14 @@
                             <div class="col m3">
                                 <label>Number Of Trays </label>
                                
-                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                  <span class="error_message">
                                      <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
                                                         SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </span>
                             </div>
-                            <div class="col m2">
+                            <div class="col align-self-center">
                                     
                                         <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary"  runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                                     </div>
