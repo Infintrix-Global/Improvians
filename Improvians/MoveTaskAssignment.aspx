@@ -115,8 +115,8 @@
                 <h3>Assign Task</h3>
                 <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
-                        <div class="row">
-                            <div class="col m3">
+                        <div class="row align-items-end">
+                            <div class="col">
                                 <label>Shipping Coordinator </label>
 
                                 <asp:DropDownList ID="ddlShippingCoordinator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -128,11 +128,11 @@
 
                             <div class="clearfix"></div>
 
-                            <div class="col m4">
+                            <div class="col-auto">
                                 <br />
                                 <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             </div>
-                            <div class="col m4">
+                            <div class="col-auto">
                                 <br />
                                 <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
                             </div>

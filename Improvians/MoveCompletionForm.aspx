@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MoveCompletionForm.aspx.cs" Inherits="Improvians.MoveCompletionForm" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <div class="main">
+    <div class="main">
         <div class="site__container">
             <h2>Move Completion</h2>
 
@@ -81,7 +82,7 @@
                                         <asp:TemplateField HeaderText="To Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("FacilityTo")  %>'></asp:Label>
-                                                  <asp:Label ID="lblToFacilityID" runat="server" Visible="false" Text='<%# Eval("FacilityToID")  %>'></asp:Label>
+                                                <asp:Label ID="lblToFacilityID" runat="server" Visible="false" Text='<%# Eval("FacilityToID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -91,7 +92,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                   
+
 
                                     </Columns>
 
@@ -113,49 +114,42 @@
             </div>
 
             <div class="dashboard__block dashboard__block--asign">
-                <h3></h3>
-                <div id="userinput"  runat="server" class="assign__task d-flex">
+                <h3>Move Completion</h3>
+                <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                            <div class="col m4">
+                            <div class="col">
                                 <label>Move Date </label>
-                                <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtMoveDate" ValidationGroup="md"
-                                                        SetFocusOnError="true"  ErrorMessage="Please Enter Move Date" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                </span>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtMoveDate" ValidationGroup="md"
+                                        SetFocusOnError="true" ErrorMessage="Please Enter Move Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </span>
                             </div>
-                              <div class="col m4">
+                            <div class="col">
                                 <label>Put Away Location</label>
-                                  <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>
-                                <asp:DropDownList ID="ddlLocation"  runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                    <span class="error_message">
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" ValidationGroup="md"
-                                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Facility" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                </span>
+                                <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>
+                                <asp:DropDownList ID="ddlLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                <span class="error_message">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" ValidationGroup="md"
+                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Facility" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </span>
                             </div>
-                            <div class="col m4">
+                            <div class="col">
                                 <label># Trays Moved</label>
-                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" ></asp:TextBox>
-                                <asp:Label ID="lblRemainingTrays" Visible="false"  runat="server"></asp:Label>
-                                 <span class="error_message">
-                                        <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
-                                                        SetFocusOnError="true"  ErrorMessage="Please Enter Trays Moved" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                </span>
+                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:Label ID="lblRemainingTrays" Visible="false" runat="server"></asp:Label>
+                                <span class="error_message">
+                                    <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
+                                        SetFocusOnError="true" ErrorMessage="Please Enter Trays Moved" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </span>
                             </div>
-                          
-                        </div>
-                    
-                        <div class="clearfix"></div>
-                        <br />
-                        <div class="row">
-                            <div class="col m4">
+                            <div class="col-auto align-self-center">
                                 <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             </div>
-                            <div class="col m4">
-                                <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click"
-                                    />
+                            <div class="col-auto align-self-center">
+                                <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
                             </div>
                         </div>
                     </asp:Panel>

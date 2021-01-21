@@ -188,13 +188,17 @@
     <Content Include="images\icon-dropdown.svg" />
     <Content Include="images\icons\icon-account.svg" />
     <Content Include="images\icons\icon-dashboard.svg" />
+    <Content Include="images\icons\icon-email.svg" />
     <Content Include="images\icons\icon-facility-probability.svg" />
     <Content Include="images\icons\icon-germination-seed.svg" />
     <Content Include="images\icons\icon-greenhouse-control.svg" />
     <Content Include="images\icons\icon-labor-efficiency.svg" />
     <Content Include="images\icons\icon-mytasks.svg" />
+    <Content Include="images\icons\icon-password.svg" />
+    <Content Include="images\icons\icon-phone.svg" />
     <Content Include="images\icons\icon-plant-quality.svg" />
     <Content Include="images\icons\icon-site-capacity.svg" />
+    <Content Include="images\icons\icon-user.svg" />
     <Content Include="images\link-assign-task.svg" />
     <Content Include="images\link-my-task.svg" />
     <Content Include="images\link-site-tasks.svg" />

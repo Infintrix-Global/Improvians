@@ -332,6 +332,7 @@ header {
     padding: 0 28px;
     border-radius: 15px;
     border: 1.5px solid #c8e0c9;
+    outline: none;
 }
 
 .custom__dropdown {

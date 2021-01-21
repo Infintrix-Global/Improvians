@@ -91,7 +91,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -121,28 +121,25 @@
                 <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                            <div class="col m4">
+                            <div class="col">
                                 <label>Inspection Date </label>
-                                <asp:TextBox ID="txtInspectionDate" TextMode="Date" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtInspectionDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                             </div>
-                            <div class="col m4">
+                            <div class="col">
                                 <label># Trays</label>
-                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true"></asp:TextBox>
-                                <asp:Label runat="server" id="lblSeedlot" Visible="false"></asp:Label>
+                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" class="input__control"></asp:TextBox>
+                                <asp:Label runat="server" ID="lblSeedlot" Visible="false"></asp:Label>
                             </div>
-                            <div class="col m4">
+                            <div class="col align-self-end">
                                 <asp:Button ID="sbtTray" runat="server" Text="Calculate" CssClass="bttn bttn-primary bttn-action" OnClick="sbtTray_Click" />
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-                        <div class="row">
-
-                            <asp:Table ID="tbltray" runat="server" class="data__table">
-                            </asp:Table>
+                        <div class="row py-3">
+                            <div class="col-12">
+                                <asp:Table ID="tbltray" runat="server" class="data__table">
+                                </asp:Table>
+                            </div>
                         </div>
-
-                        <div class="clearfix"></div>
-                        <br />
                         <asp:Panel ID="pnlUpdated" runat="server">
                             <asp:Table ID="tblupdate" runat="server" class="data__table">
                                 <asp:TableHeaderRow>
@@ -203,10 +200,10 @@
                         <div class="clearfix"></div>
                         <br />
                         <div class="row">
-                            <div class="col m4">
+                            <div class="col-auto">
                                 <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             </div>
-                            <div class="col m4">
+                            <div class="col-auto">
                                 <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
                             </div>
                         </div>

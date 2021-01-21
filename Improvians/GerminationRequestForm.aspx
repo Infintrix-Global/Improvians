@@ -128,8 +128,8 @@
                 <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
                     <asp:Panel ID="pnlint" runat="server">
                           <h3>Assign Task</h3>
-                        <div class="row">
-                            <div class="col m6">
+                        <div class="row align-items-end">
+                            <div class="col-auto m6">
                                 <label>Job No.</label><br />
                                 <h3 class="robotobold"><asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
                             </div>
@@ -141,19 +141,19 @@
                             </div>
                             <div class="col m6">
                                 <label>Inspection Due Date </label>
-                                <asp:TextBox ID="txtDate" TextMode="Date" runat="server" class="custom__dropdown robotomd"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                             </div>
                             <div class="col m6">
                                 <label>Number Of Trays To Inspect</label>
-                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" class="custom__dropdown robotomd"></asp:TextBox>
+                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" class="input__control robotomd"></asp:TextBox>
                             </div>
                             <%--<div class="clearfix"></div>--%>
 
-                            <div class="col m6">
+                            <div class="col-auto m6">
                                 <br />
                                 <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             </div>
-                            <div class="col m6">
+                            <div class="col-auto m6">
                                 <br />
                                 <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                             </div>
