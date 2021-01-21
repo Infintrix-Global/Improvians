@@ -127,48 +127,56 @@
 
 
 
-                        <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
-                            <asp:Panel ID="pnlint" runat="server">
-                                <h3>Move Request</h3>
-                                <div class="row">
-                                    <div class="col m3">
-                                        <asp:Label ID="lbljobid" runat="server" Visible="false"></asp:Label>
-                                        <label>From Facility</label><br />
-                                        <h3 class="robotobold">
-                                            <asp:Label ID="lblFromFacility" runat="server"></asp:Label></h3>
+                <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
+                    <div class="row">
+                        <div class="col m3">
+                            <label>Job ID</label>
+                              <asp:Label ID="lbljobid" runat="server" ></asp:Label>
+                            </div>
+                        <div class="col m3">
+                             <label>Remaining Trays</label>
+                             <asp:Label ID="lblUnmovedTrays"  runat="server"></asp:Label>
+                        </div>
+                    </div>
+                    <asp:Panel ID="pnlint" runat="server">
+                          <h3>Move Request</h3>
+                        <div class="row">
+                            <div class="col m3">
+                             
+                                <label>From Facility</label><br />
+                                <h3 class="robotobold"><asp:Label ID="lblFromFacility" runat="server"></asp:Label></h3>
+                            </div>
+                                 <div class="col m3">
+                                <label>To Facility </label>
+                                <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
+                                      <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
+                                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                            </div>
+                            <div class="col m3">
+                                <label>Greenhouse </label>
+                                <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                  <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
+                                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                            </div>
+                       
+                            <div class="col m3">
+                                <label>Number Of Trays </label>
+                               
+                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server"></asp:TextBox>
+                                 <span class="error_message">
+                                     <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
+                                                        SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                            </div>
+                            <div class="col m2">
+                                    
+                                        <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary"  runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                                     </div>
-                                    <div class="col m3">
-                                        <label>To Facility </label>
-                                        <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
-                                        <span class="error_message">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
-                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </span>
-                                    </div>
-                                    <div class="col m3">
-                                        <label>Greenhouse </label>
-                                        <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                        <span class="error_message">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
-                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </span>
-                                    </div>
-
-                                    <div class="col m3">
-                                        <label>Number Of Trays </label>
-                                        <asp:Label ID="lblUnmovedTrays" Visible="false" runat="server"></asp:Label>
-                                        <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" class="input__control "></asp:TextBox>
-                                        <span class="error_message">
-                                            <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
-                                                SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </span>
-                                    </div>
-                                    <div class="col m2 align-self-center">
-
-                                        <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
-                                    </div>
-                                </div>
 
                                 <div class="row">
 
