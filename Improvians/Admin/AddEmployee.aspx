@@ -3,16 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         function ValidateCheckBoxList(sender, args) {
-            <%--var checkBoxList = document.getElementById("<%=chkFacility.ClientID %>");
+            var checkBoxList = document.getElementById("<%=repFacility.ClientID %>");
             var checkboxes = checkBoxList.getElementsByTagName("input");
             var isValid = false;
             for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
+                if (checkboxes[i].type == "checkbox" && checkboxes[i].checked) {
                     isValid = true;
                     break;
                 }
             }
-            args.IsValid = isValid;--%>
+            args.IsValid = isValid;
         }
     </script>
 </asp:Content>
@@ -109,7 +109,7 @@
                             <asp:DropDownList ID="ddlDepartment" runat="server" class="custom__dropdown robotomd" TabIndex="4"></asp:DropDownList>
 
                             <span class="error_message">
-                                <asp:RequiredFieldValidator ID="requiredRole" runat="server" ControlToValidate="ddlDepartment" InitialValue="0" ErrorMessage="Please Select Role" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="requiredRole" runat="server" ControlToValidate="ddlDepartment" InitialValue="0" ErrorMessage="Please Select Department" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
 
                             </span>
                         </label>
@@ -121,7 +121,7 @@
                             <h3>Designation</h3>
                             <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd" TabIndex="5"></asp:DropDownList>
                             <span class="error_message">-    
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Role" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Designation" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>
                         </label>
                     </div>
@@ -138,13 +138,13 @@
                                <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("FacilityID")%>' /> </ItemTemplate>
                             </asp:Repeater>
                         </div>
-                        <span class="error_message">-  <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlFacility" InitialValue="0" ErrorMessage="Please Select Role" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>--%>
+                       
+                         <span class="error_message">
                             <asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one facility."
                                 ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" ValidationGroup="e" />
                         </span>
-
                     </div>
-
+                    
 
                     <div class="clearfix"></div>
 
