@@ -17,7 +17,7 @@ namespace Improvians
             if (!IsPostBack)
             {
                 BindGridGerm();
-               
+
             }
         }
 
@@ -68,7 +68,17 @@ namespace Improvians
         {
             txtTrays.Text = "";
             txtInspectionDate.Text = "";
-            Response.Redirect("~/MyTaskGreenOperator.aspx");
+
+            if (Session["Role"].ToString() == "3")
+            {
+                Response.Redirect("~/MyTaskGreenOperator.aspx");
+            }
+
+            else if (Session["Role"].ToString() == "2")
+            {
+                Response.Redirect("~/MyTaskGreenSupervisor.aspx");
+            }
+
 
         }
 

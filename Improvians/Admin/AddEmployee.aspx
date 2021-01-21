@@ -3,8 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         function ValidateCheckBoxList(sender, args) {
-            var checkBoxList = document.getElementById("<%=repFacility.ClientID %>");
-            alert(checkBoxList);
+            var checkBoxList = document.getElementById("<%=repFacility.ClientID %>");            
             var checkboxes = checkBoxList.getElementsByTagName("input");
             var isValid = false;
             

@@ -636,3 +636,15 @@
 *****Error message=****@Notes: at 21-Jan-21 5:12:33 PM
 *****Error message=****@JobID:JB030124 at 21-Jan-21 5:12:33 PM
 *****Error message=****@LoginID:2 at 21-Jan-21 5:12:33 PM
+*****Error message=****@OperatorID:2 at 21-Jan-21 5:32:41 PM
+*****Error message=****@Notes: at 21-Jan-21 5:32:41 PM
+*****Error message=****@JobID:JB030126 at 21-Jan-21 5:32:41 PM
+*****Error message=****@LoginID:2 at 21-Jan-21 5:32:41 PM
+*****Error message=****@InspectionDate:2021-01-22 at 21-Jan-21 5:32:56 PM
+*****Error message=****@#TraysInspected:2 at 21-Jan-21 5:32:56 PM
+*****Error message=****@Germination:99.2187500 at 21-Jan-21 5:32:56 PM
+*****Error message=****@#BadPlants:4 at 21-Jan-21 5:32:56 PM
+*****Error message=****@GermVigor: at 21-Jan-21 5:32:56 PM
+*****Error message=****@GermHealth: at 21-Jan-21 5:32:56 PM
+*****Error message=****@JobID:JB030126 at 21-Jan-21 5:32:56 PM
+*****Error message=****@LoginID:2 at 21-Jan-21 5:32:56 PM
