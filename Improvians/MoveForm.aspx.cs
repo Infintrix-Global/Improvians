@@ -96,6 +96,8 @@ namespace Improvians
         {
             try
             {
+                string tray = (GridMove.Rows[e.RowIndex].FindControl("lblTray") as Label).Text;
+                lblUnmovedTrays.Text = ((Convert.ToInt32(lblUnmovedTrays.Text) + Convert.ToInt32(tray)).ToString());
                 dtTrays.Rows.RemoveAt(e.RowIndex);
                 GridMove.DataSource = dtTrays;
                 GridMove.DataBind();
@@ -124,10 +126,11 @@ namespace Improvians
                     dtTrays.Rows.Add(lblFromFacility.Text, ddlToFacility.SelectedItem.Text,ddlToFacility.SelectedValue, ddlToGreenHouse.SelectedItem.Text,ddlToGreenHouse.SelectedValue, txtTrays.Text);
                     GridMove.DataSource = dtTrays;
                     GridMove.DataBind();
+                    lblUnmovedTrays.Text = (Convert.ToInt32(lblUnmovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
                     txtTrays.Text = "";
                     ddlToFacility.SelectedIndex = 0;
                     ddlToGreenHouse.SelectedIndex = 0;
-                    lblUnmovedTrays.Text = (Convert.ToInt32(lblUnmovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+               
                 }
                 else
                 {
