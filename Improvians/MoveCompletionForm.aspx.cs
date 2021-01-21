@@ -62,7 +62,15 @@ namespace Improvians
             {
                 lblmsg.Text = "Completion Successful";
                 Clear();
-                Response.Redirect("~/MyTaskShippingCoordinator.aspx");
+                if (Session["Role"].ToString() == "6")
+                {
+                    Response.Redirect("~/MyTaskShippingCoordinator.aspx");
+                }
+                
+                 else   if (Session["Role"].ToString() == "5")
+                {
+                    Response.Redirect("~/MyTaskLogisticManager.aspx");
+                }
             }
             else
             {

@@ -67,7 +67,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("#Tray")  %>'></asp:Label>
+                                                <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("#Tray")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -227,7 +227,7 @@
                             </div>
 
                               <div class="col m6">
-                                <label runat="server" id="lblfacsupervisor">Greenhouse Supervisor</label>
+                                <label runat="server" id="lblfacsupervisor">Logistic Manager</label>
                                 <%-- <h3 class="robotobold"><asp:Label ID="lblSupervisorName" runat="server" ></asp:Label></h3>--%>
                                 <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                                 <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>

@@ -78,9 +78,10 @@ namespace Improvians
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@JobID", (row.FindControl("lblID") as Label).Text);
                 dt = objCommon.GetDataTable("SP_GetUnMovedTraysByJobID", nv);
-                if (dt.Rows[0]["UnMovedTrays"].ToString() is  null)
+                if (string.IsNullOrEmpty(dt.Rows[0]["UnMovedTrays"].ToString()))
                 {
-                    lblUnmovedTrays.Text = "0";
+
+                    lblUnmovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text; ;
                    
                 }
                 else
@@ -131,7 +132,7 @@ namespace Improvians
                 else
                 {
                    
-                    lblerrmsg.Text = "Number of Trays exceed Remaing trays";
+                    lblerrmsg.Text = "Number of Trays exceed Remaining trays";
                    
                 }
             }
