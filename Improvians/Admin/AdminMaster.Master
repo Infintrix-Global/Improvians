@@ -67,7 +67,7 @@
              <div class="admin__page">
             <aside class="admin__sidebar site__transition">
                 <div class="admin__logo">
-                    <a href="~/Admin/AdminDashBoard.aspx" title="Growers Transplanting Inc">
+                    <a href="AdminDashBoard.aspx" title="Growers Transplanting Inc">
                         <img src="images/logo-vertical.svg" alt="Growers Transplanting Inc" width="120" height="90" />
                     </a>
                 </div>
@@ -111,7 +111,7 @@
 
                                 <div class="dropdown-menu" aria-labelledby="account__dropdown">
                                     <a class="dropdown-item" href="#">Profile</a>
-                                    <a class="dropdown-item" href="Login.aspx">Log Out</a>
+                                    <a class="dropdown-item" href="../Login.aspx">Log Out</a>
                                 </div>
                             </div>
                         </div>

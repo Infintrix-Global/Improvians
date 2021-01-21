@@ -116,23 +116,22 @@
                 <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                            <div class="col m3">
+                            <div class="col">
                                 <label>Greenhouse Operator </label>
-
                                 <asp:DropDownList ID="ddlOperator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
-                            <div class="col m3">
+                            <div class="col">
                                 <label>Notes</label>
-                                <asp:TextBox ID="txtNotes" TextMode="Multiline" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtNotes" TextMode="Multiline" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
 
-                            <div class="clearfix"></div>
+                            
 
-                            <div class="col m4">
+                            <div class="col-auto">
                                 <br />
                                 <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             </div>
-                            <div class="col m4">
+                            <div class="col-auto">
                                 <br />
                                 <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
                             </div>

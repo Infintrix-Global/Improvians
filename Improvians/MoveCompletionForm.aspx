@@ -32,7 +32,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                      <%--  <asp:TemplateField HeaderText="Put Away Location" HeaderStyle-CssClass="autostyle2">
+                                        <%--  <asp:TemplateField HeaderText="Put Away Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("PutAwayLocation")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -50,7 +50,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-<%--                                        <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
+                                        <%--                                        <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -87,13 +87,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="To GreenHouse" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="To GreenHouse" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("GreenHouseName")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Request Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Request Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("RequestDate", "{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -128,6 +128,13 @@
 
             <div class="dashboard__block dashboard__block--asign">
                 <h3>Move Completion</h3>
+                <div class="row">
+                    <div class="col">
+                        <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>
+                        <label>Remaining Trays:</label>
+                        <asp:Label ID="lblRemainingTrays" runat="server"></asp:Label>
+                    </div>
+                </div>
                 <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
@@ -139,9 +146,10 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter Move Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
+
                             <div class="col">
                                 <label>Put Away Location</label>
-                                <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>
+
                                 <asp:DropDownList ID="ddlLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" ValidationGroup="md"
@@ -151,7 +159,7 @@
                             <div class="col">
                                 <label># Trays Moved</label>
                                 <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                <asp:Label ID="lblRemainingTrays" Visible="false" runat="server"></asp:Label>
+
                                 <span class="error_message">
                                     <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"

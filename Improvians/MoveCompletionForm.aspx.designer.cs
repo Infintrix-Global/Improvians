@@ -33,6 +33,24 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.GridView gvMove;
 
         /// <summary>
+        /// lblToFacility control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblToFacility;
+
+        /// <summary>
+        /// lblRemainingTrays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRemainingTrays;
+
+        /// <summary>
         /// userinput control.
         /// </summary>
         /// <remarks>
@@ -69,15 +87,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
-        /// lblToFacility control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblToFacility;
-
-        /// <summary>
         /// ddlLocation control.
         /// </summary>
         /// <remarks>
@@ -103,15 +112,6 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTrays;
-
-        /// <summary>
-        /// lblRemainingTrays control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRemainingTrays;
 
         /// <summary>
         /// lblerrmsg control.
