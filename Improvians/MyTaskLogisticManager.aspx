@@ -57,7 +57,7 @@
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobID")  %>'></asp:Label>
-                                                  <asp:Label ID="lblMoveID" runat="server" Text='<%# Eval("MoveID")  %>'></asp:Label>
+                                                  <asp:Label ID="lblMoveID" runat="server" Text='<%# Eval("MoveID")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

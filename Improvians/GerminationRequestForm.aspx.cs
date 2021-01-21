@@ -17,7 +17,7 @@ namespace Improvians
             if(!IsPostBack)
             {
                 BindGridGerm();
-                //BindSupervisorList();
+                BindSupervisorList();
             }
         }
 
