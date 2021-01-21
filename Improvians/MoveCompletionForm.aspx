@@ -87,7 +87,7 @@
 
                                         <asp:TemplateField HeaderText="Trays To be Moved" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
+                                                <asp:Label ID="lblTrayRequest" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -120,16 +120,29 @@
                             <div class="col m4">
                                 <label>Move Date </label>
                                 <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server"></asp:TextBox>
+                                <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtMoveDate" ValidationGroup="md"
+                                                        SetFocusOnError="true"  ErrorMessage="Please Enter Move Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
                             </div>
                               <div class="col m4">
                                 <label>Put Away Location</label>
                                   <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>
                                 <asp:DropDownList ID="ddlLocation"  runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" ValidationGroup="md"
+                                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Facility" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
                             </div>
                             <div class="col m4">
                                 <label># Trays Moved</label>
                                 <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" ></asp:TextBox>
-                               
+                                <asp:Label ID="lblRemainingTrays" Visible="false"  runat="server"></asp:Label>
+                                 <span class="error_message">
+                                        <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
+                                                        SetFocusOnError="true"  ErrorMessage="Please Enter Trays Moved" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
                             </div>
                           
                         </div>

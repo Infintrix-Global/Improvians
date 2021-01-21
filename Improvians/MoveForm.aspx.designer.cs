@@ -96,15 +96,6 @@ namespace Improvians
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
 
         /// <summary>
-        /// pnlint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlint;
-
-        /// <summary>
         /// lbljobid control.
         /// </summary>
         /// <remarks>
@@ -112,6 +103,24 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbljobid;
+
+        /// <summary>
+        /// lblUnmovedTrays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUnmovedTrays;
+
+        /// <summary>
+        /// pnlint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlint;
 
         /// <summary>
         /// lblFromFacility control.
@@ -157,15 +166,6 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
-        /// lblUnmovedTrays control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUnmovedTrays;
 
         /// <summary>
         /// txtTrays control.

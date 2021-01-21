@@ -81,12 +81,12 @@ namespace Improvians
                 if (string.IsNullOrEmpty(dt.Rows[0]["UnMovedTrays"].ToString()))
                 {
 
-                    lblUnmovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text; ;
+                    lblUnmovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text; 
                    
                 }
                 else
                 {
-                    lblUnmovedTrays.Text = dt.Rows[0]["UnMovedTrays"].ToString();
+                    lblUnmovedTrays.Text = (Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text)- (Convert.ToInt32(dt.Rows[0]["UnMovedTrays"].ToString()))).ToString();
                 }
                 ddlToFacility.Focus();
             }

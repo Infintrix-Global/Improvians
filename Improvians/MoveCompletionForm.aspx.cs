@@ -33,13 +33,23 @@ namespace Improvians
 
     public void BindGridMove()
         {
-            DataTable dt = new DataTable();
+            DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@MoveID", Session["MoveID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetShipmentCoordinatorTaskByMoveID", nv);
-            gvMove.DataSource = dt;
+            dt = objCommon.GetDataSet("SP_GetShipmentCoordinatorTaskByMoveID", nv);
+            gvMove.DataSource = dt.Tables[0];
             gvMove.DataBind();
-            lblToFacility.Text = dt.Rows[0]["FacilityToID"].ToString();
+            lblToFacility.Text = dt.Tables[0].Rows[0]["FacilityToID"].ToString();
+            if (string.IsNullOrEmpty(dt.Tables[1].Rows[0]["CompletedTrays"].ToString()))
+            {
+
+                lblRemainingTrays.Text =dt.Tables[0].Rows[0]["TraysRequest"].ToString() ;
+
+            }
+            else
+            {
+                lblRemainingTrays.Text = (Convert.ToInt32(dt.Tables[0].Rows[0]["TraysRequest"].ToString())- Convert.ToInt32(dt.Tables[1].Rows[0]["CompletedTrays"].ToString())).ToString();
+            }
         }
 
         protected void gvMove_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -50,31 +60,40 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@MoveTaskID", Session["MoveID"].ToString());
-            nv.Add("@GrenHouseToCompletion", ddlLocation.SelectedValue);
-            nv.Add("@TraysCompletion", txtTrays.Text);
-            nv.Add("@CompletionDate", txtMoveDate.Text);
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddMoveCompletion", nv);
-            if (result > 0)
+            if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblRemainingTrays.Text))
             {
-                lblmsg.Text = "Completion Successful";
-                Clear();
-                if (Session["Role"].ToString() == "6")
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@MoveTaskID", Session["MoveID"].ToString());
+                nv.Add("@GrenHouseToCompletion", ddlLocation.SelectedValue);
+                nv.Add("@TraysCompletion", txtTrays.Text);
+                nv.Add("@CompletionDate", txtMoveDate.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                result = objCommon.GetDataInsertORUpdate("SP_AddMoveCompletion", nv);
+                if (result > 0)
                 {
-                    Response.Redirect("~/MyTaskShippingCoordinator.aspx");
+                    lblmsg.Text = "Completion Successful";
+                    Clear();
+                    if (Session["Role"].ToString() == "6")
+                    {
+                        Response.Redirect("~/MyTaskShippingCoordinator.aspx");
+                    }
+
+                    else if (Session["Role"].ToString() == "5")
+                    {
+                        Response.Redirect("~/MyTaskLogisticManager.aspx");
+                    }
                 }
-                
-                 else   if (Session["Role"].ToString() == "5")
+                else
                 {
-                    Response.Redirect("~/MyTaskLogisticManager.aspx");
+                    lblmsg.Text = "Completion Not Successful";
                 }
             }
             else
             {
-                lblmsg.Text = "Completion Not Successful";
+
+                lblerrmsg.Text = "Number of Trays exceed Remaining trays";
+
             }
         }
 

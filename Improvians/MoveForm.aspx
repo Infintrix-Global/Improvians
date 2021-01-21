@@ -127,11 +127,21 @@
 
 
                 <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
+                    <div class="row">
+                        <div class="col m3">
+                            <label>Job ID</label>
+                              <asp:Label ID="lbljobid" runat="server" ></asp:Label>
+                            </div>
+                        <div class="col m3">
+                             <label>Remaining Trays</label>
+                             <asp:Label ID="lblUnmovedTrays"  runat="server"></asp:Label>
+                        </div>
+                    </div>
                     <asp:Panel ID="pnlint" runat="server">
                           <h3>Move Request</h3>
                         <div class="row">
                             <div class="col m3">
-                                <asp:Label ID="lbljobid" runat="server" Visible="false"></asp:Label>
+                             
                                 <label>From Facility</label><br />
                                 <h3 class="robotobold"><asp:Label ID="lblFromFacility" runat="server"></asp:Label></h3>
                             </div>
@@ -154,7 +164,7 @@
                        
                             <div class="col m3">
                                 <label>Number Of Trays </label>
-                                 <asp:Label ID="lblUnmovedTrays" visible="false" runat="server"></asp:Label>
+                               
                                 <asp:TextBox ID="txtTrays" TextMode="Number" runat="server"></asp:TextBox>
                                  <span class="error_message">
                                      <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
