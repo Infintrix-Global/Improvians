@@ -4,8 +4,10 @@
     <script type="text/javascript">
         function ValidateCheckBoxList(sender, args) {
             var checkBoxList = document.getElementById("<%=repFacility.ClientID %>");
+            alert(checkBoxList);
             var checkboxes = checkBoxList.getElementsByTagName("input");
             var isValid = false;
+            
             for (var i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i].type == "checkbox" && checkboxes[i].checked) {
                     isValid = true;
@@ -132,14 +134,14 @@
                         </label>
                         <%--<asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" TabIndex="6"></asp:DropDownList>--%>
                         <div class="control__box">
-                            <asp:Repeater ID="repFacility" runat="server"  >
+                            <asp:Repeater ID="repFacility"  runat="server"  >
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkFacility" Text='<%#Bind("FacilityName")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
                                <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("FacilityID")%>' /> </ItemTemplate>
                             </asp:Repeater>
                         </div>
                        
-                         <span class="error_message">
+                         <span class="error_message d-block">
                             <asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one facility."
                                 ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" ValidationGroup="e" />
                         </span>
