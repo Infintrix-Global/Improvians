@@ -80,7 +80,7 @@ namespace Improvians
                 dt = objCommon.GetDataTable("SP_GetUnMovedTraysByJobID", nv);
                 if (dt.Rows[0]["UnMovedTrays"].ToString() is  null)
                 {
-                    lblUnmovedTrays.Text = "";
+                    lblUnmovedTrays.Text = "0";
                    
                 }
                 else
