@@ -17,7 +17,7 @@ namespace Improvians.Admin
         BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 BindDepartment();
                 BindRole();
@@ -45,10 +45,8 @@ namespace Improvians.Admin
 
         public void BindFacility()
         {
-            chkFacility.DataSource = objCommon.GetFacilityMaster();
-            chkFacility.DataTextField = "FacilityName";
-            chkFacility.DataValueField = "FacilityID";
-            chkFacility.DataBind();
+            repFacility.DataSource = objCommon.GetFacilityMaster();
+            repFacility.DataBind();
             //ddlFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
@@ -62,12 +60,12 @@ namespace Improvians.Admin
                     int _isInserted = -1;
                     Employee objEmployee = new Employee()
                     {
-                      
+
                         Name = txtName.Text,
                         Mobile = txtMobile.Text,
                         Password = objCommon.Encrypt("evo1"),
                         Email = txtEmail.Text,
-                         Designation = ddlDesignation.SelectedValue,
+                        Designation = ddlDesignation.SelectedValue,
                         Department = ddlDepartment.SelectedValue,
                         Photo = lblProfile.Text
                     };
@@ -92,11 +90,12 @@ namespace Improvians.Admin
 
                         lblmsg.Text = "Employee Added ";
                         lblmsg.ForeColor = System.Drawing.Color.Green;
-                        foreach (ListItem item in chkFacility.Items)
+                        foreach (RepeaterItem item in repFacility.Items)
                         {
-                            if (item.Selected)
+                            CheckBox chkFacility = (CheckBox)item.FindControl("chkFacility");
+                            if (chkFacility.Checked)
                             {
-                                objCommon.AddEmployeeFacility(_isInserted, item.Value);
+                                objCommon.AddEmployeeFacility(_isInserted, ((HiddenField)item.FindControl("hdnValue")).Value);
                             }
                         }
                         // objCommon.AddEmployeeFacility(_isInserted, ddlFacility.SelectedValue);
@@ -111,7 +110,7 @@ namespace Improvians.Admin
             }
             catch (Exception ex)
             {
-              
+
             }
         }
 
@@ -122,7 +121,7 @@ namespace Improvians.Admin
             txtEmail.Text = "";
             ddlDesignation.SelectedIndex = 0;
             ddlDepartment.SelectedIndex = 0;
-                
+
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)
@@ -173,12 +172,12 @@ namespace Improvians.Admin
 
                             string path = Server.MapPath(@"~\EmployeeProfile\");
                             System.IO.Directory.CreateDirectory(path);
-                            FileUpProfile.SaveAs(path + @"\" + Imgname );
+                            FileUpProfile.SaveAs(path + @"\" + Imgname);
 
-                            ImageProfile.ImageUrl = @"~\EmployeeProfile\" + Imgname ;
+                            ImageProfile.ImageUrl = @"~\EmployeeProfile\" + Imgname;
                             ImageProfile.Visible = true;
                             lblProfile.Visible = true;
-                            lblProfile.Text = Imgname ;
+                            lblProfile.Text = Imgname;
 
                             //  IdentityPolicyImageUrl = Imgname + ext;
 
@@ -201,6 +200,5 @@ namespace Improvians.Admin
 
         }
 
-     
     }
 }

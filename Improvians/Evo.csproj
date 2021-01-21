@@ -110,6 +110,7 @@
     <Content Include="Admin\images\favicon\ms-icon-70x70.png" />
     <Content Include="Admin\images\icon-dropdown.svg" />
     <Content Include="Admin\images\icons\icon-account.svg" />
+    <Content Include="Admin\images\icons\icon-checkbox.svg" />
     <Content Include="Admin\images\icons\icon-dashboard.svg" />
     <Content Include="Admin\images\icons\icon-dropdown.svg" />
     <Content Include="Admin\images\icons\icon-email.svg" />
@@ -121,6 +122,7 @@
     <Content Include="Admin\images\icons\icon-password.svg" />
     <Content Include="Admin\images\icons\icon-phone.svg" />
     <Content Include="Admin\images\icons\icon-plant-quality.svg" />
+    <Content Include="Admin\images\icons\icon-radio.svg" />
     <Content Include="Admin\images\icons\icon-search.svg" />
     <Content Include="Admin\images\icons\icon-site-capacity.svg" />
     <Content Include="Admin\images\icons\icon-user.svg" />
