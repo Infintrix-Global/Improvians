@@ -76,7 +76,7 @@
                         ForeColor="Red" Text=""></asp:Label>
                     <label>
                         <h3>User Name</h3>
-                        <asp:TextBox ID="txtUserName" runat="server" placeholder="Username" class="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtUserName" runat="server" placeholder="Username" class="input__control input__control-icon username"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUserName"
                             SetFocusOnError="true" ErrorMessage="Please Enter User Name" ForeColor="Red"></asp:RequiredFieldValidator>
 
@@ -84,7 +84,7 @@
 
                     <label>
                         <h3>Password</h3>
-                        <asp:TextBox ID="txtPassword" TextMode="Password" placeholder="Password" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" TextMode="Password" placeholder="Password" CssClass="input__control input__control-icon password" runat="server"></asp:TextBox>
 
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword"
                             SetFocusOnError="true" ErrorMessage="Please Enter Password" ForeColor="Red"></asp:RequiredFieldValidator>

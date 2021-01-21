@@ -563,6 +563,72 @@ header {
 }
 
 .footer__copyright { font-size: 12px; }
+/*Data Table*/
+.filter__row + .data__table {
+    margin-top: 30px;
+}
+
+.data__table table {
+    width: 100%;
+}
+
+.data__table th {
+    font-family: 'roboto-bold', sans-serif;
+    color: #2a2a2a;
+    background: #ffffff;
+}
+
+.data__table th, .data__table td {
+    background: #f4f6fa;
+    border: 1px solid #d7d7d7;
+    padding: 20px;
+    line-height: 24px;
+}
+
+.data__table .bttn-action {
+    border-radius: 5px;
+    width: 113px;
+    height: 40px;
+    line-height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.data__table tr:nth-child(odd) > td, .data__table tr:nth-child(odd) > th {
+    background-color: #ffffff;
+}
+
+.dashboard__paging {
+    margin-top: 30px;
+}
+
+    .dashboard__paging li:first-child {
+        margin-right: 15px;
+    }
+
+    .dashboard__paging li:last-child {
+        margin-left: 15px;
+    }
+
+    .dashboard__paging a {
+        color: #2a2a2a;
+    }
+
+.paging__bttn {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    background-color: #ffffff;
+    border: 1px solid #d7d7d7;
+    text-align: center;
+}
+
+.paging__current .paging__bttn {
+    background: #438644;
+    color: #ffffff;
+    border-color: #438644;
+}
+
 
 /*Media Queries*/
 @media only screen and (max-width: 1839px) {
