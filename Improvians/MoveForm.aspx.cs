@@ -162,7 +162,7 @@ namespace Improvians
             txtReqDate.Text = "";
             ddlToGreenHouse.SelectedIndex = 0;
             ddlToFacility.SelectedIndex = 0;
-            txtTrays.Text = 0;
+            txtTrays.Text = "";
 
 
         }
