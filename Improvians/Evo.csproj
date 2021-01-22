@@ -158,6 +158,7 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\custom.css" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="FertilizerTaskAssignmentaspx.aspx" />
     <Content Include="FertilizerTaskReq.aspx" />
     <Content Include="fonts\icons\rxicons.svg" />
     <Content Include="GerminationRequestForm.aspx" />
@@ -293,6 +294,13 @@
     </Compile>
     <Compile Include="DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FertilizerTaskAssignmentaspx.aspx.cs">
+      <DependentUpon>FertilizerTaskAssignmentaspx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FertilizerTaskAssignmentaspx.aspx.designer.cs">
+      <DependentUpon>FertilizerTaskAssignmentaspx.aspx</DependentUpon>
     </Compile>
     <Compile Include="FertilizerTaskReq.aspx.cs">
       <DependentUpon>FertilizerTaskReq.aspx</DependentUpon>
