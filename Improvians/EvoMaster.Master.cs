@@ -19,6 +19,10 @@ namespace Improvians
             {
 
                 lblEmpName.Text = Session["EmployeeName"].ToString();
+                if (!string.IsNullOrEmpty(Session["Photo"].ToString() ))
+                {
+                    imgprofilepic.ImageUrl = @"~\Admin\EmployeeProfile\" + Session["Photo"].ToString();
+                }
             }
 
             String activepage = Request.RawUrl;

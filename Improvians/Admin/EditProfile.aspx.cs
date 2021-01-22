@@ -21,11 +21,19 @@ namespace Improvians.Admin
             if (!IsPostBack)
             {
                 BindDepartment();
+                BindFacility();
                 BindRole();
                 string eid = Session["EmployeeID"].ToString();
                 int x = Convert.ToInt32(eid);
                 bindEmployeeProfile(x);
             }
+        }
+
+        public void BindFacility()
+        {
+            repFacility.DataSource = objCommon.GetFacilityMaster();
+            repFacility.DataBind();
+            //ddlFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         public void BindDepartment()
@@ -128,23 +136,34 @@ namespace Improvians.Admin
         {
             try
             {
-                DataTable dt1 = objTask.GetEmployeeByID(eid);
+                DataSet dt1 = objTask.GetEmployeeByID(eid);
 
 
-                if (dt1.Rows.Count > 0)
+                if (dt1.Tables[0].Rows.Count > 0)
                 {
-                    lblProfile.Text = dt1.Rows[0]["Photo"].ToString();
+                    lblProfile.Text = dt1.Tables[0].Rows[0]["Photo"].ToString();
                     lblProfile.Visible = false;
-                    ImageProfile.ImageUrl = @"~\EmployeeProfile\" + dt1.Rows[0]["Photo"].ToString();
-                    txtPassword.Text = objCommon.Decrypt(dt1.Rows[0]["Password"].ToString());
-                    ddlDepartment.SelectedValue = dt1.Rows[0]["DepartmentID"].ToString();
-                    txtName.Text = dt1.Rows[0]["EmployeeName"].ToString();
-                    ddlDesignation.SelectedValue = dt1.Rows[0]["RoleID"].ToString();
-                    txtMobileNo.Text = dt1.Rows[0]["Mobile"].ToString();
-                    txtEmail.Text = dt1.Rows[0]["Email"].ToString();
-                    txtUserName.Text = dt1.Rows[0]["EmployeeCode"].ToString();
+                    ImageProfile.ImageUrl = @"~\Admin\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
+                    txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
+                    ddlDepartment.SelectedValue = dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
+                    txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();
+                    ddlDesignation.SelectedValue = dt1.Tables[0].Rows[0]["RoleID"].ToString();
+                    txtMobile.Text = dt1.Tables[0].Rows[0]["Mobile"].ToString();
+                    txtEmail.Text = dt1.Tables[0].Rows[0]["Email"].ToString();
+                    txtUserName.Text = dt1.Tables[0].Rows[0]["EmployeeCode"].ToString();
                 }
-
+                if (dt1.Tables[1].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dt1.Tables[1].Rows)
+                    {
+                        foreach (RepeaterItem item in repFacility.Items)
+                        {
+                            if (((HiddenField)item.FindControl("hdnValue")).Value == dr["FacilityID"].ToString())
+                                ((CheckBox)item.FindControl("chkFacility")).Checked = true;
+                        }
+                        //chkDepartment.SelectedValue = dr["DepartmentID"].ToString();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -161,7 +180,7 @@ namespace Improvians.Admin
                 {
                     EmployeeID = Convert.ToInt32(Session["EmployeeID"].ToString()),
                     Name = txtName.Text,
-                    Mobile = txtMobileNo.Text,
+                    Mobile = txtMobile.Text,
                     Email = txtEmail.Text,
                   Department=ddlDepartment.SelectedValue,
                   Designation=ddlDesignation.SelectedValue,
@@ -183,7 +202,15 @@ namespace Improvians.Admin
 
                     lblmsg.Text = "Employee Updated ";
                     lblmsg.ForeColor = System.Drawing.Color.Green;
-                    Response.Redirect("~/EmployeeProfile.aspx");
+                    foreach (RepeaterItem item in repFacility.Items)
+                    {
+                        CheckBox chkFacility = (CheckBox)item.FindControl("chkFacility");
+                        if (chkFacility.Checked)
+                        {
+                            objCommon.AddEmployeeFacility(Convert.ToInt32(Session["EmployeeID"].ToString()), ((HiddenField)item.FindControl("hdnValue")).Value);
+                        }
+                    }
+                    Response.Redirect("~/ViewEmployee.aspx");
 
                 }
             }

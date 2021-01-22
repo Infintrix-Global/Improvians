@@ -13,7 +13,7 @@ namespace Improvians.Admin.BAL_Classes
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
 
-        public DataTable GetEmployeeByID(int eid)
+        public DataSet GetEmployeeByID(int eid)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Improvians.Admin.BAL_Classes
             catch (Exception ex)
             {
             }
-            return ds.Tables[0];
+            return ds;
         }
     }
 }

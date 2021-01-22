@@ -60,8 +60,8 @@ namespace Improvians
                     
                     Session["Role"] = _dtLogin.Rows[0]["RoleID"].ToString();
                     Session["Mobile"] = _dtLogin.Rows[0]["EmployeeCode"].ToString();
-
-                    Session["EmployeeName"] = _dtLogin.Rows[0]["EmployeeName"].ToString();
+                Session["Photo"]= _dtLogin.Rows[0]["Photo"].ToString();
+                Session["EmployeeName"] = _dtLogin.Rows[0]["EmployeeName"].ToString();
                 /*admin */
                 if (_dtLogin.Rows[0]["RoleID"].ToString() == "4")
                 {
