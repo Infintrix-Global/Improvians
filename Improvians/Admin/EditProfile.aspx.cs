@@ -142,7 +142,7 @@ namespace Improvians.Admin
                     ddlDesignation.SelectedValue = dt1.Rows[0]["RoleID"].ToString();
                     txtMobileNo.Text = dt1.Rows[0]["Mobile"].ToString();
                     txtEmail.Text = dt1.Rows[0]["Email"].ToString();
-                    
+                    txtUserName.Text = dt1.Rows[0]["EmployeeCode"].ToString();
                 }
 
             }
@@ -166,7 +166,7 @@ namespace Improvians.Admin
                   Department=ddlDepartment.SelectedValue,
                   Designation=ddlDesignation.SelectedValue,
                     Photo = lblProfile.Text,
-                    
+                    EmployeeCode=txtUserName.Text,
                     Password = objCommon.Encrypt(txtPassword.Text)
                 };
                 _isInserted = objCommon.UpdateEmployee(objEmployee);

@@ -77,7 +77,7 @@
 
 
                         <label>
-                            <h3>User Name</h3>
+                            <h3>Employee Name</h3>
                             <asp:TextBox ID="txtName" class="input__control input__control-icon username" placeholder="Enter your user name" TabIndex="3" runat="server"></asp:TextBox>
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtName" ValidationGroup="e"
@@ -103,11 +103,33 @@
                             </span>
                         </label>
                     </div>
+                         <div class="col-md-6 col-xl-5 order-md-1">
+                        <label>
+                            <h3>USer Name</h3>
+                                 <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
+
+                            <span class="error_message">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtUserName"  ErrorMessage="Please Enter UserName" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+
+                            </span>
+                        </label>
+                    </div>
+
+
+                    <div class="col-md-6 col-xl-5 order-md-1">
+                        <label>
+                            <h3>Password</h3>
+                                <asp:TextBox ID="txtPassword" class="input__control input__control-icon " placeholder="Enter your passord here" TabIndex="6" runat="server"></asp:TextBox>
+                            <span class="error_message">-    
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword"  ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                            </span>
+                        </label>
+                    </div>
 
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>Department</h3>
-                            <asp:DropDownList ID="ddlDepartment" runat="server" class="custom__dropdown robotomd" TabIndex="4"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDepartment" runat="server" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>
 
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="requiredRole" runat="server" ControlToValidate="ddlDepartment" InitialValue="0" ErrorMessage="Please Select Department" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
@@ -120,7 +142,7 @@
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>Designation</h3>
-                            <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd" TabIndex="5"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd" TabIndex="8"></asp:DropDownList>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Designation" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>

@@ -301,6 +301,7 @@ namespace Improvians.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@Name", objEmployee.Name);
                 objGeneral.AddParameterWithValueToSQLCommand("@Email", objEmployee.Email);
                 objGeneral.AddParameterWithValueToSQLCommand("@Password", objEmployee.Password);
+                objGeneral.AddParameterWithValueToSQLCommand("@EmployeeCode", objEmployee.EmployeeCode);
                 objGeneral.AddParameterWithValueToSQLCommand("@Designation", objEmployee.Designation);
                 objGeneral.AddParameterWithValueToSQLCommand("@Department", objEmployee.Department);
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddEmployee");
@@ -325,6 +326,7 @@ namespace Improvians.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@Name", objEmployee.Name);
                 objGeneral.AddParameterWithValueToSQLCommand("@Email", objEmployee.Email);
                 objGeneral.AddParameterWithValueToSQLCommand("@Password", objEmployee.Password);
+                objGeneral.AddParameterWithValueToSQLCommand("@EmployeeCode", objEmployee.EmployeeCode);
                 objGeneral.AddParameterWithValueToSQLCommand("@Designation", objEmployee.Designation);
                 objGeneral.AddParameterWithValueToSQLCommand("@Department", objEmployee.Department);
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_UpdateEmployee");
@@ -438,7 +440,8 @@ namespace Improvians.Admin
 public class Employee
 {
     public int EmployeeID { get; set; }
- 
+    public string EmployeeCode { get; set; }
+
     public string Designation { get; set; }
     public string Mobile { get; set; }
     public string Name { get; set; }

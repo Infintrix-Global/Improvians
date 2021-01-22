@@ -63,7 +63,8 @@ namespace Improvians.Admin
 
                         Name = txtName.Text,
                         Mobile = txtMobile.Text,
-                        Password = objCommon.Encrypt("evo1"),
+                        Password = objCommon.Encrypt(txtPassword.Text),
+                        EmployeeCode=txtUserName.Text,
                         Email = txtEmail.Text,
                         Designation = ddlDesignation.SelectedValue,
                         Department = ddlDepartment.SelectedValue,
@@ -82,7 +83,13 @@ namespace Improvians.Admin
                     else if (_isInserted == 0)
                     {
 
-                        lblmsg.Text = "Employee Exists";
+                        lblmsg.Text = "Mobile Number Exists";
+                        lblmsg.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else if (_isInserted == -2)
+                    {
+
+                        lblmsg.Text = "User Name Exists";
                         lblmsg.ForeColor = System.Drawing.Color.Red;
                     }
                     else
