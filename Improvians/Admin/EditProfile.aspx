@@ -84,6 +84,11 @@
                                   <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Role" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </tr>
 
+                            <tr >
+                                <td>UserName:</td>
+                                <td>
+                                    <asp:TextBox ID="txtUserName" runat="server" Text="" Font-Bold="true" Enabled="false"></asp:TextBox></td>
+                            </tr>
                            
                             <tr >
                                 <td>Password:</td>
