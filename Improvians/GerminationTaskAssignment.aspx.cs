@@ -54,8 +54,17 @@ namespace Improvians
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
             if (result > 0)
             {
-                lblmsg.Text = "Assignment Successful";
+                //lblmsg.Text = "Assignment Successful";
                 clear();
+                string message = "Assignment Successful";
+                string url = "MyTaskGreenSupervisor.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             }
             else
             {
@@ -67,12 +76,13 @@ namespace Improvians
         {
             ddlOperator.SelectedIndex = 0;
             txtNotes.Text = "";
-            Response.Redirect("~/MyTaskGreenSupervisor.aspx");
+           
 
         }
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
+            Response.Redirect("~/MyTaskGreenSupervisor.aspx");
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -25,7 +25,6 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-          
             dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -76,12 +75,23 @@ namespace Improvians
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
             if(result>0)
             {
-                lblmsg.Text = "Assignment Successful";
+                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                string message = "Assignment Successful";
+                string url = "MyTaskGrower.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                // lblmsg.Text = "Assignment Successful";
                 clear();
             }
             else
             {
-                lblmsg.Text = "Assignment Not Successful";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+              //  lblmsg.Text = "Assignment Not Successful";
             }
         }
 
@@ -93,12 +103,13 @@ namespace Improvians
            // lblSupervisorName.Text = "";
             lblfacsupervisor.InnerText = "";
             ddlSupervisor.SelectedIndex = 0;
-            Response.Redirect("~/MyTaskGrower.aspx");
+            
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
+            Response.Redirect("~/MyTaskGrower.aspx");
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)

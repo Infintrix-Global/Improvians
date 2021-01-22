@@ -105,7 +105,7 @@
                     </div>
                          <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
-                            <h3>USer Name</h3>
+                            <h3>User Name</h3>
                                  <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
 
                             <span class="error_message">

@@ -50,8 +50,36 @@ namespace Improvians
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationCompletion", nv);
             if (result > 0)
             {
-                lblmsg.Text = "Completion Successful";
+               // lblmsg.Text = "Completion Successful";
                 clear();
+                string message = "Completion Successful";
+                string url;
+                if (Session["Role"].ToString() == "3")
+                {
+                     url = "MyTaskGreenOperator.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
+
+                else if (Session["Role"].ToString() == "2")
+                {
+                     url = "MyTaskGreenSupervisor.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
+               
+               
+               
             }
             else
             {
@@ -62,13 +90,6 @@ namespace Improvians
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-        }
-
-        public void clear()
-        {
-            txtTrays.Text = "";
-            txtInspectionDate.Text = "";
-
             if (Session["Role"].ToString() == "3")
             {
                 Response.Redirect("~/MyTaskGreenOperator.aspx");
@@ -79,6 +100,12 @@ namespace Improvians
                 Response.Redirect("~/MyTaskGreenSupervisor.aspx");
             }
 
+        }
+
+        public void clear()
+        {
+            txtTrays.Text = "";
+            txtInspectionDate.Text = "";
 
         }
 

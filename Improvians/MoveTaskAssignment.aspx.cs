@@ -54,8 +54,17 @@ namespace Improvians
             result = objCommon.GetDataInsertORUpdate("SP_AddMoveAssignment", nv);
             if (result > 0)
             {
-                lblmsg.Text = "Assignment Successful";
+              //  lblmsg.Text = "Assignment Successful";
                 Clear();
+                string message = "Assignment Successful";
+                string url= "MyTaskLogisticManager.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             }
             else
             {
@@ -66,12 +75,13 @@ namespace Improvians
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Clear();
+            Response.Redirect("~/MyTaskLogisticManager.aspx");
         }
         public void Clear()
         {
             ddlShippingCoordinator.SelectedIndex = 0;
           //  txtNotes.Text = "";
-            Response.Redirect("~/MyTaskLogisticManager.aspx");
+           
         }
 
         protected void gvMove_PageIndexChanging(object sender, GridViewPageEventArgs e)

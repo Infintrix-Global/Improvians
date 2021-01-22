@@ -144,8 +144,9 @@ namespace Improvians
             result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue);
             if (result > 0)
             {
-                lblmsg.Text = "Request Successful";
+               // lblmsg.Text = "Request Successful";
                 Clear();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Request Successful')", true);
                 userinput.Visible = false;
             }
             else
