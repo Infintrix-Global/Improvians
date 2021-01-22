@@ -1,4 +1,4 @@
-@charset 'utf-8';
+﻿@charset 'utf-8';
 
 /*Fonts*/
 @font-face {
@@ -143,6 +143,10 @@ h2 {
     text-align: center;
     outline: none;
     border-radius: 15px;
+}
+
+table .bttn {
+    padding: 14px 10px;
 }
 
 .bttn:focus { outline: none; }

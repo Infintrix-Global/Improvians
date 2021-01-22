@@ -7,9 +7,9 @@
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main">
         <div class="site__container">
-            <asp:Panel ID="pnlGermTitle" runat="server">
-                <h2>Germination Task Request</h2>
-
+            <asp:Panel ID="pnlGermTitle" runat="server" CssClass="d-flex align-items-center">
+                <h2 class="flex-grow-1">Germination Task Request</h2>
+                <i class="fas fa-angle-double-down"></i>
             </asp:Panel>
 
             <asp:Panel ID="pnlGermination" runat="server">
@@ -34,6 +34,14 @@
                         <div class="col m3">
                             <label>Status </label>
                             <asp:DropDownList ID="ddlStatus" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        </div>
+                        <div class="col m3">
+
+                            <asp:RadioButtonList ID="radWeek" runat="server" class="" RepeatLayout="Flow">
+                                <asp:ListItem Text="Last Week"></asp:ListItem>
+                                <asp:ListItem Text="Current Week"></asp:ListItem>
+                                <asp:ListItem Text="Next Week"></asp:ListItem>
+                            </asp:RadioButtonList>
                         </div>
                     </div>
                 </div>
@@ -118,9 +126,11 @@
 
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                    <asp:Button ID="btnReschdule" runat="server" Text="Reschdule" CssClass="bttn bttn-primary bttn-action" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                    <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                    <div class="col-auto">
+                                                        <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                        <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                        <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                    </div>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
