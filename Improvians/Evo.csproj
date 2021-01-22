@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.60623.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -210,6 +214,8 @@
     <Content Include="images\login-bg.jpg" />
     <Content Include="images\logo-vertical.svg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\minus.png" />
+    <Content Include="images\plus.png" />
     <Content Include="images\rxicons-v1.0\demo-files\demo.css" />
     <Content Include="images\rxicons-v1.0\demo-files\demo.js" />
     <Content Include="images\rxicons-v1.0\demo.html" />
@@ -230,6 +236,7 @@
     <Content Include="MyTaskGreenOperator.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
     <Content Include="MyTaskGrower.aspx" />
+    <Content Include="MyTaskGrowerNew.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="Web.config" />
@@ -385,6 +392,13 @@
     </Compile>
     <Compile Include="MyTaskGrower.aspx.designer.cs">
       <DependentUpon>MyTaskGrower.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskGrowerNew.aspx.cs">
+      <DependentUpon>MyTaskGrowerNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskGrowerNew.aspx.designer.cs">
+      <DependentUpon>MyTaskGrowerNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskLogisticManager.aspx.cs">
       <DependentUpon>MyTaskLogisticManager.aspx</DependentUpon>
