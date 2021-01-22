@@ -164,7 +164,7 @@ namespace Improvians
             ddlToGreenHouse.SelectedIndex = 0;
             ddlToFacility.SelectedIndex = 0;
             txtTrays.Text = "";
-
+            userinput.Visible = false;
 
         }
 

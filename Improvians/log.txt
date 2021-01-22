@@ -684,3 +684,17 @@
    at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
    at System.Web.HttpResponse.Redirect(String url)
    at Improvians.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e)Thread was being aborted. at 22-Jan-21 02:27:15 PM
+*****Error message=****   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Improvians.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e)Thread was being aborted. at 22-Jan-21 03:31:24 PM
+*****Error message=****   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Improvians.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e)Thread was being aborted. at 22-Jan-21 03:32:55 PM

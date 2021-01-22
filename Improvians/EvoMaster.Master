@@ -122,8 +122,8 @@
 
                     <div class="dropdown account__dropdown ml-3">
                         <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <asp:Image  ImageUrl="images/user-profile.jpg" alt="John Smith" width="128" height="128"  runat="server" ID="imgprofilepic" />
-                          <%--  <img  runat="server" id="imgprofile" src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />--%>
+                            <asp:Image  ImageUrl="images/user-profile.jpg" alt="John Smith" width="128"   runat="server" ID="imgprofilepic" />
+                          <%--  <img  src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />--%>
                             <span class="account__user robotomd">
                                 <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
                         </div>

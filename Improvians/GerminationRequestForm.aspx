@@ -25,6 +25,10 @@
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
+                     <div class="col m3">
+                        <label>Status </label>
+                        <asp:DropDownList ID="ddlStatus" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
                 </div>
             </div>
 
@@ -39,6 +43,12 @@
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
+                                          <asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                              
+                                                <asp:Label ID="lblStatus" runat="server" ></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -88,6 +98,12 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                           <asp:TemplateField HeaderText="Germination Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label12" runat="server" ></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
@@ -96,12 +112,22 @@
 
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
+                                           <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Button ID="btnReschdule" runat="server" Text="Reschdule" CssClass="bttn bttn-primary bttn-action" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
+                                           <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />

@@ -210,7 +210,7 @@ namespace Improvians.Admin
                             objCommon.AddEmployeeFacility(Convert.ToInt32(Session["EmployeeID"].ToString()), ((HiddenField)item.FindControl("hdnValue")).Value);
                         }
                     }
-                    Response.Redirect("~/ViewEmployee.aspx");
+                    Response.Redirect("~/Admin/ViewEmployee.aspx");
 
                 }
             }

@@ -290,7 +290,20 @@ namespace Improvians
 
         }
 
-       
+        public DataTable GetDepartmentMaster()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 1);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
 
     }
 

@@ -7,10 +7,10 @@
         <div class="header__tabs">
             <ul class="d-flex align-items-center justify-content-center list-inline">
                 <li><a href="/my-tasks.html" class="bttn" title="My Task">My Task</a></li>
-                <li><a href="#" class="bttn" title="Site Task">Site Task</a></li>
-                <li><a href="#" class="bttn active" title="Request Task">Request Task</a></li>
+                <%--<li><a href="#" class="bttn" title="Site Task">Site Task</a></li>
+                <li><a href="#" class="bttn active" title="Request Task">Request Task</a></li>--%>
                 <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
-                <li><a href="#" class="bttn" title="Track Task">Track Task</a></li>
+              <%--  <li><a href="#" class="bttn" title="Track Task">Track Task</a></li>--%>
             </ul>
         </div>
     </div>
@@ -23,10 +23,10 @@
                     <div class="col m4">
                         <label>Department </label>
                         <asp:DropDownList ID="ddlDept" runat="server" class="custom__dropdown robotomd">
-                            <asp:ListItem Text="Grower" Value="4"></asp:ListItem>
+                           <%-- <asp:ListItem Text="Grower" Value="4"></asp:ListItem>
                             <asp:ListItem Text="Greenhouse Support" Value="3"></asp:ListItem>
                             <asp:ListItem Text="Transplanting Team" Value="5"></asp:ListItem>
-                            <asp:ListItem Text="Seedline" Value="2"></asp:ListItem>
+                            <asp:ListItem Text="Seedline" Value="2"></asp:ListItem>--%>
                         </asp:DropDownList>
                     </div>
                     <div class="col m4">
