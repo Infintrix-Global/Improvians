@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Improvians
 {
-    public partial class MyTaskGreenhouseOperator : System.Web.UI.Page
+    public partial class MyTaskProductionPlanner : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -24,8 +24,8 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorTask", nv);
+           // nv.Add("@LoginID", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetProductionPlannerTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -37,7 +37,7 @@ namespace Improvians
             {
 
                 Session["JobID"] = e.CommandArgument.ToString();
-                Response.Redirect("~/GreenHouseTaskCompletion.aspx");
+                Response.Redirect("~/ProductionPlannerTaskCompletionForm.aspx");
             }
         }
     }

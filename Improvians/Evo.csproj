@@ -239,7 +239,9 @@
     <Content Include="MyTaskGrower.aspx" />
     <Content Include="MyTaskGrowerNew.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
+    <Content Include="MyTaskProductionPlanner.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
+    <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -408,12 +410,26 @@
     <Compile Include="MyTaskLogisticManager.aspx.designer.cs">
       <DependentUpon>MyTaskLogisticManager.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyTaskProductionPlanner.aspx.cs">
+      <DependentUpon>MyTaskProductionPlanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskProductionPlanner.aspx.designer.cs">
+      <DependentUpon>MyTaskProductionPlanner.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyTaskShippingCoordinator.aspx.cs">
       <DependentUpon>MyTaskShippingCoordinator.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MyTaskShippingCoordinator.aspx.designer.cs">
       <DependentUpon>MyTaskShippingCoordinator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionPlannerTaskCompletionForm.aspx.cs">
+      <DependentUpon>ProductionPlannerTaskCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductionPlannerTaskCompletionForm.aspx.designer.cs">
+      <DependentUpon>ProductionPlannerTaskCompletionForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
