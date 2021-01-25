@@ -242,6 +242,7 @@
     <Content Include="MyTaskProductionPlanner.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
+    <Content Include="PutAwayTaskCompletion.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -432,6 +433,13 @@
       <DependentUpon>ProductionPlannerTaskCompletionForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PutAwayTaskCompletion.aspx.cs">
+      <DependentUpon>PutAwayTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PutAwayTaskCompletion.aspx.designer.cs">
+      <DependentUpon>PutAwayTaskCompletion.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\fa\fa-brands-400.ttf" />

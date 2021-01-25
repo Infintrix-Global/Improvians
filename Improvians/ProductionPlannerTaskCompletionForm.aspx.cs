@@ -159,6 +159,7 @@ namespace Improvians
                         }
                     }
                 }
+                Clear();
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Production Completion Successful";
                 string url = "MyTaskGrower.aspx";
@@ -170,7 +171,7 @@ namespace Improvians
                 script += "'; }";
                 ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
              
-               // clear();
+                
             }
        
             else
@@ -209,7 +210,18 @@ namespace Improvians
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
+            Clear();
+        }
 
+        public void Clear()
+        {
+            ddlSeedlineFacility.SelectedIndex = 0;
+            ddlLocation.SelectedIndex = 0;
+            ddlBenchLocation.SelectedIndex = 0;
+            chkBenchLocation.Checked = false;
+            txtSeedingDueDate.Text = "";
+            txtTrays.Text = "";
+            txtSeedsAllocated.Text = "";
         }
     }
 }
