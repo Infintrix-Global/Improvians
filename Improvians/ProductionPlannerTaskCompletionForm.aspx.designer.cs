@@ -96,15 +96,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Label lblJobID;
 
         /// <summary>
-        /// lblSeedRequired control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSeedRequired;
-
-        /// <summary>
         /// ddlSeedlineFacility control.
         /// </summary>
         /// <remarks>
@@ -211,6 +202,15 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+
+        /// <summary>
+        /// lblSeedRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSeedRequired;
 
         /// <summary>
         /// gvDetails control.

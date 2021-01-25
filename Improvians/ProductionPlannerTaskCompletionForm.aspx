@@ -104,15 +104,15 @@
                         <div id="userinput" runat="server" class="assign__task d-flex">
                             <asp:Panel ID="pnlint" runat="server">
                                 <h3></h3>
-                                <div class="row align-items-end">
+                                <div class="row">
                                     <div class="col-lg-6" runat="server" visible="false">
                                         <label># OF SEEDS REQUIRED TO FULFILL ORDER:</label><br />
                                         <h3 class="robotobold">
                                             <asp:Label ID="lblJobID" runat="server" Visible="false"></asp:Label></h3>
                                         <h3 class="robotobold">
-                                            <asp:Label ID="lblSeedRequired" runat="server"></asp:Label></h3>
+                                            </h3>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <label>SeedLine Facility</label>
                                         <asp:DropDownList ID="ddlSeedlineFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                         <span class="error_message">
@@ -120,7 +120,7 @@
                                                 SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select SeedLine Facility" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </span>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <label>Put Away Facility</label>
                                         <asp:DropDownList ID="ddlLocation" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged"></asp:DropDownList>
                                         <span class="error_message">
@@ -128,7 +128,7 @@
                                                 SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Put Away Facility" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </span>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <label>Put Away BenchLocation</label>
                                         <asp:DropDownList ID="ddlBenchLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                         <span class="custom-control custom-checkbox mt-3 ml-0 pl-0">
@@ -157,6 +157,9 @@
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
                                                 SetFocusOnError="true" ErrorMessage="Please Enter # Tarys" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </span>
+                                    </div>
+                                    <div class="col-lg-12 mt-3">
+                                        <h3 class="mb-2">NO. OF SEEDS REQUIRED TO FULFILL ORDER: <asp:Label ID="lblSeedRequired" runat="server"></asp:Label></h3>
                                     </div>
 
                                     <div class="col-lg-12 my-3">
