@@ -121,7 +121,7 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SeedingDueDate", txtSeedingDueDate.Text);
             nv.Add("@SeedLineFacility", ddlSeedlineFacility.SelectedValue);
-            if(radOrder.SelectedIndex==0)
+            if(radOrder.SelectedValue == "Complete")
             {
                 nv.Add("@#TraysSeeded", lblTrays.Text);
             }
@@ -162,7 +162,7 @@ namespace Improvians
                 Clear();
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Production Completion Successful";
-                string url = "MyTaskGrower.aspx";
+                string url = "MyTaskProductionPlanner.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -170,7 +170,8 @@ namespace Improvians
                 script += url;
                 script += "'; }";
                 ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-             
+
+               // Response.Redirect("MyTaskProductionPlanner.aspx");
                 
             }
        
@@ -219,6 +220,7 @@ namespace Improvians
             ddlLocation.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             chkBenchLocation.Checked = false;
+            ddlBenchLocation.Visible = true;
             txtSeedingDueDate.Text = "";
             txtTrays.Text = "";
             txtSeedsAllocated.Text = "";
