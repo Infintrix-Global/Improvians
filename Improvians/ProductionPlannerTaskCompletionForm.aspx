@@ -13,22 +13,12 @@
                         <label>Customer </label>
                         <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                    <div class="col m3">
-                        <label>GreenHouse </label>
-                        <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <div class="col m3">
-                        <label>Facility </label>
-                        <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
+                  
                     <div class="col m3">
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                     <div class="col m3">
-                        <label>Status </label>
-                        <asp:DropDownList ID="ddlStatus" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -152,7 +142,7 @@
                                     <asp:ListItem Text="Fill Partial Order" Value="Partial" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>
                                   <asp:Label ID="lblTrays" runat="server" Visible="false" ></asp:Label>
-                                  <asp:TextBox ID="txtTrays" runat="server" TextMode="Number" placeholder="No. of trays to be seeded" ></asp:TextBox>
+                                  <asp:TextBox ID="txtTrays" runat="server" TextMode="Number" placeholder="No of trays to be seeded" ></asp:TextBox>
                             </div>
                             
                             <div class="col m6">

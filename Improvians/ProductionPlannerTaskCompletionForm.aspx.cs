@@ -76,15 +76,15 @@ namespace Improvians
 
         protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlFacility.SelectedIndex != 0)
+            if (ddlLocation.SelectedIndex != 0)
             {
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@FacilityID", ddlFacility.SelectedValue);
-                ddlGreenhouse.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-                ddlGreenhouse.DataTextField = "GreenHouseName";
-                ddlGreenhouse.DataValueField = "GreenHouseID";
-                ddlGreenhouse.DataBind();
-                ddlGreenhouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
+                nv.Add("@FacilityID", ddlLocation.SelectedValue);
+                ddlBenchLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+                ddlBenchLocation.DataTextField = "GreenHouseName";
+                ddlBenchLocation.DataValueField = "GreenHouseID";
+                ddlBenchLocation.DataBind();
+                ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
             }
         }
 
@@ -110,6 +110,7 @@ namespace Improvians
             else
             {
                 txtTrays.Enabled = true;
+                txtTrays.Text = "";
                // txtTrays.Visible = true;
             }
         }
@@ -149,7 +150,7 @@ namespace Improvians
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                        CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                        CheckBox chkRow = (row.Cells[2].FindControl("chkselect") as CheckBox);
                         if (chkRow.Checked)
                         {
                             string ID = (row.Cells[0].FindControl("lblID") as Label).Text;
@@ -195,6 +196,10 @@ namespace Improvians
                         if(Convert.ToDouble(txtSeedsAllocated.Text)>=Convert.ToDouble(lblSeedRequired.Text))
                         {
                             txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
+                        }
+                        else
+                        {
+                            txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
                         }
                     }
                 }

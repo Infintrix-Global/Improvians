@@ -44,13 +44,11 @@ namespace Improvians.BAL_Classes
             int _isInserted = -1;
             try
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    objGeneral.ClearParameters();
+                
                     objGeneral.AddParameterWithValueToSQLCommand("@PTCID", PTCID);
                     objGeneral.AddParameterWithValueToSQLCommand("@LotID", LotID);
                     _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddPTCLotMap");
-                }
+                
             }
             catch (Exception ex)
             {
