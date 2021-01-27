@@ -76,28 +76,28 @@ namespace Improvians
 
         protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlLocation.SelectedIndex != 0)
-            {
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@FacilityID", ddlLocation.SelectedValue);
-                ddlBenchLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-                ddlBenchLocation.DataTextField = "GreenHouseName";
-                ddlBenchLocation.DataValueField = "GreenHouseID";
-                ddlBenchLocation.DataBind();
-                ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-            }
+            //if (ddlLocation.SelectedIndex != 0)
+            //{
+            //    NameValueCollection nv = new NameValueCollection();
+            //    nv.Add("@FacilityID", ddlLocation.SelectedValue);
+            //    ddlBenchLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+            //    ddlBenchLocation.DataTextField = "GreenHouseName";
+            //    ddlBenchLocation.DataValueField = "GreenHouseID";
+            //    ddlBenchLocation.DataBind();
+            //    ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            //}
         }
 
         protected void chkBenchLocation_CheckedChanged(object sender, EventArgs e)
         {
-            if(chkBenchLocation.Checked)
-            {
-                ddlBenchLocation.Visible = false;
-            }
-            else
-            {
-                ddlBenchLocation.Visible = true;
-            }
+            //if(chkBenchLocation.Checked)
+            //{
+            //    ddlBenchLocation.Visible = false;
+            //}
+            //else
+            //{
+            //    ddlBenchLocation.Visible = true;
+            //}
         }
 
         protected void radOrder_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,14 +131,14 @@ namespace Improvians
             }
          
             nv.Add("@PutAwayFacility", ddlLocation.SelectedValue);
-            if (chkBenchLocation.Checked)
-            {
-                nv.Add("@PutawayBenchLocation","" );
-            }
-            else
-            {
-                nv.Add("@PutawayBenchLocation", ddlBenchLocation.SelectedValue);
-            }
+            //if (chkBenchLocation.Checked)
+            //{
+            //    nv.Add("@PutawayBenchLocation","" );
+            //}
+            //else
+            //{
+            //    nv.Add("@PutawayBenchLocation", ddlBenchLocation.SelectedValue);
+            //}
             nv.Add("@OrderType", radOrder.SelectedValue);
             nv.Add("@SeedsAllocated", txtSeedsAllocated.Text);
             nv.Add("@JobID", lblJobID.Text);
@@ -218,9 +218,9 @@ namespace Improvians
         {
             ddlSeedlineFacility.SelectedIndex = 0;
             ddlLocation.SelectedIndex = 0;
-            ddlBenchLocation.SelectedIndex = 0;
-            chkBenchLocation.Checked = false;
-            ddlBenchLocation.Visible = true;
+            //ddlBenchLocation.SelectedIndex = 0;
+            //chkBenchLocation.Checked = false;
+            //ddlBenchLocation.Visible = true;
             txtSeedingDueDate.Text = "";
             txtTrays.Text = "";
             txtSeedsAllocated.Text = "";

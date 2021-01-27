@@ -60,15 +60,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.GridView gvGerm;
 
         /// <summary>
-        /// up1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel up1;
-
-        /// <summary>
         /// userinput control.
         /// </summary>
         /// <remarks>
@@ -132,22 +123,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
-        /// ddlBenchLocation control.
+        /// lblBench control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBenchLocation;
-
-        /// <summary>
-        /// chkBenchLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkBenchLocation;
+        protected global::System.Web.UI.WebControls.Label lblBench;
 
         /// <summary>
         /// txtSeedingDueDate control.
@@ -202,6 +184,15 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// lblSeedRequired control.

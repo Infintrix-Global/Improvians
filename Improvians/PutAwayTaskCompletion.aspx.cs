@@ -17,76 +17,89 @@ namespace Improvians
             if (!IsPostBack)
             {
                 BindGridGerm();
-                BindOperatorList();
             }
         }
 
-        public void BindOperatorList()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@RoleID", "3");
-            ddlPutAwayBenchLocation.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
-            ddlPutAwayBenchLocation.DataTextField = "EmployeeName";
-            ddlPutAwayBenchLocation.DataValueField = "ID";
-            ddlPutAwayBenchLocation.DataBind();
-            ddlPutAwayBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+        
 
         public void BindGridGerm()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobID", Session["JobID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorAssignedJobByJobID", nv);
+            dt = objCommon.GetDataTable("SP_GetPutAwayTaskCompletion", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
-        }
-
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@OperatorID", ddlPutAwayBenchLocation.SelectedValue);
-          
-            nv.Add("@JobID", Session["JobID"].ToString());
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
-            if (result > 0)
-            {
-                //lblmsg.Text = "Assignment Successful";
-                clear();
-                string message = "Assignment Successful";
-                string url = "MyTaskGreenSupervisor.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-            }
-            else
-            {
-                lblmsg.Text = "Assignment Not Successful";
-            }
-        }
-
-        public void clear()
-        {
-            ddlPutAwayBenchLocation.SelectedIndex = 0;
-          
-        }
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            clear();
-            Response.Redirect("~/MyTaskGreenSupervisor.aspx");
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
             BindGridGerm();
+        }
+
+       
+
+        protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+           
+            if(e.CommandName=="Assign")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                            GridViewRow row = gvGerm.Rows[rowIndex];
+                      string benchID = (row.FindControl("ddlBench") as DropDownList).SelectedValue;
+                           string id = (row.FindControl("lblID") as Label).Text;
+                if (benchID == "0")
+                {
+                    lblmsg.Text = "Failed-Please Select Bench Location ";
+                    lblmsg.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@PTCID", id);
+                    nv.Add("@BenchLocation", benchID);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    result = objCommon.GetDataInsertORUpdate("SP_UpdateProductionPlannerCompletion", nv);
+                    string message = "Bench Location Assignment Successful";
+                    string url = "PutAwayTaskCompletion.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+                }
+            }
+         }
+
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@FacilityID", ((Label)e.Row.FindControl("lblFacility")).Text);
+                ((DropDownList)e.Row.FindControl("ddlBench")).DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+                ((DropDownList)e.Row.FindControl("ddlBench")).DataTextField = "GreenHouseName";
+                ((DropDownList)e.Row.FindControl("ddlBench")).DataValueField = "GreenHouseID";
+                ((DropDownList)e.Row.FindControl("ddlBench")).DataBind();
+                ((DropDownList)e.Row.FindControl("ddlBench")).Items.Insert(0, new ListItem("--- Select ---", "0")); 
+
+                if ( ((Label)e.Row.FindControl("lblBench")).Text!="" )
+                {
+                    ((DropDownList)e.Row.FindControl("ddlBench")).SelectedValue = ((Label)e.Row.FindControl("lblBench")).Text;
+                    ((Button)e.Row.FindControl("btnAssign")).Text = "Verify";
+                    ((Button)e.Row.FindControl("btnAssign")).CommandName = "Verify";
+                }
+                else
+                {
+                    ((Button)e.Row.FindControl("btnAssign")).Text = "Assign";
+                    ((Button)e.Row.FindControl("btnAssign")).CommandName = "Assign";
+                }
+            }
         }
     }
 }

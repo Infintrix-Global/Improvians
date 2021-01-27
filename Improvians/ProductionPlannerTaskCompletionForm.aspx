@@ -95,8 +95,8 @@
                 </div>
 
             </div>
-            <asp:UpdatePanel ID="up1" runat="server">
-                <ContentTemplate>
+           <%-- <asp:UpdatePanel ID="up1" runat="server">
+                <ContentTemplate>--%>
 
 
                     <div class="dashboard__block dashboard__block--asign">
@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <label>Put Away Facility</label>
-                                        <asp:DropDownList ID="ddlLocation" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlLocation" runat="server" class="custom__dropdown robotomd"  OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged"></asp:DropDownList>
                                         <span class="error_message">
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlLocation" ValidationGroup="md"
                                                 SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Put Away Facility" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -130,20 +130,24 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <label>Put Away BenchLocation</label>
-                                        <asp:DropDownList ID="ddlBenchLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                        <asp:Label ID="lblBench" runat="server" Text="This will be decided by Grower"></asp:Label>
+                                      <%--  <asp:DropDownList ID="ddlBenchLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                         <span class="custom-control custom-checkbox mt-3 ml-0 pl-0">
                                             <asp:CheckBox ID="chkBenchLocation" runat="server" OnCheckedChanged="chkBenchLocation_CheckedChanged" AutoPostBack="true" />
                                             <label for="chkBenchLocation">Select if it will decided by Grower</label>
-                                        </span>
+                                        </span>--%>
                                     </div>
+
                                     <div class="col-lg-6 align-self-start">
                                         <label>Seeding Due Date</label>
-                                        <asp:TextBox ID="txtSeedingDueDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                                        <asp:TextBox ID="txtSeedingDueDate" ClientIDMode="Static" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                                         <span class="error_message">
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSeedingDueDate" ValidationGroup="md"
                                                 SetFocusOnError="true" ErrorMessage="Please Enter Seeding Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </span>
                                     </div>
+
+                                     
 
                                     <div class="col-lg-6">
                                         <label></label>
@@ -155,9 +159,12 @@
                                         <asp:TextBox ID="txtTrays" runat="server" TextMode="Number" placeholder="No of trays to be seeded"></asp:TextBox>
                                         <span class="error_message">
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
-                                                SetFocusOnError="true" ErrorMessage="Please Enter # Tarys" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                SetFocusOnError="true" ErrorMessage="Please Enter # Trays" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </span>
                                     </div>
+
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
                                     <div class="col-lg-12 mt-3">
                                         <h3 class="mb-2">NO. OF SEEDS REQUIRED TO FULFILL ORDER: <asp:Label ID="lblSeedRequired" runat="server"></asp:Label></h3>
                                     </div>
@@ -202,6 +209,9 @@
                                     </div>
                                     <%--<div class="clearfix"></div>--%>
 
+                     </ContentTemplate>
+            </asp:UpdatePanel>
+
                                     <div class="col-lg-12 mt-3 text-center">
                                         <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-3" runat="server" OnClick="btnSubmit_Click" ValidationGroup="md" />
 
@@ -212,8 +222,8 @@
                         </div>
                     </div>
 
-                </ContentTemplate>
-            </asp:UpdatePanel>
+            <%--    </ContentTemplate>
+            </asp:UpdatePanel>--%>
         </div>
     </div>
 </asp:Content>

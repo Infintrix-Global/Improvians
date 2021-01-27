@@ -708,3 +708,6 @@
    at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
    at Improvians.BAL_Classes.General.GetExecuteNonQueryByCommand_SP(String Command)  Procedure or function SP_AddPTCLotMap has too many arguments specified. at 25-Jan-21 06:10:37 PM
+*****Error message=****@PTCID:17 at 27-Jan-21 03:40:43 PM
+*****Error message=****@BenchLocation:2 at 27-Jan-21 03:40:43 PM
+*****Error message=****@LoginID:1 at 27-Jan-21 03:40:43 PM
