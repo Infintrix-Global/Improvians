@@ -38,7 +38,7 @@
 
                                                        <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="Label1" runat="server" Text="Production Planning"></asp:Label>
+                                                            <asp:Label ID="Label1" runat="server" Text="Seedline Planning"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
