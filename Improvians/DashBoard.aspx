@@ -35,8 +35,8 @@
                         </div>
 
                         <div class="dashboard__matrixdetail">
-                            <h3 class="robotobold">84%</h3>
-                            <span>Plant Quality</span>
+                            <h3 class="robotobold">4.2</h3>
+                            <span>Avg. Plant Ready Quality(1-5)</span>
                         </div>
                     </div>
                     
@@ -46,8 +46,8 @@
                         </div>
 
                         <div class="dashboard__matrixdetail">
-                            <h3 class="robotobold">$4.82</h3>
-                            <span>Facility Profitability<br /> per ft<sup>2</sup> per day</span>
+                            <h3 class="robotobold">$12</h3>
+                            <span>Contribution Margin<br /> per ft<sup>2</sup> per day</span>
                         </div>
                     </div>
                     
@@ -69,7 +69,7 @@
 
                         <div class="dashboard__matrixdetail">
                             <h3 class="robotobold">81%</h3>
-                            <span>Site Capacity</span>
+                            <span>Site Occupancy</span>
                         </div>
                     </div>
 
