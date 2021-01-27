@@ -240,9 +240,11 @@
     <Content Include="MyTaskGrowerNew.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
     <Content Include="MyTaskProductionPlanner.aspx" />
+    <Content Include="MyTaskSeedingTeam.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="PutAwayTaskCompletion.aspx" />
+    <Content Include="SeedLineTaskCompletion.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -418,6 +420,13 @@
     <Compile Include="MyTaskProductionPlanner.aspx.designer.cs">
       <DependentUpon>MyTaskProductionPlanner.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyTaskSeedingTeam.aspx.cs">
+      <DependentUpon>MyTaskSeedingTeam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskSeedingTeam.aspx.designer.cs">
+      <DependentUpon>MyTaskSeedingTeam.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyTaskShippingCoordinator.aspx.cs">
       <DependentUpon>MyTaskShippingCoordinator.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -439,6 +448,13 @@
     </Compile>
     <Compile Include="PutAwayTaskCompletion.aspx.designer.cs">
       <DependentUpon>PutAwayTaskCompletion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeedLineTaskCompletion.aspx.cs">
+      <DependentUpon>SeedLineTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeedLineTaskCompletion.aspx.designer.cs">
+      <DependentUpon>SeedLineTaskCompletion.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
