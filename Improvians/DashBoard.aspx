@@ -36,7 +36,7 @@
 
                         <div class="dashboard__matrixdetail">
                             <h3 class="robotobold">4.2</h3>
-                            <span>Avg. Plant Ready Quality(1-5)</span>
+                            <span>Avg. Plant Ready Quality (1-5)</span>
                         </div>
                     </div>
                     
