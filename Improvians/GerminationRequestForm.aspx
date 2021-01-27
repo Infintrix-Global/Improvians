@@ -25,7 +25,7 @@
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                     <div class="col m3">
+                    <div class="col m3">
                         <label>Status </label>
                         <asp:DropDownList ID="ddlStatus" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
@@ -43,10 +43,10 @@
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                          <asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                              
-                                                <asp:Label ID="lblStatus" runat="server" ></asp:Label>
+
+                                                <asp:Label ID="lblStatus" runat="server"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -98,9 +98,9 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                           <asp:TemplateField HeaderText="Germination Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Germination Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" ></asp:Label>
+                                                <asp:Label ID="Label15" runat="server"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -112,22 +112,14 @@
 
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                <asp:Button ID="btnReschdule" runat="server" Text="Reschdule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
-                                           <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Button ID="btnReschdule" runat="server" Text="Reschdule" CssClass="bttn bttn-primary bttn-action" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                           <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -147,17 +139,18 @@
 
             </div>
             <div class="dashboard__block dashboard__block--asign">
-              
+
 
 
 
                 <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
                     <asp:Panel ID="pnlint" runat="server">
-                          <h3>Assign Task</h3>
+                        <h3>Assign Task</h3>
                         <div class="row align-items-end">
                             <div class="col-auto m6">
                                 <label>Job No.</label><br />
-                                <h3 class="robotobold"><asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
+                                <h3 class="robotobold">
+                                    <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
                             </div>
                             <div class="col m6">
                                 <label runat="server" id="lblfacsupervisor">Greenhouse Supervisor</label>
