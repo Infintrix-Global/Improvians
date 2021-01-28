@@ -74,6 +74,38 @@ namespace Improvians
 
                 }
             }
+
+            if (e.CommandName == "Verify")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvGerm.Rows[rowIndex];
+                string benchID = (row.FindControl("ddlBench") as DropDownList).SelectedValue;
+                string id = (row.FindControl("lblID") as Label).Text;
+                if (benchID == "0")
+                {
+                    lblmsg.Text = "Failed-Please Select Bench Location ";
+                    lblmsg.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@PTCID", id);
+                    nv.Add("@BenchLocation", benchID);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    result = objCommon.GetDataInsertORUpdate("SP_VerifyProductionPlannerCompletion", nv);
+                    string message = "Bench Location Verification Successful";
+                    string url = "PutAwayTaskCompletion.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+                }
+            }
          }
 
         protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -86,19 +118,47 @@ namespace Improvians
                 ((DropDownList)e.Row.FindControl("ddlBench")).DataTextField = "GreenHouseName";
                 ((DropDownList)e.Row.FindControl("ddlBench")).DataValueField = "GreenHouseID";
                 ((DropDownList)e.Row.FindControl("ddlBench")).DataBind();
-                ((DropDownList)e.Row.FindControl("ddlBench")).Items.Insert(0, new ListItem("--- Select ---", "0")); 
+                ((DropDownList)e.Row.FindControl("ddlBench")).Items.Insert(0, new ListItem("--- Select ---", "0"));
 
-                if ( ((Label)e.Row.FindControl("lblBench")).Text!="" )
+
+                if (((Label)e.Row.FindControl("lblBench")).Text == "Completed")
                 {
-                    ((DropDownList)e.Row.FindControl("ddlBench")).SelectedValue = ((Label)e.Row.FindControl("lblBench")).Text;
-                    ((Button)e.Row.FindControl("btnAssign")).Text = "Verify";
-                    ((Button)e.Row.FindControl("btnAssign")).CommandName = "Verify";
+                    e.Row.BackColor = System.Drawing.Color.Green;
+                    if (((Label)e.Row.FindControl("lblBench")).Text != "")
+                    {
+                        ((DropDownList)e.Row.FindControl("ddlBench")).SelectedValue = ((Label)e.Row.FindControl("lblBench")).Text;
+                        ((Button)e.Row.FindControl("btnAssign")).Text = "Verify";
+                        ((Button)e.Row.FindControl("btnAssign")).CommandName = "Verify";
+
+                    }
+                    else
+                    {
+                        ((Button)e.Row.FindControl("btnAssign")).Text = "Assign";
+                        ((Button)e.Row.FindControl("btnAssign")).CommandName = "Assign";
+
+                    }
                 }
-                else
+
+                else if (((Label)e.Row.FindControl("lblBench")).Text == "Not Completed")
                 {
-                    ((Button)e.Row.FindControl("btnAssign")).Text = "Assign";
-                    ((Button)e.Row.FindControl("btnAssign")).CommandName = "Assign";
+                    if (((Label)e.Row.FindControl("lblBench")).Text != "")
+                    {
+                        ((Button)e.Row.FindControl("btnAssign")).Visible = false;
+                        ((DropDownList)e.Row.FindControl("ddlBench")).SelectedValue = ((Label)e.Row.FindControl("lblBench")).Text;
+                        ((DropDownList)e.Row.FindControl("ddlBench")).Enabled = false;
+                       // ((Button)e.Row.FindControl("btnAssign")).Text = "Verify";
+                       //   ((Button)e.Row.FindControl("btnAssign")).CommandName = "Verify";
+
+                    }
+                    else
+                    {
+                         ((Button)e.Row.FindControl("btnAssign")).Text = "Assign";
+                        ((Button)e.Row.FindControl("btnAssign")).CommandName = "Assign";
+                       
+                    }
                 }
+                   
+                
             }
         }
     }

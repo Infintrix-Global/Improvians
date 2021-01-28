@@ -45,7 +45,7 @@
                                         
                                         <asp:TemplateField HeaderText="Seeding Status" >
                                             <ItemTemplate>
-                                                <asp:Label ID="Label10" runat="server" Text='<%# Eval("SeedingStatus")  %>'></asp:Label>
+                                                <asp:Label ID="lblStatus" runat="server" Text='<%# Eval("SeedingStatus")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     
@@ -63,7 +63,7 @@
 
                                           <asp:TemplateField HeaderText="Seeding Date" >
                                             <ItemTemplate>
-                                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("SeedingDueDate")  %>'></asp:Label>
+                                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("SeededDate")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

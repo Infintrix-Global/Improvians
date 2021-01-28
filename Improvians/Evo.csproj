@@ -244,6 +244,7 @@
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="PutAwayTaskCompletion.aspx" />
+    <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -448,6 +449,13 @@
     </Compile>
     <Compile Include="PutAwayTaskCompletion.aspx.designer.cs">
       <DependentUpon>PutAwayTaskCompletion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeedLineLotFulfillment.aspx.cs">
+      <DependentUpon>SeedLineLotFulfillment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeedLineLotFulfillment.aspx.designer.cs">
+      <DependentUpon>SeedLineLotFulfillment.aspx</DependentUpon>
     </Compile>
     <Compile Include="SeedLineTaskCompletion.aspx.cs">
       <DependentUpon>SeedLineTaskCompletion.aspx</DependentUpon>
