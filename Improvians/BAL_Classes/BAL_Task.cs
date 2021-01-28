@@ -57,5 +57,27 @@ namespace Improvians.BAL_Classes
             return _isInserted;
         }
 
+        public int UpdatePTCSeedAllocation(string PTCMapID, string ActualSeed, string SeedNo, string Type, string Partial)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@PTCMapID", PTCMapID);
+                objGeneral.AddParameterWithValueToSQLCommand("@ActualSeed", ActualSeed);
+                objGeneral.AddParameterWithValueToSQLCommand("@SeedNo", SeedNo);
+                objGeneral.AddParameterWithValueToSQLCommand("@Type", Type);
+                objGeneral.AddParameterWithValueToSQLCommand("@Partial", Partial);
+                _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_UpdatePTCLotMap");
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+
     }
 }

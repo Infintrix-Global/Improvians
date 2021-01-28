@@ -64,7 +64,7 @@
 
                                            <asp:TemplateField HeaderText="Tray Size">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
+                                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("SeedLots")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         

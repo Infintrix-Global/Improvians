@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
       <div class="main main__header">
             <div class="site__container">
                 <h2>Seedline Task Completion</h2>
@@ -73,7 +74,7 @@
 
                                            <asp:TemplateField HeaderText="Tray Size">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
+                                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("SeedLots")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         
@@ -104,7 +105,7 @@
                                 </asp:GridView>
 
                 </div>
-
+                
                 <div class="text-left dashboard__block mt-4">
                     <form class="web__form pt-2">
                         <div class="row justify-content-center">
@@ -116,16 +117,21 @@
                                             <label>Is the tray size [256] correct?</label>
                                             <span class="custom-control custom-radio ml-4 mr-2">
                                                 <asp:RadioButtonList ID="radtraysize" runat="server">
-                                                    <asp:ListItem  Text="Y" Value="Y"></asp:ListItem>
+                                                    <asp:ListItem  Text="Y" Value="Y" Selected="True"></asp:ListItem>
                                                     <asp:ListItem  Text="N" Value="N"></asp:ListItem>
                                                 </asp:RadioButtonList>
                                                
                                             </span>
                                         </div>
                                     </div>
-                                    
+                                     <asp:Label ID="lblID" runat="server"  Visible="false"></asp:Label>
+                                    <asp:UpdatePanel ID="up1" runat="server">
+                                        <ContentTemplate>
+
+                                      
                                     <div class="col-xl-12">
                                         <h4>Seed Lot Usage:</h4>
+                                          <asp:Label ID="lblTraySize" runat="server"  Visible="false"></asp:Label>
                                         <div class="text-center data__table mt-2 mb-4">
                                            <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped data__table w-auto"
                                             GridLines="None"
@@ -133,21 +139,22 @@
                                             <Columns>
                                                  <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
-                                                      
+                                                        <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
                                                         <asp:Label ID="lblLotName" Text='<%# Eval("SeedLotName")  %>' runat="server" ></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Actual # of tray Seeded">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
-                                                        <asp:TextBox ID="txtActualTray" runat="server" ></asp:TextBox>
+                                                      
+                                                        <asp:TextBox ID="txtActualTray" runat="server" AutoPostBack="true" OnTextChanged="txtActualTray_TextChanged" ></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="# of Seed">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblSeed" runat="server" Text='<%# Eval("NoOfSeed")  %>'></asp:Label>
+                                                        
+                                                        <asp:Label ID="lblSeed" runat="server" ></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
@@ -177,6 +184,7 @@
                                         </div>
                                     </div>
 
+
                                     <div class="col-md-6">
                                         <h4>Seeding Details:</h4>
                                         <div class="d-flex align-items-center">
@@ -189,7 +197,7 @@
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-lg-6">
-                                             <asp:TextBox ID="txtSeededDate" TextMode="Date"  runat="server" ></asp:TextBox>
+                                           
                                             </div>
                                         </div>
                                     </div>
@@ -198,8 +206,8 @@
                                         <h4>Job Completion:</h4>
                                         <div>
                                             <span class="custom-control custom-radio mx-2">
-                                                <asp:RadioButtonList ID="radJobCompletion" runat="server" OnSelectedIndexChanged="radJobCompletion_SelectedIndexChanged">
-                                                    <asp:ListItem  Text="Full" Value="Full"></asp:ListItem>
+                                                <asp:RadioButtonList ID="radJobCompletion" runat="server" AutoPostBack="true" OnSelectedIndexChanged="radJobCompletion_SelectedIndexChanged">
+                                                    <asp:ListItem  Text="Full" Value="Full" Selected="True"></asp:ListItem>
                                                     <asp:ListItem  Text="Partial" Value="Partial"></asp:ListItem>
                                                 </asp:RadioButtonList>
                                             </span>
@@ -207,6 +215,17 @@
                                             <span>
                                                  <asp:TextBox ID="txtTrays" runat="server" TextMode="Number" placeholder="Enter # Completed" Visible="false"></asp:TextBox>
                                             </span>
+                                        </div>
+                                    </div>
+
+                                            
+                                              </ContentTemplate>
+                                    </asp:UpdatePanel>
+
+                                    <div class="col-12 mt-3">
+                                         <div class="d-flex align-items-center">
+                                            <label class="mb-2">Seeded Date:</label>
+                                           <asp:TextBox ID="txtSeededDate" TextMode="Date"  runat="server" ></asp:TextBox>
                                         </div>
                                     </div>
 

@@ -765,3 +765,27 @@
    at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
    at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
    at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in D:\Nidhi\Projects\Improvians\Code\Improvians\CommonControl.cs:line 241Error converting data type nvarchar to numeric. at 27-Jan-21 7:16:41 PM
+*****Error message=****@ConfirmTraySize:Y at 28-Jan-21 02:53:09 PM
+*****Error message=****@ActualTraySeeded:200 at 28-Jan-21 02:53:09 PM
+*****Error message=****@JobCompletion:Full at 28-Jan-21 02:53:09 PM
+*****Error message=****@CompletedTrays: at 28-Jan-21 02:53:09 PM
+*****Error message=****@SeededDate:2021-01-28 at 28-Jan-21 02:53:09 PM
+*****Error message=****@PTCID:17 at 28-Jan-21 02:53:09 PM
+*****Error message=****@IsSeedReturnComplete:Yes at 28-Jan-21 02:53:09 PM
+*****Error message=****@LoginID:12 at 28-Jan-21 02:53:09 PM
+*****Error message=****@ConfirmTraySize:Y at 28-Jan-21 02:55:00 PM
+*****Error message=****@ActualTraySeeded:200 at 28-Jan-21 02:55:00 PM
+*****Error message=****@JobCompletion:Full at 28-Jan-21 02:55:00 PM
+*****Error message=****@CompletedTrays: at 28-Jan-21 02:55:00 PM
+*****Error message=****@SeededDate:2021-01-28 at 28-Jan-21 02:55:00 PM
+*****Error message=****@PTCID:17 at 28-Jan-21 02:55:00 PM
+*****Error message=****@IsSeedReturnComplete:Yes at 28-Jan-21 02:55:00 PM
+*****Error message=****@LoginID:12 at 28-Jan-21 02:55:00 PM
+*****Error message=****@ConfirmTraySize:Y at 28-Jan-21 02:55:04 PM
+*****Error message=****@ActualTraySeeded:200 at 28-Jan-21 02:55:04 PM
+*****Error message=****@JobCompletion:Full at 28-Jan-21 02:55:04 PM
+*****Error message=****@CompletedTrays: at 28-Jan-21 02:55:04 PM
+*****Error message=****@SeededDate:2021-01-28 at 28-Jan-21 02:55:04 PM
+*****Error message=****@PTCID:17 at 28-Jan-21 02:55:04 PM
+*****Error message=****@IsSeedReturnComplete:Yes at 28-Jan-21 02:55:04 PM
+*****Error message=****@LoginID:12 at 28-Jan-21 02:55:04 PM

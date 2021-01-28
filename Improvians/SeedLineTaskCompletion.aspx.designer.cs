@@ -15,6 +15,15 @@ namespace Improvians
     {
 
         /// <summary>
+        /// sc1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager sc1;
+
+        /// <summary>
         /// gvGerm control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,33 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList radtraysize;
+
+        /// <summary>
+        /// lblID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblID;
+
+        /// <summary>
+        /// up1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel up1;
+
+        /// <summary>
+        /// lblTraySize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTraySize;
 
         /// <summary>
         /// gvDetails control.
@@ -60,15 +96,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.TextBox txtActualTrays;
 
         /// <summary>
-        /// txtSeededDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSeededDate;
-
-        /// <summary>
         /// radJobCompletion control.
         /// </summary>
         /// <remarks>
@@ -85,6 +112,15 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTrays;
+
+        /// <summary>
+        /// txtSeededDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSeededDate;
 
         /// <summary>
         /// chkPutAwayLocation control.
