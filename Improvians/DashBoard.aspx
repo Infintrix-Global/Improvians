@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="dashboard__matrixdetail">
-                            <h3 class="robotobold">$12</h3>
+                            <h3 class="robotobold">$.12</h3>
                             <span>Contribution Margin<br /> per ft<sup>2</sup> per day</span>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
 
                         <div class="dashboard__matrixdetail">
                             <h3 class="robotobold">81%</h3>
-                            <span>Site Occupancy</span>
+                            <span>Site Occupancy Daily Avg. Over 30 days</span>
                         </div>
                     </div>
 
