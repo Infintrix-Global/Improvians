@@ -161,7 +161,7 @@ namespace Improvians
                 }
                 Clear();
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                string message = "Production Completion Successful";
+                string message = "Seedline Completion Successful";
                 string url = "MyTaskProductionPlanner.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
