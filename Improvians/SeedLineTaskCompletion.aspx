@@ -168,7 +168,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                 <asp:TemplateField HeaderText="Partial">
+                                                 <asp:TemplateField HeaderText="Left Over">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txtPartial" runat="server" ></asp:TextBox>
                                                     </ItemTemplate>
