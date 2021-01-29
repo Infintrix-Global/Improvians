@@ -69,6 +69,10 @@ namespace Improvians
             {
                 Response.Redirect("MyTaskSeedingTeam.aspx");
             }
+            if (Session["Role"].ToString() == "9")
+            {
+                Response.Redirect("MyTaskSeedLineOperator.aspx");
+            }
         }
         protected void lnkdashboard_Click(object sender, EventArgs e)
         {

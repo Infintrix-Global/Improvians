@@ -241,6 +241,7 @@
     <Content Include="MyTaskLogisticManager.aspx" />
     <Content Include="MyTaskProductionPlanner.aspx" />
     <Content Include="MyTaskSeedingTeam.aspx" />
+    <Content Include="MyTaskSeedLineOperator.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="PutAwayTaskCompletion.aspx" />
@@ -427,6 +428,13 @@
     </Compile>
     <Compile Include="MyTaskSeedingTeam.aspx.designer.cs">
       <DependentUpon>MyTaskSeedingTeam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskSeedLineOperator.aspx.cs">
+      <DependentUpon>MyTaskSeedLineOperator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskSeedLineOperator.aspx.designer.cs">
+      <DependentUpon>MyTaskSeedLineOperator.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskShippingCoordinator.aspx.cs">
       <DependentUpon>MyTaskShippingCoordinator.aspx</DependentUpon>
