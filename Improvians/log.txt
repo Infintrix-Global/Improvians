@@ -789,3 +789,15 @@
 *****Error message=****@PTCID:17 at 28-Jan-21 02:55:04 PM
 *****Error message=****@IsSeedReturnComplete:Yes at 28-Jan-21 02:55:04 PM
 *****Error message=****@LoginID:12 at 28-Jan-21 02:55:04 PM
+*****Error message=****@SupervisorID:4 at 29-01-2021 16:14:48
+*****Error message=****@InspectionDueDate:2021-01-30 at 29-01-2021 16:14:48
+*****Error message=****@#TraysInspected:10 at 29-01-2021 16:14:48
+*****Error message=****@JobID:JB030114 at 29-01-2021 16:14:48
+*****Error message=****@LoginID:1 at 29-01-2021 16:14:48
+*****Error message=****@OperatorID:2 at 29-01-2021 16:15:20
+*****Error message=****@Notes: at 29-01-2021 16:15:20
+*****Error message=****@JobID:JB021431 at 29-01-2021 16:15:20
+*****Error message=****@LoginID:2 at 29-01-2021 16:15:20
+*****Error message=****@SupervisorID:2 at 29-01-2021 18:19:10
+*****Error message=****@JobID:JB030124 at 29-01-2021 18:19:10
+*****Error message=****@LoginID:1 at 29-01-2021 18:19:10

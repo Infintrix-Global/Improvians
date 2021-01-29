@@ -40,6 +40,10 @@ namespace Improvians
             {
                 Response.Redirect("~/PutAwayTaskCompletion.aspx");
             }
+            if (ddlTaskRequest.SelectedValue == "7")
+            {
+                Response.Redirect("~/PlantReadyRequestForm.aspx");
+            }
         }
     }
 }
