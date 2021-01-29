@@ -141,7 +141,7 @@
                                                 <asp:TemplateField HeaderText="Pulled">
                                                     <ItemTemplate>
                                                         
-                                                        <asp:Label ID="lblSeed" runat="server" ></asp:Label>
+                                                        <asp:Textbox ID="txtBarCode"  runat="server" ></asp:Textbox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                

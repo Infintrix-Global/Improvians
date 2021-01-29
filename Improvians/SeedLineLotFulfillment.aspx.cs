@@ -12,6 +12,7 @@ namespace Improvians
     public partial class SeedLineLotFulfillment : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,7 +41,28 @@ namespace Improvians
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            foreach (GridViewRow row in gvDetails.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
 
+                    string ID = (row.Cells[0].FindControl("lblID") as Label).Text;
+                   
+                    string BarCode = (row.Cells[2].FindControl("txtBarCode") as TextBox).Text;
+                  
+                    objTask.UpdatePTCSeedAllocationBarCode(ID, BarCode);
+                    string message = "SeedLine Fulfillment Successful";
+                    string url = "MyTaskSeedLineOperator.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+                }
+            }
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
