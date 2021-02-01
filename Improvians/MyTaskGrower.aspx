@@ -39,7 +39,7 @@
                             <asp:ListItem Text="Move Request" Value="5"></asp:ListItem>
                             <asp:ListItem Text="Put Away Request" Value="6"></asp:ListItem>
                               <asp:ListItem Text="Plant Ready Request" Value="7"></asp:ListItem>
-                                <asp:ListItem Text="Fertilization Request" Value="8"></asp:ListItem>
+                                <asp:ListItem Text="Fertilization/Chemical Request" Value="8"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
 

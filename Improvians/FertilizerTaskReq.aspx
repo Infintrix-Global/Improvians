@@ -6,7 +6,7 @@
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main">
         <div class="site__container">
-            <h2>Move Request</h2>
+            <h2>Fertilization/Chemical Request</h2>
            <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
                     <div class="filter__row d-flex">
@@ -221,14 +221,14 @@
                                                     <asp:TemplateField HeaderText="Fertilizer" ItemStyle-Width="10%">
                                                         <ItemTemplate>
 
-                                                            <asp:Label ID="lblFertilizer" runat="server" ></asp:Label>
+                                                            <asp:Label ID="lblFertilizer" runat="server" Text='<%# Bind("[Fertilizer]")  %>' ></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="QTY" ItemStyle-Width="10%">
                                                         <ItemTemplate>
 
-                                                            <asp:Label ID="lblQTY" runat="server" ></asp:Label>
+                                                            <asp:Label ID="lblQTY" runat="server" Text='<%# Bind("[Quantity]")  %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -236,24 +236,29 @@
                                                     <asp:TemplateField HeaderText="Unit of Measurement" ItemStyle-Width="10%">
                                                         <ItemTemplate>
 
-                                                            <asp:Label ID="lblUOM" runat="server" ></asp:Label>
+                                                            <asp:Label ID="lblUOM" runat="server" Text='<%# Bind("[Unit]")  %>' ></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="Tray" ItemStyle-Width="10%">
                                                         <ItemTemplate>
                                                              
-                                                            <asp:Label ID="lblTray" runat="server" ></asp:Label>
+                                                            <asp:Label ID="lblTray" runat="server" Text='<%# Bind("[Tray]")  %>' ></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 													
                                                     <asp:TemplateField HeaderText="SQFT" ItemStyle-Width="10%">
                                                         <ItemTemplate>
 
-                                                            <asp:Label ID="lblSQFT" runat="server" ></asp:Label>
+                                                            <asp:Label ID="lblSQFT" runat="server" Text='<%# Bind("[SQFT]")  %>' ></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:CommandField ShowDeleteButton="True" ItemStyle-Width="5%" />
+                                                  <asp:TemplateField ItemStyle-Width="20%">
+                                                        <ItemTemplate>
+                                                            <asp:Button ID="deletebtn" runat="server" CommandName="Delete"
+                                                                Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
                                         </asp:Panel>
