@@ -54,6 +54,7 @@ namespace Improvians
                 GridViewRow row = gvPlantReady.Rows[rowIndex];
               
                 lblJobID.Text = (row.FindControl("lblJobID") as Label).Text;
+                ddlSupervisor.Focus();
 
             }
         }
