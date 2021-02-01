@@ -244,6 +244,8 @@
     <Content Include="MyTaskSeedLineOperator.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="PlantReadyRequestForm.aspx" />
+    <Content Include="PlantReadyTaskAssignment.aspx" />
+    <Content Include="PlantReadyTaskCompletion.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="PutAwayTaskCompletion.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
@@ -451,6 +453,20 @@
     </Compile>
     <Compile Include="PlantReadyRequestForm.aspx.designer.cs">
       <DependentUpon>PlantReadyRequestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlantReadyTaskAssignment.aspx.cs">
+      <DependentUpon>PlantReadyTaskAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlantReadyTaskAssignment.aspx.designer.cs">
+      <DependentUpon>PlantReadyTaskAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlantReadyTaskCompletion.aspx.cs">
+      <DependentUpon>PlantReadyTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlantReadyTaskCompletion.aspx.designer.cs">
+      <DependentUpon>PlantReadyTaskCompletion.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductionPlannerTaskCompletionForm.aspx.cs">
       <DependentUpon>ProductionPlannerTaskCompletionForm.aspx</DependentUpon>

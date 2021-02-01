@@ -41,22 +41,24 @@
                                     <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                                     <div class="portlet-body">
                                         <div class="data__table">
-                                            <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                                class="striped"  AllowSorting="true" 
+                                            <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" PageSize="20"
+                                                class="striped"  AllowSorting="true"  OnPageIndexChanging="gvGerm_PageIndexChanging1"
                                                 GridLines="None"  OnRowCommand="gvGerm_RowCommand"
                                                 ShowHeaderWhenEmpty="True" Width="100%">
                                                 <Columns>
 
                                                        <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="Label1" runat="server" Text="Germination"></asp:Label>
+                                                              <asp:Label ID="lblStage" runat="server" Text='<%# Eval("Stage")  %>' ></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
                                                           <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                            <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobID")  %>' ></asp:Label>
+                                                           <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobID")  %>'></asp:Label>
+                                                            <asp:HiddenField ID="HiddenFieldTaskID" Value='<%# Eval("TaskID")%>' runat="server" />
+
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -65,7 +67,7 @@
 
                                                  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2" >
                                                         <ItemTemplate>
-                                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("JobID")  %>'></asp:Button>
+                                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
