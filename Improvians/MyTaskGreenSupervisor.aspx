@@ -43,7 +43,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true"
+                                    class="striped" AllowSorting="true" PageSize="20"
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
@@ -58,6 +58,7 @@
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobID")  %>'></asp:Label>
+                                                <asp:HiddenField ID="HiddenFieldTaskID" Value='<%# Eval("TaskID")%>' runat="server" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -66,8 +67,13 @@
 
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("JobID")  %>'></asp:Button>
+                                             <%--   <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("JobID")  %>'></asp:Button>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("JobID")  %>'></asp:Button>
+                                          --%>
+                                                
+                                                <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                          
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

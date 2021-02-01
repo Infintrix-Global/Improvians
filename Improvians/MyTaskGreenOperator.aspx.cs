@@ -35,10 +35,39 @@ namespace Improvians
         {
             if (e.CommandName == "Select")
             {
+                string JobID = "";
+                string TaskID = "";
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvGerm.Rows[rowIndex];
 
-                Session["JobID"] = e.CommandArgument.ToString();
-                Response.Redirect("~/GreenHouseTaskCompletion.aspx");
+                JobID = (row.FindControl("lblID") as Label).Text;
+                TaskID = (row.FindControl("HiddenFieldTaskID") as HiddenField).Value;
+
+
+               
+                    if (TaskID == "5")
+                    {
+                        Session["JobID"] = JobID;
+                        Response.Redirect("~/GreenHouseTaskCompletion.aspx");
+                    }
+                    else if (TaskID == "11")
+                    {
+                        Session["JobID"] = JobID;
+                        Response.Redirect("~/PlantReadyTaskCompletion.aspx");
+                    }
+                
+
+               // Session["JobID"] = e.CommandArgument.ToString();
+             //   Response.Redirect("~/GreenHouseTaskCompletion.aspx");
             }
+        }
+
+      
+
+        protected void gvGerm_PageIndexChanging1(object sender, GridViewPageEventArgs e)
+        {
+            gvGerm.PageIndex = e.NewPageIndex;
+            BindGridGerm();
         }
     }
 }
