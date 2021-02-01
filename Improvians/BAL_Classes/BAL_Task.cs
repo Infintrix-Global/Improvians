@@ -79,5 +79,25 @@ namespace Improvians.BAL_Classes
         }
 
 
+        public int UpdatePTCSeedAllocationBarCode(string PTCMapID, string BarCode)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@PTCMapID", PTCMapID);
+                objGeneral.AddParameterWithValueToSQLCommand("@BarCode", BarCode);
+              
+                _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_UpdatePTCLotMapBarCode");
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+
     }
 }

@@ -54,12 +54,12 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                         <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="lblPutAwayMainLocation" runat="server" Text='<%# Eval("PutAwayMainLocation")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                             <asp:TemplateField HeaderText="Put Away Location" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="lblPutAwayLocation" runat="server" Text='<%# Eval("PutAwayLocation")  %>'></asp:Label>
                             </ItemTemplate>
@@ -71,39 +71,32 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        
                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
-                            <ItemTemplate>
-                                <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
-                          <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="lblSeedLots" runat="server" Text='<%# Eval("SeedLots")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                         <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeededDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                     
-                          <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
+
+                        <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="lblPlantType" runat="server" Text=""></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                          <asp:TemplateField HeaderText="Plant Height" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Plant Height" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                               <asp:Label ID="lblPlantHeight" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lblPlantHeight" runat="server" Text=""></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                               <asp:Label ID="lblPlantReadyDate" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lblPlantReadyDate" runat="server" Text=""></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 

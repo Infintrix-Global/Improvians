@@ -27,9 +27,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                      
-                                           
-
                                         <asp:TemplateField HeaderText="Customer">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label8" runat="server" Text='<%# Eval("Customer")  %>'></asp:Label>
@@ -57,7 +54,7 @@
 
                                         <asp:TemplateField HeaderText="Actual Trays" >
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" ></asp:Label>
+                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("ActualTraySeeded")  %>' ></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

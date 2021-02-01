@@ -121,7 +121,7 @@ namespace Improvians
                 ((DropDownList)e.Row.FindControl("ddlBench")).Items.Insert(0, new ListItem("--- Select ---", "0"));
 
 
-                if (((Label)e.Row.FindControl("lblBench")).Text == "Completed")
+                if (((Label)e.Row.FindControl("lblStatus")).Text == "Completed")
                 {
                     e.Row.BackColor = System.Drawing.Color.Green;
                     if (((Label)e.Row.FindControl("lblBench")).Text != "")
@@ -139,7 +139,7 @@ namespace Improvians
                     }
                 }
 
-                else if (((Label)e.Row.FindControl("lblBench")).Text == "Not Completed")
+                else if (((Label)e.Row.FindControl("lblStatus")).Text == "Not Complete")
                 {
                     if (((Label)e.Row.FindControl("lblBench")).Text != "")
                     {
@@ -157,8 +157,16 @@ namespace Improvians
                        
                     }
                 }
-                   
-                
+
+                else if (((Label)e.Row.FindControl("lblStatus")).Text == "Verified")
+                {
+                    ((Button)e.Row.FindControl("btnAssign")).Visible = false;
+                    ((DropDownList)e.Row.FindControl("ddlBench")).SelectedValue = ((Label)e.Row.FindControl("lblBench")).Text;
+                    ((DropDownList)e.Row.FindControl("ddlBench")).Enabled = false;
+                }
+
+
+
             }
         }
     }

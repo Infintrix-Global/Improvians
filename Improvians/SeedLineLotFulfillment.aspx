@@ -6,7 +6,7 @@
             <div class="site__container">
                 <h2 class="text-center">Seeding Lot Fulfillment Task Completion</h2>
                 
-                <div class="filter__row row justify-content-center">
+             <%--   <div class="filter__row row justify-content-center">
                     <div class="col-xl-auto col-12">
                         <label>Job No.</label>
                         <select class="w-100 filter__control filter__select custom__dropdown">
@@ -36,7 +36,7 @@
                             <option>Option 4</option>
                         </select>
                     </div>
-                </div>
+                </div>--%>
 
                 <div class="data__table">
                              <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -62,7 +62,7 @@
 
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("#Tray")  %>'></asp:Label>
+                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("#TraysSeeded")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -75,7 +75,7 @@
 
                                         <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:dd MMM yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeedingDueDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -118,61 +118,40 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="text-center data__table data__table-seedinglot mt-2 mb-4">
-                                                <table>
-                                                    <tr>
-                                                        <th>Job</th>
-                                                        <th># OF SEEDS</th>
-                                                        <th>PULLED</th>
-                                                    </tr>
-                            
-                                                    <tr>
-                                                        <td>Lot A</td>
-                                                        <td>300,000</td>
-                                                        <td>
-                                                            <span class="d-block text-center">
-                                                                <a href="#">
-                                                                    <i class="fas fa-qrcode"></i>
-                                                                </a>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                            
-                                                    <tr>
-                                                        <td>Lot B</td>
-                                                        <td>70,000</td>
-                                                        <td>
-                                                            <span class="d-block text-center">
-                                                                <a href="#">
-                                                                    <i class="fas fa-qrcode"></i>
-                                                                </a>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                            
-                                                    <tr>
-                                                        <td>Lot C</td>
-                                                        <td>60,000</td>
-                                                        <td>
-                                                            <span class="d-block text-center">
-                                                                <a href="#">
-                                                                    <i class="fas fa-qrcode"></i>
-                                                                </a>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                            
-                                                    <tr>
-                                                        <td>Lot D</td>
-                                                        <td>40,000</td>
-                                                        <td>
-                                                            <span class="d-block text-center">
-                                                                <a href="#">
-                                                                    <i class="fas fa-qrcode"></i>
-                                                                </a>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                          
+                                                    <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped data__table w-auto"
+                                            GridLines="None"
+                                            ShowHeaderWhenEmpty="True">
+                                            <Columns>
+                                                 <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
+                                                        <asp:Label ID="lblLotName" Text='<%# Eval("SeedLotName")  %>' runat="server" ></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="# of Seed">
+                                                    <ItemTemplate>
+                                                        
+                                                        <asp:Label ID="lblSeed" runat="server" Text='<%# Eval("NoOfSeed")  %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Pulled">
+                                                    <ItemTemplate>
+                                                        
+                                                        <asp:Textbox ID="txtBarCode"  runat="server" TextMode="Number" ></asp:Textbox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                               
+                                            </Columns>
+                                            <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                            <PagerSettings Mode="NumericFirstLast" />
+                                            <EmptyDataTemplate>
+                                                No Record Available
+                                            </EmptyDataTemplate>
+                                        </asp:GridView>
                                             </div>
                                         </div>
                                         <div class="col-12">
