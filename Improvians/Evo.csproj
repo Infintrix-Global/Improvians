@@ -43,9 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=4.1.60623.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+    <Reference Include="ajaxcontroltoolkit, Version=3.0.20820.16598, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>bin\ajaxcontroltoolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -157,7 +157,7 @@
     <Content Include="Admin\login.html" />
     <Content Include="Admin\sw.js" />
     <Content Include="Admin\ViewEmployee.aspx" />
-    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\ajaxcontroltoolkit.dll" />
     <Content Include="css\all.min.css" />
     <Content Include="css\aos.css" />
     <Content Include="css\bootstrap.min.css" />
@@ -253,6 +253,7 @@
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AddEmployee.aspx.cs">
@@ -514,6 +515,13 @@
     </Compile>
     <Compile Include="SeedLineTaskCompletion.aspx.designer.cs">
       <DependentUpon>SeedLineTaskCompletion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
