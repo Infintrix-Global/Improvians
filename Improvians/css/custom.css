@@ -83,7 +83,8 @@
 
 /*General*/
 html { 
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 22px;
 }
 
 body {
@@ -146,7 +147,7 @@ h2 {
 }
 
 table .bttn {
-    padding: 14px 10px;
+    padding: 10px 15px;
 }
 
 .bttn:focus { outline: none; }
@@ -166,6 +167,10 @@ table .bttn {
 }
 
 .bttn-primary:hover, .bttn.active:hover { background: #366a37; }
+
+.bttn-danger { background: rgb(209, 9, 9); color: #ffffff; }
+
+.submit-bttn { min-width: 112px; }
 
 .site__container {
     padding-left: 45px;
@@ -339,6 +344,21 @@ header {
     outline: none;
 }
 
+.input__control-auto {
+    width: auto;
+}
+
+textarea.input__control {
+    height: auto;
+    resize: none;
+    padding: 15px;
+    line-height: 22px;
+}
+
+.textarea__notes {
+    width: 260px;
+}
+
 .custom__dropdown {
     background-color: #ffffff;
     color: #2a2a2a;
@@ -374,6 +394,7 @@ header {
     right: 0;
     width: 100%;
     text-align: center;
+    z-index: 1;
 }
 
 .floating__footer ul {
@@ -417,6 +438,18 @@ header {
 }
 
 .dashboard__block h2 { color: #2a2a2a; }
+
+.dashboard__block h3, h3 {
+    font-family: 'roboto-medium', sans-serif;
+    font-size: 22px;
+    margin-bottom: 22px;
+}
+
+.dashboard__block h4, h4 {
+    font-family: 'roboto-medium', sans-serif;
+    font-size: 18px;
+    margin-bottom: 18px;
+}
 
 .dashboard__matrix {
     position: relative;
@@ -609,7 +642,7 @@ header {
 .data__table th, .data__table td {
     background: #f4f6fa;
     border: 1px solid #d7d7d7;
-    padding: 20px;
+    padding: 10px 15px;
     line-height: 24px;
 }
 
@@ -728,6 +761,95 @@ header {
     background-image: url('../images/icons/icon-password.svg');
 }
 
+/*Updates*/
+.main__header {
+    margin-top: 50px;
+}
+
+.form__md {
+    max-width: 100%;
+    width: 600px;
+}
+
+.form__lg {
+    max-width: 100%;
+    width: 750px;
+}
+
+.web__form label ~ *:last-child {
+    margin-bottom: 25px;
+}
+
+/* Custom Checkbox */
+.custom-control.custom-checkbox input[type="checkbox"], .custom-control.custom-radio input[type="radio"] {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    width: 1rem;
+    height: 1.25rem;
+    opacity: 0;
+}
+
+.custom-control.custom-checkbox label, .custom-control.custom-radio label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+    margin-bottom: 10px;
+}
+
+.custom-control.custom-checkbox label::before, .custom-control.custom-radio label::before {
+    position: absolute;
+    top: .25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    content: "";
+    background-color: #fff;
+    border: #adb5bd solid 1px;
+    border-radius: 4px;
+}
+
+.custom-control.custom-checkbox label::after, .custom-control.custom-radio label::after {
+    position: absolute;
+    top: .25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background: no-repeat 50% / 50% 50%;
+}
+
+.custom-control.custom-radio label::before {
+    border-radius: 100%;
+}
+
+.custom-control.custom-checkbox input:checked ~ label::before, .custom-control.custom-radio input:checked ~ label::before {
+    border-color: #438644;
+    background-color: #438644;
+}
+
+.custom-control.custom-checkbox input:checked ~ label::after {
+    background-image: url(../images/icons/icon-checkbox.svg);
+}
+
+.custom-control.custom-radio input:checked ~ label::after {
+    background-image: url(../images/icons/icon-radio.svg);
+}
+
+.data__table td i.fa-qrcode  {
+    color: #438644;
+    text-align: center;
+    font-size: 30px;
+}
+
+.data__table-seedinglot {
+    max-height: 255px;
+    overflow: auto;
+}
+
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
     .container {
@@ -739,11 +861,13 @@ header {
 @media only screen and (max-width: 1839px) {
     .has__footer { padding-bottom: 140px; }
     .custom__dropdown, .filter__control, .input__control {
-        height: 50px;
-        line-height: 50px;
+        height: 45px;
+        line-height: 45px;
         border-radius: 10px;
     }
-    .bttn { border-radius: 10px; }
+    .custom__dropdown { background-position: right 20px center; }
+    .bttn { border-radius: 10px; padding: 10px 15px; }
+    .header__tabs ul { margin: 4px auto; }
     .dashboard__block { border-radius: 15px; }
 
     .dashborad__stats {
@@ -799,7 +923,6 @@ header {
     .header__bottom { margin-top: 30px; }
     .header__bottom + .main { margin-top: 30px; }
     .filter__row { flex-wrap: wrap; }
-    .bttn { padding: 12px 30px; }
     h2 { text-align: center; }
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 auto; }
     .floating__footer a { padding: 12px 25px; }
@@ -814,7 +937,7 @@ header {
 @media only screen and (max-width: 1279px) {
     body { line-height: 22px; }
     html { font-size: 16px; line-height: 22px; }
-    .data__table th, .data__table td { line-height: 22px; }
+    .data__table th, .data__table td { line-height: 20px; }
     .login__container form label { margin-bottom: 20px; }
     .dashboard__matrixdetail h3 { font-size: 30px; }
 }
@@ -850,9 +973,16 @@ header {
     .dashboard__matrix:last-child { margin-right: auto; margin-left: 15px; }
 }
 
+@media only screen and (min-width: 992px) {
+    .data__table .table-md-fixed {
+        table-layout: fixed;
+    }
+}
+
 @media only screen and (max-width: 991px) {
     .bttn { padding: 10px 25px; }
     .custom__dropdown, .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon) { padding: 0 25px; }
+    textarea.input__control:not(.input__control-icon):not(.filter__search) { padding: 15px; }
     .filter__search { padding-left: 45px; }
     h2 { font-size: 26px; }
     .dashboard__block--asign h3 { font-size: 22px; }
@@ -903,6 +1033,9 @@ header {
     .account__dropdown .account__user { font-size: 16px; }
     .account__dropdown img { max-width: 48px; }
     .account__dropdown .account__user { margin-right: 5px; }
+    .custom__dropdown, .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon) { padding: 0 15px; }
+    .custom__dropdown, .custom__dropdown.filter__control:not(.filter__search), .input__control.input__control-icon { padding-right: 35px; }
+    .bttn, .custom__dropdown, .filter__control, .input__control { border-radius: 6px; }
 }
 
 @media only screen and (max-width: 575px) {
@@ -955,6 +1088,7 @@ header {
     .header__tabs { padding-left: 0; padding-right: 0; }
     .header__tabs::before { right: -15px; }
     .alert__dropdown .dropdown-menu { transform: translate(-45%, 5px); }
+    .data__table td i.fa-qrcode { font-size: 25px; }
 }
 
 
