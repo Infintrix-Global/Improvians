@@ -1231,3 +1231,7 @@
 *****Error message=****@Type:Fertilizer at 01-Feb-21 07:16:04 PM
 *****Error message=****@JobID:JB030114 at 01-Feb-21 07:16:04 PM
 *****Error message=****@LoginID:1 at 01-Feb-21 07:16:04 PM
+*****Error message=****@SupervisorID:2 at 02-Feb-21 01:00:16 PM
+*****Error message=****@Type:Fertilizer at 02-Feb-21 01:00:16 PM
+*****Error message=****@JobID:JB029080 at 02-Feb-21 01:00:16 PM
+*****Error message=****@LoginID:1 at 02-Feb-21 01:00:16 PM
