@@ -111,54 +111,58 @@ namespace Improvians
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
-
-            // Current row count.
-            int rowCtr;
-            // Total number of cells per row (columns).
-            int cellCtr;
-            // Current cell counter
-            int cellCnt = Convert.ToInt32(txtTrays.Text);
-            TableRow tRow;
-            for (rowCtr = 0; rowCtr < 2; rowCtr++)
-            {
-                // Create new row and add it to the table.
-                tRow = new TableRow();
-                tbltray.Rows.Add(tRow);
-                for (cellCtr = 0; cellCtr <= cellCnt; cellCtr++)
+            if (Convert.ToInt32(txtTrays.Text) <= 20)
+            { 
+                sbtTray.Visible = true;
+                // Current row count.
+                int rowCtr;
+                // Total number of cells per row (columns).
+                int cellCtr;
+                // Current cell counter
+                int cellCnt = Convert.ToInt32(txtTrays.Text);
+                TableRow tRow;
+                for (rowCtr = 0; rowCtr < 2; rowCtr++)
                 {
-                    if (cellCtr == 0 && rowCtr == 0)
+                    // Create new row and add it to the table.
+                    tRow = new TableRow();
+                    tbltray.Rows.Add(tRow);
+                    for (cellCtr = 0; cellCtr <= cellCnt; cellCtr++)
                     {
-                        TableCell tCell1 = new TableCell();
-                        tCell1.Text = "Tray #";
-                        tRow.Cells.Add(tCell1);
-                    }
+                        if (cellCtr == 0 && rowCtr == 0)
+                        {
+                            TableCell tCell1 = new TableCell();
+                            tCell1.Text = "Tray #";
+                            tRow.Cells.Add(tCell1);
+                        }
 
-                    else if (cellCtr == 0 && rowCtr == 1)
-                    {
-                        TableCell tCell1 = new TableCell();
-                        tCell1.Text = "Bad Plants #";
-                        tRow.Cells.Add(tCell1);
-                    }
-                    else if (cellCtr != 0 && rowCtr == 0)
-                    {
+                        else if (cellCtr == 0 && rowCtr == 1)
+                        {
+                            TableCell tCell1 = new TableCell();
+                            tCell1.Text = "Bad Plants #";
+                            tRow.Cells.Add(tCell1);
+                        }
+                        else if (cellCtr != 0 && rowCtr == 0)
+                        {
 
-                        // Create a new cell and add it to the row.
-                        TableCell tCell = new TableCell();
-                        tCell.Text = cellCtr.ToString();
-                        tRow.Cells.Add(tCell);
-                    }
-                    else
-                    {
+                            // Create a new cell and add it to the row.
+                            TableCell tCell = new TableCell();
+                           
+                            tCell.Text = cellCtr.ToString();
+                            tRow.Cells.Add(tCell);
+                        }
+                        else
+                        {
 
-                        // Create a new cell and add it to the row.
-                        TableCell tCell = new TableCell();
-                        TextBox tb = new TextBox();
-                        tb.Width = 50;
-                        // Set a unique ID for each TextBox added
-                        tb.ID = "TextBoxRow_" + rowCtr + "Col_" + cellCtr;
-                        // Add the control to the TableCell
-                        tCell.Controls.Add(tb);
-                        tRow.Cells.Add(tCell);
+                            // Create a new cell and add it to the row.
+                            TableCell tCell = new TableCell();
+                            TextBox tb = new TextBox();
+                            tb.Width = 50;
+                            // Set a unique ID for each TextBox added
+                            tb.ID = "TextBoxRow_" + rowCtr + "Col_" + cellCtr;
+                            // Add the control to the TableCell
+                            tCell.Controls.Add(tb);
+                            tRow.Cells.Add(tCell);
+                        }
                     }
                 }
             }

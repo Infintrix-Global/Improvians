@@ -43,7 +43,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="20"
+                                    class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvGerm_PageIndexChanging"
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
@@ -70,9 +70,9 @@
                                              <%--   <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("JobID")  %>'></asp:Button>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("JobID")  %>'></asp:Button>
                                           --%>
-                                                
+                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                 <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                               
                                           
                                             </ItemTemplate>
                                         </asp:TemplateField>
