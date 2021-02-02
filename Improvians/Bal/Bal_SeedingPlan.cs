@@ -16,6 +16,7 @@ namespace Improvians.Bal
         private string strQuery = string.Empty;
         public DataTable GetDataSeedingPlan(string FromDate, string ToDate)
         {
+            Improvians_General objGeneral = new Improvians_General();
             DataTable dt = new DataTable();
             try
             {
@@ -43,5 +44,8 @@ namespace Improvians.Bal
             }
             return dt;
         }
+
+
+      
     }
 }

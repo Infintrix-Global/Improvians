@@ -248,8 +248,8 @@
     <Content Include="PlantReadyTaskCompletion.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="PutAwayTaskCompletion.aspx" />
-    <Content Include="SeedingPlanForm.aspx" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
+    <Content Include="Seeding_Plan_Form.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
     <Content Include="Web.config" />
@@ -487,19 +487,19 @@
     <Compile Include="PutAwayTaskCompletion.aspx.designer.cs">
       <DependentUpon>PutAwayTaskCompletion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SeedingPlanForm.aspx.cs">
-      <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SeedingPlanForm.aspx.designer.cs">
-      <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SeedingPlan\SeedingPlanForm.aspx.cs">
       <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SeedingPlan\SeedingPlanForm.aspx.designer.cs">
       <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seeding_Plan_Form.aspx.cs">
+      <DependentUpon>Seeding_Plan_Form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seeding_Plan_Form.aspx.designer.cs">
+      <DependentUpon>Seeding_Plan_Form.aspx</DependentUpon>
     </Compile>
     <Compile Include="SeedLineLotFulfillment.aspx.cs">
       <DependentUpon>SeedLineLotFulfillment.aspx</DependentUpon>
