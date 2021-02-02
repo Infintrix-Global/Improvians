@@ -48,6 +48,10 @@ namespace Improvians
             {
                 Response.Redirect("~/FertilizerTaskReq.aspx");
             }
+            if (ddlTaskRequest.SelectedValue == "2")
+            {
+                Response.Redirect("~/SeedingPlanForm.aspx");
+            }
         }
     }
 }
