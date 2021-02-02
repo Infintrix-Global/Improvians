@@ -27,7 +27,8 @@
                 </div>
             </div>
 
-            <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>
+           <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
+
             <div class="data__table">
                 <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                     class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
