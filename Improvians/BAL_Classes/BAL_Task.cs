@@ -39,6 +39,30 @@ namespace Improvians.BAL_Classes
             return _isInserted;
         }
 
+        public int AddFertilizerRequestDetails(DataTable dt, string FertilizationID)
+        {
+            int _isInserted = -1;
+            try
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    objGeneral.ClearParameters();
+                    objGeneral.AddParameterWithValueToSQLCommand("@FertilizationID", FertilizationID);
+                    objGeneral.AddParameterWithValueToSQLCommand("@Fertilizer", dt.Rows[i]["Fertilizer"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@Quantity", dt.Rows[i]["Quantity"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@Unit", dt.Rows[i]["Unit"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@Tray", dt.Rows[i]["Tray"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@SQFT", dt.Rows[i]["SQFT"].ToString());
+                    _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddFertilizerDetails");
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
         public int AddPTCSeedAllocation(string PTCID, string LotID)
         {
             int _isInserted = -1;

@@ -307,6 +307,7 @@
     <Compile Include="BAL_Classes\General.cs" />
     <Compile Include="BAL_Classes\RandomImage.cs" />
     <Compile Include="CommonControl.cs" />
+    <Compile Include="CommonControlNavision.cs" />
     <Compile Include="DashBoard.aspx.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
