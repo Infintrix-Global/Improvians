@@ -217,7 +217,7 @@
 
                                     <div class="col m3">
                                         <label>Partial</label>
-                                        <asp:TextBox ID="txtPartial" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <asp:TextBox ID="txtPartial" Text="0"  TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                         <span class="error_message">
                                             <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                            <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPartial" ValidationGroup="md"
