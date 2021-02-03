@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="Seeding_Plan_Form.aspx.cs" Inherits="Improvians.Seeding_Plan_Form" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -76,14 +77,14 @@
 
                                         <asp:TemplateField HeaderText="SO Date">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSODate" runat="server" DataFormatString="{0:M/d/yy}" HtmlEncode="false" Text='<%# Eval("sodate") %>'></asp:Label>
+                                                <asp:Label ID="lblSODate" runat="server"  HtmlEncode="false" Text='<%# Eval("sodate","{0:M/d/yy}") %>'></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="SO Trays">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSOTrays" runat="server" DataFormatString="{0:###,#}" Text='<%# Eval("sotrays") %>'></asp:Label>
+                                                <asp:Label ID="lblSOTrays" runat="server" Text='<%# Eval("sotrays","{0:###,#}") %>'></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -97,13 +98,13 @@
 
                                         <asp:TemplateField HeaderText="WO Trays">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="Txtgtrays" Width="50" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="Txtgtrays" Width="50" Text='<%# Eval("wotrays","{0:###,#}") %>' runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Plan Date">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="Txtgplantdt" TextMode="Date" Width="80px" runat="server"></asp:TextBox>
-
+                                                <asp:TextBox ID="Txtgplantdt" TextMode="Date"  Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="141px" runat="server"></asp:TextBox>
+                                            
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Seeds Allocated">
@@ -114,6 +115,7 @@
                                                 <asp:HiddenField ID="HiddenFieldcusno" Value='<%# Eval("cusno") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFieldsodate" Value='<%# Eval("sodate") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFieldduedate" Value='<%# Eval("duedate") %>' runat="server" />
+                                                  <asp:HiddenField ID="HiddenFieldwo" Value='<%# Eval("wo") %>' runat="server" />
 
 
                                             </ItemTemplate>
@@ -138,7 +140,7 @@
                         <div class="row">
                             <div class="col-12 my-3">
 
-                                <asp:Button Text="Post $ Send" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
+                                <asp:Button Text="Post & Send" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
                                 <asp:Button Text="Print" ID="BtnPrint" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="BtnPrint_Click" />
                                 <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
                             </div>

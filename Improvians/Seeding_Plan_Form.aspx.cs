@@ -45,6 +45,7 @@ namespace Improvians
         protected void DGJob_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             DGJob.PageIndex = e.NewPageIndex;
+            getDataDGJob();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -89,7 +90,9 @@ namespace Improvians
                         HiddenField HiddenFieldsotrays = (item.Cells[0].FindControl("HiddenFieldsotrays") as HiddenField);
                         HiddenField HiddenFieldsodate = (item.Cells[0].FindControl("HiddenFieldsodate") as HiddenField);
                         HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
+                        HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
 
+                        
 
                         if (lblAllocated.Text == "Yes")
                         {
@@ -116,9 +119,9 @@ namespace Improvians
                             nv.Add("@moduser", Session["LoginID"].ToString());
                             nv.Add("@modtime", tim);
                             nv.Add("@modified_date", "");
-
+                            nv.Add("@wo", HiddenFieldwo.Value);
                             nv.Add("@mode", "1");
-                            _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_AddPlantReadyRequest", nv);
+                            _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
 
 
 
@@ -132,28 +135,10 @@ namespace Improvians
 
 
                     }
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save  Successful')", true);
                 }
 
-                if (_isInserted > 0)
-                {
-                    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                    string message = "Seeding Plan Save Successful";
-                    string url = "MyTaskGrower.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                    // lblmsg.Text = "Assignment Successful";
-
-                }
-                else
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan not Save  Successful')", true);
-                    //  lblmsg.Text = "Assignment Not Successful";
-                }
+               
             }
             catch (Exception ex)
             {

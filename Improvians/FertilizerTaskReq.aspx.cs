@@ -160,10 +160,12 @@ namespace Improvians
         {
             if(radtype.SelectedValue=="Fertilizer")
             {
+                lbltype.Text = "Fertilizer";
                 BindFertilizer();
             }
-            else
+            else if (radtype.SelectedValue == "Chemical")
             {
+                lbltype.Text = "Chemical";
                 BindChemical();
             }
         }
