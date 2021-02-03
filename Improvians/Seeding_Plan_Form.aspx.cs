@@ -57,7 +57,10 @@ namespace Improvians
         {
             getDataDGJob();
         }
-
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
         protected void BtnPrint_Click(object sender, EventArgs e)
         {
             string Date1 = Convert.ToDateTime(System.DateTime.Now).ToString("dd-MM-yyyy");
