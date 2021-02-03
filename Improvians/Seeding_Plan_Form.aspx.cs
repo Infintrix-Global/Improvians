@@ -42,6 +42,7 @@ namespace Improvians
         {
             AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
 
+            lblTotal.Text = AllData.Rows.Count.ToString() + " Records";
             DGJob.DataSource = AllData;
             DGJob.DataBind();
 
@@ -64,8 +65,7 @@ namespace Improvians
         }
         protected void BtnPrint_Click(object sender, EventArgs e)
         {
-            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
-            ExportToPdf(AllData);
+          
         }
 
         private static void DrawLine(PdfWriter writer, float x1, float y1, float x2, float y2, BaseColor color)
@@ -199,6 +199,10 @@ namespace Improvians
                             nv.Add("@moduser", Session["LoginID"].ToString());
                             nv.Add("@modtime", tim);
                             nv.Add("@modified_date", "");
+                            nv.Add("@SoDate", lblSODate.Text);
+                            nv.Add("@TraySize", lblTraySize.Text);
+
+
                             nv.Add("@wo", HiddenFieldwo.Value);
                             nv.Add("@mode", "1");
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);

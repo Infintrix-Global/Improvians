@@ -38,7 +38,8 @@ namespace Improvians
             }
             if (ddlTaskRequest.SelectedValue == "6")
             {
-                Response.Redirect("~/PutAwayTaskCompletion.aspx");
+                // Response.Redirect("~/PutAwayTaskCompletion.aspx");
+                Response.Redirect("~/GrowerPutAwayForm.aspx");
             }
             if (ddlTaskRequest.SelectedValue == "7")
             {

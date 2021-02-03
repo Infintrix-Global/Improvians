@@ -21,6 +21,10 @@
                         <asp:TextBox ID="txtToDate" runat="server" TextMode="Date" class="form-control" placeholder="To Date"
                             ClientIDMode="Static"></asp:TextBox>
                     </div>
+                       <div class="col m3">
+                           <asp:Label ID="lblTotal" ForeColor="#ff0000" runat="server" Text=""></asp:Label>
+                     
+                    </div>
                     <div class="col m3">
                         <br />
 
@@ -77,7 +81,7 @@
 
                                         <asp:TemplateField HeaderText="SO Date">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSODate" runat="server"  HtmlEncode="false" Text='<%# Eval("sodate","{0:M/d/yy}") %>'></asp:Label>
+                                                <asp:Label ID="lblSODate" runat="server"  HtmlEncode="false" Text='<%# Eval("sodate","{0:MM/dd/yyyy}") %>'></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -103,7 +107,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Plan Date">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="Txtgplantdt" TextMode="Date"  Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="141px" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="Txtgplantdt" TextMode="Date"  Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
                                             
                                             </ItemTemplate>
                                         </asp:TemplateField>
