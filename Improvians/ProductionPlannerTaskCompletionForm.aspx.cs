@@ -42,6 +42,7 @@ namespace Improvians
             {
                 lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
                 txtRequestedTrays.Text = dt.Rows[0]["trays_plan"].ToString();
+                lbltraysizecon.Text= dt.Rows[0]["TraySize"].ToString();
                 lblTrays.Text= dt.Rows[0]["trays_plan"].ToString();
                 lblTraySize.Text = dt.Rows[0]["TraySize"].ToString();
                 lblSeedRequired.Text = ((Convert.ToInt32(dt.Rows[0]["trays_plan"].ToString())) * (Convert.ToInt32(dt.Rows[0]["TraySize"].ToString()))).ToString();

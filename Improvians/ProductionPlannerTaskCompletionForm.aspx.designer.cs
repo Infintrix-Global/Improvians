@@ -87,6 +87,15 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Label lblJobID;
 
         /// <summary>
+        /// lbltraysizecon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltraysizecon;
+
+        /// <summary>
         /// radtraysize control.
         /// </summary>
         /// <remarks>
@@ -229,15 +238,6 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblerrmsg;
-
-        /// <summary>
-        /// RequiredFieldValidator3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
         /// btnAddTray control.

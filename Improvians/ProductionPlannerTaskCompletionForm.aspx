@@ -50,20 +50,26 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="No. Of Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_plan")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Seed Lot" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Seeded Due Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SoDate","{0:dd MMM yyyy}")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Planned Due Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("due_date","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -139,7 +145,7 @@
                                     <div class="col-12">
                                         <h4>Confirm Tray Size:</h4>
                                         <div class="d-flex">
-                                            <label>Is the tray size [256] correct?</label>
+                                            <label>Is the tray size [<asp:Label ID="lbltraysizecon" runat="server"></asp:Label> ] correct?</label>
                                             <span class="custom-control custom-radio ml-4 mr-2">
                                                 <asp:RadioButtonList ID="radtraysize" runat="server">
                                                     <asp:ListItem  Text="Y" Value="Y" Selected="True"></asp:ListItem>
@@ -151,7 +157,7 @@
                                     </div>
 
                                     <div class="col-lg-6 align-self-start">
-                                        <label>Seeding Due Date</label>
+                                        <label>Seeding Date</label>
                                         <asp:TextBox ID="txtSeedingDueDate" ClientIDMode="Static" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                                         <span class="error_message">
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSeedingDueDate" ValidationGroup="e"
@@ -214,8 +220,8 @@
                                         <asp:TextBox ID="txtPartial" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                         <span class="error_message">
                                             <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPartial" ValidationGroup="md"
-                                                SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
+                                           <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPartial" ValidationGroup="md"
+                                                SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                         </span>
                                     </div>
 
