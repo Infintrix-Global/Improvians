@@ -31,6 +31,7 @@ namespace Improvians
 
         public void BindGridProduction()
         {
+            dtTrays.Clear();
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@WorkOrder", Session["WorkOrder"].ToString());
