@@ -36,7 +36,7 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
 
-                Session["JobID"] = e.CommandArgument.ToString();
+                Session["WorkOrder"] = e.CommandArgument.ToString();
                 Response.Redirect("~/ProductionPlannerTaskCompletionForm.aspx");
             }
         }
