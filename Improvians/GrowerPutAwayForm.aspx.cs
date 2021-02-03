@@ -15,7 +15,7 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-
+              
                 BindGridGerm();
             }
         }
@@ -88,107 +88,11 @@ namespace Improvians
         }
 
 
-        private void invoiceSplitJob()
-        {
-            DataTable dt = new DataTable();
-            DataRow dr = null;
-            dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
-            dt.Columns.Add(new DataColumn("Column1", typeof(string)));
-            dt.Columns.Add(new DataColumn("Column2", typeof(string)));
-            dt.Columns.Add(new DataColumn("Column3", typeof(string)));
-
-
-            dr = dt.NewRow();
-            dr["RowNumber"] = 1;
-            dr["Column1"] = string.Empty;
-            dr["Column2"] = string.Empty;
-            dr["Column3"] = string.Empty;
-
-
-
-            dt.Rows.Add(dr);
-            //dr = dt.NewRow();
-            //Store the DataTable in ViewState
-            ViewState["CurrentTableGridDrowers"] = dt;
-
-            GridSplitJob.DataSource = dt;
-            GridSplitJob.DataBind();
-        }
-
-        private void AddNewRowToGridSetInitialInvoice()
-        {
-            int rowIndex = 0;
-
-            if (ViewState["CurrentTableGridDrowers"] != null)
-            {
-                DataTable dtCurrentTable = (DataTable)ViewState["CurrentTableGridDrowers"];
-
-
-                DataRow drCurrentRow = null;
-                if (dtCurrentTable.Rows.Count > 0)
-                {
-                    for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
-                    {
-                        //extract the TextBox values
-                        DropDownList box1 = (DropDownList)GridSplitJob.Rows[rowIndex].Cells[1].FindControl("ddlMain");
-                        DropDownList box2 = (DropDownList)GridSplitJob.Rows[rowIndex].Cells[2].FindControl("ddlLocation");
-                        TextBox box3 = (TextBox)GridSplitJob.Rows[rowIndex].Cells[3].FindControl("txtTrays");
-
-
-
-                        drCurrentRow = dtCurrentTable.NewRow();
-                        drCurrentRow["RowNumber"] = i + 1;
-
-                        dtCurrentTable.Rows[i - 1]["Column1"] = box1.Text;
-                        dtCurrentTable.Rows[i - 1]["Column2"] = box2.Text;
-                        dtCurrentTable.Rows[i - 1]["Column3"] = box3.Text;
-
-                        rowIndex++;
-                    }
-                    dtCurrentTable.Rows.Add(drCurrentRow);
-                    ViewState["CurrentTableGridDrowers"] = dtCurrentTable;
-
-                    GridSplitJob.DataSource = dtCurrentTable;
-                    GridSplitJob.DataBind();
-                }
-            }
-            else
-            {
-                Response.Write("ViewState is null");
-            }
-
-            //Set Previous Data on Postbacks
-            SetPreviousDataSetInitialinvoide();
-        }
-
-        private void SetPreviousDataSetInitialinvoide()
-        {
-            int rowIndex = 0;
-            if (ViewState["CurrentTableGridDrowers"] != null)
-            {
-                DataTable dt = (DataTable)ViewState["CurrentTableGridDrowers"];
-                if (dt.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        DropDownList box1 = (DropDownList)GridSplitJob.Rows[rowIndex].Cells[1].FindControl("ddlMain");
-                        DropDownList box2 = (DropDownList)GridSplitJob.Rows[rowIndex].Cells[2].FindControl("ddlLocation");
-                        TextBox box3 = (TextBox)GridSplitJob.Rows[rowIndex].Cells[3].FindControl("txtTrays");
-
-
-                        box1.Text = dt.Rows[i]["Column1"].ToString();
-                        box2.Text = dt.Rows[i]["Column2"].ToString();
-                        box3.Text = dt.Rows[i]["Column3"].ToString();
-
-                        rowIndex++;
-                    }
-                }
-            }
-        }
         protected void ButtonAddGridInvoice_Click(object sender, EventArgs e)
         {
             //  AddNewRowToGridSetInitialInvoice();
             AddGrowerPutRow(true);
+           
         }
 
         protected void GridSplitJob_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -208,7 +112,9 @@ namespace Improvians
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
-                BindLocation();
+              //  BindLocation();
+
+                BindLocationNew(ref ddlLocation, lblMain.Text);
                 ddlMain.SelectedValue = lblMain.Text;
                 ddlLocation.SelectedValue = lblLocation.Text;
 
@@ -217,11 +123,27 @@ namespace Improvians
 
         protected void ddlMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindLocation();
+           // BindLocation();
+            DropDownList ddlMain = (DropDownList)sender;
+            GridViewRow row = (GridViewRow)ddlMain.NamingContainer;
+            if (row != null)
+            {
+                
+                    DropDownList ddlLocation = (DropDownList)row.FindControl("ddlLocation");
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@FacilityID", ddlMain.SelectedValue);
+                    ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+                    ddlLocation.DataTextField = "GreenHouseName";
+                    ddlLocation.DataValueField = "GreenHouseID";
+                    ddlLocation.DataBind();
+                    ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+                
+            }
         }
 
         public void BindLocation()
         {
+
 
             foreach (GridViewRow row in GridSplitJob.Rows)
             {
@@ -230,11 +152,7 @@ namespace Improvians
 
                     DropDownList ddlLocation = (row.Cells[0].FindControl("ddlLocation") as DropDownList);
                     DropDownList ddlMain = (row.Cells[0].FindControl("ddlMain") as DropDownList);
-                    Label lblLocation = (row.Cells[0].FindControl("ddlLocation") as Label);
-                    Label lblMain = (row.Cells[0].FindControl("ddlMain") as Label);
-
-
-
+                    
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@FacilityID", ddlMain.SelectedValue);
                     ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
@@ -243,12 +161,38 @@ namespace Improvians
                     ddlLocation.DataBind();
                     ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
-               //     ddlMain.SelectedValue = lblMain.Text;
-                 //   ddlLocation.SelectedValue = lblLocation.Text;
+                    //if(A=="")
+                    //{
+                    //    A = "0";
+                    //}
+
+                    //ddlLocation.SelectedValue = A;
 
                 }
+
             }
+
+
+         
+
         }
+
+
+
+        public void BindLocationNew(ref DropDownList ddlLocation, string ddlMain)
+        {
+
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@FacilityID", ddlMain);
+            ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+            ddlLocation.DataTextField = "GreenHouseName";
+            ddlLocation.DataValueField = "GreenHouseID";
+            ddlLocation.DataBind();
+            ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+
+
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
             CalData();
@@ -258,8 +202,6 @@ namespace Improvians
         {
 
             int Total = 0;
-
-
 
             foreach (GridViewRow row in GridSplitJob.Rows)
             {
@@ -283,14 +225,18 @@ namespace Improvians
 
         }
 
-
-        protected void btnReset_Click(object sender, EventArgs e)
+        public void Clear()
         {
-          
             BindGridGerm();
             PanelAdd.Visible = false;
             PanelList.Visible = true;
+            GridSplitJob.DataSource = null;
+            GridSplitJob.DataBind();
+        }
 
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Clear();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -314,11 +260,13 @@ namespace Improvians
                         DropDownList ddlMain = (item.Cells[0].FindControl("ddlMain") as DropDownList);
                         DropDownList ddlLocation = (item.Cells[0].FindControl("ddlLocation") as DropDownList);
 
-
+                      
                         long result = 0;
                         NameValueCollection nv = new NameValueCollection();
                         nv.Add("@GrowerPutAwayId", "");
                         nv.Add("@wo", wo);
+                       
+                        
                         nv.Add("@jobcode", lblJobID.Text);
                         nv.Add("@FacilityID", ddlMain.SelectedValue);
                         nv.Add("@GreenHouseID", ddlLocation.SelectedValue);
@@ -328,13 +276,22 @@ namespace Improvians
                         nv.Add("@CreateBy", Session["LoginID"].ToString());
 
                         nv.Add("@mode", "1");
-                        _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_AddGrowerPutAwayDetails", nv);
+                        _isInserted = objCommon.GetDataInsertORUpdate("SP_AddGrowerPutAwayDetails", nv);
 
                         SelectedItems++;
 
 
                     }
+
+                    NameValueCollection nv1 = new NameValueCollection();
+                    nv1.Add("@WorkOrder", wo);
+                    _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
+
+
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
+
+                    Clear();
+
                 }
 
 
@@ -382,10 +339,12 @@ namespace Improvians
 
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice, 0, 0,0,"");
+                    AddGrowerput(ref objinvoice,1, 0, 0, "");
+              
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;
                 GridSplitJob.DataBind();
+                ViewState["Data"] = objinvoice;
 
 
             }
@@ -399,15 +358,21 @@ namespace Improvians
 
         }
 
+        public void GridSplitjob()
+        {
+            GridSplitJob.DataSource = ViewState["Data"];
+            GridSplitJob.DataBind();
 
-        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, int FacilityID,int GreenHouseID, string Trays)
+        }
+
+        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, int FacilityID, int GreenHouseID, string Trays)
 
         {
             GrowerputDetils objInv = new GrowerputDetils();
             objInv.ID = ID;
             objInv.RowNumber = objGP.Count + 1;
             objInv.FacilityID = FacilityID;
-         
+
             objInv.GreenHouseID = GreenHouseID;
             objInv.Trays = Trays;
 
