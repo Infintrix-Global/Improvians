@@ -45,16 +45,22 @@
                                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
                                                           <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                            <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobID")  %>' ></asp:Label>
+                                                            <asp:Label ID="lbljID" runat="server" Text='<%# Eval("jobcode")  %>' ></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
-                                                 
+                                                  <asp:TemplateField HeaderText="Work Order" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                        <ItemTemplate>
+                                                         
+                                                            <asp:Label ID="lblID" runat="server" Text='<%# Eval("wo")  %>' ></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
                                               
 
                                                  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2" >
                                                         <ItemTemplate>
-                                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("JobID")  %>'></asp:Button>
+                                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
