@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <div class="main">
+    <div class="main">
         <div class="site__container">
             <h2>Seeding Plan</h2>
 
@@ -21,15 +21,29 @@
                         <asp:TextBox ID="txtToDate" runat="server" TextMode="Date" class="form-control" placeholder="To Date"
                             ClientIDMode="Static"></asp:TextBox>
                     </div>
-                       <div class="col m3">
-                           <asp:Label ID="lblTotal" ForeColor="#ff0000" runat="server" Text=""></asp:Label>
-                     
-                    </div>
+
                     <div class="col m3">
                         <br />
 
 
                         <asp:Button ID="btnSearch" OnClick="btnSearch_Click" runat="server" Text="Search" CssClass="bttn bttn-primary bttn-action"></asp:Button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col m3">
+                        <asp:Label ID="lblTotal" ForeColor="#ff0000" runat="server" Text=""></asp:Label>
+
+                    </div>
+
+                    <div class="col m3">
+                    </div>
+                    <div class="col m3">
+                    </div>
+                    <div class="col m3">
+                        <br />
+
+
                     </div>
                 </div>
             </div>
@@ -81,7 +95,7 @@
 
                                         <asp:TemplateField HeaderText="SO Date">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSODate" runat="server"  HtmlEncode="false" Text='<%# Eval("sodate","{0:MM/dd/yyyy}") %>'></asp:Label>
+                                                <asp:Label ID="lblSODate" runat="server" HtmlEncode="false" Text='<%# Eval("sodate","{0:MM/dd/yyyy}") %>'></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -107,8 +121,8 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Plan Date">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="Txtgplantdt" TextMode="Date"  Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
-                                            
+                                                <asp:TextBox ID="Txtgplantdt" TextMode="Date" Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Seeds Allocated">
@@ -119,7 +133,7 @@
                                                 <asp:HiddenField ID="HiddenFieldcusno" Value='<%# Eval("cusno") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFieldsodate" Value='<%# Eval("sodate") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFieldduedate" Value='<%# Eval("duedate") %>' runat="server" />
-                                                  <asp:HiddenField ID="HiddenFieldwo" Value='<%# Eval("wo") %>' runat="server" />
+                                                <asp:HiddenField ID="HiddenFieldwo" Value='<%# Eval("wo") %>' runat="server" />
 
 
                                             </ItemTemplate>

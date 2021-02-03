@@ -290,6 +290,7 @@ namespace Improvians
             BindGridGerm();
             PanelAdd.Visible = false;
             PanelList.Visible = true;
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
