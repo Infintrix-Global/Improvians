@@ -56,7 +56,7 @@
 
                                             <asp:TemplateField HeaderText="Seeding Date">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                    <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeedingDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -128,16 +128,19 @@
                                                 <asp:BoundField DataField="RowNumber" HeaderText="NO." />
                                                 <asp:TemplateField HeaderText="Main" HeaderStyle-HorizontalAlign="Center">
                                                     <ItemTemplate>
+                                                         <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
 
                                                         <asp:DropDownList ID="ddlMain" OnSelectedIndexChanged="ddlMain_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
 
-
+                                                        
+                                                    <asp:Label ID="lblMain" Visible="false" runat="server" Text='<%# Eval("FacilityID")%>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Location">
                                                     <ItemTemplate>
                                                         <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                                            <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -146,7 +149,7 @@
                                                 <asp:TemplateField HeaderText="Trays">
                                                     <ItemTemplate>
 
-                                                        <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" CssClass="input__control" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
 
 
                                                     </ItemTemplate>
