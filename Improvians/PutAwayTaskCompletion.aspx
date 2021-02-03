@@ -86,7 +86,7 @@
 
                                            <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnAssign" CssClass="bttn bttn-primary bttn-action"  runat="server"  CommandArgument='<%# Container.DataItemIndex  %>' ></asp:Button>
+                                                <asp:Button ID="btnAssign"  CssClass="bttn bttn-primary bttn-action"  runat="server"  CommandArgument='<%# Container.DataItemIndex  %>' ></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

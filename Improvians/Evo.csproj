@@ -47,9 +47,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\ajaxcontroltoolkit.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\itextsharp.dll</HintPath>
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -192,6 +195,7 @@
     <Content Include="fonts\icons\rxicons.svg" />
     <Content Include="GerminationRequestForm.aspx" />
     <Content Include="GerminationTaskAssignment.aspx" />
+    <Content Include="GrowerPutAwayForm.aspx" />
     <Content Include="GreenHouseTaskCompletion.aspx" />
     <Content Include="images\favicon\android-icon-144x144.png" />
     <Content Include="images\favicon\android-icon-192x192.png" />
@@ -370,6 +374,13 @@
     </Compile>
     <Compile Include="GerminationTaskAssignment.aspx.designer.cs">
       <DependentUpon>GerminationTaskAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GrowerPutAwayForm.aspx.cs">
+      <DependentUpon>GrowerPutAwayForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GrowerPutAwayForm.aspx.designer.cs">
+      <DependentUpon>GrowerPutAwayForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="GreenHouseTaskCompletion.aspx.cs">
       <DependentUpon>GreenHouseTaskCompletion.aspx</DependentUpon>
