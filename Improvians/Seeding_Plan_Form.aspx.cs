@@ -12,6 +12,8 @@ using Improvians.Bal;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
+using System.Data;
+using System.IO;
 
 namespace Improvians
 {
@@ -63,35 +65,79 @@ namespace Improvians
         }
         protected void BtnPrint_Click(object sender, EventArgs e)
         {
-            string Date1 = Convert.ToDateTime(System.DateTime.Now).ToString("dd-MM-yyyy");
-
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename= " + Date1 + "_Seeding_Plan.pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-            DGJob.Font.Size = 8;
-
-            DGJob.RenderControl(hw);
-
-            StringReader sr = new StringReader(sw.ToString());
-            iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(PageSize.A4, 10f, 10f, 10f, 0f);
-            //    Document pdfDoc = new Document(PageSize.A4.Rotate(), 10f, 10f, 10f, 0f);
-
-
-            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-
-
-            pdfDoc.Open();
-            htmlparser.Parse(sr);
-            pdfDoc.Close();
-            Response.Write(pdfDoc);
-            Response.End();
-            DGJob.Font.Size = 11;
-            DGJob.AllowPaging = true;
-            DGJob.DataBind();
+            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
+            ExportToPdf(AllData);
         }
+
+        private static void DrawLine(PdfWriter writer, float x1, float y1, float x2, float y2, BaseColor color)
+        {
+            PdfContentByte contentByte = writer.DirectContent;
+            contentByte.SetColorStroke(color);
+            contentByte.MoveTo(x1, y1);
+            contentByte.LineTo(x2, y2);
+            contentByte.Stroke();
+        }
+        public void ExportToPdf(DataTable myDataTable)
+        {
+            DataTable dt = myDataTable;
+            iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(PageSize.A4.Rotate(), 10, 10, 10, 10);
+            Font font13 = FontFactory.GetFont("ARIAL", 13);
+            Font font18 = FontFactory.GetFont("ARIAL", 18);
+            try
+            {
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, System.Web.HttpContext.Current.Response.OutputStream);
+                pdfDoc.Open();
+
+                if (dt.Rows.Count > 0)
+                {
+                    PdfPTable PdfTable = new PdfPTable(1);
+                    PdfTable.TotalWidth = 200f;
+                    PdfTable.LockedWidth = true;
+
+                    PdfPCell PdfPCell = new PdfPCell(new Phrase(new Chunk("Employee Details", font18)));
+                    PdfPCell.Border = Rectangle.NO_BORDER;
+                    PdfTable.AddCell(PdfPCell);
+                    DrawLine(writer, 25f, pdfDoc.Top - 30f, pdfDoc.PageSize.Width - 25f, pdfDoc.Top - 30f, new BaseColor(System.Drawing.Color.Red));
+                    pdfDoc.Add(PdfTable);
+
+                    PdfTable = new PdfPTable(dt.Columns.Count);
+                    PdfTable.SpacingBefore = 20f;
+                    for (int columns = 0; columns <= dt.Columns.Count - 1; columns++)
+                    {
+                        PdfPCell = new PdfPCell(new Phrase(new Chunk(dt.Columns[columns].ColumnName, font18)));
+                        PdfTable.AddCell(PdfPCell);
+                    }
+
+                    for (int rows = 0; rows <= dt.Rows.Count - 1; rows++)
+                    {
+                        for (int column = 0; column <= dt.Columns.Count - 1; column++)
+                        {
+                            PdfPCell = new PdfPCell(new Phrase(new Chunk(dt.Rows[rows][column].ToString(), font13)));
+                            PdfTable.AddCell(PdfPCell);
+                        }
+                    }
+                    pdfDoc.Add(PdfTable);
+                }
+                pdfDoc.Close();
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment; filename=dsejReport_" + DateTime.Now.Date.Day.ToString() + DateTime.Now.Date.Month.ToString() + DateTime.Now.Date.Year.ToString() + DateTime.Now.Date.Hour.ToString() + DateTime.Now.Date.Minute.ToString() + DateTime.Now.Date.Second.ToString() + DateTime.Now.Date.Millisecond.ToString() + ".pdf");
+                System.Web.HttpContext.Current.Response.Write(pdfDoc);
+                Response.Flush();
+                Response.End();
+            }
+            catch (DocumentException de)
+            {
+            }
+            // System.Web.HttpContext.Current.Response.Write(de.Message)
+            catch (IOException ioEx)
+            {
+            }
+            // System.Web.HttpContext.Current.Response.Write(ioEx.Message)
+            catch (Exception ex)
+            {
+            }
+        }
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
