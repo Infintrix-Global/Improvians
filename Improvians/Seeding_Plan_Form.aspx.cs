@@ -106,10 +106,8 @@ namespace Improvians
                             nv.Add("@cname", lblCustName.Text);
                             nv.Add("@cusno", HiddenFieldcusno.Value);
                             nv.Add("@loc_seedline", lblSeedline.Text);
-
                             nv.Add("@trays_plan", lblSOTrays.Text);
                             nv.Add("@trays_actual", Txtgtrays.Text);
-
                             nv.Add("@seedsreceived", "0");
                             nv.Add("@plan_date", Txtgplantdt.Text);
                             nv.Add("@actual_date", HiddenFieldsodate.Value);
@@ -121,6 +119,9 @@ namespace Improvians
 
                             nv.Add("@mode", "1");
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_AddPlantReadyRequest", nv);
+
+
+
 
 
                             //_isInserted = 1;
