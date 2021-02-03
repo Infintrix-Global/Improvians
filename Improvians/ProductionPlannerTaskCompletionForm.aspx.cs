@@ -185,6 +185,7 @@ namespace Improvians
             //ddlBenchLocation.Visible = true;
             txtSeedingDueDate.Text = "";
             txtTrays.Text = "";
+            dtTrays.Clear();
            // txtSeedsAllocated.Text = "";
         }
 
