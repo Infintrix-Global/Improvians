@@ -145,8 +145,8 @@
                                     <div class="col-lg-6">
                                         <label></label>
                                         <asp:RadioButtonList ID="radOrder" runat="server" class="input__control robotomd" AutoPostBack="true" OnSelectedIndexChanged="radOrder_SelectedIndexChanged">
-                                            <asp:ListItem Text="Fill Complete Order" Value="Complete"></asp:ListItem>
-                                            <asp:ListItem Text="Fill Partial Order" Value="Partial" Selected="True"></asp:ListItem>
+                                            <asp:ListItem Text="Fill Complete Order" Value="Complete" Selected="True"></asp:ListItem>
+                                            <asp:ListItem Text="Fill Partial Order" Value="Partial" ></asp:ListItem>
                                         </asp:RadioButtonList>
                                         <asp:Label ID="lblTrays" runat="server" Visible="false"></asp:Label>
                                         <asp:TextBox ID="txtTrays" runat="server" TextMode="Number" placeholder="No of trays to be seeded"></asp:TextBox>
@@ -266,7 +266,10 @@
                                         </asp:GridView>
 
                                     </div>
-
+                     <div class="col-lg-6 m6">
+                                        <label>Total Seed Allocated</label>
+                                        <asp:TextBox ID="txtSeedsAllocated" Enabled="false" runat="server" class="input__control robotomd"></asp:TextBox>
+                                    </div>
                     
                                     <div class="col-md-6">
                                         <h4>Seeding Details:</h4>
@@ -302,16 +305,14 @@
                                     </div>
 
                                      <div class="col-12">
-                                        <span class="custom-control custom-checkbox mx-2">
+                                       <%-- <span class="custom-control custom-checkbox mx-2">--%>
+                                         <span>
                                            <asp:CheckBox ID="chkSeedReturn" runat="server"  />
                                             <label for="chkSeedReturn">Seed Returns Complete: Partial and Unused Seeds Boxed Up and Labeled, Scanned</label>
                                         </span>
                                     </div>
 
-                                    <div class="col-lg-6 m6">
-                                        <label>Total Seed Allocated</label>
-                                        <asp:TextBox ID="txtSeedsAllocated" Enabled="false" runat="server" class="input__control robotomd"></asp:TextBox>
-                                    </div>
+                                   
                                    
                      </ContentTemplate>
             </asp:UpdatePanel>
