@@ -306,8 +306,8 @@ namespace Improvians
 
         protected void txtActualTray_TextChanged(object sender, EventArgs e)
         {
-            txtSeedsAllocated.Text = "0";
-           // txtActualTraysNo.Text = "0";
+            //txtSeedsAllocated.Text = "0";
+           txtActualTraysNo.Text = "0";
             foreach (GridViewRow row in gvDetails.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
