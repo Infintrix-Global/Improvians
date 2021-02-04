@@ -1311,3 +1311,158 @@
    at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
    at System.Data.SqlClient.SqlConnection.Open()
    at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 240A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) at 03-02-2021 17:33:23
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:21:17
+*****Error message=****@wo:WO108374 at 03-02-2021 23:21:17
+*****Error message=****@woid:'WO108374' at 03-02-2021 23:21:17
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:21:17
+*****Error message=****@FacilityID:4 at 03-02-2021 23:21:17
+*****Error message=****@GreenHouseID:17 at 03-02-2021 23:21:17
+*****Error message=****@Trays:803 at 03-02-2021 23:21:17
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:21:17
+*****Error message=****@CreateBy:1 at 03-02-2021 23:21:17
+*****Error message=****@mode:1 at 03-02-2021 23:21:17
+*****Error message=****Sql Error is=Procedure or function SP_AddGrowerPutAwayDetails has too many arguments specified. at 03-02-2021 23:21:17
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:21:17
+*****Error message=****@wo:WO108374 at 03-02-2021 23:21:17
+*****Error message=****@woid:'WO108374' at 03-02-2021 23:21:17
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:21:17
+*****Error message=****@FacilityID:4 at 03-02-2021 23:21:17
+*****Error message=****@GreenHouseID:19 at 03-02-2021 23:21:17
+*****Error message=****@Trays:500 at 03-02-2021 23:21:17
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:21:17
+*****Error message=****@CreateBy:1 at 03-02-2021 23:21:17
+*****Error message=****@mode:1 at 03-02-2021 23:21:17
+*****Error message=****Sql Error is=Procedure or function SP_AddGrowerPutAwayDetails has too many arguments specified. at 03-02-2021 23:21:18
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:22:38
+*****Error message=****@wo:WO108374 at 03-02-2021 23:22:38
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:22:38
+*****Error message=****@FacilityID:3 at 03-02-2021 23:22:38
+*****Error message=****@GreenHouseID:4 at 03-02-2021 23:22:38
+*****Error message=****@Trays:50 at 03-02-2021 23:22:38
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:22:38
+*****Error message=****@CreateBy:1 at 03-02-2021 23:22:38
+*****Error message=****@mode:1 at 03-02-2021 23:22:38
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:22:39
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:27:01
+*****Error message=****@wo:WO108374 at 03-02-2021 23:27:01
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:27:01
+*****Error message=****@FacilityID:3 at 03-02-2021 23:27:01
+*****Error message=****@GreenHouseID:4 at 03-02-2021 23:27:01
+*****Error message=****@Trays:50 at 03-02-2021 23:27:01
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:27:01
+*****Error message=****@CreateBy:1 at 03-02-2021 23:27:01
+*****Error message=****@mode:1 at 03-02-2021 23:27:01
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:27:02
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:27:28
+*****Error message=****@wo:WO108375 at 03-02-2021 23:27:28
+*****Error message=****@jobcode:JB031742 at 03-02-2021 23:27:28
+*****Error message=****@FacilityID:3 at 03-02-2021 23:27:28
+*****Error message=****@GreenHouseID:4 at 03-02-2021 23:27:28
+*****Error message=****@Trays:50 at 03-02-2021 23:27:28
+*****Error message=****@SeedDate:02-03-2021 at 03-02-2021 23:27:28
+*****Error message=****@CreateBy:1 at 03-02-2021 23:27:28
+*****Error message=****@mode:1 at 03-02-2021 23:27:28
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:27:28
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:27:28
+*****Error message=****@wo:WO108375 at 03-02-2021 23:27:28
+*****Error message=****@jobcode:JB031742 at 03-02-2021 23:27:28
+*****Error message=****@FacilityID:4 at 03-02-2021 23:27:28
+*****Error message=****@GreenHouseID:20 at 03-02-2021 23:27:28
+*****Error message=****@Trays: at 03-02-2021 23:27:28
+*****Error message=****@SeedDate:02-03-2021 at 03-02-2021 23:27:28
+*****Error message=****@CreateBy:1 at 03-02-2021 23:27:28
+*****Error message=****@mode:1 at 03-02-2021 23:27:29
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:27:29
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:34:45
+*****Error message=****@wo:WO108772 at 03-02-2021 23:34:45
+*****Error message=****@jobcode:JB030763 at 03-02-2021 23:34:45
+*****Error message=****@FacilityID:3 at 03-02-2021 23:34:45
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:34:45
+*****Error message=****@Trays:803 at 03-02-2021 23:34:45
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:34:45
+*****Error message=****@CreateBy:1 at 03-02-2021 23:34:45
+*****Error message=****@mode:1 at 03-02-2021 23:34:45
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:34:46
+*****Error message=****@WorkOrder:WO108772 at 03-02-2021 23:34:46
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:34:46
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:48:01
+*****Error message=****@wo:WO108374 at 03-02-2021 23:48:01
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:48:01
+*****Error message=****@FacilityID:3 at 03-02-2021 23:48:01
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:48:01
+*****Error message=****@Trays:50 at 03-02-2021 23:48:01
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:48:01
+*****Error message=****@CreateBy:1 at 03-02-2021 23:48:01
+*****Error message=****@mode:1 at 03-02-2021 23:48:01
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:48:01
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:48:01
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:48:01
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:51:30
+*****Error message=****@wo:WO108374 at 03-02-2021 23:51:30
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:51:30
+*****Error message=****@FacilityID:3 at 03-02-2021 23:51:30
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:51:30
+*****Error message=****@Trays:50 at 03-02-2021 23:51:30
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:51:30
+*****Error message=****@CreateBy:1 at 03-02-2021 23:51:30
+*****Error message=****@mode:1 at 03-02-2021 23:51:30
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:51:30
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:52:15
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:52:15
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:52:24
+*****Error message=****@wo:WO108374 at 03-02-2021 23:52:24
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:52:24
+*****Error message=****@FacilityID:3 at 03-02-2021 23:52:24
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:52:24
+*****Error message=****@Trays:50 at 03-02-2021 23:52:24
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:52:24
+*****Error message=****@CreateBy:1 at 03-02-2021 23:52:24
+*****Error message=****@mode:1 at 03-02-2021 23:52:24
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:52:24
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:52:53
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:52:53
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:53:01
+*****Error message=****@wo:WO108374 at 03-02-2021 23:53:01
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:53:01
+*****Error message=****@FacilityID:3 at 03-02-2021 23:53:01
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:53:01
+*****Error message=****@Trays:50 at 03-02-2021 23:53:01
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:53:01
+*****Error message=****@CreateBy:1 at 03-02-2021 23:53:01
+*****Error message=****@mode:1 at 03-02-2021 23:53:01
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:53:01
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:53:44
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:57:36
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:57:42
+*****Error message=****@wo:WO108374 at 03-02-2021 23:57:42
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:57:42
+*****Error message=****@FacilityID:3 at 03-02-2021 23:57:42
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:57:42
+*****Error message=****@Trays:50 at 03-02-2021 23:57:42
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:57:42
+*****Error message=****@CreateBy:1 at 03-02-2021 23:57:42
+*****Error message=****@mode:1 at 03-02-2021 23:57:42
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:57:43
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:57:52
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 00:00:07
+*****Error message=****@wo:WO108627 at 04-02-2021 00:00:07
+*****Error message=****@jobcode:JB032922 at 04-02-2021 00:00:07
+*****Error message=****@FacilityID:4 at 04-02-2021 00:00:07
+*****Error message=****@GreenHouseID:20 at 04-02-2021 00:00:07
+*****Error message=****@Trays:803 at 04-02-2021 00:00:07
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 00:00:07
+*****Error message=****@CreateBy:1 at 04-02-2021 00:00:07
+*****Error message=****@mode:1 at 04-02-2021 00:00:07
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 04-02-2021 00:00:08
+*****Error message=****@WorkOrder:WO108627 at 04-02-2021 00:00:08
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 00:04:23
+*****Error message=****@wo:WO108772 at 04-02-2021 00:04:23
+*****Error message=****@jobcode:JB030763 at 04-02-2021 00:04:23
+*****Error message=****@FacilityID:3 at 04-02-2021 00:04:23
+*****Error message=****@GreenHouseID:10 at 04-02-2021 00:04:23
+*****Error message=****@Trays:803 at 04-02-2021 00:04:23
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 00:04:23
+*****Error message=****@CreateBy:1 at 04-02-2021 00:04:23
+*****Error message=****@mode:1 at 04-02-2021 00:04:23
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 04-02-2021 00:04:23
+*****Error message=****@WorkOrder:WO108772 at 04-02-2021 00:04:23

@@ -97,80 +97,81 @@
                             </asp:Panel>
                             <asp:Panel ID="PanelAdd" Visible="false" runat="server">
                                 <div class="dashboard__block dashboard__block--asign">
-                               
+                                  
+                                            <div class="row">
 
-                                    <div class="row">
+                                                <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                                                    <label>Job No.</label><br />
 
-                                            <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                                <label>Job No.</label><br />
-                                               
                                                     <asp:Label ID="lblJobID" runat="server"></asp:Label>
+                                                </div>
+                                                <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                                                    <label class="d-block">Seed Date</label>
+
+                                                    <asp:Label ID="lblSeedDate" runat="server"></asp:Label>
+                                                </div>
+
+                                                <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                                                    <label class="d-block">Seeded Trays</label>
+                                                    <asp:Label ID="lblSeededTrays" runat="server"></asp:Label>
+
+                                                </div>
                                             </div>
-                                            <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                                <label class="d-block">Seed Date</label>
 
-                                            <asp:Label ID="lblSeedDate" runat="server"></asp:Label>
+                                            <div class="data__table">
+
+
+                                                <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="70%"
+                                                    AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="RowNumber" HeaderText="NO." />
+                                                        <asp:TemplateField HeaderText="Main" HeaderStyle-HorizontalAlign="Center">
+                                                            <ItemTemplate>
+                                                                <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
+
+                                                                <asp:DropDownList ID="ddlMain" OnSelectedIndexChanged="ddlMain_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+
+
+                                                                <asp:Label ID="lblMain" Visible="false" runat="server" Text='<%# Eval("FacilityID")%>'></asp:Label>
+
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Location">
+                                                            <ItemTemplate>
+                                                                <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                                                <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
+
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+
+
+                                                        <asp:TemplateField HeaderText="Trays">
+                                                            <ItemTemplate>
+
+                                                                <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
+
+
+                                                            </ItemTemplate>
+
+
+                                                            <FooterStyle HorizontalAlign="Right" />
+                                                            <FooterTemplate>
+                                                                <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" CausesValidation="false"
+                                                                    Text="ADD ROW" CssClass="bttn bttn-primary bttn-action" />
+                                                            </FooterTemplate>
+
+
+
+                                                        </asp:TemplateField>
+
+                                                    </Columns>
+
+
+                                                </asp:GridView>
                                             </div>
 
-                                            <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                                  <label class="d-block">Seeded Trays</label>
-                                                <asp:Label ID="lblSeededTrays" runat="server"></asp:Label>
-                                              
-                                            </div>
-                                        </div>
 
-                                    <div class="data__table">
-                                        
-
-                                        <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="70%"
-                                            AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
-                                            <Columns>
-                                                <asp:BoundField DataField="RowNumber" HeaderText="NO." />
-                                                <asp:TemplateField HeaderText="Main" HeaderStyle-HorizontalAlign="Center">
-                                                    <ItemTemplate>
-                                                         <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
-
-                                                        <asp:DropDownList ID="ddlMain" OnSelectedIndexChanged="ddlMain_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-
-                                                        
-                                                    <asp:Label ID="lblMain" Visible="false" runat="server" Text='<%# Eval("FacilityID")%>'></asp:Label>
-
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Location">
-                                                    <ItemTemplate>
-                                                        <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                                                            <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
-
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
-
-                                                <asp:TemplateField HeaderText="Trays">
-                                                    <ItemTemplate>
-
-                                                        <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
-
-
-                                                    </ItemTemplate>
-
-
-                                                    <FooterStyle HorizontalAlign="Right" />
-                                                    <FooterTemplate>
-                                                        <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" CausesValidation="false"
-                                                            Text="ADD DETAILS" CssClass="bttn bttn-primary bttn-action" />
-                                                    </FooterTemplate>
-
-
-
-                                                </asp:TemplateField>
-
-                                            </Columns>
-
-
-                                        </asp:GridView>
-                                    </div>
-
+                                     
                                     <div class="row">
 
 
