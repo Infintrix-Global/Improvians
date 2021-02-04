@@ -47,6 +47,7 @@ namespace Improvians
                 lblTraySize.Text = dt.Rows[0]["TraySize"].ToString();
                 lblSeedRequired.Text = ((Convert.ToInt32(dt.Rows[0]["trays_plan"].ToString())) * (Convert.ToInt32(dt.Rows[0]["TraySize"].ToString()))).ToString();
                 txtActualTraysNo.Text = "0";
+                txtTrays.Text = Convert.ToInt32(lblTrays.Text).ToString();
             }
         }
 
@@ -229,6 +230,7 @@ namespace Improvians
             List<SeedLineTrayDetails> objinvoice = new List<SeedLineTrayDetails>();
             string type = "" , seedLot = "", seedLotID = "", Seed = "", ActualSeed = "";
             string NoOfTray = "", LeftOver = "";
+            txtSeedsAllocated.Text = "0";
             foreach (GridViewRow item in gvDetails.Rows)
             {
                // hdnWOEmployeeIDVal = ((HiddenField)item.FindControl("hdnWOEmployeeID")).Value;
@@ -241,10 +243,11 @@ namespace Improvians
                 Seed = ((Label)item.FindControl("lblSeed")).Text;
                 LeftOver = ((TextBox)item.FindControl("txtPartial")).Text;
                 AddGrowerput(ref objinvoice, seedLotID, seedLot, ActualSeed, NoOfTray, Seed, type, LeftOver);
-
+              
+               
             }
             DataTable dtSeed = objTask.GetSeedNoBySeedLotID(ddlSeedLot.SelectedValue);
-            dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue, dtSeed.Rows[0]["NoOFSeed"].ToString());
+            //dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue, dtSeed.Rows[0]["NoOFSeed"].ToString());
 
 
 
@@ -255,6 +258,19 @@ namespace Improvians
             gvDetails.DataBind();
             ViewState["Data"] = objinvoice;
             ddlSeedLot.SelectedIndex = 0;
+            foreach (GridViewRow item in gvDetails.Rows)
+            {
+                ActualSeed = ((Label)item.FindControl("lblactualseed")).Text;
+                txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(ActualSeed)).ToString();
+                if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
+                {
+                    txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
+                }
+            }
         }
 
         private void AddGrowerput(ref List<SeedLineTrayDetails> objGP, string seedLotID, string seedLot, string ActualSeed, string NoOfTray, string Seed, string type, string LeftOver)
@@ -304,16 +320,16 @@ namespace Improvians
                         txtActualTraysNo.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
 
                     }
-                    string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
-                    txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(lotseed)).ToString();
-                    if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
-                       {
-                           txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
-                       }
-                        else
-                       {
-                            txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
-                       }
+                  //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
+                    //txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(lotseed)).ToString();
+                    //if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
+                    //   {
+                    //       txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
+                    //   }
+                    //    else
+                    //   {
+                    //        txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
+                    //   }
                 }
             }
         }
