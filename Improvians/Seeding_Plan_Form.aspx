@@ -32,6 +32,7 @@
 
 
             </div>
+
             <div class="row">
                 <div class="col m6">
                     <asp:Label ID="lblTotal" ForeColor="#ff0000" runat="server" Text=""></asp:Label>
