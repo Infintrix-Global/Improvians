@@ -135,7 +135,7 @@
                                         <label>Seeding Date</label>
                                         <asp:TextBox ID="txtSeedingDate" ClientIDMode="Static" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                                         <span class="error_message">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSeedingDueDate" ValidationGroup="e"
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSeedingDate" ValidationGroup="e"
                                                 SetFocusOnError="true" ErrorMessage="Please Enter Seeding Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </span>
                                     </div>
@@ -156,8 +156,8 @@
                                         </span>
                                     </div>
 
-                                    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>--%>
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
                                     <div class="col-lg-12 mt-3">
                                         <h4>Seed Lot Usage:</h4>
                                           <asp:Label ID="lblTraySize" runat="server"  Visible="false"></asp:Label>
@@ -214,34 +214,34 @@
 
                                                 <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblID" runat="server" Text='<%#Bind("[SeedID]")  %>' Visible="false"></asp:Label>
-                                                        <asp:Label ID="lblLotName" Text='<%# Bind("[SeedLot]")  %>' runat="server" ></asp:Label>
+                                                        <asp:Label ID="lblID" runat="server" Text='<%#Eval("SeedLotID")  %>' Visible="false"></asp:Label>
+                                                        <asp:Label ID="lblLotName" Text='<%# Eval("SeedLot")  %>' runat="server" ></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="# of Seed">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblactualseed" Text='<%# Bind("[NoOfSeed]")  %>' runat="server" ></asp:Label>
+                                                        <asp:Label ID="lblactualseed" Text='<%# Eval("ActualSeed")  %>' runat="server" ></asp:Label>
                                                      
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Actual # of tray Seeded">
                                                     <ItemTemplate>
-                                                        <%--<asp:Label ID="lblactualseed" Text='<%# Bind("[#ActualTray]")  %>' runat="server" ></asp:Label>--%>
-                                                        <asp:TextBox ID="txtActualTray" runat="server" AutoPostBack="true" OnTextChanged="txtActualTray_TextChanged" ></asp:TextBox>
+                                                        <%--<asp:Label ID="lblactualseed" Text='<%# Bind("#ActualTray")  %>' runat="server" ></asp:Label>--%>
+                                                        <asp:TextBox ID="txtActualTray" Text='<%# Eval("NoOftray")  %>' runat="server" AutoPostBack="true" OnTextChanged="txtActualTray_TextChanged" ></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="# of Seed">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblSeed" runat="server"  ></asp:Label>
+                                                        <asp:Label ID="lblSeed" runat="server" Text='<%# Eval("Seed")  %>' ></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                  <asp:TemplateField HeaderText="Used/Unused">
                                                     <ItemTemplate>
-                                                      <asp:DropDownList ID="ddlType" runat="server" class="custom__dropdown robotomd">
+                                                      <asp:DropDownList ID="ddlType" runat="server" class="custom__dropdown robotomd" >
                                                             <asp:ListItem Text="Used" Value="Used"></asp:ListItem>
                                                             <asp:ListItem Text="UnUsed" Value="UnUsed"></asp:ListItem>
                                                             <asp:ListItem Text="Partial" Value="Partial"></asp:ListItem>
@@ -251,7 +251,7 @@
 
                                                  <asp:TemplateField HeaderText="Left Over">
                                                     <ItemTemplate>
-                                                        <asp:TextBox  ID="txtPartial" runat="server" ></asp:TextBox>
+                                                        <asp:TextBox  ID="txtPartial" runat="server" Text='<%# Eval("LeftOver")  %>' ></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             
@@ -311,8 +311,8 @@
                                         <asp:TextBox ID="txtSeedsAllocated" Enabled="false" runat="server" class="input__control robotomd"></asp:TextBox>
                                     </div>
                                    
-                <%--     </ContentTemplate>
-            </asp:UpdatePanel>--%>
+                     </ContentTemplate>
+            </asp:UpdatePanel>
 
                                     <div class="col-lg-12 mt-3 text-center">
                                         <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-3" runat="server" OnClick="btnSubmit_Click" ValidationGroup="e" />
