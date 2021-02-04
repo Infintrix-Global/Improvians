@@ -50,10 +50,14 @@
 
                                             <asp:TemplateField HeaderText="Actual Trays">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblActualTraySeeded" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
+                                                    <asp:Label ID="lblActualTraySeeded" runat="server" Text='<%# Eval("#TraysSeeded")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
+                                             <asp:TemplateField HeaderText="Plan Date">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblSeededPlanDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Seeding Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeedingDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
@@ -77,7 +81,7 @@
 
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btnAssign" CommandName="Assign" CssClass="bttn bttn-primary bttn-action" Text="Assign" runat="server" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                                    <asp:Button ID="btnAssign" CommandName="Assign" CssClass="bttn bttn-primary bttn-action" Text="Start " runat="server" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -116,6 +120,13 @@
                                                     <asp:Label ID="lblSeededTrays" runat="server"></asp:Label>
 
                                                 </div>
+
+                                                
+                                                <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                                                    <label class="d-block">Remaining Seeded Trays</label>
+                                                    <asp:Label ID="lblRemaining" runat="server"></asp:Label>
+
+                                                </div>
                                             </div>
 
                                             <div class="data__table">
@@ -125,7 +136,7 @@
                                                     AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="RowNumber" HeaderText="NO." />
-                                                        <asp:TemplateField HeaderText="Main" HeaderStyle-HorizontalAlign="Center">
+                                                        <asp:TemplateField HeaderText="Facility Location" HeaderStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
 
@@ -136,7 +147,7 @@
 
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Location">
+                                                        <asp:TemplateField HeaderText="Bench Location">
                                                             <ItemTemplate>
                                                                 <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
                                                                 <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
@@ -157,7 +168,7 @@
                                                             <FooterStyle HorizontalAlign="Right" />
                                                             <FooterTemplate>
                                                                 <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" CausesValidation="false"
-                                                                    Text="ADD ROW" CssClass="bttn bttn-primary bttn-action" />
+                                                                    Text="ADD NEW ROW" CssClass="bttn bttn-primary bttn-action" />
                                                             </FooterTemplate>
 
 
@@ -185,9 +196,20 @@
                                             <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" runat="server" />
                                         </div>
                                     </div>
+                                   
+                                    <div class="row">
 
 
+
+                                        <div class="col-auto">
+                                             <br />
+                                            <asp:Label ID="Label1" runat="server" ForeColor="#488949" Text="Assigned to logistics manager once submitted.​"></asp:Label>
+                                        </div>
+                                      
+                                    </div>
                                 </div>
+
+                               
                             </asp:Panel>
                         </div>
 

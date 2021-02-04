@@ -51,11 +51,11 @@ namespace Improvians
             nv.Add("@Notes", txtNots.Text);
             nv.Add("@JobID", Session["JobID"].ToString());
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@CropId",ddlCrop.SelectedItem.Text.Trim());
+            nv.Add("@CropId","");
             nv.Add("@UpdatedReadyDate",txtUpdatedReadyDate.Text);
             nv.Add("@PlantExpirationDate",txtPlantExpirationDate.Text);
             nv.Add("@RootQuality",ddlRootQuality.SelectedItem.Text);
-            nv.Add("@PlantHeight",txtPlantHeight.Text);
+            nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
             //if (Request.QueryString["Fid"] != null)
             //{
             //    nv.Add("@mode", "1");
@@ -112,9 +112,9 @@ namespace Improvians
         {
             txtNots.Text = "";
             txtPlantExpirationDate.Text = "";
-            txtPlantHeight.Text = "";
+          //  txtPlantHeight.Text = "";
             txtUpdatedReadyDate.Text = "";
-            ddlCrop.SelectedValue = "0";
+            ddlPlantHeight.SelectedValue = "0";
             ddlRootQuality.SelectedValue = "0";
              
 

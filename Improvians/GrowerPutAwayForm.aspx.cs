@@ -77,7 +77,7 @@ namespace Improvians
                 {
                     lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
                     lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeedingDueDate"]).ToString("MM-dd-yyyy");
-                    lblSeededTrays.Text = dt.Rows[0]["trays_actual"].ToString();
+                    lblSeededTrays.Text = dt.Rows[0]["#TraysSeeded"].ToString();
 
                 }
 
@@ -217,10 +217,11 @@ namespace Improvians
                         Total += Convert.ToInt32(txtTrays.Text);
                     }
 
+                   
                 }
             }
 
-            //  lblTotalCost.Text = TotalCost1.ToString();
+             lblRemaining.Text = (Convert.ToInt32(lblSeededTrays.Text) - Total).ToString();
 
 
         }
@@ -246,27 +247,20 @@ namespace Improvians
                 long _isInserted = 1;
                 int SelectedItems = 0;
 
-
-
                 foreach (GridViewRow item in GridSplitJob.Rows)
                 {
 
                     if (item.RowType == DataControlRowType.DataRow)
                     {
-
-
-
                         TextBox txtTrays = (item.Cells[0].FindControl("txtTrays") as TextBox);
                         DropDownList ddlMain = (item.Cells[0].FindControl("ddlMain") as DropDownList);
                         DropDownList ddlLocation = (item.Cells[0].FindControl("ddlLocation") as DropDownList);
 
-                      
                         long result = 0;
                         NameValueCollection nv = new NameValueCollection();
                         nv.Add("@GrowerPutAwayId", "");
                         nv.Add("@wo", wo);
                        
-                        
                         nv.Add("@jobcode", lblJobID.Text);
                         nv.Add("@FacilityID", ddlMain.SelectedValue);
                         nv.Add("@GreenHouseID", ddlLocation.SelectedValue);
@@ -277,21 +271,16 @@ namespace Improvians
 
                         nv.Add("@mode", "1");
                         _isInserted = objCommon.GetDataInsertORUpdate("SP_AddGrowerPutAwayDetails", nv);
-
                         SelectedItems++;
-
-
                     }
 
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WorkOrder", wo);
                     _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
 
-
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
 
                     Clear();
-
                 }
 
 

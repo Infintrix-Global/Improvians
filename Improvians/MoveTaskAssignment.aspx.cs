@@ -16,8 +16,29 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                BindGridMove();
+                if (Request.QueryString["Wid"] != null)
+                {
+                    wo = Request.QueryString["Wid"].ToString();
+                }
+                    BindGridMove();
                 BindShippingCoordinatorList();
+            }
+        }
+
+
+        private string wo
+        {
+            get
+            {
+                if (ViewState["wo"] != null)
+                {
+                    return (string)ViewState["wo"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["wo"] = value;
             }
         }
 
@@ -36,8 +57,9 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@MoveID", Session["MoveID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticManagerAssignedJobByMoveID", nv);
+            nv.Add("@WoId", wo);
+            nv.Add("@mode","1");
+            dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
             gvMove.DataSource = dt;
             gvMove.DataBind();
 
@@ -47,11 +69,10 @@ namespace Improvians
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@ShippingCoordinatorID", ddlShippingCoordinator.SelectedValue);
-            //nv.Add("@Notes", txtNotes.Text);
-            nv.Add("@MoveID", Session["MoveID"].ToString());
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddMoveAssignment", nv);
+            nv.Add("@CoordinatorId", ddlShippingCoordinator.SelectedValue);
+            nv.Add("@wo",wo);
+            nv.Add("@CreateBy", Session["LoginID"].ToString());
+            result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv);
             if (result > 0)
             {
               //  lblmsg.Text = "Assignment Successful";

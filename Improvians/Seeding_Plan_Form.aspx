@@ -30,24 +30,20 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col m3">
-                        <asp:Label ID="lblTotal" ForeColor="#ff0000" runat="server" Text=""></asp:Label>
 
-                    </div>
-
-                    <div class="col m3">
-                    </div>
-                    <div class="col m3">
-                    </div>
-                    <div class="col m3">
-                        <br />
-
-
-                    </div>
-                </div>
             </div>
+            <div class="row">
+                <div class="col m6">
+                    <asp:Label ID="lblTotal" ForeColor="#ff0000" runat="server" Text=""></asp:Label>
 
+                </div>
+
+                <div class="col m3">
+                </div>
+                <div class="col m3">
+                </div>
+
+            </div>
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
@@ -163,7 +159,12 @@
                                 <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
                             </div>
                         </div>
-
+                        <br />
+                        <div class="row">
+                            <div class="col-12 my-3">
+                                <asp:Label ID="Label1" runat="server" ForeColor="#488949" Text="Seedline supervisors at each facility sent jobs with WO trays and plan dates filled out once submitted.​"></asp:Label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

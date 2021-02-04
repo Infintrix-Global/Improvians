@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" EnableEventValidation="false"  CodeBehind="PlantReadyTaskCompletion.aspx.cs" Inherits="Improvians.PlantReadyTaskCompletion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="PlantReadyTaskCompletion.aspx.cs" Inherits="Improvians.PlantReadyTaskCompletion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -41,7 +41,7 @@
 
             <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>
             <div class="data__table">
-                   <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
+                <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                 <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                     class="striped" AllowSorting="true"
                     GridLines="None" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
@@ -110,12 +110,11 @@
 
 
 
-<%--                        <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
+                        <%--                        <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-
                     </Columns>
 
                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -133,20 +132,7 @@
                             <h3>User Inputs:</h3>
                             <div class="row">
 
-                                <div class="col-12 col-md-4 col-lg-3">
-                                    <label class="d-block">Crop</label>
-
-
-
-                                    <asp:DropDownList ID="ddlCrop" class="custom__dropdown" runat="server">
-                                        <asp:ListItem Text="--SELECT--" Value="0"></asp:ListItem>
-                                        <asp:ListItem Text="BROCCOLI" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="CAULIFLOWER" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="CELERY" Value="3"></asp:ListItem>
-                                        <asp:ListItem Text="FENNEL" Value="4"></asp:ListItem>
-                                        <asp:ListItem Text="ONION" Value="5"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
+                              
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <label class="d-block">Updated Ready Date</label>
@@ -165,15 +151,34 @@
 
                                     <asp:DropDownList ID="ddlRootQuality" class="custom__dropdown" runat="server">
                                         <asp:ListItem Text="--SELECT--" Value="0"></asp:ListItem>
-                                        <asp:ListItem Text="GOOD" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="NO ROOT" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="WEAK" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="3) GOOD" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="2) WEAK" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="1) NO ROOT" Value="2"></asp:ListItem>
+
                                     </asp:DropDownList>
                                 </div>
 
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <label class="d-block">Plant Height</label>
-                                    <asp:TextBox ID="txtPlantHeight" class="input__control" runat="server"></asp:TextBox>
+                                    <%--   <asp:TextBox ID="txtPlantHeight" class="input__control" runat="server"></asp:TextBox>
+                                    --%>
+                                    <asp:DropDownList ID="ddlPlantHeight" class="custom__dropdown" runat="server">
+                                        <asp:ListItem Text="--SELECT--" Value="0"></asp:ListItem>
+                                        <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="1.5" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="2" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="2.5" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="3" Value="5"></asp:ListItem>
+                                        <asp:ListItem Text="3.5" Value="6"></asp:ListItem>
+
+                                        <asp:ListItem Text="4" Value="7"></asp:ListItem>
+                                        <asp:ListItem Text="4.5" Value="8"></asp:ListItem>
+                                        <asp:ListItem Text="5" Value="9"></asp:ListItem>
+                                        <asp:ListItem Text="5.5" Value="10"></asp:ListItem>
+                                        <asp:ListItem Text="6" Value="11"></asp:ListItem>
+                                        <asp:ListItem Text="6.5" Value="12"></asp:ListItem>
+                                    </asp:DropDownList>
+
                                 </div>
 
                                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
