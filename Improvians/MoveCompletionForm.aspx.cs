@@ -160,11 +160,13 @@ namespace Improvians
             {
                 AddDetails.Visible = true;
                 string traysTotal = "";
-                int rowIndex = Convert.ToInt32(e.CommandArgument) -1;
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvMove.Rows[rowIndex];
-                GrowerPutAwayId = rowIndex.ToString();
 
 
+                GrowerPutAwayId = (row.FindControl("lblGrowerPutAwayId") as Label).Text;
+
+                
                 txtPutAwayLocation.Text = (row.FindControl("lblGreenHouseName") as Label).Text;
 
              //   traysTotal = (row.FindControl("lblTraysRequest") as Label).Text;

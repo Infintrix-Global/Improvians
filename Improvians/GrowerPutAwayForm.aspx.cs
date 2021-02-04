@@ -76,7 +76,7 @@ namespace Improvians
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
-                    lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeedingDueDate"]).ToString("MM-dd-yyyy");
+                    lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeededDate"]).ToString("MM-dd-yyyy");
                     lblSeededTrays.Text = dt.Rows[0]["#TraysSeeded"].ToString();
 
                 }
