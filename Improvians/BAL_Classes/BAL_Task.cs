@@ -126,6 +126,19 @@ namespace Improvians.BAL_Classes
             return _isInserted;
         }
 
+        public DataTable GetSeedNoBySeedLotID(string SeedLotID)
+        {
+            try
+            {
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@SeedLotID", SeedLotID);
+                ds = objGeneral.GetDatasetByCommand_SP("SP_GetSeedNoBySeedLotID");
+            }
+            catch (Exception ex)
+            {
 
+            }
+          return  ds.Tables[0];
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace Improvians
                // BindSeedLineFacility();
                 BindGridProduction();
                BindSeedLot();
+                txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
             }
         }
 
@@ -96,7 +97,7 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@ConfirmTraySize", radtraysize.SelectedValue);
-            nv.Add("@SeedingDueDate", txtSeedingDueDate.Text);
+            nv.Add("@SeedingDate", txtSeedingDate.Text);
             //   nv.Add("@SeedLineFacility", ddlSeedlineFacility.SelectedValue);
             nv.Add("@OrderType", radOrder.SelectedValue);
             if (radOrder.SelectedValue == "Complete")
@@ -185,7 +186,7 @@ namespace Improvians
             //ddlBenchLocation.SelectedIndex = 0;
             //chkBenchLocation.Checked = false;
             //ddlBenchLocation.Visible = true;
-            txtSeedingDueDate.Text = "";
+            txtSeedingDate.Text = "";
             txtTrays.Text = "";
             dtTrays.Clear();
            // txtSeedsAllocated.Text = "";

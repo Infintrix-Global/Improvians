@@ -37,7 +37,8 @@ namespace Improvians
             {
 
                 Session["WorkOrder"] = e.CommandArgument.ToString();
-                Response.Redirect("~/ProductionPlannerTaskCompletionForm.aspx");
+                // Response.Redirect("~/ProductionPlannerTaskCompletionForm.aspx");
+                Response.Redirect("~/SeedLineCompletionFinal.aspx");
             }
         }
 
