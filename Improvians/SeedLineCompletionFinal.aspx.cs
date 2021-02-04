@@ -320,7 +320,11 @@ namespace Improvians
 
         protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if(e.)
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                ((DropDownList)e.Row.FindControl("ddlType")).SelectedValue = ((Label)(e.Row.FindControl("lblType"))).Text;
+            }
         }
     }
 }
