@@ -278,6 +278,7 @@
     <Content Include="PutAwayTaskCompletion.aspx" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
     <Content Include="Seeding_Plan_Form.aspx" />
+    <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
     <Content Include="Web.config" />
@@ -536,6 +537,13 @@
     </Compile>
     <Compile Include="Seeding_Plan_Form.aspx.designer.cs">
       <DependentUpon>Seeding_Plan_Form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeedLineCompletionFinal.aspx.cs">
+      <DependentUpon>SeedLineCompletionFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeedLineCompletionFinal.aspx.designer.cs">
+      <DependentUpon>SeedLineCompletionFinal.aspx</DependentUpon>
     </Compile>
     <Compile Include="SeedLineLotFulfillment.aspx.cs">
       <DependentUpon>SeedLineLotFulfillment.aspx</DependentUpon>
