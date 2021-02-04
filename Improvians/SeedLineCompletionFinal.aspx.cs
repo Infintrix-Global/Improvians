@@ -317,6 +317,11 @@ namespace Improvians
                 }
             }
         }
+
+        protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.)
+        }
     }
 }
 

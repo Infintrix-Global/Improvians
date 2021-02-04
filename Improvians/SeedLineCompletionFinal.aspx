@@ -207,7 +207,7 @@
 
                                     <div class="col-lg-12 my-3">
                                         <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped data__table w-auto"
-                                            GridLines="None"
+                                            GridLines="None" OnRowDataBound="gvDetails_RowDataBound"
                                             ShowHeaderWhenEmpty="True">
                                             <Columns>
                                                
@@ -241,11 +241,13 @@
 
                                                  <asp:TemplateField HeaderText="Used/Unused">
                                                     <ItemTemplate>
-                                                      <asp:DropDownList ID="ddlType" runat="server" class="custom__dropdown robotomd" >
+                                                      <asp:DropDownList ID="ddlType" runat="server" class="custom__dropdown robotomd"  >
                                                             <asp:ListItem Text="Used" Value="Used"></asp:ListItem>
                                                             <asp:ListItem Text="UnUsed" Value="UnUsed"></asp:ListItem>
                                                             <asp:ListItem Text="Partial" Value="Partial"></asp:ListItem>
                                                         </asp:DropDownList>
+                                                           <asp:Label ID="lblType" runat="server" Text='<%# Eval("type")  %>' Visible="false"></asp:Label>
+
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
