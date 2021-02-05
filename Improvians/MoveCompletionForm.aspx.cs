@@ -125,6 +125,7 @@ namespace Improvians
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WoId", wo);
                     nv1.Add("@JobID", "");
+                    nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
                     nv1.Add("@CreatedBy", Session["LoginID"].ToString());
 
                     int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveForm", nv1);
