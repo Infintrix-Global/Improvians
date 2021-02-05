@@ -17,28 +17,28 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["GTID"] != null)
+                if (Request.QueryString["GTRID"] != null)
                 {
-                    gtID = Request.QueryString["GTID"].ToString();
+                    gtrID = Request.QueryString["GTRID"].ToString();
                 }
                 BindGridGerm();
                 BindOperatorList();
             }
         }
 
-        private string gtID
+        private string gtrID
         {
             get
             {
-                if (ViewState["gtID"] != null)
+                if (ViewState["gtrID"] != null)
                 {
-                    return (string)ViewState["gtID"];
+                    return (string)ViewState["gtrID"];
                 }
                 return "";
             }
             set
             {
-                ViewState["gtID"] = value;
+                ViewState["gtrID"] = value;
             }
         }
         public void BindOperatorList()
@@ -56,8 +56,8 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@GTID", gtID);
-            dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorAssignedJobByGTID", nv);
+            nv.Add("@GTRID", gtrID);
+            dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorAssignedJobByGTRID", nv);
             wo = dt.Rows[0]["wo"].ToString();
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -71,7 +71,7 @@ namespace Improvians
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
             nv.Add("@Notes", txtNotes.Text);
             nv.Add("@WorkOrderID", wo);
-            nv.Add("@GTID", gtID);
+            nv.Add("@GTRID", gtrID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
             if (result > 0)
