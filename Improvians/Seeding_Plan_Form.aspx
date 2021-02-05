@@ -99,7 +99,7 @@
 
                                         <asp:TemplateField HeaderText="SO Trays">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSOTrays" runat="server" Text='<%# Eval("sotrays","{0:###,#}") %>'></asp:Label>
+                                                <asp:Label ID="lblSOTrays" runat="server" Text='<%# Eval("sotrays","{0:####}") %>'></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -113,7 +113,7 @@
 
                                         <asp:TemplateField HeaderText="WO Trays">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="Txtgtrays" Width="50" Text='<%# Eval("wotrays","{0:###,#}") %>' runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="Txtgtrays" Width="50" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Plan Date">

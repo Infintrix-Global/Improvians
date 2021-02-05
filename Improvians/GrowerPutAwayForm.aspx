@@ -81,7 +81,7 @@
 
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btnAssign" CommandName="Assign" CssClass="bttn bttn-primary bttn-action" Text="Assign" runat="server" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                                    <asp:Button ID="btnAssign" CommandName="Assign" CssClass="bttn bttn-primary bttn-action" Text="Start " runat="server" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
