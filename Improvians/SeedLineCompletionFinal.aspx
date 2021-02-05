@@ -233,7 +233,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="# of Seed">
+                                                <asp:TemplateField HeaderText="Calculated # of Seed">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblSeed" runat="server" Text='<%# Eval("Seed")  %>' ></asp:Label>
                                                     </ItemTemplate>

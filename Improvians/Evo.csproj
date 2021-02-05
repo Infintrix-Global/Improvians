@@ -287,6 +287,7 @@
     <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
+    <Content Include="SprayrRequest.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
@@ -606,6 +607,13 @@
     </Compile>
     <Compile Include="SeedLineTaskCompletion.aspx.designer.cs">
       <DependentUpon>SeedLineTaskCompletion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SprayrRequest.aspx.cs">
+      <DependentUpon>SprayrRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SprayrRequest.aspx.designer.cs">
+      <DependentUpon>SprayrRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

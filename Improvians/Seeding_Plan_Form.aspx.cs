@@ -201,8 +201,6 @@ namespace Improvians
                             nv.Add("@modified_date", "");
                             nv.Add("@SoDate", lblSODate.Text);
                             nv.Add("@TraySize", lblTraySize.Text);
-
-
                             nv.Add("@wo", HiddenFieldwo.Value);
                             nv.Add("@mode", "1");
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
