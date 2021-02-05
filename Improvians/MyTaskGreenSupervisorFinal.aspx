@@ -31,6 +31,7 @@
                     <div class="col m4">
                         <label>Task Request Form </label>
                         <asp:DropDownList ID="ddlTaskRequest" AutoPostBack="true" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlTaskRequest_SelectedIndexChanged">
+                             <asp:ListItem Text="Select" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Germination Request" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Plant Ready Request" Value="2"></asp:ListItem>
                         </asp:DropDownList>

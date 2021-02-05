@@ -112,7 +112,7 @@
 
                                           <asp:TemplateField HeaderText="Germination No" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label15" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
+                                                <asp:Label ID="Label16" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
