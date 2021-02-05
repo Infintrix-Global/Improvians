@@ -194,6 +194,7 @@
     <Content Include="FertilizerTaskReq.aspx" />
     <Content Include="fonts\icons\rxicons.svg" />
     <Content Include="GerminationAssignmentForm.aspx" />
+    <Content Include="GerminationCompletionForm.aspx" />
     <Content Include="GerminationRequestForm.aspx" />
     <Content Include="GerminationTaskAssignment.aspx" />
     <Content Include="GrowerPutAwayForm.aspx" />
@@ -264,6 +265,7 @@
     <Content Include="MoveForm.aspx" />
     <Content Include="MoveTaskAssignment.aspx" />
     <Content Include="MyTaskGreenOperator.aspx" />
+    <Content Include="MyTaskGreenOperatorFinal.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
     <Content Include="MyTaskGreenSupervisorFinal.aspx" />
     <Content Include="MyTaskGrower.aspx" />
@@ -371,6 +373,13 @@
     <Compile Include="GerminationAssignmentForm.aspx.designer.cs">
       <DependentUpon>GerminationAssignmentForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GerminationCompletionForm.aspx.cs">
+      <DependentUpon>GerminationCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GerminationCompletionForm.aspx.designer.cs">
+      <DependentUpon>GerminationCompletionForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GerminationRequestForm.aspx.cs">
       <DependentUpon>GerminationRequestForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -440,6 +449,13 @@
     </Compile>
     <Compile Include="MyTaskGreenOperator.aspx.designer.cs">
       <DependentUpon>MyTaskGreenOperator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskGreenOperatorFinal.aspx.cs">
+      <DependentUpon>MyTaskGreenOperatorFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskGreenOperatorFinal.aspx.designer.cs">
+      <DependentUpon>MyTaskGreenOperatorFinal.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskGreenSupervisor.aspx.cs">
       <DependentUpon>MyTaskGreenSupervisor.aspx</DependentUpon>
