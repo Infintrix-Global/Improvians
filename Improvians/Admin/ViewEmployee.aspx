@@ -64,9 +64,15 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Name" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
+                                            <asp:TemplateField HeaderText="Employee Name" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label7" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="User Name" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label11" runat="server" Text='<%# Eval("EmployeeCode")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
