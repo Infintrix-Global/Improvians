@@ -16,8 +16,29 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["WOId"] != null)
+                {
+                    wo = Request.QueryString["WOId"].ToString();
+                }
+
                 BindPlantReady();
 
+            }
+        }
+
+        private string wo
+        {
+            get
+            {
+                if (ViewState["wo"] != null)
+                {
+                    return (string)ViewState["wo"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["wo"] = value;
             }
         }
 
@@ -25,11 +46,11 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobID", Session["JobID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetPlantReadyOperatorAssignedJobByJobID", nv);
+            nv.Add("@LoginID", wo);
+            nv.Add("@Mode", "9");
+            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
-
             //if (dt != null && dt.Rows.Count > 0)
             //{
             //    lblSeedlot.Text = dt.Rows[0]["SeedLots"].ToString();
@@ -49,21 +70,16 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID",Session["LoginID"].ToString());
             nv.Add("@Notes", txtNots.Text);
-            nv.Add("@JobID", Session["JobID"].ToString());
+            nv.Add("@JobID", "");
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@CropId","");
             nv.Add("@UpdatedReadyDate",txtUpdatedReadyDate.Text);
             nv.Add("@PlantExpirationDate",txtPlantExpirationDate.Text);
             nv.Add("@RootQuality",ddlRootQuality.SelectedItem.Text);
             nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
-            //if (Request.QueryString["Fid"] != null)
-            //{
-            //    nv.Add("@mode", "1");
-            //}
-            //else
-            //{
+            nv.Add("@wo",wo);
 
-            //  }
+          
 
             nv.Add("@mode","2");
 
@@ -79,7 +95,7 @@ namespace Improvians
                 string url;
                 if (Session["Role"].ToString() == "3")
                 {
-                    url = "MyTaskGreenOperator.aspx";
+                    url = "PlantReadyCompletionForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";
@@ -89,17 +105,7 @@ namespace Improvians
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
 
-                else if (Session["Role"].ToString() == "2")
-                {
-                    url = "MyTaskGreenSupervisor.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                }
+              
 
             }
             else
@@ -126,13 +132,10 @@ namespace Improvians
             clear();
             if (Session["Role"].ToString() == "3")
             {
-                Response.Redirect("~/MyTaskGreenOperator.aspx");
+                Response.Redirect("~/PlantReadyCompletionForm.aspx");
             }
 
-            else if (Session["Role"].ToString() == "2")
-            {
-                Response.Redirect("~/MyTaskGreenSupervisor.aspx");
-            }
+          
         }
     }
 }
