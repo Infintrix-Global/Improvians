@@ -20,18 +20,34 @@ namespace Improvians
                 BindSupervisorList();
             }
         }
+
+        private string wo
+        {
+            get
+            {
+                if (ViewState["wo"] != null)
+                {
+                    return (string)ViewState["wo"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["wo"] = value;
+            }
+        }
+
         public void BindGridPlantReady()
         {
+
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-     
-            nv.Add("@Id","0");
-          
-            nv.Add("@mode", "1");
-         
-            dt = objCommon.GetDataTable("SP_GetAppProcess", nv);
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Mode", "4");
+            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
+
 
         }
         public void BindSupervisorList()
@@ -50,12 +66,17 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
                 userinput.Visible = true;
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvPlantReady.Rows[rowIndex];
-              
-                lblJobID.Text = (row.FindControl("lblJobID") as Label).Text;
-                ddlSupervisor.Focus();
+                string rowIndex = e.CommandArgument.ToString();
 
+                wo = rowIndex;
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@LoginID",wo.ToString());
+                nv.Add("@Mode", "5");
+                dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+
+                lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
             }
         }
 
@@ -66,7 +87,7 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            nv.Add("@JobID", lblJobID.Text);
+            nv.Add("@WO",wo);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequest", nv);
             if (result > 0)

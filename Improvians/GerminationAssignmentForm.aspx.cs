@@ -58,7 +58,7 @@ namespace Improvians
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
 
-               // Session["WorkOrder"] = JobID;
+                // Session["WorkOrder"] = JobID;
                 Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", result.ToString()));
             }
             if (e.CommandName == "Assign")
@@ -69,4 +69,5 @@ namespace Improvians
                 Response.Redirect(String.Format("~/GerminationTaskAssignment.aspx?GTID={0}", GTID));
             }
         }
+    }
 }
