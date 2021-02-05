@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="PlantReadyTaskAssignment.aspx.cs" Inherits="Improvians.PlantReadyTaskAssignment" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -22,34 +23,34 @@
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobID")  %>'></asp:Label>
+                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Item")  %>'></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("PutAwayLocation")  %>'></asp:Label>
+                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
+                                        <%--                                        <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label8" runat="server" Text='<%# Eval("PutAwayMainLocation")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("#Tray")  %>'></asp:Label>
+                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                       <%-- <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
+                                        <%-- <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -57,19 +58,19 @@
 
                                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("SeedLots")  %>'></asp:Label>
+                                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate")  %>'></asp:Label>
+                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SoDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
+                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -79,17 +80,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                     <%--   <asp:TemplateField HeaderText="Trays inspected" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("#TraysInspected")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Due Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("InspectionDueDate")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
 
 
                                     </Columns>
@@ -125,7 +115,7 @@
                                 <asp:TextBox ID="txtNotes" TextMode="Multiline" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
 
-                            
+
 
                             <div class="col-auto">
                                 <br />

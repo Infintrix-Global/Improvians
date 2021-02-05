@@ -43,14 +43,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=4.1.60623.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+    <Reference Include="ajaxcontroltoolkit, Version=3.0.20820.16598, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>bin\ajaxcontroltoolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.5.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.5.0.0\lib\net461\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -157,7 +183,8 @@
     <Content Include="Admin\login.html" />
     <Content Include="Admin\sw.js" />
     <Content Include="Admin\ViewEmployee.aspx" />
-    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\ajaxcontroltoolkit.dll" />
+    <Content Include="bin\itextsharp.dll" />
     <Content Include="css\all.min.css" />
     <Content Include="css\aos.css" />
     <Content Include="css\bootstrap.min.css" />
@@ -166,8 +193,11 @@
     <Content Include="FertilizerTaskAssignmentaspx.aspx" />
     <Content Include="FertilizerTaskReq.aspx" />
     <Content Include="fonts\icons\rxicons.svg" />
+    <Content Include="GerminationAssignmentForm.aspx" />
+    <Content Include="GerminationCompletionForm.aspx" />
     <Content Include="GerminationRequestForm.aspx" />
     <Content Include="GerminationTaskAssignment.aspx" />
+    <Content Include="GrowerPutAwayForm.aspx" />
     <Content Include="GreenHouseTaskCompletion.aspx" />
     <Content Include="images\favicon\android-icon-144x144.png" />
     <Content Include="images\favicon\android-icon-192x192.png" />
@@ -235,7 +265,9 @@
     <Content Include="MoveForm.aspx" />
     <Content Include="MoveTaskAssignment.aspx" />
     <Content Include="MyTaskGreenOperator.aspx" />
+    <Content Include="MyTaskGreenOperatorFinal.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
+    <Content Include="MyTaskGreenSupervisorFinal.aspx" />
     <Content Include="MyTaskGrower.aspx" />
     <Content Include="MyTaskGrowerNew.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
@@ -243,6 +275,8 @@
     <Content Include="MyTaskSeedingTeam.aspx" />
     <Content Include="MyTaskSeedLineOperator.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
+    <Content Include="PlantReadyAssignmentForm.aspx" />
+    <Content Include="PlantReadyCompletionForm.aspx" />
     <Content Include="PlantReadyRequestForm.aspx" />
     <Content Include="PlantReadyTaskAssignment.aspx" />
     <Content Include="PlantReadyTaskCompletion.aspx" />
@@ -250,9 +284,12 @@
     <Content Include="PutAwayTaskCompletion.aspx" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
     <Content Include="Seeding_Plan_Form.aspx" />
+    <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
+    <Content Include="SprayrRequest.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AddEmployee.aspx.cs">
@@ -332,6 +369,20 @@
     <Compile Include="FertilizerTaskReq.aspx.designer.cs">
       <DependentUpon>FertilizerTaskReq.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GerminationAssignmentForm.aspx.cs">
+      <DependentUpon>GerminationAssignmentForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GerminationAssignmentForm.aspx.designer.cs">
+      <DependentUpon>GerminationAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GerminationCompletionForm.aspx.cs">
+      <DependentUpon>GerminationCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GerminationCompletionForm.aspx.designer.cs">
+      <DependentUpon>GerminationCompletionForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GerminationRequestForm.aspx.cs">
       <DependentUpon>GerminationRequestForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -345,6 +396,13 @@
     </Compile>
     <Compile Include="GerminationTaskAssignment.aspx.designer.cs">
       <DependentUpon>GerminationTaskAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GrowerPutAwayForm.aspx.cs">
+      <DependentUpon>GrowerPutAwayForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GrowerPutAwayForm.aspx.designer.cs">
+      <DependentUpon>GrowerPutAwayForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="GreenHouseTaskCompletion.aspx.cs">
       <DependentUpon>GreenHouseTaskCompletion.aspx</DependentUpon>
@@ -395,12 +453,26 @@
     <Compile Include="MyTaskGreenOperator.aspx.designer.cs">
       <DependentUpon>MyTaskGreenOperator.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyTaskGreenOperatorFinal.aspx.cs">
+      <DependentUpon>MyTaskGreenOperatorFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskGreenOperatorFinal.aspx.designer.cs">
+      <DependentUpon>MyTaskGreenOperatorFinal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyTaskGreenSupervisor.aspx.cs">
       <DependentUpon>MyTaskGreenSupervisor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MyTaskGreenSupervisor.aspx.designer.cs">
       <DependentUpon>MyTaskGreenSupervisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskGreenSupervisorFinal.aspx.cs">
+      <DependentUpon>MyTaskGreenSupervisorFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskGreenSupervisorFinal.aspx.designer.cs">
+      <DependentUpon>MyTaskGreenSupervisorFinal.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskGrower.aspx.cs">
       <DependentUpon>MyTaskGrower.aspx</DependentUpon>
@@ -450,6 +522,20 @@
     </Compile>
     <Compile Include="MyTaskShippingCoordinator.aspx.designer.cs">
       <DependentUpon>MyTaskShippingCoordinator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlantReadyAssignmentForm.aspx.cs">
+      <DependentUpon>PlantReadyAssignmentForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlantReadyAssignmentForm.aspx.designer.cs">
+      <DependentUpon>PlantReadyAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlantReadyCompletionForm.aspx.cs">
+      <DependentUpon>PlantReadyCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlantReadyCompletionForm.aspx.designer.cs">
+      <DependentUpon>PlantReadyCompletionForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlantReadyRequestForm.aspx.cs">
       <DependentUpon>PlantReadyRequestForm.aspx</DependentUpon>
@@ -501,6 +587,13 @@
     <Compile Include="Seeding_Plan_Form.aspx.designer.cs">
       <DependentUpon>Seeding_Plan_Form.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SeedLineCompletionFinal.aspx.cs">
+      <DependentUpon>SeedLineCompletionFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeedLineCompletionFinal.aspx.designer.cs">
+      <DependentUpon>SeedLineCompletionFinal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SeedLineLotFulfillment.aspx.cs">
       <DependentUpon>SeedLineLotFulfillment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -514,6 +607,20 @@
     </Compile>
     <Compile Include="SeedLineTaskCompletion.aspx.designer.cs">
       <DependentUpon>SeedLineTaskCompletion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SprayrRequest.aspx.cs">
+      <DependentUpon>SprayrRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SprayrRequest.aspx.designer.cs">
+      <DependentUpon>SprayrRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

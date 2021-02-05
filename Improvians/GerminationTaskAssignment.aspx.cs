@@ -11,16 +11,36 @@ namespace Improvians
 {
     public partial class GerminationTaskAssignment : System.Web.UI.Page
     {
+        string wo;
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["GTRID"] != null)
+                {
+                    gtrID = Request.QueryString["GTRID"].ToString();
+                }
                 BindGridGerm();
                 BindOperatorList();
             }
         }
 
+        private string gtrID
+        {
+            get
+            {
+                if (ViewState["gtrID"] != null)
+                {
+                    return (string)ViewState["gtrID"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["gtrID"] = value;
+            }
+        }
         public void BindOperatorList()
         {
             NameValueCollection nv = new NameValueCollection();
@@ -36,8 +56,9 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobID", Session["JobID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorAssignedJobByJobID", nv);
+            nv.Add("@GTRID", gtrID);
+            dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorAssignedJobByGTRID", nv);
+            wo = dt.Rows[0]["wo"].ToString();
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -49,7 +70,8 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
             nv.Add("@Notes", txtNotes.Text);
-            nv.Add("@JobID", Session["JobID"].ToString());
+            nv.Add("@WorkOrderID", wo);
+            nv.Add("@GTRID", gtrID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
             if (result > 0)
@@ -57,7 +79,7 @@ namespace Improvians
                 //lblmsg.Text = "Assignment Successful";
                 clear();
                 string message = "Assignment Successful";
-                string url = "MyTaskGreenSupervisor.aspx";
+                string url = "MyTaskGreenSupervisorFinal.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -82,7 +104,7 @@ namespace Improvians
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-            Response.Redirect("~/MyTaskGreenSupervisor.aspx");
+            Response.Redirect("~/MyTaskGreenSupervisorFinal.aspx");
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)

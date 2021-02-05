@@ -36,9 +36,16 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
 
-                Session["JobID"] = e.CommandArgument.ToString();
-                Response.Redirect("~/ProductionPlannerTaskCompletionForm.aspx");
+                Session["WorkOrder"] = e.CommandArgument.ToString();
+                // Response.Redirect("~/ProductionPlannerTaskCompletionForm.aspx");
+                Response.Redirect("~/SeedLineCompletionFinal.aspx");
             }
+        }
+
+        protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvGerm.PageIndex = e.NewPageIndex;
+            BindGridGerm();
         }
     }
 }

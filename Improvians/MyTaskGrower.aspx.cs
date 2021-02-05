@@ -14,17 +14,17 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                BindDepartment();
+              //  BindDepartment();
             }
         }
-        public void BindDepartment()
-        {
-            ddlDept.DataSource = objCommon.GetDepartmentMaster();
-            ddlDept.DataTextField = "DepartmentName";
-            ddlDept.DataValueField = "DepartmentID";
-            ddlDept.DataBind();
-            ddlDept.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+        //public void BindDepartment()
+        //{
+        //    ddlDept.DataSource = objCommon.GetDepartmentMaster();
+        //    ddlDept.DataTextField = "DepartmentName";
+        //    ddlDept.DataValueField = "DepartmentID";
+        //    ddlDept.DataBind();
+        //    ddlDept.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        //}
 
         protected void ddlTaskRequest_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -38,7 +38,8 @@ namespace Improvians
             }
             if (ddlTaskRequest.SelectedValue == "6")
             {
-                Response.Redirect("~/PutAwayTaskCompletion.aspx");
+                // Response.Redirect("~/PutAwayTaskCompletion.aspx");
+                Response.Redirect("~/GrowerPutAwayForm.aspx");
             }
             if (ddlTaskRequest.SelectedValue == "7")
             {

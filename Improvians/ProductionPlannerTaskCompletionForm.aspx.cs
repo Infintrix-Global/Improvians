@@ -12,92 +12,55 @@ namespace Improvians
 {
     public partial class ProductionPlannerTaskCompletionForm : System.Web.UI.Page
     {
+        public static DataTable dtTrays = new DataTable()
+        { Columns = { "SeedLot","SeedID", "#ActualTray", "#Seed", "Type", "LeftOver" } };
         CommonControl objCommon = new CommonControl();
         BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindFacility();
-                BindSeedLineFacility();
+                //BindFacility();
+               // BindSeedLineFacility();
                 BindGridProduction();
-                BindGridSeedLot();
+               BindSeedLot();
+                txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
             }
         }
 
-        public void BindGridSeedLot()
-        {
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@mode", "6");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            gvDetails.DataSource = dt;
-            gvDetails.DataBind();
-            
-        }
+       
 
         public void BindGridProduction()
         {
+            dtTrays.Clear();
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobID", Session["JobID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetProductionPlannerTaskByJobID", nv);
+            nv.Add("@WorkOrder", Session["WorkOrder"].ToString());
+            dt = objCommon.GetDataTable("SP_GetProductionPlannerTaskByWorkOrder", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
             if (dt != null && dt.Rows.Count > 0)
             {
-                lblJobID.Text = dt.Rows[0]["JobID"].ToString();
-                lblTrays.Text= dt.Rows[0]["#Tray"].ToString();
-                lblSeedRequired.Text = ((Convert.ToInt32(dt.Rows[0]["#Tray"].ToString())) * (Convert.ToInt32(dt.Rows[0]["SeedLots"].ToString()))).ToString();
+                lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
+                txtRequestedTrays.Text = dt.Rows[0]["trays_plan"].ToString();
+                lbltraysizecon.Text= dt.Rows[0]["TraySize"].ToString();
+                lblTrays.Text= dt.Rows[0]["trays_plan"].ToString();
+                lblTraySize.Text = dt.Rows[0]["TraySize"].ToString();
+                lblSeedRequired.Text = ((Convert.ToInt32(dt.Rows[0]["trays_plan"].ToString())) * (Convert.ToInt32(dt.Rows[0]["TraySize"].ToString()))).ToString();
+                txtActualTraysNo.Text = "0";
             }
         }
 
-        public void BindSeedLineFacility()
+        public void BindSeedLot()
         {
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@mode", "5");
-            ddlSeedlineFacility.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
-            ddlSeedlineFacility.DataTextField = "SeedLineFacilityName";
-            ddlSeedlineFacility.DataValueField = "SeedLineFacilityID";
-            ddlSeedlineFacility.DataBind();
-            ddlSeedlineFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
 
-        public void BindFacility()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@mode", "4");
-            ddlLocation.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
-            ddlLocation.DataTextField = "FacilityName";
-            ddlLocation.DataValueField = "FacilityID";
-            ddlLocation.DataBind();
-            ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
-
-        protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (ddlLocation.SelectedIndex != 0)
-            //{
-            //    NameValueCollection nv = new NameValueCollection();
-            //    nv.Add("@FacilityID", ddlLocation.SelectedValue);
-            //    ddlBenchLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-            //    ddlBenchLocation.DataTextField = "GreenHouseName";
-            //    ddlBenchLocation.DataValueField = "GreenHouseID";
-            //    ddlBenchLocation.DataBind();
-            //    ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-            //}
-        }
-
-        protected void chkBenchLocation_CheckedChanged(object sender, EventArgs e)
-        {
-            //if(chkBenchLocation.Checked)
-            //{
-            //    ddlBenchLocation.Visible = false;
-            //}
-            //else
-            //{
-            //    ddlBenchLocation.Visible = true;
-            //}
+                NameValueCollection nv = new NameValueCollection();
+               nv.Add("@mode", "6");
+                ddlSeedLot.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
+            ddlSeedLot.DataTextField = "SeedLotName";
+            ddlSeedLot.DataValueField = "ID";
+            ddlSeedLot.DataBind();
+            ddlSeedLot.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         protected void radOrder_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,13 +78,29 @@ namespace Improvians
             }
         }
 
+        protected void radJobCompletion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (radJobCompletion.SelectedValue == "Full")
+            {
+                txtCompletedTrays.Text = "";
+                txtCompletedTrays.Visible = false;
+            }
+            else
+            {
+
+                txtCompletedTrays.Visible = true;
+            }
+        }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SeedingDueDate", txtSeedingDueDate.Text);
-            nv.Add("@SeedLineFacility", ddlSeedlineFacility.SelectedValue);
-            if(radOrder.SelectedValue == "Complete")
+            nv.Add("@ConfirmTraySize", radtraysize.SelectedValue);
+            nv.Add("@SeedingDate", txtSeedingDate.Text);
+            //   nv.Add("@SeedLineFacility", ddlSeedlineFacility.SelectedValue);
+            nv.Add("@OrderType", radOrder.SelectedValue);
+            if (radOrder.SelectedValue == "Complete")
             {
                 nv.Add("@#TraysSeeded", lblTrays.Text);
             }
@@ -129,34 +108,46 @@ namespace Improvians
             {
                 nv.Add("@#TraysSeeded", txtTrays.Text);
             }
-         
-            nv.Add("@PutAwayFacility", ddlLocation.SelectedValue);
-            //if (chkBenchLocation.Checked)
-            //{
-            //    nv.Add("@PutawayBenchLocation","" );
-            //}
-            //else
-            //{
-            //    nv.Add("@PutawayBenchLocation", ddlBenchLocation.SelectedValue);
-            //}
-            nv.Add("@OrderType", radOrder.SelectedValue);
-            nv.Add("@SeedsAllocated", txtSeedsAllocated.Text);
+
+            nv.Add("@ActualTraySeeded", txtActualTraysNo.Text);
+            nv.Add("@JobCompletion", radJobCompletion.SelectedValue);
+            if (radJobCompletion.SelectedValue == "Full")
+            {
+                nv.Add("@CompletedTrays", "");
+            }
+            else
+            {
+                nv.Add("@CompletedTrays", txtTrays.Text);
+            }
+            if (chkSeedReturn.Checked)
+            {
+                nv.Add("@IsSeedReturnComplete", "Yes");
+            }
+            else
+            {
+                nv.Add("@IsSeedReturnComplete", "No");
+            }
+
+            //   nv.Add("@SeedsAllocated", txtSeedsAllocated.Text);
             nv.Add("@JobID", lblJobID.Text);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataExecuteScaler("SP_AddProductionPlannerCompletion", nv);
+            nv.Add("@WorkOrder", Session["WorkOrder"].ToString());
+            result = objCommon.GetDataExecuteScaler("SP_AddSeedLineTaskCompletion", nv);
             if (result > 0)
             {
                 foreach (GridViewRow row in gvDetails.Rows)
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                        CheckBox chkRow = (row.Cells[2].FindControl("chkselect") as CheckBox);
-                        if (chkRow.Checked)
-                        {
+                       
                             string ID = (row.Cells[0].FindControl("lblID") as Label).Text;
-                            objTask.AddPTCSeedAllocation(result.ToString(), ID);
+                            string ActualTray = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
+                            string SeedNo = (row.Cells[2].FindControl("lblSeed") as Label).Text;
+                            string Type = (row.Cells[3].FindControl("lbltype") as Label).Text;
+                            string Partial = (row.Cells[4].FindControl("lblPartial") as Label).Text;
 
-                        }
+                            objTask.AddPTCSeedAllocation(result.ToString(), ID,ActualTray,SeedNo,Type,Partial);
+
                     }
                 }
                 Clear();
@@ -182,33 +173,7 @@ namespace Improvians
             }
         }
 
-        protected void chkselect_CheckedChanged(object sender, EventArgs e)
-        {
-            txtSeedsAllocated.Text = "0";
-            foreach (GridViewRow row in gvDetails.Rows)
-            {
-                if (row.RowType == DataControlRowType.DataRow)
-                {
-                    CheckBox chkRow = (row.Cells[2].FindControl("chkselect") as CheckBox);
-                    if (chkRow.Checked)
-                    {
-                      
-                        string lotseed = (row.Cells[1].FindControl("lblSeed") as Label).Text;
-                        txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text)+Convert.ToInt32(lotseed)).ToString();
-                        if(Convert.ToDouble(txtSeedsAllocated.Text)>=Convert.ToDouble(lblSeedRequired.Text))
-                        {
-                            txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
-                        }
-                        else
-                        {
-                            txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
-                        }
-                    }
-                }
-            }
-           
-        }
-
+     
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Clear();
@@ -216,14 +181,45 @@ namespace Improvians
 
         public void Clear()
         {
-            ddlSeedlineFacility.SelectedIndex = 0;
-            ddlLocation.SelectedIndex = 0;
+           // ddlSeedlineFacility.SelectedIndex = 0;
+           // ddlLocation.SelectedIndex = 0;
             //ddlBenchLocation.SelectedIndex = 0;
             //chkBenchLocation.Checked = false;
             //ddlBenchLocation.Visible = true;
-            txtSeedingDueDate.Text = "";
+            txtSeedingDate.Text = "";
             txtTrays.Text = "";
-            txtSeedsAllocated.Text = "";
+            dtTrays.Clear();
+           // txtSeedsAllocated.Text = "";
+        }
+
+        protected void btnAddTray_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToDouble(txtRequestedTrays.Text) >= Convert.ToDouble(txtActualTraysNo.Text))
+                {
+                    txtActualTraysNo.Text = (Convert.ToInt32(txtActualTray.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
+                    lblerrmsg.Text = "";
+                    dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text,ddlSeedLot.SelectedValue, txtActualTray.Text, (Convert.ToInt32(txtActualTray.Text) * Convert.ToInt32(lblTraySize.Text)).ToString(), ddlType.SelectedItem.Text,txtPartial.Text);
+                    gvDetails.DataSource = dtTrays;
+                    gvDetails.DataBind();
+                   // lblUnmovedTrays.Text = (Convert.ToInt32(lblUnmovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+                    txtActualTray.Text = "";
+                    ddlSeedLot.SelectedIndex = 0;
+                    ddlType.SelectedIndex = 0;
+                    txtPartial.Text = "";
+                }
+                else
+                {
+
+                    lblerrmsg.Text = "Number of Trays exceed Requested trays";
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

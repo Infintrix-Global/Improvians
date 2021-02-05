@@ -33,15 +33,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.GridView gvPlantReady;
 
         /// <summary>
-        /// ddlCrop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCrop;
-
-        /// <summary>
         /// txtUpdatedReadyDate control.
         /// </summary>
         /// <remarks>
@@ -69,13 +60,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.DropDownList ddlRootQuality;
 
         /// <summary>
-        /// txtPlantHeight control.
+        /// ddlPlantHeight control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPlantHeight;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlantHeight;
 
         /// <summary>
         /// txtNots control.

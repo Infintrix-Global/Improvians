@@ -14,7 +14,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvMove" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true"
+                                    class="striped" AllowSorting="true" OnRowCommand="gvMove_RowCommand" OnRowDataBound="gvMove_RowDataBound"
                                     GridLines="None" PageSize="10" OnPageIndexChanging="gvMove_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
@@ -22,90 +22,72 @@
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobID")  %>'></asp:Label>
+                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobCode")  %>'></asp:Label>
+                                                
+                                                   <asp:Label ID="lblGrowerPutAwayId" runat="server" Visible="false" Text='<%# Eval("GrowerPutAwayId")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Item")  %>'></asp:Label>
+                                                <asp:Label ID="lblItem" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <%--  <asp:TemplateField HeaderText="Put Away Location" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("PutAwayLocation")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("PutAwayMainLocation")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("#Tray")  %>'></asp:Label>
+                                                <asp:Label ID="lblTray" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <%--                                        <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Seed Lot" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("SeedLots")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
+                                                <asp:Label ID="lblDescription" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="From Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("FacilityFrom")  %>'></asp:Label>
+                                                <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="To Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("FacilityTo")  %>'></asp:Label>
-                                                <asp:Label ID="lblToFacilityID" runat="server" Visible="false" Text='<%# Eval("FacilityToID")  %>'></asp:Label>
+                                                <asp:Label ID="lblToFacility" runat="server" Text='<%# Eval("FacilityName")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
 
                                         <asp:TemplateField HeaderText="To GreenHouse" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("GreenHouseName")  %>'></asp:Label>
+                                                <asp:Label ID="lblGreenHouseName" runat="server" Text='<%# Eval("GreenHouseName")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
 
                                         <asp:TemplateField HeaderText="Request Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("RequestDate", "{0:dd MMM yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="lblRequestDate" runat="server" Text='<%# Eval("CreateOn","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
 
                                         <asp:TemplateField HeaderText="Trays To be Moved" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblTrayRequest" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
+                                                <asp:Label ID="lblTraysRequest" runat="server" Text=""></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
 
+                                                <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Container.DataItemIndex %>'></asp:Button>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                     </Columns>
 
@@ -126,7 +108,7 @@
 
             </div>
 
-            <div class="dashboard__block dashboard__block--asign">
+            <div  runat="server" id="AddDetails" visible="false" class="dashboard__block dashboard__block--asign">
                 <h3>Move Completion</h3>
                 <div class="row">
                     <div class="col">
@@ -149,21 +131,26 @@
 
                             <div class="col">
                                 <label>Put Away Location</label>
-
-                                <asp:DropDownList ID="ddlLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                <span class="error_message">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlLocation" ValidationGroup="md"
-                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Facility" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>
+                                <asp:TextBox ID="txtPutAwayLocation" ReadOnly="true" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
                             <div class="col">
                                 <label># Trays Moved</label>
-                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtTrays" TextMode="Number" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
 
                                 <span class="error_message">
                                     <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Trays Moved" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </span>
+                            </div>
+                            <div class="col">
+                                <label>Barcode</label>
+                                <asp:TextBox ID="txtBarcode" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                <span class="error_message">
+                                    <asp:Label ID="Label1" runat="server" ForeColor="red"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtBarcode" ValidationGroup="md"
+                                        SetFocusOnError="true" ErrorMessage="Please Enter Barcode" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
                             <div class="col-auto align-self-center">

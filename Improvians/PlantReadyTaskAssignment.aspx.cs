@@ -16,10 +16,32 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["WOId"] != null)
+                {
+                    wo = Request.QueryString["WOId"].ToString();
+                }
+
                 BindGridGerm();
                 BindOperatorList();
             }
         }
+
+        private string wo
+        {
+            get
+            {
+                if (ViewState["wo"] != null)
+                {
+                    return (string)ViewState["wo"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["wo"] = value;
+            }
+        }
+
 
         public void BindOperatorList()
         {
@@ -36,12 +58,16 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobID", Session["JobID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorAssignedJobByJobID", nv);
+            nv.Add("@LoginID", wo);
+            nv.Add("@Mode", "7");
+            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 
+
         }
+
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -49,13 +75,13 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
             nv.Add("@Notes", txtNotes.Text);
-            nv.Add("@JobID", Session["JobID"].ToString());
+            nv.Add("@JobID","");
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@CropId", Session["LoginID"].ToString());
+            nv.Add("@CropId","");
             nv.Add("@UpdatedReadyDate", "");
             nv.Add("@PlantExpirationDate","");
             nv.Add("@RootQuality","");
-
+            nv.Add("@wo",wo);
             nv.Add("@PlantHeight","");
 
             nv.Add("@mode", "3");
@@ -66,7 +92,7 @@ namespace Improvians
                 //lblmsg.Text = "Assignment Successful";
                 clear();
                 string message = "Assignment Successful";
-                string url = "MyTaskGreenSupervisor.aspx";
+                string url = "PlantReadyAssignmentForm.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -91,7 +117,7 @@ namespace Improvians
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-            Response.Redirect("~/MyTaskGreenSupervisor.aspx");
+            Response.Redirect("~/PlantReadyAssignmentForm.aspx");
         }
 
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)

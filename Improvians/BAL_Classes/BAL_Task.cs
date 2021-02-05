@@ -63,15 +63,19 @@ namespace Improvians.BAL_Classes
             return _isInserted;
         }
 
-        public int AddPTCSeedAllocation(string PTCID, string LotID)
+        public int AddPTCSeedAllocation(string STCID, string LotID, string ActualSeed, string SeedNo, string Type, string Partial)
         {
             int _isInserted = -1;
             try
             {
                 objGeneral = new General();
-                    objGeneral.AddParameterWithValueToSQLCommand("@PTCID", PTCID);
+                    objGeneral.AddParameterWithValueToSQLCommand("@STCID", STCID);
                     objGeneral.AddParameterWithValueToSQLCommand("@LotID", LotID);
-                    _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddPTCLotMap");
+                objGeneral.AddParameterWithValueToSQLCommand("@ActualSeed", ActualSeed);
+                objGeneral.AddParameterWithValueToSQLCommand("@SeedNo", SeedNo);
+                objGeneral.AddParameterWithValueToSQLCommand("@Type", Type);
+                objGeneral.AddParameterWithValueToSQLCommand("@Partial", Partial);
+                _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddPTCLotMap");
                 
             }
             catch (Exception ex)
@@ -122,6 +126,19 @@ namespace Improvians.BAL_Classes
             return _isInserted;
         }
 
+        public DataTable GetSeedNoBySeedLotID(string SeedLotID)
+        {
+            try
+            {
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@SeedLotID", SeedLotID);
+                ds = objGeneral.GetDatasetByCommand_SP("SP_GetSeedNoBySeedLotID");
+            }
+            catch (Exception ex)
+            {
 
+            }
+          return  ds.Tables[0];
+        }
     }
 }

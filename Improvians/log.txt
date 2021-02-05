@@ -1252,3 +1252,863 @@
 *****Error message=****@GermHealth: at 02-Feb-21 02:32:25 PM
 *****Error message=****@JobID:JB030119 at 02-Feb-21 02:32:25 PM
 *****Error message=****@LoginID:3 at 02-Feb-21 02:32:26 PM
+*****Error message=****   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 240A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) at 03-02-2021 13:56:07
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 241A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - The semaphore timeout period has expired.) at 03-02-2021 17:32:54
+*****Error message=****   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 240A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) at 03-02-2021 17:33:23
+*****Error message=****   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 240A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) at 03-02-2021 17:33:23
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:21:17
+*****Error message=****@wo:WO108374 at 03-02-2021 23:21:17
+*****Error message=****@woid:'WO108374' at 03-02-2021 23:21:17
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:21:17
+*****Error message=****@FacilityID:4 at 03-02-2021 23:21:17
+*****Error message=****@GreenHouseID:17 at 03-02-2021 23:21:17
+*****Error message=****@Trays:803 at 03-02-2021 23:21:17
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:21:17
+*****Error message=****@CreateBy:1 at 03-02-2021 23:21:17
+*****Error message=****@mode:1 at 03-02-2021 23:21:17
+*****Error message=****Sql Error is=Procedure or function SP_AddGrowerPutAwayDetails has too many arguments specified. at 03-02-2021 23:21:17
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:21:17
+*****Error message=****@wo:WO108374 at 03-02-2021 23:21:17
+*****Error message=****@woid:'WO108374' at 03-02-2021 23:21:17
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:21:17
+*****Error message=****@FacilityID:4 at 03-02-2021 23:21:17
+*****Error message=****@GreenHouseID:19 at 03-02-2021 23:21:17
+*****Error message=****@Trays:500 at 03-02-2021 23:21:17
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:21:17
+*****Error message=****@CreateBy:1 at 03-02-2021 23:21:17
+*****Error message=****@mode:1 at 03-02-2021 23:21:17
+*****Error message=****Sql Error is=Procedure or function SP_AddGrowerPutAwayDetails has too many arguments specified. at 03-02-2021 23:21:18
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:22:38
+*****Error message=****@wo:WO108374 at 03-02-2021 23:22:38
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:22:38
+*****Error message=****@FacilityID:3 at 03-02-2021 23:22:38
+*****Error message=****@GreenHouseID:4 at 03-02-2021 23:22:38
+*****Error message=****@Trays:50 at 03-02-2021 23:22:38
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:22:38
+*****Error message=****@CreateBy:1 at 03-02-2021 23:22:38
+*****Error message=****@mode:1 at 03-02-2021 23:22:38
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:22:39
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:27:01
+*****Error message=****@wo:WO108374 at 03-02-2021 23:27:01
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:27:01
+*****Error message=****@FacilityID:3 at 03-02-2021 23:27:01
+*****Error message=****@GreenHouseID:4 at 03-02-2021 23:27:01
+*****Error message=****@Trays:50 at 03-02-2021 23:27:01
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:27:01
+*****Error message=****@CreateBy:1 at 03-02-2021 23:27:01
+*****Error message=****@mode:1 at 03-02-2021 23:27:01
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:27:02
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:27:28
+*****Error message=****@wo:WO108375 at 03-02-2021 23:27:28
+*****Error message=****@jobcode:JB031742 at 03-02-2021 23:27:28
+*****Error message=****@FacilityID:3 at 03-02-2021 23:27:28
+*****Error message=****@GreenHouseID:4 at 03-02-2021 23:27:28
+*****Error message=****@Trays:50 at 03-02-2021 23:27:28
+*****Error message=****@SeedDate:02-03-2021 at 03-02-2021 23:27:28
+*****Error message=****@CreateBy:1 at 03-02-2021 23:27:28
+*****Error message=****@mode:1 at 03-02-2021 23:27:28
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:27:28
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:27:28
+*****Error message=****@wo:WO108375 at 03-02-2021 23:27:28
+*****Error message=****@jobcode:JB031742 at 03-02-2021 23:27:28
+*****Error message=****@FacilityID:4 at 03-02-2021 23:27:28
+*****Error message=****@GreenHouseID:20 at 03-02-2021 23:27:28
+*****Error message=****@Trays: at 03-02-2021 23:27:28
+*****Error message=****@SeedDate:02-03-2021 at 03-02-2021 23:27:28
+*****Error message=****@CreateBy:1 at 03-02-2021 23:27:28
+*****Error message=****@mode:1 at 03-02-2021 23:27:29
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:27:29
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:34:45
+*****Error message=****@wo:WO108772 at 03-02-2021 23:34:45
+*****Error message=****@jobcode:JB030763 at 03-02-2021 23:34:45
+*****Error message=****@FacilityID:3 at 03-02-2021 23:34:45
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:34:45
+*****Error message=****@Trays:803 at 03-02-2021 23:34:45
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:34:45
+*****Error message=****@CreateBy:1 at 03-02-2021 23:34:45
+*****Error message=****@mode:1 at 03-02-2021 23:34:45
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:34:46
+*****Error message=****@WorkOrder:WO108772 at 03-02-2021 23:34:46
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:34:46
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:48:01
+*****Error message=****@wo:WO108374 at 03-02-2021 23:48:01
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:48:01
+*****Error message=****@FacilityID:3 at 03-02-2021 23:48:01
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:48:01
+*****Error message=****@Trays:50 at 03-02-2021 23:48:01
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:48:01
+*****Error message=****@CreateBy:1 at 03-02-2021 23:48:01
+*****Error message=****@mode:1 at 03-02-2021 23:48:01
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:48:01
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:48:01
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:48:01
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:51:30
+*****Error message=****@wo:WO108374 at 03-02-2021 23:51:30
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:51:30
+*****Error message=****@FacilityID:3 at 03-02-2021 23:51:30
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:51:30
+*****Error message=****@Trays:50 at 03-02-2021 23:51:30
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:51:30
+*****Error message=****@CreateBy:1 at 03-02-2021 23:51:30
+*****Error message=****@mode:1 at 03-02-2021 23:51:30
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:51:30
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:52:15
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:52:15
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:52:24
+*****Error message=****@wo:WO108374 at 03-02-2021 23:52:24
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:52:24
+*****Error message=****@FacilityID:3 at 03-02-2021 23:52:24
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:52:24
+*****Error message=****@Trays:50 at 03-02-2021 23:52:24
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:52:24
+*****Error message=****@CreateBy:1 at 03-02-2021 23:52:24
+*****Error message=****@mode:1 at 03-02-2021 23:52:24
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:52:24
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:52:53
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:52:53
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:53:01
+*****Error message=****@wo:WO108374 at 03-02-2021 23:53:01
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:53:01
+*****Error message=****@FacilityID:3 at 03-02-2021 23:53:01
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:53:01
+*****Error message=****@Trays:50 at 03-02-2021 23:53:01
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:53:01
+*****Error message=****@CreateBy:1 at 03-02-2021 23:53:01
+*****Error message=****@mode:1 at 03-02-2021 23:53:01
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:53:01
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:53:44
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:57:36
+*****Error message=****@GrowerPutAwayId: at 03-02-2021 23:57:42
+*****Error message=****@wo:WO108374 at 03-02-2021 23:57:42
+*****Error message=****@jobcode:JB031741 at 03-02-2021 23:57:42
+*****Error message=****@FacilityID:3 at 03-02-2021 23:57:42
+*****Error message=****@GreenHouseID:3 at 03-02-2021 23:57:42
+*****Error message=****@Trays:50 at 03-02-2021 23:57:42
+*****Error message=****@SeedDate:02-05-2021 at 03-02-2021 23:57:42
+*****Error message=****@CreateBy:1 at 03-02-2021 23:57:42
+*****Error message=****@mode:1 at 03-02-2021 23:57:42
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 03-02-2021 23:57:43
+*****Error message=****@WorkOrder:WO108374 at 03-02-2021 23:57:52
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 00:00:07
+*****Error message=****@wo:WO108627 at 04-02-2021 00:00:07
+*****Error message=****@jobcode:JB032922 at 04-02-2021 00:00:07
+*****Error message=****@FacilityID:4 at 04-02-2021 00:00:07
+*****Error message=****@GreenHouseID:20 at 04-02-2021 00:00:07
+*****Error message=****@Trays:803 at 04-02-2021 00:00:07
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 00:00:07
+*****Error message=****@CreateBy:1 at 04-02-2021 00:00:07
+*****Error message=****@mode:1 at 04-02-2021 00:00:07
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 04-02-2021 00:00:08
+*****Error message=****@WorkOrder:WO108627 at 04-02-2021 00:00:08
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 00:04:23
+*****Error message=****@wo:WO108772 at 04-02-2021 00:04:23
+*****Error message=****@jobcode:JB030763 at 04-02-2021 00:04:23
+*****Error message=****@FacilityID:3 at 04-02-2021 00:04:23
+*****Error message=****@GreenHouseID:10 at 04-02-2021 00:04:23
+*****Error message=****@Trays:803 at 04-02-2021 00:04:23
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 00:04:23
+*****Error message=****@CreateBy:1 at 04-02-2021 00:04:23
+*****Error message=****@mode:1 at 04-02-2021 00:04:23
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 04-02-2021 00:04:23
+*****Error message=****@WorkOrder:WO108772 at 04-02-2021 00:04:23
+*****Error message=****@SupervisorID:2 at 04-02-2021 12:21:43
+*****Error message=****@JobID:JB030128 at 04-02-2021 12:21:43
+*****Error message=****@LoginID:1 at 04-02-2021 12:21:43
+*****Error message=****@OperatorID:2 at 04-02-2021 12:22:18
+*****Error message=****@Notes: at 04-02-2021 12:22:18
+*****Error message=****@JobID:JB030128 at 04-02-2021 12:22:18
+*****Error message=****@LoginID:2 at 04-02-2021 12:22:18
+*****Error message=****@CropId: at 04-02-2021 12:22:18
+*****Error message=****@UpdatedReadyDate: at 04-02-2021 12:22:18
+*****Error message=****@PlantExpirationDate: at 04-02-2021 12:22:18
+*****Error message=****@RootQuality: at 04-02-2021 12:22:18
+*****Error message=****@PlantHeight: at 04-02-2021 12:22:18
+*****Error message=****@mode:3 at 04-02-2021 12:22:18
+*****Error message=****@OperatorID:2 at 04-02-2021 12:47:58
+*****Error message=****@Notes: at 04-02-2021 12:47:58
+*****Error message=****@JobID:JB030128 at 04-02-2021 12:47:58
+*****Error message=****@LoginID:2 at 04-02-2021 12:47:58
+*****Error message=****@CropId: at 04-02-2021 12:47:58
+*****Error message=****@UpdatedReadyDate: at 04-02-2021 12:47:58
+*****Error message=****@PlantExpirationDate: at 04-02-2021 12:47:58
+*****Error message=****@RootQuality: at 04-02-2021 12:47:58
+*****Error message=****@PlantHeight: at 04-02-2021 12:47:58
+*****Error message=****@mode:3 at 04-02-2021 12:47:58
+*****Error message=****@OperatorID:2 at 04-02-2021 12:48:57
+*****Error message=****@Notes:ssds at 04-02-2021 12:48:57
+*****Error message=****@JobID:JB030128 at 04-02-2021 12:48:57
+*****Error message=****@LoginID:2 at 04-02-2021 12:48:57
+*****Error message=****@CropId: at 04-02-2021 12:48:57
+*****Error message=****@UpdatedReadyDate:2021-03-13 at 04-02-2021 12:48:57
+*****Error message=****@PlantExpirationDate:2021-02-17 at 04-02-2021 12:48:57
+*****Error message=****@RootQuality:2) WEAK at 04-02-2021 12:48:57
+*****Error message=****@PlantHeight:2.5 at 04-02-2021 12:48:57
+*****Error message=****@mode:2 at 04-02-2021 12:48:57
+*****Error message=****@CoordinatorId:7 at 04-02-2021 14:15:27
+*****Error message=****@wo:WO108374 at 04-02-2021 14:15:27
+*****Error message=****@CreateBy:6 at 04-02-2021 14:15:27
+*****Error message=****@CoordinatorId:7 at 04-02-2021 14:18:03
+*****Error message=****@wo:WO108627 at 04-02-2021 14:18:03
+*****Error message=****@CreateBy:6 at 04-02-2021 14:18:03
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 241Procedure or function SP_GetShippingCoordinatorTask has too many arguments specified. at 04-02-2021 14:38:41
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 241Procedure or function SP_GetShippingCoordinatorTask has too many arguments specified. at 04-02-2021 14:38:49
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 241Procedure or function SP_GetShippingCoordinatorTask has too many arguments specified. at 04-02-2021 14:40:54
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 241Procedure or function SP_GetShippingCoordinatorTask has too many arguments specified. at 04-02-2021 14:40:58
+*****Error message=****@GrowerPutAwayId:1 at 04-02-2021 15:41:14
+*****Error message=****@Wo:WO108374 at 04-02-2021 15:41:14
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 15:41:14
+*****Error message=****@Put_Away_Location:ENC1-H02-1 at 04-02-2021 15:41:14
+*****Error message=****@TraysMoved:10 at 04-02-2021 15:41:14
+*****Error message=****@Barcode:5655775566 at 04-02-2021 15:41:14
+*****Error message=****@CreateBy:7 at 04-02-2021 15:41:14
+*****Error message=****@WoId:2 at 04-02-2021 16:26:39
+*****Error message=****@mode:4 at 04-02-2021 16:26:39
+*****Error message=****@WoId:3 at 04-02-2021 16:26:39
+*****Error message=****@mode:4 at 04-02-2021 16:26:39
+*****Error message=****@WoId:9 at 04-02-2021 16:26:39
+*****Error message=****@mode:4 at 04-02-2021 16:26:39
+*****Error message=****@WoId:11 at 04-02-2021 16:26:40
+*****Error message=****@mode:4 at 04-02-2021 16:26:40
+*****Error message=****@WoId:12 at 04-02-2021 16:26:40
+*****Error message=****@mode:4 at 04-02-2021 16:26:40
+*****Error message=****@WoId:13 at 04-02-2021 16:26:40
+*****Error message=****@mode:4 at 04-02-2021 16:26:40
+*****Error message=****@WoId:14 at 04-02-2021 16:26:41
+*****Error message=****@mode:4 at 04-02-2021 16:26:41
+*****Error message=****@WoId:15 at 04-02-2021 16:26:41
+*****Error message=****@mode:4 at 04-02-2021 16:26:41
+*****Error message=****@WoId:2 at 04-02-2021 16:28:25
+*****Error message=****@mode:4 at 04-02-2021 16:28:25
+*****Error message=****@WoId:3 at 04-02-2021 16:28:25
+*****Error message=****@mode:4 at 04-02-2021 16:28:25
+*****Error message=****@WoId:9 at 04-02-2021 16:28:26
+*****Error message=****@mode:4 at 04-02-2021 16:28:26
+*****Error message=****@WoId:11 at 04-02-2021 16:28:26
+*****Error message=****@mode:4 at 04-02-2021 16:28:26
+*****Error message=****@WoId:12 at 04-02-2021 16:28:26
+*****Error message=****@mode:4 at 04-02-2021 16:28:26
+*****Error message=****@WoId:13 at 04-02-2021 16:28:27
+*****Error message=****@mode:4 at 04-02-2021 16:28:27
+*****Error message=****@WoId:14 at 04-02-2021 16:28:27
+*****Error message=****@mode:4 at 04-02-2021 16:28:27
+*****Error message=****@WoId:15 at 04-02-2021 16:28:27
+*****Error message=****@mode:4 at 04-02-2021 16:28:27
+*****Error message=****@WoId:2 at 04-02-2021 16:29:27
+*****Error message=****@mode:4 at 04-02-2021 16:29:27
+*****Error message=****@WoId:3 at 04-02-2021 16:29:27
+*****Error message=****@mode:4 at 04-02-2021 16:29:27
+*****Error message=****@WoId:9 at 04-02-2021 16:29:27
+*****Error message=****@mode:4 at 04-02-2021 16:29:27
+*****Error message=****@WoId:11 at 04-02-2021 16:29:27
+*****Error message=****@mode:4 at 04-02-2021 16:29:27
+*****Error message=****@WoId:12 at 04-02-2021 16:29:28
+*****Error message=****@mode:4 at 04-02-2021 16:29:28
+*****Error message=****@WoId:13 at 04-02-2021 16:29:28
+*****Error message=****@mode:4 at 04-02-2021 16:29:28
+*****Error message=****@WoId:14 at 04-02-2021 16:29:28
+*****Error message=****@mode:4 at 04-02-2021 16:29:28
+*****Error message=****@WoId:15 at 04-02-2021 16:29:29
+*****Error message=****@mode:4 at 04-02-2021 16:29:29
+*****Error message=****@WoId:2 at 04-02-2021 16:29:44
+*****Error message=****@mode:4 at 04-02-2021 16:29:44
+*****Error message=****@WoId:3 at 04-02-2021 16:29:45
+*****Error message=****@mode:4 at 04-02-2021 16:29:45
+*****Error message=****@WoId:9 at 04-02-2021 16:29:45
+*****Error message=****@mode:4 at 04-02-2021 16:29:45
+*****Error message=****@WoId:11 at 04-02-2021 16:29:45
+*****Error message=****@mode:4 at 04-02-2021 16:29:45
+*****Error message=****@WoId:12 at 04-02-2021 16:29:46
+*****Error message=****@mode:4 at 04-02-2021 16:29:46
+*****Error message=****@WoId:13 at 04-02-2021 16:29:46
+*****Error message=****@mode:4 at 04-02-2021 16:29:46
+*****Error message=****@WoId:14 at 04-02-2021 16:29:46
+*****Error message=****@mode:4 at 04-02-2021 16:29:46
+*****Error message=****@WoId:15 at 04-02-2021 16:29:46
+*****Error message=****@mode:4 at 04-02-2021 16:29:46
+*****Error message=****@WoId:2 at 04-02-2021 16:30:01
+*****Error message=****@mode:4 at 04-02-2021 16:30:01
+*****Error message=****@WoId:3 at 04-02-2021 16:30:01
+*****Error message=****@mode:4 at 04-02-2021 16:30:01
+*****Error message=****@WoId:9 at 04-02-2021 16:30:01
+*****Error message=****@mode:4 at 04-02-2021 16:30:01
+*****Error message=****@WoId:11 at 04-02-2021 16:30:01
+*****Error message=****@mode:4 at 04-02-2021 16:30:01
+*****Error message=****@WoId:12 at 04-02-2021 16:30:02
+*****Error message=****@mode:4 at 04-02-2021 16:30:02
+*****Error message=****@WoId:13 at 04-02-2021 16:30:02
+*****Error message=****@mode:4 at 04-02-2021 16:30:02
+*****Error message=****@WoId:14 at 04-02-2021 16:30:02
+*****Error message=****@mode:4 at 04-02-2021 16:30:02
+*****Error message=****@WoId:15 at 04-02-2021 16:30:03
+*****Error message=****@mode:4 at 04-02-2021 16:30:03
+*****Error message=****@WoId:2 at 04-02-2021 16:31:52
+*****Error message=****@mode:4 at 04-02-2021 16:31:52
+*****Error message=****@WoId:3 at 04-02-2021 16:31:52
+*****Error message=****@mode:4 at 04-02-2021 16:31:52
+*****Error message=****@WoId:9 at 04-02-2021 16:31:53
+*****Error message=****@mode:4 at 04-02-2021 16:31:53
+*****Error message=****@WoId:11 at 04-02-2021 16:31:53
+*****Error message=****@mode:4 at 04-02-2021 16:31:53
+*****Error message=****@WoId:12 at 04-02-2021 16:31:53
+*****Error message=****@mode:4 at 04-02-2021 16:31:53
+*****Error message=****@WoId:13 at 04-02-2021 16:31:54
+*****Error message=****@mode:4 at 04-02-2021 16:31:54
+*****Error message=****@WoId:14 at 04-02-2021 16:31:54
+*****Error message=****@mode:4 at 04-02-2021 16:31:54
+*****Error message=****@WoId:15 at 04-02-2021 16:31:54
+*****Error message=****@mode:4 at 04-02-2021 16:31:54
+*****Error message=****@WoId:2 at 04-02-2021 16:34:50
+*****Error message=****@mode:4 at 04-02-2021 16:34:50
+*****Error message=****@WoId:3 at 04-02-2021 16:34:51
+*****Error message=****@mode:4 at 04-02-2021 16:34:51
+*****Error message=****@WoId:9 at 04-02-2021 16:34:51
+*****Error message=****@mode:4 at 04-02-2021 16:34:51
+*****Error message=****@WoId:11 at 04-02-2021 16:34:51
+*****Error message=****@mode:4 at 04-02-2021 16:34:51
+*****Error message=****@WoId:12 at 04-02-2021 16:34:51
+*****Error message=****@mode:4 at 04-02-2021 16:34:51
+*****Error message=****@WoId:13 at 04-02-2021 16:34:52
+*****Error message=****@mode:4 at 04-02-2021 16:34:52
+*****Error message=****@WoId:14 at 04-02-2021 16:34:52
+*****Error message=****@mode:4 at 04-02-2021 16:34:52
+*****Error message=****@WoId:15 at 04-02-2021 16:34:52
+*****Error message=****@mode:4 at 04-02-2021 16:34:52
+*****Error message=****@GrowerPutAwayId:0 at 04-02-2021 16:35:32
+*****Error message=****@Wo:WO108374 at 04-02-2021 16:35:32
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 16:35:32
+*****Error message=****@Put_Away_Location:ENC1-H01-4 at 04-02-2021 16:35:32
+*****Error message=****@TraysMoved:10 at 04-02-2021 16:35:32
+*****Error message=****@Barcode:5655775566 at 04-02-2021 16:35:32
+*****Error message=****@CreateBy:7 at 04-02-2021 16:35:32
+*****Error message=****@WoId:8 at 04-02-2021 17:56:12
+*****Error message=****@mode:4 at 04-02-2021 17:56:12
+*****Error message=****@WoId:8 at 04-02-2021 17:56:25
+*****Error message=****@mode:4 at 04-02-2021 17:56:25
+*****Error message=****@WoId:8 at 04-02-2021 18:09:13
+*****Error message=****@mode:4 at 04-02-2021 18:09:13
+*****Error message=****@WoId:8 at 04-02-2021 18:12:29
+*****Error message=****@mode:4 at 04-02-2021 18:12:29
+*****Error message=****@GrowerPutAwayId:8 at 04-02-2021 18:12:50
+*****Error message=****@Wo:WO108772 at 04-02-2021 18:12:50
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 18:12:50
+*****Error message=****@Put_Away_Location:ENC1-H01-4 at 04-02-2021 18:12:50
+*****Error message=****@TraysMoved:10 at 04-02-2021 18:12:50
+*****Error message=****@Barcode:5655775566 at 04-02-2021 18:12:50
+*****Error message=****@CreateBy:6 at 04-02-2021 18:12:50
+*****Error message=****@GrowerPutAwayId:8 at 04-02-2021 19:40:21
+*****Error message=****@Wo:WO108772 at 04-02-2021 19:40:21
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 19:40:21
+*****Error message=****@Put_Away_Location:ENC1-H01-4 at 04-02-2021 19:40:21
+*****Error message=****@TraysMoved:15 at 04-02-2021 19:40:21
+*****Error message=****@Barcode:5655775566 at 04-02-2021 19:40:21
+*****Error message=****@CreateBy:7 at 04-02-2021 19:40:21
+*****Error message=****@WoId:WO108772 at 04-02-2021 19:40:21
+*****Error message=****@JobID: at 04-02-2021 19:40:21
+*****Error message=****Sql Error is=Procedure or function 'SP_AddCompletMoveForm' expects parameter '@CreatedBy', which was not supplied. at 04-02-2021 19:40:22
+*****Error message=****@GrowerPutAwayId:8 at 04-02-2021 19:45:13
+*****Error message=****@Wo:WO108772 at 04-02-2021 19:45:13
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 19:45:13
+*****Error message=****@Put_Away_Location:ENC1-H01-4 at 04-02-2021 19:45:13
+*****Error message=****@TraysMoved:15 at 04-02-2021 19:45:13
+*****Error message=****@Barcode:5655775566 at 04-02-2021 19:45:13
+*****Error message=****@CreateBy:7 at 04-02-2021 19:45:13
+*****Error message=****@WoId:WO108772 at 04-02-2021 19:45:18
+*****Error message=****@JobID: at 04-02-2021 19:45:18
+*****Error message=****Sql Error is=Procedure or function 'SP_AddCompletMoveForm' expects parameter '@CreatedBy', which was not supplied. at 04-02-2021 19:45:18
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 19:59:37
+*****Error message=****@wo:WO108447 at 04-02-2021 19:59:43
+*****Error message=****@jobcode:JB032752 at 04-02-2021 19:59:49
+*****Error message=****@FacilityID:3 at 04-02-2021 19:59:49
+*****Error message=****@GreenHouseID:4 at 04-02-2021 19:59:49
+*****Error message=****@Trays:10 at 04-02-2021 19:59:49
+*****Error message=****@SeedDate:02-04-2021 at 04-02-2021 19:59:49
+*****Error message=****@CreateBy:1 at 04-02-2021 19:59:49
+*****Error message=****@mode:1 at 04-02-2021 19:59:49
+*****Error message=****Sql Error is=Invalid object name 'SeedLineTaskCompletion'. at 04-02-2021 20:02:32
+*****Error message=****@WorkOrder:WO108447 at 04-02-2021 20:02:32
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 20:03:41
+*****Error message=****@wo:WO108444 at 04-02-2021 20:03:41
+*****Error message=****@jobcode:JB032749 at 04-02-2021 20:03:41
+*****Error message=****@FacilityID:4 at 04-02-2021 20:03:41
+*****Error message=****@GreenHouseID:19 at 04-02-2021 20:03:41
+*****Error message=****@Trays:1 at 04-02-2021 20:03:41
+*****Error message=****@SeedDate:02-04-2021 at 04-02-2021 20:03:41
+*****Error message=****@CreateBy:1 at 04-02-2021 20:03:41
+*****Error message=****@mode:1 at 04-02-2021 20:03:41
+*****Error message=****@WorkOrder:WO108444 at 04-02-2021 20:03:42
+*****Error message=****@GrowerPutAwayId:5 at 04-02-2021 21:27:16
+*****Error message=****@Wo:WO108627 at 04-02-2021 21:27:16
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 21:27:16
+*****Error message=****@Put_Away_Location:ENC2-OUTSIDE-48-A at 04-02-2021 21:27:16
+*****Error message=****@TraysMoved:10 at 04-02-2021 21:27:16
+*****Error message=****@Barcode:5655775566 at 04-02-2021 21:27:16
+*****Error message=****@CreateBy:7 at 04-02-2021 21:27:16
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 22:35:26
+*****Error message=****@wo:WO108374 at 04-02-2021 22:35:26
+*****Error message=****@jobcode:JB031741 at 04-02-2021 22:35:26
+*****Error message=****@FacilityID:3 at 04-02-2021 22:35:26
+*****Error message=****@GreenHouseID:5 at 04-02-2021 22:35:26
+*****Error message=****@Trays:403 at 04-02-2021 22:35:26
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 22:35:26
+*****Error message=****@CreateBy:1 at 04-02-2021 22:35:26
+*****Error message=****@mode:1 at 04-02-2021 22:35:26
+*****Error message=****Sql Error is=Invalid object name 'ImproviansAdmin.SeedLineTaskCompletion'. at 04-02-2021 22:35:30
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 22:35:30
+*****Error message=****@wo:WO108374 at 04-02-2021 22:35:30
+*****Error message=****@jobcode:JB031741 at 04-02-2021 22:35:30
+*****Error message=****@FacilityID:3 at 04-02-2021 22:35:30
+*****Error message=****@GreenHouseID:4 at 04-02-2021 22:35:30
+*****Error message=****@Trays:400 at 04-02-2021 22:35:30
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 22:35:30
+*****Error message=****@CreateBy:1 at 04-02-2021 22:35:30
+*****Error message=****@mode:1 at 04-02-2021 22:35:30
+*****Error message=****Sql Error is=Invalid object name 'ImproviansAdmin.SeedLineTaskCompletion'. at 04-02-2021 22:35:31
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 22:39:56
+*****Error message=****@wo:WO108374 at 04-02-2021 22:39:56
+*****Error message=****@jobcode:JB031741 at 04-02-2021 22:39:56
+*****Error message=****@FacilityID:3 at 04-02-2021 22:39:56
+*****Error message=****@GreenHouseID:2 at 04-02-2021 22:39:56
+*****Error message=****@Trays:400 at 04-02-2021 22:39:56
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 22:39:56
+*****Error message=****@CreateBy:1 at 04-02-2021 22:39:56
+*****Error message=****@mode:1 at 04-02-2021 22:39:56
+*****Error message=****Sql Error is=Invalid object name 'ImproviansAdmin.SeedLineTaskCompletion'. at 04-02-2021 22:39:57
+*****Error message=****@WorkOrder:WO108374 at 04-02-2021 22:39:57
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 22:39:58
+*****Error message=****@wo:WO108374 at 04-02-2021 22:39:58
+*****Error message=****@jobcode:JB031741 at 04-02-2021 22:39:58
+*****Error message=****@FacilityID:3 at 04-02-2021 22:39:58
+*****Error message=****@GreenHouseID:5 at 04-02-2021 22:39:58
+*****Error message=****@Trays:403 at 04-02-2021 22:39:58
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 22:39:58
+*****Error message=****@CreateBy:1 at 04-02-2021 22:39:58
+*****Error message=****@mode:1 at 04-02-2021 22:39:58
+*****Error message=****Sql Error is=Invalid object name 'ImproviansAdmin.SeedLineTaskCompletion'. at 04-02-2021 22:39:59
+*****Error message=****@WorkOrder:WO108374 at 04-02-2021 22:39:59
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 22:41:47
+*****Error message=****@wo:WO108375 at 04-02-2021 22:41:47
+*****Error message=****@jobcode:JB031742 at 04-02-2021 22:41:47
+*****Error message=****@FacilityID:3 at 04-02-2021 22:41:47
+*****Error message=****@GreenHouseID:7 at 04-02-2021 22:41:47
+*****Error message=****@Trays:10 at 04-02-2021 22:41:47
+*****Error message=****@SeedDate:02-03-2021 at 04-02-2021 22:41:47
+*****Error message=****@CreateBy:1 at 04-02-2021 22:41:47
+*****Error message=****@mode:1 at 04-02-2021 22:41:47
+*****Error message=****Sql Error is=Invalid object name 'ImproviansAdmin.SeedLineTaskCompletion'. at 04-02-2021 22:41:48
+*****Error message=****@WorkOrder:WO108375 at 04-02-2021 22:41:48
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 22:43:28
+*****Error message=****@wo:WO108627 at 04-02-2021 22:43:28
+*****Error message=****@jobcode:JB032922 at 04-02-2021 22:43:28
+*****Error message=****@FacilityID:3 at 04-02-2021 22:43:28
+*****Error message=****@GreenHouseID:4 at 04-02-2021 22:43:28
+*****Error message=****@Trays:124 at 04-02-2021 22:43:28
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 22:43:28
+*****Error message=****@CreateBy:1 at 04-02-2021 22:43:28
+*****Error message=****@mode:1 at 04-02-2021 22:43:28
+*****Error message=****Sql Error is=Invalid object name 'ImproviansAdmin.SeedLineTaskCompletion'. at 04-02-2021 22:46:16
+*****Error message=****@WorkOrder:WO108627 at 04-02-2021 22:46:16
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 22:47:44
+*****Error message=****@wo:WO108374 at 04-02-2021 22:47:44
+*****Error message=****@jobcode:JB031741 at 04-02-2021 22:47:44
+*****Error message=****@FacilityID:3 at 04-02-2021 22:47:44
+*****Error message=****@GreenHouseID:4 at 04-02-2021 22:47:44
+*****Error message=****@Trays:400 at 04-02-2021 22:47:44
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 22:47:44
+*****Error message=****@CreateBy:1 at 04-02-2021 22:47:44
+*****Error message=****@mode:1 at 04-02-2021 22:47:44
+*****Error message=****@WorkOrder:WO108374 at 04-02-2021 22:47:45
+*****Error message=****@GrowerPutAwayId: at 04-02-2021 22:47:45
+*****Error message=****@wo:WO108374 at 04-02-2021 22:47:45
+*****Error message=****@jobcode:JB031741 at 04-02-2021 22:47:45
+*****Error message=****@FacilityID:4 at 04-02-2021 22:47:45
+*****Error message=****@GreenHouseID:20 at 04-02-2021 22:47:45
+*****Error message=****@Trays:403 at 04-02-2021 22:47:45
+*****Error message=****@SeedDate:02-05-2021 at 04-02-2021 22:47:45
+*****Error message=****@CreateBy:1 at 04-02-2021 22:47:45
+*****Error message=****@mode:1 at 04-02-2021 22:47:45
+*****Error message=****@WorkOrder:WO108374 at 04-02-2021 22:47:46
+*****Error message=****@GrowerPutAwayId:1 at 04-02-2021 22:51:53
+*****Error message=****@Wo:WO108374 at 04-02-2021 22:51:53
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 22:51:53
+*****Error message=****@Put_Away_Location:ENC1-H01-5-A at 04-02-2021 22:51:53
+*****Error message=****@TraysMoved:400 at 04-02-2021 22:51:53
+*****Error message=****@Barcode:5655775566 at 04-02-2021 22:51:53
+*****Error message=****@CreateBy:6 at 04-02-2021 22:51:53
+*****Error message=****@WoId:WO108374 at 04-02-2021 22:52:13
+*****Error message=****@JobID: at 04-02-2021 22:52:17
+*****Error message=****Sql Error is=Procedure or function 'SP_AddCompletMoveForm' expects parameter '@CreatedBy', which was not supplied. at 04-02-2021 22:54:33
+*****Error message=****@GrowerPutAwayId:2 at 04-02-2021 22:56:07
+*****Error message=****@Wo:WO108374 at 04-02-2021 22:56:07
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 22:56:07
+*****Error message=****@Put_Away_Location:ENC2-OUTSIDE-48-A at 04-02-2021 22:56:07
+*****Error message=****@TraysMoved:403 at 04-02-2021 22:56:07
+*****Error message=****@Barcode:5655775566 at 04-02-2021 22:56:07
+*****Error message=****@CreateBy:6 at 04-02-2021 22:56:07
+*****Error message=****@WoId:WO108374 at 04-02-2021 22:56:24
+*****Error message=****@JobID: at 04-02-2021 22:56:24
+*****Error message=****Sql Error is=Procedure or function 'SP_AddCompletMoveForm' expects parameter '@CreatedBy', which was not supplied. at 04-02-2021 22:57:03
+*****Error message=****@GrowerPutAwayId:1 at 04-02-2021 23:00:43
+*****Error message=****@Wo:WO108374 at 04-02-2021 23:00:43
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 23:00:43
+*****Error message=****@Put_Away_Location:ENC1-H01-5-A at 04-02-2021 23:00:43
+*****Error message=****@TraysMoved:400 at 04-02-2021 23:00:43
+*****Error message=****@Barcode:5655775566 at 04-02-2021 23:00:43
+*****Error message=****@CreateBy:6 at 04-02-2021 23:00:43
+*****Error message=****@WoId:WO108374 at 04-02-2021 23:00:51
+*****Error message=****@JobID: at 04-02-2021 23:00:51
+*****Error message=****@CreatedBy:6 at 04-02-2021 23:00:51
+*****Error message=****Sql Error is=String or binary data would be truncated.
+String or binary data would be truncated.
+The statement has been terminated.
+The statement has been terminated. at 04-02-2021 23:06:15
+*****Error message=****@GrowerPutAwayId:2 at 04-02-2021 23:06:37
+*****Error message=****@Wo:WO108374 at 04-02-2021 23:06:37
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 23:06:37
+*****Error message=****@Put_Away_Location:ENC2-OUTSIDE-48-A at 04-02-2021 23:06:37
+*****Error message=****@TraysMoved:403 at 04-02-2021 23:06:37
+*****Error message=****@Barcode:5655775566 at 04-02-2021 23:06:37
+*****Error message=****@CreateBy:6 at 04-02-2021 23:06:37
+*****Error message=****@WoId:WO108374 at 04-02-2021 23:06:43
+*****Error message=****@JobID: at 04-02-2021 23:06:43
+*****Error message=****@CreatedBy:6 at 04-02-2021 23:06:43
+*****Error message=****Sql Error is=String or binary data would be truncated.
+String or binary data would be truncated.
+The statement has been terminated.
+The statement has been terminated. at 04-02-2021 23:07:36
+*****Error message=****@GrowerPutAwayId:1 at 04-02-2021 23:08:18
+*****Error message=****@Wo:WO108374 at 04-02-2021 23:08:18
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 23:08:18
+*****Error message=****@Put_Away_Location:ENC1-H01-5-A at 04-02-2021 23:08:18
+*****Error message=****@TraysMoved:400 at 04-02-2021 23:08:18
+*****Error message=****@Barcode:5655775566 at 04-02-2021 23:08:18
+*****Error message=****@CreateBy:6 at 04-02-2021 23:08:18
+*****Error message=****@WoId:WO108374 at 04-02-2021 23:11:10
+*****Error message=****@JobID: at 04-02-2021 23:11:10
+*****Error message=****@CreatedBy:6 at 04-02-2021 23:11:10
+*****Error message=****Sql Error is=String or binary data would be truncated.
+The statement has been terminated. at 04-02-2021 23:11:11
+*****Error message=****@GrowerPutAwayId:2 at 04-02-2021 23:11:32
+*****Error message=****@Wo:WO108374 at 04-02-2021 23:11:32
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 23:11:32
+*****Error message=****@Put_Away_Location:ENC2-OUTSIDE-48-A at 04-02-2021 23:11:32
+*****Error message=****@TraysMoved:403 at 04-02-2021 23:11:32
+*****Error message=****@Barcode:5655775566 at 04-02-2021 23:11:32
+*****Error message=****@CreateBy:6 at 04-02-2021 23:11:32
+*****Error message=****@WoId:WO108374 at 04-02-2021 23:11:39
+*****Error message=****@JobID: at 04-02-2021 23:11:39
+*****Error message=****@CreatedBy:6 at 04-02-2021 23:11:39
+*****Error message=****Sql Error is=String or binary data would be truncated.
+The statement has been terminated. at 04-02-2021 23:13:13
+*****Error message=****@GrowerPutAwayId:1 at 04-02-2021 23:14:14
+*****Error message=****@Wo:WO108374 at 04-02-2021 23:14:14
+*****Error message=****@MoveDate:2021-02-04 at 04-02-2021 23:14:14
+*****Error message=****@Put_Away_Location:ENC1-H01-5-A at 04-02-2021 23:14:14
+*****Error message=****@TraysMoved:400 at 04-02-2021 23:14:14
+*****Error message=****@Barcode:5655775566 at 04-02-2021 23:14:14
+*****Error message=****@CreateBy:6 at 04-02-2021 23:14:14
+*****Error message=****@WoId:WO108374 at 04-02-2021 23:14:18
+*****Error message=****@JobID: at 04-02-2021 23:14:18
+*****Error message=****@CreatedBy:6 at 04-02-2021 23:14:18
+*****Error message=****@GrowerPutAwayId: at 05-02-2021 09:09:57
+*****Error message=****@wo:WO108375 at 05-02-2021 09:09:57
+*****Error message=****@jobcode:JB031742 at 05-02-2021 09:09:57
+*****Error message=****@FacilityID:3 at 05-02-2021 09:09:57
+*****Error message=****@GreenHouseID:3 at 05-02-2021 09:09:57
+*****Error message=****@Trays:10 at 05-02-2021 09:09:57
+*****Error message=****@SeedDate:02-03-2021 at 05-02-2021 09:09:57
+*****Error message=****@CreateBy:1 at 05-02-2021 09:09:57
+*****Error message=****@mode:1 at 05-02-2021 09:09:57
+*****Error message=****@WorkOrder:WO108375 at 05-02-2021 09:09:57
+*****Error message=****@GrowerPutAwayId: at 05-02-2021 09:20:50
+*****Error message=****@wo:WO108374 at 05-02-2021 09:20:50
+*****Error message=****@jobcode:JB031741 at 05-02-2021 09:20:50
+*****Error message=****@FacilityID:3 at 05-02-2021 09:20:50
+*****Error message=****@GreenHouseID:4 at 05-02-2021 09:20:50
+*****Error message=****@Trays:803 at 05-02-2021 09:20:50
+*****Error message=****@SeedDate:02-05-2021 at 05-02-2021 09:20:50
+*****Error message=****@CreateBy:1 at 05-02-2021 09:20:50
+*****Error message=****@mode:1 at 05-02-2021 09:20:50
+*****Error message=****@WorkOrder:WO108374 at 05-02-2021 09:20:50
+*****Error message=****@GrowerPutAwayId:1 at 05-02-2021 09:22:19
+*****Error message=****@Wo:WO108374 at 05-02-2021 09:22:19
+*****Error message=****@MoveDate:2021-02-05 at 05-02-2021 09:22:19
+*****Error message=****@Put_Away_Location:ENC1-H01-5-A at 05-02-2021 09:22:19
+*****Error message=****@TraysMoved:803 at 05-02-2021 09:22:19
+*****Error message=****@Barcode:5655775566 at 05-02-2021 09:22:19
+*****Error message=****@CreateBy:6 at 05-02-2021 09:22:19
+*****Error message=****@WoId:WO108374 at 05-02-2021 09:22:22
+*****Error message=****@JobID: at 05-02-2021 09:22:22
+*****Error message=****@CreatedBy:6 at 05-02-2021 09:22:22
+*****Error message=****@GrowerPutAwayId: at 05-02-2021 11:43:10
+*****Error message=****@wo:WO108375 at 05-02-2021 11:43:10
+*****Error message=****@jobcode:JB031742 at 05-02-2021 11:43:10
+*****Error message=****@FacilityID:3 at 05-02-2021 11:43:10
+*****Error message=****@GreenHouseID:3 at 05-02-2021 11:43:10
+*****Error message=****@Trays:5 at 05-02-2021 11:43:10
+*****Error message=****@SeedDate:02-03-2021 at 05-02-2021 11:43:10
+*****Error message=****@CreateBy:1 at 05-02-2021 11:43:10
+*****Error message=****@mode:1 at 05-02-2021 11:43:10
+*****Error message=****@WorkOrder:WO108375 at 05-02-2021 11:43:10
+*****Error message=****@GrowerPutAwayId: at 05-02-2021 11:43:11
+*****Error message=****@wo:WO108375 at 05-02-2021 11:43:11
+*****Error message=****@jobcode:JB031742 at 05-02-2021 11:43:11
+*****Error message=****@FacilityID:4 at 05-02-2021 11:43:11
+*****Error message=****@GreenHouseID:20 at 05-02-2021 11:43:11
+*****Error message=****@Trays:5 at 05-02-2021 11:43:11
+*****Error message=****@SeedDate:02-03-2021 at 05-02-2021 11:43:11
+*****Error message=****@CreateBy:1 at 05-02-2021 11:43:11
+*****Error message=****@mode:1 at 05-02-2021 11:43:11
+*****Error message=****@WorkOrder:WO108375 at 05-02-2021 11:43:11
+*****Error message=****@GrowerPutAwayId:2 at 05-02-2021 11:45:01
+*****Error message=****@Wo:WO108375 at 05-02-2021 11:45:01
+*****Error message=****@MoveDate:2021-02-05 at 05-02-2021 11:45:01
+*****Error message=****@Put_Away_Location:ENC1-H01-8 at 05-02-2021 11:45:01
+*****Error message=****@TraysMoved:2 at 05-02-2021 11:45:01
+*****Error message=****@Barcode:5655775566 at 05-02-2021 11:45:01
+*****Error message=****@CreateBy:6 at 05-02-2021 11:45:01
+*****Error message=****@GrowerPutAwayId:2 at 05-02-2021 11:51:48
+*****Error message=****@Wo:WO108375 at 05-02-2021 11:51:48
+*****Error message=****@MoveDate:2021-02-05 at 05-02-2021 11:51:48
+*****Error message=****@Put_Away_Location:ENC1-H01-8 at 05-02-2021 11:51:48
+*****Error message=****@TraysMoved:3 at 05-02-2021 11:51:48
+*****Error message=****@Barcode:5655775566 at 05-02-2021 11:51:48
+*****Error message=****@CreateBy:6 at 05-02-2021 11:51:48
+*****Error message=****@WoId:WO108375 at 05-02-2021 11:52:07
+*****Error message=****@JobID: at 05-02-2021 11:52:13
+*****Error message=****@GrowerPutAwayId:2 at 05-02-2021 11:52:17
+*****Error message=****@CreatedBy:6 at 05-02-2021 11:52:22
+*****Error message=****Sql Error is=Procedure or function SP_AddCompletMoveForm has too many arguments specified. at 05-02-2021 11:56:17
+*****Error message=****@GrowerPutAwayId:2 at 05-02-2021 11:58:46
+*****Error message=****@Wo:WO108375 at 05-02-2021 11:58:46
+*****Error message=****@MoveDate:2021-02-05 at 05-02-2021 11:58:46
+*****Error message=****@Put_Away_Location:ENC1-H01-8 at 05-02-2021 11:58:46
+*****Error message=****@TraysMoved:3 at 05-02-2021 11:58:46
+*****Error message=****@Barcode:5655775566 at 05-02-2021 11:58:46
+*****Error message=****@CreateBy:6 at 05-02-2021 11:58:46
+*****Error message=****@WoId:WO108375 at 05-02-2021 11:58:58
+*****Error message=****@JobID: at 05-02-2021 11:58:58
+*****Error message=****@GrowerPutAwayId:2 at 05-02-2021 11:58:58
+*****Error message=****@CreatedBy:6 at 05-02-2021 11:58:58
+*****Error message=****@GrowerPutAwayId:3 at 05-02-2021 11:59:37
+*****Error message=****@Wo:WO108375 at 05-02-2021 11:59:37
+*****Error message=****@MoveDate:2021-02-05 at 05-02-2021 11:59:37
+*****Error message=****@Put_Away_Location:ENC2-OUTSIDE-48-A at 05-02-2021 11:59:37
+*****Error message=****@TraysMoved:5 at 05-02-2021 11:59:37
+*****Error message=****@Barcode:5655775566 at 05-02-2021 11:59:37
+*****Error message=****@CreateBy:6 at 05-02-2021 11:59:37
+*****Error message=****@WoId:WO108375 at 05-02-2021 12:00:05
+*****Error message=****@JobID: at 05-02-2021 12:00:05
+*****Error message=****@GrowerPutAwayId:3 at 05-02-2021 12:00:05
+*****Error message=****@CreatedBy:6 at 05-02-2021 12:00:05
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 237Invalid column name 'JobID'. at 05-02-2021 13:18:36
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 237Invalid column name 'JobID'. at 05-02-2021 13:20:08
+*****Error message=****@SupervisorID:2 at 05-02-2021 13:53:55
+*****Error message=****@WO:WO108374 at 05-02-2021 13:53:55
+*****Error message=****@LoginID:1 at 05-02-2021 13:53:55
+*****Error message=****@OperatorID:2 at 05-02-2021 14:32:55
+*****Error message=****@Notes: at 05-02-2021 14:32:55
+*****Error message=****@JobID: at 05-02-2021 14:32:55
+*****Error message=****@LoginID:2 at 05-02-2021 14:32:55
+*****Error message=****@CropId: at 05-02-2021 14:32:55
+*****Error message=****@UpdatedReadyDate: at 05-02-2021 14:32:55
+*****Error message=****@PlantExpirationDate: at 05-02-2021 14:32:55
+*****Error message=****@RootQuality: at 05-02-2021 14:32:55
+*****Error message=****@PlantHeight: at 05-02-2021 14:32:55
+*****Error message=****@mode:3 at 05-02-2021 14:32:55
+*****Error message=****Sql Error is=Procedure or function 'SP_AddPlantReadyTaskAssignment' expects parameter '@wo', which was not supplied. at 05-02-2021 14:33:01
+*****Error message=****@OperatorID:3 at 05-02-2021 14:33:33
+*****Error message=****@Notes:sasa sds at 05-02-2021 14:33:33
+*****Error message=****@JobID: at 05-02-2021 14:33:33
+*****Error message=****@LoginID:2 at 05-02-2021 14:33:33
+*****Error message=****@CropId: at 05-02-2021 14:33:33
+*****Error message=****@UpdatedReadyDate: at 05-02-2021 14:33:33
+*****Error message=****@PlantExpirationDate: at 05-02-2021 14:33:33
+*****Error message=****@RootQuality: at 05-02-2021 14:33:33
+*****Error message=****@wo:WO108374 at 05-02-2021 14:33:33
+*****Error message=****@PlantHeight: at 05-02-2021 14:33:33
+*****Error message=****@mode:3 at 05-02-2021 14:33:33
+*****Error message=****@OperatorID:3 at 05-02-2021 14:39:37
+*****Error message=****@Notes:test at 05-02-2021 14:39:37
+*****Error message=****@JobID: at 05-02-2021 14:39:37
+*****Error message=****@LoginID:2 at 05-02-2021 14:39:37
+*****Error message=****@CropId: at 05-02-2021 14:39:37
+*****Error message=****@UpdatedReadyDate: at 05-02-2021 14:39:37
+*****Error message=****@PlantExpirationDate: at 05-02-2021 14:39:37
+*****Error message=****@RootQuality: at 05-02-2021 14:39:37
+*****Error message=****@wo:WO108374 at 05-02-2021 14:39:37
+*****Error message=****@PlantHeight: at 05-02-2021 14:39:37
+*****Error message=****@mode:3 at 05-02-2021 14:39:37
+*****Error message=****@OperatorID:3 at 05-02-2021 15:40:17
+*****Error message=****@Notes:asasasa at 05-02-2021 15:40:17
+*****Error message=****@JobID: at 05-02-2021 15:40:17
+*****Error message=****@LoginID:3 at 05-02-2021 15:40:17
+*****Error message=****@CropId: at 05-02-2021 15:40:17
+*****Error message=****@UpdatedReadyDate:2021-02-05 at 05-02-2021 15:40:17
+*****Error message=****@PlantExpirationDate:2021-02-04 at 05-02-2021 15:40:17
+*****Error message=****@RootQuality:2) WEAK at 05-02-2021 15:40:17
+*****Error message=****@PlantHeight:4.5 at 05-02-2021 15:40:17
+*****Error message=****@wo:WO108374 at 05-02-2021 15:40:17
+*****Error message=****@mode:2 at 05-02-2021 15:40:17
+*****Error message=****Sql Error is=Invalid object name 'ImproviansAdmin.PlantReadyTaskAssignment'. at 05-02-2021 15:45:40
+*****Error message=****@OperatorID:3 at 05-02-2021 15:46:22
+*****Error message=****@Notes:asa at 05-02-2021 15:46:22
+*****Error message=****@JobID: at 05-02-2021 15:46:22
+*****Error message=****@LoginID:3 at 05-02-2021 15:46:22
+*****Error message=****@CropId: at 05-02-2021 15:46:22
+*****Error message=****@UpdatedReadyDate:2021-02-05 at 05-02-2021 15:46:22
+*****Error message=****@PlantExpirationDate:2021-02-12 at 05-02-2021 15:46:22
+*****Error message=****@RootQuality:2) WEAK at 05-02-2021 15:46:22
+*****Error message=****@PlantHeight:1.5 at 05-02-2021 15:46:22
+*****Error message=****@wo:WO108374 at 05-02-2021 15:46:22
+*****Error message=****@mode:2 at 05-02-2021 15:46:22

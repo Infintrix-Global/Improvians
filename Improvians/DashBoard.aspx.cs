@@ -40,11 +40,11 @@ namespace Improvians
             }
             if (Session["Role"].ToString() == "2")
             {
-                amytask.HRef = "MyTaskGreenSupervisor.aspx";
+                amytask.HRef = "MyTaskGreenSupervisorFinal.aspx";
             }
             if (Session["Role"].ToString() == "3")
             {
-                amytask.HRef = "MyTaskGreenOperator.aspx";
+                amytask.HRef = "MyTaskGreenOperatorFinal.aspx";
             }
             if (Session["Role"].ToString() == "5")
             {
@@ -56,15 +56,19 @@ namespace Improvians
             }
             if (Session["Role"].ToString() == "7")
             {
-                amytask.HRef = "MyTaskProductionPlanner.aspx";
+                amytask.HRef = "Seeding_Plan_Form.aspx";
             }
             if (Session["Role"].ToString() == "8")
             {
                 amytask.HRef = "MyTaskSeedingTeam.aspx";
             }
-            if (Session["Role"].ToString() == "8")
+            if (Session["Role"].ToString() == "9")
             {
                 amytask.HRef = "MyTaskSeedLineOperator.aspx";
+            }
+            if (Session["Role"].ToString() == "10")
+            {
+                amytask.HRef = "MyTaskProductionPlanner.aspx";
             }
         }
     }

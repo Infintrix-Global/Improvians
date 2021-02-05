@@ -19,14 +19,18 @@ namespace Improvians.BAL_Classes
             DataSet ds = new DataSet();
             try
             {
+
                 objGeneral.AddParameterWithValueToSQLCommand("@UserName", _loginEntity.UserName);
                 objGeneral.AddParameterWithValueToSQLCommand("@Password", _loginEntity.Password);
-
                 ds = objGeneral.GetDatasetByCommand_SP("SP_login");
+
             }
             catch (Exception ex)
             {
+
+
             }
+
             return ds.Tables[0];
 
         }

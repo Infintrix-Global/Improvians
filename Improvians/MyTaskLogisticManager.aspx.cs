@@ -26,6 +26,7 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Mode", "2");
             dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -40,8 +41,11 @@ namespace Improvians
                 
                 if (Session["Role"].ToString() == "5")
                 {
-                    Session["MoveID"] = e.CommandArgument.ToString();
-                    Response.Redirect("~/MoveTaskAssignment.aspx");
+                    string Wid = "";
+                    Wid = e.CommandArgument.ToString();
+                  
+                    Response.Redirect(String.Format("~/MoveTaskAssignment.aspx?Wid={0}", Wid));
+
                 }
             }
             if (e.CommandName == "Select")
@@ -49,9 +53,30 @@ namespace Improvians
                 
                 if (Session["Role"].ToString() == "5")
                 {
+                    string Wid = "";
+                    Wid = e.CommandArgument.ToString();
+
                     Session["MoveID"] = e.CommandArgument.ToString();
-                    Response.Redirect("~/MoveCompletionForm.aspx");
+                  
+                    Response.Redirect(String.Format("~/MoveCompletionForm.aspx?Wid={0}", Wid));
                 }
+            }
+        }
+
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+               
+                Label lbljstatus = (Label)e.Row.FindControl("lbljstatus");
+                Label lblTitla = (Label)e.Row.FindControl("lblTitla");
+
+                if (lbljstatus.Text=="2")
+                {
+                    lblTitla.Text = "Grower Put Away";
+                }
+
+
             }
         }
     }

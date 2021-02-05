@@ -47,7 +47,7 @@ namespace Improvians
             }
             if (Session["Role"].ToString() == "2")
             {
-                Response.Redirect("MyTaskGreenSupervisor.aspx");
+                Response.Redirect("MyTaskGreenSupervisorFinal.aspx");
             }
             if (Session["Role"].ToString() == "3")
             {
@@ -63,7 +63,7 @@ namespace Improvians
             }
             if (Session["Role"].ToString() == "7")
             {
-                Response.Redirect("MyTaskProductionPlanner.aspx");
+                Response.Redirect("Seeding_Plan_Form.aspx");
             }
             if (Session["Role"].ToString() == "8")
             {
@@ -72,6 +72,10 @@ namespace Improvians
             if (Session["Role"].ToString() == "9")
             {
                 Response.Redirect("MyTaskSeedLineOperator.aspx");
+            }
+            if (Session["Role"].ToString() == "10")
+            {
+                Response.Redirect("MyTaskProductionPlanner.aspx");
             }
         }
         protected void lnkdashboard_Click(object sender, EventArgs e)
