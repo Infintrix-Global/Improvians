@@ -47,7 +47,7 @@ namespace Improvians
             }
             if (Session["Role"].ToString() == "2")
             {
-                Response.Redirect("MyTaskGreenSupervisor.aspx");
+                Response.Redirect("MyTaskGreenSupervisorFinal.aspx");
             }
             if (Session["Role"].ToString() == "3")
             {
