@@ -50,10 +50,10 @@ namespace Improvians
                 string facName = (row.FindControl("lblFacility") as Label).Text;
 
                 DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@FacilityName", facName);
-                dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
-                lblJobID.Text = (row.FindControl("lblID") as Label).Text;
+             //   NameValueCollection nv = new NameValueCollection();
+              //  nv.Add("@FacilityName", facName);
+              //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
+                lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
                 lblfacsupervisor.InnerText = "Green House Supervisor-" + facName;
                // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
@@ -70,7 +70,7 @@ namespace Improvians
             nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             nv.Add("@InspectionDueDate", txtDate.Text);
             nv.Add("@#TraysInspected", txtTrays.Text);
-            nv.Add("@JobID", lblJobID.Text);
+            nv.Add("@ID", lblID.Text);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
             if(result>0)

@@ -193,6 +193,7 @@
     <Content Include="FertilizerTaskAssignmentaspx.aspx" />
     <Content Include="FertilizerTaskReq.aspx" />
     <Content Include="fonts\icons\rxicons.svg" />
+    <Content Include="GerminationAssignmentForm.aspx" />
     <Content Include="GerminationRequestForm.aspx" />
     <Content Include="GerminationTaskAssignment.aspx" />
     <Content Include="GrowerPutAwayForm.aspx" />
@@ -264,6 +265,7 @@
     <Content Include="MoveTaskAssignment.aspx" />
     <Content Include="MyTaskGreenOperator.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
+    <Content Include="MyTaskGreenSupervisorFinal.aspx" />
     <Content Include="MyTaskGrower.aspx" />
     <Content Include="MyTaskGrowerNew.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
@@ -362,6 +364,13 @@
     <Compile Include="FertilizerTaskReq.aspx.designer.cs">
       <DependentUpon>FertilizerTaskReq.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GerminationAssignmentForm.aspx.cs">
+      <DependentUpon>GerminationAssignmentForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GerminationAssignmentForm.aspx.designer.cs">
+      <DependentUpon>GerminationAssignmentForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GerminationRequestForm.aspx.cs">
       <DependentUpon>GerminationRequestForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -438,6 +447,13 @@
     </Compile>
     <Compile Include="MyTaskGreenSupervisor.aspx.designer.cs">
       <DependentUpon>MyTaskGreenSupervisor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskGreenSupervisorFinal.aspx.cs">
+      <DependentUpon>MyTaskGreenSupervisorFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskGreenSupervisorFinal.aspx.designer.cs">
+      <DependentUpon>MyTaskGreenSupervisorFinal.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskGrower.aspx.cs">
       <DependentUpon>MyTaskGrower.aspx</DependentUpon>
