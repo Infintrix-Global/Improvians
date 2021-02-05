@@ -50,6 +50,12 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Germination Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label15" runat="server"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -98,11 +104,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Germination Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label15" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                       
 
                                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>

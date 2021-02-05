@@ -15,7 +15,7 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-              
+
                 BindGridGerm();
             }
         }
@@ -92,7 +92,7 @@ namespace Improvians
         {
             //  AddNewRowToGridSetInitialInvoice();
             AddGrowerPutRow(true);
-           
+
         }
 
         protected void GridSplitJob_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -112,7 +112,7 @@ namespace Improvians
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
-              //  BindLocation();
+                //  BindLocation();
 
                 BindLocationNew(ref ddlLocation, lblMain.Text);
                 ddlMain.SelectedValue = lblMain.Text;
@@ -123,21 +123,21 @@ namespace Improvians
 
         protected void ddlMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // BindLocation();
+            // BindLocation();
             DropDownList ddlMain = (DropDownList)sender;
             GridViewRow row = (GridViewRow)ddlMain.NamingContainer;
             if (row != null)
             {
-                
-                    DropDownList ddlLocation = (DropDownList)row.FindControl("ddlLocation");
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@FacilityID", ddlMain.SelectedValue);
-                    ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-                    ddlLocation.DataTextField = "GreenHouseName";
-                    ddlLocation.DataValueField = "GreenHouseID";
-                    ddlLocation.DataBind();
-                    ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-                
+
+                DropDownList ddlLocation = (DropDownList)row.FindControl("ddlLocation");
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@FacilityID", ddlMain.SelectedValue);
+                ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+                ddlLocation.DataTextField = "GreenHouseName";
+                ddlLocation.DataValueField = "GreenHouseID";
+                ddlLocation.DataBind();
+                ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
             }
         }
 
@@ -152,7 +152,7 @@ namespace Improvians
 
                     DropDownList ddlLocation = (row.Cells[0].FindControl("ddlLocation") as DropDownList);
                     DropDownList ddlMain = (row.Cells[0].FindControl("ddlMain") as DropDownList);
-                    
+
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@FacilityID", ddlMain.SelectedValue);
                     ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
@@ -173,7 +173,7 @@ namespace Improvians
             }
 
 
-         
+
 
         }
 
@@ -217,11 +217,11 @@ namespace Improvians
                         Total += Convert.ToInt32(txtTrays.Text);
                     }
 
-                   
+
                 }
             }
 
-             lblRemaining.Text = (Convert.ToInt32(lblSeededTrays.Text) - Total).ToString();
+            lblRemaining.Text = (Convert.ToInt32(lblSeededTrays.Text) - Total).ToString();
 
 
         }
@@ -260,7 +260,7 @@ namespace Improvians
                         NameValueCollection nv = new NameValueCollection();
                         nv.Add("@GrowerPutAwayId", "");
                         nv.Add("@wo", wo);
-                       
+
                         nv.Add("@jobcode", lblJobID.Text);
                         nv.Add("@FacilityID", ddlMain.SelectedValue);
                         nv.Add("@GreenHouseID", ddlLocation.SelectedValue);
@@ -273,6 +273,7 @@ namespace Improvians
                         _isInserted = objCommon.GetDataInsertORUpdate("SP_AddGrowerPutAwayDetails", nv);
                         SelectedItems++;
                     }
+
 
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WorkOrder", wo);
@@ -328,8 +329,8 @@ namespace Improvians
 
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice,1, 0, 0, "");
-              
+                    AddGrowerput(ref objinvoice, 1, 0, 0, "");
+
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;
                 GridSplitJob.DataBind();

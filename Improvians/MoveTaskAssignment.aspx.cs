@@ -20,7 +20,7 @@ namespace Improvians
                 {
                     wo = Request.QueryString["Wid"].ToString();
                 }
-                    BindGridMove();
+                BindGridMove();
                 BindShippingCoordinatorList();
             }
         }

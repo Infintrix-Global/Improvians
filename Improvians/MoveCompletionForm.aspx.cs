@@ -102,8 +102,8 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblRemainingTrays.Text))
-            {
+            //if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblRemainingTrays.Text))
+            //{
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
@@ -118,7 +118,22 @@ namespace Improvians
                 if (result > 0)
                 {
                     lblmsg.Text = "Completion Successful";
-                    Clear();
+
+                if (lblRemainingTrays.Text == "0")
+                {
+
+                    NameValueCollection nv1 = new NameValueCollection();
+                    nv1.Add("@WoId", wo);
+                    nv1.Add("@JobID", "");
+                    nv1.Add("@CreatedBy", Session["LoginID"].ToString());
+
+                    int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveForm", nv1);
+
+
+                }
+
+
+                Clear();
                     if (Session["Role"].ToString() == "6")
                     {
                         Response.Redirect("~/MyTaskShippingCoordinator.aspx");
@@ -133,13 +148,13 @@ namespace Improvians
                 {
                     lblmsg.Text = "Completion Not Successful";
                 }
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                lblerrmsg.Text = "Number of Trays exceed Remaining trays";
+            //    lblerrmsg.Text = "Number of Trays exceed Remaining trays";
 
-            }
+            
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -206,14 +221,6 @@ namespace Improvians
 
                 lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
 
-                if(Convert.ToUInt32(lblTray.Text) ==Convert.ToUInt32(lblTraysRequest.Text))
-                {
-                    NameValueCollection nv1 = new NameValueCollection();
-                    nv1.Add("@WoId", lblGrowerPutAwayId.Text);
-                    nv1.Add("@mode", "4");
-
-                  int  result = objCommon.GetDataInsertORUpdate("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv1);
-                }
 
             }
         }

@@ -13,10 +13,6 @@ using System.IO;
 using System.Globalization;
 using System.Net;
 
-
-
-
-
 namespace Improvians
 {
     public class CommonControl
