@@ -53,7 +53,7 @@
                                                     <asp:Label ID="lblActualTraySeeded" runat="server" Text='<%# Eval("#TraysSeeded")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                             <asp:TemplateField HeaderText="Plan Date">
+                                             <asp:TemplateField HeaderText="Planned Due Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblSeededPlanDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                 </ItemTemplate>
@@ -81,7 +81,7 @@
 
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btnAssign" CommandName="Assign" CssClass="bttn bttn-primary bttn-action" Text="Start " runat="server" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                                    <asp:Button ID="btnAssign" CommandName="Assign" CssClass="bttn bttn-primary bttn-action" Text="Assign" runat="server" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -168,7 +168,7 @@
                                                             <FooterStyle HorizontalAlign="Right" />
                                                             <FooterTemplate>
                                                                 <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" CausesValidation="false"
-                                                                    Text="ADD NEW ROW" CssClass="bttn bttn-primary bttn-action" />
+                                                                    Text="ADD ROW" CssClass="bttn bttn-primary bttn-action" />
                                                             </FooterTemplate>
 
 
