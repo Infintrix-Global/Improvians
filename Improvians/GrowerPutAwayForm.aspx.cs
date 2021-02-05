@@ -221,8 +221,15 @@ namespace Improvians
                 }
             }
 
-            lblRemaining.Text = (Convert.ToInt32(lblSeededTrays.Text) - Total).ToString();
 
+            if (Convert.ToDouble(lblSeededTrays.Text) <  Convert.ToDouble(lblRemaining.Text))
+            {
+                lblRemaining.Text = (Convert.ToInt32(lblSeededTrays.Text) - Total).ToString();
+            }
+            else
+            {
+
+            }
 
         }
 

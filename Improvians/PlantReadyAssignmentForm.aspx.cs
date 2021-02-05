@@ -65,7 +65,7 @@ namespace Improvians
                 nv.Add("@RootQuality", "");
                 nv.Add("@PlantHeight", "");
                 nv.Add("@wo", WO);
-                nv.Add("@mode", "3");
+                nv.Add("@mode", "4");
 
 
                 int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);

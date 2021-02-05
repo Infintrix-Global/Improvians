@@ -276,6 +276,7 @@
     <Content Include="MyTaskSeedLineOperator.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="PlantReadyAssignmentForm.aspx" />
+    <Content Include="PlantReadyCompletionForm.aspx" />
     <Content Include="PlantReadyRequestForm.aspx" />
     <Content Include="PlantReadyTaskAssignment.aspx" />
     <Content Include="PlantReadyTaskCompletion.aspx" />
@@ -527,6 +528,13 @@
     </Compile>
     <Compile Include="PlantReadyAssignmentForm.aspx.designer.cs">
       <DependentUpon>PlantReadyAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlantReadyCompletionForm.aspx.cs">
+      <DependentUpon>PlantReadyCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlantReadyCompletionForm.aspx.designer.cs">
+      <DependentUpon>PlantReadyCompletionForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlantReadyRequestForm.aspx.cs">
       <DependentUpon>PlantReadyRequestForm.aspx</DependentUpon>

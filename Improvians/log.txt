@@ -2089,3 +2089,26 @@ The statement has been terminated. at 04-02-2021 23:13:13
 *****Error message=****@wo:WO108374 at 05-02-2021 14:39:37
 *****Error message=****@PlantHeight: at 05-02-2021 14:39:37
 *****Error message=****@mode:3 at 05-02-2021 14:39:37
+*****Error message=****@OperatorID:3 at 05-02-2021 15:40:17
+*****Error message=****@Notes:asasasa at 05-02-2021 15:40:17
+*****Error message=****@JobID: at 05-02-2021 15:40:17
+*****Error message=****@LoginID:3 at 05-02-2021 15:40:17
+*****Error message=****@CropId: at 05-02-2021 15:40:17
+*****Error message=****@UpdatedReadyDate:2021-02-05 at 05-02-2021 15:40:17
+*****Error message=****@PlantExpirationDate:2021-02-04 at 05-02-2021 15:40:17
+*****Error message=****@RootQuality:2) WEAK at 05-02-2021 15:40:17
+*****Error message=****@PlantHeight:4.5 at 05-02-2021 15:40:17
+*****Error message=****@wo:WO108374 at 05-02-2021 15:40:17
+*****Error message=****@mode:2 at 05-02-2021 15:40:17
+*****Error message=****Sql Error is=Invalid object name 'ImproviansAdmin.PlantReadyTaskAssignment'. at 05-02-2021 15:45:40
+*****Error message=****@OperatorID:3 at 05-02-2021 15:46:22
+*****Error message=****@Notes:asa at 05-02-2021 15:46:22
+*****Error message=****@JobID: at 05-02-2021 15:46:22
+*****Error message=****@LoginID:3 at 05-02-2021 15:46:22
+*****Error message=****@CropId: at 05-02-2021 15:46:22
+*****Error message=****@UpdatedReadyDate:2021-02-05 at 05-02-2021 15:46:22
+*****Error message=****@PlantExpirationDate:2021-02-12 at 05-02-2021 15:46:22
+*****Error message=****@RootQuality:2) WEAK at 05-02-2021 15:46:22
+*****Error message=****@PlantHeight:1.5 at 05-02-2021 15:46:22
+*****Error message=****@wo:WO108374 at 05-02-2021 15:46:22
+*****Error message=****@mode:2 at 05-02-2021 15:46:22
