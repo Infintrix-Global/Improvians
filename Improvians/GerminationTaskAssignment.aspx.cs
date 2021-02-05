@@ -104,7 +104,7 @@ namespace Improvians
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-            Response.Redirect("~/MyTaskGreenSupervisor.aspx");
+            Response.Redirect("~/MyTaskGreenSupervisorFinal.aspx");
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
