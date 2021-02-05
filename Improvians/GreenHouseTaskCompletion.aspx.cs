@@ -53,7 +53,7 @@ namespace Improvians
             if (dt != null && dt.Rows.Count > 0)
             {
                 wo = dt.Rows[0]["wo"].ToString();
-                lblSeedlot.Text = dt.Rows[0]["SeedLots"].ToString();
+                lblSeedlot.Text = dt.Rows[0]["TraySize"].ToString();
             }
         }
 

@@ -47,14 +47,15 @@ namespace Improvians
                 userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
-                string facName = (row.FindControl("lblFacility") as Label).Text;
+                //string facName = (row.FindControl("lblFacility") as Label).Text;
 
                 DataTable dt = new DataTable();
              //   NameValueCollection nv = new NameValueCollection();
               //  nv.Add("@FacilityName", facName);
               //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
-                lblfacsupervisor.InnerText = "Green House Supervisor-" + facName;
+                lblID.Text= (row.FindControl("lblID") as Label).Text;
+                lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
