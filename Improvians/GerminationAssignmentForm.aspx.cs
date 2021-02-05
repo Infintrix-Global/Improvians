@@ -40,19 +40,33 @@ namespace Improvians
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
+            string Wo = "";
+            string GTID = "";
+            long result = 0;
             if (e.CommandName == "Start")
             {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvGerm.Rows[rowIndex];
+
+                Wo = (row.FindControl("lblWo") as Label).Text;
+                GTID = (row.FindControl("lblID") as Label).Text;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Notes", "");
-                nv.Add("@JobID", JobID);
+                nv.Add("@WorkOrderID", Wo);
+                nv.Add("@GTID", GTID);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
 
-                Session["JobID"] = JobID;
-                Response.Redirect("~/GreenHouseTaskCompletion.aspx");
+               // Session["WorkOrder"] = JobID;
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", result.ToString()));
             }
+            if (e.CommandName == "Assign")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvGerm.Rows[rowIndex];
+                GTID = (row.FindControl("lblID") as Label).Text;
+                Response.Redirect(String.Format("~/GerminationTaskAssignment.aspx?GTID={0}", GTID));
             }
         }
 }
