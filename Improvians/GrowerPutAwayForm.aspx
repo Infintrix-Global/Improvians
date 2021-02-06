@@ -132,7 +132,7 @@
                                             <div class="data__table">
 
 
-                                                <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="70%"
+                                                <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="80%"
                                                     AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="RowNumber" HeaderText="NO." />
@@ -168,7 +168,7 @@
                                                             <FooterStyle HorizontalAlign="Right" />
                                                             <FooterTemplate>
                                                                 <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" CausesValidation="false"
-                                                                    Text="ADD ROW" CssClass="bttn bttn-primary bttn-action" />
+                                                                    Text="Add Putaway Location" CssClass="bttn bttn-primary bttn-action" />
                                                             </FooterTemplate>
 
 

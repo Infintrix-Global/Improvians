@@ -254,12 +254,14 @@
     <Content Include="images\rxicons-v1.0\Read Me.txt" />
     <Content Include="images\rxicons-v1.0\style.css" />
     <Content Include="images\user-profile.jpg" />
+    <Content Include="IrrigationRequestForm.aspx" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\popper.min.js" />
     <Content Include="js\slick.min.js" />
+    <Content Include="log.txt" />
     <Content Include="Login.aspx" />
     <Content Include="MoveCompletionForm.aspx" />
     <Content Include="MoveForm.aspx" />
@@ -287,6 +289,9 @@
     <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
+    <Content Include="spray-completion.html" />
+    <Content Include="spray-request.html" />
+    <Content Include="spray-task-assignment.html" />
     <Content Include="SprayrRequest.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -417,6 +422,13 @@
     </Compile>
     <Compile Include="EvoMaster.Master.designer.cs">
       <DependentUpon>EvoMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationRequestForm.aspx.cs">
+      <DependentUpon>IrrigationRequestForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationRequestForm.aspx.designer.cs">
+      <DependentUpon>IrrigationRequestForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

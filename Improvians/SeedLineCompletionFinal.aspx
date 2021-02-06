@@ -251,7 +251,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                 <asp:TemplateField HeaderText="Left Over">
+                                                 <asp:TemplateField HeaderText="Leftover seeds">
                                                     <ItemTemplate>
                                                         <asp:TextBox  ID="txtPartial" runat="server" Text='<%# Eval("LeftOver")  %>' ></asp:TextBox>
                                                     </ItemTemplate>

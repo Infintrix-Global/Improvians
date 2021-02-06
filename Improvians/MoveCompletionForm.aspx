@@ -62,7 +62,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="To GreenHouse" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="To Bench" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGreenHouseName" runat="server" Text='<%# Eval("GreenHouseName")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -144,7 +144,7 @@
                                 </span>
                             </div>
                             <div class="col">
-                                <label>Barcode</label>
+                                <label>Barcode of Putaway Location</label>
                                 <asp:TextBox ID="txtBarcode" runat="server" CssClass="input__control"></asp:TextBox>
 
                                 <span class="error_message">
