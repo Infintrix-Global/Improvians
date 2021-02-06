@@ -105,6 +105,7 @@ namespace Improvians
                 GridViewRow row = gvFer.Rows[rowIndex];
                 lblUnMovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text;
                 lblJobID.Text = (row.FindControl("lblID") as Label).Text;
+                lblwo.Text= (row.FindControl("lblwo") as Label).Text;
                 ddlsupervisor.Focus();
             }
         }
@@ -116,34 +117,37 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-            nv.Add("@Type", radtype.SelectedValue);
-            nv.Add("@JobID", lblJobID.Text);
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequest", nv);
-            if (result > 0)
-            {
-                objTask.AddFertilizerRequestDetails(dtTrays,result.ToString());
-                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                // lblmsg.Text = "Assignment Successful";
-                Clear();
-            }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                //  lblmsg.Text = "Assignment Not Successful";
-            }
+            
+
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                    nv.Add("@Type", radtype.SelectedValue);
+                    nv.Add("@WorkOrder", lblwo.Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequest", nv);
+                    if (result > 0)
+                    {
+                        objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
+                        // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                        string message = "Assignment Successful";
+                        string url = "MyTaskGrower.aspx";
+                        string script = "window.onload = function(){ alert('";
+                        script += message;
+                        script += "');";
+                        script += "window.location = '";
+                        script += url;
+                        script += "'; }";
+                        ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                        // lblmsg.Text = "Assignment Successful";
+                        Clear();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                        //  lblmsg.Text = "Assignment Not Successful";
+                    }
+             
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -199,5 +203,23 @@ namespace Improvians
             ddlUnit.DataBind();
             ddlUnit.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
+
+        //protected void chckchanged(object sender, EventArgs e)
+        //{
+        //    CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
+        //    foreach (GridViewRow row in gvFer.Rows)
+        //    {
+        //        CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+        //        if (chckheader.Checked == true)
+        //        {
+        //            chckrw.Checked = true;
+        //        }
+        //        else
+        //        {
+        //            chckrw.Checked = false;
+        //        }
+        //    }
+
+        //}
     }
 }
