@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Improvians.BAL_Classes;
+using Improvians.Bal;
 
 namespace Improvians
 {
@@ -16,6 +17,7 @@ namespace Improvians
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
         CommonControl objCommon = new CommonControl();
+        BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +30,7 @@ namespace Improvians
                 BindJobCode();
                 Bindcname();
                 BindFacility();
+                dtTrays.Clear();
             }
         }
 
@@ -214,7 +217,12 @@ namespace Improvians
 
         public void Clear()
         {
-
+            txtQty.Text = "";
+            txtSQFT.Text = "";
+            txtTrays.Text = "";
+            radtype.SelectedValue = "Fertilizer";
+            BindFertilizer();
+            dtTrays.Clear();
         }
 
         protected void radtype_SelectedIndexChanged(object sender, EventArgs e)
@@ -234,7 +242,7 @@ namespace Improvians
         public void BindChemical()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objNav.GetDataTable("SP_GetChemicalList", nv); ;
+            ddlFertilizer.DataSource = objFer.GetChemicalList(); 
             ddlFertilizer.DataTextField = "Name";
             ddlFertilizer.DataValueField = "No_";
             ddlFertilizer.DataBind();
@@ -244,7 +252,7 @@ namespace Improvians
         public void BindFertilizer()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objNav.GetDataTable("SP_GetFertilizerList", nv); ;
+            ddlFertilizer.DataSource = objFer.GetFertilizerList();
             ddlFertilizer.DataTextField = "Name";
             ddlFertilizer.DataValueField = "No_";
             ddlFertilizer.DataBind();
@@ -254,7 +262,7 @@ namespace Improvians
         public void BindUnit()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlUnit.DataSource = objNav.GetDataTable("SP_GetUnitList", nv); ;
+            ddlUnit.DataSource = objFer.GetUnitList();
             ddlUnit.DataTextField = "Description";
             ddlUnit.DataValueField = "Code";
             ddlUnit.DataBind();
