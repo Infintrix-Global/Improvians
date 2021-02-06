@@ -26,6 +26,7 @@ namespace Improvians
                 BindGridProduction();
                 BindSeedLot();
                 txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                dtTrays.Clear();
             }
         }
 
