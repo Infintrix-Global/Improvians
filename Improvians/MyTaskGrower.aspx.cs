@@ -53,6 +53,10 @@ namespace Improvians
             {
                 Response.Redirect("~/Seeding_Plan_Form.aspx");
             }
+            if (ddlTaskRequest.SelectedValue == "9")
+            {
+                Response.Redirect("~/IrrigationRequestForm.aspx");
+            }
         }
     }
 }

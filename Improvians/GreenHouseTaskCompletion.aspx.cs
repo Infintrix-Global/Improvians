@@ -195,7 +195,7 @@ namespace Improvians
 
         protected void sbtTray_Click(object sender, EventArgs e)
         {
-            lblJobid.Text = Session["JobID"].ToString();
+           // lblJobid.Text = Session["JobID"].ToString();
             lblnotrays.Text = txtTrays.Text;
 
             Table table = (Table)Page.FindControl("tbltray");

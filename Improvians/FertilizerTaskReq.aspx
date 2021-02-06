@@ -149,7 +149,7 @@
                             </div>
 
                             <div class="col-auto">
-                                <label class="d-block">Greenhouse Supervisor </label>
+                                <label class="d-block">Sprayer </label>
                                 <asp:DropDownList ID="ddlsupervisor" runat="server" class="d-block custom__dropdown input__control-auto"></asp:DropDownList>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlsupervisor" ValidationGroup="e"

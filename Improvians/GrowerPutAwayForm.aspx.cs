@@ -111,10 +111,10 @@ namespace Improvians
                 ddlMain.DataValueField = "FacilityID";
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
-
+                ddlLocation.SelectedValue = "3";
                 //  BindLocation();
 
-                BindLocationNew(ref ddlLocation, lblMain.Text);
+                BindLocationNew(ref ddlLocation,"3");
                 ddlMain.SelectedValue = lblMain.Text;
                 ddlLocation.SelectedValue = lblLocation.Text;
 
