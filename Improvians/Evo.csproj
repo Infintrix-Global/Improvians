@@ -254,7 +254,11 @@
     <Content Include="images\rxicons-v1.0\Read Me.txt" />
     <Content Include="images\rxicons-v1.0\style.css" />
     <Content Include="images\user-profile.jpg" />
+    <Content Include="IrrigationAssignmentForm.aspx" />
+    <Content Include="IrrigationCompletionForm.aspx" />
+    <Content Include="IrrigationTaskCompletion.aspx" />
     <Content Include="IrrigationRequestForm.aspx" />
+    <Content Include="IrrigationTaskAssignment.aspx" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
@@ -423,12 +427,40 @@
     <Compile Include="EvoMaster.Master.designer.cs">
       <DependentUpon>EvoMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="IrrigationAssignmentForm.aspx.cs">
+      <DependentUpon>IrrigationAssignmentForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationAssignmentForm.aspx.designer.cs">
+      <DependentUpon>IrrigationAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationCompletionForm.aspx.cs">
+      <DependentUpon>IrrigationCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationCompletionForm.aspx.designer.cs">
+      <DependentUpon>IrrigationCompletionForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationTaskCompletion.aspx.cs">
+      <DependentUpon>IrrigationTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationTaskCompletion.aspx.designer.cs">
+      <DependentUpon>IrrigationTaskCompletion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IrrigationRequestForm.aspx.cs">
       <DependentUpon>IrrigationRequestForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="IrrigationRequestForm.aspx.designer.cs">
       <DependentUpon>IrrigationRequestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationTaskAssignment.aspx.cs">
+      <DependentUpon>IrrigationTaskAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationTaskAssignment.aspx.designer.cs">
+      <DependentUpon>IrrigationTaskAssignment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

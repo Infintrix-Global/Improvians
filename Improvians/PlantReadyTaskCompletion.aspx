@@ -187,7 +187,8 @@
 
                                     <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
                                     <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />
-                                </div>
+                               
+                                    </div>
                             </div>
 
                         </div>
