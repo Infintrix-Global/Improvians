@@ -55,6 +55,29 @@ namespace Improvians
             gvGerm.DataBind();
         }
 
+
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindGridIrrigation();
+        }
         public void Bindcname()
         {
 
@@ -124,12 +147,12 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
 
-                string WO = e.CommandArgument.ToString();
+                string WOID = e.CommandArgument.ToString();
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-                nv.Add("@wo", wo);
+                nv.Add("@wo", WOID);
                 nv.Add("@SprayDate", "");
                 nv.Add("@TraysSprayed", "");
                 nv.Add("@SprayDuration", "");
@@ -140,7 +163,7 @@ namespace Improvians
 
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
 
-                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WO,0));
+                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
 
             }
         }
@@ -151,6 +174,6 @@ namespace Improvians
             BindGridIrrigation();
         }
 
-     
+      
     }
 }

@@ -106,7 +106,17 @@ namespace Improvians
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
-
+                if (Session["Role"].ToString() == "2")
+                {
+                    url = "IrrigationAssignmentForm.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
 
 
             }

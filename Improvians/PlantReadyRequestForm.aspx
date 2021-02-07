@@ -7,23 +7,27 @@
         <div class="site__container">
             <h2>Plant Ready Request</h2>
 
-            <div class="filter__row row">
-                <div class="col-xl-auto col-12">
-                    <label>Job No.</label>
+            <div class="filter__row d-flex">
+                <div class="row">
+                    <div class="col m3">
+                        <label>Customer </label>
+                        <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
 
-                    <asp:DropDownList ID="ddlJobNo" runat="server" class="w-100 filter__control filter__select custom__dropdown"></asp:DropDownList>
-                </div>
+                    <div class="col m3">
+                        <label>Facility </label>
+                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                    <div class="col m3">
+                        <label>Job No </label>
+                        <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                      <div class="col m3">
+                         <br />
+                                <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                    </div>
 
-                <div class="col-xl-auto col-12">
-                    <label>Customer Name</label>
-
-                    <asp:DropDownList ID="ddlCustomer" runat="server" class="w-100 filter__control filter__select custom__dropdown"></asp:DropDownList>
-                </div>
-
-                <div class="col-xl-auto col-12">
-                    <label>Facility Defaults</label>
-
-                    <asp:DropDownList ID="ddlFacility" runat="server" class="w-100 filter__control filter__select custom__dropdown"></asp:DropDownList>
+                     
                 </div>
             </div>
 

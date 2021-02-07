@@ -46,9 +46,12 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@LoginID", wo);
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+            nv.Add("@wo", wo);
+            nv.Add("@JobCode", "");
+            nv.Add("@CustomerName", "");
+            nv.Add("@Facility", "");
+            nv.Add("@Mode", "11");
+            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
             //if (dt != null && dt.Rows.Count > 0)
@@ -104,8 +107,18 @@ namespace Improvians
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
+                if (Session["Role"].ToString() == "2")
+                {
+                    url = "PlantReadyAssignmentForm.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
 
-              
 
             }
             else

@@ -111,7 +111,7 @@ namespace Improvians
         public void clear()
         {
             ddlOperator.SelectedIndex = 0;
-            txtNotes.Text = "";
+           // txtNotes.Text = "";
 
 
         }

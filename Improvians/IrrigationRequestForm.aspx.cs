@@ -112,7 +112,28 @@ namespace Improvians
             ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
 
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindGridIrrigation();
+        }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
@@ -194,19 +215,6 @@ namespace Improvians
             BindGridIrrigation();
         }
 
-        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
-
-        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
-
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
+        
     }
 }

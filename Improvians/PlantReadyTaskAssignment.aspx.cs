@@ -58,9 +58,12 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@LoginID", wo);
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+            nv.Add("@wo", wo);
+            nv.Add("@JobCode", "");
+            nv.Add("@CustomerName", "");
+            nv.Add("@Facility", "");
+            nv.Add("@Mode", "10");
+            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 

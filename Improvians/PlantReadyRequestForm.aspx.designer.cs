@@ -15,15 +15,6 @@ namespace Improvians
     {
 
         /// <summary>
-        /// ddlJobNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
-
-        /// <summary>
         /// ddlCustomer control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,24 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
+
+        /// <summary>
+        /// ddlJobNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
+
+        /// <summary>
+        /// btnResetSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResetSearch;
 
         /// <summary>
         /// gvPlantReady control.

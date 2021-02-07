@@ -7,37 +7,7 @@
         <div class="site__container">
             <h2>Plant Ready Completion</h2>
 
-            <div class="filter__row row">
-                <div class="col-xl-auto col-12">
-                    <label>Job No.</label>
-                    <select class="w-100 filter__control filter__select custom__dropdown">
-                        <option>Job No.</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
-                        <option>Option 4</option>
-                    </select>
-                </div>
-
-                <div class="col-xl-auto col-12">
-                    <label>Customer Name</label>
-                    <select class="w-100 filter__control filter__select custom__dropdown">
-                        <option>Customer Name</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
-                        <option>Option 4</option>
-                    </select>
-                </div>
-
-                <div class="col-xl-auto col-12">
-                    <label>Facility Defaults</label>
-                    <select class="w-100 filter__control filter__select custom__dropdown">
-                        <option>Facility Defaults</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
-                        <option>Option 4</option>
-                    </select>
-                </div>
-            </div>
+         
 
             <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>
             <div class="data__table">
