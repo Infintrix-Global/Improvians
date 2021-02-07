@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Improvians.BAL_Classes;
+using Improvians.Bal;
 
 namespace Improvians
 {
@@ -16,6 +17,7 @@ namespace Improvians
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
         CommonControl objCommon = new CommonControl();
+        BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,12 +27,70 @@ namespace Improvians
                 BindSupervisor();
                 BindFertilizer();
                 BindUnit();
+                BindJobCode();
+                Bindcname();
+                BindFacility();
+                dtTrays.Clear();
             }
         }
+
+        public void Bindcname()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "8");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlCustomer.DataSource = dt;
+            ddlCustomer.DataTextField = "cname";
+            ddlCustomer.DataValueField = "cname";
+            ddlCustomer.DataBind();
+            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+
+        public void BindJobCode()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "7");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataTextField = "Jobcode";
+            ddlJobNo.DataValueField = "Jobcode";
+            ddlJobNo.DataBind();
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindFacility()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "9");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlFacility.DataSource = dt;
+            ddlFacility.DataTextField = "loc_seedline";
+            ddlFacility.DataValueField = "loc_seedline";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+
         public void BindGridFerReq()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
+            nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
             gvFer.DataSource = dt;
             gvFer.DataBind();
@@ -105,6 +165,7 @@ namespace Improvians
                 GridViewRow row = gvFer.Rows[rowIndex];
                 lblUnMovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text;
                 lblJobID.Text = (row.FindControl("lblID") as Label).Text;
+                lblwo.Text= (row.FindControl("lblwo") as Label).Text;
                 ddlsupervisor.Focus();
             }
         }
@@ -116,34 +177,37 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-            nv.Add("@Type", radtype.SelectedValue);
-            nv.Add("@JobID", lblJobID.Text);
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequest", nv);
-            if (result > 0)
-            {
-                objTask.AddFertilizerRequestDetails(dtTrays,result.ToString());
-                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                // lblmsg.Text = "Assignment Successful";
-                Clear();
-            }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                //  lblmsg.Text = "Assignment Not Successful";
-            }
+            
+
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                    nv.Add("@Type", radtype.SelectedValue);
+                    nv.Add("@WorkOrder", lblwo.Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequest", nv);
+                    if (result > 0)
+                    {
+                        objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
+                        // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                        string message = "Assignment Successful";
+                        string url = "MyTaskGrower.aspx";
+                        string script = "window.onload = function(){ alert('";
+                        script += message;
+                        script += "');";
+                        script += "window.location = '";
+                        script += url;
+                        script += "'; }";
+                        ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                        // lblmsg.Text = "Assignment Successful";
+                        Clear();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                        //  lblmsg.Text = "Assignment Not Successful";
+                    }
+             
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -153,7 +217,12 @@ namespace Improvians
 
         public void Clear()
         {
-
+            txtQty.Text = "";
+            txtSQFT.Text = "";
+            txtTrays.Text = "";
+            radtype.SelectedValue = "Fertilizer";
+            BindFertilizer();
+            dtTrays.Clear();
         }
 
         protected void radtype_SelectedIndexChanged(object sender, EventArgs e)
@@ -173,7 +242,7 @@ namespace Improvians
         public void BindChemical()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objNav.GetDataTable("SP_GetChemicalList", nv); ;
+            ddlFertilizer.DataSource = objFer.GetChemicalList(); 
             ddlFertilizer.DataTextField = "Name";
             ddlFertilizer.DataValueField = "No_";
             ddlFertilizer.DataBind();
@@ -183,7 +252,7 @@ namespace Improvians
         public void BindFertilizer()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objNav.GetDataTable("SP_GetFertilizerList", nv); ;
+            ddlFertilizer.DataSource = objFer.GetFertilizerList();
             ddlFertilizer.DataTextField = "Name";
             ddlFertilizer.DataValueField = "No_";
             ddlFertilizer.DataBind();
@@ -193,11 +262,29 @@ namespace Improvians
         public void BindUnit()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlUnit.DataSource = objNav.GetDataTable("SP_GetUnitList", nv); ;
+            ddlUnit.DataSource = objFer.GetUnitList();
             ddlUnit.DataTextField = "Description";
             ddlUnit.DataValueField = "Code";
             ddlUnit.DataBind();
             ddlUnit.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
+
+        //protected void chckchanged(object sender, EventArgs e)
+        //{
+        //    CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
+        //    foreach (GridViewRow row in gvFer.Rows)
+        //    {
+        //        CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+        //        if (chckheader.Checked == true)
+        //        {
+        //            chckrw.Checked = true;
+        //        }
+        //        else
+        //        {
+        //            chckrw.Checked = false;
+        //        }
+        //    }
+
+        //}
     }
 }

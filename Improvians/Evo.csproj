@@ -348,6 +348,7 @@
     <Compile Include="Admin\ViewEmployee.aspx.designer.cs">
       <DependentUpon>ViewEmployee.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Bal\BAL_Fertilizer.cs" />
     <Compile Include="Bal\Bal_SeedingPlan.cs" />
     <Compile Include="Bal\Improvians_General.cs" />
     <Compile Include="BAL_Classes\BAL_Login.cs" />
