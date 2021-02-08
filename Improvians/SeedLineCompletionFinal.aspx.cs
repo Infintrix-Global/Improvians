@@ -279,6 +279,7 @@ namespace Improvians
                 }
             }
             ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
+            ddlSeedLot.DataBind();
         }
 
         private void AddGrowerput(ref List<SeedLineTrayDetails> objGP, string seedLotID, string seedLot, string ActualSeed, string NoOfTray, string Seed, string type, string LeftOver)
@@ -351,13 +352,20 @@ namespace Improvians
 
         protected void gvDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            //string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
-            //string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
-            //ddlSeedLot.Items.Insert(0, new ListItem(seedLotName, seedID));
-            ////  dtTrays.Rows.RemoveAt(e.RowIndex);
-            //gvDetails.DeleteRow(e.RowIndex);
-            //BindGridDetails();
-        }
+            try
+            {
+                string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
+                string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
+                ddlSeedLot.Items.Insert(0, new ListItem(seedLotName, seedID));
+                //  dtTrays.Rows.RemoveAt(e.RowIndex);
+                gvDetails.DeleteRow(e.RowIndex);
+                gvDetails.DataBind();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            }
 
         protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
         {
