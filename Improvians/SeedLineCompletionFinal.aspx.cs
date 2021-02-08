@@ -233,7 +233,7 @@ namespace Improvians
             List<SeedLineTrayDetails> objinvoice = new List<SeedLineTrayDetails>();
             string type = "", seedLot = "", seedLotID = "", Seed = "", ActualSeed = "";
             string NoOfTray = "", LeftOver = "";
-           // BindSeedLot();
+            // BindSeedLot();
             txtSeedsAllocated.Text = "0";
             foreach (GridViewRow item in gvDetails.Rows)
             {
@@ -248,18 +248,18 @@ namespace Improvians
                 LeftOver = ((TextBox)item.FindControl("txtPartial")).Text;
 
                 AddGrowerput(ref objinvoice, seedLotID, seedLot, ActualSeed, NoOfTray, Seed, type, LeftOver);
-               // ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue("seedLotID"));
+                // ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue("seedLotID"));
 
             }
-          
+
             DataTable dtSeed = objTask.GetSeedNoBySeedLotID(ddlSeedLot.SelectedValue);
             //dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue, dtSeed.Rows[0]["NoOFSeed"].ToString());
 
             //if (ddlSeedLot.SelectedValue != "seedLot")
             //{
 
-                AddGrowerput(ref objinvoice, ddlSeedLot.SelectedValue, ddlSeedLot.SelectedItem.Text, dtSeed.Rows[0]["NoOFSeed"].ToString(), "", "", "", "");
-      //      }
+            AddGrowerput(ref objinvoice, ddlSeedLot.SelectedValue, ddlSeedLot.SelectedItem.Text, dtSeed.Rows[0]["NoOFSeed"].ToString(), "", "", "", "");
+            //      }
             //GrowerPutData = objinvoice;
             gvDetails.DataSource = objinvoice;
             gvDetails.DataBind();
@@ -294,6 +294,8 @@ namespace Improvians
             objInv.Seed = Seed;
             objInv.NoOftray = NoOfTray;
             objGP.Add(objInv);
+
+            ViewState["Growerput"] = objGP;
         }
 
 
@@ -348,24 +350,41 @@ namespace Improvians
 
 
 
-     
+
 
         protected void gvDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
-                string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
-                ddlSeedLot.Items.Insert(0, new ListItem(seedLotName, seedID));
-                //  dtTrays.Rows.RemoveAt(e.RowIndex);
-                gvDetails.DeleteRow(e.RowIndex);
+                //string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
+                //string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
+                //ddlSeedLot.Items.Insert(0, new ListItem(seedLotName, seedID));
+                ////  dtTrays.Rows.RemoveAt(e.RowIndex);
+                //gvDetails.DeleteRow(e.RowIndex);
+                //gvDetails.DataBind();
+
+
+                List<SeedLineTrayDetails> ojbpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
+                if (ojbpro == null)
+                {
+                    List<SeedLineTrayDetails> objpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
+                    objpro.RemoveAt(e.RowIndex);
+                    gvDetails.DataSource = objpro;
+                }
+                else
+                {
+                    ojbpro.RemoveAt(e.RowIndex);
+                    gvDetails.DataSource = ojbpro;
+                }
+
                 gvDetails.DataBind();
+             
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
-            }
+        }
 
         protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
         {
