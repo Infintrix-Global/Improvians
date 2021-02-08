@@ -105,8 +105,8 @@
 
                                                  <asp:TemplateField HeaderText="" HeaderStyle-Width="200px" HeaderStyle-CssClass="autostyle2" >
                                                         <ItemTemplate>
-                                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
-                                                                <asp:Button ID="btnAssign" runat="server" Text="Reassign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                                                <asp:Button ID="btnAssign" runat="server" Text="Reassign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Assign" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
