@@ -53,6 +53,7 @@ namespace Improvians
             if (dt != null && dt.Rows.Count > 0)
             {
                 wo = dt.Rows[0]["wo"].ToString();
+                lblJobid.Text= dt.Rows[0]["jobcode"].ToString();
                 lblSeedlot.Text = dt.Rows[0]["TraySize"].ToString();
             }
         }
@@ -194,7 +195,7 @@ namespace Improvians
 
         protected void sbtTray_Click(object sender, EventArgs e)
         {
-            lblJobid.Text = Session["JobID"].ToString();
+           // lblJobid.Text = Session["JobID"].ToString();
             lblnotrays.Text = txtTrays.Text;
 
             Table table = (Table)Page.FindControl("tbltray");
@@ -212,7 +213,8 @@ namespace Improvians
             lblbadplants.Text = count.ToString();
             Decimal germ = Convert.ToDecimal(count) / (Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(txtTrays.Text));
             lblGerm.Text = ((1 - germ) * 100).ToString();
-           // lblgermvigor= (RoundUp((100 - (Convert.ToInt32(lblbadplants.Text) / (Convert.ToInt32(txtTrays.Text) * E38 * germ) * 100)), 0))
+            // lblgermvigor= (RoundUp((100 - (Convert.ToInt32(lblbadplants.Text) / (Convert.ToInt32(txtTrays.Text) * E38 * germ) * 100)), 0))
+            lblgermvigor.Text = Math.Round((100 - (Convert.ToInt32(lblbadplants.Text) / (Convert.ToInt32(txtTrays.Text) * Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(lblGerm.Text)) * 100)), 0).ToString();
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)

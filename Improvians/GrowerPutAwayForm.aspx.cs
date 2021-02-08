@@ -104,6 +104,7 @@ namespace Improvians
                 Label lblMain = (Label)e.Row.FindControl("lblMain");
                 Label lblLocation = (Label)e.Row.FindControl("lblLocation");
 
+
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@mode", "4");
                 ddlMain.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
@@ -111,11 +112,10 @@ namespace Improvians
                 ddlMain.DataValueField = "FacilityID";
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
-
+                ddlLocation.SelectedValue = "3";
                 //  BindLocation();
-
-                BindLocationNew(ref ddlLocation, lblMain.Text);
-                ddlMain.SelectedValue = lblMain.Text;
+                BindLocationNew(ref ddlLocation,"3");
+                ddlMain.SelectedValue ="3";
                 ddlLocation.SelectedValue = lblLocation.Text;
 
             }

@@ -11,61 +11,43 @@ namespace Improvians
 {
 
 
-    public partial class PlantReadyAssignmentForm
+    public partial class MyTaskSiteMoveTeam
     {
 
         /// <summary>
-        /// ddlCustomer control.
+        /// ddlDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDept;
 
         /// <summary>
-        /// ddlFacility control.
+        /// LinkbtnPutAway control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
+        protected global::System.Web.UI.WebControls.LinkButton LinkbtnPutAway;
 
         /// <summary>
-        /// ddlJobNo control.
+        /// lblPutAwayTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
+        protected global::System.Web.UI.WebControls.Label lblPutAwayTotal;
 
         /// <summary>
-        /// btnResetSearch control.
+        /// ddlTaskRequest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnResetSearch;
-
-        /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
-
-        /// <summary>
-        /// gvGerm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGerm;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTaskRequest;
     }
 }

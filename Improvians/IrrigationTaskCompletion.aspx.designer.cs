@@ -11,80 +11,53 @@ namespace Improvians
 {
 
 
-    public partial class PlantReadyRequestForm
+    public partial class IrrigationCompletionForm
     {
 
         /// <summary>
-        /// ddlCustomer control.
+        /// lblmsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
+        protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// ddlFacility control.
+        /// gvIrrigation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
+        protected global::System.Web.UI.WebControls.GridView gvIrrigation;
 
         /// <summary>
-        /// ddlJobNo control.
+        /// txtSprayDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
+        protected global::System.Web.UI.WebControls.TextBox txtSprayDate;
 
         /// <summary>
-        /// btnResetSearch control.
+        /// txtTraysSprayed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnResetSearch;
+        protected global::System.Web.UI.WebControls.TextBox txtTraysSprayed;
 
         /// <summary>
-        /// gvPlantReady control.
+        /// txtSprayDuration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPlantReady;
-
-        /// <summary>
-        /// userinput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
-
-        /// <summary>
-        /// lblJobID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblJobID;
-
-        /// <summary>
-        /// ddlSupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupervisor;
+        protected global::System.Web.UI.WebControls.TextBox txtSprayDuration;
 
         /// <summary>
         /// btnSubmit control.

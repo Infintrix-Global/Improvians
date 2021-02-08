@@ -7,10 +7,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Improvians
 {
-    public partial class PlantReadyTaskAssignment : System.Web.UI.Page
+    public partial class IrrigationTaskAssignment : System.Web.UI.Page
     {
+
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -59,14 +61,13 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@wo", wo);
-            nv.Add("@JobCode", "");
-            nv.Add("@CustomerName", "");
-            nv.Add("@Facility", "");
-            nv.Add("@Mode", "10");
+            nv.Add("@JobCode","");
+            nv.Add("@CustomerName","");
+            nv.Add("@Facility","");
+            nv.Add("@Mode", "4");
             dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            gvPlantReady.DataSource = dt;
-            gvPlantReady.DataBind();
-
+            GridIrrigation.DataSource = dt;
+            GridIrrigation.DataBind();
 
         }
 
@@ -77,25 +78,22 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
-            nv.Add("@Notes", txtNotes.Text);
-            nv.Add("@JobID","");
+            nv.Add("@wo", wo);
+            nv.Add("@SprayDate","");
+            nv.Add("@TraysSprayed", "");
+            nv.Add("@SprayDuration", "");
+           
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@CropId","");
-            nv.Add("@UpdatedReadyDate", "");
-            nv.Add("@PlantExpirationDate","");
-            nv.Add("@RootQuality","");
-            nv.Add("@wo",wo);
-            nv.Add("@PlantHeight","");
 
-            nv.Add("@mode", "3");
+            nv.Add("@mode", "2");
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
+            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
             if (result > 0)
             {
                 //lblmsg.Text = "Assignment Successful";
                 clear();
                 string message = "Assignment Successful";
-                string url = "PlantReadyAssignmentForm.aspx";
+                string url = "IrrigationAssignmentForm.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -113,19 +111,19 @@ namespace Improvians
         public void clear()
         {
             ddlOperator.SelectedIndex = 0;
-            txtNotes.Text = "";
+           // txtNotes.Text = "";
 
 
         }
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-            Response.Redirect("~/PlantReadyAssignmentForm.aspx");
+            Response.Redirect("~/IrrigationAssignmentForm.aspx");
         }
 
-        protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void GridIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvPlantReady.PageIndex = e.NewPageIndex;
+            GridIrrigation.PageIndex = e.NewPageIndex;
             BindGridGerm();
         }
     }

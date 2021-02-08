@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Put Away Task Completion</h2>
+            <h2>Put Away Location Assignment</h2>
 
             <div class="row">
                 <div class=" col m12">
@@ -81,7 +81,7 @@
 
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Button ID="btnAssign" CommandName="Assign" CssClass="bttn bttn-primary bttn-action" Text="Assign" runat="server" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                                    <asp:Button ID="btnAssign" CommandName="Assign" CssClass="bttn bttn-primary bttn-action" Text="Start " runat="server" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -132,11 +132,11 @@
                                             <div class="data__table">
 
 
-                                                <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="70%"
+                                                <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="80%"
                                                     AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="RowNumber" HeaderText="NO." />
-                                                        <asp:TemplateField HeaderText="Facility Location" HeaderStyle-HorizontalAlign="Center">
+                                                        <asp:TemplateField HeaderText="Seedline Location" HeaderStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
 
@@ -167,8 +167,8 @@
 
                                                             <FooterStyle HorizontalAlign="Right" />
                                                             <FooterTemplate>
-                                                                <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" CausesValidation="false"
-                                                                    Text="ADD ROW" CssClass="bttn bttn-primary bttn-action" />
+                                                                <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" Width="300px" CausesValidation="false"
+                                                                    Text="Add Put Away Location"  CssClass="bttn bttn-primary bttn-action" />
                                                             </FooterTemplate>
 
 

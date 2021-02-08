@@ -11,7 +11,7 @@ namespace Improvians
 {
 
 
-    public partial class PlantReadyRequestForm
+    public partial class IrrigationRequestForm
     {
 
         /// <summary>
@@ -51,13 +51,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Button btnResetSearch;
 
         /// <summary>
-        /// gvPlantReady control.
+        /// GridIrrigation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPlantReady;
+        protected global::System.Web.UI.WebControls.GridView GridIrrigation;
 
         /// <summary>
         /// userinput control.
@@ -85,6 +85,60 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSupervisor;
+
+        /// <summary>
+        /// txtIrrigatedNoTrays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIrrigatedNoTrays;
+
+        /// <summary>
+        /// RadioButtonWaterRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonWaterRequired;
+
+        /// <summary>
+        /// txtIrrigationDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIrrigationDuration;
+
+        /// <summary>
+        /// txtSprayDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSprayDate;
+
+        /// <summary>
+        /// txtSprayTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSprayTime;
+
+        /// <summary>
+        /// txtNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNotes;
 
         /// <summary>
         /// btnSubmit control.

@@ -5,7 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Seeding Plan</h2>
+
+            <h3> <asp:LinkButton ID="LinkMyTask" PostBackUrl="~/DashBoard.aspx" runat="server"> My Task </asp:LinkButton> / <asp:LinkButton ID="LinkButtonSeedlinePlanning" PostBackUrl="~/Seeding_Plan_Form.aspx" runat="server"> Seedline Planning</asp:LinkButton>/Enc1</h3>
+            <h2>Seedline Planning</h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
@@ -99,7 +101,7 @@
 
                                         <asp:TemplateField HeaderText="SO Trays">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSOTrays" runat="server" Text='<%# Eval("sotrays","{0:###,#}") %>'></asp:Label>
+                                                <asp:Label ID="lblSOTrays" runat="server" Text='<%# Eval("sotrays","{0:####}") %>'></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -113,7 +115,7 @@
 
                                         <asp:TemplateField HeaderText="WO Trays">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="Txtgtrays" Width="50" Text='<%# Eval("wotrays","{0:###,#}") %>' runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="Txtgtrays" Width="50" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Plan Date">

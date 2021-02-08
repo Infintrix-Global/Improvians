@@ -7,9 +7,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Improvians
 {
-    public partial class PlantReadyTaskCompletion : System.Web.UI.Page
+    public partial class IrrigationCompletionForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -21,7 +22,7 @@ namespace Improvians
                     wo = Request.QueryString["WOId"].ToString();
                 }
 
-                BindPlantReady();
+                BindgvIrrigation();
 
             }
         }
@@ -42,7 +43,7 @@ namespace Improvians
             }
         }
 
-        public void BindPlantReady()
+        public void BindgvIrrigation()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -50,46 +51,44 @@ namespace Improvians
             nv.Add("@JobCode", "");
             nv.Add("@CustomerName", "");
             nv.Add("@Facility", "");
-            nv.Add("@Mode", "11");
+            nv.Add("@Mode", "5");
             dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            gvPlantReady.DataSource = dt;
-            gvPlantReady.DataBind();
-            //if (dt != null && dt.Rows.Count > 0)
-            //{
-            //    lblSeedlot.Text = dt.Rows[0]["SeedLots"].ToString();
-            //}
+            gvIrrigation.DataSource = dt;
+            gvIrrigation.DataBind();
+
         }
 
-        protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvPlantReady.PageIndex = e.NewPageIndex;
-            BindPlantReady();
+            gvIrrigation.PageIndex = e.NewPageIndex;
+            BindgvIrrigation();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-          
-             long result = 0;
+
+            long result = 0;
+       
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@OperatorID",Session["LoginID"].ToString());
-            nv.Add("@Notes", txtNots.Text);
-            nv.Add("@JobID", "");
+            nv.Add("@OperatorID", Session["LoginID"].ToString());
+            nv.Add("@wo", wo);
+            nv.Add("@SprayDate",txtSprayDate.Text.Trim());
+            nv.Add("@TraysSprayed",txtTraysSprayed.Text.Trim());
+            nv.Add("@SprayDuration",txtSprayDuration.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@CropId","");
-            nv.Add("@UpdatedReadyDate",txtUpdatedReadyDate.Text);
-            nv.Add("@PlantExpirationDate",txtPlantExpirationDate.Text);
-            nv.Add("@RootQuality",ddlRootQuality.SelectedItem.Text);
-            nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
-            nv.Add("@wo",wo);
+            if (Request.QueryString["ICom"] =="1")
+            {
+                nv.Add("@mode", "1");
 
-          
+            }
+            else
+            {
+                nv.Add("@mode", "3");
+            }
 
-            nv.Add("@mode","2");
+            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
-
-
-
+         
             if (result > 0)
             {
                 // lblmsg.Text = "Completion Successful";
@@ -98,7 +97,7 @@ namespace Improvians
                 string url;
                 if (Session["Role"].ToString() == "3")
                 {
-                    url = "PlantReadyCompletionForm.aspx";
+                    url = "IrrigationCompletionForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";
@@ -109,7 +108,7 @@ namespace Improvians
                 }
                 if (Session["Role"].ToString() == "2")
                 {
-                    url = "PlantReadyAssignmentForm.aspx";
+                    url = "IrrigationAssignmentForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";
@@ -129,13 +128,10 @@ namespace Improvians
 
         public void clear()
         {
-            txtNots.Text = "";
-            txtPlantExpirationDate.Text = "";
-          //  txtPlantHeight.Text = "";
-            txtUpdatedReadyDate.Text = "";
-            ddlPlantHeight.SelectedValue = "0";
-            ddlRootQuality.SelectedValue = "0";
-             
+            txtSprayDate.Text = "";
+            txtSprayDuration.Text = "";
+            txtTraysSprayed.Text = "";
+
 
         }
 
@@ -145,10 +141,12 @@ namespace Improvians
             clear();
             if (Session["Role"].ToString() == "3")
             {
-                Response.Redirect("~/PlantReadyCompletionForm.aspx");
+                Response.Redirect("~/IrrigationCompletionForm.aspx");
             }
 
-          
+
         }
+
+    
     }
 }

@@ -62,7 +62,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="To GreenHouse" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="To Bench" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGreenHouseName" runat="server" Text='<%# Eval("GreenHouseName")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -84,7 +84,6 @@
 
                                         <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-
                                                 <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Container.DataItemIndex %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -130,7 +129,7 @@
                             </div>
 
                             <div class="col">
-                                <label>Put Away Location</label>
+                                <label>Bench Location</label>
                                 <asp:TextBox ID="txtPutAwayLocation" ReadOnly="true" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
                             <div class="col">
@@ -144,7 +143,7 @@
                                 </span>
                             </div>
                             <div class="col">
-                                <label>Barcode</label>
+                                <label>Barcode of Putaway Location</label>
                                 <asp:TextBox ID="txtBarcode" runat="server" CssClass="input__control"></asp:TextBox>
 
                                 <span class="error_message">

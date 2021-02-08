@@ -24,6 +24,10 @@ namespace Improvians
             {
                 Response.Redirect("~/PlantReadyCompletionForm.aspx");
             }
+            if (ddlTaskRequest.SelectedValue == "3")
+            {
+                Response.Redirect("~/IrrigationCompletionForm.aspx");
+            }
         }
     }
 }

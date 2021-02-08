@@ -6,10 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace Improvians
 {
-    public partial class PlantReadyRequestForm : System.Web.UI.Page
+    public partial class IrrigationRequestForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -19,7 +18,7 @@ namespace Improvians
                 Bindcname();
                 BindJobCode();
                 BindFacility();
-                BindGridPlantReady();
+                BindGridIrrigation();
                 BindSupervisorList();
             }
         }
@@ -40,37 +39,27 @@ namespace Improvians
             }
         }
 
-        public void BindGridPlantReady()
+        public void BindGridIrrigation()
         {
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", "");
-            nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@Mode", "7");
+            nv.Add("@wo","");
+            nv.Add("@JobCode",ddlJobNo.SelectedValue);
+            nv.Add("@CustomerName",ddlCustomer.SelectedValue);
+            nv.Add("@Facility",ddlFacility.SelectedValue);
+            nv.Add("@Mode", "1");
             dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            gvPlantReady.DataSource = dt;
-            gvPlantReady.DataBind();
-
-
+            GridIrrigation.DataSource = dt;
+            GridIrrigation.DataBind();
         }
-        public void BindSupervisorList()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlSupervisor.DataTextField = "EmployeeName";
-            ddlSupervisor.DataValueField = "ID";
-            ddlSupervisor.DataBind();
-            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-        }
+
         public void Bindcname()
         {
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-
+           
             nv.Add("@Mode", "8");
             dt = objCommon.GetDataTable("GET_Common", nv);
             ddlCustomer.DataSource = dt;
@@ -113,19 +102,29 @@ namespace Improvians
             ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
+        public void BindSupervisorList()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlSupervisor.DataTextField = "EmployeeName";
+            ddlSupervisor.DataValueField = "ID";
+            ddlSupervisor.DataBind();
+            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+        }
+
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridPlantReady();
+            BindGridIrrigation();
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridPlantReady();
+            BindGridIrrigation();
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridPlantReady();
+            BindGridIrrigation();
         }
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
@@ -133,9 +132,9 @@ namespace Improvians
             Bindcname();
             BindJobCode();
             BindFacility();
-            BindGridPlantReady();
+            BindGridIrrigation();
         }
-        protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
             {
@@ -143,7 +142,6 @@ namespace Improvians
                 string rowIndex = e.CommandArgument.ToString();
 
                 wo = rowIndex;
-
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@wo", wo);
@@ -152,8 +150,11 @@ namespace Improvians
                 nv.Add("@Facility", ddlFacility.SelectedValue);
                 nv.Add("@Mode", "2");
                 dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-
                 lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
+               // txtIrrigatedNoTrays.Text = dt.Rows[0]["trays_actual"].ToString();
+                //txtIrrigationDuration.Text = dt.Rows[0]["jobcode"].ToString();
+                txtNotes.Focus();
+                
             }
         }
 
@@ -164,9 +165,15 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            nv.Add("@WO",wo);
+            nv.Add("@WO", wo);
+            nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
+            nv.Add("@WaterRequired",RadioButtonWaterRequired.SelectedValue);
+            nv.Add("@IrrigationDuration",txtIrrigationDuration.Text.Trim());
+            nv.Add("@SprayDate",txtSprayDate.Text.Trim());
+            nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+            nv.Add("@Nots", txtNotes.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequest", nv);
+            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
@@ -191,7 +198,7 @@ namespace Improvians
 
         public void clear()
         {
-            
+
             ddlSupervisor.SelectedIndex = 0;
 
         }
@@ -202,10 +209,12 @@ namespace Improvians
             Response.Redirect("~/MyTaskGrower.aspx");
         }
 
-        protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void GridIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvPlantReady.PageIndex = e.NewPageIndex;
-            BindGridPlantReady();
+            GridIrrigation.PageIndex = e.NewPageIndex;
+            BindGridIrrigation();
         }
+
+        
     }
 }

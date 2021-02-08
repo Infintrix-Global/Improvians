@@ -254,12 +254,18 @@
     <Content Include="images\rxicons-v1.0\Read Me.txt" />
     <Content Include="images\rxicons-v1.0\style.css" />
     <Content Include="images\user-profile.jpg" />
+    <Content Include="IrrigationAssignmentForm.aspx" />
+    <Content Include="IrrigationCompletionForm.aspx" />
+    <Content Include="IrrigationTaskCompletion.aspx" />
+    <Content Include="IrrigationRequestForm.aspx" />
+    <Content Include="IrrigationTaskAssignment.aspx" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\popper.min.js" />
     <Content Include="js\slick.min.js" />
+    <Content Include="log.txt" />
     <Content Include="Login.aspx" />
     <Content Include="MoveCompletionForm.aspx" />
     <Content Include="MoveForm.aspx" />
@@ -275,6 +281,7 @@
     <Content Include="MyTaskSeedingTeam.aspx" />
     <Content Include="MyTaskSeedLineOperator.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
+    <Content Include="MyTaskSiteMoveTeam.aspx" />
     <Content Include="PlantReadyAssignmentForm.aspx" />
     <Content Include="PlantReadyCompletionForm.aspx" />
     <Content Include="PlantReadyRequestForm.aspx" />
@@ -287,6 +294,9 @@
     <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
+    <Content Include="spray-completion.html" />
+    <Content Include="spray-request.html" />
+    <Content Include="spray-task-assignment.html" />
     <Content Include="SprayrRequest.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -339,6 +349,7 @@
     <Compile Include="Admin\ViewEmployee.aspx.designer.cs">
       <DependentUpon>ViewEmployee.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Bal\BAL_Fertilizer.cs" />
     <Compile Include="Bal\Bal_SeedingPlan.cs" />
     <Compile Include="Bal\Improvians_General.cs" />
     <Compile Include="BAL_Classes\BAL_Login.cs" />
@@ -417,6 +428,41 @@
     </Compile>
     <Compile Include="EvoMaster.Master.designer.cs">
       <DependentUpon>EvoMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationAssignmentForm.aspx.cs">
+      <DependentUpon>IrrigationAssignmentForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationAssignmentForm.aspx.designer.cs">
+      <DependentUpon>IrrigationAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationCompletionForm.aspx.cs">
+      <DependentUpon>IrrigationCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationCompletionForm.aspx.designer.cs">
+      <DependentUpon>IrrigationCompletionForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationTaskCompletion.aspx.cs">
+      <DependentUpon>IrrigationTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationTaskCompletion.aspx.designer.cs">
+      <DependentUpon>IrrigationTaskCompletion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationRequestForm.aspx.cs">
+      <DependentUpon>IrrigationRequestForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationRequestForm.aspx.designer.cs">
+      <DependentUpon>IrrigationRequestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationTaskAssignment.aspx.cs">
+      <DependentUpon>IrrigationTaskAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationTaskAssignment.aspx.designer.cs">
+      <DependentUpon>IrrigationTaskAssignment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -522,6 +568,13 @@
     </Compile>
     <Compile Include="MyTaskShippingCoordinator.aspx.designer.cs">
       <DependentUpon>MyTaskShippingCoordinator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskSiteMoveTeam.aspx.cs">
+      <DependentUpon>MyTaskSiteMoveTeam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskSiteMoveTeam.aspx.designer.cs">
+      <DependentUpon>MyTaskSiteMoveTeam.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlantReadyAssignmentForm.aspx.cs">
       <DependentUpon>PlantReadyAssignmentForm.aspx</DependentUpon>

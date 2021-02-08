@@ -6,10 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace Improvians
 {
-    public partial class GerminationCompletionForm : System.Web.UI.Page
+    public partial class IrrigationCompletionForm1 : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -73,19 +72,65 @@ namespace Improvians
 
         }
 
-
         public void BindGridGerm()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTask", nv);
+            nv.Add("@Mode", "6");
+            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
+        }
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindGridGerm();
+        }
+        protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string JobID = "";
+
+
+            if (e.CommandName == "Select")
+            {
+                long result = 0;
+                string WOID = e.CommandArgument.ToString();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
+                nv.Add("@wo", WOID);
+                nv.Add("@SprayDate", "");
+                nv.Add("@TraysSprayed", "");
+                nv.Add("@SprayDuration", "");
+
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+
+                nv.Add("@mode", "1");
+                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
+                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
+              //  Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}", WO));
+            }
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -94,18 +139,6 @@ namespace Improvians
             BindGridGerm();
         }
 
-        protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            string Wo = "";
-            string GTAID = "";
-            long result = 0;
-            if (e.CommandName == "Start")
-            {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvGerm.Rows[rowIndex];
-                GTAID = (row.FindControl("lblID") as Label).Text;
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", GTAID));
-            }
-        }
+
     }
 }
