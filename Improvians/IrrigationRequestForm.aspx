@@ -7,25 +7,29 @@
 
     <div class="main main__header">
         <div class="site__container">
-            <h2>Plant Ready Request</h2>
+            <h2>Irrigation Request</h2>
 
-            <div class="filter__row row">
-                <div class="col-xl-auto col-12">
-                    <label>Job No.</label>
+              <div class="filter__row d-flex">
+                <div class="row">
+                    <div class="col m3">
+                        <label>Customer </label>
+                        <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
 
-                    <asp:DropDownList ID="ddlJobNo" runat="server" class="w-100 filter__control filter__select custom__dropdown"></asp:DropDownList>
-                </div>
+                    <div class="col m3">
+                        <label>Facility </label>
+                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                    <div class="col m3">
+                        <label>Job No </label>
+                        <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                      <div class="col m3">
+                         <br />
+                                <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                    </div>
 
-                <div class="col-xl-auto col-12">
-                    <label>Customer Name</label>
-
-                    <asp:DropDownList ID="ddlCustomer" runat="server" class="w-100 filter__control filter__select custom__dropdown"></asp:DropDownList>
-                </div>
-
-                <div class="col-xl-auto col-12">
-                    <label>Facility Defaults</label>
-
-                    <asp:DropDownList ID="ddlFacility" runat="server" class="w-100 filter__control filter__select custom__dropdown"></asp:DropDownList>
+                     
                 </div>
             </div>
 
@@ -149,10 +153,10 @@
                             <div class="col-12 col-sm-6 col-md-auto">
                                 <label class="pr-2 pr-lg-0 d-lg-block">Water Required</label>
                           
-                                 <asp:RadioButtonList ID="RadioButtonWaterRequired" v runat="server" RepeatDirection="Horizontal" Width="200px">
+                                 <asp:RadioButtonList ID="RadioButtonWaterRequired" runat="server" RepeatDirection="Horizontal" Width="200px">
                                      <asp:ListItem Text="Yes" Value="Yes" Selected="True">
                                      </asp:ListItem>
-                                        <asp:ListItem Text="No" Value="No" Selected="True">
+                                        <asp:ListItem Text="No" Value="No">
                                      </asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
@@ -184,7 +188,7 @@
                         <div class="row align-items-center mt-sm-3">
                             <div class="col-12 col-sm-6 col-lg-4">
                               
-                                <asp:TextBox ID="txtNotes" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
                             </div>
 
                             <div class="col-12 my-3">

@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 namespace Improvians
 {
-    public partial class PlantReadyCompletionForm : System.Web.UI.Page
+    public partial class IrrigationCompletionForm1 : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -71,6 +71,7 @@ namespace Improvians
             ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
+
         public void BindGridGerm()
         {
             DataTable dt = new DataTable();
@@ -79,7 +80,7 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@Mode", "9");
+            nv.Add("@Mode", "6");
             dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -110,17 +111,25 @@ namespace Improvians
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string JobID = "";
-           
+
 
             if (e.CommandName == "Select")
             {
+                long result = 0;
+                string WOID = e.CommandArgument.ToString();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
+                nv.Add("@wo", WOID);
+                nv.Add("@SprayDate", "");
+                nv.Add("@TraysSprayed", "");
+                nv.Add("@SprayDuration", "");
 
+                nv.Add("@LoginID", Session["LoginID"].ToString());
 
-
-
-
-                string WO = e.CommandArgument.ToString();
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?WOId={0}", WO));
+                nv.Add("@mode", "1");
+                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
+                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
+              //  Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}", WO));
             }
         }
 
@@ -130,6 +139,6 @@ namespace Improvians
             BindGridGerm();
         }
 
-     
+
     }
 }

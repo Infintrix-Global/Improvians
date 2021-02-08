@@ -112,7 +112,28 @@ namespace Improvians
             ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
 
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindGridIrrigation();
+        }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
@@ -126,7 +147,7 @@ namespace Improvians
                 nv.Add("@wo", wo);
                 nv.Add("@JobCode", ddlJobNo.SelectedValue);
                 nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-                nv.Add("@FacilityN", ddlFacility.SelectedValue);
+                nv.Add("@Facility", ddlFacility.SelectedValue);
                 nv.Add("@Mode", "2");
                 dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
                 lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
@@ -145,8 +166,14 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             nv.Add("@WO", wo);
+            nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
+            nv.Add("@WaterRequired",RadioButtonWaterRequired.SelectedValue);
+            nv.Add("@IrrigationDuration",txtIrrigationDuration.Text.Trim());
+            nv.Add("@SprayDate",txtSprayDate.Text.Trim());
+            nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+            nv.Add("@Nots", txtNotes.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequest", nv);
+            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
@@ -187,5 +214,7 @@ namespace Improvians
             GridIrrigation.PageIndex = e.NewPageIndex;
             BindGridIrrigation();
         }
+
+        
     }
 }

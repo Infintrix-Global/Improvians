@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="PlantReadyCompletionForm.aspx.cs" Inherits="Improvians.PlantReadyCompletionForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationAssignmentForm.aspx.cs" Inherits="Improvians.IrrigationAssignmentForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-      <div class="header__bottom">
+       <div class="header__bottom">
         <div class="header__tabs">
             <ul class="d-flex align-items-center justify-content-center list-inline">
                 <li><a href="/my-tasks.html" class="bttn active" title="My Task">My Task</a></li>
@@ -122,7 +121,8 @@
                                             <ItemTemplate>
 
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
-                                               
+                                                <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

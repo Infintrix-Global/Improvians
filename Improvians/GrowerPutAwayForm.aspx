@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Put Away Task Completion</h2>
+            <h2>Put Away Location Assignment</h2>
 
             <div class="row">
                 <div class=" col m12">

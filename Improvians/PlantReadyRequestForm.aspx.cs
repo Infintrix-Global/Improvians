@@ -16,6 +16,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
+                Bindcname();
+                BindJobCode();
+                BindFacility();
                 BindGridPlantReady();
                 BindSupervisorList();
             }
@@ -42,9 +45,12 @@ namespace Improvians
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@Mode", "4");
-            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+            nv.Add("@wo", "");
+            nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Mode", "7");
+            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 
@@ -59,8 +65,76 @@ namespace Improvians
             ddlSupervisor.DataBind();
             ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
         }
+        public void Bindcname()
+        {
 
-    
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "8");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlCustomer.DataSource = dt;
+            ddlCustomer.DataTextField = "cname";
+            ddlCustomer.DataValueField = "cname";
+            ddlCustomer.DataBind();
+            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+
+        public void BindJobCode()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "7");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataTextField = "Jobcode";
+            ddlJobNo.DataValueField = "Jobcode";
+            ddlJobNo.DataBind();
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindFacility()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "9");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlFacility.DataSource = dt;
+            ddlFacility.DataTextField = "loc_seedline";
+            ddlFacility.DataValueField = "loc_seedline";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridPlantReady();
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridPlantReady();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridPlantReady();
+        }
+
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindGridPlantReady();
+        }
         protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
@@ -72,9 +146,12 @@ namespace Improvians
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@LoginID",wo.ToString());
-                nv.Add("@Mode", "5");
-                dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+                nv.Add("@wo", wo);
+                nv.Add("@JobCode", ddlJobNo.SelectedValue);
+                nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+                nv.Add("@Facility", ddlFacility.SelectedValue);
+                nv.Add("@Mode", "2");
+                dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
                 lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
             }

@@ -6,9 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 namespace Improvians
 {
-    public partial class PlantReadyAssignmentForm : System.Web.UI.Page
+    public partial class IrrigationAssignmentForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -18,11 +19,65 @@ namespace Improvians
                 Bindcname();
                 BindJobCode();
                 BindFacility();
-                BindGridGerm();
-
+                BindGridIrrigation();
+              
             }
         }
 
+        private string wo
+        {
+            get
+            {
+                if (ViewState["wo"] != null)
+                {
+                    return (string)ViewState["wo"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["wo"] = value;
+            }
+        }
+
+        public void BindGridIrrigation()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@wo", "");
+            nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Mode", "3");
+            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            gvGerm.DataSource = dt;
+            gvGerm.DataBind();
+        }
+
+
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindGridIrrigation();
+        }
         public void Bindcname()
         {
 
@@ -71,82 +126,44 @@ namespace Improvians
             ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
-        public void BindGridGerm()
-        {
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", "");
-            nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@Mode", "8");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            gvGerm.DataSource = dt;
-            gvGerm.DataBind();
+       
 
-        }
-        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridGerm();
-        }
 
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridGerm();
-        }
 
-        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridGerm();
-        }
-
-        protected void btnResetSearch_Click(object sender, EventArgs e)
-        {
-            Bindcname();
-            BindJobCode();
-            BindFacility();
-            BindGridGerm();
-        }
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string JobID = "";
             string TaskID = "";
             if (e.CommandName == "Assign")
             {
-                //int rowIndex = Convert.ToInt32(e.CommandArgument);
-                //GridViewRow row = gvGerm.Rows[rowIndex];
-
+             
                 string WO = e.CommandArgument.ToString();
 
-                Response.Redirect(String.Format("~/PlantReadyTaskAssignment.aspx?WOId={0}", WO));
-
+                Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?WOId={0}", WO));
 
             }
 
 
             if (e.CommandName == "Select")
             {
-               
-                string WO = e.CommandArgument.ToString();
 
+                string WOID = e.CommandArgument.ToString();
+
+                long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-                nv.Add("@Notes", "");
-                nv.Add("@JobID", JobID);
+                nv.Add("@wo", WOID);
+                nv.Add("@SprayDate", "");
+                nv.Add("@TraysSprayed", "");
+                nv.Add("@SprayDuration", "");
+
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@CropId", "");
-                nv.Add("@UpdatedReadyDate", "");
-                nv.Add("@PlantExpirationDate", "");
-                nv.Add("@RootQuality", "");
-                nv.Add("@PlantHeight", "");
-                nv.Add("@wo", WO);
-                nv.Add("@mode", "4");
 
+                nv.Add("@mode", "1");
 
-                int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
+                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
 
-
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?WOId={0}", WO));
+                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
 
             }
         }
@@ -154,24 +171,9 @@ namespace Improvians
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridGerm();
+            BindGridIrrigation();
         }
 
-        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-
-                Label lbljstatus = (Label)e.Row.FindControl("lbljstatus");
-                Label lblTitla = (Label)e.Row.FindControl("lblTitla");
-
-                if (lbljstatus.Text == "4")
-                {
-                    lblTitla.Text = "Plant Ready Request";
-                }
-
-
-            }
-        }
+      
     }
 }
