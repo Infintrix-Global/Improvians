@@ -6,7 +6,7 @@
     <div class="main">
         <div class="site__container">
 
-            <h3> <asp:LinkButton ID="LinkMyTask" PostBackUrl="~/DashBoard.aspx" runat="server"> My Task </asp:LinkButton> / <asp:LinkButton ID="LinkButtonSeedlinePlanning" PostBackUrl="~/Seeding_Plan_Form.aspx" runat="server"> Seedline Planning</asp:LinkButton>/Enc1</h3>
+            <h3> <asp:LinkButton ID="LinkMyTask" PostBackUrl="~/DashBoard.aspx" runat="server"> My Task </asp:LinkButton> -> <asp:LinkButton ID="LinkButtonSeedlinePlanning" PostBackUrl="~/Seeding_Plan_Form.aspx" runat="server"> Seedline Planning</asp:LinkButton>->Enc1</h3>
             <h2>Seedline Planning</h2>
 
             <div class="filter__row d-flex">
