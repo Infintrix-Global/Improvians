@@ -275,7 +275,6 @@ namespace Improvians
         }
 
         private void AddGrowerput(ref List<SeedLineTrayDetails> objGP, string seedLotID, string seedLot, string ActualSeed, string NoOfTray, string Seed, string type, string LeftOver)
-
         {
             SeedLineTrayDetails objInv = new SeedLineTrayDetails();
             objInv.SeedLot = seedLot;
@@ -342,6 +341,25 @@ namespace Improvians
 
                 ((DropDownList)e.Row.FindControl("ddlType")).SelectedValue = ((Label)(e.Row.FindControl("lblType"))).Text;
             }
+        }
+
+      
+        protected void gvDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //if (e.CommandName == "Remove")
+            //{
+            //    int rowIndex = Convert.ToInt32(e.CommandArgument);
+            //    //  GridViewRow row = gvDetails.Rows[rowIndex];
+            //    //  GridViewRow row1 = gvDetails.Rows[rowIndex]
+            //    gvDetails.DeleteRow(rowIndex);
+            //    BindGridDetails();
+            //}
+
+        }
+
+        protected void gvDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+          
         }
     }
 }

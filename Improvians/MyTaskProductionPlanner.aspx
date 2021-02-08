@@ -52,7 +52,7 @@
                                                   <asp:TemplateField HeaderText="Work Order" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
                                                          
-                                                            <asp:Label ID="lblID" runat="server" Text='<%# Eval("wo")  %>' ></asp:Label>
+                                                            <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' ></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -65,7 +65,7 @@
 
                                         <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                                                <asp:Label ID="lblitemno" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -85,13 +85,13 @@
 
                                         <asp:TemplateField HeaderText="Seeded Due Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SoDate","{0:dd MMM yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="lblSoDate" runat="server" Text='<%# Eval("SoDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Planned Due Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("due_date","{0:dd MMM yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="lbldue_date" runat="server" Text='<%# Eval("due_date","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -102,7 +102,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2" >
+                                                 <asp:TemplateField HeaderText="" HeaderStyle-Width="200px" HeaderStyle-CssClass="autostyle2" >
                                                         <ItemTemplate>
                                                             <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                                 <asp:Button ID="btnAssign" runat="server" Text="ReAssign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
