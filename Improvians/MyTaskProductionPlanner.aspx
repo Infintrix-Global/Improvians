@@ -48,6 +48,12 @@
                                                             <asp:Label ID="lbljID" runat="server" Text='<%# Eval("jobcode")  %>' ></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>--%>
+                                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                                   <asp:TemplateField HeaderText="Work Order" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
@@ -56,12 +62,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
-                                               <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                              
 
                                         <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -105,7 +106,7 @@
                                                  <asp:TemplateField HeaderText="" HeaderStyle-Width="200px" HeaderStyle-CssClass="autostyle2" >
                                                         <ItemTemplate>
                                                             <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
-                                                                <asp:Button ID="btnAssign" runat="server" Text="ReAssign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                                                <asp:Button ID="btnAssign" runat="server" Text="Reassign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
