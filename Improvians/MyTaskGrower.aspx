@@ -31,7 +31,7 @@
         <%--            </div>--%>
 
             
-                    <div class="col m8">
+                      <div class="col m8">
                         
                      <%--   <a href="GerminationRequestForm.aspx">Production Planning</a> <br />
                         <a href="Seeding_Plan_Form.aspx">Seedline</a> <br />
@@ -41,10 +41,10 @@
                       
                            <a href="FertilizerTaskReq.aspx">Fertilization/Chemical</a> <br />
                             <a href="IrrigationRequestForm.aspx">Irrigation</a> <br />
-                     
+                       <a href="PlantReadyRequestForm.aspx">Plant Ready</a> <br />
                            <a href="MoveForm.aspx">Move</a> <br />
                          
-                          <a href="PlantReadyRequestForm.aspx">Plant Ready</a> <br />
+                        
                    
 
                         </div>
@@ -52,17 +52,22 @@
 <%--                    <div class="col m4">
                         <label>Task Request Form </label>--%>
                         <asp:DropDownList ID="ddlTaskRequest" Visible="false" AutoPostBack="true" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlTaskRequest_SelectedIndexChanged">
-                            <asp:ListItem Text="Production Planning Request" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Seedline Request " Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Seedline Move Request " Value="3"></asp:ListItem>
+                             <asp:ListItem Text="Put Away Request" Value="6"></asp:ListItem>
                             <asp:ListItem Text="Germination Request" Value="4"></asp:ListItem>
-                            <asp:ListItem Text="Move Request" Value="5"></asp:ListItem>
-                            <asp:ListItem Text="Put Away Request" Value="6"></asp:ListItem>
+                              <asp:ListItem Text="Fertilization/Chemical Request" Value="8"></asp:ListItem>
+                            <asp:ListItem Text="Irrigation Request" Value="9"></asp:ListItem>
                               <asp:ListItem Text="Plant Ready Request" Value="7"></asp:ListItem>
-                                <asp:ListItem Text="Fertilization/Chemical Request" Value="8"></asp:ListItem>
+                              <asp:ListItem Text="Move Request" Value="5"></asp:ListItem>
+                           
+                            <%--<asp:ListItem Text="Production Planning Request" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="Seedline Request " Value="2"></asp:ListItem>
+                          <asp:ListItem Text="Seedline Move Request " Value="3"></asp:ListItem>--%>
+                          
+                          
+                            
+                              
                         </asp:DropDownList>
                     <%--</div>--%>
-
 
 
                 </div>
