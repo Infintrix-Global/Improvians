@@ -16,7 +16,7 @@
     </div>
     <div class="main">
         <div class="site__container">
-            <h2>My Task</h2>
+            <h2>My Tasks</h2>
 
           <%--  <div class="filter__row d-flex">
                 <div class="row">
@@ -36,13 +36,52 @@
                      <%--   <a href="GerminationRequestForm.aspx">Production Planning</a> <br />
                         <a href="Seeding_Plan_Form.aspx">Seedline</a> <br />
                         <a href="#">Seedline Move</a> <br />--%>
-                            <a href="GrowerPutAwayForm.aspx">Put Away</a> <br />
+                           <div class="data__table">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <th>Task Name</th>
+                                    <th class="text-center">No. of Tasks</th>
+                                </tr>
+
+                                <tr>
+                                    <td>Put-Away  </td>
+                                    <td class="text-center"> <asp:LinkButton ID="lnkPutAway" PostBackUrl="~/GrowerPutAwayForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+                                    
+                                <tr>
+                                    <td>Germination</td>
+                                    <td class="text-center"><asp:LinkButton ID="lnkGerm" PostBackUrl="~/GerminationRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Fertilization/Chemical</td>
+                                    <td class="text-center"><asp:LinkButton ID="lnkFer" PostBackUrl="~/FertilizerTaskReq.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Irrigation</td>
+                                    <td class="text-center"><asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+
+                                  <tr>
+                                    <td>Plant Ready</td>
+                                    <td class="text-center"><asp:LinkButton ID="lnkpr" PostBackUrl="~/PlantReadyRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+
+                                             <tr>
+                                    <td>Move</td>
+                                    <td class="text-center"><asp:LinkButton ID="lnkMove" PostBackUrl="~/MoveForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+                            </tbody></table>
+                        </div>
+                          <%--  <a href="GrowerPutAwayForm.aspx">Put Away</a> <br />
                           <a href="GerminationRequestForm.aspx">Germination </a> <br />
                       
                            <a href="FertilizerTaskReq.aspx">Fertilization/Chemical</a> <br />
                             <a href="IrrigationRequestForm.aspx">Irrigation</a> <br />
                        <a href="PlantReadyRequestForm.aspx">Plant Ready</a> <br />
-                           <a href="MoveForm.aspx">Move</a> <br />
+                           <a href="MoveForm.aspx">Move</a> <br />--%>
                          
                         
                    
