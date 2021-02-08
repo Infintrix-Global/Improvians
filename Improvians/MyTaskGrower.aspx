@@ -30,13 +30,11 @@
                         </asp:DropDownList>
         <%--            </div>--%>
 
-            
-                      <div class="col m8">
-                        
-                     <%--   <a href="GerminationRequestForm.aspx">Production Planning</a> <br />
-                        <a href="Seeding_Plan_Form.aspx">Seedline</a> <br />
-                        <a href="#">Seedline Move</a> <br />--%>
-                           <div class="data__table">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 col-xl-4">
+                    <div class="dashboard__block">
+                     <%--   <h3>My Tasks</h3>--%>
+                        <div class="data__table">
                             <table>
                                 <tbody>
                                 <tr>
@@ -75,18 +73,10 @@
                                 </tr>
                             </tbody></table>
                         </div>
-                          <%--  <a href="GrowerPutAwayForm.aspx">Put Away</a> <br />
-                          <a href="GerminationRequestForm.aspx">Germination </a> <br />
+                    </div>
+                </div>
+            </div>
                       
-                           <a href="FertilizerTaskReq.aspx">Fertilization/Chemical</a> <br />
-                            <a href="IrrigationRequestForm.aspx">Irrigation</a> <br />
-                       <a href="PlantReadyRequestForm.aspx">Plant Ready</a> <br />
-                           <a href="MoveForm.aspx">Move</a> <br />--%>
-                         
-                        
-                   
-
-                        </div>
 
 <%--                    <div class="col m4">
                         <label>Task Request Form </label>--%>
