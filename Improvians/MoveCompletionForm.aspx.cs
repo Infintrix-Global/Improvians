@@ -197,11 +197,21 @@ namespace Improvians
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
 
+
+
             if (txtTrays.Text != "")
             {
-                
-                lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+                if( Convert.ToInt32(txtTrays.Text) <=  Convert.ToInt32(lblRemainingTrays.Text))
+                {
+                    lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+
+                }
+                else
+                {
+                    txtTrays.Text = "";
+                }
                
+
             }
         }
 

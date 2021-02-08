@@ -76,7 +76,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Trays To be Moved" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Trays Left To be Moved" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblTraysRequest" runat="server" Text=""></asp:Label>
                                             </ItemTemplate>
