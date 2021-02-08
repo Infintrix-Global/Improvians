@@ -225,7 +225,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 my-3">
                                             <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped data__table w-auto"
-                                                GridLines="None" OnRowDataBound="gvDetails_RowDataBound" OnRowCommand="gvDetails_RowCommand" OnRowDeleting="gvDetails_RowDeleting"
+                                                GridLines="None" OnRowDataBound="gvDetails_RowDataBound"  OnRowDeleting="gvDetails_RowDeleting"
                                                 ShowHeaderWhenEmpty="True">
                                                 <Columns>
 
@@ -276,12 +276,12 @@
                                                     </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="#">
                                                         <ItemTemplate>
-                                                              <asp:Button Text="Remove" CommandName="Remove" ID="btnRemove" runat="server"   CommandArgument='<%# Container.DataItemIndex %>'  CssClass="bttn bttn-primary bttn-action"  />
+                                                              <asp:Button Text="Remove" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server"   CssClass="bttn bttn-primary bttn-action"  />
                                                      
                                                           
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                      <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
+                                                   
                                                 </Columns>
                                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                                                 <PagerSettings Mode="NumericFirstLast" />
