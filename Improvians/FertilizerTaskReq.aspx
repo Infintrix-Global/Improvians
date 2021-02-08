@@ -199,7 +199,7 @@
                             </div>
 
                             <div class="col">
-                                <label>Trays </label>
+                                <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
                                 <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
