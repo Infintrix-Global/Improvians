@@ -63,21 +63,12 @@ namespace Improvians
             }
         }
 
-        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+   
+        protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-               
-                Label lbljstatus = (Label)e.Row.FindControl("lbljstatus");
-                Label lblTitla = (Label)e.Row.FindControl("lblTitla");
+            gvGerm.PageIndex = e.NewPageIndex;
+            BindGridGerm();
 
-                if (lbljstatus.Text=="2")
-                {
-                    lblTitla.Text = "Grower Put Away";
-                }
-
-
-            }
         }
     }
 }
