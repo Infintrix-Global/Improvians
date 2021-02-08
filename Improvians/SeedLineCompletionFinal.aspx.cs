@@ -188,10 +188,12 @@ namespace Improvians
             //chkBenchLocation.Checked = false;
             //ddlBenchLocation.Visible = true;
             gvDetails.DataSource = null;
+            txtSeedsAllocated.Text = "";
             gvDetails.DataBind();
             txtSeedingDate.Text = "";
             txtTrays.Text = "";
             dtTrays.Clear();
+            BindSeedLot();
             // txtSeedsAllocated.Text = "";
         }
 
