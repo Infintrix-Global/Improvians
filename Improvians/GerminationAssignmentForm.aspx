@@ -143,7 +143,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="" HeaderStyle-Width="190px" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                
                                                  <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Start" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
