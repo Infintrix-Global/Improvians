@@ -276,9 +276,8 @@
                                                     </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="#">
                                                         <ItemTemplate>
-                                                              <asp:Button Text="Remove" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server"   CssClass="bttn bttn-primary bttn-action"  />
+                                                              <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server"   CssClass="bttn bttn-primary bttn-action"  />
                                                      
-                                                          
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                    
