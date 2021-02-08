@@ -36,11 +36,11 @@
                                                 ShowHeaderWhenEmpty="True" Width="100%">
                                                 <Columns>
 
-                                                       <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                                                   <%--    <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
                                                             <asp:Label ID="Label1" runat="server" Text="Seedline Planning"></asp:Label>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    </asp:TemplateField>--%>
 
                                                   <%--  <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
