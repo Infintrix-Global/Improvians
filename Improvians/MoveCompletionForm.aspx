@@ -84,7 +84,6 @@
 
                                         <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-
                                                 <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Container.DataItemIndex %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -130,7 +129,7 @@
                             </div>
 
                             <div class="col">
-                                <label>Put Away Location</label>
+                                <label>Bench Location</label>
                                 <asp:TextBox ID="txtPutAwayLocation" ReadOnly="true" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
                             <div class="col">

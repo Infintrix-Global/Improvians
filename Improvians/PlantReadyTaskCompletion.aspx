@@ -111,20 +111,20 @@
                                 </div>
 
                                 <div class="col-12 col-sm-6 col-lg-3">
-                                    <label class="d-block">Root Quality</label>
+                                    <label class="d-block">Plant Quality</label>
 
 
                                     <asp:DropDownList ID="ddlRootQuality" class="custom__dropdown" runat="server">
                                         <asp:ListItem Text="--SELECT--" Value="0"></asp:ListItem>
-                                        <asp:ListItem Text="3) GOOD" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="2) WEAK" Value="3"></asp:ListItem>
-                                        <asp:ListItem Text="1) NO ROOT" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="1) Excellent" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="2) Good" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="3) Poor" Value="3"></asp:ListItem>
 
                                     </asp:DropDownList>
                                 </div>
 
                                 <div class="col-12 col-sm-6 col-lg-3">
-                                    <label class="d-block">Plant Height</label>
+                                    <label class="d-block">Plant Height [inches]</label>
                                     <%--   <asp:TextBox ID="txtPlantHeight" class="input__control" runat="server"></asp:TextBox>
                                     --%>
                                     <asp:DropDownList ID="ddlPlantHeight" class="custom__dropdown" runat="server">

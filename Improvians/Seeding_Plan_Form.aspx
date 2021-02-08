@@ -5,7 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Seeding Plan</h2>
+
+            <h3> <asp:LinkButton ID="LinkMyTask" PostBackUrl="~/DashBoard.aspx" runat="server"> My Task </asp:LinkButton> / <asp:LinkButton ID="LinkButtonSeedlinePlanning" PostBackUrl="~/Seeding_Plan_Form.aspx" runat="server"> Seedline Planning</asp:LinkButton> </h3>
+            <h2>Seedline Planning</h2>
 
             <div class="filter__row d-flex">
                 <div class="row">

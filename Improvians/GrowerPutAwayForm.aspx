@@ -136,7 +136,7 @@
                                                     AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="RowNumber" HeaderText="NO." />
-                                                        <asp:TemplateField HeaderText="Facility Location" HeaderStyle-HorizontalAlign="Center">
+                                                        <asp:TemplateField HeaderText="Seedline Location" HeaderStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
 
@@ -167,8 +167,8 @@
 
                                                             <FooterStyle HorizontalAlign="Right" />
                                                             <FooterTemplate>
-                                                                <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" CausesValidation="false"
-                                                                    Text="Add Putaway Location" CssClass="bttn bttn-primary bttn-action" />
+                                                                <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" Width="300px" CausesValidation="false"
+                                                                    Text="Add Put Away Location"  CssClass="bttn bttn-primary bttn-action" />
                                                             </FooterTemplate>
 
 
