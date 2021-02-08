@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3 col-xl-4">
                     <div class="dashboard__block">
-                        <h3>My Tasks</h3>
+                     <%--   <h3>My Tasks</h3>--%>
                         <div class="data__table">
                             <table>
                                 <tbody>
