@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Germination Task </h2>
+            <h2>Germination Count Task </h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
@@ -50,13 +50,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
-                                        <asp:TemplateField HeaderText="Germination Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Germination Count Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label15" runat="server" Text='<%# Eval("GermDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Germination No" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Germination Count No" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label16" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
