@@ -287,6 +287,8 @@ namespace Improvians
             }
             //  ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
             ///// ddlSeedLot.DataBind();
+            ///
+            txtSeedsAllocated.Focus();
         }
 
         private void AddGrowerput(ref List<SeedLineTrayDetails> objGP, string seedLotID, string seedLot, string ActualSeed, string NoOfTray, string Seed, string type, string LeftOver)
