@@ -115,7 +115,7 @@ namespace Improvians
                 ddlMain.DataValueField = "l1";
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
-                ddlLocation.SelectedValue = "ENC1";
+               // ddlLocation.SelectedValue = "ENC1";
                 //  BindLocation();
                 BindLocationNew(ref ddlLocation, "ENC1");
                 ddlMain.SelectedValue = "ENC1";
@@ -186,11 +186,12 @@ namespace Improvians
         public void BindLocationNew(ref DropDownList ddlLocation, string ddlMain)
         {
 
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@FacilityID", ddlMain);
-            ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-            ddlLocation.DataTextField = "GreenHouseName";
-            ddlLocation.DataValueField = "GreenHouseID";
+            //   NameValueCollection nv = new NameValueCollection();
+            //    nv.Add("@FacilityID", ddlMain);
+            //ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv);
+            ddlLocation.DataSource = objCOm.GetLocation(ddlMain);
+            ddlLocation.DataTextField = "p2";
+            ddlLocation.DataValueField = "p2";
             ddlLocation.DataBind();
             ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
