@@ -6,7 +6,7 @@
     <div class="main">
         <div class="site__container">
             <br />
-            <h2> <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton>/ <asp:LinkButton ID="LinkButtonSeedlinePlanning" ForeColor="#505050" PostBackUrl="~/Seeding_Plan_Form.aspx" runat="server"> Seedline Planning</asp:LinkButton>/ Enc1</h2>
+            <h2> <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton>/ Enc1</h2>
             <h2>Seedline Planning</h2>
 
             <div class="filter__row d-flex">
