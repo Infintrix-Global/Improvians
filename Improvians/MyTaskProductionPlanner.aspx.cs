@@ -40,7 +40,7 @@ namespace Improvians
                 // Response.Redirect("~/ProductionPlannerTaskCompletionForm.aspx");
                 //  Response.Redirect("~/SeedLineCompletionFinal.aspx");
 
-                Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?WOId={0}", WO));
+                Response.Redirect(String.Format("~/SeedLineCompletionFinal.aspx?WOId={0}", WO));
 
             }
         }
