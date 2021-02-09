@@ -48,7 +48,7 @@
                                 </tr>
                                     
                                 <tr>
-                                    <td>Germination</td>
+                                    <td>Germination Count</td>
                                     <td class="text-center"><asp:LinkButton ID="lnkGerm" PostBackUrl="~/GerminationRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                 </tr>
 
@@ -76,7 +76,55 @@
                     </div>
                 </div>
             </div>
-                      
+
+              <h2>Request Tasks</h2>
+                    
+            <div class="row">
+                <div class="col-md-6 col-lg-3 col-xl-4">
+                    <div class="dashboard__block">
+                     <%--   <h3>My Tasks</h3>--%>
+                        <div class="data__table">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <th>Task Request Name</th>
+                                    <th class="text-center">No. of Tasks</th>
+                                </tr>
+
+                                <tr>
+                                    <td>Put-Away Request </td>
+                                    <td class="text-center"> <asp:LinkButton ID="LinkButton1" PostBackUrl="~/GrowerPutAwayForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+                                    
+                                <tr>
+                                    <td>Germination Count Request</td>
+                                    <td class="text-center"><asp:LinkButton ID="LinkButton2"  runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Fertilization/Chemical Request</td>
+                                    <td class="text-center"><asp:LinkButton ID="LinkButton3"  runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Irrigation Request</td>
+                                    <td class="text-center"><asp:LinkButton ID="LinkButton4"  runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+
+                                  <tr>
+                                    <td>Plant Ready Request</td>
+                                    <td class="text-center"><asp:LinkButton ID="LinkButton5"  runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+
+                                             <tr>
+                                    <td>Move Request</td>
+                                    <td class="text-center"><asp:LinkButton ID="LinkButton6"  runat="server" Text="0"></asp:LinkButton></td>
+                                </tr>
+                            </tbody></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 <%--                    <div class="col m4">
                         <label>Task Request Form </label>--%>
