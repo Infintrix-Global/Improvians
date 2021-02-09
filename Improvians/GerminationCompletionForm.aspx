@@ -107,13 +107,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Germination Date" HeaderStyle-CssClass="autostyle2">
+                                         <asp:TemplateField HeaderText="Germination Count Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label15" runat="server" Text='<%# Eval("GermDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="Germination No" HeaderStyle-CssClass="autostyle2">
+                                          <asp:TemplateField HeaderText="Germination Count No" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label25" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -139,7 +139,7 @@
 
                                         <asp:TemplateField HeaderText="Due Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label23" runat="server" Text='<%# Eval("InspectionDueDate")  %>'></asp:Label>
+                                                <asp:Label ID="Label23" runat="server" Text='<%# Eval("InspectionDueDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
