@@ -6,11 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Improvians.Bal; 
 namespace Improvians
 {
     public partial class GetGrowerPutAwayForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objCOm = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -105,17 +107,18 @@ namespace Improvians
                 Label lblLocation = (Label)e.Row.FindControl("lblLocation");
 
 
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@mode", "4");
-                ddlMain.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
-                ddlMain.DataTextField = "FacilityName";
-                ddlMain.DataValueField = "FacilityID";
+              //  NameValueCollection nv = new NameValueCollection();
+              //   nv.Add("@mode", "4");
+              //ddlMain.DataSource = objCommon.GetDataTable("GET_Common", nv); 
+                ddlMain.DataSource = objCOm.GetMainLocation();
+                ddlMain.DataTextField = "l1";
+                ddlMain.DataValueField = "l1";
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
-                ddlLocation.SelectedValue = "3";
+               // ddlLocation.SelectedValue = "ENC1";
                 //  BindLocation();
-                BindLocationNew(ref ddlLocation,"3");
-                ddlMain.SelectedValue ="3";
+                BindLocationNew(ref ddlLocation, "ENC1");
+                ddlMain.SelectedValue = "ENC1";
                 ddlLocation.SelectedValue = lblLocation.Text;
 
             }
@@ -130,11 +133,12 @@ namespace Improvians
             {
 
                 DropDownList ddlLocation = (DropDownList)row.FindControl("ddlLocation");
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@FacilityID", ddlMain.SelectedValue);
-                ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-                ddlLocation.DataTextField = "GreenHouseName";
-                ddlLocation.DataValueField = "GreenHouseID";
+                //  NameValueCollection nv = new NameValueCollection();
+                //  nv.Add("@FacilityID", ddlMain.SelectedValue);
+                //   ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+                ddlLocation.DataSource = objCOm.GetLocation(ddlMain.SelectedValue);
+                ddlLocation.DataTextField = "p2";
+                ddlLocation.DataValueField = "p2";
                 ddlLocation.DataBind();
                 ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
@@ -182,11 +186,12 @@ namespace Improvians
         public void BindLocationNew(ref DropDownList ddlLocation, string ddlMain)
         {
 
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@FacilityID", ddlMain);
-            ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-            ddlLocation.DataTextField = "GreenHouseName";
-            ddlLocation.DataValueField = "GreenHouseID";
+            //   NameValueCollection nv = new NameValueCollection();
+            //    nv.Add("@FacilityID", ddlMain);
+            //ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv);
+            ddlLocation.DataSource = objCOm.GetLocation(ddlMain);
+            ddlLocation.DataTextField = "p2";
+            ddlLocation.DataValueField = "p2";
             ddlLocation.DataBind();
             ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
@@ -281,6 +286,7 @@ namespace Improvians
                         nv.Add("@mode", "1");
                         _isInserted = objCommon.GetDataInsertORUpdate("SP_AddGrowerPutAwayDetails", nv);
                         SelectedItems++;
+
                     }
 
 
@@ -334,11 +340,11 @@ namespace Improvians
                     LocationId = ((DropDownList)item.FindControl("ddlLocation")).SelectedValue;
                     TextBox txtTrays = (TextBox)item.FindControl("txtTrays");
 
-                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), Convert.ToInt32(MainId), Convert.ToInt32(LocationId), txtTrays.Text);
+                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text);
 
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice, 1, 0, 0, "");
+                    AddGrowerput(ref objinvoice, 1,"","", "");
 
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;
@@ -364,7 +370,7 @@ namespace Improvians
 
         }
 
-        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, int FacilityID, int GreenHouseID, string Trays)
+        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, string FacilityID, string GreenHouseID, string Trays)
 
         {
             GrowerputDetils objInv = new GrowerputDetils();
@@ -388,8 +394,8 @@ public class GrowerputDetils
     public int ID { get; set; }
 
     public int RowNumber { get; set; }
-    public int FacilityID { get; set; }
-    public int GreenHouseID { get; set; }
+    public string FacilityID { get; set; }
+    public string GreenHouseID { get; set; }
 
     public string Trays { get; set; }
 }

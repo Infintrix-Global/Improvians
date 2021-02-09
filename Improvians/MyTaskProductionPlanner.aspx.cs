@@ -35,10 +35,13 @@ namespace Improvians
         {
             if (e.CommandName == "Select")
             {
-
-                Session["WorkOrder"] = e.CommandArgument.ToString();
+                string WO = e.CommandArgument.ToString();
+                //  Session["WorkOrder"] = e.CommandArgument.ToString();
                 // Response.Redirect("~/ProductionPlannerTaskCompletionForm.aspx");
-                Response.Redirect("~/SeedLineCompletionFinal.aspx");
+                //  Response.Redirect("~/SeedLineCompletionFinal.aspx");
+
+                Response.Redirect(String.Format("~/SeedLineCompletionFinal.aspx?WOId={0}", WO));
+
             }
         }
 

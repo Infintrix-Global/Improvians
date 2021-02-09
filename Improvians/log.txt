@@ -3077,3 +3077,13 @@ The statement has been terminated. at 04-02-2021 23:13:13
    at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
    at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
    at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 08-02-2021 15:20:03
+*****Error message=****@GrowerPutAwayId: at 2/9/2021 2:07:58 AM
+*****Error message=****@wo:WO109126 at 2/9/2021 2:07:58 AM
+*****Error message=****@jobcode:JB031229 at 2/9/2021 2:07:58 AM
+*****Error message=****@FacilityID:ENC1 at 2/9/2021 2:07:58 AM
+*****Error message=****@GreenHouseID:ENC1-H01-3-B at 2/9/2021 2:07:58 AM
+*****Error message=****@Trays:2211 at 2/9/2021 2:07:58 AM
+*****Error message=****@SeedDate:02-08-2021 at 2/9/2021 2:07:58 AM
+*****Error message=****@CreateBy:1 at 2/9/2021 2:07:58 AM
+*****Error message=****@mode:1 at 2/9/2021 2:07:58 AM
+*****Error message=****@WorkOrder:WO109126 at 2/9/2021 2:07:59 AM

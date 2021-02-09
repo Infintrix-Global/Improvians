@@ -7,7 +7,7 @@ using System.Collections.Specialized;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Improvians.BAL_Classes;
-
+using Improvians.Bal;
 namespace Improvians
 {
     public partial class SeedLineCompletionFinal : System.Web.UI.Page
@@ -16,6 +16,7 @@ namespace Improvians
         //{ Columns = { "SeedLot", "SeedID", "#ActualTray", "#Seed", "Type", "LeftOver" } };
         { Columns = { "SeedLot", "SeedID", "NoOfSeed" } };
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objCom = new BAL_CommonMasters();
         BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,6 +24,13 @@ namespace Improvians
             {
                 //BindFacility();
                 // BindSeedLineFacility();
+
+
+                if (Request.QueryString["WOId"] != null)
+                {
+                    wo = Request.QueryString["WOId"].ToString();
+                }
+
                 BindGridProduction();
                 BindSeedLot();
                 txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
@@ -30,12 +38,27 @@ namespace Improvians
             }
         }
 
+        private string wo
+        {
+            get
+            {
+                if (ViewState["wo"] != null)
+                {
+                    return (string)ViewState["wo"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["wo"] = value;
+            }
+        }
         public void BindGridProduction()
         {
             dtTrays.Clear();
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@WorkOrder", Session["WorkOrder"].ToString());
+            nv.Add("@WorkOrder",wo.ToString());
             dt = objCommon.GetDataTable("SP_GetProductionPlannerTaskByWorkOrder", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -55,11 +78,14 @@ namespace Improvians
         public void BindSeedLot()
         {
 
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@mode", "6");
-            ddlSeedLot.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
-            ddlSeedLot.DataTextField = "SeedLotName";
-            ddlSeedLot.DataValueField = "ID";
+            //  NameValueCollection nv = new NameValueCollection();
+            // nv.Add("@mode", "6");
+
+
+
+            ddlSeedLot.DataSource = objCom.GetSeedLot(lblJobID.Text);
+            ddlSeedLot.DataTextField = "l1";
+            ddlSeedLot.DataValueField = "l1";
             ddlSeedLot.DataBind();
             ddlSeedLot.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
@@ -132,7 +158,7 @@ namespace Improvians
             //   nv.Add("@SeedsAllocated", txtSeedsAllocated.Text);
             nv.Add("@JobID", lblJobID.Text);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@WorkOrder", Session["WorkOrder"].ToString());
+            nv.Add("@WorkOrder",wo.ToString());
             result = objCommon.GetDataExecuteScaler("SP_AddSeedLineTaskCompletion", nv);
             if (result > 0)
             {
@@ -287,6 +313,8 @@ namespace Improvians
             }
             //  ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
             ///// ddlSeedLot.DataBind();
+            ///
+            txtSeedsAllocated.Focus();
         }
 
         private void AddGrowerput(ref List<SeedLineTrayDetails> objGP, string seedLotID, string seedLot, string ActualSeed, string NoOfTray, string Seed, string type, string LeftOver)
