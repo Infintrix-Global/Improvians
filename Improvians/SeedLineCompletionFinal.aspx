@@ -234,7 +234,7 @@
                                             <asp:TemplateField HeaderText="Actual # of tray Seeded">
                                                 <ItemTemplate>
                                                     <%--<asp:Label ID="lblactualseed" Text='<%# Bind("#ActualTray")  %>' runat="server" ></asp:Label>--%>
-                                                    <asp:TextBox ID="txtActualTray" Text='<%# Eval("NoOftray")  %>' runat="server" AutoPostBack="true" OnTextChanged="txtActualTray_TextChanged"></asp:TextBox>
+                                                    <asp:TextBox ID="txtActualTray" class="input__control robotomd" Text='<%# Eval("NoOftray")  %>' runat="server" AutoPostBack="true" OnTextChanged="txtActualTray_TextChanged"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -258,7 +258,7 @@
 
                                             <asp:TemplateField HeaderText="Leftover seeds">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtPartial" runat="server" Text='<%# Eval("LeftOver")  %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtPartial" class="input__control robotomd" runat="server" Text='<%# Eval("LeftOver")  %>'></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="#">

@@ -281,21 +281,27 @@ namespace Improvians
 
             }
 
-            DataTable dtSeed = objTask.GetSeedNoBySeedLotID(ddlSeedLot.SelectedValue);
+            //DataTable dtSeed = objTask.GetSeedNoBySeedLotID(ddlSeedLot.SelectedValue);
+            DataTable dtSeed = objCom.GetSeedLotNofset(ddlSeedLot.SelectedValue);
+
+
+
+            
+
             //dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue, dtSeed.Rows[0]["NoOFSeed"].ToString());
 
             //if (ddlSeedLot.SelectedValue != "seedLot")
             //{
 
 
-            AddGrowerput(ref objinvoice, ddlSeedLot.SelectedValue, ddlSeedLot.SelectedItem.Text, dtSeed.Rows[0]["NoOFSeed"].ToString(), "", "", "", "");
+            AddGrowerput(ref objinvoice, ddlSeedLot.SelectedValue, ddlSeedLot.SelectedItem.Text, Convert.ToInt32(dtSeed.Rows[0]["Quantity"]).ToString(), "", "", "", "");
 
             //      }
             //GrowerPutData = objinvoice;
             gvDetails.DataSource = objinvoice;
             gvDetails.DataBind();
             ViewState["Data"] = objinvoice;
-           ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
+            ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
             ddlSeedLot.DataBind();
             ddlSeedLot.SelectedIndex = 0;
             foreach (GridViewRow item in gvDetails.Rows)

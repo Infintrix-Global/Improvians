@@ -37,6 +37,24 @@ namespace Improvians.Bal
             return dt;
         }
 
+        public DataTable GetSeedLotNofset(string SeedlotNo)
+        {
+            Improvians_General objGeneral = new Improvians_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "select le.[Lot No_] l1, le.[Lot No_] l2, sum(le.Quantity) as Quantity from[GTI$Item Ledger Entry] le where  le.[Lot No_] ='" + SeedlotNo + "' group by[Lot No_]  ";
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
         public DataTable GetMainLocation()
         {
             Improvians_General objGeneral = new Improvians_General();
