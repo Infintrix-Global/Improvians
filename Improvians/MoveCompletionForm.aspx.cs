@@ -205,7 +205,7 @@ namespace Improvians
              //   traysTotal = (row.FindControl("lblTraysRequest") as Label).Text;
 
                lblRemainingTrays.Text = (row.FindControl("lblTraysRequest") as Label).Text;
-                TraysRequest = (row.FindControl("lblTraysRequest") as Label).Text;
+               TraysRequest = (row.FindControl("lblTraysRequest") as Label).Text;
 
                 txtMoveDate.Focus();
             }
