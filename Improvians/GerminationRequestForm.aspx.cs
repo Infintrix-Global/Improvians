@@ -81,6 +81,8 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Week", radweek.SelectedValue);
+            nv.Add("@Status", radStatus.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();

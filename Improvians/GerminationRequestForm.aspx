@@ -29,6 +29,21 @@
                         <label>Status </label>
                         <asp:DropDownList ID="ddlStatus" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>--%>
+                    <div class="col m3">
+                      <asp:RadioButtonList ID="radweek" runat="server" RepeatDirection="Horizontal">
+                          <asp:ListItem Text="Last Week" Value="1"></asp:ListItem>
+                          <asp:ListItem Text="This Week" Value="2"></asp:ListItem>
+                          <asp:ListItem Text="Next Week" Value="3"></asp:ListItem>
+                      </asp:RadioButtonList>
+                    </div>
+
+                        <div class="col m3">
+                      <asp:RadioButtonList ID="radStatus" runat="server" RepeatDirection="Horizontal">
+                          <asp:ListItem Text="Overdue" Value="1"></asp:ListItem>
+                          <asp:ListItem Text="Today" Value="2"></asp:ListItem>
+                          <asp:ListItem Text="Upcoming" Value="3"></asp:ListItem>
+                      </asp:RadioButtonList>
+                    </div>
                 </div>
             </div>
 
