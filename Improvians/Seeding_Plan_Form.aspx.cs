@@ -65,7 +65,7 @@ namespace Improvians
         }
         protected void BtnPrint_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private static void DrawLine(PdfWriter writer, float x1, float y1, float x2, float y2, BaseColor color)
@@ -172,7 +172,7 @@ namespace Improvians
                         HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
                         HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
 
-                        
+
 
                         if (lblAllocated.Text == "Yes")
                         {
@@ -220,7 +220,7 @@ namespace Improvians
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save  Successful')", true);
                 }
 
-               
+
             }
             catch (Exception ex)
             {
@@ -230,6 +230,28 @@ namespace Improvians
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/MyTaskGrower.aspx");
+        }
+
+        protected void DGJob_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+             
+                HiddenField HiddenFieldwo = (HiddenField)e.Row.FindControl("HiddenFieldwo");
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@LoginID", HiddenFieldwo.Value);
+                nv.Add("@mode", "5");
+                dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+
+                if(dt !=null && dt.Rows.Count >0)
+                {
+                    e.Row.Visible = false;
+                }
+
+            }
+
         }
     }
 }

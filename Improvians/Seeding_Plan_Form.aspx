@@ -5,8 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-
-            <h3> <asp:LinkButton ID="LinkMyTask" PostBackUrl="~/DashBoard.aspx" runat="server"> My Task </asp:LinkButton>/ <asp:LinkButton ID="LinkButtonSeedlinePlanning" PostBackUrl="~/Seeding_Plan_Form.aspx" runat="server"> Seedline Planning</asp:LinkButton>/ Enc1</h3>
+            <br />
+            <h2> <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton>/ <asp:LinkButton ID="LinkButtonSeedlinePlanning" ForeColor="#505050" PostBackUrl="~/Seeding_Plan_Form.aspx" runat="server"> Seedline Planning</asp:LinkButton>/ Enc1</h2>
             <h2>Seedline Planning</h2>
 
             <div class="filter__row d-flex">
@@ -57,7 +57,7 @@
 
                                 <asp:GridView ID="DGJob" runat="server" AllowPaging="True" AutoGenerateColumns="False" PageSize="20"
                                     class="striped" AllowSorting="true" OnPageIndexChanging="DGJob_PageIndexChanging"
-                                    GridLines="None"
+                                    GridLines="None" OnRowDataBound="DGJob_RowDataBound"
                                     ShowHeaderWhenEmpty="True" Width="100%">
 
                                     <Columns>

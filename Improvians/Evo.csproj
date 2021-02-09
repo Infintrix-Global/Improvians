@@ -289,6 +289,7 @@
     <Content Include="PlantReadyTaskCompletion.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="PutAwayTaskCompletion.aspx" />
+    <Content Include="ResetData.aspx" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
     <Content Include="Seeding_Plan_Form.aspx" />
     <Content Include="SeedLineCompletionFinal.aspx" />
@@ -625,6 +626,13 @@
     </Compile>
     <Compile Include="PutAwayTaskCompletion.aspx.designer.cs">
       <DependentUpon>PutAwayTaskCompletion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetData.aspx.cs">
+      <DependentUpon>ResetData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetData.aspx.designer.cs">
+      <DependentUpon>ResetData.aspx</DependentUpon>
     </Compile>
     <Compile Include="SeedingPlan\SeedingPlanForm.aspx.cs">
       <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
