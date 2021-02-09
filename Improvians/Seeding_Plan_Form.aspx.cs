@@ -226,11 +226,11 @@ namespace Improvians
 
                     }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save  Successful')", true);
-
-                    getDataDGJob();
+                    
+               
                 }
 
-
+                getDataDGJob();
             }
             catch (Exception ex)
             {
