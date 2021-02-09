@@ -42,9 +42,17 @@ namespace Improvians
         {
             AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
 
-            lblTotal.Text = AllData.Rows.Count.ToString() + " Records";
-            DGJob.DataSource = AllData;
-            DGJob.DataBind();
+            if (AllData != null && AllData.Rows.Count > 0)
+            {
+                lblTotal.Text = AllData.Rows.Count.ToString() + " Records";
+                DGJob.DataSource = AllData;
+                DGJob.DataBind();
+            }
+            else
+            {
+                DGJob.DataSource = null;
+                DGJob.DataBind();
+            }
 
         }
 
