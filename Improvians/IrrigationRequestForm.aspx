@@ -7,7 +7,7 @@
 
     <div class="main main__header">
         <div class="site__container">
-            <h2>Irrigation Request</h2>
+            <h2>Irrigation </h2>
 
               <div class="filter__row d-flex">
                 <div class="row">

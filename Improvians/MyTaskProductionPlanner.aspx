@@ -70,6 +70,12 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                                         <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblloc" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
 
                                         <asp:TemplateField HeaderText="No. Of Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
