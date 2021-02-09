@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Germination Task Completion</h2>
+            <h2>Germination Count Task Completion</h2>
 
             <div class="row">
                 <div class=" col m12">
@@ -80,13 +80,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Germination Date" HeaderStyle-CssClass="autostyle2">
+                                         <asp:TemplateField HeaderText="Germination Count Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label15" runat="server" Text='<%# Eval("GermDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="Germination No" HeaderStyle-CssClass="autostyle2">
+                                          <asp:TemplateField HeaderText="Germination Count No" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label3" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -112,10 +112,15 @@
 
                                         <asp:TemplateField HeaderText="Due Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label6" runat="server" Text='<%# Eval("InspectionDueDate")  %>'></asp:Label>
+                                                <asp:Label ID="Label6" runat="server" Text='<%# Eval("InspectionDueDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label46" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
 
                                     </Columns>
@@ -153,9 +158,7 @@
 
                                 <asp:Label runat="server" ID="lblSeedlot" Visible="false"></asp:Label>
                             </div>
-                            <div class="col align-self-end">
-                                <asp:Button ID="sbtTray" runat="server" Text="Calculate" CssClass="bttn bttn-primary bttn-action" OnClick="sbtTray_Click" Visible="false" />
-                            </div>
+                          
                         </div>
                         <div class="row py-3">
                             <div class="col-12">
@@ -163,6 +166,10 @@
                                 </asp:Table>
                             </div>
                         </div>
+                          <div class="col align-self-end">
+                                <asp:Button ID="sbtTray" runat="server" Text="Calculate" CssClass="bttn bttn-primary bttn-action" OnClick="sbtTray_Click" Visible="false" />
+                            </div>
+
                         <asp:Panel ID="pnlUpdated" runat="server">
                             <asp:Table ID="tblupdate" runat="server" class="data__table">
                                 <asp:TableHeaderRow>
