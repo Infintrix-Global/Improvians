@@ -226,6 +226,8 @@ namespace Improvians
 
                     }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save  Successful')", true);
+
+                    getDataDGJob();
                 }
 
 
@@ -256,6 +258,7 @@ namespace Improvians
                 if(dt !=null && dt.Rows.Count >0)
                 {
                     e.Row.Visible = false;
+                    lblTotal.Text = (Convert.ToInt32(lblTotal.Text) - 1).ToString();
                 }
 
             }
