@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main main__header">
         <div class="site__container">
-            <h2>Plant Ready Request</h2>
+            <h2>Plant Ready </h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
