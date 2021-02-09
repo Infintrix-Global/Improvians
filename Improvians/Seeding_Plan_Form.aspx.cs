@@ -27,7 +27,7 @@ namespace Improvians
             {
                 string Fdate = "", TDate = "";
                 Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
-                TDate = (Convert.ToDateTime(Fdate)).AddDays(7).ToString("yyyy-MM-dd");
+                TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(10).ToString("yyyy-MM-dd");
                 //    Fdate = DateAdd(DateInterval.Day, -7, Now.Date);
                 //  TDate = DateAdd(DateInterval.Day, 10, Now.Date);
                 txtFromDate.Text = Fdate;
@@ -226,9 +226,11 @@ namespace Improvians
 
                     }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save  Successful')", true);
+                    
+               
                 }
 
-
+                getDataDGJob();
             }
             catch (Exception ex)
             {
@@ -245,18 +247,19 @@ namespace Improvians
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
              
-                HiddenField HiddenFieldwo = (HiddenField)e.Row.FindControl("HiddenFieldwo");
+                ////HiddenField HiddenFieldwo = (HiddenField)e.Row.FindControl("HiddenFieldwo");
 
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@LoginID", HiddenFieldwo.Value);
-                nv.Add("@mode", "5");
-                dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+                ////DataTable dt = new DataTable();
+                ////NameValueCollection nv = new NameValueCollection();
+                ////nv.Add("@LoginID", HiddenFieldwo.Value);
+                ////nv.Add("@mode", "5");
+                ////dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
 
-                if(dt !=null && dt.Rows.Count >0)
-                {
-                    e.Row.Visible = false;
-                }
+                ////if(dt !=null && dt.Rows.Count >0)
+                ////{
+                ////    e.Row.Visible = false;
+                ////    lblTotal.Text = (Convert.ToInt32(lblTotal.Text) - 1).ToString();
+                ////}
 
             }
 

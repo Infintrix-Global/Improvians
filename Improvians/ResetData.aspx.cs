@@ -23,7 +23,7 @@ namespace Improvians
             long _isInserted = 0;
             NameValueCollection nv = new NameValueCollection();
 
-            _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_AddResetData", nv);
+            _isInserted = objCommon.GetDataInsertORUpdate("SP_AddResetData", nv);
 
             string message = "Reset All Data Successful";
             string url;

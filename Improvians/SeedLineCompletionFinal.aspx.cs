@@ -372,7 +372,7 @@ namespace Improvians
 
                         (row.Cells[3].FindControl("lblSeed") as Label).Text = (Convert.ToInt32(txtActual.Text) * Convert.ToInt32(lblTraySize.Text)).ToString();
                         txtActualTraysNo.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
-
+                        txtActualTraysNo.Focus();
                     }
                     //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
                     //txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(lotseed)).ToString();
@@ -410,9 +410,12 @@ namespace Improvians
                 List<SeedLineTrayDetails> ojbpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
                 if (ojbpro == null)
                 {
+
                     List<SeedLineTrayDetails> objpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
                     objpro.RemoveAt(e.RowIndex);
                     gvDetails.DataSource = objpro;
+
+
                 }
                 else
                 {

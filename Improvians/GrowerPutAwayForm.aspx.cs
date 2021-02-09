@@ -283,8 +283,11 @@ namespace Improvians
                         nv.Add("@SeedDate", lblSeedDate.Text);
                         nv.Add("@CreateBy", Session["LoginID"].ToString());
 
-                        nv.Add("@mode", "1");
-                        _isInserted = objCommon.GetDataInsertORUpdate("SP_AddGrowerPutAwayDetails", nv);
+                        if (txtTrays.Text != "")
+                        {
+                            nv.Add("@mode", "1");
+                            _isInserted = objCommon.GetDataInsertORUpdate("SP_AddGrowerPutAwayDetails", nv);
+                        }
                         SelectedItems++;
 
                     }
