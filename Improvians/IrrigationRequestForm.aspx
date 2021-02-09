@@ -58,11 +58,11 @@
                         </asp:TemplateField>
 
 
-                        <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
+<%--                        <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
