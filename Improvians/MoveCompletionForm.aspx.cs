@@ -59,6 +59,23 @@ namespace Improvians
             }
         }
 
+        private string TraysRequest
+        {
+            get
+            {
+                if (ViewState["TraysRequest"] != null)
+                {
+                    return (string)ViewState["TraysRequest"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TraysRequest"] = value;
+            }
+        }
+
+
         public void BindToLocation()
         {
             //NameValueCollection nv = new NameValueCollection();
@@ -187,8 +204,8 @@ namespace Improvians
 
              //   traysTotal = (row.FindControl("lblTraysRequest") as Label).Text;
 
-                lblRemainingTrays.Text = (row.FindControl("lblTraysRequest") as Label).Text;
-
+               lblRemainingTrays.Text = (row.FindControl("lblTraysRequest") as Label).Text;
+                TraysRequest = (row.FindControl("lblTraysRequest") as Label).Text;
 
                 txtMoveDate.Focus();
             }
@@ -209,6 +226,7 @@ namespace Improvians
                 else
                 {
                     txtTrays.Text = "";
+                    lblRemainingTrays.Text = TraysRequest;
                 }
                
 
