@@ -164,8 +164,8 @@ namespace Improvians
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvFer.Rows[rowIndex];
                 lblUnMovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text;
-                lblJobID.Text = (row.FindControl("lblID") as Label).Text;
-                lblwo.Text= (row.FindControl("lblwo") as Label).Text;
+               // lblJobID.Text = (row.FindControl("lblID") as Label).Text;
+              //  lblwo.Text= (row.FindControl("lblwo") as Label).Text;
                 ddlsupervisor.Focus();
             }
         }
