@@ -43,19 +43,19 @@ namespace Improvians
             }
         }
 
-        private string GrowerPutAwayId
+        private string MoveId
         {
             get
             {
-                if (ViewState["GrowerPutAwayId"] != null)
+                if (ViewState["MoveId"] != null)
                 {
-                    return (string)ViewState["GrowerPutAwayId"];
+                    return (string)ViewState["MoveId"];
                 }
                 return "";
             }
             set
             {
-                ViewState["GrowerPutAwayId"] = value;
+                ViewState["MoveId"] = value;
             }
         }
 
@@ -123,15 +123,16 @@ namespace Improvians
             //{
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
+                nv.Add("@GrowerPutAwayId", MoveId);
                 nv.Add("@Wo",wo);
                 nv.Add("@MoveDate", txtMoveDate.Text.Trim());
                 nv.Add("@Put_Away_Location",txtPutAwayLocation.Text.Trim());
                 nv.Add("@TraysMoved",txtTrays.Text.Trim());
                 nv.Add("@Barcode", txtBarcode.Text.Trim());
-
                 nv.Add("@CreateBy", Session["LoginID"].ToString());
                 result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
+
+
                 if (result > 0)
                 {
                     lblmsg.Text = "Completion Successful";
@@ -142,7 +143,8 @@ namespace Improvians
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WoId", wo);
                     nv1.Add("@JobID", "");
-                    nv1.Add("@GrowerPutAwayId", result.ToString());
+                    nv1.Add("@MoveID", result.ToString());
+                    nv1.Add("@GrowerPutAwayId","");
                     nv1.Add("@CreatedBy", Session["LoginID"].ToString());
 
                     int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveForm", nv1);
@@ -197,7 +199,7 @@ namespace Improvians
                 GridViewRow row = gvMove.Rows[rowIndex];
 
 
-                GrowerPutAwayId = (row.FindControl("lblGrowerPutAwayId") as Label).Text;
+                MoveId = (row.FindControl("lblGrowerPutAwayId") as Label).Text;
 
                 
                 txtPutAwayLocation.Text = (row.FindControl("lblGreenHouseName") as Label).Text;
