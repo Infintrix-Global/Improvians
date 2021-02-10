@@ -124,6 +124,10 @@ namespace Improvians
                 nv11.Add("@wo", rowIndex);
                 dt11 = objCommon.GetDataTable("SP_GetMoveRequest", nv11);
 
+                lblFromFacility.Text = dt11.Rows[0]["FacilityID"].ToString();
+                lbljobid.Text = dt11.Rows[0]["JobCode"].ToString();
+
+
 
                 wo = rowIndex;
                 DataTable dt = new DataTable();
@@ -132,15 +136,16 @@ namespace Improvians
                 dt = objCommon.GetDataTable("SP_GetUnMovedTraysByJobID", nv);
 
 
-                if (string.IsNullOrEmpty(dt.Rows[0]["UnMovedTrays"].ToString()))
-                {
-
-                    lblUnmovedTrays.Text = dt.Rows[0]["Trays"].ToString();
+                //if (string.IsNullOrEmpty(dt.Rows[0]["UnMovedTrays"].ToString()))
+                //{
+                if(dt != null && dt.Rows.Count >0)
+                { 
+                    lblUnmovedTrays.Text = dt11.Rows[0]["Trays"].ToString();
 
                 }
                 else
                 {
-                    lblUnmovedTrays.Text = (Convert.ToInt32(dt.Rows[0]["Trays"].ToString()) - (Convert.ToInt32(dt.Rows[0]["UnMovedTrays"].ToString()))).ToString();
+                    lblUnmovedTrays.Text = (Convert.ToInt32(dt11.Rows[0]["Trays"].ToString()) - (Convert.ToInt32(dt.Rows[0]["UnMovedTrays"].ToString()))).ToString();
                 }
                 ddlToFacility.Focus();
             }
@@ -195,12 +200,22 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-            result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue);
+            result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
             if (result > 0)
             {
                 // lblmsg.Text = "Request Successful";
                 Clear();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Request Successful')", true);
+
+                string message = "Request Successful";
+                string url = "MoveForm.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+              //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Request Successful')", true);
                 userinput.Visible = false;
             }
             else
