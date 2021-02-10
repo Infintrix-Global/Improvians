@@ -155,7 +155,7 @@
                           
                               
 
-                                     <asp:TextBox ID="txtWaterRequired" class="mb-0 input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
+                                     <asp:TextBox ID="txtWaterRequired" class="mb-0 input__control input__control-auto" placeholder="" runat="server"></asp:TextBox>
 
                             </div>
 

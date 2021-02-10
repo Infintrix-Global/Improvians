@@ -81,6 +81,7 @@
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
+                                                 <asp:Label ID="lblMoveID" runat="server" Text='<%# Eval("MoveCId")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -93,21 +94,21 @@
                                         </asp:TemplateField>
 
 
-                                        <%--<asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("PutAwayMainLocation")  %>'></asp:Label>
+                                                <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityTo")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
-                                        <%--     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                             <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("Put_Away_Location")  %>'></asp:Label>
+                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GrenHouseToRequest")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
+                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -141,7 +142,7 @@
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                 <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>

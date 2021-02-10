@@ -131,7 +131,7 @@ namespace Improvians
                 nv.Add("@Barcode", txtBarcode.Text.Trim());
 
                 nv.Add("@CreateBy", Session["LoginID"].ToString());
-                result = objCommon.GetDataInsertORUpdate("SP_AddMoveCompletionDetails", nv);
+                result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
                 if (result > 0)
                 {
                     lblmsg.Text = "Completion Successful";
@@ -142,7 +142,7 @@ namespace Improvians
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WoId", wo);
                     nv1.Add("@JobID", "");
-                    nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
+                    nv1.Add("@GrowerPutAwayId", result.ToString());
                     nv1.Add("@CreatedBy", Session["LoginID"].ToString());
 
                     int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveForm", nv1);

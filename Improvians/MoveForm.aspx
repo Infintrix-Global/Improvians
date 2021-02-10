@@ -172,7 +172,7 @@
                                     <div class="col m3">
                                         <label>Number Of Trays </label>
 
-                                        <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <asp:TextBox ID="txtTrays"  runat="server" CssClass="input__control"></asp:TextBox>
                                         <span class="error_message">
                                             <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
