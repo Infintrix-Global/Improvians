@@ -118,6 +118,15 @@ namespace Improvians
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
             }
+
+            if(e.CommandName == "Dismiss")
+            {
+                int GTID = Convert.ToInt32(e.CommandArgument);
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@GTID", GTID.ToString());
+                result = objCommon.GetDataInsertORUpdate("SP_DismissGerminationRequest", nv);
+            }
         }
 
       
