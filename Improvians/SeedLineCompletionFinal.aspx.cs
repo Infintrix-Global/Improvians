@@ -32,9 +32,10 @@ namespace Improvians
                 }
 
                 BindGridProduction();
-                BindSeedLot();
+           //     BindSeedLot();
                 txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 dtTrays.Clear();
+                BindGridDetailsNew();
             }
         }
 
@@ -75,20 +76,20 @@ namespace Improvians
             }
         }
 
-        public void BindSeedLot()
-        {
+        //public void BindSeedLot()
+        //{
 
-            //  NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@mode", "6");
+        //    //  NameValueCollection nv = new NameValueCollection();
+        //    // nv.Add("@mode", "6");
 
 
 
-            ddlSeedLot.DataSource = objCom.GetSeedLot(lblJobID.Text);
-            ddlSeedLot.DataTextField = "l1";
-            ddlSeedLot.DataValueField = "l1";
-            ddlSeedLot.DataBind();
-            ddlSeedLot.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+        //    ddlSeedLot.DataSource = objCom.GetSeedLot(lblJobID.Text);
+        //    ddlSeedLot.DataTextField = "l1";
+        //    ddlSeedLot.DataValueField = "l1";
+        //    ddlSeedLot.DataBind();
+        //    ddlSeedLot.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        //}
 
         protected void radOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -219,109 +220,123 @@ namespace Improvians
             txtSeedingDate.Text = "";
             txtTrays.Text = "";
             dtTrays.Clear();
-            BindSeedLot();
+            gvDetails.DataSource = null;
+            gvDetails.DataBind();
+          //  BindSeedLot();
+
             // txtSeedsAllocated.Text = "";
         }
 
-        protected void btnAddTray_Click(object sender, EventArgs e)
+        //protected void btnAddTray_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        BindGridDetails();
+        //        //if (Convert.ToDouble(txtRequestedTrays.Text) >= Convert.ToDouble(txtActualTraysNo.Text))
+        //        //{
+        //        //  txtActualTraysNo.Text = (Convert.ToInt32(txtActualTray.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
+        //        // lblerrmsg.Text = "";
+
+        //        //DataTable dtSeed = objTask.GetSeedNoBySeedLotID(ddlSeedLot.SelectedValue);
+        //        //dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue,dtSeed.Rows[0]["NoOFSeed"].ToString());
+        //        //    gvDetails.DataSource = dtTrays;
+        //        //    gvDetails.DataBind();
+        //        //ddlSeedLot.SelectedIndex = 0;
+
+
+        //        // lblUnmovedTrays.Text = (Convert.ToInt32(lblUnmovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+        //        // txtActualTray.Text = "";
+        //        //  ddlType.SelectedIndex = 0;
+        //        //  txtPartial.Text = "";
+        //        //}
+        //        //else
+        //        //{
+        //        //    lblerrmsg.Text = "Number of Trays exceed Requested trays";
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //}
+
+        public void BindGridDetailsNew()
         {
-            try
-            {
-                BindGridDetails();
-                //if (Convert.ToDouble(txtRequestedTrays.Text) >= Convert.ToDouble(txtActualTraysNo.Text))
-                //{
-                //  txtActualTraysNo.Text = (Convert.ToInt32(txtActualTray.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
-                // lblerrmsg.Text = "";
-
-                //DataTable dtSeed = objTask.GetSeedNoBySeedLotID(ddlSeedLot.SelectedValue);
-                //dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue,dtSeed.Rows[0]["NoOFSeed"].ToString());
-                //    gvDetails.DataSource = dtTrays;
-                //    gvDetails.DataBind();
-                //ddlSeedLot.SelectedIndex = 0;
-
-
-                // lblUnmovedTrays.Text = (Convert.ToInt32(lblUnmovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
-                // txtActualTray.Text = "";
-                //  ddlType.SelectedIndex = 0;
-                //  txtPartial.Text = "";
-                //}
-                //else
-                //{
-                //    lblerrmsg.Text = "Number of Trays exceed Requested trays";
-                //}
-            }
-            catch (Exception ex)
-            {
-
-            }
+            DataTable dt = new DataTable();
+            dt = objCom.GetSeedLot(lblJobID.Text);
+           
+            gvDetails.DataSource = dt;
+            gvDetails.DataBind();
         }
 
-        public void BindGridDetails()
-        {
-            List<SeedLineTrayDetails> objinvoice = new List<SeedLineTrayDetails>();
-            string type = "", seedLot = "", seedLotID = "", Seed = "", ActualSeed = "";
-            string NoOfTray = "", LeftOver = "";
-            // BindSeedLot();
-            txtSeedsAllocated.Text = "0";
-            foreach (GridViewRow item in gvDetails.Rows)
-            {
-                // hdnWOEmployeeIDVal = ((HiddenField)item.FindControl("hdnWOEmployeeID")).Value;
-
-                type = ((DropDownList)item.FindControl("ddlType")).SelectedValue;
-                seedLot = ((Label)item.FindControl("lblLotName")).Text;
-                seedLotID = ((Label)item.FindControl("lblID")).Text;
-                ActualSeed = ((Label)item.FindControl("lblactualseed")).Text;
-                NoOfTray = ((TextBox)item.FindControl("txtActualTray")).Text;
-                Seed = ((Label)item.FindControl("lblSeed")).Text;
-                LeftOver = ((TextBox)item.FindControl("txtPartial")).Text;
 
 
-                AddGrowerput(ref objinvoice, seedLotID, seedLot, ActualSeed, NoOfTray, Seed, type, LeftOver);
-                // ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue("seedLotID"));
+        //public void BindGridDetails()
+        //{
+        //    List<SeedLineTrayDetails> objinvoice = new List<SeedLineTrayDetails>();
+        //    string type = "", seedLot = "", seedLotID = "", Seed = "", ActualSeed = "";
+        //    string NoOfTray = "", LeftOver = "";
+        //     BindSeedLot();
+        //    txtSeedsAllocated.Text = "0";
+        //    foreach (GridViewRow item in gvDetails.Rows)
+        //    {
+        //        // hdnWOEmployeeIDVal = ((HiddenField)item.FindControl("hdnWOEmployeeID")).Value;
 
-            }
+        //        type = ((DropDownList)item.FindControl("ddlType")).SelectedValue;
+        //        seedLot = ((Label)item.FindControl("lblLotName")).Text;
+        //        seedLotID = ((Label)item.FindControl("lblID")).Text;
+        //        ActualSeed = ((Label)item.FindControl("lblactualseed")).Text;
+        //        NoOfTray = ((TextBox)item.FindControl("txtActualTray")).Text;
+        //        Seed = ((Label)item.FindControl("lblSeed")).Text;
+        //        LeftOver = ((TextBox)item.FindControl("txtPartial")).Text;
 
-            //DataTable dtSeed = objTask.GetSeedNoBySeedLotID(ddlSeedLot.SelectedValue);
-            DataTable dtSeed = objCom.GetSeedLotNofset(ddlSeedLot.SelectedValue);
+
+        //        AddGrowerput(ref objinvoice, seedLotID, seedLot, ActualSeed, NoOfTray, Seed, type, LeftOver);
+        //        // ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue("seedLotID"));
+
+        //    }
+
+        //    //DataTable dtSeed = objTask.GetSeedNoBySeedLotID(ddlSeedLot.SelectedValue);
+        //    DataTable dtSeed = objCom.GetSeedLotNofset(ddlSeedLot.SelectedValue);
 
 
 
             
 
-            //dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue, dtSeed.Rows[0]["NoOFSeed"].ToString());
+        //    //dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue, dtSeed.Rows[0]["NoOFSeed"].ToString());
 
-            //if (ddlSeedLot.SelectedValue != "seedLot")
-            //{
+        //    //if (ddlSeedLot.SelectedValue != "seedLot")
+        //    //{
 
 
-            AddGrowerput(ref objinvoice, ddlSeedLot.SelectedValue, ddlSeedLot.SelectedItem.Text, Convert.ToInt32(dtSeed.Rows[0]["Quantity"]).ToString(), "", "", "", "");
+        //    AddGrowerput(ref objinvoice, ddlSeedLot.SelectedValue, ddlSeedLot.SelectedItem.Text, Convert.ToInt32(dtSeed.Rows[0]["Quantity"]).ToString(), "", "", "", "");
 
-            //      }
-            //GrowerPutData = objinvoice;
-            gvDetails.DataSource = objinvoice;
-            gvDetails.DataBind();
-            ViewState["Data"] = objinvoice;
-            ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
-            ddlSeedLot.DataBind();
-            ddlSeedLot.SelectedIndex = 0;
-            foreach (GridViewRow item in gvDetails.Rows)
-            {
-                ActualSeed = ((Label)item.FindControl("lblactualseed")).Text;
-                txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(ActualSeed)).ToString();
-                if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
-                {
-                    txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
-                }
-                else
-                {
-                    txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
-                }
-            }
-            //  ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
-            ///// ddlSeedLot.DataBind();
-            ///
-            txtSeedsAllocated.Focus();
-        }
+        //    //      }
+        //    //GrowerPutData = objinvoice;
+        //    gvDetails.DataSource = objinvoice;
+        //    gvDetails.DataBind();
+        //    ViewState["Data"] = objinvoice;
+        //    ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
+        //    ddlSeedLot.DataBind();
+        //    ddlSeedLot.SelectedIndex = 0;
+        //    foreach (GridViewRow item in gvDetails.Rows)
+        //    {
+        //        ActualSeed = ((Label)item.FindControl("lblactualseed")).Text;
+        //        txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(ActualSeed)).ToString();
+        //        if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
+        //        {
+        //            txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
+        //        }
+        //        else
+        //        {
+        //            txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
+        //        }
+        //    }
+        //    //  ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
+        //    ///// ddlSeedLot.DataBind();
+        //    ///
+        //    txtSeedsAllocated.Focus();
+        //}
 
         private void AddGrowerput(ref List<SeedLineTrayDetails> objGP, string seedLotID, string seedLot, string ActualSeed, string NoOfTray, string Seed, string type, string LeftOver)
         {
@@ -393,53 +408,53 @@ namespace Improvians
 
 
 
-        protected void gvDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            try
-            {
+        //protected void gvDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        //{
+        //    try
+        //    {
 
-                ////  dtTrays.Rows.RemoveAt(e.RowIndex);
-                //gvDetails.DeleteRow(e.RowIndex);
-                //gvDetails.DataBind();
+        //        ////  dtTrays.Rows.RemoveAt(e.RowIndex);
+        //        //gvDetails.DeleteRow(e.RowIndex);
+        //        //gvDetails.DataBind();
 
 
-                string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
-                string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
-                ddlSeedLot.Items.Insert(Convert.ToInt32(seedID), new ListItem(seedLotName, seedID));
+        //        string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
+        //        string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
+        //        ddlSeedLot.Items.Insert(Convert.ToInt32(seedID), new ListItem(seedLotName, seedID));
            
-                List<SeedLineTrayDetails> ojbpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
-                if (ojbpro == null)
-                {
+        //        List<SeedLineTrayDetails> ojbpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
+        //        if (ojbpro == null)
+        //        {
 
-                    List<SeedLineTrayDetails> objpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
-                    objpro.RemoveAt(e.RowIndex);
-                    gvDetails.DataSource = objpro;
+        //            List<SeedLineTrayDetails> objpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
+        //            objpro.RemoveAt(e.RowIndex);
+        //            gvDetails.DataSource = objpro;
 
 
-                }
-                else
-                {
-                    ojbpro.RemoveAt(e.RowIndex);
-                    gvDetails.DataSource = ojbpro;
-                }
+        //        }
+        //        else
+        //        {
+        //            ojbpro.RemoveAt(e.RowIndex);
+        //            gvDetails.DataSource = ojbpro;
+        //        }
 
-                gvDetails.DataBind();
+        //        gvDetails.DataBind();
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+        //protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
 
-                ((DropDownList)e.Row.FindControl("ddlType")).SelectedValue = ((Label)(e.Row.FindControl("lblType"))).Text;
-            }
-        }
+        //        ((DropDownList)e.Row.FindControl("ddlType")).SelectedValue = ((Label)(e.Row.FindControl("lblType"))).Text;
+        //    }
+        //}
     }
 }
 

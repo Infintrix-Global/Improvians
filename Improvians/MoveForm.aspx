@@ -130,7 +130,7 @@
                         <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
 
                             <asp:Panel ID="pnlint" runat="server">
-                                <h3>Move Request</h3>
+                                <h3>Move</h3>
                                 <div class="row">
                                     <div class="col m3">
                                         <label>Job ID</label>
