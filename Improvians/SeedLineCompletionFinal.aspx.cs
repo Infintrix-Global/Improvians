@@ -168,14 +168,17 @@ namespace Improvians
                     if (row.RowType == DataControlRowType.DataRow)
                     {
 
+
                         string ID = (row.Cells[0].FindControl("lblID") as Label).Text;
                         string ActualTray = (row.Cells[2].FindControl("txtActualTray") as TextBox).Text;
                         string SeedNo = (row.Cells[3].FindControl("lblSeed") as Label).Text;
                         string Type = (row.Cells[4].FindControl("ddlType") as DropDownList).Text;
                         string Partial = (row.Cells[5].FindControl("txtPartial") as TextBox).Text;
 
-                        objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, Type, Partial);
-
+                        if (Type != "UnUsed")
+                        {
+                            objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, Type, Partial);
+                        }
                     }
                 }
                 Clear();

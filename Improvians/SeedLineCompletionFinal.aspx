@@ -185,7 +185,7 @@
                                             <asp:Label ID="lblSeedRequired" runat="server"></asp:Label></h3>
                             </div>
 
-                          <%--  <div class="row">
+                            <%--  <div class="row">
                                 <div class="col m3">
                                     <label>Seed Lot</label>
                                     <asp:DropDownList ID="ddlSeedLot" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -211,7 +211,11 @@
                                         ShowHeaderWhenEmpty="True">
                                         <Columns>
 
-
+                                            <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="100">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblRowNumber" runat="server" Text="<%# Container.DataItemIndex + 1 %>" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
 
