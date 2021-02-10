@@ -15,7 +15,7 @@
     </div>
     <div class="main">
         <div class="site__container">
-            <h2>My Task</h2>
+            <h2>My Tasks</h2>
 
           <%--  <div class="filter__row d-flex">
                 <div class="row">
@@ -45,7 +45,7 @@
 
                                 <tr>
                                     <td>Put-Away  </td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center"><a href="#">0</a></td>
                                 </tr>
                                     
                                 <tr>

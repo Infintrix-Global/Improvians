@@ -75,7 +75,8 @@
 
                                         <asp:TemplateField HeaderText="Trays Left To be Moved" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblTraysRequest" runat="server" Text=""></asp:Label>
+                                              
+                                                  <asp:Label ID="lblTraysRequest" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

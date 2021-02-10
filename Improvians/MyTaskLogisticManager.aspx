@@ -16,7 +16,7 @@
     </div>
     <div class="main">
         <div class="site__container">
-            <h2>Put-Away</h2>
+            <h2>Job Moves</h2>
 
             <div class="filter__row d-flex">
                 <div class="row">

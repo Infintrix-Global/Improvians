@@ -240,17 +240,17 @@ namespace Improvians
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                
-                Label lblGrowerPutAwayId = (Label)e.Row.FindControl("lblGrowerPutAwayId");
-                Label lblTray = (Label)e.Row.FindControl("lblTray");
-                Label lblTraysRequest = (Label)e.Row.FindControl("lblTraysRequest");
+                //Label lblGrowerPutAwayId = (Label)e.Row.FindControl("lblGrowerPutAwayId");
+                //Label lblTray = (Label)e.Row.FindControl("lblTray");
+                //Label lblTraysRequest = (Label)e.Row.FindControl("lblTraysRequest");
 
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@WoId", lblGrowerPutAwayId.Text);
-                nv.Add("@mode", "2");
-                dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
+                //DataTable dt = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@WoId", lblGrowerPutAwayId.Text);
+                //nv.Add("@mode", "2");
+                //dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
 
-                lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
+                //lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
 
 
             }
