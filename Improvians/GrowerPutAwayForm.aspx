@@ -203,7 +203,7 @@
 
                                         <div class="col-auto">
                                              <br />
-                                            <asp:Label ID="Label1" runat="server" ForeColor="#488949" Text="Assigned to logistics manager once submitted.​"></asp:Label>
+                                            <asp:Label ID="Label1" runat="server" ForeColor="#488949" Text="Assigned to site move team once submitted.​"></asp:Label>
                                         </div>
                                       
                                     </div>

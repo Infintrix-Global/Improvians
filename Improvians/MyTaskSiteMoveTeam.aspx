@@ -45,7 +45,7 @@
 
                                 <tr>
                                     <td>Put-Away  </td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center"><a href="#">0</a></td>
                                 </tr>
                                     
                                 <tr>
