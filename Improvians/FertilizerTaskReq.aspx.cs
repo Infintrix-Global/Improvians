@@ -187,6 +187,7 @@ namespace Improvians
                     nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                     nv.Add("@Type", radtype.SelectedValue);
                     nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+                    nv.Add("@MoveID", (row.FindControl("lblMoveID") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequest", nv);
