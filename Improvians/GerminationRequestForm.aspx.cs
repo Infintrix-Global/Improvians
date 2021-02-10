@@ -185,5 +185,10 @@ namespace Improvians
             gvGerm.PageIndex = e.NewPageIndex;
             BindGridGerm();
         }
+
+        protected void radweek_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
     }
 }
