@@ -405,8 +405,8 @@ namespace Improvians
 
                 string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
                 string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
-                ddlSeedLot.Items.Insert(Convert.ToInt32(seedID), new ListItem(seedLotName, seedID));
-           
+                ddlSeedLot.Items.Insert(-1, new ListItem(seedLotName, seedID));
+          
                 List<SeedLineTrayDetails> ojbpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
                 if (ojbpro == null)
                 {
