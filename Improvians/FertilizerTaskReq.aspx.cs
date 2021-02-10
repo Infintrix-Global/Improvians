@@ -143,8 +143,8 @@ namespace Improvians
         {
             try
             {
-                string tray = (gvFerDetails.Rows[e.RowIndex].FindControl("lblTray") as Label).Text;
-                lblUnMovedTrays.Text = ((Convert.ToInt32(lblUnMovedTrays.Text) + Convert.ToInt32(tray)).ToString());
+               // string tray = (gvFerDetails.Rows[e.RowIndex].FindControl("lblTray") as Label).Text;
+               // lblUnMovedTrays.Text = ((Convert.ToInt32(lblUnMovedTrays.Text) + Convert.ToInt32(tray)).ToString());
                 dtTrays.Rows.RemoveAt(e.RowIndex);
                 gvFerDetails.DataSource = dtTrays;
                 gvFerDetails.DataBind();
@@ -250,13 +250,13 @@ namespace Improvians
             if(radtype.SelectedValue=="Fertilizer")
             {
                 lbltype.Text = "Fertilizer";
-                dtTrays.Clear();
+                dtTrays.Rows.Clear();
                 BindFertilizer();
             }
             else if (radtype.SelectedValue == "Chemical")
             {
                 lbltype.Text = "Chemical";
-                dtTrays.Clear();
+                dtTrays.Rows.Clear();
                 BindChemical();
             }
         }

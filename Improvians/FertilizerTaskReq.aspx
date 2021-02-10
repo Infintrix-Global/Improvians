@@ -32,7 +32,7 @@
 
              <div class="row">
                                 <div class="col m3">
-                                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" class="btn" />
+                                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
                                 </div>
                  </div>
             <div class="row">
@@ -59,9 +59,9 @@
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                                   <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>'></asp:Label>
-                                                    <asp:Label ID="lblMoveID" runat="server" Text='<%# Eval("MoveID")  %>'></asp:Label>
+                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>' ></asp:Label>
+                                                   <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
+                                                    <asp:Label ID="lblMoveID" runat="server" Text='<%# Eval("MoveID")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -148,13 +148,13 @@
 
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                            <div class="col-auto">
+                           <%-- <div class="col-auto">
                                 <label>Job No.</label><br />
                                 <h3 class="robotobold">
                                     <asp:Label ID="lblJobID" runat="server"></asp:Label>
                                     <asp:Label ID="lblwo" Visible="false" runat="server"></asp:Label>
                                 </h3>
-                            </div>
+                            </div>--%>
 
                             <div class="col-auto">
                                 <label class="d-block">Sprayer </label>
@@ -276,7 +276,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField ItemStyle-Width="20%">
                                                     <ItemTemplate>
-                                                        <asp:Button CssClass="bttn bttn-danger" ID="deletebtn" runat="server" CommandName="Delete"
+                                                        <asp:Button class="submit-bttn bttn bttn-primary mb-0" ID="deletebtn" runat="server" CommandName="Delete"
                                                             Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
