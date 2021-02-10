@@ -50,7 +50,7 @@
 
                                             <asp:TemplateField HeaderText="Actual Trays">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblActualTraySeeded" runat="server" Text='<%# Eval("#TraysSeeded")  %>'></asp:Label>
+                                                    <asp:Label ID="lblActualTraySeeded" runat="server" Text='<%# Eval("ActualTraySeeded")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText="Planned Due Date">
