@@ -77,9 +77,9 @@ namespace Improvians
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
+                    lblJobID.Text = dt.Rows[0]["JobID"].ToString();
                     lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeededDate"]).ToString("MM-dd-yyyy");
-                    lblSeededTrays.Text = dt.Rows[0]["#TraysSeeded"].ToString();
+                    lblSeededTrays.Text = dt.Rows[0]["ActualTraySeeded"].ToString();
 
                 }
 
@@ -289,12 +289,12 @@ namespace Improvians
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_AddGrowerPutAwayDetails", nv);
 
 
-                            NameValueCollection nv11 = new NameValueCollection();
-                            nv11.Add("@WoId", wo);
-                            nv11.Add("@JobID", "");
-                            nv11.Add("@GrowerPutAwayId", _isInserted.ToString());
-                            nv11.Add("@CreatedBy", Session["LoginID"].ToString());
-                            int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveFormDetails", nv11);
+                            //NameValueCollection nv11 = new NameValueCollection();
+                            //nv11.Add("@WoId", wo);
+                            //nv11.Add("@JobID", "");
+                            //nv11.Add("@GrowerPutAwayId", _isInserted.ToString());
+                            //nv11.Add("@CreatedBy", Session["LoginID"].ToString());
+                            //int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveFormDetails", nv11);
 
 
                         }
@@ -304,20 +304,27 @@ namespace Improvians
 
 
 
-               
+                    NameValueCollection nv1 = new NameValueCollection();
+                    nv1.Add("@WorkOrder", wo);
+                    _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
 
-                  
 
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
+                    string message = "Grower Put Away Save  Successful";
+                    string url = "GrowerPutAwayForm.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                  //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
 
                     Clear();
                 }
 
 
-                NameValueCollection nv1 = new NameValueCollection();
-                nv1.Add("@WorkOrder", wo);
-                _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
-
+           
 
 
             }
