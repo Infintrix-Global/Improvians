@@ -205,7 +205,7 @@ namespace Improvians
             {
                 // lblmsg.Text = "Request Successful";
                 Clear();
-
+                BindGridMoveReq();
                 string message = "Request Successful";
                 string url = "MoveForm.aspx";
                 string script = "window.onload = function(){ alert('";
