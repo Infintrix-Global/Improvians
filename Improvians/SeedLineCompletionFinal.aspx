@@ -207,7 +207,7 @@
                             <div class="row">
                                 <div class="col-lg-12 my-3">
                                     <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped data__table w-auto"
-                                        GridLines="None"
+                                        GridLines="None" OnRowDataBound="gvDetails_RowDataBound"
                                         ShowHeaderWhenEmpty="True">
                                         <Columns>
 
@@ -225,7 +225,7 @@
 
                                             <asp:TemplateField HeaderText="# of Seed">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblactualseed" Text='<%# Eval("QTY")  %>' runat="server"></asp:Label>
+                                                    <asp:Label ID="lblactualseed" Text='<%# Eval("QTY","{0:####}")  %>' runat="server"></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>

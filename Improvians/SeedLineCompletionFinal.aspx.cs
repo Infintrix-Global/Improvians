@@ -279,7 +279,7 @@ namespace Improvians
         //    List<SeedLineTrayDetails> objinvoice = new List<SeedLineTrayDetails>();
         //    string type = "", seedLot = "", seedLotID = "", Seed = "", ActualSeed = "";
         //    string NoOfTray = "", LeftOver = "";
-        //     BindSeedLot();
+        //    BindSeedLot();
         //    txtSeedsAllocated.Text = "0";
         //    foreach (GridViewRow item in gvDetails.Rows)
         //    {
@@ -304,7 +304,7 @@ namespace Improvians
 
 
 
-            
+
 
         //    //dtTrays.Rows.Add(ddlSeedLot.SelectedItem.Text, ddlSeedLot.SelectedValue, dtSeed.Rows[0]["NoOFSeed"].ToString());
 
@@ -322,6 +322,8 @@ namespace Improvians
         //    ddlSeedLot.Items.Remove(ddlSeedLot.Items.FindByValue(ddlSeedLot.SelectedValue));
         //    ddlSeedLot.DataBind();
         //    ddlSeedLot.SelectedIndex = 0;
+
+
         //    foreach (GridViewRow item in gvDetails.Rows)
         //    {
         //        ActualSeed = ((Label)item.FindControl("lblactualseed")).Text;
@@ -406,6 +408,27 @@ namespace Improvians
             }
         }
 
+        protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
+                Label lotseed = (Label)e.Row.FindControl("lblactualseed");
+
+
+                txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(lotseed.Text)).ToString();
+                if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
+                {
+                    txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
+                }
+            }
+        }
+
 
 
 
@@ -424,7 +447,7 @@ namespace Improvians
         //        string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
         //        string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
         //        ddlSeedLot.Items.Insert(Convert.ToInt32(seedID), new ListItem(seedLotName, seedID));
-           
+
         //        List<SeedLineTrayDetails> ojbpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
         //        if (ojbpro == null)
         //        {
