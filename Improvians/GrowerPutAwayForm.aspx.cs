@@ -286,21 +286,38 @@ namespace Improvians
                         if (txtTrays.Text != "")
                         {
                             nv.Add("@mode", "1");
-                            _isInserted = objCommon.GetDataInsertORUpdate("SP_AddGrowerPutAwayDetails", nv);
+                            _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_AddGrowerPutAwayDetails", nv);
+
+
+                            NameValueCollection nv11 = new NameValueCollection();
+                            nv11.Add("@WoId", wo);
+                            nv11.Add("@JobID", "");
+                            nv11.Add("@GrowerPutAwayId", _isInserted.ToString());
+                            nv11.Add("@CreatedBy", Session["LoginID"].ToString());
+                            int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveFormDetails", nv11);
+
+
                         }
                         SelectedItems++;
 
                     }
 
 
-                    NameValueCollection nv1 = new NameValueCollection();
-                    nv1.Add("@WorkOrder", wo);
-                    _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
+
+               
+
+                  
 
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
 
                     Clear();
                 }
+
+
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("@WorkOrder", wo);
+                _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
+
 
 
             }

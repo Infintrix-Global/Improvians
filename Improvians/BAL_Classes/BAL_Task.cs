@@ -69,8 +69,8 @@ namespace Improvians.BAL_Classes
             try
             {
                 objGeneral = new General();
-                    objGeneral.AddParameterWithValueToSQLCommand("@STCID", STCID);
-                    objGeneral.AddParameterWithValueToSQLCommand("@LotID", LotID);
+                objGeneral.AddParameterWithValueToSQLCommand("@STCID", STCID);
+                 objGeneral.AddParameterWithValueToSQLCommand("@LotID", LotID);
                 objGeneral.AddParameterWithValueToSQLCommand("@ActualSeed", ActualSeed);
                 objGeneral.AddParameterWithValueToSQLCommand("@SeedNo", SeedNo);
                 objGeneral.AddParameterWithValueToSQLCommand("@Type", Type);

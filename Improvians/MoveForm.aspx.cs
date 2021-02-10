@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Improvians.Bal;
 using Improvians.BAL_Classes;
 namespace Improvians
 {
@@ -15,6 +16,7 @@ namespace Improvians
         { Columns = { "FromFacility", "ToFacility", "ToFacilityID", "Greenhouse", "GreenHouseID", "Trays" } };
         CommonControl objCommon = new CommonControl();
         BAL_Task objTask = new BAL_Task();
+        BAL_CommonMasters objCOm = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,6 +24,23 @@ namespace Improvians
                 BindGridMoveReq();
                 BindFacility();
                 BindLogisticList();
+            }
+        }
+
+
+        private string wo
+        {
+            get
+            {
+                if (ViewState["wo"] != null)
+                {
+                    return (string)ViewState["wo"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["wo"] = value;
             }
         }
 
@@ -37,11 +56,12 @@ namespace Improvians
         }
         public void BindFacility()
         {
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@mode", "4");
-            ddlToFacility.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
-            ddlToFacility.DataTextField = "FacilityName";
-            ddlToFacility.DataValueField = "FacilityID";
+            // NameValueCollection nv = new NameValueCollection();
+            // nv.Add("@mode", "4");
+            // ddlToFacility.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
+            ddlToFacility.DataSource=objCOm.GetMainLocation();
+            ddlToFacility.DataTextField = "l1";
+            ddlToFacility.DataValueField = "l1";
             ddlToFacility.DataBind();
             ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
@@ -50,12 +70,35 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-
+            nv.Add("@mode", "1");
+            nv.Add("@wo", "");
             dt = objCommon.GetDataTable("SP_GetMoveRequest", nv);
             gvMove.DataSource = dt;
             gvMove.DataBind();
 
         }
+
+        protected void gvMove_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblGrowerPutAwayId = (Label)e.Row.FindControl("lblGrowerPutAwayId");
+                Label lblTray = (Label)e.Row.FindControl("lblTray");
+                Label lblTraysRequest = (Label)e.Row.FindControl("lblTraysRequest");
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@WoId", lblGrowerPutAwayId.Text);
+                nv.Add("@mode", "2");
+                dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
+
+                lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
+
+
+            }
+        }
+
 
         protected void gvMove_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -70,23 +113,34 @@ namespace Improvians
             {
                 userinput.Visible = true;
 
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = gvMove.Rows[rowIndex];
-                lblFromFacility.Text = (row.FindControl("lblFacility") as Label).Text;
-                lbljobid.Text = (row.FindControl("lblID") as Label).Text;
+                string rowIndex = e.CommandArgument.ToString();
+                //  GridViewRow row = gvMove.Rows[rowIndex];
+                //  lblFromFacility.Text = (row.FindControl("lblFacility") as Label).Text;
+                //lbljobid.Text = (row.FindControl("lblID") as Label).Text;
+
+                DataTable dt11 = new DataTable();
+                NameValueCollection nv11 = new NameValueCollection();
+                nv11.Add("@mode","2");
+                nv11.Add("@wo", rowIndex);
+                dt11 = objCommon.GetDataTable("SP_GetMoveRequest", nv11);
+
+
+                wo = rowIndex;
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@JobID", (row.FindControl("lblID") as Label).Text);
+                nv.Add("@JobID", rowIndex.ToString());
                 dt = objCommon.GetDataTable("SP_GetUnMovedTraysByJobID", nv);
+
+
                 if (string.IsNullOrEmpty(dt.Rows[0]["UnMovedTrays"].ToString()))
                 {
 
-                    lblUnmovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text;
+                    lblUnmovedTrays.Text = dt.Rows[0]["Trays"].ToString();
 
                 }
                 else
                 {
-                    lblUnmovedTrays.Text = (Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text) - (Convert.ToInt32(dt.Rows[0]["UnMovedTrays"].ToString()))).ToString();
+                    lblUnmovedTrays.Text = (Convert.ToInt32(dt.Rows[0]["Trays"].ToString()) - (Convert.ToInt32(dt.Rows[0]["UnMovedTrays"].ToString()))).ToString();
                 }
                 ddlToFacility.Focus();
             }
@@ -108,7 +162,7 @@ namespace Improvians
             }
         }
 
-      
+
         protected void btnAddTray_Click(object sender, EventArgs e)
         {
             try
@@ -144,7 +198,7 @@ namespace Improvians
             result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue);
             if (result > 0)
             {
-               // lblmsg.Text = "Request Successful";
+                // lblmsg.Text = "Request Successful";
                 Clear();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Request Successful')", true);
                 userinput.Visible = false;
@@ -177,13 +231,16 @@ namespace Improvians
         {
             if (ddlToFacility.SelectedIndex != 0)
             {
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@FacilityID", ddlToFacility.SelectedValue);
-                ddlToGreenHouse.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-                ddlToGreenHouse.DataTextField = "GreenHouseName";
-                ddlToGreenHouse.DataValueField = "GreenHouseID";
+              //  NameValueCollection nv = new NameValueCollection();
+              //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
+                ddlToGreenHouse.DataSource = objCOm.GetLocation(ddlToFacility.SelectedValue);
+                ddlToGreenHouse.DataTextField = "p2";
+                ddlToGreenHouse.DataValueField = "p2";
                 ddlToGreenHouse.DataBind();
                 ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+
+             
             }
         }
     }

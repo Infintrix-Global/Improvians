@@ -96,13 +96,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.TextBox txtIrrigatedNoTrays;
 
         /// <summary>
-        /// RadioButtonWaterRequired control.
+        /// txtWaterRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonWaterRequired;
+        protected global::System.Web.UI.WebControls.TextBox txtWaterRequired;
 
         /// <summary>
         /// txtIrrigationDuration control.

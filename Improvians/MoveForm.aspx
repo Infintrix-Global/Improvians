@@ -45,30 +45,32 @@
                                                 <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                        <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobID")  %>'></asp:Label>
+                                                        <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobCode")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Item")  %>'></asp:Label>
+                                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                  <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Put Away Location" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="Label7" runat="server" Text='<%# Eval("PutAwayLocation")  %>'></asp:Label>
+                                                        <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("PutAwayMainLocation")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                            
                                                 <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("#Tray")  %>'></asp:Label>
+                                                        <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("PTrays")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
@@ -78,11 +80,11 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Seed Lot" HeaderStyle-CssClass="autostyle2">
+                                              <%--  <asp:TemplateField HeaderText="Seed Lot" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="Label11" runat="server" Text='<%# Eval("SeedLots")  %>'></asp:Label>
                                                     </ItemTemplate>
-                                                </asp:TemplateField>
+                                                </asp:TemplateField>--%>
 
                                                 <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
@@ -98,8 +100,10 @@
 
                                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                        <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                    </ItemTemplate>
+                                                        <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                                   
+
+												   </ItemTemplate>
                                                 </asp:TemplateField>
 
 
@@ -130,7 +134,7 @@
                         <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
 
                             <asp:Panel ID="pnlint" runat="server">
-                                <h3>Move Request</h3>
+                                <h3>Move</h3>
                                 <div class="row">
                                     <div class="col m3">
                                         <label>Job ID</label>

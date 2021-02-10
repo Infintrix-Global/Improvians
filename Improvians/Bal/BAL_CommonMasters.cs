@@ -21,7 +21,7 @@ namespace Improvians.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select le.[Lot No_] l1, le.[Lot No_] l2, sum(le.Quantity) from[GTI$Item Ledger Entry] le "+
+                strQuery = "select le.[Lot No_] l1, le.[Lot No_] l2, sum(le.Quantity) as QTY from[GTI$Item Ledger Entry] le "+
                   " where le.[Item No_] = (select i.[Purchase Item No_] from[GTI$Item] i "+
                   "where i.No_ in (select j.[Item No_] from[GTI$Job] j where j.No_ = '"+ JobCode + "'))  " +
                    " group by[Lot No_] " +

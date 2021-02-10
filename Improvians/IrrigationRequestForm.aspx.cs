@@ -167,7 +167,7 @@ namespace Improvians
             nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             nv.Add("@WO", wo);
             nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
-            nv.Add("@WaterRequired",RadioButtonWaterRequired.SelectedValue);
+            nv.Add("@WaterRequired",txtWaterRequired.Text.Trim());
             nv.Add("@IrrigationDuration",txtIrrigationDuration.Text.Trim());
             nv.Add("@SprayDate",txtSprayDate.Text.Trim());
             nv.Add("@SprayTime", txtSprayTime.Text.Trim());
@@ -200,7 +200,12 @@ namespace Improvians
         {
 
             ddlSupervisor.SelectedIndex = 0;
-
+            txtWaterRequired.Text = "";
+            txtNotes.Text = "";
+            txtIrrigatedNoTrays.Text = "";
+            txtIrrigationDuration.Text = "";
+            txtSprayDate.Text = "";
+            txtSprayTime.Text = "";
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
