@@ -251,12 +251,16 @@ namespace Improvians
             {
                 lbltype.Text = "Fertilizer";
                 dtTrays.Rows.Clear();
+                gvFerDetails.DataSource = dtTrays;
+                gvFerDetails.DataBind();
                 BindFertilizer();
             }
             else if (radtype.SelectedValue == "Chemical")
             {
                 lbltype.Text = "Chemical";
                 dtTrays.Rows.Clear();
+                gvFerDetails.DataSource = dtTrays;
+                gvFerDetails.DataBind();
                 BindChemical();
             }
         }
