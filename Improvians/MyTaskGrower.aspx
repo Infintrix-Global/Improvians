@@ -61,21 +61,21 @@
 
                                     <tr>
                                         <td>Fertilization/Chemical</td>
-                                        <td></td>
+                                        <td>Review and assign these tasks to the Sprayer</td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkFer" PostBackUrl="~/FertilizerTaskReq.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Irrigation</td>
-                                        <td></td>
+                                        <td>Review and assign irrigation tasks to Greenhouse Supervisor</td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Plant Ready</td>
-                                        <td></td>
+                                        <td>Review and assign Plant Health Reporting tasks to Greenhouse Supervisor</td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkpr" PostBackUrl="~/PlantReadyRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
