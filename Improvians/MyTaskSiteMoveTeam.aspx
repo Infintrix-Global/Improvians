@@ -15,7 +15,7 @@
     </div>
     <div class="main">
         <div class="site__container">
-            <h2>My Task</h2>
+            <h2>My Tasks</h2>
 
           <%--  <div class="filter__row d-flex">
                 <div class="row">
