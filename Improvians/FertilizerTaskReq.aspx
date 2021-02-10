@@ -30,11 +30,11 @@
                 </div>
             </div>
 
-          <%--   <div class="row">
+             <div class="row">
                                 <div class="col m3">
                                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" class="btn" />
                                 </div>
-                 </div>--%>
+                 </div>
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
@@ -46,14 +46,14 @@
                                     GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                            <%-- <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                             <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                                             <HeaderTemplate>  
                                                     <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" onCheckedChanged="chckchanged" runat="server" /> </HeaderTemplate>  
                                                             <ItemTemplate>
                                                             
                                                                 <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
                                                             </ItemTemplate>
-                                                        </asp:TemplateField>--%>
+                                                        </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -112,13 +112,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                     <%--   <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                  <asp:Button ID="btnReschdule" runat="server" Text="Reschdule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                  <asp:Button ID="btnDismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
 
 
@@ -185,7 +185,7 @@
                             </div>
                             <div class="col">
                                 <label>Quantity</label>
-                                <asp:TextBox ID="txtQty" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="md"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -203,18 +203,18 @@
                             <div class="col">
                                 <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
-                                <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                <span class="error_message">
+                                <asp:TextBox ID="txtTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                               <%-- <span class="error_message">
                                     <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>
+                                </span>--%>
                             </div>
 
                             <div class="col">
                                 <label>SQFT </label>
 
-                                <asp:TextBox ID="txtSQFT" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:Label ID="Label2" runat="server" ForeColor="red"></asp:Label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtSQFT" ValidationGroup="md"

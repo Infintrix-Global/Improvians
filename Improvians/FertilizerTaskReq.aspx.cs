@@ -113,25 +113,25 @@ namespace Improvians
 
             try
             {
-                if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblUnMovedTrays.Text))
-                {
-                    lblerrmsg.Text = "";
+               // if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblUnMovedTrays.Text))
+              //  {
+                    //lblerrmsg.Text = "";
                     dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text,txtQty.Text,ddlUnit.SelectedItem.Text,txtTrays.Text,txtSQFT.Text);
                     gvFerDetails.DataSource = dtTrays;
                     gvFerDetails.DataBind();
-                    lblUnMovedTrays.Text = (Convert.ToInt32(lblUnMovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
-                    txtTrays.Text = "";
+                 //   lblUnMovedTrays.Text = (Convert.ToInt32(lblUnMovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+                  //  txtTrays.Text = "";
                     ddlFertilizer.SelectedIndex = 0;
                     ddlUnit.SelectedIndex = 0;
                     txtQty.Text = "";
                     txtSQFT.Text = "";
-                }
-                else
-                {
+              //  }
+              //  else
+              //  {
 
-                    lblerrmsg.Text = "Number of Trays exceed Remaining trays";
+                    //lblerrmsg.Text = "Number of Trays exceed Remaining trays";
 
-                }
+               // }
             }
             catch (Exception ex)
             {
@@ -177,37 +177,56 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                {
 
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                     nv.Add("@Type", radtype.SelectedValue);
-                    nv.Add("@WorkOrder", lblwo.Text);
+                    nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+                    //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequest", nv);
                     if (result > 0)
                     {
                         objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
-                        // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                        string message = "Assignment Successful";
-                        string url = "MyTaskGrower.aspx";
-                        string script = "window.onload = function(){ alert('";
-                        script += message;
-                        script += "');";
-                        script += "window.location = '";
-                        script += url;
-                        script += "'; }";
-                        ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                        // lblmsg.Text = "Assignment Successful";
-                        Clear();
+                       
+                        //string message = "Assignment Successful";
+                        //string url = "MyTaskGrower.aspx";
+                        //string script = "window.onload = function(){ alert('";
+                        //script += message;
+                        //script += "');";
+                        //script += "window.location = '";
+                        //script += url;
+                        //script += "'; }";
+                        //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                       
+                        //Clear();
                     }
                     else
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                         //  lblmsg.Text = "Assignment Not Successful";
                     }
-             
+
+
+                }
+            }
+
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+            Clear();
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -230,11 +249,13 @@ namespace Improvians
             if(radtype.SelectedValue=="Fertilizer")
             {
                 lbltype.Text = "Fertilizer";
+                dtTrays.Clear();
                 BindFertilizer();
             }
             else if (radtype.SelectedValue == "Chemical")
             {
                 lbltype.Text = "Chemical";
+                dtTrays.Clear();
                 BindChemical();
             }
         }
@@ -269,22 +290,46 @@ namespace Improvians
             ddlUnit.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
-        //protected void chckchanged(object sender, EventArgs e)
-        //{
-        //    CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
-        //    foreach (GridViewRow row in gvFer.Rows)
-        //    {
-        //        CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-        //        if (chckheader.Checked == true)
-        //        {
-        //            chckrw.Checked = true;
-        //        }
-        //        else
-        //        {
-        //            chckrw.Checked = false;
-        //        }
-        //    }
+        protected void chckchanged(object sender, EventArgs e)
+        {
+            CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckheader.Checked == true)
+                {
+                    chckrw.Checked = true;
+                }
+                else
+                {
+                    chckrw.Checked = false;
+                }
+            }
 
-        //}
+        }
+
+        protected void btnAssign_Click(object sender, EventArgs e)
+        {
+            userinput.Visible = true;
+            ddlsupervisor.Focus();
+            int tray = 0;
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                {
+                     tray =tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
+                }
+
+            }
+            txtTrays.Text = tray.ToString();
+          
+
+                }
+
+        protected void txtQty_TextChanged(object sender, EventArgs e)
+        {
+           
+            txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
+        }
     }
 }

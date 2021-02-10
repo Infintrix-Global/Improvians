@@ -30,7 +30,7 @@
                         <asp:DropDownList ID="ddlStatus" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>--%>
                     <div class="col m3">
-                      <asp:RadioButtonList ID="radweek" runat="server" RepeatDirection="Horizontal">
+                      <asp:RadioButtonList ID="radweek" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="radweek_SelectedIndexChanged">
                           <asp:ListItem Text="Last Week" Value="1"></asp:ListItem>
                           <asp:ListItem Text="This Week" Value="2"></asp:ListItem>
                           <asp:ListItem Text="Next Week" Value="3"></asp:ListItem>
