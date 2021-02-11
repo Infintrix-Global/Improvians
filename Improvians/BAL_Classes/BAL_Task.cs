@@ -13,7 +13,7 @@ namespace Improvians.BAL_Classes
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
 
-        public int AddMoveRequest(DataTable dt, string jobID, string reqDate,string LoginID,string LogisticID,string wo)
+        public int AddMoveRequest(DataTable dt, string jobID, string reqDate,string LoginID,string LogisticID,string wo,string GrowerPutAwayID)
         {
             int _isInserted = -1;
             try
@@ -30,6 +30,7 @@ namespace Improvians.BAL_Classes
                     objGeneral.AddParameterWithValueToSQLCommand("@LoginID", LoginID);
                     objGeneral.AddParameterWithValueToSQLCommand("@LogisticID", LogisticID);
                     objGeneral.AddParameterWithValueToSQLCommand("@wo", wo);
+                    objGeneral.AddParameterWithValueToSQLCommand("@GrowerPutAwayID", GrowerPutAwayID);
                     _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddMoveRequest");
                 }
             }

@@ -23,8 +23,8 @@
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobCode")  %>'></asp:Label>
-                                                
-                                                   <asp:Label ID="lblGrowerPutAwayId" runat="server" Visible="false" Text='<%# Eval("Id")  %>'></asp:Label>
+                                                Sh_Co_AssignId
+                                                   <asp:Label ID="lblMoveAssignID" runat="server" Visible="false" Text='<%# Eval("Sh_Co_AssignId")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -37,7 +37,7 @@
 
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblTray" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
+                                                <asp:Label ID="lblTray" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
@@ -48,7 +48,7 @@
 
                                         <asp:TemplateField HeaderText="From Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
+                                                <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("FacilityFrom")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -68,7 +68,7 @@
 
                                         <asp:TemplateField HeaderText="Request Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblRequestDate" runat="server" Text='<%# Eval("CreatedOn","{0:dd MMM yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="lblRequestDate" runat="server" Text='<%# Eval("CreateOn","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -76,15 +76,15 @@
                                         <asp:TemplateField HeaderText="Trays Left To be Moved" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                               
-                                                  <asp:Label ID="lblTraysRequest" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
+                                                  <asp:Label ID="lblTraysRequest" runat="server" ></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
+                                     <%--   <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Container.DataItemIndex %>'></asp:Button>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                     </Columns>
 
@@ -109,7 +109,8 @@
                 <h3>Move Completion</h3>
                 <div class="row">
                     <div class="col">
-                        <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>
+                      <%--  <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>--%>
+                        <asp:Label ID="lblMoveAssignID" runat="server" Visible="false"></asp:Label>
                         <label>Remaining Trays:</label>
                         <asp:Label ID="lblRemainingTrays" runat="server"></asp:Label>
                     </div>

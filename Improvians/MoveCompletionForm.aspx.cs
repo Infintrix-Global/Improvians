@@ -16,9 +16,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["Wid"] != null)
+                if (Request.QueryString["MoveID"] != null)
                 {
-                    wo = Request.QueryString["Wid"].ToString();
+                    MoveID = Request.QueryString["MoveID"].ToString();
                 }
                 txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
@@ -43,19 +43,19 @@ namespace Improvians
             }
         }
 
-        private string MoveId
+        private string MoveID
         {
             get
             {
-                if (ViewState["MoveId"] != null)
+                if (ViewState["MoveID"] != null)
                 {
-                    return (string)ViewState["MoveId"];
+                    return (string)ViewState["MoveID"];
                 }
                 return "";
             }
             set
             {
-                ViewState["MoveId"] = value;
+                ViewState["MoveID"] = value;
             }
         }
 
@@ -89,26 +89,27 @@ namespace Improvians
 
         public void BindGridMove()
         {
-            DataTable dt = new DataTable();
+            DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@WoId", wo);
-            nv.Add("@mode", "3");
-            dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
-            gvMove.DataSource = dt;
+            // nv.Add("@WoId", wo);
+            //  nv.Add("@mode", "3");
+            nv.Add("@MoveID", MoveID);
+            dt = objCommon.GetDataSet("SP_GetShipmentCoordinatorTaskByMoveID", nv);
+            gvMove.DataSource = dt.Tables[0];
             gvMove.DataBind();
 
 
             //lblToFacility.Text = dt.Tables[0].Rows[0]["FacilityToID"].ToString();
-            //if (string.IsNullOrEmpty(dt.Tables[1].Rows[0]["CompletedTrays"].ToString()))
-            //{
+            if (string.IsNullOrEmpty(dt.Tables[1].Rows[0]["CompletedTrays"].ToString()))
+            {
 
-            //    lblRemainingTrays.Text =dt.Tables[0].Rows[0]["TraysRequest"].ToString() ;
+                lblRemainingTrays.Text = dt.Tables[0].Rows[0]["TraysRequest"].ToString();
 
-            //}
-            //else
-            //{
-            //    lblRemainingTrays.Text = (Convert.ToInt32(dt.Tables[0].Rows[0]["TraysRequest"].ToString())- Convert.ToInt32(dt.Tables[1].Rows[0]["CompletedTrays"].ToString())).ToString();
-            //}
+            }
+            else
+            {
+                lblRemainingTrays.Text = (Convert.ToInt32(dt.Tables[0].Rows[0]["TraysRequest"].ToString()) - Convert.ToInt32(dt.Tables[1].Rows[0]["CompletedTrays"].ToString())).ToString();
+            }
         }
 
         protected void gvMove_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -123,8 +124,9 @@ namespace Improvians
             //{
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@GrowerPutAwayId", MoveId);
-                nv.Add("@Wo",wo);
+                nv.Add("@MoveID", MoveID);
+            nv.Add("MoveAssignID", lblMoveAssignID.Text);
+                //nv.Add("@Wo",wo);
                 nv.Add("@MoveDate", txtMoveDate.Text.Trim());
                 nv.Add("@Put_Away_Location",txtPutAwayLocation.Text.Trim());
                 nv.Add("@TraysMoved",txtTrays.Text.Trim());
@@ -141,10 +143,12 @@ namespace Improvians
                 {
 
                     NameValueCollection nv1 = new NameValueCollection();
-                    nv1.Add("@WoId", wo);
-                    nv1.Add("@JobID", "");
-                    nv1.Add("@MoveID", result.ToString());
-                    nv1.Add("@GrowerPutAwayId","");
+                    //nv1.Add("@WoId", wo);
+                    //nv1.Add("@JobID", "");
+                    //nv1.Add("@MoveID", result.ToString());
+                    //nv1.Add("@GrowerPutAwayId","");
+                    nv1.Add("@MoveID", MoveID);
+                    nv1.Add("MoveAssignID", lblMoveAssignID.Text);
                     nv1.Add("@CreatedBy", Session["LoginID"].ToString());
 
                     int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveForm", nv1);
@@ -199,7 +203,7 @@ namespace Improvians
                 GridViewRow row = gvMove.Rows[rowIndex];
 
 
-                MoveId = (row.FindControl("lblGrowerPutAwayId") as Label).Text;
+              //  MoveId = (row.FindControl("lblGrowerPutAwayId") as Label).Text;
 
                 
                 txtPutAwayLocation.Text = (row.FindControl("lblGreenHouseName") as Label).Text;
@@ -217,7 +221,6 @@ namespace Improvians
         {
 
 
-
             if (txtTrays.Text != "")
             {
                 if( Convert.ToInt32(txtTrays.Text) <=  Convert.ToInt32(lblRemainingTrays.Text))
@@ -228,7 +231,8 @@ namespace Improvians
                 else
                 {
                     txtTrays.Text = "";
-                    lblRemainingTrays.Text = TraysRequest;
+
+                   // lblRemainingTrays.Text = TraysRequest;
                 }
                
 
@@ -239,18 +243,21 @@ namespace Improvians
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-               
-                //Label lblGrowerPutAwayId = (Label)e.Row.FindControl("lblGrowerPutAwayId");
-                //Label lblTray = (Label)e.Row.FindControl("lblTray");
-                //Label lblTraysRequest = (Label)e.Row.FindControl("lblTraysRequest");
 
-                //DataTable dt = new DataTable();
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@WoId", lblGrowerPutAwayId.Text);
+               // Label lblGrowerPutAwayId = (Label)e.Row.FindControl("lblGrowerPutAwayId");
+                lblMoveAssignID.Text= ((Label)e.Row.FindControl("lblMoveAssignID")).Text;
+                Label lblTray = (Label)e.Row.FindControl("lblTray");
+                Label lblTraysRequest = (Label)e.Row.FindControl("lblTraysRequest");
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                // nv.Add("@WoId", lblGrowerPutAwayId.Text);
                 //nv.Add("@mode", "2");
-                //dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
+                nv.Add("@MoveID", MoveID);
+                dt = objCommon.GetDataTable("SP_GetMovedTraysByMoveID", nv);
+             //   dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
 
-                //lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
+                lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
 
 
             }

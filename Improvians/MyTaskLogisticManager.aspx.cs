@@ -26,8 +26,8 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@Mode", "2");
-            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+           // nv.Add("@Mode", "2");
+            dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -41,10 +41,10 @@ namespace Improvians
                 
                 if (Session["Role"].ToString() == "5")
                 {
-                    string Wid = "";
-                    Wid = e.CommandArgument.ToString();
-                  
-                    Response.Redirect(String.Format("~/MoveTaskAssignment.aspx?Wid={0}", Wid));
+                   // string Wid = "";
+                   // Wid = e.CommandArgument.ToString();
+                  string MoveID = e.CommandArgument.ToString();
+                    Response.Redirect(String.Format("~/MoveTaskAssignment.aspx?MoveID={0}", MoveID));
 
                 }
             }
@@ -53,12 +53,12 @@ namespace Improvians
                 
                 if (Session["Role"].ToString() == "5")
                 {
-                    string Wid = "";
-                    Wid = e.CommandArgument.ToString();
-
-                    Session["MoveID"] = e.CommandArgument.ToString();
+                   // string Wid = "";
+                   // Wid = e.CommandArgument.ToString();
+                    string MoveID = e.CommandArgument.ToString();
+                   // Session["MoveID"] = e.CommandArgument.ToString();
                   
-                    Response.Redirect(String.Format("~/MoveCompletionForm.aspx?Wid={0}", Wid));
+                    Response.Redirect(String.Format("~/MoveCompletionForm.aspx?MoveID={0}", MoveID));
                 }
             }
         }

@@ -71,7 +71,8 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@mode", "1");
-            nv.Add("@wo", "");
+            // nv.Add("@wo", "");
+            nv.Add("@GrowerPutAwayID", "");
             dt = objCommon.GetDataTable("SP_GetMoveRequest", nv);
             gvMove.DataSource = dt;
             gvMove.DataBind();
@@ -121,12 +122,13 @@ namespace Improvians
                 DataTable dt11 = new DataTable();
                 NameValueCollection nv11 = new NameValueCollection();
                 nv11.Add("@mode","2");
-                nv11.Add("@wo", rowIndex);
+                //  nv11.Add("@wo", rowIndex);
+                nv11.Add("@GrowerPutAwayID", rowIndex);
                 dt11 = objCommon.GetDataTable("SP_GetMoveRequest", nv11);
 
                 lblFromFacility.Text = dt11.Rows[0]["FacilityID"].ToString();
                 lbljobid.Text = dt11.Rows[0]["JobCode"].ToString();
-
+                lblGrowerputawayID.Text = dt11.Rows[0]["GrowerPutAwayID"].ToString();
 
 
                 wo = rowIndex;
@@ -200,7 +202,8 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-            result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
+           //result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
+            result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue, wo, lblGrowerputawayID.Text);
             if (result > 0)
             {
                 // lblmsg.Text = "Request Successful";

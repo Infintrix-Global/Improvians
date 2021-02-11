@@ -42,13 +42,13 @@ namespace Improvians
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddDetails;
 
         /// <summary>
-        /// lblToFacility control.
+        /// lblMoveAssignID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblToFacility;
+        protected global::System.Web.UI.WebControls.Label lblMoveAssignID;
 
         /// <summary>
         /// lblRemainingTrays control.

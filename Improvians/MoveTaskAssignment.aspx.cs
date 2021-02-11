@@ -16,9 +16,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["Wid"] != null)
+                if (Request.QueryString["MoveID"] != null)
                 {
-                    wo = Request.QueryString["Wid"].ToString();
+                    MoveID = Request.QueryString["MoveID"].ToString();
                 }
                 BindGridMove();
                 BindShippingCoordinatorList();
@@ -26,19 +26,19 @@ namespace Improvians
         }
 
 
-        private string wo
+        private string MoveID
         {
             get
             {
-                if (ViewState["wo"] != null)
+                if (ViewState["MoveID"] != null)
                 {
-                    return (string)ViewState["wo"];
+                    return (string)ViewState["MoveID"];
                 }
                 return "";
             }
             set
             {
-                ViewState["wo"] = value;
+                ViewState["MoveID"] = value;
             }
         }
 
@@ -57,9 +57,10 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@WoId", wo);
-            nv.Add("@mode","1");
-            dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
+            // nv.Add("@WoId", wo);
+            nv.Add("@MoveID", MoveID);
+            //nv.Add("@mode","1");
+            dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTaskByMoveID", nv);
             gvMove.DataSource = dt;
             gvMove.DataBind();
 
@@ -70,7 +71,7 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@CoordinatorId", ddlShippingCoordinator.SelectedValue);
-            nv.Add("@wo",wo);
+            nv.Add("@MoveID", MoveID);
             nv.Add("@CreateBy", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv);
             if (result > 0)

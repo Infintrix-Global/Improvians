@@ -100,8 +100,8 @@
 
                                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                        <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
-                                                   
+                                                 <%--       <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>--%>
+                                                          <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("GrowerPutAwayID")  %>'></asp:Button>
 
 												   </ItemTemplate>
                                                 </asp:TemplateField>
@@ -139,6 +139,7 @@
                                     <div class="col m3">
                                         <label>Job ID</label>
                                         <asp:Label ID="lbljobid" runat="server"></asp:Label>
+                                          <asp:Label ID="lblGrowerputawayID" runat="server" Visible="false"></asp:Label>
                                     </div>
                                     <div class="col m3">
                                         <label>Remaining Trays</label>
