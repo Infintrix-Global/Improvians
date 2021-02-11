@@ -26,9 +26,12 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@Mode", "2");
-            dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
-            lblPutAwayTotal.Text = dt.Rows.Count.ToString();
+            // nv.Add("@Mode", "2");
+            
+                dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTask", nv);
+            lnkMove.Text = dt.Rows.Count.ToString();
+            //dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+            //  lblPutAwayTotal.Text = dt.Rows.Count.ToString();
         }
     }
 }

@@ -67,7 +67,7 @@
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                               <%--  <asp:Label ID="Label7" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>--%>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("GreenHouseToRequest")  %>'></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("GrenHouseToRequest")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

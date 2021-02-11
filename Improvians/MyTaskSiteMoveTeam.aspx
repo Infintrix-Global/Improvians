@@ -50,7 +50,7 @@
                                     
                                 <tr>
                                     <td>Job Moves</td>
-                                    <td class="text-center"><a href="#"> <asp:LinkButton ID="LinkbtnPutAway" PostBackUrl="~/MyTaskLogisticManager.aspx" runat="server"> <asp:Label ID="lblPutAwayTotal" runat="server" Text=""></asp:Label></asp:LinkButton></a></td>
+                                    <td class="text-center"> <asp:LinkButton ID="lnkMove" PostBackUrl="~/MyTaskLogisticManager.aspx" runat="server"></asp:LinkButton> </td>
                                 </tr>
 
                                 <tr>
