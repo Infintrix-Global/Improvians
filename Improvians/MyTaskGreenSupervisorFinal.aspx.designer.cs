@@ -15,12 +15,30 @@ namespace Improvians
     {
 
         /// <summary>
-        /// ddlTaskRequest control.
+        /// lnkGerm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTaskRequest;
+        protected global::System.Web.UI.WebControls.LinkButton lnkGerm;
+
+        /// <summary>
+        /// lnkIrr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkIrr;
+
+        /// <summary>
+        /// lnkpr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkpr;
     }
 }
