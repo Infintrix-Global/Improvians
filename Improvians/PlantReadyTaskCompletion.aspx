@@ -60,7 +60,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Planned Ship Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("SoDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
@@ -100,7 +100,7 @@
 
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label class="d-block">Updated Ready Date</label>
+                                    <label class="d-block">Actual Plant Ready Date</label>
 
                                     <asp:TextBox ID="txtUpdatedReadyDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                                 </div>
@@ -116,9 +116,9 @@
 
                                     <asp:DropDownList ID="ddlRootQuality" class="custom__dropdown" runat="server">
                                         <asp:ListItem Text="--SELECT--" Value="0"></asp:ListItem>
-                                        <asp:ListItem Text="1) Excellent" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="2) Good" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="3) Poor" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="1- Poor" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="2- Good" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="3- Excellent" Value="3"></asp:ListItem>
 
                                     </asp:DropDownList>
                                 </div>

@@ -168,15 +168,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.GridView gvDetails;
 
         /// <summary>
-        /// txtSeedsAllocated control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSeedsAllocated;
-
-        /// <summary>
         /// txtRequestedTrays control.
         /// </summary>
         /// <remarks>
@@ -193,6 +184,15 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtActualTraysNo;
+
+        /// <summary>
+        /// txtSeedsAllocated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSeedsAllocated;
 
         /// <summary>
         /// radJobCompletion control.

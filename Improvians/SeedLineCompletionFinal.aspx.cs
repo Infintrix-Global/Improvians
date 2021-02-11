@@ -394,6 +394,7 @@ namespace Improvians
                         txtActualTraysNo.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
                         txtActualTraysNo.Focus();
                     }
+                    txtSeedsAllocated.Text =( Convert.ToDouble(txtRequestedTrays.Text) - Convert.ToDouble(txtActualTraysNo.Text)).ToString();
                     //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
                     //txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(lotseed)).ToString();
                     //if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
@@ -415,25 +416,25 @@ namespace Improvians
 
                 //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
                 Label lotseed = (Label)e.Row.FindControl("lblactualseed");
-              int  SeedsAllocated = 0;
-                if (txtSeedsAllocated.Text =="")
-                {
-                    SeedsAllocated = 0;
-                }
-                else
-                {
-                    SeedsAllocated = Convert.ToInt32(txtSeedsAllocated.Text);
-                }
+              //int  SeedsAllocated = 0;
+              //  if (txtSeedsAllocated.Text =="")
+              //  {
+              //      SeedsAllocated = 0;
+              //  }
+              //  else
+              //  {
+              //      SeedsAllocated = Convert.ToInt32(txtSeedsAllocated.Text);
+              //  }
 
-                txtSeedsAllocated.Text = (SeedsAllocated + Convert.ToInt32(lotseed.Text)).ToString();
-                if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
-                {
-                    txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
-                }
-                else
-                {
-                    txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
-                }
+              //  txtSeedsAllocated.Text = (SeedsAllocated + Convert.ToInt32(lotseed.Text)).ToString();
+              //  if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
+              //  {
+              //      txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
+              //  }
+              //  else
+              //  {
+              //      txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
+              //  }
             }
         }
 

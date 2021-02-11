@@ -168,7 +168,7 @@ namespace Improvians
             nv.Add("@WO", wo);
             nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
             nv.Add("@WaterRequired",txtWaterRequired.Text.Trim());
-            nv.Add("@IrrigationDuration",txtIrrigationDuration.Text.Trim());
+            nv.Add("@IrrigationDuration","");
             nv.Add("@SprayDate",txtSprayDate.Text.Trim());
             nv.Add("@SprayTime", txtSprayTime.Text.Trim());
             nv.Add("@Nots", txtNotes.Text.Trim());
@@ -203,7 +203,7 @@ namespace Improvians
             txtWaterRequired.Text = "";
             txtNotes.Text = "";
             txtIrrigatedNoTrays.Text = "";
-            txtIrrigationDuration.Text = "";
+            //txtIrrigationDuration.Text = "";
             txtSprayDate.Text = "";
             txtSprayTime.Text = "";
         }

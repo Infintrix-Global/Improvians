@@ -246,9 +246,9 @@
                                             <asp:TemplateField HeaderText="Used/Unused">
                                                 <ItemTemplate>
                                                     <asp:DropDownList ID="ddlType" runat="server" class="custom__dropdown robotomd">
-                                                         <asp:ListItem Text="UnUsed" Value="UnUsed"></asp:ListItem>
+                                                        <asp:ListItem Text="UnUsed" Value="UnUsed"></asp:ListItem>
                                                         <asp:ListItem Text="Used" Value="Used"></asp:ListItem>
-                                                       
+
                                                         <asp:ListItem Text="Partial" Value="Partial"></asp:ListItem>
                                                     </asp:DropDownList>
 
@@ -290,10 +290,7 @@
 
                         <div class="row">
 
-                            <div class="col-md-4">
-                                <label>Remaining Trays</label>
-                                <asp:TextBox ID="txtSeedsAllocated" ReadOnly="true" runat="server" class="input__control robotomd"></asp:TextBox>
-                            </div>
+
                             <div class="col-md-4">
 
 
@@ -306,6 +303,10 @@
                                 <label>Seeded Trays:</label>
                                 <asp:TextBox ID="txtActualTraysNo" ReadOnly="true" class="input__control robotomd" runat="server"></asp:TextBox>
 
+                            </div>
+                            <div class="col-md-4">
+                                <label>Remaining Trays:</label>
+                                <asp:TextBox ID="txtSeedsAllocated" ReadOnly="true" runat="server" class="input__control robotomd"></asp:TextBox>
                             </div>
                         </div>
                         <br />
