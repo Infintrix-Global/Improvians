@@ -6,7 +6,7 @@
     <div class="main">
         <div class="site__container">
             <br />
-            <h2> <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton>/ Enc1</h2>
+            <h2> <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton></h2>
             <h2>Seedline Planning</h2>
 
             <div class="filter__row d-flex">
@@ -92,7 +92,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="SO Date">
+                                        <asp:TemplateField HeaderText="Sales Order Seed Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblSODate" runat="server" HtmlEncode="false" Text='<%# Eval("sodate","{0:MM/dd/yyyy}") %>'></asp:Label>
 
@@ -123,7 +123,7 @@
                                                 <asp:TextBox ID="Txtgtrays" Width="50" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Plan Date">
+                                        <asp:TemplateField HeaderText="Scheduled Seed Date">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="Txtgplantdt" TextMode="Date" Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
 

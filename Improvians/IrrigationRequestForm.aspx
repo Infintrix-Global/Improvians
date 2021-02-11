@@ -151,7 +151,7 @@
                             </div>
 
                             <div class="col-12 col-sm-6 col-md-auto">
-                                <label class="pr-2 pr-lg-0 d-lg-block"> Water Required, Gallons</label>
+                                <label class="pr-2 pr-lg-0 d-lg-block"> # of passes</label>
                           
                               
 
@@ -159,12 +159,12 @@
 
                             </div>
 
-                            <div class="col-12  col-sm-6 col-md-auto">
+                           <%-- <div class="col-12  col-sm-6 col-md-auto">
                                 <label class="pr-2 pr-lg-0 d-lg-block">Irrigation Duration</label>
                                
                                 <asp:TextBox ID="txtIrrigationDuration" class="mb-0 input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
 
-                            </div>
+                            </div>--%>
                         </div>
 
                         <div class="row align-items-center mt-sm-3">

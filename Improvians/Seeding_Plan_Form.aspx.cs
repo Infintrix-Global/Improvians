@@ -182,8 +182,8 @@ namespace Improvians
 
 
 
-                        if (lblAllocated.Text == "Yes")
-                        {
+                        //if (lblAllocated.Text == "Yes")
+                        //{
 
                             String tim = System.DateTime.Now.ToString("HH:mm:ss");
 
@@ -218,14 +218,14 @@ namespace Improvians
 
 
                             //_isInserted = 1;
-                        }
+                       // }
 
 
                         SelectedItems++;
 
 
                     }
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save  Successful')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save Successful')", true);
                     
                
                 }

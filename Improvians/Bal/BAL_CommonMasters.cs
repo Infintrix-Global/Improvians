@@ -21,11 +21,12 @@ namespace Improvians.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select le.[Lot No_] l1, le.[Lot No_] l2, sum(le.Quantity) as QTY from[GTI$Item Ledger Entry] le "+
-                  " where le.[Item No_] = (select i.[Purchase Item No_] from[GTI$Item] i "+
-                  "where i.No_ in (select j.[Item No_] from[GTI$Job] j where j.No_ = '"+ JobCode + "'))  " +
+                strQuery = "select le.[Lot No_] l1, le.[Lot No_] l2, sum(le.Quantity) as QTY from[GTI$Item Ledger Entry] le " +
+                  " where le.[Item No_] = (select i.[Purchase Item No_] from[GTI$Item] i " +
+                  "where i.No_ in (select j.[Item No_] from[GTI$Job] j where j.No_ = '" + JobCode + "'))  " +
                    " group by[Lot No_] " +
                     " having sum(le.Quantity) > 0 ";
+                //strQuery= "select l.[Lot No_] l2, (l.Quantity * -1) QTY from[GTI$IA Lot Entry] l where l.Type = 2 and l.[Source Document No_] = '" + JobCode + "'";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 
