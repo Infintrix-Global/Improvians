@@ -32,15 +32,49 @@ namespace Improvians
                 //  TDate = DateAdd(DateInterval.Day, 10, Now.Date);
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
+                BindItem();
+                BindSeedlineLocation();
+                BindTraySize();
+                BindSeedAllocation();
 
                 getDataDGJob();
             }
         }
 
+        public void BindSeedlineLocation()
+        {
+            ddlSeedlineLocation.DataSource = objSP.GetSeedlineLocation(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
+            ddlSeedlineLocation.DataTextField = "loc";
+            ddlSeedlineLocation.DataValueField = "loc";
+            ddlSeedlineLocation.DataBind();
+            ddlSeedlineLocation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+        }
+        public void BindSeedAllocation()
+        {           
+            ddlSeedAllocated.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+            ddlSeedAllocated.Items.Insert(1, new System.Web.UI.WebControls.ListItem("Yes", "1"));
+            ddlSeedAllocated.Items.Insert(2, new System.Web.UI.WebControls.ListItem("No", "9"));
+        }
+        public void BindItem()
+        {
+            ddlItem.DataSource = objSP.GetItems(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
+            ddlItem.DataTextField = "itmdescp";
+            ddlItem.DataValueField = "itmdescp";
+            ddlItem.DataBind();
+            ddlItem.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+        }
 
+        public void BindTraySize()
+        {
+            ddlTraySize.DataSource = objSP.GetTraysize(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
+            ddlTraySize.DataTextField = "ts";
+            ddlTraySize.DataValueField = "ts";
+            ddlTraySize.DataBind();
+            ddlTraySize.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+        }
         public void getDataDGJob()
         {
-            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
+            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim(),ddlSeedlineLocation.SelectedValue,ddlItem.SelectedValue,ddlSeedAllocated.SelectedValue,ddlTraySize.SelectedValue);
 
             if (AllData != null && AllData.Rows.Count > 0)
             {
@@ -240,6 +274,14 @@ namespace Improvians
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/MyTaskGrower.aspx");
+        }
+        protected void btnSearchReset_Click(object sender, EventArgs e)
+        {
+            ddlTraySize.SelectedIndex = 0;
+            ddlItem.SelectedIndex = 0;
+            ddlSeedAllocated.SelectedIndex = 0;
+            ddlTraySize.SelectedIndex = 0;
+            getDataDGJob();
         }
 
         protected void DGJob_RowDataBound(object sender, GridViewRowEventArgs e)
