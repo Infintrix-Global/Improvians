@@ -291,7 +291,7 @@
                         <div class="row">
 
                             <div class="col-md-4">
-                                <label>Total Seed Allocated</label>
+                                <label>Remaining Trays</label>
                                 <asp:TextBox ID="txtSeedsAllocated" ReadOnly="true" runat="server" class="input__control robotomd"></asp:TextBox>
                             </div>
                             <div class="col-md-4">
