@@ -43,8 +43,8 @@ namespace Improvians
                 {
                    // string Wid = "";
                    // Wid = e.CommandArgument.ToString();
-                  string MoveID = e.CommandArgument.ToString();
-                    Response.Redirect(String.Format("~/MoveTaskAssignment.aspx?MoveID={0}", MoveID));
+                  string GrowerPutAwayId = e.CommandArgument.ToString();
+                    Response.Redirect(String.Format("~/MoveTaskAssignment.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
 
                 }
             }
@@ -55,10 +55,10 @@ namespace Improvians
                 {
                    // string Wid = "";
                    // Wid = e.CommandArgument.ToString();
-                    string MoveID = e.CommandArgument.ToString();
+                    string GrowerPutAwayId = e.CommandArgument.ToString();
                    // Session["MoveID"] = e.CommandArgument.ToString();
                   
-                    Response.Redirect(String.Format("~/MoveCompletionForm.aspx?MoveID={0}", MoveID));
+                    Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
                 }
             }
         }

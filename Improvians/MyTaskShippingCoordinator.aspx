@@ -66,7 +66,7 @@
 
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblTray" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
+                                                <asp:Label ID="lblTray" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
@@ -77,20 +77,20 @@
 
                                         <asp:TemplateField HeaderText="From Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("FacilityFrom")  %>'></asp:Label>
+                                                <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="To Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblToFacility" runat="server" Text='<%# Eval("FacilityTo")  %>'></asp:Label>
+                                                <asp:Label ID="lblToFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="To Bench" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblGreenHouseName" runat="server" Text='<%# Eval("GrenHouseToRequest")  %>'></asp:Label>
+                                                <asp:Label ID="lblGreenHouseName" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -102,17 +102,17 @@
                                         </asp:TemplateField>
 
 
-                                      <%--  <asp:TemplateField HeaderText="Trays Left To be Moved" HeaderStyle-CssClass="autostyle2">
+<%--                                        <asp:TemplateField HeaderText="Trays Left To be Moved" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                               
-                                                  <asp:Label ID="lblTraysRequest" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
+                                                  <asp:Label ID="lblTraysRequest" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--<asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Container.DataItemIndex %>'></asp:Button>--%>
-                                                <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Eval("MoveID")  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Eval("GrowerPutAwayId")  %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

@@ -16,9 +16,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["MoveID"] != null)
+                if (Request.QueryString["GrowerPutAwayId"] != null)
                 {
-                    MoveID = Request.QueryString["MoveID"].ToString();
+                    GrowerPutAwayId = Request.QueryString["GrowerPutAwayId"].ToString();
                 }
                 BindGridMove();
                 BindShippingCoordinatorList();
@@ -26,19 +26,19 @@ namespace Improvians
         }
 
 
-        private string MoveID
+        private string GrowerPutAwayId
         {
             get
             {
-                if (ViewState["MoveID"] != null)
+                if (ViewState["GrowerPutAwayId"] != null)
                 {
-                    return (string)ViewState["MoveID"];
+                    return (string)ViewState["GrowerPutAwayId"];
                 }
                 return "";
             }
             set
             {
-                ViewState["MoveID"] = value;
+                ViewState["GrowerPutAwayId"] = value;
             }
         }
 
@@ -58,7 +58,7 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             // nv.Add("@WoId", wo);
-            nv.Add("@MoveID", MoveID);
+            nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
             //nv.Add("@mode","1");
             dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTaskByMoveID", nv);
             gvMove.DataSource = dt;
@@ -71,7 +71,7 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@CoordinatorId", ddlShippingCoordinator.SelectedValue);
-            nv.Add("@MoveID", MoveID);
+            nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
             nv.Add("@CreateBy", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv);
             if (result > 0)

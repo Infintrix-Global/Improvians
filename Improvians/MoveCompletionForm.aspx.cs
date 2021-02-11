@@ -16,9 +16,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["MoveID"] != null)
+                if (Request.QueryString["GrowerPutAwayId"] != null)
                 {
-                    MoveID = Request.QueryString["MoveID"].ToString();
+                    GrowerPutAwayId = Request.QueryString["GrowerPutAwayId"].ToString();
                 }
                 txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
@@ -43,19 +43,19 @@ namespace Improvians
             }
         }
 
-        private string MoveID
+        private string GrowerPutAwayId
         {
             get
             {
-                if (ViewState["MoveID"] != null)
+                if (ViewState["GrowerPutAwayId"] != null)
                 {
-                    return (string)ViewState["MoveID"];
+                    return (string)ViewState["GrowerPutAwayId"];
                 }
                 return "";
             }
             set
             {
-                ViewState["MoveID"] = value;
+                ViewState["GrowerPutAwayId"] = value;
             }
         }
 
@@ -93,7 +93,7 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             // nv.Add("@WoId", wo);
             //  nv.Add("@mode", "3");
-            nv.Add("@MoveID", MoveID);
+            nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
             dt = objCommon.GetDataSet("SP_GetShipmentCoordinatorTaskByMoveID", nv);
             gvMove.DataSource = dt.Tables[0];
             gvMove.DataBind();
@@ -124,7 +124,8 @@ namespace Improvians
             //{
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@MoveID", MoveID);
+            //nv.Add("@MoveID", MoveID);
+            nv.Add("GrowerPutAwayId", GrowerPutAwayId);
             nv.Add("MoveAssignID", lblMoveAssignID.Text);
                 //nv.Add("@Wo",wo);
                 nv.Add("@MoveDate", txtMoveDate.Text.Trim());
@@ -147,7 +148,7 @@ namespace Improvians
                     //nv1.Add("@JobID", "");
                     //nv1.Add("@MoveID", result.ToString());
                     //nv1.Add("@GrowerPutAwayId","");
-                    nv1.Add("@MoveID", MoveID);
+                    nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
                     nv1.Add("MoveAssignID", lblMoveAssignID.Text);
                     nv1.Add("@CreatedBy", Session["LoginID"].ToString());
 
@@ -248,13 +249,13 @@ namespace Improvians
                 lblMoveAssignID.Text= ((Label)e.Row.FindControl("lblMoveAssignID")).Text;
                 Label lblTray = (Label)e.Row.FindControl("lblTray");
                 Label lblTraysRequest = (Label)e.Row.FindControl("lblTraysRequest");
-
+                txtPutAwayLocation.Text= ((Label)e.Row.FindControl("lblGreenHouseName")).Text; 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 // nv.Add("@WoId", lblGrowerPutAwayId.Text);
                 //nv.Add("@mode", "2");
-                nv.Add("@MoveID", MoveID);
-                dt = objCommon.GetDataTable("SP_GetMovedTraysByMoveID", nv);
+                nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
+                dt = objCommon.GetDataTable("SP_GetMovedTraysByGrowerPutAwayId", nv);
              //   dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
 
                 lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();

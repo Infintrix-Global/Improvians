@@ -41,10 +41,10 @@ namespace Improvians
 
                 //string Wid = "";
               //  Wid = e.CommandArgument.ToString();
-              string MoveID= e.CommandArgument.ToString();
+              string GrowerPutAwayId = e.CommandArgument.ToString();
                 //Session["MoveID"] = e.CommandArgument.ToString();
 
-                Response.Redirect(String.Format("~/MoveCompletionForm.aspx?MoveID={0}", MoveID));
+                Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
                 //Session["MoveID"] = e.CommandArgument.ToString();
                 //Response.Redirect("~/MoveCompletionForm.aspx");
             }
