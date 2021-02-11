@@ -25,11 +25,11 @@
                             ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="col m3">
-                        <label>Seedline location</label>
+                        <label>Seedline Location</label>
                         <asp:DropDownList ID="ddlSeedlineLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                     <div class="col m3">
-                        <label>Seeds allocated </label>
+                        <label>Seeds Allocated </label>
                         <asp:DropDownList ID="ddlSeedAllocated" runat="server" class="custom__dropdown robotomd">
                         </asp:DropDownList>
                     </div>
@@ -38,7 +38,7 @@
                         <asp:DropDownList ID="ddlItem" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                     <div class="col m3">
-                        <label>Tray size</label>
+                        <label>Tray Size</label>
                         <asp:DropDownList ID="ddlTraySize" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
