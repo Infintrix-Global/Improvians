@@ -23,8 +23,7 @@
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobCode")  %>'></asp:Label>
-                                                Sh_Co_AssignId
-                                                   <asp:Label ID="lblMoveAssignID" runat="server" Visible="false" Text='<%# Eval("Sh_Co_AssignId")  %>'></asp:Label>
+                                                   <asp:Label ID="lblMoveAssignID" runat="server" Visible="false" Text='<%# Eval("MoveAssignID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -105,7 +104,7 @@
 
             </div>
 
-            <div  runat="server" id="AddDetails" visible="false" class="dashboard__block dashboard__block--asign">
+            <div  runat="server" id="AddDetails"  class="dashboard__block dashboard__block--asign">
                 <h3>Move Completion</h3>
                 <div class="row">
                     <div class="col">
