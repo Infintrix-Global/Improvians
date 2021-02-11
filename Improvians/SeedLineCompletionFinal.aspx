@@ -291,19 +291,19 @@
                         <div class="row">
 
                             <div class="col-md-4">
-                                <label>Total Seed Allocated</label>
+                                <label>Remaining Trays</label>
                                 <asp:TextBox ID="txtSeedsAllocated" ReadOnly="true" runat="server" class="input__control robotomd"></asp:TextBox>
                             </div>
                             <div class="col-md-4">
 
 
-                                <label>Requested No of Trays Seeded:</label>
+                                <label>Requested Trays:</label>
                                 <asp:TextBox ID="txtRequestedTrays" ReadOnly="true" class="input__control robotomd" runat="server"></asp:TextBox>
 
                             </div>
                             <div class="col-md-4">
 
-                                <label>Actual No of Trays Seeded:</label>
+                                <label>Seeded Trays:</label>
                                 <asp:TextBox ID="txtActualTraysNo" ReadOnly="true" class="input__control robotomd" runat="server"></asp:TextBox>
 
                             </div>

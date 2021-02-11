@@ -35,7 +35,7 @@
                 <div class="col-md-6 col-lg-3 col-xl-8">
                     <div class="dashboard__block">
                         <%--   <h3>My Tasks</h3>--%>
-                        The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. Most of these tasks are auto-generated based on the plant's production profile schedule after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose 
+                        The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. Most of these tasks are auto-generated based on the plant's production profile schedule after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose. 
                         <div class="data__table">
                             <table>
                                 <tbody>
@@ -74,7 +74,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Plant Ready</td>
+                                        <td>Plant Health Report</td>
                                         <td>Review and assign Plant Health Reporting tasks to Greenhouse Supervisor</td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkpr" PostBackUrl="~/PlantReadyRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
@@ -94,12 +94,11 @@
             </div>
             <br />
             <br />
-            <h2>Request Tasks</h2>
+          <%--  <h2>Request Tasks</h2>--%>
 
-            <div class="row">
+<%--            <div class="row">
                 <div class="col-md-6 col-lg-3 col-xl-4">
                     <div class="dashboard__block">
-                        <%--   <h3>My Tasks</h3>--%>
                         <div class="data__table">
                             <table>
                                 <tbody>
@@ -149,7 +148,7 @@
                     </div>
                 </div>
             </div>
-
+--%>
             <%--                    <div class="col m4">
                         <label>Task Request Form </label>--%>
             <asp:DropDownList ID="ddlTaskRequest" Visible="false" AutoPostBack="true" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlTaskRequest_SelectedIndexChanged">

@@ -231,7 +231,7 @@
 
                                                     <asp:TemplateField ItemStyle-Width="20%">
                                                         <ItemTemplate>
-                                                            <asp:Button ID="deletebtn" runat="server" CommandName="Delete"
+                                                            <asp:Button ID="deletebtn" runat="server" CommandName="Delete" CssClass="bttn bttn-primary bttn-action"
                                                                 Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
