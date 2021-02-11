@@ -203,7 +203,7 @@ namespace Improvians
             txtWaterRequired.Text = "";
             txtNotes.Text = "";
             txtIrrigatedNoTrays.Text = "";
-            txtIrrigationDuration.Text = "";
+            //txtIrrigationDuration.Text = "";
             txtSprayDate.Text = "";
             txtSprayTime.Text = "";
         }
