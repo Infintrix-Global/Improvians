@@ -211,7 +211,7 @@ namespace Improvians
                     count += int.Parse(Request.Form["ctl00$ContentPlaceHolder1$TextBoxRow_1" + "Col_" + j]);
                     //Response.Write(Request.Form["TextBoxRow_" + i + "Col_" + j] + "<BR/>");
                 }
-            }Chna
+            }
             lblbadplants.Text = count.ToString();
             Decimal germ = Convert.ToDecimal(count) / (Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(txtTrays.Text));
             lblGerm.Text = ((1 - germ) * 100).ToString("0.00");
