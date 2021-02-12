@@ -33,13 +33,13 @@
 
                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
+                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
+                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -53,7 +53,7 @@
 
                         <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SoDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 

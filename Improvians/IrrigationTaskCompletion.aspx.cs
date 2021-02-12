@@ -17,9 +17,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["WOId"] != null)
+                if (Request.QueryString["IRAID"] != null)
                 {
-                    wo = Request.QueryString["WOId"].ToString();
+                    IRAID = Request.QueryString["IRAID"].ToString();
                 }
 
                 BindgvIrrigation();
@@ -43,16 +43,35 @@ namespace Improvians
             }
         }
 
+        private string IRAID
+        {
+            get
+            {
+                if (ViewState["IRAID"] != null)
+                {
+                    return (string)ViewState["IRAID"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["IRAID"] = value;
+            }
+        }
+
         public void BindgvIrrigation()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", wo);
-            nv.Add("@JobCode", "");
-            nv.Add("@CustomerName", "");
-            nv.Add("@Facility", "");
-            nv.Add("@Mode", "5");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            //nv.Add("@wo", wo);
+            //nv.Add("@JobCode", "");
+            //nv.Add("@CustomerName", "");
+            //nv.Add("@Facility", "");
+            //nv.Add("@Mode", "5");
+            //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            nv.Add("@IRAID", IRAID);
+            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIRAID", nv);
+            
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();
 
@@ -70,23 +89,24 @@ namespace Improvians
             long result = 0;
        
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@OperatorID", Session["LoginID"].ToString());
-            nv.Add("@wo", wo);
+           // nv.Add("@OperatorID", Session["LoginID"].ToString());
+            //nv.Add("@wo", wo);
+            nv.Add("@IRAID", IRAID);
             nv.Add("@SprayDate",txtSprayDate.Text.Trim());
             nv.Add("@TraysSprayed",txtTraysSprayed.Text.Trim());
             nv.Add("@SprayDuration",txtSprayDuration.Text.Trim());
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            if (Request.QueryString["ICom"] =="1")
-            {
-                nv.Add("@mode", "1");
+            //nv.Add("@LoginID", Session["LoginID"].ToString());
+            //if (Request.QueryString["ICom"] =="1")
+            //{
+            //    nv.Add("@mode", "1");
 
-            }
-            else
-            {
-                nv.Add("@mode", "3");
-            }
+            //}
+            //else
+            //{
+            //    nv.Add("@mode", "3");
+            //}
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
+            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskCompletion", nv);
 
          
             if (result > 0)

@@ -96,13 +96,13 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
-            //nv.Add("@wo", wo);
             nv.Add("@IRID", IRID);
-            nv.Add("@SprayDate","");
-            nv.Add("@TraysSprayed", "");
-            nv.Add("@SprayDuration", "");
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@mode", "2");
+            //nv.Add("@wo", wo);
+            //  nv.Add("@SprayDate","");
+            // nv.Add("@TraysSprayed", "");
+            // nv.Add("@SprayDuration", "");
+            //nv.Add("@mode", "2");
 
             result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
             if (result > 0)
