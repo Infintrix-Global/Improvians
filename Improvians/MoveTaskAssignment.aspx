@@ -70,7 +70,7 @@
 
                                         <asp:TemplateField HeaderText="Request Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblRequestDate" runat="server" Text='<%# Eval("CreatedOn","{0:dd MMM yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="lblRequestDate" runat="server" Text='<%# Eval("CreateOn","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

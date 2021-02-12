@@ -103,12 +103,12 @@ namespace Improvians
             if (string.IsNullOrEmpty(dt.Tables[1].Rows[0]["CompletedTrays"].ToString()))
             {
 
-                lblRemainingTrays.Text = dt.Tables[0].Rows[0]["TraysRequest"].ToString();
+                lblRemainingTrays.Text = dt.Tables[0].Rows[0]["Trays"].ToString();
 
             }
             else
             {
-                lblRemainingTrays.Text = (Convert.ToInt32(dt.Tables[0].Rows[0]["TraysRequest"].ToString()) - Convert.ToInt32(dt.Tables[1].Rows[0]["CompletedTrays"].ToString())).ToString();
+                lblRemainingTrays.Text = (Convert.ToInt32(dt.Tables[0].Rows[0]["Trays"].ToString()) - Convert.ToInt32(dt.Tables[1].Rows[0]["CompletedTrays"].ToString())).ToString();
             }
         }
 
