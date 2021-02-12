@@ -175,7 +175,7 @@ namespace Improvians
                 result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IRA={0}", result));
+                    Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IRAID={0}", result));
                 }
 
             }
