@@ -151,7 +151,7 @@
                                 </span>
                             </div>
                             <div class="col-auto align-self-center">
-                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
+                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" ValidationGroup="md" OnClick="btnSubmit_Click" />
                             </div>
                             <div class="col-auto align-self-center">
                                 <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />

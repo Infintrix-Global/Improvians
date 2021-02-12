@@ -45,12 +45,12 @@
 
                                 <tr>
                                     <td>Put-Away  </td>
-                                    <td class="text-center"><a href="#">0</a></td>
+                                    <td class="text-center"> <asp:LinkButton ID="lnkMove" PostBackUrl="~/MyTaskLogisticManager.aspx" runat="server"></asp:LinkButton></td>
                                 </tr>
                                     
                                 <tr>
                                     <td>Job Moves</td>
-                                    <td class="text-center"> <asp:LinkButton ID="lnkMove" PostBackUrl="~/MyTaskLogisticManager.aspx" runat="server"></asp:LinkButton> </td>
+                                    <td class="text-center"><a href="#">0</a></td>
                                 </tr>
 
                                 <tr>
