@@ -211,10 +211,10 @@ namespace Improvians
                     count += int.Parse(Request.Form["ctl00$ContentPlaceHolder1$TextBoxRow_1" + "Col_" + j]);
                     //Response.Write(Request.Form["TextBoxRow_" + i + "Col_" + j] + "<BR/>");
                 }
-            }
+            }Chna
             lblbadplants.Text = count.ToString();
             Decimal germ = Convert.ToDecimal(count) / (Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(txtTrays.Text));
-            lblGerm.Text = ((1 - germ) * 100).ToString();
+            lblGerm.Text = ((1 - germ) * 100).ToString("0.00");
             // lblgermvigor= (RoundUp((100 - (Convert.ToInt32(lblbadplants.Text) / (Convert.ToInt32(txtTrays.Text) * E38 * germ) * 100)), 0))
             lblgermvigor.Text = Math.Round((100 - (Convert.ToInt32(lblbadplants.Text) / (Convert.ToInt32(txtTrays.Text) * Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(lblGerm.Text)) * 100)), 0).ToString();
         }
