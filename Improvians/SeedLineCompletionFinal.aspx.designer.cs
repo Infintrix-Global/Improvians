@@ -51,13 +51,13 @@ namespace Improvians
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
 
         /// <summary>
-        /// pnlint control.
+        /// pnldetail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlint;
+        protected global::System.Web.UI.WebControls.Panel pnldetail;
 
         /// <summary>
         /// lblJobID control.
