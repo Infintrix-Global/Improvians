@@ -45,12 +45,14 @@ namespace Improvians
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", "");
-            nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@Mode", "3");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            //nv.Add("@wo", "");
+            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            //nv.Add("@Facility", ddlFacility.SelectedValue);
+            //nv.Add("@Mode", "3");
+            //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            nv.Add("@LoginID",Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
         }
@@ -137,9 +139,9 @@ namespace Improvians
             if (e.CommandName == "Assign")
             {
              
-                string WO = e.CommandArgument.ToString();
+                string IRID = e.CommandArgument.ToString();
 
-                Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?WOId={0}", WO));
+                Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?IRID={0}", IRID));
 
             }
 
@@ -151,19 +153,30 @@ namespace Improvians
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@OperatorID", Session["LoginID"].ToString());
+                //nv.Add("@wo", WOID);
+                //nv.Add("@SprayDate", "");
+                //nv.Add("@TraysSprayed", "");
+                //nv.Add("@SprayDuration", "");
+
+                //nv.Add("@LoginID", Session["LoginID"].ToString());
+
+                //nv.Add("@mode", "1");
+
+                //result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-                nv.Add("@wo", WOID);
+                nv.Add("@IRID", e.CommandArgument.ToString());
                 nv.Add("@SprayDate", "");
                 nv.Add("@TraysSprayed", "");
                 nv.Add("@SprayDuration", "");
-
                 nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@mode", "2");
 
-                nv.Add("@mode", "1");
-
-                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
-
-                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
+                result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
+                if (result > 0)
+                {
+                    Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IRA={0}", result));
+                }
 
             }
         }

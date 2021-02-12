@@ -73,7 +73,7 @@ namespace Improvians
             nv.Add("@WorkOrderID", wo);
             nv.Add("@GTRID", gtrID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignment", nv);
             if (result > 0)
             {
                 //lblmsg.Text = "Assignment Successful";

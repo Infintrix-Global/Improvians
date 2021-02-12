@@ -44,12 +44,13 @@ namespace Improvians
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo","");
-            nv.Add("@JobCode",ddlJobNo.SelectedValue);
-            nv.Add("@CustomerName",ddlCustomer.SelectedValue);
-            nv.Add("@Facility",ddlFacility.SelectedValue);
-            nv.Add("@Mode", "1");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            // nv.Add("@wo","");
+            //  nv.Add("@JobCode",ddlJobNo.SelectedValue);
+            //  nv.Add("@CustomerName",ddlCustomer.SelectedValue);
+            //   nv.Add("@Facility",ddlFacility.SelectedValue);
+            //  nv.Add("@Mode", "1");
+            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
         }
@@ -139,20 +140,26 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
                 userinput.Visible = true;
-                string rowIndex = e.CommandArgument.ToString();
+                // string rowIndex = e.CommandArgument.ToString();
 
-                wo = rowIndex;
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@wo", wo);
-                nv.Add("@JobCode", ddlJobNo.SelectedValue);
-                nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-                nv.Add("@Facility", ddlFacility.SelectedValue);
-                nv.Add("@Mode", "2");
-                dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-                lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
-               // txtIrrigatedNoTrays.Text = dt.Rows[0]["trays_actual"].ToString();
+                // wo = rowIndex;
+                //DataTable dt = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@wo", wo);
+                //nv.Add("@JobCode", ddlJobNo.SelectedValue);
+                //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+                //nv.Add("@Facility", ddlFacility.SelectedValue);
+                //nv.Add("@Mode", "2");
+                //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+                // txtIrrigatedNoTrays.Text = dt.Rows[0]["trays_actual"].ToString();
                 //txtIrrigationDuration.Text = dt.Rows[0]["jobcode"].ToString();
+                //  lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
+
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+               lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
+               lblGrowerID.Text= GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
+
+
                 txtNotes.Focus();
                 
             }
@@ -165,7 +172,8 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            nv.Add("@WO", wo);
+            // nv.Add("@WO", wo);
+            nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
             nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
             nv.Add("@WaterRequired",txtWaterRequired.Text.Trim());
             nv.Add("@IrrigationDuration","");

@@ -18,9 +18,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["WOId"] != null)
+                if (Request.QueryString["IRID"] != null)
                 {
-                    wo = Request.QueryString["WOId"].ToString();
+                    IRID = Request.QueryString["IRID"].ToString();
                 }
 
                 BindGridGerm();
@@ -44,6 +44,22 @@ namespace Improvians
             }
         }
 
+        private string IRID
+        {
+            get
+            {
+                if (ViewState["IRID"] != null)
+                {
+                    return (string)ViewState["IRID"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["IRID"] = value;
+            }
+        }
+
 
         public void BindOperatorList()
         {
@@ -60,12 +76,14 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", wo);
-            nv.Add("@JobCode","");
-            nv.Add("@CustomerName","");
-            nv.Add("@Facility","");
-            nv.Add("@Mode", "4");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            //nv.Add("@wo", wo);
+            //nv.Add("@JobCode","");
+            //nv.Add("@CustomerName","");
+            //nv.Add("@Facility","");
+            //nv.Add("@Mode", "4");
+            //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            nv.Add("@IRID", IRID);
+            dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIRID", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
 
@@ -78,16 +96,15 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
-            nv.Add("@wo", wo);
+            //nv.Add("@wo", wo);
+            nv.Add("@IRID", IRID);
             nv.Add("@SprayDate","");
             nv.Add("@TraysSprayed", "");
             nv.Add("@SprayDuration", "");
-           
             nv.Add("@LoginID", Session["LoginID"].ToString());
-
             nv.Add("@mode", "2");
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
             if (result > 0)
             {
                 //lblmsg.Text = "Assignment Successful";

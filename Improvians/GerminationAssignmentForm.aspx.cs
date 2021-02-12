@@ -112,7 +112,7 @@ namespace Improvians
                 nv.Add("@WorkOrderID", Wo);
                 nv.Add("@GTRID", GTRID);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignment", nv);
+                result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignment", nv);
 
                 // Session["WorkOrder"] = JobID;
                 Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", result.ToString()));
