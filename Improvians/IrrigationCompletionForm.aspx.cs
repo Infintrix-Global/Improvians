@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -77,9 +77,10 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             //nv.Add("@wo", "");
-            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            //nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@LoginID", Session["LoginID"].ToString());
             //nv.Add("@Mode", "6");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTask", nv);

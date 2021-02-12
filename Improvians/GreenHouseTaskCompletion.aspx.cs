@@ -77,11 +77,12 @@ namespace Improvians
             {
                // lblmsg.Text = "Completion Successful";
                 clear();
-                string message = "Completion Successful";
-                string url;
+               
+                 
                 if (Session["Role"].ToString() == "3")
                 {
-                     url = "MyTaskGreenOperatorFinal.aspx";
+                    string message = "Completion Successful";
+                    string url = "MyTaskGreenOperatorFinal.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";
@@ -93,7 +94,8 @@ namespace Improvians
 
                 else if (Session["Role"].ToString() == "2")
                 {
-                     url = "MyTaskGreenSupervisorFinal.aspx";
+                    string message = "Completion Successful";
+                    string url = "MyTaskGreenSupervisorFinal.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";

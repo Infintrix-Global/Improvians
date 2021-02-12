@@ -43,7 +43,7 @@ namespace Improvians
               //  Wid = e.CommandArgument.ToString();
               string GrowerPutAwayId = e.CommandArgument.ToString();
                 //Session["MoveID"] = e.CommandArgument.ToString();
-
+                
                 Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
                 //Session["MoveID"] = e.CommandArgument.ToString();
                 //Response.Redirect("~/MoveCompletionForm.aspx");

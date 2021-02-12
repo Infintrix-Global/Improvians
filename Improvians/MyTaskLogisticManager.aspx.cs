@@ -55,17 +55,18 @@ namespace Improvians
                 {
                     // string Wid = "";
                     // Wid = e.CommandArgument.ToString();
-                    NameValueCollection nv = new NameValueCollection();
                     string GrowerPutAwayId = e.CommandArgument.ToString();
+                    NameValueCollection nv1 = new NameValueCollection();
+
                     // Session["MoveID"] = e.CommandArgument.ToString();
-                    nv.Add("@CoordinatorId", Session["LoginID"].ToString());
-                    nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
-                    nv.Add("@CreateBy", Session["LoginID"].ToString());
-                    long result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv);
-                    if (result > 0)
-                    {
-                        Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
-                    }
+                    nv1.Add("@CoordinatorId", Session["LoginID"].ToString());
+                    nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
+                    nv1.Add("@CreateBy", Session["LoginID"].ToString());
+                    long result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv1);
+                    //if (result > 0)
+                    //{
+                    Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
+                   // }
                 }
             }
         }
