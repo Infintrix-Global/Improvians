@@ -53,7 +53,7 @@
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobCode")  %>'></asp:Label>
                                                   <asp:Label ID="lblWorkorder" runat="server" Text='<%# Eval("wo")  %>'></asp:Label>
-                                                   <asp:Label ID="lblMoveID" runat="server" Visible="false" Text='<%# Eval("MoveID")  %>'></asp:Label>
+                                                  <%-- <asp:Label ID="lblMoveID" runat="server" Visible="false" Text='<%# Eval("MoveID")  %>'></asp:Label>--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -112,7 +112,7 @@
                                         <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--<asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Container.DataItemIndex %>'></asp:Button>--%>
-                                                <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Eval("GrowerPutAwayId")  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("GrowerPutAwayId")  %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
