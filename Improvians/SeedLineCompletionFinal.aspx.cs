@@ -32,7 +32,7 @@ namespace Improvians
                 }
 
                 BindGridProduction();
-           //     BindSeedLot();
+                //     BindSeedLot();
                 txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 dtTrays.Clear();
                 BindGridDetailsNew();
@@ -59,7 +59,7 @@ namespace Improvians
             dtTrays.Clear();
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@WorkOrder",wo.ToString());
+            nv.Add("@WorkOrder", wo.ToString());
             dt = objCommon.GetDataTable("SP_GetProductionPlannerTaskByWorkOrder", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -67,7 +67,7 @@ namespace Improvians
             {
                 lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
                 txtRequestedTrays.Text = dt.Rows[0]["trays_plan"].ToString();
-                lbltraysizecon.Text = dt.Rows[0]["TraySize"].ToString();
+                //lbltraysizecon.Text = dt.Rows[0]["TraySize"].ToString();
                 lblTrays.Text = dt.Rows[0]["trays_plan"].ToString();
                 lblTraySize.Text = dt.Rows[0]["TraySize"].ToString();
                 lblSeedRequired.Text = ((Convert.ToInt32(dt.Rows[0]["trays_plan"].ToString())) * (Convert.ToInt32(dt.Rows[0]["TraySize"].ToString()))).ToString();
@@ -159,7 +159,7 @@ namespace Improvians
             //   nv.Add("@SeedsAllocated", txtSeedsAllocated.Text);
             nv.Add("@JobID", lblJobID.Text);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@WorkOrder",wo.ToString());
+            nv.Add("@WorkOrder", wo.ToString());
             result = objCommon.GetDataExecuteScaler("SP_AddSeedLineTaskCompletion", nv);
             if (result > 0)
             {
@@ -217,15 +217,15 @@ namespace Improvians
             //ddlBenchLocation.SelectedIndex = 0;
             //chkBenchLocation.Checked = false;
             //ddlBenchLocation.Visible = true;
-            gvDetails.DataSource = null;
-            txtSeedsAllocated.Text = "";
-            gvDetails.DataBind();
-            txtSeedingDate.Text = "";
+            //gvDetails.DataSource = null;
+
+            txtSeedsAllocated.Text = (Convert.ToDouble(txtRequestedTrays.Text) - Convert.ToDouble(txtActualTraysNo.Text)).ToString();
+            //gvDetails.DataBind();
+            txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
             txtTrays.Text = "";
             dtTrays.Clear();
-            gvDetails.DataSource = null;
-            gvDetails.DataBind();
-          //  BindSeedLot();
+            BindGridDetailsNew();
+            //  BindSeedLot();
 
             // txtSeedsAllocated.Text = "";
         }
@@ -265,10 +265,9 @@ namespace Improvians
 
         public void BindGridDetailsNew()
         {
-            DataTable dt = new DataTable();
-            dt = objCom.GetSeedLot(lblJobID.Text);
-           
-            gvDetails.DataSource = dt;
+            dtTrays = objCom.GetSeedLot(lblJobID.Text);
+
+            gvDetails.DataSource = dtTrays;
             gvDetails.DataBind();
         }
 
@@ -394,7 +393,7 @@ namespace Improvians
                         txtActualTraysNo.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
                         txtActualTraysNo.Focus();
                     }
-                    txtSeedsAllocated.Text =( Convert.ToDouble(txtRequestedTrays.Text) - Convert.ToDouble(txtActualTraysNo.Text)).ToString();
+                    txtSeedsAllocated.Text = (Convert.ToDouble(txtRequestedTrays.Text) - Convert.ToDouble(txtActualTraysNo.Text)).ToString();
                     //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
                     //txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(lotseed)).ToString();
                     //if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
@@ -416,25 +415,25 @@ namespace Improvians
 
                 //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
                 Label lotseed = (Label)e.Row.FindControl("lblactualseed");
-              //int  SeedsAllocated = 0;
-              //  if (txtSeedsAllocated.Text =="")
-              //  {
-              //      SeedsAllocated = 0;
-              //  }
-              //  else
-              //  {
-              //      SeedsAllocated = Convert.ToInt32(txtSeedsAllocated.Text);
-              //  }
+                //int  SeedsAllocated = 0;
+                //  if (txtSeedsAllocated.Text =="")
+                //  {
+                //      SeedsAllocated = 0;
+                //  }
+                //  else
+                //  {
+                //      SeedsAllocated = Convert.ToInt32(txtSeedsAllocated.Text);
+                //  }
 
-              //  txtSeedsAllocated.Text = (SeedsAllocated + Convert.ToInt32(lotseed.Text)).ToString();
-              //  if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
-              //  {
-              //      txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
-              //  }
-              //  else
-              //  {
-              //      txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
-              //  }
+                //  txtSeedsAllocated.Text = (SeedsAllocated + Convert.ToInt32(lotseed.Text)).ToString();
+                //  if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
+                //  {
+                //      txtSeedsAllocated.ForeColor = System.Drawing.Color.Green;
+                //  }
+                //  else
+                //  {
+                //      txtSeedsAllocated.ForeColor = System.Drawing.Color.Black;
+                //  }
             }
         }
 
@@ -443,44 +442,34 @@ namespace Improvians
 
 
 
-        //protected void gvDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    try
-        //    {
+        protected void gvDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                dtTrays.Rows.RemoveAt(e.RowIndex);
+                gvDetails.DataSource = dtTrays;
+                gvDetails.DataBind();
 
-        //        ////  dtTrays.Rows.RemoveAt(e.RowIndex);
-        //        //gvDetails.DeleteRow(e.RowIndex);
-        //        //gvDetails.DataBind();
+            }
+            catch (Exception ex)
+            {
 
+            }
+        }
 
-        //        string seedID = (gvDetails.Rows[e.RowIndex].FindControl("lblID") as Label).Text;
-        //        string seedLotName = (gvDetails.Rows[e.RowIndex].FindControl("lblLotName") as Label).Text;
-        //        ddlSeedLot.Items.Insert(Convert.ToInt32(seedID), new ListItem(seedLotName, seedID));
-
-        //        List<SeedLineTrayDetails> ojbpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
-        //        if (ojbpro == null)
-        //        {
-
-        //            List<SeedLineTrayDetails> objpro = ViewState["Growerput"] as List<SeedLineTrayDetails>;
-        //            objpro.RemoveAt(e.RowIndex);
-        //            gvDetails.DataSource = objpro;
-
-
-        //        }
-        //        else
-        //        {
-        //            ojbpro.RemoveAt(e.RowIndex);
-        //            gvDetails.DataSource = ojbpro;
-        //        }
-
-        //        gvDetails.DataBind();
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-        //}
+        protected void radtraysize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            if (radtraysize.SelectedValue == "Y")
+            {
+                txtTrayChange.Visible = true;
+            }
+            else
+            {
+                txtTrayChange.Visible = false;
+                txtTrayChange.Text = "";
+            }
+        }
 
         //protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
         //{

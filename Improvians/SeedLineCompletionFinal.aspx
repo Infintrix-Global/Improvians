@@ -125,16 +125,21 @@
                                 <div class="col-12">
                                     <h4>Confirm Tray Size:</h4>
                                     <div class="d-flex">
-                                        <label>
+                                       <%-- <label>
                                             Is the tray size [<asp:Label ID="lbltraysizecon" runat="server"></asp:Label>
-                                            ] correct?</label>
+                                            ] correct?</label>--%>
+                                        Change tray size?
                                         <span class="custom-control custom-radio ml-4 mr-2">
-                                            <asp:RadioButtonList ID="radtraysize" Width="150px" RepeatDirection="Horizontal" runat="server">
-                                                <asp:ListItem Text="Yes" Value="Y" Selected="True"></asp:ListItem>
-                                                <asp:ListItem Text="No" Value="N"></asp:ListItem>
+                                            <asp:RadioButtonList ID="radtraysize" Width="150px" RepeatDirection="Horizontal" runat="server" AutoPostBack="true" OnSelectedIndexChanged="radtraysize_SelectedIndexChanged">
+                                                <asp:ListItem Text="Yes" Value="Y" ></asp:ListItem>
+                                                <asp:ListItem Text="No" Value="N" Selected="True"></asp:ListItem>
                                             </asp:RadioButtonList>
 
                                         </span>
+                                        
+                                    <span>
+                                        <asp:TextBox ID="txtTrayChange" runat="server" TextMode="Number" placeholder="Enter # Trays" Visible="false"></asp:TextBox>
+                                    </span>
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +212,7 @@
                             <div class="row">
                                 <div class="col-lg-12 my-3">
                                     <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped data__table w-auto"
-                                        GridLines="None" OnRowDataBound="gvDetails_RowDataBound"
+                                        GridLines="None" OnRowDataBound="gvDetails_RowDataBound" OnRowDeleting="gvDetails_RowDeleting"
                                         ShowHeaderWhenEmpty="True">
                                         <Columns>
 
@@ -260,12 +265,12 @@
                                                     <asp:TextBox ID="txtPartial" class="input__control robotomd" runat="server" Text=""></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <%--  <asp:TemplateField HeaderText="#">
+                                              <asp:TemplateField HeaderText="#">
                                                 <ItemTemplate>
                                                     <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
 
                                                 </ItemTemplate>
-                                            </asp:TemplateField>--%>
+                                            </asp:TemplateField>
                                         </Columns>
                                         <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                                         <PagerSettings Mode="NumericFirstLast" />
