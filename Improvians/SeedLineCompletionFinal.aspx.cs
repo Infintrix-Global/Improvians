@@ -157,6 +157,7 @@ namespace Improvians
             }
 
             //   nv.Add("@SeedsAllocated", txtSeedsAllocated.Text);
+            nv.Add("@TraySize", txtTrayChange.Text);
             nv.Add("@JobID", lblJobID.Text);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@WorkOrder", wo.ToString());
@@ -175,7 +176,7 @@ namespace Improvians
                         string Type = (row.Cells[4].FindControl("ddlType") as DropDownList).Text;
                         string Partial = (row.Cells[5].FindControl("txtPartial") as TextBox).Text;
 
-                        if (Type != "UnUsed")
+                        if (Type != "Unused")
                         {
                             objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, Type, Partial);
                         }
