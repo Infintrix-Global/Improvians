@@ -6,7 +6,8 @@
     <div class="main">
         <div class="site__container">
             <br />
-            <h2> <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton></h2>
+            <h2>
+                <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton></h2>
             <h2>Seedline Planning</h2>
 
             <div class="filter__row d-flex">
@@ -23,12 +24,30 @@
                         <asp:TextBox ID="txtToDate" runat="server" TextMode="Date" class="form-control" placeholder="To Date"
                             ClientIDMode="Static"></asp:TextBox>
                     </div>
+                    <div class="col m3">
+                        <label>Seedline Location</label>
+                        <asp:DropDownList ID="ddlSeedlineLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                    <div class="col m3">
+                        <label>Seeds Allocated </label>
+                        <asp:DropDownList ID="ddlSeedAllocated" runat="server" class="custom__dropdown robotomd">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col m3">
+                        <label>Item</label>
+                        <asp:DropDownList ID="ddlItem" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                    <div class="col m3">
+                        <label>Tray Size</label>
+                        <asp:DropDownList ID="ddlTraySize" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
 
                     <div class="col m3">
                         <br />
 
 
                         <asp:Button ID="btnSearch" OnClick="btnSearch_Click" runat="server" Text="Search" CssClass="bttn bttn-primary bttn-action"></asp:Button>
+                         <asp:Button ID="btnSearchReset" OnClick="btnSearchReset_Click" runat="server" Text="Reset" CssClass="bttn bttn-primary bttn-action"></asp:Button>
                     </div>
                 </div>
 
@@ -112,7 +131,7 @@
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Bench Location">
+                                        <asp:TemplateField HeaderText="Bench Location">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtSeedline" runat="server" Text='<%# Eval("loc") %>' Width="50"></asp:TextBox>
 
