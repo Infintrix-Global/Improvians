@@ -3250,3 +3250,12 @@ The statement has been terminated. at 04-02-2021 23:13:13
 *****Error message=****@CoordinatorId:7 at 2/12/2021 1:42:10 AM
 *****Error message=****@GrowerPutAwayId:4 at 2/12/2021 1:42:10 AM
 *****Error message=****@CreateBy:6 at 2/12/2021 1:42:10 AM
+*****Error message=****@InspectionDate:2021-02-12 at 12-Feb-21 06:46:40 PM
+*****Error message=****@GTAID:5 at 12-Feb-21 06:46:40 PM
+*****Error message=****@#TraysInspected:1 at 12-Feb-21 06:46:40 PM
+*****Error message=****@Germination:97.33333333333333333333333333 at 12-Feb-21 06:46:40 PM
+*****Error message=****@WorkOrderID: at 12-Feb-21 06:46:40 PM
+*****Error message=****@#BadPlants:12 at 12-Feb-21 06:46:40 PM
+*****Error message=****@GermVigor:100 at 12-Feb-21 06:46:40 PM
+*****Error message=****@LoginID:3 at 12-Feb-21 06:46:40 PM
+*****Error message=****Sql Error is=Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression. at 12-Feb-21 06:46:40 PM

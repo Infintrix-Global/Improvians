@@ -72,7 +72,7 @@ namespace Improvians
            // nv.Add("@GermHealth", lblcrophealth.Text);
            // nv.Add("@JobID", Session["JobID"].ToString());
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationCompletion", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddGerminationCompletion", nv);
             if (result > 0)
             {
                // lblmsg.Text = "Completion Successful";
