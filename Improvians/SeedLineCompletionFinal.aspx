@@ -138,7 +138,7 @@
                                         </span>
                                         
                                     <span>
-                                        <asp:TextBox ID="txtTrayChange" runat="server" TextMode="Number" placeholder="Enter # Trays" Visible="false"></asp:TextBox>
+                                        <asp:TextBox ID="txtTrayChange" runat="server" TextMode="Number" placeholder="Enter Tray Size" Visible="false"></asp:TextBox>
                                     </span>
                                     </div>
                                 </div>

@@ -141,7 +141,7 @@ namespace Improvians
             nv.Add("@JobCompletion", radJobCompletion.SelectedValue);
             if (radJobCompletion.SelectedValue == "Full")
             {
-                nv.Add("@CompletedTrays", "");
+                nv.Add("@CompletedTrays", txtActualTraysNo.Text);
             }
             else
             {
