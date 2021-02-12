@@ -145,7 +145,7 @@ namespace Improvians
             }
             else
             {
-                nv.Add("@CompletedTrays", txtTrays.Text);
+                nv.Add("@CompletedTrays", txtCompletedTrays.Text);
             }
             if (chkSeedReturn.Checked)
             {
