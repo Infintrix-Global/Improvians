@@ -79,7 +79,7 @@
 
                                         <asp:TemplateField HeaderText="No. Of Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_plan")  %>'></asp:Label>
+                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -93,6 +93,11 @@
                                         <asp:TemplateField HeaderText="Seeded Due Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblSoDate" runat="server" Text='<%# Eval("SoDate","{0:dd MMM yyyy}")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                                     <asp:TemplateField HeaderText="Plan Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblplan_date" runat="server" Text='<%# Eval("plan_date","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -109,7 +114,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                                 <asp:TemplateField HeaderText="" HeaderStyle-Width="200px" HeaderStyle-CssClass="autostyle2" >
+                                                 <asp:TemplateField HeaderText=""   HeaderStyle-CssClass="autostyle2" >
                                                         <ItemTemplate>
                                                             <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                                                 <asp:Button ID="btnAssign" runat="server" Text="Reassign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Assign" CommandArgument='<%# Eval("wo")  %>'></asp:Button>

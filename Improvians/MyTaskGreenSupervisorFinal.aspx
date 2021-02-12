@@ -21,7 +21,7 @@
                 <div class="col-md-6 col-lg-3 col-xl-8">
                     <div class="dashboard__block">
                         <%--   <h3>My Tasks</h3>--%>
-                        The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. Most of these tasks are auto-generated based on the plant's production profile schedule after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose. 
+                        The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. These tasks have been assigned to you by Grower/Assistant Grower after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose.
                         <div class="data__table">
                             <table>
                                 <tbody>
