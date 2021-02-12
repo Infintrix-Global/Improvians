@@ -130,8 +130,8 @@
                             <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
                                 <label>Job No.</label><br />
                                 <h3 class="robotobold">
-                                    <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
-                                <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
+                                     <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
+                               <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
                             </div>
 
                         </div>

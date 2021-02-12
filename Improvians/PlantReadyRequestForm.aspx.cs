@@ -45,12 +45,13 @@ namespace Improvians
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", "");
+           // nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+           // nv.Add("@Mode", "7");
+           // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 
@@ -139,21 +140,29 @@ namespace Improvians
         {
             if (e.CommandName == "Select")
             {
-                userinput.Visible = true;
-                string rowIndex = e.CommandArgument.ToString();
+                //userinput.Visible = true;
+                //string rowIndex = e.CommandArgument.ToString();
 
-                wo = rowIndex;
+                //wo = rowIndex;
 
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@wo", wo);
-                nv.Add("@JobCode", ddlJobNo.SelectedValue);
-                nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-                nv.Add("@Facility", ddlFacility.SelectedValue);
-                nv.Add("@Mode", "2");
-                dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+                //DataTable dt = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@wo", wo);
+                //nv.Add("@JobCode", ddlJobNo.SelectedValue);
+                //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+                //nv.Add("@Facility", ddlFacility.SelectedValue);
+                //nv.Add("@Mode", "2");
+                //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
-                lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
+                //lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
+
+
+
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+                lblGrowerID.Text = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
+                ddlSupervisor.Focus();
+
             }
         }
 
@@ -164,7 +173,8 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            nv.Add("@WO",wo);
+            nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
+           // nv.Add("@WO",wo);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequest", nv);
             if (result > 0)
