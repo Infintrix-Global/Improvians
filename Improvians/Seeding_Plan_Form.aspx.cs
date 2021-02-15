@@ -288,20 +288,20 @@ namespace Improvians
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-             
-                ////HiddenField HiddenFieldwo = (HiddenField)e.Row.FindControl("HiddenFieldwo");
 
-                ////DataTable dt = new DataTable();
-                ////NameValueCollection nv = new NameValueCollection();
-                ////nv.Add("@LoginID", HiddenFieldwo.Value);
-                ////nv.Add("@mode", "5");
-                ////dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+                HiddenField HiddenFieldwo = (HiddenField)e.Row.FindControl("HiddenFieldwo");
 
-                ////if(dt !=null && dt.Rows.Count >0)
-                ////{
-                ////    e.Row.Visible = false;
-                ////    lblTotal.Text = (Convert.ToInt32(lblTotal.Text) - 1).ToString();
-                ////}
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@LoginID", HiddenFieldwo.Value);
+                nv.Add("@mode", "5");
+                dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    e.Row.Visible = false;
+                    lblTotal.Text = (Convert.ToInt32(lblTotal.Text) - 1).ToString();
+                }
 
             }
 
