@@ -89,7 +89,7 @@
 
                                         <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
+                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -97,7 +97,7 @@
 
                                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
+                                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
