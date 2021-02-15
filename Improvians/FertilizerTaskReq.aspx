@@ -15,7 +15,7 @@
                         <label>Customer </label>
                         <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                 <%--   <div class="col m3">
+                    <%--   <div class="col m3">
                         <label>GreenHouse </label>
                         <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>--%>
@@ -30,11 +30,11 @@
                 </div>
             </div>
 
-             <div class="row">
-                                <div class="col m3">
-                                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
-                                </div>
-                 </div>
+            <div class="row">
+                <div class="col m3">
+                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
+                </div>
+            </div>
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
@@ -46,22 +46,23 @@
                                     GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                             <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
-                                                            <HeaderTemplate>  
-                                                    <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" onCheckedChanged="chckchanged" runat="server" /> </HeaderTemplate>  
-                                                            <ItemTemplate>
-                                                            
-                                                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                            <HeaderTemplate>
+                                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+
+                                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>' ></asp:Label>
-                                                   <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
-                                                    <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                                <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -75,17 +76,13 @@
                                                 <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
-                            <ItemTemplate>
-                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
-                                       <%-- <asp:TemplateField HeaderText="Put Away Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("PutAwayLocation")  %>'></asp:Label>
+                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
+
+
 
 
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
@@ -113,16 +110,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                     <%--   <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                        <%--   <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                  <asp:Button ID="btnReschdule" runat="server" Text="Reschdule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                  <asp:Button ID="btnDismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-
-
-
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -148,7 +142,7 @@
 
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                           <%-- <div class="col-auto">
+                            <%-- <div class="col-auto">
                                 <label>Job No.</label><br />
                                 <h3 class="robotobold">
                                     <asp:Label ID="lblJobID" runat="server"></asp:Label>
@@ -177,7 +171,8 @@
                         <div class="row">
                             <div class="col">
 
-                                <label><asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label><br />
+                                <label>
+                                    <asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label><br />
                                 <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlFertilizer" ValidationGroup="md"
@@ -205,7 +200,7 @@
                                 <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
                                 <asp:TextBox ID="txtTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                               <%-- <span class="error_message">
+                                <%-- <span class="error_message">
                                     <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -288,7 +283,7 @@
 
                             <div class="col-auto">
                                 <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
-                            
+
                                 <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                             </div>
                         </div>
