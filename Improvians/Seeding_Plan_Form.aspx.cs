@@ -81,6 +81,16 @@ namespace Improvians
                 lblTotal.Text = AllData.Rows.Count.ToString() + " Records";
                 DGJob.DataSource = AllData;
                 DGJob.DataBind();
+
+
+                //DataTable dt11 = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@LoginID","");
+                //nv.Add("@mode", "10");
+                //dt11 = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+
+                //lblTotal.Text = (Convert.ToInt32(AllData.Rows.Count) - Convert.ToInt32(dt11.Rows.Count)).ToString() + " Records";
+
             }
             else
             {
@@ -289,19 +299,19 @@ namespace Improvians
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                HiddenField HiddenFieldwo = (HiddenField)e.Row.FindControl("HiddenFieldwo");
+                //HiddenField HiddenFieldwo = (HiddenField)e.Row.FindControl("HiddenFieldwo");
 
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@LoginID", HiddenFieldwo.Value);
-                nv.Add("@mode", "5");
-                dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+                //DataTable dt = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@LoginID", HiddenFieldwo.Value);
+                //nv.Add("@mode", "5");
+                //dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
 
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    e.Row.Visible = false;
-                    lblTotal.Text = (Convert.ToInt32(lblTotal.Text) - 1).ToString();
-                }
+                //if (dt != null && dt.Rows.Count > 0)
+                //{
+                //    e.Row.Visible = false;
+                //  //  lblTotal.Text = (Convert.ToInt32(lblTotal.Text) - 1).ToString();
+                //}
 
             }
 
