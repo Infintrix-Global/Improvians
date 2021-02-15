@@ -166,11 +166,11 @@
                                 </asp:Table>
                             </div>
                         </div>
-                        <br />
+                       
                           <div class="col align-self-end">
                                 <asp:Button ID="sbtTray" runat="server" Text="Calculate" CssClass="bttn bttn-primary bttn-action" OnClick="sbtTray_Click" Visible="false" />
                             </div>
-
+                         <br />
                         <asp:Panel ID="pnlUpdated" runat="server">
                             <asp:Table ID="tblupdate" runat="server" class="data__table">
                                 <asp:TableHeaderRow>
