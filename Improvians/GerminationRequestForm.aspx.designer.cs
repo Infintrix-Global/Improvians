@@ -42,15 +42,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
 
         /// <summary>
-        /// btnManual control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManual;
-
-        /// <summary>
         /// radweek control.
         /// </summary>
         /// <remarks>
@@ -67,6 +58,15 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList radStatus;
+
+        /// <summary>
+        /// btnManual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnManual;
 
         /// <summary>
         /// lblmsg control.

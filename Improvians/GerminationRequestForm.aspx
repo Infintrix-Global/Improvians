@@ -29,9 +29,7 @@
                         <label>Status </label>
                         <asp:DropDownList ID="ddlStatus" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>--%>
-                    <div class="col m3">
-                        <asp:Button ID="btnManual" runat="server" Text="Add Manual" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
-                    </div>
+                   
                     <div class="col m3">
                       <asp:RadioButtonList ID="radweek" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="radweek_SelectedIndexChanged">
                           <asp:ListItem Text="Last Week" Value="1"></asp:ListItem>
@@ -46,6 +44,9 @@
                           <asp:ListItem Text="Today" Value="2"></asp:ListItem>
                           <asp:ListItem Text="Upcoming" Value="3"></asp:ListItem>
                       </asp:RadioButtonList>
+                    </div>
+                     <div class="col m3">
+                        <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                     </div>
                 </div>
             </div>
