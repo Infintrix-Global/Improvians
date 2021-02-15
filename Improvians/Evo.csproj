@@ -196,6 +196,7 @@
     <Content Include="GerminationAssignmentForm.aspx" />
     <Content Include="GerminationCompletionForm.aspx" />
     <Content Include="GerminationRequestForm.aspx" />
+    <Content Include="GerminationRequestManual.aspx" />
     <Content Include="GerminationTaskAssignment.aspx" />
     <Content Include="GrowerPutAwayForm.aspx" />
     <Content Include="GreenHouseTaskCompletion.aspx" />
@@ -402,6 +403,13 @@
     </Compile>
     <Compile Include="GerminationRequestForm.aspx.designer.cs">
       <DependentUpon>GerminationRequestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GerminationRequestManual.aspx.cs">
+      <DependentUpon>GerminationRequestManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GerminationRequestManual.aspx.designer.cs">
+      <DependentUpon>GerminationRequestManual.aspx</DependentUpon>
     </Compile>
     <Compile Include="GerminationTaskAssignment.aspx.cs">
       <DependentUpon>GerminationTaskAssignment.aspx</DependentUpon>

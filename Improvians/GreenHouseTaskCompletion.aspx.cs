@@ -52,7 +52,7 @@ namespace Improvians
             gvGerm.DataBind();
             if (dt != null && dt.Rows.Count > 0)
             {
-                wo = dt.Rows[0]["wo"].ToString();
+                lblwoid.Text = dt.Rows[0]["wo"].ToString();
                 lblJobid.Text= dt.Rows[0]["jobcode"].ToString();
                 lblSeedlot.Text = dt.Rows[0]["TraySize"].ToString();
             }
@@ -66,7 +66,7 @@ namespace Improvians
             nv.Add("@GTAID", gtaID);
             nv.Add("@#TraysInspected", txtTrays.Text);
             nv.Add("@Germination", lblGerm.Text);
-            nv.Add("@WorkOrderID", wo);
+            nv.Add("@WorkOrderID", lblwoid.Text);
             nv.Add("@#BadPlants", lblbadplants.Text);
             nv.Add("@GermVigor", lblgermvigor.Text);
            // nv.Add("@GermHealth", lblcrophealth.Text);

@@ -201,6 +201,7 @@
 
                                     <asp:TableCell>
                                         <asp:Label ID="lblJobid" runat="server"></asp:Label>
+                                         <asp:Label ID="lblwoid" runat="server" Visible="false"></asp:Label>
                                     </asp:TableCell>
 
                                     <asp:TableCell>
