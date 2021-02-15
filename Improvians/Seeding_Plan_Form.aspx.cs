@@ -50,7 +50,7 @@ namespace Improvians
             ddlSeedlineLocation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
         }
         public void BindSeedAllocation()
-        {           
+        {
             ddlSeedAllocated.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
             ddlSeedAllocated.Items.Insert(1, new System.Web.UI.WebControls.ListItem("Yes", "1"));
             ddlSeedAllocated.Items.Insert(2, new System.Web.UI.WebControls.ListItem("No", "9"));
@@ -74,23 +74,26 @@ namespace Improvians
         }
         public void getDataDGJob()
         {
-            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim(),ddlSeedlineLocation.SelectedValue,ddlItem.SelectedValue,ddlSeedAllocated.SelectedValue,ddlTraySize.SelectedValue);
+            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim(), ddlSeedlineLocation.SelectedValue, ddlItem.SelectedValue, ddlSeedAllocated.SelectedValue, ddlTraySize.SelectedValue);
 
             if (AllData != null && AllData.Rows.Count > 0)
             {
-                lblTotal.Text = AllData.Rows.Count.ToString() + " Records";
-                DGJob.DataSource = AllData;
+                DataTable dt11 = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@LoginID", "");
+                nv.Add("@mode", "10");
+                dt11 = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+
+                DataTable dtOnlyLeftWO = (from a in AllData.AsEnumerable()
+                                          join b in dt11.AsEnumerable()
+                                          on a["WO"].ToString() equals b["WO"].ToString()
+                                          into g
+                                          where g.Count() > 0
+                                          select a).CopyToDataTable();
+
+                lblTotal.Text = dtOnlyLeftWO.Rows.Count.ToString() + " Records";
+                DGJob.DataSource = dtOnlyLeftWO;
                 DGJob.DataBind();
-
-
-                //DataTable dt11 = new DataTable();
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@LoginID","");
-                //nv.Add("@mode", "10");
-                //dt11 = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
-
-                //lblTotal.Text = (Convert.ToInt32(AllData.Rows.Count) - Convert.ToInt32(dt11.Rows.Count)).ToString() + " Records";
-
             }
             else
             {
@@ -229,40 +232,40 @@ namespace Improvians
                         //if (lblAllocated.Text == "Yes")
                         //{
 
-                            String tim = System.DateTime.Now.ToString("HH:mm:ss");
+                        String tim = System.DateTime.Now.ToString("HH:mm:ss");
 
-                            long result = 0;
-                            NameValueCollection nv = new NameValueCollection();
-                            nv.Add("@jid", _isInserted.ToString());
-                            nv.Add("@jstatus", "0");
-                            nv.Add("@jobcode", lbljobcode.Text.Trim());
-                            nv.Add("@itemno", HiddenFielditm.Value);
-                            nv.Add("@itemdescp", lblItem.Text);
-                            nv.Add("@cname", lblCustName.Text);
-                            nv.Add("@cusno", HiddenFieldcusno.Value);
-                            nv.Add("@loc_seedline", lblSeedline.Text);
-                            nv.Add("@trays_plan", lblSOTrays.Text);
-                            nv.Add("@trays_actual", Txtgtrays.Text);
-                            nv.Add("@seedsreceived", "0");
-                            nv.Add("@plan_date", Txtgplantdt.Text);
-                            nv.Add("@actual_date", HiddenFieldsodate.Value);
-                            nv.Add("@due_date", HiddenFieldduedate.Value);
-                            nv.Add("@cmt", "");
-                            nv.Add("@moduser", Session["LoginID"].ToString());
-                            nv.Add("@modtime", tim);
-                            nv.Add("@modified_date", "");
-                            nv.Add("@SoDate", lblSODate.Text);
-                            nv.Add("@TraySize", lblTraySize.Text);
-                            nv.Add("@wo", HiddenFieldwo.Value);
-                            nv.Add("@mode", "1");
-                            _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
-
-
+                        long result = 0;
+                        NameValueCollection nv = new NameValueCollection();
+                        nv.Add("@jid", _isInserted.ToString());
+                        nv.Add("@jstatus", "0");
+                        nv.Add("@jobcode", lbljobcode.Text.Trim());
+                        nv.Add("@itemno", HiddenFielditm.Value);
+                        nv.Add("@itemdescp", lblItem.Text);
+                        nv.Add("@cname", lblCustName.Text);
+                        nv.Add("@cusno", HiddenFieldcusno.Value);
+                        nv.Add("@loc_seedline", lblSeedline.Text);
+                        nv.Add("@trays_plan", lblSOTrays.Text);
+                        nv.Add("@trays_actual", Txtgtrays.Text);
+                        nv.Add("@seedsreceived", "0");
+                        nv.Add("@plan_date", Txtgplantdt.Text);
+                        nv.Add("@actual_date", HiddenFieldsodate.Value);
+                        nv.Add("@due_date", HiddenFieldduedate.Value);
+                        nv.Add("@cmt", "");
+                        nv.Add("@moduser", Session["LoginID"].ToString());
+                        nv.Add("@modtime", tim);
+                        nv.Add("@modified_date", "");
+                        nv.Add("@SoDate", lblSODate.Text);
+                        nv.Add("@TraySize", lblTraySize.Text);
+                        nv.Add("@wo", HiddenFieldwo.Value);
+                        nv.Add("@mode", "1");
+                        _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
 
 
 
-                            //_isInserted = 1;
-                       // }
+
+
+                        //_isInserted = 1;
+                        // }
 
 
                         SelectedItems++;
@@ -270,8 +273,8 @@ namespace Improvians
 
                     }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save Successful')", true);
-                    
-               
+
+
                 }
 
                 getDataDGJob();
