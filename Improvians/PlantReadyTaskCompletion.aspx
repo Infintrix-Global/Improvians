@@ -7,7 +7,7 @@
         <div class="site__container">
             <h2>Plant Ready Completion</h2>
 
-         
+
 
             <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>
             <div class="data__table">
@@ -22,6 +22,7 @@
                             <ItemTemplate>
                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                  <asp:Label ID="Label2" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -31,20 +32,22 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+
+                        <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
+                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <%--                                        <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("PutAwayMainLocation")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
+                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -62,7 +65,7 @@
 
                         <asp:TemplateField HeaderText="Planned Ship Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SoDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -146,10 +149,10 @@
 
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                                <%-- <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                                     <label class="d-block">Notes</label>
                                     <asp:TextBox ID="txtNots" TextMode="MultiLine" class="w-100 input__control" runat="server"></asp:TextBox>
-                                </div>
+                                </div>--%>
 
                                 <div class="col-12 my-3">
 
@@ -157,8 +160,8 @@
 
                                     <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
                                     <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />
-                               
-                                    </div>
+
+                                </div>
                             </div>
 
                         </div>

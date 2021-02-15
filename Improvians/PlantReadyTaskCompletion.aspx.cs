@@ -16,9 +16,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["WOId"] != null)
+                if (Request.QueryString["PRAID"] != null)
                 {
-                    wo = Request.QueryString["WOId"].ToString();
+                    PRAID = Request.QueryString["PRAID"].ToString();
                 }
 
                 BindPlantReady();
@@ -42,16 +42,34 @@ namespace Improvians
             }
         }
 
+        private string PRAID
+        {
+            get
+            {
+                if (ViewState["PRAID"] != null)
+                {
+                    return (string)ViewState["PRAID"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["PRAID"] = value;
+            }
+        }
+
+
         public void BindPlantReady()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", wo);
-            nv.Add("@JobCode", "");
-            nv.Add("@CustomerName", "");
-            nv.Add("@Facility", "");
-            nv.Add("@Mode", "11");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            //nv.Add("@wo", wo);
+            //nv.Add("@JobCode", "");
+            //nv.Add("@CustomerName", "");
+            //nv.Add("@Facility", "");
+            //nv.Add("@Mode", "11");
+            nv.Add("@PRAID", PRAID);
+            dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTaskByPRAID", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
             //if (dt != null && dt.Rows.Count > 0)
@@ -71,22 +89,20 @@ namespace Improvians
           
              long result = 0;
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@OperatorID",Session["LoginID"].ToString());
-            nv.Add("@Notes", txtNots.Text);
-            nv.Add("@JobID", "");
+            //  nv.Add("@OperatorID",Session["LoginID"].ToString());
+            //   nv.Add("@Notes", txtNots.Text);
+            //    nv.Add("@JobID", "");
+            nv.Add("@PRAID", PRAID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@CropId","");
             nv.Add("@UpdatedReadyDate",txtUpdatedReadyDate.Text);
             nv.Add("@PlantExpirationDate",txtPlantExpirationDate.Text);
             nv.Add("@RootQuality",ddlRootQuality.SelectedItem.Text);
             nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
-            nv.Add("@wo",wo);
+         //   nv.Add("@wo",wo);
+          //  nv.Add("@mode","2");
 
-          
-
-            nv.Add("@mode","2");
-
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyCompletion", nv);
 
 
 
@@ -129,7 +145,7 @@ namespace Improvians
 
         public void clear()
         {
-            txtNots.Text = "";
+            //txtNots.Text = "";
             txtPlantExpirationDate.Text = "";
           //  txtPlantHeight.Text = "";
             txtUpdatedReadyDate.Text = "";
@@ -148,7 +164,10 @@ namespace Improvians
                 Response.Redirect("~/PlantReadyCompletionForm.aspx");
             }
 
-          
+            if (Session["Role"].ToString() == "2")
+            {
+                Response.Redirect("~/PlantReadyAssignmentForm.aspx");
+            }
         }
     }
 }

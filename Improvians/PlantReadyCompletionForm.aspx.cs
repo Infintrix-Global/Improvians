@@ -75,12 +75,13 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", "");
+          //  nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            //  nv.Add("@Mode", "9");
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -116,11 +117,8 @@ namespace Improvians
             {
 
 
-
-
-
-                string WO = e.CommandArgument.ToString();
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?WOId={0}", WO));
+                string PRAID = e.CommandArgument.ToString();
+                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
             }
         }
 

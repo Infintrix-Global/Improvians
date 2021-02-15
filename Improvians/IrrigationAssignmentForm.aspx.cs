@@ -166,11 +166,11 @@ namespace Improvians
                 //result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@IRID", e.CommandArgument.ToString());
-                nv.Add("@SprayDate", "");
-                nv.Add("@TraysSprayed", "");
-                nv.Add("@SprayDuration", "");
+              //  nv.Add("@SprayDate", "");
+               // nv.Add("@TraysSprayed", "");
+               // nv.Add("@SprayDuration", "");
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@mode", "2");
+              //  nv.Add("@mode", "2");
 
                 result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
                 if (result > 0)
