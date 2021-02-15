@@ -30,7 +30,7 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
 
             dt = objCommonControl.GetDataSet("SP_GetSprayEachTaskCount", nv);
-            lnkFertilizer.Text = dt.Tables[0].Rows.Count.ToString();
+            lnkFertilization.Text = dt.Tables[0].Rows.Count.ToString();
 
 
             //lnkGerm.Text = dt.Tables[1].Rows.Count.ToString();

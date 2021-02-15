@@ -45,46 +45,49 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Fertilizer </td>
-                                        <td>Assign a put away location for a job</td>
+                                        <td>Put-Away </td>
+                                        <td>A list of put away location for a job.</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkFertilizer" PostBackUrl="~/SprayTaskReq.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkPutAway" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
-<%--                                    <tr>
+                                    <tr>
                                         <td>Germination Count</td>
-                                        <td>Review and assign these tasks to the Greenhouse Supervisor</td>
+                                        <td>A list of germination count tasks to complete.</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkGerm" PostBackUrl="~/GerminationRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkGerm" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Fertilization/Chemical</td>
-                                        <td>Review and assign these tasks to the Sprayer</td>
+                                        <td>A list of spray task to complete</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkFer" PostBackUrl="~/FertilizerTaskReq.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkFertilization" PostBackUrl="~/SprayTaskReq.asp" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Irrigation</td>
-                                        <td>Review and assign irrigation tasks to Greenhouse Supervisor</td>
+                                        <td>A list of irrigation tasks to complete</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkIrr" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Plant Health Report</td>
-                                        <td>Review and assign Plant Health Reporting tasks to Greenhouse Supervisor</td>
+                                        <td>A list of Plant Health Reporting tasks to complete</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkpr" PostBackUrl="~/PlantReadyRequestForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkpr" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Move</td>
-                                        <td>Review and assign move tasks </td>
+                                        <td>A lisf ot Move request to complete </td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkMove" PostBackUrl="~/MoveForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
-                                    </tr>--%>
+                                            <asp:LinkButton ID="lnkMove" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
+                                    </tr>
+
+
+
                                 </tbody>
                             </table>
                         </div>
