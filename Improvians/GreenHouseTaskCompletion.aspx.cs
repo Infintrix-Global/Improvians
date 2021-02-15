@@ -53,7 +53,7 @@ namespace Improvians
             if (dt != null && dt.Rows.Count > 0)
             {
                 lblwoid.Text = dt.Rows[0]["wo"].ToString();
-                lblJobid.Text= dt.Rows[0]["jobcode"].ToString();
+                lblJobid.Text = dt.Rows[0]["jobcode"].ToString();
                 lblSeedlot.Text = dt.Rows[0]["TraySize"].ToString();
             }
         }
@@ -69,30 +69,15 @@ namespace Improvians
             nv.Add("@WorkOrderID", lblwoid.Text);
             nv.Add("@#BadPlants", lblbadplants.Text);
             nv.Add("@GermVigor", lblgermvigor.Text);
-           // nv.Add("@GermHealth", lblcrophealth.Text);
-           // nv.Add("@JobID", Session["JobID"].ToString());
+            // nv.Add("@GermHealth", lblcrophealth.Text);
+            // nv.Add("@JobID", Session["JobID"].ToString());
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataExecuteScaler("SP_AddGerminationCompletion", nv);
             if (result > 0)
             {
-               // lblmsg.Text = "Completion Successful";
+                // lblmsg.Text = "Completion Successful";
                 clear();
-               
-                 
-                if (Session["Role"].ToString() == "3")
-                {
-                    string message = "Completion Successful";
-                    string url = "MyTaskGreenOperatorFinal.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                }
-
-                else if (Session["Role"].ToString() == "2")
+                if (Session["Role"].ToString() == "2")
                 {
                     string message = "Completion Successful";
                     string url = "MyTaskGreenSupervisorFinal.aspx";
@@ -104,9 +89,18 @@ namespace Improvians
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
-               
-               
-               
+                else
+                {
+                    string message = "Completion Successful";
+                    string url = "MyTaskSpray.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
             }
             else
             {
@@ -139,7 +133,7 @@ namespace Improvians
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
             if (Convert.ToInt32(txtTrays.Text) <= 20)
-            { 
+            {
                 sbtTray.Visible = true;
                 // Current row count.
                 int rowCtr;
@@ -173,7 +167,7 @@ namespace Improvians
 
                             // Create a new cell and add it to the row.
                             TableCell tCell = new TableCell();
-                           
+
                             tCell.Text = cellCtr.ToString();
                             tRow.Cells.Add(tCell);
                         }
@@ -197,7 +191,7 @@ namespace Improvians
 
         protected void sbtTray_Click(object sender, EventArgs e)
         {
-           // lblJobid.Text = Session["JobID"].ToString();
+            // lblJobid.Text = Session["JobID"].ToString();
             lblnotrays.Text = txtTrays.Text;
 
             Table table = (Table)Page.FindControl("tbltray");
