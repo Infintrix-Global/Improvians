@@ -116,10 +116,10 @@
 
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
+                                                 <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("IrrigationId")  %>'></asp:Button>
 
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("IrrigationId")  %>'></asp:Button>
-                                                <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("IrrigationId")  %>'></asp:Button>
-
+                                               
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
