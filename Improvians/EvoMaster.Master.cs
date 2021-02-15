@@ -41,6 +41,7 @@ namespace Improvians
 
         protected void lnkmytask_Click(object sender, EventArgs e)
         {
+
             if (Session["Role"].ToString() == "1")
             {
                 Response.Redirect("MyTaskGrower.aspx");
@@ -77,10 +78,23 @@ namespace Improvians
             {
                 Response.Redirect("MyTaskProductionPlanner.aspx");
             }
+            if (Session["Role"].ToString() == "11")
+            {
+                Response.Redirect("MyTaskSpray.aspx");
+            }
+
+            if (Session["Role"].ToString() == "12")
+            {
+                Response.Redirect("MyTaskGrower.aspx");
+               
+            }
+
         }
         protected void lnkdashboard_Click(object sender, EventArgs e)
         {
             Response.Redirect("Dashboard.aspx");
         }
+
+
     }
 }

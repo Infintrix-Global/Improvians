@@ -283,6 +283,7 @@
     <Content Include="MyTaskSeedLineOperator.aspx" />
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="MyTaskSiteMoveTeam.aspx" />
+    <Content Include="MyTaskSpray.aspx" />
     <Content Include="PlantReadyAssignmentForm.aspx" />
     <Content Include="PlantReadyCompletionForm.aspx" />
     <Content Include="PlantReadyRequestForm.aspx" />
@@ -300,6 +301,7 @@
     <Content Include="spray-request.html" />
     <Content Include="spray-task-assignment.html" />
     <Content Include="SprayrRequest.aspx" />
+    <Content Include="SprayTaskReq.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
@@ -586,6 +588,13 @@
     <Compile Include="MyTaskSiteMoveTeam.aspx.designer.cs">
       <DependentUpon>MyTaskSiteMoveTeam.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyTaskSpray.aspx.cs">
+      <DependentUpon>MyTaskSpray.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskSpray.aspx.designer.cs">
+      <DependentUpon>MyTaskSpray.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PlantReadyAssignmentForm.aspx.cs">
       <DependentUpon>PlantReadyAssignmentForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -684,6 +693,13 @@
     </Compile>
     <Compile Include="SprayrRequest.aspx.designer.cs">
       <DependentUpon>SprayrRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SprayTaskReq.aspx.cs">
+      <DependentUpon>SprayTaskReq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SprayTaskReq.aspx.designer.cs">
+      <DependentUpon>SprayTaskReq.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

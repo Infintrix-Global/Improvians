@@ -40,7 +40,7 @@ namespace Improvians.Bal
                 strQuery += "[GTI$Job] j left outer join [GTI$IA Work Order Header] w on j.No_ = w.[Job No_] ";
                 strQuery += "where b.[Job No_] = p.[Job No_] And b.[Job No_] = j.No_ And b.[Item Category] = 'SEED' and p.[Production Phase] = 'SEEDING' And ";
                 strQuery += "p.[Starting Date] between @FromDate and @ToDate and b.[Actual Date] < '1/1/2000' and j.[Job Status] in (1,9) ";
-                strQuery += "and b.[Job No_] not in (select jobcode from gti_jobs_seeds_plan) ";
+                //strQuery += "and b.[Job No_] not in (select jobcode from gti_jobs_seeds_plan) ";
 
                 if (loc != "0")
                     strQuery += " And w.[Location Code]= " + "'" + loc + "'";

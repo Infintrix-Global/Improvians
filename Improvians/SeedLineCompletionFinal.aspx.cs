@@ -34,7 +34,7 @@ namespace Improvians
                 BindGridProduction();
                 //     BindSeedLot();
                 txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
-                dtTrays.Clear();
+                //dtTrays.Clear();
                 BindGridDetailsNew();
             }
         }
@@ -56,7 +56,8 @@ namespace Improvians
         }
         public void BindGridProduction()
         {
-            dtTrays.Clear();
+            //dtTrays.Clear();
+
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@WorkOrder", wo.ToString());
@@ -224,7 +225,7 @@ namespace Improvians
             //gvDetails.DataBind();
             txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
             txtTrays.Text = "";
-            dtTrays.Clear();
+          //  dtTrays.Clear();
             BindGridDetailsNew();
             //  BindSeedLot();
 

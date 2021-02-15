@@ -154,8 +154,8 @@
                                                 <asp:HiddenField ID="HiddenFieldsotrays" Value='<%# Eval("sotrays") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFielditm" Value='<%# Eval("itm") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFieldcusno" Value='<%# Eval("cusno") %>' runat="server" />
-                                                <asp:HiddenField ID="HiddenFieldsodate" Value='<%# Eval("sodate") %>' runat="server" />
-                                                <asp:HiddenField ID="HiddenFieldduedate" Value='<%# Eval("duedate") %>' runat="server" />
+                                                <asp:HiddenField ID="HiddenFieldsodate" Value='<%# Eval("sodate","{0:yyyy-MM-dd}") %>' runat="server" />
+                                                <asp:HiddenField ID="HiddenFieldduedate" Value='<%# Eval("duedate","{0:yyyy-MM-dd}") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFieldwo" Value='<%# Eval("wo") %>' runat="server" />
 
 
