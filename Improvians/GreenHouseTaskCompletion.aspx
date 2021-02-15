@@ -166,6 +166,7 @@
                                 </asp:Table>
                             </div>
                         </div>
+                        <br />
                           <div class="col align-self-end">
                                 <asp:Button ID="sbtTray" runat="server" Text="Calculate" CssClass="bttn bttn-primary bttn-action" OnClick="sbtTray_Click" Visible="false" />
                             </div>
@@ -201,6 +202,7 @@
 
                                     <asp:TableCell>
                                         <asp:Label ID="lblJobid" runat="server"></asp:Label>
+                                         <asp:Label ID="lblwoid" runat="server" Visible="false"></asp:Label>
                                     </asp:TableCell>
 
                                     <asp:TableCell>

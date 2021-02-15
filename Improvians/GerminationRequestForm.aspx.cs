@@ -190,5 +190,10 @@ namespace Improvians
         {
             BindGridGerm();
         }
+
+        protected void btnManual_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/GerminationRequestManual.aspx");
+        }
     }
 }

@@ -24,12 +24,57 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.DropDownList ddlDept;
 
         /// <summary>
-        /// lnkFertilizer control.
+        /// lnkPutAway control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFertilizer;
+        protected global::System.Web.UI.WebControls.LinkButton lnkPutAway;
+
+        /// <summary>
+        /// lnkGerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkGerm;
+
+        /// <summary>
+        /// lnkFertilization control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkFertilization;
+
+        /// <summary>
+        /// lnkIrr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkIrr;
+
+        /// <summary>
+        /// lnkpr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkpr;
+
+        /// <summary>
+        /// lnkMove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkMove;
     }
 }

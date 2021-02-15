@@ -157,7 +157,7 @@ namespace Improvians
                 //lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
 
 
-
+                userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
                 lblGrowerID.Text = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();

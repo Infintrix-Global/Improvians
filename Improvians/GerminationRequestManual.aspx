@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="GerminationRequestForm.aspx.cs" Inherits="Improvians.GerminationRequestForm" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="GerminationRequestManual.aspx.cs" Inherits="Improvians.GerminationRequestManual" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -7,48 +6,7 @@
         <div class="site__container">
             <h2>Germination Count Task </h2>
 
-            <div class="filter__row d-flex">
-                <div class="row">
-                    <div class="col m3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                   <%-- <div class="col m3">
-                        <label>GreenHouse </label>
-                        <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>--%>
-                    <div class="col m3">
-                        <label>Facility </label>
-                        <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <div class="col m3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                   <%-- <div class="col m3">
-                        <label>Status </label>
-                        <asp:DropDownList ID="ddlStatus" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>--%>
-                    <div class="col m3">
-                        <asp:Button ID="btnManual" runat="server" Text="Add Manual" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
-                    </div>
-                    <div class="col m3">
-                      <asp:RadioButtonList ID="radweek" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="radweek_SelectedIndexChanged">
-                          <asp:ListItem Text="Last Week" Value="1"></asp:ListItem>
-                          <asp:ListItem Text="This Week" Value="2"></asp:ListItem>
-                          <asp:ListItem Text="Next Week" Value="3"></asp:ListItem>
-                      </asp:RadioButtonList>
-                    </div>
-
-                        <div class="col m3">
-                      <asp:RadioButtonList ID="radStatus" runat="server" RepeatDirection="Horizontal">
-                          <asp:ListItem Text="Overdue" Value="1"></asp:ListItem>
-                          <asp:ListItem Text="Today" Value="2"></asp:ListItem>
-                          <asp:ListItem Text="Upcoming" Value="3"></asp:ListItem>
-                      </asp:RadioButtonList>
-                    </div>
-                </div>
-            </div>
+          
 
             <div class="row">
                 <div class=" col m12">
@@ -68,7 +26,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
-                                        <asp:TemplateField HeaderText="Germination Count Date" HeaderStyle-CssClass="autostyle2">
+<%--                                        <asp:TemplateField HeaderText="Germination Count Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label15" runat="server" Text='<%# Eval("GermDate","{0:dd MMM yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -78,12 +36,12 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="Label16" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
+                                               <%-- <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>--%>
                                                  <asp:Label ID="lblGrowerID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
@@ -144,8 +102,8 @@
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
+                                              <%--  <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>--%>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -172,8 +130,6 @@
             <div class="dashboard__block dashboard__block--asign">
 
 
-
-
                 <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
                     <asp:Panel ID="pnlint" runat="server">
                         <h3>Assign Task</h3>
@@ -182,7 +138,7 @@
                                 <label>Job No.</label><br />
                                 <h3 class="robotobold">
                                     <asp:Label ID="lblJobID" runat="server"></asp:Label>
-                                    <asp:Label ID="lblID" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label ID="lblGrowerID" runat="server" Visible="false"></asp:Label>
                                 </h3>
                             </div>
                             <div class="col m6">
