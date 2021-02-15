@@ -16,9 +16,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["WOId"] != null)
+                if (Request.QueryString["PRID"] != null)
                 {
-                    wo = Request.QueryString["WOId"].ToString();
+                    PRID = Request.QueryString["PRID"].ToString();
                 }
 
                 BindGridGerm();
@@ -42,6 +42,22 @@ namespace Improvians
             }
         }
 
+        private string PRID
+        {
+            get
+            {
+                if (ViewState["PRID"] != null)
+                {
+                    return (string)ViewState["PRID"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["PRID"] = value;
+            }
+        }
+
 
         public void BindOperatorList()
         {
@@ -58,12 +74,14 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", wo);
-            nv.Add("@JobCode", "");
-            nv.Add("@CustomerName", "");
-            nv.Add("@Facility", "");
-            nv.Add("@Mode", "10");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            //nv.Add("@wo", wo);
+            //nv.Add("@JobCode", "");
+            //nv.Add("@CustomerName", "");
+            //nv.Add("@Facility", "");
+            //nv.Add("@Mode", "10");
+            //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            nv.Add("@PRID", PRID);
+            dt = objCommon.GetDataTable("SP_GetSupervisorPlantReadyTaskByPRID", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 
@@ -75,21 +93,25 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@OperatorID", ddlOperator.SelectedValue);
+            //nv.Add("@Notes", txtNotes.Text);
+            //nv.Add("@JobID","");
+            //nv.Add("@LoginID", Session["LoginID"].ToString());
+            //nv.Add("@CropId","");
+            //nv.Add("@UpdatedReadyDate", "");
+            //nv.Add("@PlantExpirationDate","");
+            //nv.Add("@RootQuality","");
+            //nv.Add("@wo",wo);
+            //nv.Add("@PlantHeight","");
+
+            //nv.Add("@mode", "3");
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
             nv.Add("@Notes", txtNotes.Text);
-            nv.Add("@JobID","");
+            nv.Add("@PRID", PRID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@CropId","");
-            nv.Add("@UpdatedReadyDate", "");
-            nv.Add("@PlantExpirationDate","");
-            nv.Add("@RootQuality","");
-            nv.Add("@wo",wo);
-            nv.Add("@PlantHeight","");
-
-            nv.Add("@mode", "3");
-
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignment", nv);
             if (result > 0)
             {
                 //lblmsg.Text = "Assignment Successful";

@@ -75,12 +75,13 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@wo", "");
-            nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@Mode", "8");
-            dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            //nv.Add("@wo", "");
+            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
+         //   nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+           // nv.Add("@Facility", ddlFacility.SelectedValue);
+            //nv.Add("@Mode", "8");
+            //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            dt = objCommon.GetDataTable("SP_GetSupervisorPlantReadyTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -116,10 +117,9 @@ namespace Improvians
                 //int rowIndex = Convert.ToInt32(e.CommandArgument);
                 //GridViewRow row = gvGerm.Rows[rowIndex];
 
-                string WO = e.CommandArgument.ToString();
+                string PRID = e.CommandArgument.ToString();
 
-                Response.Redirect(String.Format("~/PlantReadyTaskAssignment.aspx?WOId={0}", WO));
-
+                Response.Redirect(String.Format("~/PlantReadyTaskAssignment.aspx?PRID={0}", PRID));
 
             }
 
@@ -127,27 +127,34 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
                
-                string WO = e.CommandArgument.ToString();
+                string PRID = e.CommandArgument.ToString();
+
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@OperatorID", Session["LoginID"].ToString());
+                //nv.Add("@Notes", "");
+                //nv.Add("@JobID", JobID);
+                //nv.Add("@LoginID", Session["LoginID"].ToString());
+                //nv.Add("@CropId", "");
+                //nv.Add("@UpdatedReadyDate", "");
+                //nv.Add("@PlantExpirationDate", "");
+                //nv.Add("@RootQuality", "");
+                //nv.Add("@PlantHeight", "");
+                //nv.Add("@wo", WO);
+                //nv.Add("@mode", "4");
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Notes", "");
-                nv.Add("@JobID", JobID);
+                nv.Add("@PRID", PRID);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@CropId", "");
-                nv.Add("@UpdatedReadyDate", "");
-                nv.Add("@PlantExpirationDate", "");
-                nv.Add("@RootQuality", "");
-                nv.Add("@PlantHeight", "");
-                nv.Add("@wo", WO);
-                nv.Add("@mode", "4");
+               long result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignment", nv);
 
+                //  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
 
-                int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
-
-
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?WOId={0}", WO));
-
+                if (result > 0)
+                {
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", result));
+                }
             }
         }
 

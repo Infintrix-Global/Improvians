@@ -95,7 +95,7 @@ namespace Improvians
             nv.Add("@SprayDate",txtSprayDate.Text.Trim());
             nv.Add("@TraysSprayed",txtTraysSprayed.Text.Trim());
             nv.Add("@SprayDuration",txtSprayDuration.Text.Trim());
-            //nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@LoginID", Session["LoginID"].ToString());
             //if (Request.QueryString["ICom"] =="1")
             //{
             //    nv.Add("@mode", "1");
@@ -106,7 +106,7 @@ namespace Improvians
             //    nv.Add("@mode", "3");
             //}
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskCompletion", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskCompletion", nv);
 
          
             if (result > 0)
