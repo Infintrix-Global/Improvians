@@ -166,6 +166,7 @@
                                 </asp:Table>
                             </div>
                         </div>
+                        <br />
                           <div class="col align-self-end">
                                 <asp:Button ID="sbtTray" runat="server" Text="Calculate" CssClass="bttn bttn-primary bttn-action" OnClick="sbtTray_Click" Visible="false" />
                             </div>
