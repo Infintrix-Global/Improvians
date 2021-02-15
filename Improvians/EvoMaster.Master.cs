@@ -52,11 +52,13 @@ namespace Improvians
             }
             if (Session["Role"].ToString() == "3")
             {
-                Response.Redirect("MyTaskGreenOperatorFinal.aspx");
+                //  Response.Redirect("MyTaskGreenOperatorFinal.aspx");
+                Response.Redirect("MyTaskSpray.aspx");
             }
             if (Session["Role"].ToString() == "5")
             {
-                Response.Redirect("MyTaskSiteMoveTeam.aspx");
+                // Response.Redirect("MyTaskSiteMoveTeam.aspx");
+                Response.Redirect("MyTaskSpray.aspx");
             }
             if (Session["Role"].ToString() == "6")
             {

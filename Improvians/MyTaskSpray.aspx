@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MyTaskSpray.aspx.cs" Inherits="Improvians.MyTaskSpray" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -48,14 +49,14 @@
                                         <td>Put-Away </td>
                                         <td>A list of put away location for a job.</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkPutAway" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkPutAway" PostBackUrl="~/MyTaskLogisticManager.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Germination Count</td>
                                         <td>A list of germination count tasks to complete.</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkGerm" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkGerm" PostBackUrl="~/GerminationCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
@@ -69,14 +70,14 @@
                                         <td>Irrigation</td>
                                         <td>A list of irrigation tasks to complete</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkIrr" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Plant Health Report</td>
                                         <td>A list of Plant Health Reporting tasks to complete</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkpr" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkpr" PostBackUrl="PlantReadyCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
@@ -96,9 +97,9 @@
             </div>
             <br />
             <br />
-        
 
-       
+
+
         </div>
     </div>
 </asp:Content>

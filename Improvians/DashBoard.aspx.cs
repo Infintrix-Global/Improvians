@@ -44,12 +44,17 @@ namespace Improvians
             }
             if (Session["Role"].ToString() == "3")
             {
-                amytask.HRef = "MyTaskGreenOperatorFinal.aspx";
+              //   amytask.HRef = "MyTaskGreenOperatorFinal.aspx";
+               amytask.HRef = "MyTaskSpray.aspx";
+
+
             }
             if (Session["Role"].ToString() == "5")
             {
                 //  amytask.HRef = "MyTaskLogisticManager.aspx";
-                amytask.HRef = "MyTaskSiteMoveTeam.aspx";
+                // amytask.HRef = "MyTaskSiteMoveTeam.aspx";
+
+                amytask.HRef = "MyTaskSpray.aspx";
             }
             if (Session["Role"].ToString() == "6")
             {
