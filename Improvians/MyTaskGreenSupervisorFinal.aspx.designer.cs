@@ -15,6 +15,15 @@ namespace Improvians
     {
 
         /// <summary>
+        /// lnkPutAway control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkPutAway;
+
+        /// <summary>
         /// lnkGerm control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkGerm;
+
+        /// <summary>
+        /// lnkFertilization control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkFertilization;
 
         /// <summary>
         /// lnkIrr control.
@@ -40,5 +58,14 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkpr;
+
+        /// <summary>
+        /// lnkMove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkMove;
     }
 }

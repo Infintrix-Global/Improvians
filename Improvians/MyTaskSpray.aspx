@@ -75,16 +75,21 @@
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
-
+                                      <tr>
+                                        <td>Crop Health Report</td>
+                                        <td>Assign Crop Health Report Task </td>
+                                        <td class="text-center">
+                                          </td>
+                                    </tr>
                                     <tr>
-                                        <td>Plant Ready Report</td>
+                                        <td>Plant Ready</td>
                                         <td>A list of Plant Ready Reporting tasks to complete</td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkpr" PostBackUrl="PlantReadyCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
-                                        <td>Move</td>
+                                        <td>Move Request</td>
                                         <td>A lisf ot Move request to complete </td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkMove" PostBackUrl="#" runat="server" Text="0"></asp:LinkButton></td>
