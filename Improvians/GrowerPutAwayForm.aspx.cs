@@ -80,7 +80,7 @@ namespace Improvians
 
             if (e.CommandName == "Assign")
             {
-                AddGrowerPutRow(true);
+              
                 // invoiceSplitJob();
                 PanelAdd.Visible = true;
                 PanelList.Visible = false;
@@ -100,6 +100,7 @@ namespace Improvians
                     PutAwayFacility = dt.Rows[0]["loc_seedline"].ToString();
                 }
 
+                AddGrowerPutRow(true);
 
             }
 
