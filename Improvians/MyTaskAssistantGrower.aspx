@@ -43,6 +43,7 @@
                                         <th>Task Name</th>
                                         <th>Description</th>
                                         <th class="text-center">No. of Tasks</th>
+
                                     </tr>
 
                                     <tr>
