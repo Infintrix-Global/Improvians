@@ -118,6 +118,15 @@ namespace Improvians
                 ddlSupervisor.DataBind();
                 ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
             }
+            if (Session["Role"].ToString() == "12")
+            {
+                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlSupervisor.DataTextField = "EmployeeName";
+                ddlSupervisor.DataValueField = "ID";
+                ddlSupervisor.DataBind();
+                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
         }
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
