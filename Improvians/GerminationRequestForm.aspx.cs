@@ -19,6 +19,7 @@ namespace Improvians
                 Bindcname();
                 BindJobCode();
                 BindFacility();
+                BindBenchLocation();
                 BindGridGerm();
                 BindSupervisorList();
             }
@@ -245,10 +246,16 @@ namespace Improvians
             Bindcname();
             BindJobCode();
             BindFacility();
+            BindBenchLocation();
             BindGridGerm();
 
            
             
+        }
+
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
         }
     }
 }

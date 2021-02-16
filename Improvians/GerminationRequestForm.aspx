@@ -28,29 +28,33 @@
                     </div>
                      <div class="col m3">
                         <label>Bench Location </label>
-                        <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col m4">
-                        <asp:RadioButtonList ID="radweek" runat="server" Width="100%" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="radweek_SelectedIndexChanged">
+                    <div class="col m3">
+                        <asp:RadioButtonList ID="radweek" runat="server"  RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="radweek_SelectedIndexChanged">
                             <asp:ListItem Text="Last Week" Value="1"></asp:ListItem>
                             <asp:ListItem Text="This Week" Value="2"></asp:ListItem>
                             <asp:ListItem Text="Next Week" Value="3"></asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
 
-                    <div class="col m4">
-                        <asp:RadioButtonList ID="radStatus" runat="server"  Width="100%" OnSelectedIndexChanged="radStatus_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
+                    <div class="col m3">
+                        <asp:RadioButtonList ID="radStatus" runat="server"   OnSelectedIndexChanged="radStatus_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
                             <asp:ListItem Text="Overdue" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Today" Value="2"></asp:ListItem>
                             <asp:ListItem Text="Upcoming" Value="3"></asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
-                    <div class="col m4">
+                    <div class="col m3">
                          <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                         <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                    </div>
+
+                    <div class="col m3">
+                        
                     </div>
                 </div>
            
