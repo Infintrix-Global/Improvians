@@ -275,6 +275,7 @@
     <Content Include="MyTaskGreenOperatorFinal.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
     <Content Include="MyTaskGreenSupervisorFinal.aspx" />
+    <Content Include="MyTaskAssistantGrower.aspx" />
     <Content Include="MyTaskGrower.aspx" />
     <Content Include="MyTaskGrowerNew.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
@@ -531,6 +532,13 @@
     </Compile>
     <Compile Include="MyTaskGreenSupervisorFinal.aspx.designer.cs">
       <DependentUpon>MyTaskGreenSupervisorFinal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskAssistantGrower.aspx.cs">
+      <DependentUpon>MyTaskAssistantGrower.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskAssistantGrower.aspx.designer.cs">
+      <DependentUpon>MyTaskAssistantGrower.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskGrower.aspx.cs">
       <DependentUpon>MyTaskGrower.aspx</DependentUpon>
