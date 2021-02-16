@@ -22,6 +22,23 @@ namespace Improvians
             }
         }
 
+        private string PutAwayFacility
+        {
+            get
+            {
+                if (ViewState["PutAwayFacility"] != null)
+                {
+                    return (string)ViewState["PutAwayFacility"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["PutAwayFacility"] = value;
+            }
+        }
+
+
         private string wo
         {
             get
@@ -80,7 +97,7 @@ namespace Improvians
                     lblJobID.Text = dt.Rows[0]["JobID"].ToString();
                     lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeededDate"]).ToString("MM-dd-yyyy");
                     lblSeededTrays.Text = dt.Rows[0]["ActualTraySeeded"].ToString();
-
+                    PutAwayFacility = dt.Rows[0]["loc_seedline"].ToString();
                 }
 
 
@@ -117,8 +134,8 @@ namespace Improvians
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
                // ddlLocation.SelectedValue = "ENC1";
                 //  BindLocation();
-                BindLocationNew(ref ddlLocation, "ENC1");
-                ddlMain.SelectedValue = "ENC1";
+                BindLocationNew(ref ddlLocation, PutAwayFacility);
+                ddlMain.SelectedValue = PutAwayFacility;
                 ddlLocation.SelectedValue = lblLocation.Text;
 
             }
