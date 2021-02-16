@@ -16,19 +16,91 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
+                Bindcname();
+                BindJobCode();
+                BindFacility();
+                BindBenchLocation();
                 BindGridGerm();
                 BindSupervisorList();
             }
-            }
+        }
+
+
+        public void Bindcname()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "8");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlCustomer.DataSource = dt;
+            ddlCustomer.DataTextField = "cname";
+            ddlCustomer.DataValueField = "cname";
+            ddlCustomer.DataBind();
+            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+
+        public void BindJobCode()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "7");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataTextField = "Jobcode";
+            ddlJobNo.DataValueField = "Jobcode";
+            ddlJobNo.DataBind();
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindFacility()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "9");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlFacility.DataSource = dt;
+            ddlFacility.DataTextField = "loc_seedline";
+            ddlFacility.DataValueField = "loc_seedline";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindBenchLocation()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "10");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
 
 
         public void BindGridGerm()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            //nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             //nv.Add("@Week", radweek.SelectedValue);
             //nv.Add("@Status", radStatus.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetGerminationManualRequest", nv);
@@ -65,14 +137,14 @@ namespace Improvians
                 //  nv.Add("@FacilityName", facName);
                 //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
-                 lblGrowerID.Text = (row.FindControl("lblGrowerID") as Label).Text;
+                lblGrowerID.Text = (row.FindControl("lblGrowerID") as Label).Text;
                 lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                                                                        // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                                                                        //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
             }
 
-            
+
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -128,6 +200,40 @@ namespace Improvians
         {
             clear();
             Response.Redirect("~/MyTaskGrower.aspx");
+        }
+
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void btnSearchRest_Click(object sender, EventArgs e)
+        {
+           
+
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindBenchLocation();
+            BindGridGerm();
+
+
+
         }
     }
 }
