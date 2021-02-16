@@ -39,20 +39,20 @@ namespace Improvians
             if (e.CommandName == "Assign")
             {
 
-                if (Session["Role"].ToString() == "5")
-                {
+              //  if (Session["Role"].ToString() == "5")
+              //  {
                     // string Wid = "";
                     // Wid = e.CommandArgument.ToString();
                     string GrowerPutAwayId = e.CommandArgument.ToString();
                     Response.Redirect(String.Format("~/MoveTaskAssignment.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
 
-                }
+                //}
             }
             if (e.CommandName == "Select")
             {
 
-                if (Session["Role"].ToString() == "5")
-                {
+          //      if (Session["Role"].ToString() == "5")
+              //  {
                     // string Wid = "";
                     // Wid = e.CommandArgument.ToString();
                     string GrowerPutAwayId = e.CommandArgument.ToString();
@@ -67,7 +67,7 @@ namespace Improvians
                     //{
                     Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
                    // }
-                }
+               // }
             }
         }
 
