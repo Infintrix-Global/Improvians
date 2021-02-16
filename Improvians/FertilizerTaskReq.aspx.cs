@@ -97,13 +97,35 @@ namespace Improvians
 
         public void BindSupervisor()
         {
+
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@RoleID", "11");
+            //ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+            //ddlsupervisor.DataTextField = "EmployeeName";
+            //ddlsupervisor.DataValueField = "ID";
+            //ddlsupervisor.DataBind();
+            //ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@RoleID", "11");
-            ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
-            ddlsupervisor.DataTextField = "EmployeeName";
-            ddlsupervisor.DataValueField = "ID";
-            ddlsupervisor.DataBind();
-            ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            if (Session["Role"].ToString() == "1")
+            {
+                ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlsupervisor.DataTextField = "EmployeeName";
+                ddlsupervisor.DataValueField = "ID";
+                ddlsupervisor.DataBind();
+                ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
+            if (Session["Role"].ToString() == "12")
+            {
+                ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlsupervisor.DataTextField = "EmployeeName";
+                ddlsupervisor.DataValueField = "ID";
+                ddlsupervisor.DataBind();
+                ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
         }
 
         protected void btnAddTray_Click(object sender, EventArgs e)
