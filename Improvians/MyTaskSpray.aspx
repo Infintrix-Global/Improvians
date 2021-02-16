@@ -35,7 +35,10 @@
                 <div class="col-md-6 col-lg-3 col-xl-8">
                     <div class="dashboard__block">
                         <%--   <h3>My Tasks</h3>--%>
-                        The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. Most of these tasks are auto-generated based on the plant's production profile schedule after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose. 
+                     
+     The list of tasks below are items for you to complete.
+
+                        
                         <div class="data__table">
                             <table>
                                 <tbody>
@@ -74,8 +77,8 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Plant Health Report</td>
-                                        <td>A list of Plant Health Reporting tasks to complete</td>
+                                        <td>Plant Ready Report</td>
+                                        <td>A list of Plant Ready Reporting tasks to complete</td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkpr" PostBackUrl="PlantReadyCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
@@ -84,7 +87,7 @@
                                         <td>Move</td>
                                         <td>A lisf ot Move request to complete </td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkMove" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkMove" PostBackUrl="#" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
 

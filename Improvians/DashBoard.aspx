@@ -35,8 +35,8 @@
                         </div>
 
                         <div class="dashboard__matrixdetail">
-                            <h3 class="robotobold">4.2</h3>
-                            <span>Avg. Plant Ready Quality (1-5)</span>
+                            <h3 class="robotobold">2.2</h3>
+                            <span>Avg. Plant Ready Quality (1-3)</span>
                         </div>
                     </div>
                     
@@ -90,7 +90,7 @@
                                     </a>
                                     <a href="#" class="dashboard__task">
                                         <img src="images/link-assign-task.svg" width="184" height="184" alt="Assign a Task" />
-                                        <span>Assign Task</span>
+                                        <span>Job Report</span>
                                     </a>
                                     <a href="#" class="dashboard__task">
                                         <img src="images/link-track-tasks.svg" width="184" height="184" alt="Track Tasks" />

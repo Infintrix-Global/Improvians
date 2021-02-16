@@ -19,6 +19,7 @@ namespace Improvians
                 Bindcname();
                 BindJobCode();
                 BindFacility();
+                BindBenchLocation();
                 BindGridGerm();
                 BindSupervisorList();
             }
@@ -74,6 +75,22 @@ namespace Improvians
 
         }
 
+        public void BindBenchLocation()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "10");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
         public void BindGridGerm()
         {
             DataTable dt = new DataTable();
@@ -81,6 +98,7 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@Week", radweek.SelectedValue);
             nv.Add("@Status", radStatus.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
@@ -198,6 +216,46 @@ namespace Improvians
         protected void btnManual_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/GerminationRequestManual.aspx");
+        }
+
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void radStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void btnSearchRest_Click(object sender, EventArgs e)
+        {
+            radStatus.SelectedValue = null;
+            radweek.SelectedValue = null;
+
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindBenchLocation();
+            BindGridGerm();
+
+           
+            
+        }
+
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
         }
     }
 }

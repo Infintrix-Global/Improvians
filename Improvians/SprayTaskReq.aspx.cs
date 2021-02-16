@@ -86,6 +86,7 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@LoginID", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetSprayRequestst", nv);
             gvSpray.DataSource = dt;
             gvSpray.DataBind();

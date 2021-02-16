@@ -83,14 +83,23 @@ namespace Improvians
                 nv.Add("@LoginID", "");
                 nv.Add("@mode", "10");
                 dt11 = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+                DataTable dtOnlyLeftWO = new DataTable();
+                if (dt11 != null && dt11.Rows.Count > 0)
+                {
+                   var rows  = (from a in AllData.AsEnumerable()
+                                    join b in dt11.AsEnumerable()
+                                    on a["WO"].ToString() equals b["WO"].ToString()
+                                    into g
+                                    where g.Count() == 0
+                                    select a);
+                    if (rows.Any())
+                        dtOnlyLeftWO = rows.CopyToDataTable();
 
-                DataTable dtOnlyLeftWO = (from a in AllData.AsEnumerable()
-                                          join b in dt11.AsEnumerable()
-                                          on a["WO"].ToString() equals b["WO"].ToString()
-                                          into g
-                                          where g.Count() > 0
-                                          select a).CopyToDataTable();
-
+                }
+                else
+                {
+                    dtOnlyLeftWO = AllData;
+                }
                 lblTotal.Text = dtOnlyLeftWO.Rows.Count.ToString() + " Records";
                 DGJob.DataSource = dtOnlyLeftWO;
                 DGJob.DataBind();
@@ -210,7 +219,7 @@ namespace Improvians
 
 
                         Label lblAllocated = (item.Cells[0].FindControl("lblAllocated") as Label);
-                        Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
+                        // Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
                         Label lbljobcode = (item.Cells[0].FindControl("lbljobcode") as Label);
                         Label lblItem = (item.Cells[0].FindControl("lblItem") as Label);
                         Label lblCustName = (item.Cells[0].FindControl("lblCustName") as Label);
@@ -219,7 +228,7 @@ namespace Improvians
                         Label lblTraySize = (item.Cells[0].FindControl("lblTraySize") as Label);
                         TextBox Txtgtrays = (item.Cells[0].FindControl("Txtgtrays") as TextBox);
                         TextBox Txtgplantdt = (item.Cells[0].FindControl("Txtgplantdt") as TextBox);
-
+                        DropDownList ddlBenchLocation = (item.Cells[0].FindControl("ddlBenchLocation") as DropDownList);
                         HiddenField HiddenFielditm = (item.Cells[0].FindControl("HiddenFielditm") as HiddenField);
                         HiddenField HiddenFieldcusno = (item.Cells[0].FindControl("HiddenFieldcusno") as HiddenField);
                         HiddenField HiddenFieldsotrays = (item.Cells[0].FindControl("HiddenFieldsotrays") as HiddenField);
@@ -229,50 +238,46 @@ namespace Improvians
 
 
 
-                        //if (lblAllocated.Text == "Yes")
-                        //{
+                        if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
+                        {
 
-                        String tim = System.DateTime.Now.ToString("HH:mm:ss");
+                            String tim = System.DateTime.Now.ToString("HH:mm:ss");
 
-                        long result = 0;
-                        NameValueCollection nv = new NameValueCollection();
-                        nv.Add("@jid", _isInserted.ToString());
-                        nv.Add("@jstatus", "0");
-                        nv.Add("@jobcode", lbljobcode.Text.Trim());
-                        nv.Add("@itemno", HiddenFielditm.Value);
-                        nv.Add("@itemdescp", lblItem.Text);
-                        nv.Add("@cname", lblCustName.Text);
-                        nv.Add("@cusno", HiddenFieldcusno.Value);
-                        nv.Add("@loc_seedline", lblSeedline.Text);
-                        nv.Add("@trays_plan", lblSOTrays.Text);
-                        nv.Add("@trays_actual", Txtgtrays.Text);
-                        nv.Add("@seedsreceived", "0");
-                        nv.Add("@plan_date", Txtgplantdt.Text);
-                        nv.Add("@actual_date", HiddenFieldsodate.Value);
-                        nv.Add("@due_date", HiddenFieldduedate.Value);
-                        nv.Add("@cmt", "");
-                        nv.Add("@moduser", Session["LoginID"].ToString());
-                        nv.Add("@modtime", tim);
-                        nv.Add("@modified_date", "");
-                        nv.Add("@SoDate", lblSODate.Text);
-                        nv.Add("@TraySize", lblTraySize.Text);
-                        nv.Add("@wo", HiddenFieldwo.Value);
-                        nv.Add("@mode", "1");
-                        _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
+                            long result = 0;
+                            NameValueCollection nv = new NameValueCollection();
+                            nv.Add("@jid", _isInserted.ToString());
+                            nv.Add("@jstatus", "0");
+                            nv.Add("@jobcode", lbljobcode.Text.Trim());
+                            nv.Add("@itemno", HiddenFielditm.Value);
+                            nv.Add("@itemdescp", lblItem.Text);
+                            nv.Add("@cname", lblCustName.Text);
+                            nv.Add("@cusno", HiddenFieldcusno.Value);
+                            nv.Add("@loc_seedline", ddlBenchLocation.SelectedValue);
+                            nv.Add("@trays_plan", lblSOTrays.Text);
+                            nv.Add("@trays_actual", Txtgtrays.Text);
+                            nv.Add("@seedsreceived", "0");
+                            nv.Add("@plan_date", Txtgplantdt.Text);
+                            nv.Add("@actual_date", HiddenFieldsodate.Value);
+                            nv.Add("@due_date", HiddenFieldduedate.Value);
+                            nv.Add("@cmt", "");
+                            nv.Add("@moduser", Session["LoginID"].ToString());
+                            nv.Add("@modtime", tim);
+                            nv.Add("@modified_date", "");
+                            nv.Add("@SoDate", lblSODate.Text);
+                            nv.Add("@TraySize", lblTraySize.Text);
+                            nv.Add("@wo", HiddenFieldwo.Value);
+                            nv.Add("@mode", "1");
+                            _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
 
-
-
-
-
-                        //_isInserted = 1;
-                        // }
+                            _isInserted = 1;
+                        }
 
 
                         SelectedItems++;
 
 
                     }
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seeding Plan Save Successful')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ')", true);
 
 
                 }
@@ -302,20 +307,15 @@ namespace Improvians
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                //HiddenField HiddenFieldwo = (HiddenField)e.Row.FindControl("HiddenFieldwo");
+                Label lbl_Seedline = (Label)e.Row.FindControl("lbl_Seedline");
+                DropDownList ddlBenchLocation = (DropDownList)e.Row.FindControl("ddlBenchLocation");
 
-                //DataTable dt = new DataTable();
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@LoginID", HiddenFieldwo.Value);
-                //nv.Add("@mode", "5");
-                //dt = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
-
-                //if (dt != null && dt.Rows.Count > 0)
-                //{
-                //    e.Row.Visible = false;
-                //  //  lblTotal.Text = (Convert.ToInt32(lblTotal.Text) - 1).ToString();
-                //}
-
+                ddlBenchLocation.DataSource = objSP.GetSeedlineLocation(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
+                ddlBenchLocation.DataTextField = "loc";
+                ddlBenchLocation.DataValueField = "loc";
+                ddlBenchLocation.DataBind();
+                ddlBenchLocation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+                ddlBenchLocation.SelectedValue = lbl_Seedline.Text;
             }
 
         }

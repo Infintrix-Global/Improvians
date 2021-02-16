@@ -54,8 +54,8 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Plant Health Report</td>
-                                        <td>A list of plant health reporting tasks to complete</td>
+                                        <td>Plant Ready Report</td>
+                                        <td>A list of plant ready reporting tasks to complete</td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkpr" PostBackUrl="~/PlantReadyAssignmentForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
