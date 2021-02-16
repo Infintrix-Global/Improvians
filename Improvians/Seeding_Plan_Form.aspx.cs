@@ -298,7 +298,7 @@ namespace Improvians
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                Label lblSeedline = (Label)e.Row.FindControl("lblSeedline");
+                Label lbl_Seedline = (Label)e.Row.FindControl("lbl_Seedline");
                 DropDownList ddlBenchLocation = (DropDownList)e.Row.FindControl("ddlBenchLocation");
 
                 ddlBenchLocation.DataSource = objSP.GetSeedlineLocation(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
@@ -306,7 +306,7 @@ namespace Improvians
                 ddlBenchLocation.DataValueField = "loc";
                 ddlBenchLocation.DataBind();
                 ddlBenchLocation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
-                ddlBenchLocation.SelectedValue = lblSeedline.Text;
+                ddlBenchLocation.SelectedValue = lbl_Seedline.Text;
             }
 
         }
