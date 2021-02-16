@@ -77,8 +77,8 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Plant Health Report</td>
-                                        <td>A list of Plant Health Reporting tasks to complete</td>
+                                        <td>Plant Ready Report</td>
+                                        <td>A list of Plant Ready Reporting tasks to complete</td>
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkpr" PostBackUrl="PlantReadyCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
@@ -87,7 +87,7 @@
                                         <td>Move</td>
                                         <td>A lisf ot Move request to complete </td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkMove" PostBackUrl="" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkMove" PostBackUrl="#" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
 

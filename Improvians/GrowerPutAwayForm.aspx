@@ -71,7 +71,7 @@
                                             </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="Facility Location">
+                                            <asp:TemplateField HeaderText="Put Away Facility">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblloc_seedline" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
 
@@ -136,7 +136,7 @@
                                                     AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="RowNumber" HeaderText="NO." />
-                                                        <asp:TemplateField HeaderText="Seedline Location" HeaderStyle-HorizontalAlign="Center">
+                                                        <asp:TemplateField HeaderText="Put Away Facility" HeaderStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
                                                                 <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
 
