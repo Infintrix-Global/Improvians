@@ -52,7 +52,7 @@
                                         <td>Put-Away </td>
                                         <td>A list of put away location for a job.</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkPutAway" PostBackUrl="~/MyTaskShippingCoordinator.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkPutAway" PostBackUrl="~/MyTaskLogisticManager.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
