@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Data;
 using System.Linq;
 using System.Web;
+using System.Collections.Specialized;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Improvians
 {
-    public partial class PlantReadyRequestForm : System.Web.UI.Page
+    public partial class PlantReadyReqManual : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -45,12 +45,12 @@ namespace Improvians
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-           // nv.Add("@wo", "");
+            // nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-           // nv.Add("@Mode", "7");
-           // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            // nv.Add("@Mode", "7");
+            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
@@ -174,9 +174,9 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
-           // nv.Add("@WO",wo);
+            // nv.Add("@WO",wo);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequest", nv);
+            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestManual", nv);
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
@@ -201,7 +201,7 @@ namespace Improvians
 
         public void clear()
         {
-            
+
             ddlSupervisor.SelectedIndex = 0;
 
         }
@@ -216,11 +216,6 @@ namespace Improvians
         {
             gvPlantReady.PageIndex = e.NewPageIndex;
             BindGridPlantReady();
-        }
-
-        protected void btnManual_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/PlantReadyReqManual.aspx");
         }
     }
 }

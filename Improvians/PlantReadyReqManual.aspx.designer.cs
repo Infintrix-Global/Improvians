@@ -11,7 +11,7 @@ namespace Improvians
 {
 
 
-    public partial class PlantReadyRequestForm
+    public partial class PlantReadyReqManual
     {
 
         /// <summary>
@@ -49,15 +49,6 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnResetSearch;
-
-        /// <summary>
-        /// btnManual control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManual;
 
         /// <summary>
         /// gvPlantReady control.

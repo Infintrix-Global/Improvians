@@ -190,6 +190,7 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\custom.css" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="FertilizerReqManual.aspx" />
     <Content Include="FertilizerTaskAssignmentaspx.aspx" />
     <Content Include="FertilizerTaskReq.aspx" />
     <Content Include="fonts\icons\rxicons.svg" />
@@ -286,6 +287,7 @@
     <Content Include="MyTaskSpray.aspx" />
     <Content Include="PlantReadyAssignmentForm.aspx" />
     <Content Include="PlantReadyCompletionForm.aspx" />
+    <Content Include="PlantReadyReqManual.aspx" />
     <Content Include="PlantReadyRequestForm.aspx" />
     <Content Include="PlantReadyTaskAssignment.aspx" />
     <Content Include="PlantReadyTaskCompletion.aspx" />
@@ -370,6 +372,13 @@
     </Compile>
     <Compile Include="DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FertilizerReqManual.aspx.cs">
+      <DependentUpon>FertilizerReqManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FertilizerReqManual.aspx.designer.cs">
+      <DependentUpon>FertilizerReqManual.aspx</DependentUpon>
     </Compile>
     <Compile Include="FertilizerTaskAssignmentaspx.aspx.cs">
       <DependentUpon>FertilizerTaskAssignmentaspx.aspx</DependentUpon>
@@ -608,6 +617,13 @@
     </Compile>
     <Compile Include="PlantReadyCompletionForm.aspx.designer.cs">
       <DependentUpon>PlantReadyCompletionForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlantReadyReqManual.aspx.cs">
+      <DependentUpon>PlantReadyReqManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlantReadyReqManual.aspx.designer.cs">
+      <DependentUpon>PlantReadyReqManual.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlantReadyRequestForm.aspx.cs">
       <DependentUpon>PlantReadyRequestForm.aspx</DependentUpon>
