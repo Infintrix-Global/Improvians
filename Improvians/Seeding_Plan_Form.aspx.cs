@@ -83,14 +83,23 @@ namespace Improvians
                 nv.Add("@LoginID", "");
                 nv.Add("@mode", "10");
                 dt11 = objCommon.GetDataTable("SP_GetGreenHouseLogisticTask", nv);
+                DataTable dtOnlyLeftWO = new DataTable();
+                if (dt11 != null && dt11.Rows.Count > 0)
+                {
+                   var rows  = (from a in AllData.AsEnumerable()
+                                    join b in dt11.AsEnumerable()
+                                    on a["WO"].ToString() equals b["WO"].ToString()
+                                    into g
+                                    where g.Count() == 0
+                                    select a);
+                    if (rows.Any())
+                        dtOnlyLeftWO = rows.CopyToDataTable();
 
-                DataTable dtOnlyLeftWO = (from a in AllData.AsEnumerable()
-                                          join b in dt11.AsEnumerable()
-                                          on a["WO"].ToString() equals b["WO"].ToString()
-                                          into g
-                                          where g.Count() > 0
-                                          select a).CopyToDataTable();
-
+                }
+                else
+                {
+                    dtOnlyLeftWO = AllData;
+                }
                 lblTotal.Text = dtOnlyLeftWO.Rows.Count.ToString() + " Records";
                 DGJob.DataSource = dtOnlyLeftWO;
                 DGJob.DataBind();
@@ -219,7 +228,7 @@ namespace Improvians
                         Label lblTraySize = (item.Cells[0].FindControl("lblTraySize") as Label);
                         TextBox Txtgtrays = (item.Cells[0].FindControl("Txtgtrays") as TextBox);
                         TextBox Txtgplantdt = (item.Cells[0].FindControl("Txtgplantdt") as TextBox);
-                        DropDownList ddlBenchLocation = (item.Cells[0].FindControl("DropDownList") as DropDownList);
+                        DropDownList ddlBenchLocation = (item.Cells[0].FindControl("ddlBenchLocation") as DropDownList);
                         HiddenField HiddenFielditm = (item.Cells[0].FindControl("HiddenFielditm") as HiddenField);
                         HiddenField HiddenFieldcusno = (item.Cells[0].FindControl("HiddenFieldcusno") as HiddenField);
                         HiddenField HiddenFieldsotrays = (item.Cells[0].FindControl("HiddenFieldsotrays") as HiddenField);
