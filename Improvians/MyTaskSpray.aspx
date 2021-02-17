@@ -75,11 +75,10 @@
                                         <td class="text-center">
                                             <asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationAssignmentForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
-                                      <tr>
+                                    <tr>
                                         <td>Crop Health Report</td>
                                         <td>Assign Crop Health Report Task </td>
-                                        <td class="text-center">
-                                          </td>
+                                        <td class="text-center"></td>
                                     </tr>
                                     <tr>
                                         <td>Plant Ready</td>
