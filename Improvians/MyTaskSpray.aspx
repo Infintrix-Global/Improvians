@@ -52,14 +52,14 @@
                                         <td>Put-Away </td>
                                         <td>A list of put away location for a job.</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkPutAway" PostBackUrl="~/MyTaskLogisticManager.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkPutAway" PostBackUrl="~/MyTaskShippingCoordinator.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
                                         <td>Germination Count</td>
                                         <td>A list of germination count tasks to complete.</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkGerm" PostBackUrl="~/GerminationAssignmentForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkGerm" PostBackUrl="~/GerminationCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
@@ -73,7 +73,7 @@
                                         <td>Irrigation</td>
                                         <td>A list of irrigation tasks to complete</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationAssignmentForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
                                     <tr>
                                         <td>Crop Health Report</td>
@@ -84,7 +84,7 @@
                                         <td>Plant Ready</td>
                                         <td>A list of Plant Ready Reporting tasks to complete</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkpr" PostBackUrl="PlantReadyAssignmentForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkpr" PostBackUrl="PlantReadyCompletionForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
