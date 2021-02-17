@@ -20,6 +20,7 @@ namespace Improvians
     {
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objCOm = new BAL_CommonMasters();
         public static DataTable AllData = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -310,7 +311,8 @@ namespace Improvians
                 Label lbl_Seedline = (Label)e.Row.FindControl("lbl_Seedline");
                 DropDownList ddlBenchLocation = (DropDownList)e.Row.FindControl("ddlBenchLocation");
 
-                ddlBenchLocation.DataSource = objSP.GetSeedlineLocation(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
+                ddlBenchLocation.DataSource = objCOm.GetMainLocation();
+
                 ddlBenchLocation.DataTextField = "loc";
                 ddlBenchLocation.DataValueField = "loc";
                 ddlBenchLocation.DataBind();

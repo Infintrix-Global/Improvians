@@ -231,7 +231,7 @@ namespace Improvians
                     nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
                     nv.Add("@IrrigationDuration", "");
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
-                    nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                    nv.Add("@SprayTime", "");
                     nv.Add("@Nots", txtNotes.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
@@ -269,7 +269,7 @@ namespace Improvians
             txtIrrigatedNoTrays.Text = "";
             //txtIrrigationDuration.Text = "";
             txtSprayDate.Text = "";
-            txtSprayTime.Text = "";
+           // txtSprayTime.Text = "";
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
