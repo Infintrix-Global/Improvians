@@ -66,6 +66,22 @@ namespace Improvians
 
         }
 
+        public void BindBenchLocation()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "10");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
         public void BindFacility()
         {
 
@@ -89,7 +105,8 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequestManual", nv);
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
@@ -188,7 +205,7 @@ namespace Improvians
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestManual", nv);
+                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
                     if (result > 0)
                     {
                         objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
@@ -335,5 +352,34 @@ namespace Improvians
             txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
         }
 
+        protected void btnSearchRest_Click(object sender, EventArgs e)
+        {
+            BindJobCode();
+            Bindcname();
+            BindBenchLocation();
+
+            BindFacility();
+            BindGridFerReq();
+        }
+
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq();
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq();
+        }
+
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq();
+        }
     }
 }
