@@ -55,8 +55,8 @@ namespace Improvians
                 lblwoid.Text = dt.Rows[0]["wo"].ToString();
                 lblJobid.Text = dt.Rows[0]["jobcode"].ToString();
                 lblSeedlot.Text = dt.Rows[0]["TraySize"].ToString();
-                txtTrays.Text = dt.Rows[0]["Trays"].ToString();
-                Bindtxttray(Convert.ToInt32(dt.Rows[0]["Trays"].ToString()));
+                txtTrays.Text = dt.Rows[0]["#TraysInspected"].ToString();
+                Bindtxttray(Convert.ToInt32(dt.Rows[0]["#TraysInspected"].ToString()));
             }
         }
 

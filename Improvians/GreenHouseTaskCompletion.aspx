@@ -106,7 +106,7 @@
 
                                         <asp:TemplateField HeaderText="Trays inspected" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label5" runat="server" Text='<%# Eval("#TraysInspected")  %>'></asp:Label>
+                                                <asp:Label ID="lblinstray" runat="server" Text='<%# Eval("#TraysInspected")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
