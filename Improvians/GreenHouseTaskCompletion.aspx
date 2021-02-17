@@ -106,7 +106,7 @@
 
                                         <asp:TemplateField HeaderText="Trays inspected" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label5" runat="server" Text='<%# Eval("#TraysInspected")  %>'></asp:Label>
+                                                <asp:Label ID="lblinstray" runat="server" Text='<%# Eval("#TraysInspected")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col">
                                 <label># Trays</label>
-                                <asp:TextBox ID="txtTrays" TextMode="Number"  runat="server" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" class="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtTrays" TextMode="Number" Enabled="false"  runat="server" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" class="input__control"></asp:TextBox>
                                 <asp:RangeValidator id="Range1"  ControlToValidate="txtTrays" MinimumValue="1" MaximumValue="20"  Type="Integer"  Text="The value must be from 1 to 20"  runat="server" ></asp:RangeValidator>
 
                                 <asp:Label runat="server" ID="lblSeedlot" Visible="false"></asp:Label>
