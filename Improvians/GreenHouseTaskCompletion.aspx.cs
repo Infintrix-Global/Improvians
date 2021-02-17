@@ -208,9 +208,9 @@ namespace Improvians
             }
             lblbadplants.Text = count.ToString();
             Decimal germ = Convert.ToDecimal(count) / (Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(txtTrays.Text));
-            lblGerm.Text = ((1 - germ) * 100).ToString("0.00");
-            // lblgermvigor= (RoundUp((100 - (Convert.ToInt32(lblbadplants.Text) / (Convert.ToInt32(txtTrays.Text) * E38 * germ) * 100)), 0))
-            lblgermvigor.Text = Math.Round((100 - (Convert.ToInt32(lblbadplants.Text) / (Convert.ToInt32(txtTrays.Text) * Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(lblGerm.Text)) * 100)), 0).ToString();
+            lblGerm.Text = ((1 - germ) * 100).ToString("0.00"); 
+            Decimal vigor = (Convert.ToInt32(txtTrays.Text) * Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(lblGerm.Text));
+            lblgermvigor.Text = (100 - (Convert.ToInt32(lblbadplants.Text) /vigor) * 100).ToString("0.00");
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -3372,3 +3372,8 @@ The statement has been terminated. at 04-02-2021 23:13:13
 *****Error message=****@CoordinatorId:2 at 17-02-2021 15:19:34
 *****Error message=****@GrowerPutAwayId:15 at 17-02-2021 15:19:34
 *****Error message=****@CreateBy:2 at 17-02-2021 15:19:34
+*****Error message=****@SupervisorID:2 at 17-Feb-21 4:21:21 PM
+*****Error message=****@InspectionDueDate:2021-02-18 at 17-Feb-21 4:21:21 PM
+*****Error message=****@#TraysInspected:5 at 17-Feb-21 4:21:21 PM
+*****Error message=****@ID:11 at 17-Feb-21 4:21:21 PM
+*****Error message=****@LoginID:1 at 17-Feb-21 4:21:21 PM
