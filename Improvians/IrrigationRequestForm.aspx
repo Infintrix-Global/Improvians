@@ -20,7 +20,7 @@
                     </div>
                   
                     <div class="col m3">
-                        <label>Facility Location </label>
+                        <label>Put away Facility </label>
                         <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
@@ -209,11 +209,11 @@
 
                                 <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                             </div>
-                            <div class="col-auto">
+                          <%--  <div class="col-auto">
                                 <label class="d-block">Spray Time</label>
 
                                 <asp:TextBox ID="txtSprayTime" TextMode="Time" class="input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
-                            </div>
+                            </div>--%>
                         </div>
 
                         <div class="row align-items-center mt-sm-3">

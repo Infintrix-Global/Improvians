@@ -144,8 +144,11 @@ namespace Improvians
               //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
                 lblID.Text= (row.FindControl("lblID") as Label).Text;
-             //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
-               // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
+
+
+                txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+                //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
+                // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
             }

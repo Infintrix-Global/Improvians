@@ -25,6 +25,7 @@ namespace Improvians
             {
                 Bindcname();
                 BindJobCode();
+                BindBenchLocation();
                 BindFacility();
                 BindGridSprayReq();
             }
@@ -78,6 +79,21 @@ namespace Improvians
 
         }
 
+        public void BindBenchLocation()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "10");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
 
         public void BindGridSprayReq()
         {
@@ -87,6 +103,7 @@ namespace Improvians
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetSprayRequestst", nv);
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
@@ -169,6 +186,37 @@ namespace Improvians
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('not Completion')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
+        }
+
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridSprayReq();
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridSprayReq();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridSprayReq();
+        }
+
+     
+
+        protected void ddlBenchLocation_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            BindGridSprayReq();
+        }
+
+        protected void btnSearchRest_Click(object sender, EventArgs e)
+        {
+            Bindcname();
+            BindJobCode();
+            BindFacility();
+            BindBenchLocation();
+            BindGridSprayReq();
         }
     }
 }

@@ -139,7 +139,7 @@
                                    <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
                             </div>
                             <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                <label class="d-block">Assign task to Greenhouse Supervisor</label>
+                                <label class="d-block">Assignment</label>
 
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                           
