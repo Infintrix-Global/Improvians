@@ -144,7 +144,7 @@
                         <div class="row">
 
                             <div class="col-12 col-sm-6 col-lg-4">
-                                <label>Select Greenhouse Supervisor</label>
+                                <label>Assignment</label>
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
 
