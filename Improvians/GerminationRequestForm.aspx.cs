@@ -146,7 +146,7 @@ namespace Improvians
                 lblID.Text= (row.FindControl("lblID") as Label).Text;
 
 
-                txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+               txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();

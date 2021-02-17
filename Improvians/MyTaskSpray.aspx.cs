@@ -26,6 +26,7 @@ namespace Improvians
 
         public void CountTotal()
         {
+
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
@@ -40,6 +41,9 @@ namespace Improvians
             lnkIrr.Text = dt.Tables[3].Rows.Count.ToString();
 
             lnkpr.Text = dt.Tables[4].Rows.Count.ToString();
+
+
+
         }
     }
 }
