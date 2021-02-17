@@ -53,7 +53,13 @@
 
                         <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                         <asp:TemplateField HeaderText="Water Required" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblWaterRequired" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 

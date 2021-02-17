@@ -113,6 +113,13 @@
                                             </ItemTemplate>
                                        </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Type" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblType12" runat="server" Text='<%# Eval("Type")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                       </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server"  Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
