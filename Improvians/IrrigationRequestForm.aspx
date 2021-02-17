@@ -34,6 +34,11 @@
             </div>
 
             <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
+            <div class="row">
+                <div class="col m3">
+                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
+                </div>
+            </div>
 
             <div class="data__table">
                 <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -41,6 +46,16 @@
                     GridLines="None" OnRowCommand="GridIrrigation_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId"
                     ShowHeaderWhenEmpty="True" Width="100%">
                     <Columns>
+
+                          <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                            <HeaderTemplate>
+                                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+
+                                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -71,7 +86,7 @@
 
                         <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
+                                <asp:Label ID="lbltotTray" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -151,7 +166,7 @@
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <label>No. Of Trays to be Irrigated</label>
 
-                                <asp:TextBox ID="txtIrrigatedNoTrays" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtIrrigatedNoTrays" Enabled="false" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
 
                             </div>
 
