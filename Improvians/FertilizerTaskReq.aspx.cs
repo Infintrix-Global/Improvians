@@ -359,7 +359,7 @@ namespace Improvians
 
         protected void btnManual_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/FertilizerReqManual.aspx");
         }
     }
 }

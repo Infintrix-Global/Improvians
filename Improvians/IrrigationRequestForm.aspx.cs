@@ -189,39 +189,49 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            // nv.Add("@WO", wo);
-            nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
-            nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
-            nv.Add("@WaterRequired",txtWaterRequired.Text.Trim());
-            nv.Add("@IrrigationDuration","");
-            nv.Add("@SprayDate",txtSprayDate.Text.Trim());
-            nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-            nv.Add("@Nots", txtNotes.Text.Trim());
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
-            if (result > 0)
+            foreach (GridViewRow row in GridIrrigation.Rows)
             {
-                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                // lblmsg.Text = "Assignment Successful";
-                clear();
+                if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                {
+
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+
+                    //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
+                    nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
+                   // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
+                    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
+                    nv.Add("@IrrigationDuration", "");
+                    nv.Add("@SprayDate", txtSprayDate.Text.Trim());
+                    nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                    nv.Add("@Nots", txtNotes.Text.Trim());
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
+                    if (result > 0)
+                    {
+                        // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                        
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                        //  lblmsg.Text = "Assignment Not Successful";
+                    }
+                }
             }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                //  lblmsg.Text = "Assignment Not Successful";
-            }
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            // lblmsg.Text = "Assignment Successful";
+            clear();
         }
 
         public void clear()
@@ -248,6 +258,40 @@ namespace Improvians
             BindGridIrrigation();
         }
 
-        
+        protected void btnAssign_Click(object sender, EventArgs e)
+        {
+            userinput.Visible = true;
+            ddlSupervisor.Focus();
+            int tray = 0;
+            foreach (GridViewRow row in GridIrrigation.Rows)
+            {
+                if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                {
+                    tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
+                }
+
+            }
+            txtIrrigatedNoTrays.Text = tray.ToString();
+
+
+        }
+
+        protected void chckchanged(object sender, EventArgs e)
+        {
+            CheckBox chckheader = (CheckBox)GridIrrigation.HeaderRow.FindControl("CheckBoxall");
+            foreach (GridViewRow row in GridIrrigation.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckheader.Checked == true)
+                {
+                    chckrw.Checked = true;
+                }
+                else
+                {
+                    chckrw.Checked = false;
+                }
+            }
+
+        }
     }
 }
