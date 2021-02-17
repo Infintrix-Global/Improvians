@@ -3315,11 +3315,6 @@ The statement has been terminated. at 04-02-2021 23:13:13
 *****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
-   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
-   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
-   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
-   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
    at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
    at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
    at System.Data.SqlClient.SqlDataReader.get_MetaData()
@@ -3372,8 +3367,3 @@ The statement has been terminated. at 04-02-2021 23:13:13
 *****Error message=****@CoordinatorId:2 at 17-02-2021 15:19:34
 *****Error message=****@GrowerPutAwayId:15 at 17-02-2021 15:19:34
 *****Error message=****@CreateBy:2 at 17-02-2021 15:19:34
-*****Error message=****@SupervisorID:2 at 17-Feb-21 4:21:21 PM
-*****Error message=****@InspectionDueDate:2021-02-18 at 17-Feb-21 4:21:21 PM
-*****Error message=****@#TraysInspected:5 at 17-Feb-21 4:21:21 PM
-*****Error message=****@ID:11 at 17-Feb-21 4:21:21 PM
-*****Error message=****@LoginID:1 at 17-Feb-21 4:21:21 PM

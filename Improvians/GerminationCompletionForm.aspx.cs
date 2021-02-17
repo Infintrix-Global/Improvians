@@ -104,6 +104,7 @@ namespace Improvians
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
                 GTAID = (row.FindControl("lblID") as Label).Text;
+               
                 Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", GTAID));
             }
         }

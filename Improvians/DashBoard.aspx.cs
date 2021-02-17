@@ -17,6 +17,7 @@ namespace Improvians
             if (!IsPostBack)
             {
                 BindData();
+                BindPlantReadyAVG();
             }
         }
         public void BindData()
@@ -36,7 +37,7 @@ namespace Improvians
         {
             if (Session["Role"].ToString() == "1")
             {
-                amytask.HRef ="MyTaskGrower.aspx";
+                amytask.HRef = "MyTaskGrower.aspx";
             }
             if (Session["Role"].ToString() == "2")
             {
@@ -44,8 +45,8 @@ namespace Improvians
             }
             if (Session["Role"].ToString() == "3")
             {
-              //   amytask.HRef = "MyTaskGreenOperatorFinal.aspx";
-               amytask.HRef = "MyTaskSpray.aspx";
+                //   amytask.HRef = "MyTaskGreenOperatorFinal.aspx";
+                amytask.HRef = "MyTaskSpray.aspx";
 
 
             }
@@ -83,6 +84,26 @@ namespace Improvians
             if (Session["Role"].ToString() == "12")
             {
                 amytask.HRef = "MyTaskAssistantGrower.aspx";
+            }
+        }
+
+
+        public void BindPlantReadyAVG()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "11");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+
+            if(dt!=null & dt.Rows.Count>0)
+            {
+                lblPlantReadyQuality.Text = dt.Rows[0]["PlantReadyAVG"].ToString();
+            }
+            else
+            {
+                lblPlantReadyQuality.Text = "00:00";
             }
         }
     }
