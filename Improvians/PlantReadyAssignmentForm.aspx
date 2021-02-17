@@ -47,7 +47,7 @@
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvGerm_PageIndexChanging"
-                                    GridLines="None" OnRowCommand="gvGerm_RowCommand"
+                                    GridLines="None" OnRowCommand="gvGerm_RowCommand"  OnRowDataBound="gvGerm_RowDataBound1"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                         <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">

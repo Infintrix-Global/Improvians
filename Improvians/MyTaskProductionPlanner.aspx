@@ -6,22 +6,26 @@
             <div class="site__container">
                 <h2>My Task</h2>
                 
-                <div class="filter__row d-flex">
-                    <div class="row">
-                        <div class="col m3">
-                             <label>Customer </label>
-                            <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        </div>
-                        
-                          <div class="col m3">
-                               <label>Facility </label>
-                            <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        </div>
-                          <div class="col m3">
-                               <label>Job No </label>
-                            <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        </div>
+               <div class="row">
+                    <div class="col m3">
+                        <label>Customer </label>
+                        <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
+                    <div class="col m3">
+                        <label>Job No </label>
+                        <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                  
+                    <div class="col m3">
+                        <label>Facility Location </label>
+                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+
+                    <div class="col m3">
+                          <br />
+                          <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+                    </div>
+
                 </div>
 
                        <div class="row">
