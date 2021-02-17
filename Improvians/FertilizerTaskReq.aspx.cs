@@ -25,9 +25,8 @@ namespace Improvians
             {
               
                 BindSupervisor();
-                BindFertilizer();
-               
-                BindUnit();
+               BindFertilizer();
+            BindUnit();
                 BindJobCode();
                 Bindcname();
                 BindBenchLocation();
@@ -293,22 +292,22 @@ namespace Improvians
         {
             if(radtype.SelectedValue=="Fertilizer")
             {
-                gvFerDetails.HeaderRow.Cells[0].Text = "Fertilizer";
+               // gvFerDetails.HeaderRow.Cells[0].Text = "Fertilizer";
                 lbltype.Text = "Fertilizer";
                 dtTrays.Rows.Clear();
                 gvFerDetails.DataSource = dtTrays;
                 gvFerDetails.DataBind();
-                BindFertilizer();
+              BindFertilizer();
             }
             else if (radtype.SelectedValue == "Chemical")
             {
 
-                gvFerDetails.HeaderRow.Cells[0].Text = "Chemical";
+                //gvFerDetails.HeaderRow.Cells[0].Text = "Chemical";
                 lbltype.Text = "Chemical";
                 dtTrays.Rows.Clear();
                 gvFerDetails.DataSource = dtTrays;
                 gvFerDetails.DataBind();
-                BindChemical();
+           BindChemical();
             }
         }
 
