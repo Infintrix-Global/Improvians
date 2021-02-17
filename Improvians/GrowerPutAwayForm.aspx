@@ -53,7 +53,7 @@
                                                     <asp:Label ID="lblActualTraySeeded" runat="server" Text='<%# Eval("ActualTraySeeded")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                             <asp:TemplateField HeaderText="Planned Due Date">
+                                            <asp:TemplateField HeaderText="Planned Due Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblSeededPlanDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                 </ItemTemplate>
@@ -101,88 +101,100 @@
                             </asp:Panel>
                             <asp:Panel ID="PanelAdd" Visible="false" runat="server">
                                 <div class="dashboard__block dashboard__block--asign">
-                                  
-                                            <div class="row">
 
-                                                <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                                    <label>Job No.</label><br />
+                                    <div class="row">
 
-                                                    <asp:Label ID="lblJobID" runat="server"></asp:Label>
-                                                </div>
-                                                <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                                    <label class="d-block">Seed Date</label>
+                                        <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                                            <label>Job No.</label><br />
 
-                                                    <asp:Label ID="lblSeedDate" runat="server"></asp:Label>
-                                                </div>
+                                            <asp:Label ID="lblJobID" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                                            <label class="d-block">Seed Date</label>
 
-                                                <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                                    <label class="d-block">Seeded Trays</label>
-                                                    <asp:Label ID="lblSeededTrays" runat="server"></asp:Label>
+                                            <asp:Label ID="lblSeedDate" runat="server"></asp:Label>
+                                        </div>
 
-                                                </div>
+                                        <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                                            <label class="d-block">Seeded Trays</label>
+                                            <asp:Label ID="lblSeededTrays" runat="server"></asp:Label>
 
-                                                
-                                                <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                                    <label class="d-block">Remaining Seeded Trays</label>
-                                                    <asp:Label ID="lblRemaining" runat="server"></asp:Label>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="data__table">
+                                        </div>
 
 
-                                                <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="80%"
-                                                    AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="RowNumber" HeaderText="NO." />
-                                                        <asp:TemplateField HeaderText="Put Away Facility" HeaderStyle-HorizontalAlign="Center">
-                                                            <ItemTemplate>
-                                                                <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
+                                        <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                                            <label class="d-block">Remaining Seeded Trays</label>
+                                            <asp:Label ID="lblRemaining" runat="server"></asp:Label>
 
-                                                                <asp:DropDownList ID="ddlMain" OnSelectedIndexChanged="ddlMain_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                        </div>
+                                    </div>
 
-
-                                                                <asp:Label ID="lblMain" Visible="false" runat="server" Text='<%# Eval("FacilityID")%>'></asp:Label>
-
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Bench Location">
-                                                            <ItemTemplate>
-                                                                <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                                                                <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
-
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                    <div class="data__table">
 
 
-                                                        <asp:TemplateField HeaderText="Trays">
-                                                            <ItemTemplate>
+                                        <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="80%"
+                                            AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
+                                            <Columns>
+                                                <asp:BoundField DataField="RowNumber" HeaderText="NO." />
+                                                <asp:TemplateField HeaderText="Put Away Facility" HeaderStyle-HorizontalAlign="Center">
+                                                    <ItemTemplate>
+                                                        <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
 
-                                                                <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
-
-
-                                                            </ItemTemplate>
-
-
-                                                            <FooterStyle HorizontalAlign="Right" />
-                                                            <FooterTemplate>
-                                                                <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" Width="300px" CausesValidation="false"
-                                                                    Text="Add Put Away Location"  CssClass="bttn bttn-primary bttn-action" />
-                                                            </FooterTemplate>
+                                                        <asp:DropDownList ID="ddlMain" OnSelectedIndexChanged="ddlMain_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
 
 
+                                                        <asp:Label ID="lblMain" Visible="false" runat="server" Text='<%# Eval("FacilityID")%>'></asp:Label>
 
-                                                        </asp:TemplateField>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Bench Location">
+                                                    <ItemTemplate>
+                                                        <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                                        <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
 
-                                                    </Columns>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
 
-                                                </asp:GridView>
-                                            </div>
+                                                <asp:TemplateField HeaderText="Trays">
+                                                    <ItemTemplate>
+
+                                                        <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
 
 
-                                     
+                                                    </ItemTemplate>
+
+
+                                                    <FooterStyle HorizontalAlign="Right" />
+                                                    <FooterTemplate>
+                                                        <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" Width="300px" CausesValidation="false"
+                                                            Text="Add Put Away Location" CssClass="bttn bttn-primary bttn-action" />
+                                                    </FooterTemplate>
+
+
+
+                                                </asp:TemplateField>
+
+                                            </Columns>
+
+
+                                        </asp:GridView>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+
+
+
+                                       <div class="col-auto">
+                                            <label runat="server" id="lblfacsupervisor">Assignment</label>
+
+                                            <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                        </div>
+
+                                    </div>
+
+                                    <br />
+
                                     <div class="row">
 
 
@@ -196,20 +208,20 @@
                                             <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" runat="server" />
                                         </div>
                                     </div>
-                                   
+
                                     <div class="row">
 
 
 
                                         <div class="col-auto">
-                                             <br />
+                                            <br />
                                             <asp:Label ID="Label1" runat="server" ForeColor="#488949" Text="Assigned to site move team once submitted.​"></asp:Label>
                                         </div>
-                                      
+
                                     </div>
                                 </div>
 
-                               
+
                             </asp:Panel>
                         </div>
 

@@ -121,6 +121,15 @@ namespace Improvians
                 ddlSupervisor.DataBind();
                 ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
             }
+            if (Session["Role"].ToString() == "12")
+            {
+                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlSupervisor.DataTextField = "EmployeeName";
+                ddlSupervisor.DataValueField = "ID";
+                ddlSupervisor.DataBind();
+                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
         }
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -138,7 +147,7 @@ namespace Improvians
                 //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
                 lblGrowerID.Text = (row.FindControl("lblGrowerID") as Label).Text;
-                lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
+                lblfacsupervisor.InnerText = "Assignment"; //+ facName;
                                                                        // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                                                                        //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
