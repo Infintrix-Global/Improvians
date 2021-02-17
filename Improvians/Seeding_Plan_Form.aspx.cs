@@ -313,8 +313,8 @@ namespace Improvians
 
                 ddlBenchLocation.DataSource = objCOm.GetMainLocation();
 
-                ddlBenchLocation.DataTextField = "loc";
-                ddlBenchLocation.DataValueField = "loc";
+                ddlBenchLocation.DataTextField = "l1";
+                ddlBenchLocation.DataValueField = "l1";
                 ddlBenchLocation.DataBind();
                 ddlBenchLocation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
                 ddlBenchLocation.SelectedValue = lbl_Seedline.Text;

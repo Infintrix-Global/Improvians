@@ -131,7 +131,7 @@
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Putaway Facility">
+                                        <asp:TemplateField HeaderStyle-Width="15%" HeaderText="Putaway Facility">
                                             <ItemTemplate>
                                                <%-- <asp:TextBox ID="txtSeedline" runat="server" Text='<%# Eval("loc") %>' Width="50"></asp:TextBox>--%>
                                                 <asp:Label ID="lbl_Seedline" Visible="false" Text='<%# Eval("loc") %>' runat="server"></asp:Label>
