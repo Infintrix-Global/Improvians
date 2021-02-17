@@ -22,6 +22,11 @@
                         <label>Facility </label>
                         <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
+
+                       <div class="col m3">
+                        <label>Bench Location </label>
+                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
                     <div class="col m3">
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -30,12 +35,23 @@
                    
                 </div>
             </div>
-
+            
+            <br />
             <div class="row">
                 <div class="col m3">
-                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
                 </div>
+                 <div class="col m3">
+                </div>
+                 <div class="col m3">
+                </div>
+                <div class="col m3">
+                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+                    <asp:Button ID="Button1" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
+                    
+                </div>
+
             </div>
+           
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">

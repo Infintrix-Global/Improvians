@@ -25,9 +25,8 @@ namespace Improvians
             {
               
                 BindSupervisor();
-                BindFertilizer();
-               
-                BindUnit();
+               BindFertilizer();
+            BindUnit();
                 BindJobCode();
                 Bindcname();
                 BindBenchLocation();
@@ -234,7 +233,7 @@ namespace Improvians
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequest", nv);
+                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
                     if (result > 0)
                     {
                         objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
@@ -293,19 +292,22 @@ namespace Improvians
         {
             if(radtype.SelectedValue=="Fertilizer")
             {
+               // gvFerDetails.HeaderRow.Cells[0].Text = "Fertilizer";
                 lbltype.Text = "Fertilizer";
                 dtTrays.Rows.Clear();
                 gvFerDetails.DataSource = dtTrays;
                 gvFerDetails.DataBind();
-                BindFertilizer();
+              BindFertilizer();
             }
             else if (radtype.SelectedValue == "Chemical")
             {
+
+                //gvFerDetails.HeaderRow.Cells[0].Text = "Chemical";
                 lbltype.Text = "Chemical";
                 dtTrays.Rows.Clear();
                 gvFerDetails.DataSource = dtTrays;
                 gvFerDetails.DataBind();
-                BindChemical();
+           BindChemical();
             }
         }
 

@@ -36,7 +36,8 @@
 
                         <div class="dashboard__matrixdetail">
                             <h3 class="robotobold">
-                                <asp:Label ID="lblPlantReadyQuality" Font-Size="XX-Large" Font-Bold="true" runat="server" Text=""></asp:Label></h3>
+                                <asp:Literal runat="server" ID="lblPlantReadyQuality" Text="0"></asp:Literal>
+                            </h3>
                             <span>Avg. Plant Ready Quality (1-3)</span>
                         </div>
                     </div>
