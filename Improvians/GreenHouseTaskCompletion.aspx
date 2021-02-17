@@ -153,7 +153,7 @@
                             </div>
                             <div class="col">
                                 <label># Trays</label>
-                                <asp:TextBox ID="txtTrays" TextMode="Number"  runat="server" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" class="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtTrays" TextMode="Number" Enabled="false"  runat="server" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" class="input__control"></asp:TextBox>
                                 <asp:RangeValidator id="Range1"  ControlToValidate="txtTrays" MinimumValue="1" MaximumValue="20"  Type="Integer"  Text="The value must be from 1 to 20"  runat="server" ></asp:RangeValidator>
 
                                 <asp:Label runat="server" ID="lblSeedlot" Visible="false"></asp:Label>

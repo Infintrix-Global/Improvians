@@ -203,8 +203,8 @@ namespace Improvians
                 //  lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
 
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
-                lblGrowerID.Text = GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
+              //  lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
+              //  lblGrowerID.Text = GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
 
 
                 txtNotes.Focus();
