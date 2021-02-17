@@ -118,7 +118,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="SO Trays">
+                                        <asp:TemplateField HeaderText="Sales Order Trays">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblSOTrays" runat="server" Text='<%# Eval("sotrays","{0:####}") %>'></asp:Label>
 
@@ -138,7 +138,7 @@
                                                 <asp:DropDownList ID="ddlBenchLocation"  class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="WO Trays">
+                                        <asp:TemplateField HeaderText="Work order Trays">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="Txtgtrays" Width="50" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
                                             </ItemTemplate>

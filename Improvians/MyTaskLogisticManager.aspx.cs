@@ -39,35 +39,35 @@ namespace Improvians
             if (e.CommandName == "Assign")
             {
 
-              //  if (Session["Role"].ToString() == "5")
-              //  {
-                    // string Wid = "";
-                    // Wid = e.CommandArgument.ToString();
-                    string GrowerPutAwayId = e.CommandArgument.ToString();
-                    Response.Redirect(String.Format("~/MoveTaskAssignment.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
+                //  if (Session["Role"].ToString() == "5")
+                //  {
+                // string Wid = "";
+                // Wid = e.CommandArgument.ToString();
+                string GrowerPutAwayId = e.CommandArgument.ToString();
+                Response.Redirect(String.Format("~/MoveTaskAssignment.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
 
                 //}
             }
             if (e.CommandName == "Select")
             {
 
-          //      if (Session["Role"].ToString() == "5")
-              //  {
-                    // string Wid = "";
-                    // Wid = e.CommandArgument.ToString();
-                    string GrowerPutAwayId = e.CommandArgument.ToString();
-                    NameValueCollection nv1 = new NameValueCollection();
+                //      if (Session["Role"].ToString() == "5")
+                //  {
+                // string Wid = "";
+                // Wid = e.CommandArgument.ToString();
+                string GrowerPutAwayId = e.CommandArgument.ToString();
+                NameValueCollection nv1 = new NameValueCollection();
 
-                    // Session["MoveID"] = e.CommandArgument.ToString();
-                    nv1.Add("@CoordinatorId", Session["LoginID"].ToString());
-                    nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
-                    nv1.Add("@CreateBy", Session["LoginID"].ToString());
-                    long result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv1);
-                    //if (result > 0)
-                    //{
-                    Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
-                   // }
-               // }
+                // Session["MoveID"] = e.CommandArgument.ToString();
+                nv1.Add("@CoordinatorId", Session["LoginID"].ToString());
+                nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
+                nv1.Add("@CreateBy", Session["LoginID"].ToString());
+                long result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv1);
+                //if (result > 0)
+                //{
+                Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
+                // }
+                // }
             }
         }
 
@@ -76,6 +76,25 @@ namespace Improvians
         {
             gvGerm.PageIndex = e.NewPageIndex;
             BindGridGerm();
+
+        }
+
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnAssign = (Button)e.Row.FindControl("btnAssign");
+                Button btnSelect = (Button)e.Row.FindControl("btnSelect");
+
+                int RoleId = Convert.ToInt32(Session["Role"]);
+                if (RoleId == 11 || RoleId == 3 || RoleId == 5)
+                {
+                    btnSelect.Visible = true;
+                    btnAssign.Visible = false;
+                }
+
+            }
 
         }
     }

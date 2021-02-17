@@ -22,14 +22,15 @@
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                      <div class="col m3">
+                      <div class="col m6">
                          <br />
                                 <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                              <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                     </div>
 
-                     <div class="col m3">
-                        <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
-                    </div>
+                    <%-- <div class="col m3">
+                    
+                    </div>--%>
                      
                 </div>
             </div>
@@ -141,7 +142,8 @@
                                 <label class="d-block">Assign task to Greenhouse Supervisor</label>
 
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                            </div>
+                          
+                                </div>
 
                             <div class="col-12 my-3">
 

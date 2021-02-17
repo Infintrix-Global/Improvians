@@ -23,7 +23,7 @@
                         <asp:DropDownList ID="ddlJobNo" runat="server" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                      <div class="col m3">
-                        <label>Main Location </label>
+                        <label>Facility Location </label>
                         <asp:DropDownList ID="ddlFacility" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                      <div class="col m3">

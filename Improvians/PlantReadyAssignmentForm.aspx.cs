@@ -77,9 +77,10 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             //nv.Add("@wo", "");
             //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-         //   nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-           // nv.Add("@Facility", ddlFacility.SelectedValue);
+            //   nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            // nv.Add("@Facility", ddlFacility.SelectedValue);
             //nv.Add("@Mode", "8");
+            nv.Add("@LoginID", Session["LoginID"].ToString());
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             dt = objCommon.GetDataTable("SP_GetSupervisorPlantReadyTask", nv);
             gvGerm.DataSource = dt;
@@ -177,6 +178,23 @@ namespace Improvians
                     lblTitla.Text = "Plant Ready Request";
                 }
 
+
+            }
+        }
+
+        protected void gvGerm_RowDataBound1(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnAssign = (Button)e.Row.FindControl("btnAssign");
+                Button btnSelect = (Button)e.Row.FindControl("btnSelect");
+
+                int RoleId = Convert.ToInt32(Session["Role"]);
+                if (RoleId == 11 || RoleId == 3 || RoleId == 5)
+                {
+                    btnSelect.Visible = true;
+                    btnAssign.Visible = false;
+                }
 
             }
         }

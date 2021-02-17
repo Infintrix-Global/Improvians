@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Collections.Specialized;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 namespace Improvians
 {
-    public partial class IrrigationRequestForm : System.Web.UI.Page
+    public partial class IrrigationReqManual : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -66,7 +67,7 @@ namespace Improvians
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-           
+
             nv.Add("@Mode", "8");
             dt = objCommon.GetDataTable("GET_Common", nv);
             ddlCustomer.DataSource = dt;
@@ -202,12 +203,12 @@ namespace Improvians
                 //  lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
 
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-             //  lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
-              // lblGrowerID.Text= GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
+              //  lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
+              //  lblGrowerID.Text = GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
 
 
                 txtNotes.Focus();
-                
+
             }
         }
 
@@ -227,18 +228,18 @@ namespace Improvians
                     //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
-                   // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
+                    // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
                     nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
                     nv.Add("@IrrigationDuration", "");
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
                     nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@Nots", txtNotes.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
+                    result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestManual", nv);
                     if (result > 0)
                     {
                         // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                        
+
                     }
                     else
                     {
@@ -320,9 +321,5 @@ namespace Improvians
 
         }
 
-        protected void btnManual_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/IrrigationReqManual.aspx");
-        }
     }
 }

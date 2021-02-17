@@ -33,7 +33,7 @@
                                     <tr>
                                         <td>Put-Away</td>
                                         <td>Request a put away location for a job</td>
-                                        <td class="text-center"> <asp:LinkButton ID="lnkPutAway" PostBackUrl="#" runat="server" Text="0" /></td>
+                                        <td class="text-center"> <asp:LinkButton ID="lnkPutAway" PostBackUrl="MyTaskLogisticManager.aspx" runat="server" Text="0" /></td>
                                     </tr>
 
                                     <tr>

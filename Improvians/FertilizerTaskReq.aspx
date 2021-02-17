@@ -21,7 +21,7 @@
                     </div>
                   
                     <div class="col m3">
-                        <label>Put Away Main Location </label>
+                        <label>Facility Location </label>
                         <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
