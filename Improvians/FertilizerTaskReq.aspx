@@ -15,29 +15,35 @@
                         <label>Customer </label>
                         <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
+                    <div class="col m3">
+                        <label>Job No </label>
+                        <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
                     <%--   <div class="col m3">
                         <label>GreenHouse </label>
                         <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>--%>
                     <div class="col m3">
-                        <label>Facility </label>
+                        <label>Put Away Main Location </label>
                         <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
+
                     <div class="col m3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <label>Bench Location </label>
+                        <asp:DropDownList ID="ddlBenchLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
-                      <div class="col m3">
-                        <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
-                    </div>
                 </div>
             </div>
-
+            <br />
             <div class="row">
-                <div class="col m3">
-                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
+                <div class="col m8">
                 </div>
+                <div class="col m4">
+                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
+                    <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                </div>
+
             </div>
             <div class="row">
                 <div class=" col m12">

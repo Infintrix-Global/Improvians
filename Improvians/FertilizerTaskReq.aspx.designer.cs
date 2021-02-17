@@ -33,15 +33,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
 
         /// <summary>
-        /// ddlFacility control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
-
-        /// <summary>
         /// ddlJobNo control.
         /// </summary>
         /// <remarks>
@@ -51,13 +42,22 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
 
         /// <summary>
-        /// btnManual control.
+        /// ddlFacility control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManual;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
+
+        /// <summary>
+        /// ddlBenchLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlBenchLocation;
 
         /// <summary>
         /// btnAssign control.
@@ -67,6 +67,15 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssign;
+
+        /// <summary>
+        /// btnManual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnManual;
 
         /// <summary>
         /// lblmsg control.
