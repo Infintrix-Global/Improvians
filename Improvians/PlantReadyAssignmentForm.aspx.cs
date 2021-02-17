@@ -180,5 +180,22 @@ namespace Improvians
 
             }
         }
+
+        protected void gvGerm_RowDataBound1(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnAssign = (Button)e.Row.FindControl("btnAssign");
+                Button btnSelect = (Button)e.Row.FindControl("btnSelect");
+
+                int RoleId = Convert.ToInt32(Session["Role"]);
+                if (RoleId == 11)
+                {
+                    btnSelect.Visible = true;
+                    btnAssign.Visible = false;
+                }
+
+            }
+        }
     }
 }
