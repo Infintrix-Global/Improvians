@@ -205,7 +205,7 @@ namespace Improvians
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestManual", nv);
+                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
                     if (result > 0)
                     {
                         objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
