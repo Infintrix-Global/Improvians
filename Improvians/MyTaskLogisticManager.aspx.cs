@@ -88,7 +88,7 @@ namespace Improvians
                 Button btnSelect = (Button)e.Row.FindControl("btnSelect");
 
                 int RoleId = Convert.ToInt32(Session["Role"]);
-                if (RoleId == 11)
+                if (RoleId == 11 || RoleId == 3 || RoleId == 5)
                 {
                     btnSelect.Visible = true;
                     btnAssign.Visible = false;
