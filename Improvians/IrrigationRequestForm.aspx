@@ -9,36 +9,44 @@
         <div class="site__container">
             <h2>Irrigation </h2>
 
-            <div class="filter__row d-flex">
-                <div class="row">
+            <div class="row">
                     <div class="col m3">
                         <label>Customer </label>
                         <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
-                    <div class="col m3">
-                        <label>Facility </label>
-                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                     <div class="col m3">
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
+                  
                     <div class="col m3">
-                        <br />
-                        <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                        <label>Put Away Main Location </label>
+                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
+                    <div class="col m3">
+                        <label>Bench Location </label>
+                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
 
                 </div>
-            </div>
-
-            <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
+         
+            <br />
             <div class="row">
                 <div class="col m3">
-                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
                 </div>
+                 <div class="col m3">
+                </div>
+                 <div class="col m3">
+                </div>
+                <div class="col m3">
+                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
+                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
+                   
+                </div>
+
             </div>
+
 
             <div class="data__table">
                 <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -78,6 +86,11 @@
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
+                          <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -112,7 +125,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                      <%--  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
 
 
@@ -121,7 +134,7 @@
                                 <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
 
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
 
 
                     </Columns>
@@ -158,7 +171,7 @@
 
                         <div class="row">
 
-                            <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="col-12 col-sm-6 col-lg-3">
                                 <label>Assignment</label>
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
@@ -166,7 +179,7 @@
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <label>No. Of Trays to be Irrigated</label>
 
-                                <asp:TextBox ID="txtIrrigatedNoTrays" Enabled="false" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtIrrigatedNoTrays" ReadOnly="true" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
 
                             </div>
 

@@ -18,6 +18,7 @@ namespace Improvians
                 Bindcname();
                 BindJobCode();
                 BindFacility();
+                BindBenchLocation();
                 BindGridIrrigation();
                 BindSupervisorList();
             }
@@ -50,6 +51,11 @@ namespace Improvians
             //   nv.Add("@Facility",ddlFacility.SelectedValue);
             //  nv.Add("@Mode", "1");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+
             dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
@@ -87,7 +93,21 @@ namespace Improvians
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
+        public void BindBenchLocation()
+        {
 
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "10");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
         public void BindFacility()
         {
 
@@ -148,11 +168,17 @@ namespace Improvians
             BindGridIrrigation();
         }
 
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             Bindcname();
             BindJobCode();
             BindFacility();
+            BindBenchLocation();
             BindGridIrrigation();
         }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -293,5 +319,7 @@ namespace Improvians
             }
 
         }
+
+      
     }
 }
