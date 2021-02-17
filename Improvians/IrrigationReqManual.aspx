@@ -1,11 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationRequestForm.aspx.cs" Inherits="Improvians.IrrigationRequestForm" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationReqManual.aspx.cs" Inherits="Improvians.IrrigationReqManual" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
-    <div class="main main__header">
+      <div class="main main__header">
         <div class="site__container">
             <h2>Irrigation </h2>
 
@@ -42,7 +39,7 @@
                 <div class="col m3">
                      <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
-                     <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                   
                 </div>
 
             </div>
@@ -155,7 +152,7 @@
                         <h3>User Inputs:</h3>
                         <div class="row">
 
-                          <%--  <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                           <%-- <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
                                 <label>Job No.</label><br />
 
 
@@ -164,9 +161,9 @@
                                 <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
 
 
-                            </div>--%>
+                            </div>
 
-                        </div>
+                        </div>--%>
 
 
                         <div class="row">

@@ -258,6 +258,7 @@
     <Content Include="images\user-profile.jpg" />
     <Content Include="IrrigationAssignmentForm.aspx" />
     <Content Include="IrrigationCompletionForm.aspx" />
+    <Content Include="IrrigationReqManual.aspx" />
     <Content Include="IrrigationTaskCompletion.aspx" />
     <Content Include="IrrigationRequestForm.aspx" />
     <Content Include="IrrigationTaskAssignment.aspx" />
@@ -464,6 +465,13 @@
     </Compile>
     <Compile Include="IrrigationCompletionForm.aspx.designer.cs">
       <DependentUpon>IrrigationCompletionForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationReqManual.aspx.cs">
+      <DependentUpon>IrrigationReqManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationReqManual.aspx.designer.cs">
+      <DependentUpon>IrrigationReqManual.aspx</DependentUpon>
     </Compile>
     <Compile Include="IrrigationTaskCompletion.aspx.cs">
       <DependentUpon>IrrigationTaskCompletion.aspx</DependentUpon>

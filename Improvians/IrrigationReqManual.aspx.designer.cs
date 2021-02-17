@@ -11,7 +11,7 @@ namespace Improvians
 {
 
 
-    public partial class IrrigationRequestForm
+    public partial class IrrigationReqManual
     {
 
         /// <summary>
@@ -67,15 +67,6 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAssign;
-
-        /// <summary>
-        /// btnManual control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManual;
 
         /// <summary>
         /// GridIrrigation control.

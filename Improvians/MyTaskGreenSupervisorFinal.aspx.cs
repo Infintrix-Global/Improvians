@@ -24,7 +24,7 @@ namespace Improvians
         {
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
-
+            nv.Add("@LoginID", Session["LoginID"].ToString());
             dt = objCommonControl.GetDataSet("SP_GetGreenhouseSupervisorEachTaskCount", nv);           
             lnkGerm.Text = dt.Tables[0].Rows.Count.ToString();            
             lnkIrr.Text = dt.Tables[1].Rows.Count.ToString();
