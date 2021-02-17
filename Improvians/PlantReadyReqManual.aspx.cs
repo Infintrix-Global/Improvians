@@ -51,7 +51,7 @@ namespace Improvians
             nv.Add("@Facility", ddlFacility.SelectedValue);
             // nv.Add("@Mode", "7");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
+            dt = objCommon.GetDataTable("SP_GetPlantReadyRequestManual", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 

@@ -57,7 +57,7 @@ namespace Improvians
             nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
 
-            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequestManual", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
         }

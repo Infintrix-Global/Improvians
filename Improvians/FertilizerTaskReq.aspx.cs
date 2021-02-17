@@ -293,6 +293,7 @@ namespace Improvians
         {
             if(radtype.SelectedValue=="Fertilizer")
             {
+                gvFerDetails.HeaderRow.Cells[0].Text = "Fertilizer";
                 lbltype.Text = "Fertilizer";
                 dtTrays.Rows.Clear();
                 gvFerDetails.DataSource = dtTrays;
@@ -301,6 +302,8 @@ namespace Improvians
             }
             else if (radtype.SelectedValue == "Chemical")
             {
+
+                gvFerDetails.HeaderRow.Cells[0].Text = "Chemical";
                 lbltype.Text = "Chemical";
                 dtTrays.Rows.Clear();
                 gvFerDetails.DataSource = dtTrays;
