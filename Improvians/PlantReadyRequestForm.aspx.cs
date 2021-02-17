@@ -59,12 +59,32 @@ namespace Improvians
         }
         public void BindSupervisorList()
         {
+            //NameValueCollection nv = new NameValueCollection();
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            //ddlSupervisor.DataTextField = "EmployeeName";
+            //ddlSupervisor.DataValueField = "ID";
+            //ddlSupervisor.DataBind();
+            //ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
             NameValueCollection nv = new NameValueCollection();
-            ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlSupervisor.DataTextField = "EmployeeName";
-            ddlSupervisor.DataValueField = "ID";
-            ddlSupervisor.DataBind();
-            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            if (Session["Role"].ToString() == "1")
+            {
+                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlSupervisor.DataTextField = "EmployeeName";
+                ddlSupervisor.DataValueField = "ID";
+                ddlSupervisor.DataBind();
+                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
+            if (Session["Role"].ToString() == "12")
+            {
+                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlSupervisor.DataTextField = "EmployeeName";
+                ddlSupervisor.DataValueField = "ID";
+                ddlSupervisor.DataBind();
+                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
         }
         public void Bindcname()
         {
