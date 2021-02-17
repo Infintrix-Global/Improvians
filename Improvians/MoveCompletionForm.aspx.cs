@@ -123,25 +123,25 @@ namespace Improvians
             //if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblRemainingTrays.Text))
             //{
 
-           
 
-                long result = 0;
-                NameValueCollection nv = new NameValueCollection();
+
+            long result = 0;
+            NameValueCollection nv = new NameValueCollection();
             //nv.Add("@MoveID", MoveID);
             nv.Add("GrowerPutAwayId", GrowerPutAwayId);
             nv.Add("MoveAssignID", lblMoveAssignID.Text);
-                //nv.Add("@Wo",wo);
-                nv.Add("@MoveDate", txtMoveDate.Text.Trim());
-                nv.Add("@Put_Away_Location",txtPutAwayLocation.Text.Trim());
-                nv.Add("@TraysMoved",txtTrays.Text.Trim());
-                nv.Add("@Barcode", txtBarcode.Text.Trim());
-                nv.Add("@CreateBy", Session["LoginID"].ToString());
-                result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
+            //nv.Add("@Wo",wo);
+            nv.Add("@MoveDate", txtMoveDate.Text.Trim());
+            nv.Add("@Put_Away_Location", txtPutAwayLocation.Text.Trim());
+            nv.Add("@TraysMoved", txtTrays.Text.Trim());
+            nv.Add("@Barcode", txtBarcode.Text.Trim());
+            nv.Add("@CreateBy", Session["LoginID"].ToString());
+            result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
 
 
-                if (result > 0)
-                {
-                    lblmsg.Text = "Completion Successful";
+            if (result > 0)
+            {
+                lblmsg.Text = "Completion Successful";
 
                 if (lblRemainingTrays.Text == "0")
                 {
@@ -162,27 +162,27 @@ namespace Improvians
 
 
                 Clear();
-                    if (Session["Role"].ToString() == "6")
-                    {
-                        Response.Redirect("~/MyTaskShippingCoordinator.aspx");
-                    }
-
-                    else if (Session["Role"].ToString() == "5")
-                    {
-                        Response.Redirect("~/MyTaskLogisticManager.aspx");
-                    }
-                }
-                else
+                if (Session["Role"].ToString() == "3" || Session["Role"].ToString() == "5" || Session["Role"].ToString() == "11" || Session["Role"].ToString() == "6")
                 {
-                    lblmsg.Text = "Completion Not Successful";
+                    Response.Redirect("~/MyTaskShippingCoordinator.aspx");
                 }
+
+                else if (Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
+                {
+                    Response.Redirect("~/MyTaskLogisticManager.aspx");
+                }
+            }
+            else
+            {
+                lblmsg.Text = "Completion Not Successful";
+            }
             //}
             //else
             //{
 
             //    lblerrmsg.Text = "Number of Trays exceed Remaining trays";
 
-            
+
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -194,7 +194,7 @@ namespace Improvians
         {
             txtMoveDate.Text = "";
             txtTrays.Text = "";
-           // ddlLocation.SelectedIndex = 0;
+            // ddlLocation.SelectedIndex = 0;
         }
 
         protected void gvMove_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -207,15 +207,15 @@ namespace Improvians
                 GridViewRow row = gvMove.Rows[rowIndex];
 
 
-              //  MoveId = (row.FindControl("lblGrowerPutAwayId") as Label).Text;
+                //  MoveId = (row.FindControl("lblGrowerPutAwayId") as Label).Text;
 
-                
+
                 txtPutAwayLocation.Text = (row.FindControl("lblGreenHouseName") as Label).Text;
 
-             //   traysTotal = (row.FindControl("lblTraysRequest") as Label).Text;
+                //   traysTotal = (row.FindControl("lblTraysRequest") as Label).Text;
 
-               lblRemainingTrays.Text = (row.FindControl("lblTraysRequest") as Label).Text;
-               TraysRequest = (row.FindControl("lblTraysRequest") as Label).Text;
+                lblRemainingTrays.Text = (row.FindControl("lblTraysRequest") as Label).Text;
+                TraysRequest = (row.FindControl("lblTraysRequest") as Label).Text;
 
                 txtMoveDate.Focus();
             }
@@ -227,7 +227,7 @@ namespace Improvians
 
             if (txtTrays.Text != "")
             {
-                if( Convert.ToInt32(txtTrays.Text) <=  Convert.ToInt32(lblRemainingTrays.Text))
+                if (Convert.ToInt32(txtTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
                 {
                     lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
 
@@ -236,9 +236,9 @@ namespace Improvians
                 {
                     txtTrays.Text = "";
 
-                   // lblRemainingTrays.Text = TraysRequest;
+                    // lblRemainingTrays.Text = TraysRequest;
                 }
-               
+
 
             }
         }
@@ -248,18 +248,18 @@ namespace Improvians
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-               // Label lblGrowerPutAwayId = (Label)e.Row.FindControl("lblGrowerPutAwayId");
-                lblMoveAssignID.Text= ((Label)e.Row.FindControl("lblMoveAssignID")).Text;
+                // Label lblGrowerPutAwayId = (Label)e.Row.FindControl("lblGrowerPutAwayId");
+                lblMoveAssignID.Text = ((Label)e.Row.FindControl("lblMoveAssignID")).Text;
                 Label lblTray = (Label)e.Row.FindControl("lblTray");
                 Label lblTraysRequest = (Label)e.Row.FindControl("lblTraysRequest");
-                txtPutAwayLocation.Text= ((Label)e.Row.FindControl("lblGreenHouseName")).Text; 
+                txtPutAwayLocation.Text = ((Label)e.Row.FindControl("lblGreenHouseName")).Text;
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 // nv.Add("@WoId", lblGrowerPutAwayId.Text);
                 //nv.Add("@mode", "2");
                 nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
                 dt = objCommon.GetDataTable("SP_GetMovedTraysByGrowerPutAwayId", nv);
-             //   dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
+                //   dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
 
                 lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
 
