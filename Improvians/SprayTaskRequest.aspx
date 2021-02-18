@@ -76,12 +76,10 @@
                                                         AutoGenerateColumns="false" runat="server">
                                                         <Columns>
 
-                                           
                                                             <asp:TemplateField ShowHeader="false">
                                                                 <ItemTemplate>
 
                                                                     <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
-
 
                                                                 </ItemTemplate>
 
@@ -117,30 +115,20 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Fertilizer">
                                                                 <ItemTemplate>
-
                                                                     <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
-
-
                                                                 </ItemTemplate>
 
                                                             </asp:TemplateField>
 
                                                             <asp:TemplateField HeaderText="Quantity">
                                                                 <ItemTemplate>
-
                                                                     <asp:Label ID="lblQuantity" runat="server" Text='<%#Bind("Quantity") %>'></asp:Label>
-
-
                                                                 </ItemTemplate>
-
                                                             </asp:TemplateField>
 
                                                             <asp:TemplateField HeaderText="Unit">
                                                                 <ItemTemplate>
-
                                                                     <asp:Label ID="lblUnit" runat="server" Text='<%#Bind("Unit") %>'></asp:Label>
-
-
                                                                 </ItemTemplate>
 
                                                             </asp:TemplateField>
