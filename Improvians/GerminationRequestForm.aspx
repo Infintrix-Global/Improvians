@@ -152,7 +152,7 @@
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                                <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschedule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                 <asp:Button ID="btndismiss" runat="server" Text="Dismiss" OnClientClick="return confirm('Are you sure you want to dismiss this ?'); " CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
 
                                             </ItemTemplate>
@@ -216,6 +216,41 @@
                             <div class="col-auto m6">
                                 <br />
                                 <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </div>
+
+                <div id="divReschedule" runat="server" class="assign__task d-flex" visible="false">
+                    <asp:Panel ID="Panel1" runat="server">
+                        <h3>Reschedule Task</h3>
+                        <div class="row align-items-end">
+                            <div class="col-auto m6">
+                                <label>Job No.</label><br />
+                                <h3 class="robotobold">
+                                    <asp:Label ID="lblRescheduleJobID" runat="server"></asp:Label>
+                                    <asp:Label ID="lblRescheduleID" runat="server" Visible="false"></asp:Label>
+                                </h3>
+                            </div>                         
+                            <div class="col-auto m6">
+                                <label>New Germination Count Date </label>
+                                <asp:TextBox ID="txtNewDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                            </div>
+                               <div class="col-auto m6">
+                                <asp:RadioButtonList runat="server" ID="radReschedule">
+                                    <asp:ListItem Text="Only move this germination count" Value="1" Selected="True" ></asp:ListItem>
+                                     <asp:ListItem Text="Move all the remaining germination count by same number of days" Value="2" ></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+                            <%--<div class="clearfix"></div>--%>
+
+                            <div class="col-auto m6">
+                                <br />
+                                <asp:Button Text="Submit" ID="btnReschedule" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReschedule_Click" />
+                            </div>
+                            <div class="col-auto m6">
+                                <br />
+                                <asp:Button Text="Reset" ID="btnRescheduleReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetReschedule_Click" />
                             </div>
                         </div>
                     </asp:Panel>
