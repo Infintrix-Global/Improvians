@@ -75,7 +75,7 @@
                             <div class="data__table data__table-height">
 
 
-                                <asp:GridView ID="DGJob" runat="server" AllowPaging="True" AutoGenerateColumns="False" 
+                                <asp:GridView ID="DGJob" runat="server"  AutoGenerateColumns="False" 
                                     class="striped" 
                                     GridLines="None" OnRowDataBound="DGJob_RowDataBound"
                                     ShowHeaderWhenEmpty="True" Width="100%">

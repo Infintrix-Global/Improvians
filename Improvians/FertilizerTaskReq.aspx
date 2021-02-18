@@ -10,42 +10,45 @@
             <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
           
-                <div class="row">
-                    <div class="col m3">
+            <div class="row">
+                    <div class="col-lg-3">
                         <label>Customer </label>
                         <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                   
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <label>Facility Location </label>
                         <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <label>Bench Location </label>
-                        <asp:Repeater ID="repBench"  runat="server"  >
+                        <div class="control__box">
+                            <asp:Repeater ID="repBench"  runat="server"  >
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
-                               <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' /> </ItemTemplate>
+                                <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
+                                <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' /> </ItemTemplate>
                             </asp:Repeater>
-                      <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                            <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                        </div>
                     </div>
 
                 </div>
          
             <br />
             <div class="row">
-                <div class="col m3">
+                <div class="col-lg-3">
                 </div>
-                 <div class="col m3">
+                 <div class="col-lg-3">
                 </div>
-                 <div class="col m3">
+                 <div class="col-lg-2">
                 </div>
-                <div class="col m3">
+                <div class="col-lg-4">
+                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
                      <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
                     <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />

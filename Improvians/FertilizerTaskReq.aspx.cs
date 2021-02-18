@@ -434,5 +434,10 @@ namespace Improvians
         {
             BindGridFerReq();
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindGridFerReq();
+        }
     }
 }
