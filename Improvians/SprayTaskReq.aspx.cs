@@ -18,10 +18,10 @@ namespace Improvians
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
         CommonControl objCommon = new CommonControl();
-   
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 Bindcname();
                 BindJobCode();
@@ -125,7 +125,7 @@ namespace Improvians
 
             }
 
-          
+
         }
 
         protected void gvSpray_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -145,24 +145,24 @@ namespace Improvians
         public void clear()
         {
 
-          
+
             txtNotes.Text = "";
-        
+
             txtSprayDate.Text = "";
-         
+
         }
 
-   
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SupervisorID", Session["LoginID"].ToString());
-        
+
             nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
-         
+
             nv.Add("@SprayDate", txtSprayDate.Text.Trim());
-     
+
             nv.Add("@Nots", txtNotes.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddSprayRequest", nv);
@@ -203,7 +203,7 @@ namespace Improvians
             BindGridSprayReq();
         }
 
-     
+
 
         protected void ddlBenchLocation_SelectedIndexChanged1(object sender, EventArgs e)
         {
@@ -217,6 +217,26 @@ namespace Improvians
             BindFacility();
             BindBenchLocation();
             BindGridSprayReq();
+        }
+
+        protected void gvSpray_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblFertilizationId = (Label)e.Row.FindControl("lblFertilizationId");
+                GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@FertilizationId", lblFertilizationId.Text);
+              
+                dt = objCommon.GetDataTable("SP_GetSprayRequeststDetails", nv);
+
+                GridViewFields.DataSource = dt;
+                GridViewFields.DataBind();
+
+            }
         }
     }
 }

@@ -262,6 +262,7 @@
     <Content Include="IrrigationTaskCompletion.aspx" />
     <Content Include="IrrigationRequestForm.aspx" />
     <Content Include="IrrigationTaskAssignment.aspx" />
+    <Content Include="JS1\jquery.min.js" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
