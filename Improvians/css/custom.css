@@ -901,6 +901,10 @@ textarea.input__control {
 
 .dashboard__box-desc p { margin-bottom: 0; }
 
+.data__table-height {
+    max-height: 80vh;
+}
+
 
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {

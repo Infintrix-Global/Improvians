@@ -114,11 +114,11 @@ namespace Improvians
         }
 
 
-        protected void DGJob_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            DGJob.PageIndex = e.NewPageIndex;
-            getDataDGJob();
-        }
+        //protected void DGJob_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    DGJob.PageIndex = e.NewPageIndex;
+        //    getDataDGJob();
+        //}
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -211,7 +211,6 @@ namespace Improvians
                 int SelectedItems = 0;
 
 
-
                 foreach (GridViewRow item in DGJob.Rows)
                 {
 
@@ -236,7 +235,6 @@ namespace Improvians
                         HiddenField HiddenFieldsodate = (item.Cells[0].FindControl("HiddenFieldsodate") as HiddenField);
                         HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
                         HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
-
 
 
                         if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
