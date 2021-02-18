@@ -1,16 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="PlantReadyCompletionForm.aspx.cs" Inherits="Improvians.PlantReadyCompletionForm" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-      <div class="header__bottom">
+    <div class="header__bottom">
         <div class="header__tabs">
             <ul class="d-flex align-items-center justify-content-center list-inline">
-                <li><a href="/my-tasks.html" class="bttn active" title="My Task">My Task</a></li>
-                <li><a href="#" class="bttn" title="Site Task">Site Task</a></li>
-                <li><a href="#" class="bttn" title="Request Task">Request Task</a></li>
+                <li><a href="/my-tasks.html" class="bttn active" title="My Task">My Tasks</a></li>
                 <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
-                <li><a href="#" class="bttn" title="Track Task">Track Task</a></li>
             </ul>
         </div>
     </div>
@@ -33,12 +31,12 @@
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                      <div class="col m3">
-                         <br />
-                                <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                    <div class="col m3">
+                        <br />
+                        <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                     </div>
 
-                     
+
                 </div>
             </div>
 
@@ -122,7 +120,7 @@
                                             <ItemTemplate>
 
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("PlantReadyTaskAssignmentId")  %>'></asp:Button>
-                                               
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
