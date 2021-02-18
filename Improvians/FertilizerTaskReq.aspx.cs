@@ -113,12 +113,14 @@ namespace Improvians
             nv.Add("@Facility", ddlFacility.SelectedValue);
             int c = 0;
             string x = "";
-            foreach (ListItem i in chkBench.Items)
+            foreach (RepeaterItem item in repBench.Items)
             {
-                if (i.Selected)
+                CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
+                if (chkBench.Checked)
                 {
-                    c = 1;
-                    x += i.Value + ",";
+                        c = 1;
+                    x += ((HiddenField)item.FindControl("hdnValue")).Value;
+                      
                 }
             }
 
