@@ -193,6 +193,14 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
+            int FertilizationCode = 0;
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mode", "12");
+            dt = objCommon.GetDataTable("GET_Common", nv1);
+            FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
+
             foreach (GridViewRow row in gvFer.Rows)
             {
                 if ((row.FindControl("chkSelect") as CheckBox).Checked)
@@ -206,32 +214,14 @@ namespace Improvians
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
+                      nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
-                    if (result > 0)
-                    {
-                        objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
-
-                        //string message = "Assignment Successful";
-                        //string url = "MyTaskGrower.aspx";
-                        //string script = "window.onload = function(){ alert('";
-                        //script += message;
-                        //script += "');";
-                        //script += "window.location = '";
-                        //script += url;
-                        //script += "'; }";
-                        //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
-                        //Clear();
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                        //  lblmsg.Text = "Assignment Not Successful";
-                    }
-
+                   
 
                 }
             }
+
+            objTask.AddFertilizerRequestDetails(dtTrays,"0", FertilizationCode);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";

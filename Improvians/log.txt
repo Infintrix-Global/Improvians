@@ -3707,3 +3707,8 @@ The statement has been terminated. at 04-02-2021 23:13:13
    at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
    at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
    at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\02-02-2020\Improvians\CommonControl.cs:line 237Procedure or function 'SP_GetSprayRequestst' expects parameter '@JobCode', which was not supplied. at 18-02-2021 11:35:32
+*****Error message=****@SupervisorID:15 at 2/18/2021 1:36:54 AM
+*****Error message=****@GrowerPutAwayId:1 at 2/18/2021 1:36:54 AM
+*****Error message=****@SprayDate:2021-02-18 at 2/18/2021 1:36:54 AM
+*****Error message=****@Nots:test at 2/18/2021 1:36:54 AM
+*****Error message=****@LoginID:15 at 2/18/2021 1:36:54 AM
