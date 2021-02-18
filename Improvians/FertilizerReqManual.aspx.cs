@@ -28,6 +28,7 @@ namespace Improvians
                 BindFertilizer();
                 BindUnit();
                 BindJobCode();
+                BindBenchLocation();
                 Bindcname();
                 BindFacility();
                 dtTrays.Clear();
