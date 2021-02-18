@@ -72,11 +72,11 @@
                     <div class="portlet light ">
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
-                            <div class="data__table">
+                            <div class="data__table data__table-height">
 
 
-                                <asp:GridView ID="DGJob" runat="server" AllowPaging="True" AutoGenerateColumns="False" PageSize="20"
-                                    class="striped" AllowSorting="true" OnPageIndexChanging="DGJob_PageIndexChanging"
+                                <asp:GridView ID="DGJob" runat="server" AllowPaging="True" AutoGenerateColumns="False" 
+                                    class="striped" 
                                     GridLines="None" OnRowDataBound="DGJob_RowDataBound"
                                     ShowHeaderWhenEmpty="True" Width="100%">
 
