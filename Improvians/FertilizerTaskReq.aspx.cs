@@ -223,8 +223,10 @@ namespace Improvians
             int FertilizationCode = 0;
 
             NameValueCollection nv = new NameValueCollection();
+
             nv.Add("@Mode", "12");
             dt = objCommon.GetDataTable("GET_Common", nv);
+
             FertilizationCode = dt.Rows[0]["FCode"];
 
 
@@ -246,7 +248,7 @@ namespace Improvians
 
                     if (result > 0)
                     {
-                        objTask.AddFertilizerRequestDetails(dtTrays, result.ToString(), FertilizationCode);
+                        objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
 
                         //string message = "Assignment Successful";
                         //string url = "MyTaskGrower.aspx";
