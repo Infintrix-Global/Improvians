@@ -112,18 +112,18 @@ namespace Improvians
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
             int c = 0;
-            string x = "";
+            string x = "( ";
             foreach (RepeaterItem item in repBench.Items)
             {
                 CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
                 if (chkBench.Checked)
                 {
                         c = 1;
-                    x += ((HiddenField)item.FindControl("hdnValue")).Value;
+                    x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
                       
                 }
             }
-
+            x += " )";
             if (c > 0)
             {
                 nv.Add("@BenchLocation", x);
