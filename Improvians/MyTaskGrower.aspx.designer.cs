@@ -15,15 +15,6 @@ namespace Improvians
     {
 
         /// <summary>
-        /// ddlDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDept;
-
-        /// <summary>
         /// lnkPutAway control.
         /// </summary>
         /// <remarks>
@@ -76,14 +67,5 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkMove;
-
-        /// <summary>
-        /// ddlTaskRequest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTaskRequest;
     }
 }
