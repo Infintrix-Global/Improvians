@@ -233,10 +233,10 @@ namespace Improvians
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-            Bindcname();
-            BindJobCode();
-            BindFacility();
-            BindBenchLocation();
+            //Bindcname();
+            //BindJobCode();
+            //BindFacility();
+            //BindBenchLocation();
             BindGridSprayReq();
         }
 
