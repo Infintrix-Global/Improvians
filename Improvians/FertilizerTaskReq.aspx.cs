@@ -310,6 +310,8 @@ namespace Improvians
                 gvFerDetails.DataSource = dtTrays;
                 gvFerDetails.DataBind();
                 BindFertilizer();
+
+
             }
             else if (radtype.SelectedValue == "Chemical")
             {
