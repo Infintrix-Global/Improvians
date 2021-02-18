@@ -187,9 +187,17 @@ namespace Improvians
 
 
         protected void btnReschedule_Click(object sender, EventArgs e)
-        { }
+        {
+            int GTID = Convert.ToInt32(lblRescheduleID.Text);
+            long result = 0;
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@GTID", GTID.ToString());
+            nv.Add("@GermDate", txtNewDate.Text);
+            result = objCommon.GetDataInsertORUpdate("SP_RescheduleGerminationRequest", nv);
+        }
         protected void btnResetReschedule_Click(object sender, EventArgs e)
-        { 
+        {
+            txtNewDate.Text = "";
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {

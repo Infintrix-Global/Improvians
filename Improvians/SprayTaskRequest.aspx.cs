@@ -118,12 +118,15 @@ namespace Improvians
 
             if (e.CommandName == "Select")
             {
-                userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string FertilizationCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
+                Response.Redirect(String.Format("~/SprayTaskReq.aspx?FertilizationCode={0}", FertilizationCode));
+                //userinput.Visible = true;
+               
               
-                lblGrowerID.Text = gvSpray.DataKeys[rowIndex].Values[0].ToString();
+                //lblGrowerID.Text = gvSpray.DataKeys[rowIndex].Values[0].ToString();
 
-                txtNotes.Focus();
+                //txtNotes.Focus();
 
             }
 
