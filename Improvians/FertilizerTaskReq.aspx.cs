@@ -46,12 +46,13 @@ namespace Improvians
 
             nv.Add("@Mode", "10");
             dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlBenchLocation.DataSource = dt;
-            ddlBenchLocation.DataTextField = "GreenHouseID";
-            ddlBenchLocation.DataValueField = "GreenHouseID";
-            ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            //ddlBenchLocation.DataSource = dt;
+            //ddlBenchLocation.DataTextField = "GreenHouseID";
+            //ddlBenchLocation.DataValueField = "GreenHouseID";
+            //ddlBenchLocation.DataBind();
+            //ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+            repBench.DataSource = dt;
+            repBench.DataBind();
         }
 
 
@@ -110,7 +111,26 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            int c = 0;
+            string x = "";
+            foreach (ListItem i in chkBench.Items)
+            {
+                if (i.Selected)
+                {
+                    c = 1;
+                    x += i.Value + ",";
+                }
+            }
+
+            if (c > 0)
+            {
+                nv.Add("@BenchLocation", x);
+                //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            }
+            else
+            {
+                nv.Add("@BenchLocation", "0");
+            }
 
             dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
             gvFer.DataSource = dt;

@@ -27,7 +27,12 @@
 
                     <div class="col m3">
                         <label>Bench Location </label>
-                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <asp:Repeater ID="repBench"  runat="server"  >
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
+                               <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' /> </ItemTemplate>
+                            </asp:Repeater>
+                      <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
                     </div>
 
                 </div>
