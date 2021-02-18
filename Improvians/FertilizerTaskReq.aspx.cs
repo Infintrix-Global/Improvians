@@ -113,14 +113,14 @@ namespace Improvians
             nv.Add("@Facility", ddlFacility.SelectedValue);
             int c = 0;
             string x = "";
-            foreach (ListItem i in chkBench.Items)
-            {
-                if (i.Selected)
-                {
-                    c = 1;
-                    x += i.Value + ",";
-                }
-            }
+            //foreach (ListItem i in chkBench.Items)
+            //{
+            //    if (i.Selected)
+            //    {
+            //        c = 1;
+            //        x += i.Value + ",";
+            //    }
+            //}
 
             if (c > 0)
             {

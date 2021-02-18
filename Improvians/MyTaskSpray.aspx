@@ -66,7 +66,7 @@
                                         <td>Fertilization/Chemical</td>
                                         <td>A list of spray task to complete</td>
                                         <td class="text-center">
-                                            <asp:LinkButton ID="lnkFertilization" PostBackUrl="~/SprayTaskReq.aspx" runat="server" Text="0"></asp:LinkButton></td>
+                                            <asp:LinkButton ID="lnkFertilization" PostBackUrl="~/SprayTaskRequest.aspx" runat="server" Text="0"></asp:LinkButton></td>
                                     </tr>
 
                                     <tr>
