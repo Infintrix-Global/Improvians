@@ -14,7 +14,7 @@ namespace Improvians
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 Bindcname();
                 BindJobCode();
@@ -104,7 +104,7 @@ namespace Improvians
             dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
-           
+
         }
         public void BindSupervisorList()
         {
@@ -131,7 +131,7 @@ namespace Improvians
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if(e.CommandName == "Select")
+            if (e.CommandName == "Select")
             {
                 userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -139,21 +139,22 @@ namespace Improvians
                 //string facName = (row.FindControl("lblFacility") as Label).Text;
 
                 DataTable dt = new DataTable();
-             //   NameValueCollection nv = new NameValueCollection();
-              //  nv.Add("@FacilityName", facName);
-              //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
+                //   NameValueCollection nv = new NameValueCollection();
+                //  nv.Add("@FacilityName", facName);
+                //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
-                lblID.Text= (row.FindControl("lblID") as Label).Text;
+                lblID.Text = (row.FindControl("lblID") as Label).Text;
 
+                string Datwc = (row.FindControl("lblGermDate") as Label).Text;
 
-               txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+                txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
             }
 
-            if(e.CommandName == "Dismiss")
+            if (e.CommandName == "Dismiss")
             {
                 int GTID = Convert.ToInt32(e.CommandArgument);
                 long result = 0;
@@ -161,10 +162,35 @@ namespace Improvians
                 nv.Add("@GTID", GTID.ToString());
                 result = objCommon.GetDataInsertORUpdate("SP_DismissGerminationRequest", nv);
             }
+            if (e.CommandName == "Reschedule")
+            {
+                divReschedule.Visible = true;
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvGerm.Rows[rowIndex];
+                //string facName = (row.FindControl("lblFacility") as Label).Text;
+
+                DataTable dt = new DataTable();
+                //   NameValueCollection nv = new NameValueCollection();
+                //  nv.Add("@FacilityName", facName);
+                //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
+                lblRescheduleJobID.Text = (row.FindControl("lbljobID") as Label).Text;
+                lblRescheduleID.Text = (row.FindControl("lblID") as Label).Text;
+
+
+                txtNewDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+                //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
+                // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
+                //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
+                txtNewDate.Focus();
+            }
         }
 
-      
 
+        protected void btnReschedule_Click(object sender, EventArgs e)
+        { }
+        protected void btnResetReschedule_Click(object sender, EventArgs e)
+        { 
+        }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
@@ -175,7 +201,7 @@ namespace Improvians
             nv.Add("@ID", lblID.Text);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
-            if(result>0)
+            if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
@@ -193,7 +219,7 @@ namespace Improvians
             else
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-              //  lblmsg.Text = "Assignment Not Successful";
+                //  lblmsg.Text = "Assignment Not Successful";
             }
         }
 
@@ -202,10 +228,10 @@ namespace Improvians
             txtDate.Text = "";
             txtTrays.Text = "";
             //lblSupervisorID.Text = "";
-           // lblSupervisorName.Text = "";
-           // lblfacsupervisor.InnerText = "";
+            // lblSupervisorName.Text = "";
+            // lblfacsupervisor.InnerText = "";
             ddlSupervisor.SelectedIndex = 0;
-            
+
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -261,8 +287,8 @@ namespace Improvians
             BindBenchLocation();
             BindGridGerm();
 
-           
-            
+
+
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
