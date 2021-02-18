@@ -240,24 +240,24 @@ namespace Improvians
             BindGridSprayReq();
         }
 
-        protected void gvSpray_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+        //protected void gvSpray_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
 
-                Label lblFertilizationId = (Label)e.Row.FindControl("lblFertilizationId");
-                GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
+        //        Label lblFertilizationId = (Label)e.Row.FindControl("lblFertilizationId");
+        //        GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
 
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@FertilizationId", lblFertilizationId.Text);
+        //        DataTable dt = new DataTable();
+        //        NameValueCollection nv = new NameValueCollection();
+        //        nv.Add("@FertilizationId", lblFertilizationId.Text);
               
-                dt = objCommon.GetDataTable("SP_GetSprayRequeststDetails", nv);
+        //        dt = objCommon.GetDataTable("SP_GetSprayRequeststDetails", nv);
 
-                GridViewFields.DataSource = dt;
-                GridViewFields.DataBind();
+        //        GridViewFields.DataSource = dt;
+        //        GridViewFields.DataBind();
 
-            }
-        }
+        //    }
+        //}
     }
 }

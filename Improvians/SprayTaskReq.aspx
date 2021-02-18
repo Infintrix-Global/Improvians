@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="col m3">
-                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" Visible="false" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
 
                 </div>
             </div>
@@ -68,7 +68,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvSpray" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="10" DataKeyNames="wo,jobcode,GrowerPutAwayId" OnRowDataBound="gvSpray_RowDataBound"
+                                    class="striped" AllowSorting="true" PageSize="10" DataKeyNames="wo,jobcode,GrowerPutAwayId" 
                                     GridLines="None" OnRowCommand="gvSpray_RowCommand" OnPageIndexChanging="gvSpray_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
