@@ -28,6 +28,7 @@ namespace Improvians
                 BindFertilizer();
                 BindUnit();
                 BindJobCode();
+                BindBenchLocation();
                 Bindcname();
                 BindFacility();
                 dtTrays.Clear();
@@ -192,6 +193,14 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
+            int FertilizationCode = 0;
+
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Mode", "12");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            FertilizationCode = dt.Rows[0]["FCode"];
+
             foreach (GridViewRow row in gvFer.Rows)
             {
                 if ((row.FindControl("chkSelect") as CheckBox).Checked)
@@ -205,10 +214,11 @@ namespace Improvians
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
                     if (result > 0)
                     {
-                        objTask.AddFertilizerRequestDetails(dtTrays, result.ToString());
+                        objTask.AddFertilizerRequestDetails(dtTrays, result.ToString(), FertilizationCode);
 
                         //string message = "Assignment Successful";
                         //string url = "MyTaskGrower.aspx";

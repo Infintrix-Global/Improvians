@@ -73,7 +73,7 @@
                                                 <tr>
                                                     <td>Planned Due Date</td>
                                                     <td>
-                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("due_date","{0:dd MMM yyyy}")  %>'></asp:Label></td>
+                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}")  %>'></asp:Label></td>
 
                                                 </tr>
                                                 <tr>

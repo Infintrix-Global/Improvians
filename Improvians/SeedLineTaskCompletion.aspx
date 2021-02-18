@@ -63,7 +63,7 @@
 
                         <asp:TemplateField HeaderText="Seeding Due Date">
                             <ItemTemplate>
-                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("SeedingDueDate")  %>'></asp:Label>
+                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("SeedingDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
