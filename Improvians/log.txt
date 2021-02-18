@@ -3712,3 +3712,8 @@ The statement has been terminated. at 04-02-2021 23:13:13
 *****Error message=****@SprayDate:2021-02-18 at 2/18/2021 1:36:54 AM
 *****Error message=****@Nots:test at 2/18/2021 1:36:54 AM
 *****Error message=****@LoginID:15 at 2/18/2021 1:36:54 AM
+*****Error message=****@GTID:1 at 18-Feb-21 5:40:25 PM
+*****Error message=****@GTID:1 at 18-Feb-21 5:40:28 PM
+*****Error message=****@GTID:1 at 18-Feb-21 5:41:16 PM
+*****Error message=****@GTID:3 at 18-Feb-21 5:41:59 PM
+*****Error message=****@GTID:5 at 18-Feb-21 5:42:39 PM
