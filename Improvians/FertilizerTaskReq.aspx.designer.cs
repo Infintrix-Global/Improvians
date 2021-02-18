@@ -51,13 +51,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
 
         /// <summary>
-        /// ddlBenchLocation control.
+        /// repBench control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBenchLocation;
+        protected global::System.Web.UI.WebControls.Repeater repBench;
 
         /// <summary>
         /// btnSearchRest control.
