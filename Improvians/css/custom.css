@@ -1,4 +1,4 @@
-﻿@charset 'utf-8';
+@charset 'utf-8';
 
 /*Fonts*/
 @font-face {
@@ -123,6 +123,10 @@ b, strong { font-family: 'roboto-bold', sans-serif; }
 .navy_txt { color:#003054; }
 .dark_txt { color: #2a2a2a; }
 
+.dash_green_txt { color: #438644; }
+.dash_blue_txt { color: #10739e; }
+
+
 /*Font Styles*/
 .robotobold { font-family: 'roboto-bold', sans-serif; }
 .robotomd { font-family: 'roboto-medium', sans-serif; }
@@ -147,7 +151,7 @@ h2 {
 }
 
 table .bttn {
-    padding: 10px 15px;
+    padding: 14px 10px;
 }
 
 .bttn:focus { outline: none; }
@@ -394,7 +398,7 @@ textarea.input__control {
     right: 0;
     width: 100%;
     text-align: center;
-    z-index: 1;
+    z-index: 10;
 }
 
 .floating__footer ul {
@@ -850,6 +854,51 @@ textarea.input__control {
     overflow: auto;
 }
 
+.data__table { max-width: 100%; overflow: auto; }
+.data__table tr > th:first-child, .data__table tr > td:first-child { position: sticky; left: -1px; box-shadow: 1px 0px 0px 0px #e2e3e4; z-index: 2; }
+
+/*Dashboard Boxes*/
+.dashboard__grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -22.5px;
+    margin-right: -22.5px;
+    padding-top: 30px;
+}
+
+.dashboard__box {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 22px;
+    flex: 1 0 calc(33.33% - 45px);
+    max-width: calc(33.33% - 45px);
+    margin-left: 22.5px;
+    margin-right: 22.5px;
+    margin-bottom: 40px;
+}
+
+.dashboard__box-img { max-width: 23.62%; flex: 1 0 auto; }
+
+.dashboard__box-img img { max-width: 100%; height: auto; }
+
+.dashboard__box-desc { padding-left: 8.62%; }
+
+.dashboard__box-count {
+    font-size: 45px;
+    line-height: 45px;
+}
+
+.dashboard__box-title {
+    font-size: 24px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.dashboard__box-desc p { margin-bottom: 0; }
+
+
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
     .container {
@@ -866,7 +915,7 @@ textarea.input__control {
         border-radius: 10px;
     }
     .custom__dropdown { background-position: right 20px center; }
-    .bttn { border-radius: 10px; padding: 10px 15px; }
+    .bttn { border-radius: 10px; padding: 9px 22px; }
     .header__tabs ul { margin: 4px auto; }
     .dashboard__block { border-radius: 15px; }
 
@@ -910,6 +959,18 @@ textarea.input__control {
     .dashboard__matrixdetail span:not(.matrixdetail-subtitle) { line-height: 20px; }
 
     .filter__bttn { min-width: 110px; flex-basis: 110px; }
+    
+    .dashboard__grid { margin-left: -15px; margin-right: -15px; }
+
+    .dashboard__box {
+        padding: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+        flex: 1 0 calc(33.33% - 30px);
+        max-width: calc(33.33% - 30px);
+        margin-bottom: 30px;
+    }
+    .dashboard__box-img { max-width: 32%; }
 }
 
 @media only screen and (max-width: 1499px) {
@@ -923,7 +984,6 @@ textarea.input__control {
     .header__bottom { margin-top: 30px; }
     .header__bottom + .main { margin-top: 30px; }
     .filter__row { flex-wrap: wrap; }
-    h2 { text-align: center; }
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 auto; }
     .floating__footer a { padding: 12px 25px; }
     .data__table .bttn-action { width: auto; padding-left: 15px; padding-right: 15px; }
@@ -932,6 +992,10 @@ textarea.input__control {
     .custom__dropdown { background-position: right 15px center; padding-right: 45px; }
     .filter__search { background-position: left 15px center; padding-left: 45px; }
     .filter__control + * { margin-left: 15px; }
+    
+    .dashboard__box-img { max-width: 28%; }
+    .dashboard__box-count { font-size: 35px; line-height: 35px; }
+    .dashboard__box-title { font-size: 22px; line-height: 30px; }
 }
 
 @media only screen and (max-width: 1279px) {
@@ -943,6 +1007,7 @@ textarea.input__control {
 }
 
 @media only screen and (max-width: 1199px) {
+    h2 { text-align: center; }
     .login__wrapper { padding-left: 15px; padding-right: 15px; }
     .login__container label h3 { margin-bottom: 12px; }
     .site__container { padding-left: 15px; padding-right: 15px; }
@@ -959,8 +1024,8 @@ textarea.input__control {
     .assign__task { flex-wrap: wrap; justify-content: center; }
     .assign__task .filter__control + .filter__bttn { flex: 0 0 auto; width: auto; margin: 0; }
     .assign__task .filter__bttn + .filter__bttn { margin-left: 30px; }
-    .data__table { max-width: 100%; overflow: auto; }
-    .data__table tr > th:first-child, .data__table tr > td:first-child { position: sticky; left: -1px; box-shadow: 1px 0px 0px 0px #e2e3e4; }
+
+    .dashboard__box-title { margin-top: 6px; }
 }
 
 @media only screen and (max-width: 1023px) {
@@ -998,6 +1063,11 @@ textarea.input__control {
     .has__footer { padding-bottom: 94px; }
     .dashboard__paging { margin-bottom: 10px; }
     .dashboard__block--asign { margin-bottom: 30px; }
+
+    .dashboard__box {
+        flex: 1 0 calc(50% - 30px);
+        max-width: calc(50% - 30px);
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -1018,6 +1088,14 @@ textarea.input__control {
     .floating__footer a { height: 100%; }
     .floating__footer i { display: block; width: 100%; }
     .floating__footer a span { max-width: 137px; margin-left: auto; margin-right: auto; display: block; }
+
+    .dashboard__grid { padding-top: 20px; }
+    .dashboard__box { border-radius: 8px; }
+    .dashboard__box-img { margin: 0 auto 20px; max-width: 84px; min-height: 87px; }
+    .dashboard__box-count { font-size: 30px; line-height: 30px; }
+    .dashboard__box-title { font-size: 20px; line-height: 26px; }
+    .dashboard__box { flex-wrap: wrap; align-items: flex-start; }
+    .dashboard__box-desc { padding-left: 0; width: 100%; }
 }
 
 @media only screen and (max-width: 639px) {
@@ -1052,7 +1130,7 @@ textarea.input__control {
     .filter__search { background-position: left 12px center; padding-left: 38px; }
     .block__head + .activity__graph { margin-bottom: -20px; }
     .header__tabs::before { opacity: 1; }
-    .header__tabs li:last-child { padding-right: 25px; }
+    .header__tabs li:last-child:not(:nth-child(2)) { padding-right: 25px; }
     header .d-flex > a { max-width: 60px; overflow: hidden; }
     header a > img { max-width: 1000px; height: auto; }
 }
@@ -1089,6 +1167,9 @@ textarea.input__control {
     .header__tabs::before { right: -15px; }
     .alert__dropdown .dropdown-menu { transform: translate(-45%, 5px); }
     .data__table td i.fa-qrcode { font-size: 25px; }
+
+    .dashboard__box-desc { display: block; width: 100%; min-width: 100%; }
+    .dashboard__box { flex: 1 0 calc(100% - 30px); max-width: calc(100% - 30px); }
 }
 
 
