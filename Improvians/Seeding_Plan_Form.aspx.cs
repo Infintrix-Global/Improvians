@@ -321,5 +321,26 @@ namespace Improvians
             }
 
         }
+        protected void Reset_Click(object sender, EventArgs e)
+        {
+            long _isInserted = 0;
+            NameValueCollection nv = new NameValueCollection();
+
+            _isInserted = objCommon.GetDataInsertORUpdate("SP_AddResetData", nv);
+
+            string message = "Reset All Data Successful";
+            string url;
+
+            url = "Seeding_Plan_Form.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+
+        }
     }
 }

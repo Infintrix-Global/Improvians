@@ -48,6 +48,7 @@
 
                         <asp:Button ID="btnSearch" OnClick="btnSearch_Click" runat="server" Text="Search" CssClass="bttn bttn-primary bttn-action"></asp:Button>
                          <asp:Button ID="btnSearchReset" OnClick="btnSearchReset_Click" runat="server" Text="Reset" CssClass="bttn bttn-primary bttn-action"></asp:Button>
+                        <asp:Button ID="Reset" runat="server" Text="Reset All Data" Height="106px" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action"  />
                     </div>
                 </div>
 

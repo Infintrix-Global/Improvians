@@ -113,7 +113,7 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
 
             dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
             gvFer.DataSource = dt;
