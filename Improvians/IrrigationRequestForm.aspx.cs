@@ -54,8 +54,28 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            // nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            int c = 0;
+            string x = "";
+            foreach (RepeaterItem item in repBench.Items)
+            {
+                CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
+                if (chkBench.Checked)
+                {
+                    c = 1;
+                    x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
 
+                }
+            }
+            if (c > 0)
+            {
+                string chkSelected = x.Remove(x.Length - 1, 1);
+                nv.Add("@BenchLocation", chkSelected);
+            }
+            else
+            {
+                nv.Add("@BenchLocation", "0");
+            }
             dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
@@ -101,11 +121,14 @@ namespace Improvians
 
             nv.Add("@Mode", "10");
             dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlBenchLocation.DataSource = dt;
-            ddlBenchLocation.DataTextField = "GreenHouseID";
-            ddlBenchLocation.DataValueField = "GreenHouseID";
-            ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+            //ddlBenchLocation.DataSource = dt;
+            //ddlBenchLocation.DataTextField = "GreenHouseID";
+            //ddlBenchLocation.DataValueField = "GreenHouseID";
+            //ddlBenchLocation.DataBind();
+            //ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+            repBench.DataSource = dt;
+            repBench.DataBind();
 
         }
         public void BindFacility()
@@ -215,6 +238,12 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            int IrrigationCode = 0;
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mode", "13");
+            dt = objCommon.GetDataTable("GET_Common", nv1);
+            IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
                 if ((row.FindControl("chkSelect") as CheckBox).Checked)
@@ -233,6 +262,7 @@ namespace Improvians
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
                     nv.Add("@SprayTime", "");
                     nv.Add("@Nots", txtNotes.Text.Trim());
+                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
                     if (result > 0)
