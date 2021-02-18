@@ -246,9 +246,6 @@ namespace Improvians
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
-
-
-
                 }
 
             }
