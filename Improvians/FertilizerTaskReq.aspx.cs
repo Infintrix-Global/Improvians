@@ -114,26 +114,7 @@ namespace Improvians
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
             //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-            int c = 0;
-            string x = "";
-            foreach (RepeaterItem item in repBench.Items)
-            {
-                CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
-                if (chkBench.Checked)
-                {
-                    x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
-                    //objCommon.AddEmployeeFacility(_isInserted, ((HiddenField)item.FindControl("hdnValue")).Value);
-                }
-            }
-            if (c > 0)
-            {
-                string chkSelected = x.Remove(x.Length - 1, 1);
-                nv.Add("@BenchLocation", chkSelected);
-            }
-            else
-            {
-                nv.Add("@BenchLocation", "0");
-            }
+
             dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
             gvFer.DataSource = dt;
             gvFer.DataBind();
@@ -265,6 +246,9 @@ namespace Improvians
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+
+
+
                 }
 
             }

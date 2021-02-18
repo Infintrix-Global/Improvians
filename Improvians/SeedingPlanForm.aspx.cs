@@ -16,7 +16,7 @@ using iTextSharp.text.pdf;
 
 namespace Improvians
 {
-    public partial class Seeding_Plan_Form : System.Web.UI.Page
+    public partial class SeedingPlanForm : System.Web.UI.Page
     {
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         CommonControl objCommon = new CommonControl();
@@ -319,6 +319,27 @@ namespace Improvians
                 ddlBenchLocation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
                 ddlBenchLocation.SelectedValue = lbl_Seedline.Text;
             }
+
+        }
+        protected void Reset_Click(object sender, EventArgs e)
+        {
+            long _isInserted = 0;
+            NameValueCollection nv = new NameValueCollection();
+
+            _isInserted = objCommon.GetDataInsertORUpdate("SP_AddResetData", nv);
+
+            string message = "Reset All Data Successful";
+            string url;
+
+            url = "SeedingPlanForm.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
 
         }
     }

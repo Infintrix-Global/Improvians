@@ -1,4 +1,4 @@
-@charset 'utf-8';
+﻿@charset 'utf-8';
 
 /*Fonts*/
 @font-face {
@@ -877,7 +877,10 @@ textarea.input__control {
     margin-left: 22.5px;
     margin-right: 22.5px;
     margin-bottom: 40px;
+    color: #505050;
 }
+
+.dashboard__box:hover { color: #505050; }
 
 .dashboard__box-img { max-width: 23.62%; flex: 1 0 auto; }
 

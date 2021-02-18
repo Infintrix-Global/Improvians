@@ -287,7 +287,6 @@
     <Content Include="MyTaskGreenSupervisorFinal.aspx" />
     <Content Include="MyTaskAssistantGrower.aspx" />
     <Content Include="MyTaskGrower.aspx" />
-    <Content Include="MyTaskGrowerNew.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
     <Content Include="MyTaskProductionPlanner.aspx" />
     <Content Include="MyTaskSeedingTeam.aspx" />
@@ -305,13 +304,10 @@
     <Content Include="PutAwayTaskCompletion.aspx" />
     <Content Include="ResetData.aspx" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
-    <Content Include="Seeding_Plan_Form.aspx" />
+    <Content Include="SeedingPlanForm.aspx" />
     <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
-    <Content Include="spray-completion.html" />
-    <Content Include="spray-request.html" />
-    <Content Include="spray-task-assignment.html" />
     <Content Include="SprayrRequest.aspx" />
     <Content Include="SprayTaskReq.aspx" />
     <Content Include="SprayTaskRequest.aspx" />
@@ -573,13 +569,6 @@
     <Compile Include="MyTaskGrower.aspx.designer.cs">
       <DependentUpon>MyTaskGrower.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MyTaskGrowerNew.aspx.cs">
-      <DependentUpon>MyTaskGrowerNew.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MyTaskGrowerNew.aspx.designer.cs">
-      <DependentUpon>MyTaskGrowerNew.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MyTaskLogisticManager.aspx.cs">
       <DependentUpon>MyTaskLogisticManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -700,12 +689,12 @@
     <Compile Include="SeedingPlan\SeedingPlanForm.aspx.designer.cs">
       <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Seeding_Plan_Form.aspx.cs">
-      <DependentUpon>Seeding_Plan_Form.aspx</DependentUpon>
+    <Compile Include="SeedingPlanForm.aspx.cs">
+      <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Seeding_Plan_Form.aspx.designer.cs">
-      <DependentUpon>Seeding_Plan_Form.aspx</DependentUpon>
+    <Compile Include="SeedingPlanForm.aspx.designer.cs">
+      <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="SeedLineCompletionFinal.aspx.cs">
       <DependentUpon>SeedLineCompletionFinal.aspx</DependentUpon>

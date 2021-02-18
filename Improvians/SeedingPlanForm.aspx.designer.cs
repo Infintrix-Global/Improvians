@@ -11,7 +11,7 @@ namespace Improvians
 {
 
 
-    public partial class Seeding_Plan_Form
+    public partial class SeedingPlanForm
     {
 
         /// <summary>
@@ -94,6 +94,15 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearchReset;
+
+        /// <summary>
+        /// Reset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Reset;
 
         /// <summary>
         /// lblTotal control.
