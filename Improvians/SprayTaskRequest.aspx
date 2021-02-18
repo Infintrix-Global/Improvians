@@ -9,7 +9,7 @@
             <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
 
-            <div class="row">
+           <%-- <div class="row">
                 <div class="col m3">
                     <label>Customer </label>
                     <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -17,7 +17,7 @@
                 <%--   <div class="col m3">
                         <label>GreenHouse </label>
                         <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>--%>
+                    </div>
                 <div class="col m3">
                     <label>Put away Facility </label>
                     <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -31,7 +31,7 @@
                     <label>Bench Location </label>
                     <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged1" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-            </div>
+            </div>--%>
             <br />
 
             <div class="row">
@@ -55,7 +55,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvSpray" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="10" DataKeyNames="wo,jobcode,FertilizationCode" OnRowDataBound="gvSpray_RowDataBound"
+                                    class="striped" AllowSorting="true" PageSize="10" DataKeyNames="FertilizationCode" OnRowDataBound="gvSpray_RowDataBound"
                                     GridLines="None" OnRowCommand="gvSpray_RowCommand" OnPageIndexChanging="gvSpray_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
@@ -201,7 +201,7 @@
                         <div class="row">
 
                             <div class="col-md-auto">
-                                <label>Job No.</label><br />
+                              <%--  <label>Job No.</label><br />--%>
 
 
                                 <h3 class="robotobold">
