@@ -22,7 +22,7 @@
             <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
 
-            <div class="row">
+         <%--   <div class="row">
                 <div class="col m3">
                     <label>Customer </label>
                     <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -30,7 +30,7 @@
                 <%--   <div class="col m3">
                         <label>GreenHouse </label>
                         <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>--%>
+                    </div>
                 <div class="col m3">
                     <label>Put away Facility </label>
                     <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -44,7 +44,7 @@
                     <label>Bench Location </label>
                     <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged1" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-            </div>
+            </div>--%>
             <br />
 
             <div class="row">
@@ -124,7 +124,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Type" HeaderStyle-CssClass="autostyle2">
+<%--                                        <asp:TemplateField HeaderText="Type" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblType12" runat="server" Text='<%# Eval("Type")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -206,7 +206,7 @@
 
                                                 </asp:Panel>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -228,7 +228,7 @@
             <div class="dashboard__block dashboard__block--asign">
 
 
-                <div id="userinput" runat="server" visible="false">
+                <div id="userinput" runat="server" >
 
                     <asp:Panel ID="pnlint" runat="server">
 
@@ -237,7 +237,7 @@
                         <div class="row">
 
                             <div class="col-md-auto">
-                                <label>Job No.</label><br />
+                               <%-- <label>Job No.</label><br />--%>
 
 
                                 <h3 class="robotobold">
