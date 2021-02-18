@@ -9,7 +9,8 @@
             <h2>
                 <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton></h2>
             <h2>Seedline Planning</h2>
-
+              <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action"  />
+                   
             <div class="filter__row d-flex">
                 <div class="row">
                     <div class="col m3">
@@ -48,8 +49,7 @@
 
                         <asp:Button ID="btnSearch" OnClick="btnSearch_Click" runat="server" Text="Search" CssClass="bttn bttn-primary bttn-action"></asp:Button>
                          <asp:Button ID="btnSearchReset" OnClick="btnSearchReset_Click" runat="server" Text="Reset" CssClass="bttn bttn-primary bttn-action"></asp:Button>
-                        <asp:Button ID="Reset" runat="server" Text="Reset All Data" Height="106px" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action"  />
-                    </div>
+                       </div>
                 </div>
 
 
