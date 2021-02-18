@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="col m3">
-                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" Visible="false" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
 
                 </div>
             </div>
