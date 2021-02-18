@@ -11,89 +11,107 @@ namespace Improvians
 {
 
 
-    public partial class MyTaskGrowerNew
+    public partial class SeedingPlanForm
     {
 
         /// <summary>
-        /// sc1 control.
+        /// LinkMyTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager sc1;
+        protected global::System.Web.UI.WebControls.LinkButton LinkMyTask;
 
         /// <summary>
-        /// pnlGermTitle control.
+        /// txtFromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGermTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtFromDate;
 
         /// <summary>
-        /// pnlGermination control.
+        /// txtToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGermination;
+        protected global::System.Web.UI.WebControls.TextBox txtToDate;
 
         /// <summary>
-        /// ddlCustomer control.
+        /// ddlSeedlineLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeedlineLocation;
 
         /// <summary>
-        /// ddlGreenhouse control.
+        /// ddlSeedAllocated control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGreenhouse;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeedAllocated;
 
         /// <summary>
-        /// ddlFacility control.
+        /// ddlItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
+        protected global::System.Web.UI.WebControls.DropDownList ddlItem;
 
         /// <summary>
-        /// ddlJobNo control.
+        /// ddlTraySize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTraySize;
 
         /// <summary>
-        /// ddlStatus control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// radWeek control.
+        /// btnSearchReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList radWeek;
+        protected global::System.Web.UI.WebControls.Button btnSearchReset;
+
+        /// <summary>
+        /// Reset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Reset;
+
+        /// <summary>
+        /// lblTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
         /// lblmsg control.
@@ -105,76 +123,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// gvGerm control.
+        /// DGJob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGerm;
-
-        /// <summary>
-        /// userinput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
-
-        /// <summary>
-        /// pnlint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlint;
-
-        /// <summary>
-        /// lblJobID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblJobID;
-
-        /// <summary>
-        /// lblfacsupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblfacsupervisor;
-
-        /// <summary>
-        /// ddlSupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupervisor;
-
-        /// <summary>
-        /// txtDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
-
-        /// <summary>
-        /// txtTrays control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTrays;
+        protected global::System.Web.UI.WebControls.GridView DGJob;
 
         /// <summary>
         /// btnSubmit control.
@@ -186,6 +141,15 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
+        /// BtnPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnPrint;
+
+        /// <summary>
         /// btnReset control.
         /// </summary>
         /// <remarks>
@@ -195,12 +159,12 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Button btnReset;
 
         /// <summary>
-        /// CollapsiblePanelExtender1 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CollapsiblePanelExtender CollapsiblePanelExtender1;
+        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

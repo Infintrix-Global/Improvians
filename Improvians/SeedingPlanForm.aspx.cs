@@ -16,7 +16,7 @@ using iTextSharp.text.pdf;
 
 namespace Improvians
 {
-    public partial class Seeding_Plan_Form : System.Web.UI.Page
+    public partial class SeedingPlanForm : System.Web.UI.Page
     {
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         CommonControl objCommon = new CommonControl();
@@ -331,7 +331,7 @@ namespace Improvians
             string message = "Reset All Data Successful";
             string url;
 
-            url = "Seeding_Plan_Form.aspx";
+            url = "SeedingPlanForm.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
