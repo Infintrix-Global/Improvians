@@ -195,8 +195,8 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@SupervisorID", Session["LoginID"].ToString());
 
-            nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
-
+            // nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
+            nv.Add("@FertilizationCode", FertilizationCode);
             nv.Add("@SprayDate", txtSprayDate.Text.Trim());
 
             nv.Add("@Nots", txtNotes.Text.Trim());
