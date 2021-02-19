@@ -3753,3 +3753,13 @@ The statement has been terminated. at 04-02-2021 23:13:13
 *****Error message=****@SprayDate:2021-02-25 at 2/19/2021 4:11:36 AM
 *****Error message=****@Nots:test at 2/19/2021 4:11:36 AM
 *****Error message=****@LoginID:15 at 2/19/2021 4:11:36 AM
+*****Error message=****@SupervisorID:17 at 19-Feb-21 06:20:04 PM
+*****Error message=****@GrowerPutAwayID:3 at 19-Feb-21 06:20:04 PM
+*****Error message=****@IrrigatedNoTrays:333 at 19-Feb-21 06:20:04 PM
+*****Error message=****@WaterRequired:100 at 19-Feb-21 06:20:04 PM
+*****Error message=****@IrrigationDuration: at 19-Feb-21 06:20:04 PM
+*****Error message=****@SprayDate:2021-02-25 at 19-Feb-21 06:20:04 PM
+*****Error message=****@SprayTime: at 19-Feb-21 06:20:04 PM
+*****Error message=****@Nots:red at 19-Feb-21 06:20:04 PM
+*****Error message=****@IrrigationCode:2 at 19-Feb-21 06:20:04 PM
+*****Error message=****@LoginID:1 at 19-Feb-21 06:20:04 PM

@@ -131,7 +131,7 @@ namespace Improvians
                 //nv.Add("@mode", "1");
                 //result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
                 //Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
-               Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IRAID={0}", e.CommandArgument.ToString()));
+               Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
             }
         }
 
