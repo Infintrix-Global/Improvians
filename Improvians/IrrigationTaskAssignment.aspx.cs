@@ -18,9 +18,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["IRID"] != null)
+                if (Request.QueryString["IrrigationCode"] != null)
                 {
-                    IRID = Request.QueryString["IRID"].ToString();
+                    IrrigationCode = Request.QueryString["IrrigationCode"].ToString();
                 }
 
                 BindGridGerm();
@@ -44,19 +44,19 @@ namespace Improvians
             }
         }
 
-        private string IRID
+        private string IrrigationCode
         {
             get
             {
-                if (ViewState["IRID"] != null)
+                if (ViewState["IrrigationCode"] != null)
                 {
-                    return (string)ViewState["IRID"];
+                    return (string)ViewState["IrrigationCode"];
                 }
                 return "";
             }
             set
             {
-                ViewState["IRID"] = value;
+                ViewState["IrrigationCode"] = value;
             }
         }
 
@@ -82,8 +82,8 @@ namespace Improvians
             //nv.Add("@Facility","");
             //nv.Add("@Mode", "4");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            nv.Add("@IRID", IRID);
-            dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIRID", nv);
+            nv.Add("@IrrigationCode", IrrigationCode);
+            dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIrrigationCode", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
 
@@ -96,7 +96,7 @@ namespace Improvians
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
-            nv.Add("@IRID", IRID);
+            nv.Add("@IrrigationCode", IrrigationCode);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             //nv.Add("@wo", wo);
             //  nv.Add("@SprayDate","");
