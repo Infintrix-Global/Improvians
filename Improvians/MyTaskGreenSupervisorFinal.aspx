@@ -7,80 +7,110 @@
         <div class="header__tabs">
             <ul class="d-flex align-items-center justify-content-center list-inline">
                 <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
-                <%--<li><a href="#" class="bttn" title="Site Task">Site Task</a></li>
-                <li><a href="#" class="bttn active" title="Request Task">Request Task</a></li>--%>
                 <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
-                <%--  <li><a href="#" class="bttn" title="Track Task">Track Task</a></li>--%>
             </ul>
         </div>
     </div>
     <div class="main">
         <div class="site__container">
             <h2>My Tasks</h2>
-            <div class="row">
-                <div class="col-md-6 col-lg-3 col-xl-8">
-                    <div class="dashboard__block">
-                        <%--   <h3>My Tasks</h3>--%>
-                        The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. These tasks have been assigned to you by Grower/Assistant Grower after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose.
-                        <div class="data__table">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th>Task Name</th>
-                                        <th>Description</th>
-                                        <th class="text-center">No. of Tasks</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Put-Away</td>
-                                        <td>Request a put away location for a job</td>
-                                        <td class="text-center"> <asp:LinkButton ID="lnkPutAway" PostBackUrl="MyTaskLogisticManager.aspx" runat="server" Text="0" /></td>
-                                    </tr>
 
-                                    <tr>
-                                        <td>Germination Count</td>
-                                        <td>A list of germination count tasks to complete</td>
-                                        <td class="text-center">
-                                            <asp:LinkButton ID="lnkGerm" PostBackUrl="~/GerminationAssignmentForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fertilization/Chemical</td>
-                                        <td>Request a spray job</td>
-                                        <td class="text-center"><asp:LinkButton ID="lnkFertilization" PostBackUrl="#" runat="server" Text="0"></asp:LinkButton></td>
-                                    </tr>
-                                    <tr>
+            <p class="pt-3">
+                The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. These tasks have been assigned to you by Grower/Assistant Grower after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose.
+                       
+            </p>
 
-                                        <td>Irrigation</td>
-                                        <td>A list of irrigation tasks to complete</td>
-                                        <td class="text-center">
-                                            <asp:LinkButton ID="lnkIrr" PostBackUrl="~/IrrigationAssignmentForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <td>Crop Health Report</td>
-                                        <td>Assign Crop Health Report Task </td>
-                                        <td class="text-center">
-                                          </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Plant Ready</td>
-                                        <td>A list of plant ready reporting tasks to complete</td>
-                                        <td class="text-center">
-                                            <asp:LinkButton ID="lnkpr" PostBackUrl="~/PlantReadyAssignmentForm.aspx" runat="server" Text="0"></asp:LinkButton></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Move Request</td>
-                                        <td>Request a move </td>
-                                        <td class="text-center">
-                                           <asp:LinkButton ID="lnkMove" PostBackUrl="#" runat="server" Text="0"></asp:LinkButton></td> 
-                                    </tr>
-                                </tbody>
-                            </table>
+            <div class="dashboard__grid">
+                <a class="dashboard__box" href="~/MyTaskLogisticManager.aspx">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_put-away.png" width="137" height="140" alt="Put-Away" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <div class="dashboard__box-count dash_green_txt robotobold">
+                            <asp:Label ID="lblPutAway" runat="server" Text="0"></asp:Label>
                         </div>
+                        <h3 class="dashboard__box-title robotomd">Put-Away</h3>
+                        <p>Request a put away location for a job</p>
+                    </div>
+                </a>
+
+                <a class="dashboard__box" href="~/GerminationAssignmentForm.aspx">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <div class="dashboard__box-count dash_blue_txt robotobold">
+                            <asp:Label ID="lblGerm" runat="server" Text="0"></asp:Label>
+                        </div>
+                        <h3 class="dashboard__box-title robotomd">Germination Count</h3>
+                        <p>A list of germination count tasks to complete</p>
+                    </div>
+                </a>
+
+                <a class="dashboard__box" href="#">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <div class="dashboard__box-count dash_green_txt robotobold">
+                            <asp:Label ID="lblFer" runat="server" Text="0"></asp:Label>
+                        </div>
+                        <h3 class="dashboard__box-title robotomd">Fertilization / Chemical</h3>
+                        <p>Request a spray job</p>
+                    </div>
+                </a>
+                <a class="dashboard__box" href="~/IrrigationAssignmentForm.aspx">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <div class="dashboard__box-count dash_blue_txt robotobold">
+                            <asp:Label ID="lblIrr" runat="server" Text="0"></asp:Label>
+                        </div>
+                        <h3 class="dashboard__box-title robotomd">Irrigation</h3>
+                        <p>A list of irrigation tasks to complete</p>
+                    </div>
+                </a>
+                <div class="dashboard__box">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_crop-health-report.png" width="137" height="131" alt="Crop Health Report" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <div class="dashboard__box-count dash_green_txt robotobold">
+                            <asp:Label ID="lblCrop" runat="server" Text="0"></asp:Label>
+                        </div>
+                        <h3 class="dashboard__box-title robotomd">Crop Health Report</h3>
+                        <p>Assign Crop Health Report Request</p>
                     </div>
                 </div>
-            </div>
+                <a class="dashboard__box" href="~/PlantReadyAssignmentForm.aspx">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
+                    </div>
+                    <div class="dashboard__box-desc">
 
+                        <div class="dashboard__box-count dash_blue_txt robotobold">
+                            <asp:Label ID="lblpr" runat="server" Text="0"></asp:Label>
+                        </div>
+
+                        <h3 class="dashboard__box-title robotomd">Plant Ready</h3>
+                        <p>A list of plant ready reporting tasks to complete</p>
+
+                    </div>
+                </a>
+                <a class="dashboard__box" href="MoveForm.aspx">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <div class="dashboard__box-count dash_green_txt robotobold">
+                            <asp:Label ID="lblMove" runat="server" Text="0"></asp:Label>
+                        </div>
+                        <h3 class="dashboard__box-title robotomd">Move Request</h3>
+                        <p>Review and assign move tasks</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </asp:Content>

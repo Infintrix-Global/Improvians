@@ -15,66 +15,66 @@ namespace Improvians
     {
 
         /// <summary>
-        /// ddlDept control.
+        /// lblPutAway control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDept;
+        protected global::System.Web.UI.WebControls.Label lblPutAway;
 
         /// <summary>
-        /// lnkPutAway control.
+        /// lblGerm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPutAway;
+        protected global::System.Web.UI.WebControls.Label lblGerm;
 
         /// <summary>
-        /// lnkGerm control.
+        /// lblFer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkGerm;
+        protected global::System.Web.UI.WebControls.Label lblFer;
 
         /// <summary>
-        /// lnkFertilization control.
+        /// lblIrr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFertilization;
+        protected global::System.Web.UI.WebControls.Label lblIrr;
 
         /// <summary>
-        /// lnkIrr control.
+        /// lblCrop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkIrr;
+        protected global::System.Web.UI.WebControls.Label lblCrop;
 
         /// <summary>
-        /// lnkpr control.
+        /// lblpr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkpr;
+        protected global::System.Web.UI.WebControls.Label lblpr;
 
         /// <summary>
-        /// lnkMove control.
+        /// lblMove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkMove;
+        protected global::System.Web.UI.WebControls.Label lblMove;
     }
 }
