@@ -196,6 +196,10 @@ namespace Improvians
             BindGridIrrigation();
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             Bindcname();
@@ -354,5 +358,9 @@ namespace Improvians
         {
             Response.Redirect("~/IrrigationReqManual.aspx");
         }
+
+
+
+      
     }
 }
