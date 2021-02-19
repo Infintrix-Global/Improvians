@@ -215,14 +215,14 @@ namespace Improvians
             BindGridSprayReq();
         }
 
-        protected void btnSearchRest_Click(object sender, EventArgs e)
-        {
-            //Bindcname();
-            //BindJobCode();
-            //BindFacility();
-            //BindBenchLocation();
-            BindGridSprayReq();
-        }
+        //protected void btnSearchRest_Click(object sender, EventArgs e)
+        //{
+        //    //Bindcname();
+        //    //BindJobCode();
+        //    //BindFacility();
+        //    //BindBenchLocation();
+        //    BindGridSprayReq();
+        //}
 
         protected void gvSpray_RowDataBound(object sender, GridViewRowEventArgs e)
         {

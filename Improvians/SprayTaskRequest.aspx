@@ -5,49 +5,11 @@
      <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main">
         <div class="site__container">
-            <h2 class="text-left">Spray Request </h2>
-            <%-- <asp:UpdatePanel ID="up1" runat="server">
-                <ContentTemplate>--%>
-
-           <%-- <div class="row">
-                <div class="col m3">
-                    <label>Customer </label>
-                    <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-                <%--   <div class="col m3">
-                        <label>GreenHouse </label>
-                        <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                <div class="col m3">
-                    <label>Put away Facility </label>
-                    <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-                <div class="col m3">
-                    <label>Job No </label>
-                    <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-
-                <div class="col m3">
-                    <label>Bench Location </label>
-                    <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged1" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-            </div>--%>
+            <h2 class="text-left">Fertilization / Chemical Task Completion </h2>
+          
             <br />
 
-            <div class="row">
-                <div class="col m3">
-                </div>
-
-                <div class="col m3">
-                </div>
-                <div class="col m3">
-                </div>
-
-                <div class="col m3">
-                    <asp:Button Text="Reset" ID="btnSearchRest" Visible="false" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
-
-                </div>
-            </div>
+            
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">

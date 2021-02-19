@@ -13,7 +13,7 @@
     </div>
     <div class="main">
         <div class="site__container">
-            <h2>Move Completion Form</h2>
+            <h2>Put-Away Completion Form</h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
