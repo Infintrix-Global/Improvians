@@ -116,7 +116,7 @@ namespace Improvians
                 if (chkBench.Checked)
                 {
                     c = 1;
-                    x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
+                    x += "'" + ((HiddenField)item.FindControl("hdnValue")).Value + "',";
 
                 }
             }
@@ -129,7 +129,9 @@ namespace Improvians
             {
                 nv.Add("@BenchLocation", "0");
             }
-            dt = objCommon.GetDataTable("SP_GetFertilizerRequestManual", nv);
+            //dt = objCommon.GetDataTable("SP_GetFertilizerRequestManual", nv);
+            dt = objFer.GetManualFertilizerRequest(x);
+            
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
@@ -365,6 +367,10 @@ namespace Improvians
             txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindGridFerReq();
+        }
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             BindJobCode();
