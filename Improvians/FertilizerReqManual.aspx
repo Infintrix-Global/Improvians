@@ -22,10 +22,16 @@
                         <label>Facility </label>
                         <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-
-                       <div class="col m3">
+                     <div class="col-lg-3">
                         <label>Bench Location </label>
-                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <div class="control__box">
+                            <asp:Repeater ID="repBench"  runat="server"  >
+                                <ItemTemplate>
+                                <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
+                                <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' /> </ItemTemplate>
+                            </asp:Repeater>
+                            <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                        </div>
                     </div>
                     <div class="col m3">
                         <label>Job No </label>
@@ -45,6 +51,7 @@
                  <div class="col m3">
                 </div>
                 <div class="col m3">
+                      <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
                      <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                     <asp:Button ID="Button1" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
                     
