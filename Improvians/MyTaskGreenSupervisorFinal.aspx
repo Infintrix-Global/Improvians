@@ -21,7 +21,7 @@
             </p>
 
             <div class="dashboard__grid">
-                <a class="dashboard__box" href="~/MyTaskLogisticManager.aspx">
+                <a class="dashboard__box" href="MyTaskLogisticManager.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_put-away.png" width="137" height="140" alt="Put-Away" />
                     </div>
@@ -34,7 +34,7 @@
                     </div>
                 </a>
 
-                <a class="dashboard__box" href="~/GerminationAssignmentForm.aspx">
+                <a class="dashboard__box" href="GerminationAssignmentForm.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                     </div>
@@ -59,7 +59,7 @@
                         <p>Request a spray job</p>
                     </div>
                 </a>
-                <a class="dashboard__box" href="~/IrrigationAssignmentForm.aspx">
+                <a class="dashboard__box" href="IrrigationAssignmentForm.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
                     </div>
@@ -83,7 +83,7 @@
                         <p>Assign Crop Health Report Request</p>
                     </div>
                 </div>
-                <a class="dashboard__box" href="~/PlantReadyAssignmentForm.aspx">
+                <a class="dashboard__box" href="PlantReadyAssignmentForm.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
                     </div>
