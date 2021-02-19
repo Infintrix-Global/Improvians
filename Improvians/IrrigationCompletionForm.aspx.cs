@@ -15,71 +15,71 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                Bindcname();
-                BindJobCode();
-                BindFacility();
+                //Bindcname();
+              //  BindJobCode();
+              //  BindFacility();
                 BindGridGerm();
 
             }
         }
 
-        public void Bindcname()
-        {
+        //public void Bindcname()
+        //{
 
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "8");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlCustomer.DataSource = dt;
-            ddlCustomer.DataTextField = "cname";
-            ddlCustomer.DataValueField = "cname";
-            ddlCustomer.DataBind();
-            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+        //    nv.Add("@Mode", "8");
+        //    dt = objCommon.GetDataTable("GET_Common", nv);
+        //    ddlCustomer.DataSource = dt;
+        //    ddlCustomer.DataTextField = "cname";
+        //    ddlCustomer.DataValueField = "cname";
+        //    ddlCustomer.DataBind();
+        //    ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        }
+        //}
 
 
-        public void BindJobCode()
-        {
+        //public void BindJobCode()
+        //{
 
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlJobNo.DataSource = dt;
-            ddlJobNo.DataTextField = "Jobcode";
-            ddlJobNo.DataValueField = "Jobcode";
-            ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+        //    nv.Add("@Mode", "7");
+        //    dt = objCommon.GetDataTable("GET_Common", nv);
+        //    ddlJobNo.DataSource = dt;
+        //    ddlJobNo.DataTextField = "Jobcode";
+        //    ddlJobNo.DataValueField = "Jobcode";
+        //    ddlJobNo.DataBind();
+        //    ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        }
+        //}
 
-        public void BindFacility()
-        {
+        //public void BindFacility()
+        //{
 
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+        //    nv.Add("@Mode", "9");
+        //    dt = objCommon.GetDataTable("GET_Common", nv);
+        //    ddlFacility.DataSource = dt;
+        //    ddlFacility.DataTextField = "loc_seedline";
+        //    ddlFacility.DataValueField = "loc_seedline";
+        //    ddlFacility.DataBind();
+        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        }
+        //}
 
         public void BindGridGerm()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             //nv.Add("@wo", "");
-            nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            //nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             //nv.Add("@Mode", "6");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
@@ -105,9 +105,9 @@ namespace Improvians
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
-            Bindcname();
-            BindJobCode();
-            BindFacility();
+           // Bindcname();
+           // BindJobCode();
+          //  BindFacility();
             BindGridGerm();
         }
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -141,7 +141,29 @@ namespace Improvians
             BindGridGerm();
         }
 
-      
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
 
+                GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
+                GridView GridViewFShow = e.Row.FindControl("GridViewFShow") as GridView;
+                Label lblIrrigationCode = (Label)e.Row.FindControl("lblIrrigationCode");
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@IrrigationCode", lblIrrigationCode.Text);
+                dt = objCommon.GetDataTable("SP_GetIrrigationRequestDetails", nv);
+                GridViewFields.DataSource = dt;
+                GridViewFields.DataBind();
+
+                DataTable dt1 = new DataTable();
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("@IrrigationCode", lblIrrigationCode.Text);
+                dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
+                GridViewFShow.DataSource = dt1;
+                GridViewFShow.DataBind();
+            }
+        }
     }
 }

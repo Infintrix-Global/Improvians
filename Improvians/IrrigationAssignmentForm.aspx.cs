@@ -139,9 +139,9 @@ namespace Improvians
             if (e.CommandName == "Assign")
             {
              
-                string IRID = e.CommandArgument.ToString();
+                string IrrigationCode = e.CommandArgument.ToString();
 
-                Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?IRID={0}", IRID));
+                Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?IrrigationCode={0}", IrrigationCode));
 
             }
 
@@ -149,7 +149,7 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
 
-                string WOID = e.CommandArgument.ToString();
+               // string WOID = e.CommandArgument.ToString();
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
@@ -164,18 +164,23 @@ namespace Improvians
                 //nv.Add("@mode", "1");
 
                 //result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
+
+                //  nv.Add("@SprayDate", "");
+                // nv.Add("@TraysSprayed", "");
+                // nv.Add("@SprayDuration", "");
+                //  nv.Add("@mode", "2");
+
+
+                string IrrigationCode = e.CommandArgument.ToString();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-                nv.Add("@IRID", e.CommandArgument.ToString());
-              //  nv.Add("@SprayDate", "");
-               // nv.Add("@TraysSprayed", "");
-               // nv.Add("@SprayDuration", "");
+                nv.Add("@IrrigationCode", IrrigationCode);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-              //  nv.Add("@mode", "2");
+            
 
                 result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IRAID={0}", result));
+                    Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", IrrigationCode));
                 }
 
             }
@@ -189,7 +194,8 @@ namespace Improvians
 
      
 
-        protected void gvGerm_RowDataBound1(object sender, GridViewRowEventArgs e)
+     
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -203,10 +209,24 @@ namespace Improvians
                     btnAssign.Visible = false;
                 }
 
+                GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
+                GridView GridViewFShow = e.Row.FindControl("GridViewFShow") as GridView;
+                Label lblIrrigationCode = (Label)e.Row.FindControl("lblIrrigationCode");
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@IrrigationCode", lblIrrigationCode.Text);
+                dt = objCommon.GetDataTable("SP_GetIrrigationRequestDetails", nv);
+                GridViewFields.DataSource = dt;
+                GridViewFields.DataBind();
+
+                DataTable dt1 = new DataTable();
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("@IrrigationCode", lblIrrigationCode.Text);
+                dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
+                GridViewFShow.DataSource = dt1;
+                GridViewFShow.DataBind();
             }
         }
-
-
-      
     }
 }

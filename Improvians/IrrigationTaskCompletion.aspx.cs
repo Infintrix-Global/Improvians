@@ -17,9 +17,9 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["IRAID"] != null)
+                if (Request.QueryString["IrrigationCode"] != null)
                 {
-                    IRAID = Request.QueryString["IRAID"].ToString();
+                    IrrigationCode = Request.QueryString["IrrigationCode"].ToString();
                 }
 
                 BindgvIrrigation();
@@ -43,19 +43,19 @@ namespace Improvians
             }
         }
 
-        private string IRAID
+        private string IrrigationCode
         {
             get
             {
-                if (ViewState["IRAID"] != null)
+                if (ViewState["IrrigationCode"] != null)
                 {
-                    return (string)ViewState["IRAID"];
+                    return (string)ViewState["IrrigationCode"];
                 }
                 return "";
             }
             set
             {
-                ViewState["IRAID"] = value;
+                ViewState["IrrigationCode"] = value;
             }
         }
 
@@ -69,8 +69,8 @@ namespace Improvians
             //nv.Add("@Facility", "");
             //nv.Add("@Mode", "5");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            nv.Add("@IRAID", IRAID);
-            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIRAID", nv);
+            nv.Add("@IrrigationCode", IrrigationCode);
+            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
             
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();
@@ -91,7 +91,7 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
            // nv.Add("@OperatorID", Session["LoginID"].ToString());
             //nv.Add("@wo", wo);
-            nv.Add("@IRAID", IRAID);
+            nv.Add("@IrrigationCode", IrrigationCode);
             nv.Add("@SprayDate",txtSprayDate.Text.Trim());
             nv.Add("@TraysSprayed",txtTraysSprayed.Text.Trim());
             nv.Add("@SprayDuration",txtSprayDuration.Text.Trim());

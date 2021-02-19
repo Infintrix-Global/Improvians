@@ -254,7 +254,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>--%>
 
-                                                <asp:TemplateField HeaderText="Fertilizer" ItemStyle-Width="10%">
+                                                <asp:TemplateField HeaderText="Fertilizer/Chemical" ItemStyle-Width="10%">
                                                     <ItemTemplate>
 
                                                         <asp:Label ID="lblFertilizer" runat="server" Text='<%# Bind("[Fertilizer]")  %>'></asp:Label>
