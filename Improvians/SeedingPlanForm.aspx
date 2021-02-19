@@ -45,7 +45,7 @@
                         <asp:DropDownList ID="ddlTraySize" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-6">
                         <br />
 
 
