@@ -27,6 +27,7 @@ namespace Improvians
                 {
                     FertilizationCode = Request.QueryString["FertilizationCode"].ToString();
                 }
+                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
                 BindJobCode();
                 BindBenchLocation();
