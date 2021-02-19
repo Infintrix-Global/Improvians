@@ -128,7 +128,7 @@
 
                                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize","{0:####}")  %>'></asp:Label>
+                                                <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize","{0:####}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
