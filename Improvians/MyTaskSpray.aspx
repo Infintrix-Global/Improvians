@@ -18,7 +18,7 @@
             <p class="pt-3">The list of tasks below are items for you to complete.</p>
 
             <div class="dashboard__grid">
-                <a class="dashboard__box" href="~/MyTaskShippingCoordinator.aspx">
+                <a class="dashboard__box" href="MyTaskShippingCoordinator.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_put-away.png" width="137" height="140" alt="Put-Away" />
                     </div>
@@ -31,7 +31,7 @@
                     </div>
                 </a>
 
-                <a class="dashboard__box" href="~/GerminationCompletionForm.aspx">
+                <a class="dashboard__box" href="GerminationCompletionForm.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                     </div>
@@ -43,7 +43,7 @@
                         <p>A list of germination count tasks to complete.</p>
                     </div>
                 </a>
-                <a class="dashboard__box" href="~/SprayTaskRequest.aspx">
+                <a class="dashboard__box" href="SprayTaskRequest.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical" />
                     </div>
@@ -55,7 +55,7 @@
                         <p>A list of spray task to complete</p>
                     </div>
                 </a>
-                <a class="dashboard__box" href="~/IrrigationCompletionForm.aspx">
+                <a class="dashboard__box" href="IrrigationCompletionForm.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
                     </div>
@@ -79,7 +79,7 @@
                         <p>Assign Crop Health Report Request</p>
                     </div>
                 </div>
-                <a class="dashboard__box" href="~/PlantReadyCompletionForm.aspx">
+                <a class="dashboard__box" href="PlantReadyCompletionForm.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
                     </div>

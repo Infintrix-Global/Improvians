@@ -44,13 +44,24 @@ namespace Improvians
 
         public void BindShippingCoordinatorList()
         {
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@RoleID", "6");
+            //ddlShippingCoordinator.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+            //ddlShippingCoordinator.DataTextField = "EmployeeName";
+            //ddlShippingCoordinator.DataValueField = "ID";
+            //ddlShippingCoordinator.DataBind();
+            //ddlShippingCoordinator.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@RoleID", "6");
-            ddlShippingCoordinator.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+
+            ddlShippingCoordinator.DataSource = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
             ddlShippingCoordinator.DataTextField = "EmployeeName";
             ddlShippingCoordinator.DataValueField = "ID";
             ddlShippingCoordinator.DataBind();
-            ddlShippingCoordinator.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlShippingCoordinator.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
         }
 
         public void BindGridMove()
@@ -76,10 +87,10 @@ namespace Improvians
             result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv);
             if (result > 0)
             {
-              //  lblmsg.Text = "Assignment Successful";
+                //  lblmsg.Text = "Assignment Successful";
                 Clear();
                 string message = "Assignment Successful";
-                string url= "MyTaskLogisticManager.aspx";
+                string url = "MyTaskLogisticManager.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -102,8 +113,8 @@ namespace Improvians
         public void Clear()
         {
             ddlShippingCoordinator.SelectedIndex = 0;
-          //  txtNotes.Text = "";
-           
+            //  txtNotes.Text = "";
+
         }
 
         protected void gvMove_PageIndexChanging(object sender, GridViewPageEventArgs e)
