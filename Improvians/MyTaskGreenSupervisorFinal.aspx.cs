@@ -25,11 +25,11 @@ namespace Improvians
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            dt = objCommonControl.GetDataSet("SP_GetGreenhouseSupervisorEachTaskCount", nv);           
-            lnkGerm.Text = dt.Tables[0].Rows.Count.ToString();            
-            lnkIrr.Text = dt.Tables[1].Rows.Count.ToString();
-            lnkpr.Text = dt.Tables[2].Rows.Count.ToString();
-            lnkPutAway.Text = dt.Tables[3].Rows.Count.ToString();
+            dt = objCommonControl.GetDataSet("SP_GetGreenhouseSupervisorEachTaskCount", nv);
+            lblGerm.Text = dt.Tables[0].Rows.Count.ToString();
+            lblIrr.Text = dt.Tables[1].Rows.Count.ToString();
+            lblpr.Text = dt.Tables[2].Rows.Count.ToString();
+            lblPutAway.Text = dt.Tables[3].Rows.Count.ToString();
 
         }
 

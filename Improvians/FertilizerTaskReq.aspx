@@ -47,8 +47,7 @@
                 </div>
                  <div class="col-lg-2">
                 </div>
-                <div class="col-lg-4">
-                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
+                <div class="col m3">
                      <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
                     <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
@@ -254,7 +253,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>--%>
 
-                                                <asp:TemplateField HeaderText="Fertilizer/Chemical" ItemStyle-Width="10%">
+                                                <asp:TemplateField HeaderText="Fertilizer" ItemStyle-Width="10%">
                                                     <ItemTemplate>
 
                                                         <asp:Label ID="lblFertilizer" runat="server" Text='<%# Bind("[Fertilizer]")  %>'></asp:Label>

@@ -295,8 +295,6 @@ namespace Improvians
             BindBenchLocation();
             BindGridGerm();
 
-
-
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)

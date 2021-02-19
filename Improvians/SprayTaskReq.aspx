@@ -35,12 +35,12 @@
 
 
                 <div class="col m3">
-                    <label>Customer </label>
+                    <label>Item </label>
                     <asp:DropDownList ID="ddlItem" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
 
                 <div class="col m3">
-                    <label>Put away Facility </label>
+                    <label>Tray Size</label>
                     <asp:DropDownList ID="ddltraysize" AutoPostBack="true" OnSelectedIndexChanged="ddltraysize_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
 
