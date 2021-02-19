@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="FertilizerReqManual.aspx.cs" Inherits="Improvians.FertilizerReqManual" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main">
         <div class="site__container">
             <h2 class="text-left">Fertilization/Chemical </h2>
@@ -10,7 +11,8 @@
                 <ContentTemplate>--%>
             <div class="filter__row d-flex">
                 <div class="row">
-                    <div class="col m3">
+
+                    <div class="col-lg-3">
                         <label>Customer </label>
                         <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
@@ -18,47 +20,55 @@
                         <label>GreenHouse </label>
                         <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>--%>
-                    <div class="col m3">
+
+                    <div class="col-lg-3">
                         <label>Facility </label>
                         <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                     <div class="col-lg-3">
+
+                    <div class="col-lg-3">
                         <label>Bench Location </label>
                         <div class="control__box">
-                            <asp:Repeater ID="repBench"  runat="server"  >
+                            <asp:Repeater ID="repBench" runat="server">
                                 <ItemTemplate>
-                                <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
-                                <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' /> </ItemTemplate>
+                                    <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
+                                    <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' />
+                                </ItemTemplate>
                             </asp:Repeater>
                             <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
                         </div>
                     </div>
-                    <div class="col m3">
+
+                    <div class="col-lg-3">
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
-                   
+
                 </div>
             </div>
-            
+
             <br />
             <div class="row">
-                <div class="col m3">
+
+                <div class="col-lg-3">
                 </div>
-                 <div class="col m3">
+
+                <div class="col-lg-3">
                 </div>
-                 <div class="col m3">
+
+                <div class="col-lg-3">
                 </div>
-                <div class="col m3">
-                      <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
-                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+
+                <div class="col-lg-3">
+                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                     <asp:Button ID="Button1" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
-                    
+
                 </div>
 
             </div>
-           
+
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
@@ -85,7 +95,7 @@
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                                 <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
+                                                <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                                 <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
@@ -112,13 +122,13 @@
 
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
+                                                <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("Trays","{0:####}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
+                                                <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize","{0:####}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
