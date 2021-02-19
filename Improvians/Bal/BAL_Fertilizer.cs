@@ -77,14 +77,14 @@ namespace Improvians.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,'' as GrowerPutAwayId, j.[Bill-to Name] , j.[Item Description] as itemdescp, j.[Item No_] as itemno, t.[Location Code] as FacilityID, t.[Position Code] as GreenHouseID,t.Quantity as Trays,t.[Qty_ per Unit of Measure] as TraySize, '' as SeededDate" +
+                strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,'' as GrowerPutAwayId, j.[Bill-to Name] , j.[Item Description] as itemdescp, j.[Item No_] as itemno, t.[Location Code] as FacilityID, t.[Position Code] as GreenHouseID,CAST(t.Quantity AS INT) as Trays,CAST(t.[Qty_ per Unit of Measure] AS INT) as TraySize, t.[Posting Date] as SeededDate" +
                             " from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] ";
                 if (!string.IsNullOrEmpty(BenchLocation))
                 {
                    string BenchLocations= BenchLocation.Remove(BenchLocation.Length - 1, 1);
                     strQuery += " and t.[Position Code] in(" + BenchLocations + ")";
                 }
-                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code], t.[Position Code],t.[Quantity],t.[Qty_ per Unit of Measure],j.[Item No_] HAVING sum(t.Quantity) > 0";
+                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code], t.[Position Code],t.[Quantity],t.[Qty_ per Unit of Measure],j.[Item No_],t.[Posting Date] HAVING sum(t.Quantity) > 0";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 
