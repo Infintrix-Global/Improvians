@@ -9,47 +9,53 @@
             <h2>
                 <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton></h2>
             <h2>Seedline Planning</h2>
-              <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action"  />
-                   
+            <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action" />
+
             <div class="filter__row d-flex">
                 <div class="row">
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <label>From Date </label>
 
                         <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="form-control" placeholder="From Date"
                             ClientIDMode="Static"></asp:TextBox>
                     </div>
 
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <label>To Date </label>
                         <asp:TextBox ID="txtToDate" runat="server" TextMode="Date" class="form-control" placeholder="To Date"
                             ClientIDMode="Static"></asp:TextBox>
                     </div>
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <label>Seedline Location</label>
                         <asp:DropDownList ID="ddlSeedlineLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <label>Seeds Allocated </label>
                         <asp:DropDownList ID="ddlSeedAllocated" runat="server" class="custom__dropdown robotomd">
                         </asp:DropDownList>
                     </div>
-                    <div class="col m3">
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
                         <label>Item</label>
                         <asp:DropDownList ID="ddlItem" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <label>Tray Size</label>
                         <asp:DropDownList ID="ddlTraySize" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
-                    <div class="col m3">
+                    <div class="col-lg-3">
                         <br />
 
 
                         <asp:Button ID="btnSearch" OnClick="btnSearch_Click" runat="server" Text="Search" CssClass="bttn bttn-primary bttn-action"></asp:Button>
-                         <asp:Button ID="btnSearchReset" OnClick="btnSearchReset_Click" runat="server" Text="Reset" CssClass="bttn bttn-primary bttn-action"></asp:Button>
-                       </div>
+                        <asp:Button ID="btnSearchReset" OnClick="btnSearchReset_Click" runat="server" Text="Reset" CssClass="bttn bttn-primary bttn-action"></asp:Button>
+                    </div>
+
+                    <div class="col-lg-3">
+                       
+                    </div>
                 </div>
 
 
@@ -75,8 +81,8 @@
                             <div class="data__table data__table-height">
 
 
-                                <asp:GridView ID="DGJob" runat="server"  AutoGenerateColumns="False" 
-                                    class="striped" 
+                                <asp:GridView ID="DGJob" runat="server" AutoGenerateColumns="False"
+                                    class="striped"
                                     GridLines="None" OnRowDataBound="DGJob_RowDataBound"
                                     ShowHeaderWhenEmpty="True" Width="100%">
 
@@ -134,9 +140,9 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderStyle-Width="15%" HeaderText="Putaway Facility">
                                             <ItemTemplate>
-                                               <%-- <asp:TextBox ID="txtSeedline" runat="server" Text='<%# Eval("loc") %>' Width="50"></asp:TextBox>--%>
+                                                <%-- <asp:TextBox ID="txtSeedline" runat="server" Text='<%# Eval("loc") %>' Width="50"></asp:TextBox>--%>
                                                 <asp:Label ID="lbl_Seedline" Visible="false" Text='<%# Eval("loc") %>' runat="server"></asp:Label>
-                                                <asp:DropDownList ID="ddlBenchLocation"  class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlBenchLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Work order Trays">

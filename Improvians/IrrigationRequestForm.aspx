@@ -10,44 +10,47 @@
             <h2>Irrigation </h2>
 
             <div class="row">
-                    <div class="col m3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <div class="col m3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                  
-                    <div class="col m3">
-                        <label>Put away Facility </label>
-                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
-                    <div class="col m3">
-                        <label>Bench Location </label>
-                        <asp:Repeater ID="repBench"  runat="server"  >
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
-                               <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' /> </ItemTemplate>
-                            </asp:Repeater>
-                      <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
-                    </div>
-
+                <div class="col-lg-3">
+                    <label>Customer </label>
+                    <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-         
+                <div class="col-lg-3">
+                    <label>Job No </label>
+                    <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+
+                <div class="col-lg-3">
+                    <label>Put away Facility </label>
+                    <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+
+                <div class="col-lg-3">
+                    <label>Bench Location </label>
+                    <div class="control__box">
+                        <asp:Repeater ID="repBench" runat="server">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
+                                <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' />
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                    <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                </div>
+
+            </div>
+
             <br />
             <div class="row">
                 <div class="col m3">
                 </div>
-                 <div class="col m3">
-                </div>
-                 <div class="col m3">
+                <div class="col m3">
                 </div>
                 <div class="col m3">
-                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
+                </div>
+                <div class="col m3">
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
-                     <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                    <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                 </div>
 
             </div>
@@ -60,15 +63,15 @@
                     ShowHeaderWhenEmpty="True" Width="100%">
                     <Columns>
 
-                          <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
-                                            <HeaderTemplate>
-                                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
+                        <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                            <HeaderTemplate>
+                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
+                            </HeaderTemplate>
+                            <ItemTemplate>
 
-                                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -91,11 +94,11 @@
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                          <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -130,7 +133,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                      <%--  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                        <%--  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
 
 
@@ -140,8 +143,6 @@
 
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-
-
                     </Columns>
 
 
@@ -160,7 +161,7 @@
                         <h3>User Inputs:</h3>
                         <div class="row">
 
-                          <%--  <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                            <%--  <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
                                 <label>Job No.</label><br />
 
 
@@ -170,7 +171,6 @@
 
 
                             </div>--%>
-
                         </div>
 
 
@@ -214,7 +214,7 @@
 
                                 <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                             </div>
-                          <%--  <div class="col-auto">
+                            <%--  <div class="col-auto">
                                 <label class="d-block">Spray Time</label>
 
                                 <asp:TextBox ID="txtSprayTime" TextMode="Time" class="input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>

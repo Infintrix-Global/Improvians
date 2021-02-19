@@ -25,9 +25,11 @@ namespace Improvians
             if (!IsPostBack)
             {
                 //Bindcname();
-               // BindJobCode();
+                // BindJobCode();
                 //BindBenchLocation();
                 //BindFacility();
+                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+
                 BindGridSprayReq();
             }
         }

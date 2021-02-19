@@ -272,7 +272,7 @@ namespace Improvians
 
             if(txtPutAwayLocation.Text.Trim() != txtBarcode.Text.Trim())
             {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ShowAlert", "alert('Barcode does not match with Bench Location..!');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ShowAlert", "alert('Barcode does not match with Bench Location.');", true);
                 txtBarcode.Text = "";
             }
         }
