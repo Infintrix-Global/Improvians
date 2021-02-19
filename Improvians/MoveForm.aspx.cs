@@ -46,13 +46,34 @@ namespace Improvians
 
         public void BindLogisticList()
         {
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@RoleID", "5");
+            //ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+            //ddlLogisticManager.DataTextField = "EmployeeName";
+            //ddlLogisticManager.DataValueField = "ID";
+            //ddlLogisticManager.DataBind();
+            //ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@RoleID", "5");
-            ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
-            ddlLogisticManager.DataTextField = "EmployeeName";
-            ddlLogisticManager.DataValueField = "ID";
-            ddlLogisticManager.DataBind();
-            ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+            if (Session["Role"].ToString() == "1")
+            {
+                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlLogisticManager.DataTextField = "EmployeeName";
+                ddlLogisticManager.DataValueField = "ID";
+                ddlLogisticManager.DataBind();
+                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
+            if (Session["Role"].ToString() == "12")
+            {
+                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlLogisticManager.DataTextField = "EmployeeName";
+                ddlLogisticManager.DataValueField = "ID";
+                ddlLogisticManager.DataBind();
+                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
         }
         public void BindFacility()
         {

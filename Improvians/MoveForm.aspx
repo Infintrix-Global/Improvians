@@ -207,7 +207,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="To Facility" ItemStyle-Width="20%">
+                                                    <asp:TemplateField HeaderText="To Facility Location" ItemStyle-Width="20%">
                                                         <ItemTemplate>
 
                                                             <asp:Label ID="lblToFacility" runat="server" Text='<%# Bind("[ToFacility]")  %>'></asp:Label>
@@ -215,7 +215,7 @@
                                                     </asp:TemplateField>
 
 
-                                                    <asp:TemplateField HeaderText="Greenhouse" ItemStyle-Width="20%">
+                                                    <asp:TemplateField HeaderText="Greenhouse Bench location" ItemStyle-Width="20%">
                                                         <ItemTemplate>
 
                                                             <asp:Label ID="lblGreenhouse" runat="server" Text='<%# Bind("[GreenHouse]")  %>'></asp:Label>
@@ -250,7 +250,7 @@
                                             </div>
 
                                             <div class="col m6">
-                                                <label runat="server" id="lblfacsupervisor">Logistic Manager</label>
+                                                <label runat="server" id="lblfacsupervisor">Assignment</label>
                                                 <%-- <h3 class="robotobold"><asp:Label ID="lblSupervisorName" runat="server" ></asp:Label></h3>--%>
                                                 <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                                                 <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>

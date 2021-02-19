@@ -27,10 +27,12 @@ namespace Improvians
                 {
                     FertilizationCode = Request.QueryString["FertilizationCode"].ToString();
                 }
-              //  Bindcname();
-                //BindJobCode();
-               // BindBenchLocation();
-               // BindFacility();
+
+                BindJobCode();
+                BindBenchLocation();
+                Binditemno();
+                BindTraySize();
+                BindGridSprayDetails();
                 BindGridSprayReq();
             }
         }
@@ -52,78 +54,78 @@ namespace Improvians
         }
 
 
-        //public void Bindcname()
-        //{
-
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-
-        //    nv.Add("@Mode", "8");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlCustomer.DataSource = dt;
-        //    ddlCustomer.DataTextField = "cname";
-        //    ddlCustomer.DataValueField = "cname";
-        //    ddlCustomer.DataBind();
-        //    ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        //}
 
 
-        //public void BindJobCode()
-        //{
 
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-        //    nv.Add("@Mode", "7");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlJobNo.DataSource = dt;
-        //    ddlJobNo.DataTextField = "Jobcode";
-        //    ddlJobNo.DataValueField = "Jobcode";
-        //    ddlJobNo.DataBind();
-        //    ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+        public void BindJobCode()
+        {
 
-        //}
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Mode", "7");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataTextField = "Jobcode";
+            ddlJobNo.DataValueField = "Jobcode";
+            ddlJobNo.DataBind();
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        //public void BindFacility()
-        //{
+        }
 
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-        //    nv.Add("@Mode", "9");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlFacility.DataSource = dt;
-        //    ddlFacility.DataTextField = "loc_seedline";
-        //    ddlFacility.DataValueField = "loc_seedline";
-        //    ddlFacility.DataBind();
-        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+        public void Binditemno()
+        {
 
-        //}
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Mode", "14");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlItem.DataSource = dt;
+            ddlItem.DataTextField = "itemno";
+            ddlItem.DataValueField = "itemno";
+            ddlItem.DataBind();
+            ddlItem.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        //public void BindBenchLocation()
-        //{
+        }
 
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
+        public void BindTraySize()
+        {
 
-        //    nv.Add("@Mode", "10");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlBenchLocation.DataSource = dt;
-        //    ddlBenchLocation.DataTextField = "GreenHouseID";
-        //    ddlBenchLocation.DataValueField = "GreenHouseID";
-        //    ddlBenchLocation.DataBind();
-        //    ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Mode", "15");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddltraysize.DataSource = dt;
+            ddltraysize.DataTextField = "TraySize";
+            ddltraysize.DataValueField = "TraySize";
+            ddltraysize.DataBind();
+            ddltraysize.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        //}
+        }
+
+        public void BindBenchLocation()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "10");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
 
         public void BindGridSprayReq()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            //nv.Add("@Facility", ddlFacility.SelectedValue);
-            //nv.Add("@LoginID", Session["LoginID"].ToString());
-            //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            nv.Add("@TraySize", ddltraysize.SelectedValue);
+            nv.Add("@itemno", ddlItem.SelectedValue);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@FertilizationCode", FertilizationCode);
             dt = objCommon.GetDataTable("SP_GetSprayRequestst", nv);
             gvSpray.DataSource = dt;
@@ -131,6 +133,19 @@ namespace Improvians
 
         }
 
+
+        public void BindGridSprayDetails()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@FertilizationId", FertilizationCode);
+
+            dt = objCommon.GetDataTable("SP_GetSprayRequestFerChemDetails", nv);
+
+            GridViewDetails.DataSource = dt;
+            GridViewDetails.DataBind();
+
+        }
 
         protected void gvSpray_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -209,55 +224,38 @@ namespace Improvians
             }
         }
 
-        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+
+
+
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridSprayReq();
         }
 
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlJobNo_SelectedIndexChanged1(object sender, EventArgs e)
         {
             BindGridSprayReq();
         }
 
-        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridSprayReq();
         }
 
-
-
-        protected void ddlBenchLocation_SelectedIndexChanged1(object sender, EventArgs e)
+        protected void ddltraysize_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridSprayReq();
         }
 
-        protected void btnSearchRest_Click(object sender, EventArgs e)
+        protected void btnSearchRest_Click1(object sender, EventArgs e)
         {
-            //Bindcname();
-            //BindJobCode();
-            //BindFacility();
-            //BindBenchLocation();
+            BindJobCode();
+            BindBenchLocation();
+            Binditemno();
+            BindTraySize();
             BindGridSprayReq();
         }
 
-        //protected void gvSpray_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
 
-        //        Label lblFertilizationId = (Label)e.Row.FindControl("lblFertilizationId");
-        //        GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
-
-        //        DataTable dt = new DataTable();
-        //        NameValueCollection nv = new NameValueCollection();
-        //        nv.Add("@FertilizationId", lblFertilizationId.Text);
-              
-        //        dt = objCommon.GetDataTable("SP_GetSprayRequeststDetails", nv);
-
-        //        GridViewFields.DataSource = dt;
-        //        GridViewFields.DataBind();
-
-        //    }
-        //}
     }
 }

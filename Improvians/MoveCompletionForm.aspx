@@ -142,7 +142,7 @@
                             </div>
                             <div class="col">
                                 <label>Barcode of Putaway Location</label>
-                                <asp:TextBox ID="txtBarcode" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtBarcode" runat="server" OnTextChanged="txtBarcode_TextChanged" AutoPostBack="true" CssClass="input__control"></asp:TextBox>
 
                                 <span class="error_message">
                                     <asp:Label ID="Label1" runat="server" ForeColor="red"></asp:Label>

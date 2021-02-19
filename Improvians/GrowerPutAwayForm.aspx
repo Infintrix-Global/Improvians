@@ -132,7 +132,7 @@
                                     <div class="data__table">
 
 
-                                        <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="80%"
+                                        <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="80%" OnRowDeleting="GridSplitJob_RowDeleting"
                                             AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="RowNumber" HeaderText="NO." />
@@ -165,16 +165,19 @@
                                                     </ItemTemplate>
 
 
+
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="#">
+                                                    <ItemTemplate>
+                                                        <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
+
+                                                    </ItemTemplate>
                                                     <FooterStyle HorizontalAlign="Right" />
                                                     <FooterTemplate>
                                                         <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" Width="300px" CausesValidation="false"
                                                             Text="Add Put Away Location" CssClass="bttn bttn-primary bttn-action" />
                                                     </FooterTemplate>
-
-
-
                                                 </asp:TemplateField>
-
                                             </Columns>
 
 
@@ -185,7 +188,7 @@
 
 
 
-                                       <div class="col-auto">
+                                        <div class="col-auto">
                                             <label runat="server" id="lblfacsupervisor">Assignment</label>
 
                                             <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>

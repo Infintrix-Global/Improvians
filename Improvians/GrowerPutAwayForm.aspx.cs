@@ -455,6 +455,15 @@ namespace Improvians
             objInv.Trays = Trays;
 
             objGP.Add(objInv);
+            ViewState["ojbpro"] = objGP;
+        }
+
+        protected void GridSplitJob_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            List<GrowerputDetils> objinvoice = ViewState["ojbpro"] as List<GrowerputDetils>;
+            objinvoice.RemoveAt(e.RowIndex);
+            GridSplitJob.DataSource = objinvoice;
+            GridSplitJob.DataBind();
         }
     }
 }

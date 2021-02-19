@@ -266,5 +266,15 @@ namespace Improvians
 
             }
         }
+
+        protected void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+
+            if(txtPutAwayLocation.Text.Trim() != txtBarcode.Text.Trim())
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ShowAlert", "alert('Barcode does not match with Bench Location..!');", true);
+                txtBarcode.Text = "";
+            }
+        }
     }
 }
