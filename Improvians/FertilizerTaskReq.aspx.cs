@@ -147,8 +147,8 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
-            gvFerDetails.DataSource = dt;
-            gvFerDetails.DataBind();
+            gvJobHistory.DataSource = dt;
+            gvJobHistory.DataBind();
         }
 
         public void BindSupervisor()
@@ -452,6 +452,16 @@ namespace Improvians
             BindGridFerDetails();
         }
 
-     
+        protected void btnJob_Click(object sender, EventArgs e)
+        {
+            if(gvJobHistory.Visible==true)
+            {
+                gvJobHistory.Visible = false;
+            }
+            else if (gvJobHistory.Visible == false)
+            {
+                gvJobHistory.Visible = true;
+            }
+        }
     }
 }
