@@ -24,7 +24,7 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                BindGridFerReq();
+                //BindGridFerReq();
                 BindSupervisor();
                 BindFertilizer();
                 BindUnit();
