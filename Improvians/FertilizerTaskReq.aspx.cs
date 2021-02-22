@@ -147,8 +147,8 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
-            gvJobHistory.DataSource = dt;
-            gvJobHistory.DataBind();
+            //gvJobHistory.DataSource = dt;
+           // gvJobHistory.DataBind();
         }
 
         public void BindSupervisor()
@@ -244,7 +244,12 @@ namespace Improvians
                 //  lblwo.Text= (row.FindControl("lblwo") as Label).Text;
                 ddlsupervisor.Focus();
             }
-        }
+
+            if (e.CommandName == "Job")
+            {
+                Response.Redirect(String.Format("~/FerJobBuildUp?Bench={0}", e.CommandArgument.ToString()));
+            }
+            }
 
         protected void gvFer_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -454,14 +459,14 @@ namespace Improvians
 
         protected void btnJob_Click(object sender, EventArgs e)
         {
-            if(gvJobHistory.Visible==true)
-            {
-                gvJobHistory.Visible = false;
-            }
-            else if (gvJobHistory.Visible == false)
-            {
-                gvJobHistory.Visible = true;
-            }
+            //if(gvJobHistory.Visible==true)
+            //{
+            //    gvJobHistory.Visible = false;
+            //}
+            //else if (gvJobHistory.Visible == false)
+            //{
+            //    gvJobHistory.Visible = true;
+            //}
         }
     }
 }
