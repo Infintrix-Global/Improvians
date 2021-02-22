@@ -123,7 +123,7 @@ namespace Improvians
             //    {
             //        c = 1;
             //        x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
-                   
+
             //    }
             //}
             //if (c > 0)
@@ -135,8 +135,10 @@ namespace Improvians
             //{
             //    nv.Add("@BenchLocation", "0");
             //}
-               
 
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+            gvFer.DataSource = dt;
+            gvFer.DataBind();
         }
 
         public void BindGridFerDetails()
@@ -446,6 +448,7 @@ namespace Improvians
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             BindGridFerReq();
+            BindGridFerDetails();
         }
 
      
