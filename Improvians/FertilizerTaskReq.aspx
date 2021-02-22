@@ -14,55 +14,55 @@
             </h2>
             <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
-          
+
             <div class="row">
 
-                
-                    <div class="col-lg-3">
-                        <label>Bench Location </label>
-                     <%--   <div class="control__box">
+
+                <div class="col-lg-3">
+                    <label>Bench Location </label>
+                    <%--   <div class="control__box">
                             <asp:Repeater ID="repBench"  runat="server"  >
                                 <ItemTemplate>
                                 <asp:CheckBox ID="chkBench" Text='<%#Bind("GreenHouseID")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
                                 <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' /> </ItemTemplate>
                             </asp:Repeater>
                              </div>--%>
-                              <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        <span class="error_message">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
-                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>
-                    </div>
-
-                  <div class="col-lg-3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                  
-                  
-                    <div class="col-lg-3">
-                        <label>Facility Location </label>
-                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
-
+                    <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    <span class="error_message">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
+                            SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </span>
                 </div>
-         
+
+                <div class="col-lg-3">
+                    <label>Job No </label>
+                    <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+
+                <div class="col-lg-3">
+                    <label>Customer </label>
+                    <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+
+
+                <div class="col-lg-3">
+                    <label>Facility Location </label>
+                    <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+
+
+            </div>
+
             <br />
             <div class="row">
                 <div class="col-lg-3">
                 </div>
-                 <div class="col-lg-3">
+                <div class="col-lg-3">
                 </div>
-                 <div class="col-lg-2">
+                <div class="col-lg-2">
                 </div>
                 <div class="col m3">
-                     <%--  <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />--%>
+                    <%--  <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />--%>
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                  
                     <%--<asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />--%>
@@ -79,12 +79,12 @@
                         <div class="portlet-body">
                             <div class="data__table">
 
-                           <%--       <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                  <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None"  Visible="false"
+                                    GridLines="None" Visible="false"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                      <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                        <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                             <HeaderTemplate>
                                                 <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
                                             </HeaderTemplate>
@@ -169,7 +169,7 @@
                                     GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                      <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                        <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                             <HeaderTemplate>
                                                 <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
                                             </HeaderTemplate>
@@ -256,8 +256,8 @@
                                     </EmptyDataTemplate>
                                 </asp:GridView>
 
-                               
-                              <%--    <asp:GridView ID="GridViewDetails" class="table table-bordered table-hover"
+
+                                <%--    <asp:GridView ID="GridViewDetails" class="table table-bordered table-hover"
                                                         AutoGenerateColumns="false" runat="server">
                                                         <Columns>
 
@@ -401,7 +401,7 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                          <%--  <div class="col align-self-center">
+                            <%--  <div class="col align-self-center">
                                 <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                             </div>--%>
                             <div class="col-12">
