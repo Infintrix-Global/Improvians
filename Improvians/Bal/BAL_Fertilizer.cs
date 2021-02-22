@@ -85,6 +85,11 @@ namespace Improvians.Bal
                     strQuery += " and t.[Position Code] in(" + BenchLocations + ")";
                 }
                 strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code], t.[Position Code],t.[Quantity],t.[Qty_ per Unit of Measure],j.[Item No_],t.[Posting Date] HAVING sum(t.Quantity) > 0";
+              
+                
+                
+                
+                
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 
