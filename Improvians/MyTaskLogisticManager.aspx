@@ -14,9 +14,13 @@
             </ul>
         </div>
     </div>
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
-            <h2>Put Away</h2>
+
+
+            <h2 class="head__title-icon">
+                  <img src="./images/dashboard_put-away.png" width="137" height="140" alt="Put-Away">
+                Put Away</h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
