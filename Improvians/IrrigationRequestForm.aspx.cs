@@ -268,6 +268,8 @@ namespace Improvians
                     nv.Add("@Nots", txtNotes.Text.Trim());
                     nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@NoOfPasses","");
+
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
                     if (result > 0)
                     {
