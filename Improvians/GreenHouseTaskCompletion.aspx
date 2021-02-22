@@ -148,7 +148,7 @@
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
                             <div class="col">
-                                <label>Inspection Date </label>
+                                <label>Germination Count Date </label>
                                 <asp:TextBox ID="txtInspectionDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                             </div>
                             <div class="col">

@@ -204,6 +204,30 @@ namespace Improvians
             nv.Add("@GTID", GTID.ToString());
             nv.Add("@GermDate", txtNewDate.Text);
             result = objCommon.GetDataInsertORUpdate("SP_RescheduleGerminationRequest", nv);
+            if (result > 0)
+            {
+
+                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                string message = "Reschedule Successful";
+                string url = "GerminationRequestForm.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                // lblmsg.Text = "Assignment Successful";
+                clear();
+
+
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                //  lblmsg.Text = "Assignment Not Successful";
+            }
+
         }
         protected void btnResetReschedule_Click(object sender, EventArgs e)
         {
