@@ -33,6 +33,15 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.GridView gvIrrigation;
 
         /// <summary>
+        /// lblBenchLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBenchLocation;
+
+        /// <summary>
         /// txtSprayDate control.
         /// </summary>
         /// <remarks>
@@ -42,22 +51,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.TextBox txtSprayDate;
 
         /// <summary>
-        /// txtTraysSprayed control.
+        /// txtNoofPasses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTraysSprayed;
-
-        /// <summary>
-        /// txtSprayDuration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSprayDuration;
+        protected global::System.Web.UI.WebControls.TextBox txtNoofPasses;
 
         /// <summary>
         /// btnSubmit control.

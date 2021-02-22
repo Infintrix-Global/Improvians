@@ -182,12 +182,12 @@
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
 
-                            <div class="col-12 col-sm-6 col-lg-3">
+                           <%-- <div class="col-12 col-sm-6 col-lg-3">
                                 <label>No. Of Trays to be Irrigated</label>
 
                                 <asp:TextBox ID="txtIrrigatedNoTrays" ReadOnly="true" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
 
-                            </div>
+                            </div>--%>
 
                             <div class="col-12 col-sm-6 col-md-auto">
                                 <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>

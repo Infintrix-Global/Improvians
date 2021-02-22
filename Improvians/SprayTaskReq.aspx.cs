@@ -26,8 +26,12 @@ namespace Improvians
                 if (Request.QueryString["FertilizationCode"] != null)
                 {
                     FertilizationCode = Request.QueryString["FertilizationCode"].ToString();
+                
                 }
-        
+
+                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                BindenchLocation();
+
             }
         }
 
@@ -48,6 +52,24 @@ namespace Improvians
         }
 
 
+        public void BindenchLocation()
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            //nv1.Add("@JobCode", ddlJobNo.SelectedValue);
+            //nv1.Add("@CustomerName", ddlCustomer.SelectedValue);
+            //nv1.Add("@Facility", ddlFacility.SelectedValue);
+            //nv1.Add("@LoginID", Session["LoginID"].ToString());
+            //nv1.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            //nv1.Add("@FertilizationCode", lblFertilizationCode.Text);
+            nv1.Add("@FertilizationId", FertilizationCode);
+
+            dt1 = objCommon.GetDataTable("SP_GetSprayRequestGreenHouseDetails", nv1);
+            lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
+
+
+
+        }
 
 
         protected void btnReset_Click(object sender, EventArgs e)

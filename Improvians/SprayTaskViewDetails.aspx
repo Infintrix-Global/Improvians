@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="SprayTaskViewDetails.aspx.cs" Inherits="Improvians.SprayTaskViewDetails" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="header__bottom">
         <div class="header__tabs">
             <ul class="d-flex align-items-center justify-content-center list-inline">
-                 <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
+                <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
                 <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
             </ul>
         </div>
@@ -55,10 +56,29 @@
 
                 <div class="col m3">
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click1" />
-                     <asp:Button Text="back" ID="btnBank" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnBank_Click" />
+                    <asp:Button Text="back" ID="btnBank" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnBank_Click" />
 
                 </div>
             </div>
+            <br />
+            <div class="row">
+
+
+
+                <div class="col-lg-6">
+                    <h3 class="robotobold">
+                          <label>Bench Location</label><br />
+                        <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
+                    </h3>
+                </div>
+
+                <div class="col-lg-6">
+                </div>
+
+
+
+            </div>
+                 <br />
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
@@ -123,7 +143,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        
+
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -207,7 +227,7 @@
 
                             </div>
                         </div>
-                      
+
                     </asp:Panel>
                 </div>
             </div>

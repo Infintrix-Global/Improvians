@@ -21,11 +21,29 @@ namespace Improvians
                 {
                     IrrigationCode = Request.QueryString["IrrigationCode"].ToString();
                 }
-
+                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                BindenchLocation();
                 BindgvIrrigation();
 
             }
         }
+
+
+
+
+        public void BindenchLocation()
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@IrrigationCode", IrrigationCode);
+            dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
+            lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
+
+        }
+
+
+
+
 
         private string wo
         {
@@ -75,6 +93,7 @@ namespace Improvians
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();
 
+            txtNoofPasses.Text = dt.Rows[0]["WaterRequired"].ToString();
         }
 
         protected void gvIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -93,8 +112,9 @@ namespace Improvians
             //nv.Add("@wo", wo);
             nv.Add("@IrrigationCode", IrrigationCode);
             nv.Add("@SprayDate",txtSprayDate.Text.Trim());
-            nv.Add("@TraysSprayed",txtTraysSprayed.Text.Trim());
-            nv.Add("@SprayDuration",txtSprayDuration.Text.Trim());
+            nv.Add("@TraysSprayed","");
+            nv.Add("@SprayDuration","");
+            nv.Add("@NoOfPasses", txtNoofPasses.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
             //if (Request.QueryString["ICom"] =="1")
             //{
@@ -149,10 +169,10 @@ namespace Improvians
         public void clear()
         {
             txtSprayDate.Text = "";
-            txtSprayDuration.Text = "";
-            txtTraysSprayed.Text = "";
+            //   txtSprayDuration.Text = "";
+            //  txtTraysSprayed.Text = "";
 
-
+            txtNoofPasses.Text = "";
         }
 
 

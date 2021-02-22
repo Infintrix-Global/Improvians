@@ -7,7 +7,7 @@
         <div class="site__container">
             <h2>Irrigation Completion</h2>
 
-            
+
 
             <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>
             <div class="data__table">
@@ -43,7 +43,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                 
+
 
                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -57,7 +57,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                         <asp:TemplateField HeaderText="Water Required" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="No of Passes" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="lblWaterRequired" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
                             </ItemTemplate>
@@ -94,24 +94,43 @@
                             <h3>User Inputs:</h3>
                             <div class="row">
 
+
+
+                                <div class="col-lg-6">
+                                    <h3 class="robotobold">
+                                        <label>Bench Location</label><br />
+                                        <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
+                                    </h3>
+                                </div>
+
+                                <div class="col-lg-6">
+                                </div>
+
+
+
+                            </div>
+
+                            <br />
+                            <div class="row">
+
                                 <div class="col-12 col-sm-5 col-md-4 col-lg-3">
-                                    <label class="d-block">Spray Date</label>
+                                    <label class="d-block">Spray completion date </label>
 
                                     <asp:TextBox ID="txtSprayDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                                 </div>
 
-                                <div class="col-sm col-sm-auto">
-                                    <label class="d-block">No. Of Trays Sprayed</label>
+                                   <div class="col-sm col-sm-auto">
+                                    <label class="d-block">No of Passes</label>
 
-                                    <asp:TextBox ID="txtTraysSprayed" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtNoofPasses" class="input__control" placeholder="No of Passes" runat="server"></asp:TextBox>
                                 </div>
 
-                                <div class="col-12 col-sm-auto">
+                                <%--<div class="col-12 col-sm-auto">
                                     <label class="pr-2 pr-lg-0 d-block">Spray Duration</label>
 
                                     <asp:TextBox ID="txtSprayDuration" class="mb-2 input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
 
-                                </div>
+                                </div>--%>
 
                                 <div class="col-12 my-3">
                                     <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />

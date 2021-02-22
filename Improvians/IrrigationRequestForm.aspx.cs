@@ -300,7 +300,7 @@ namespace Improvians
             ddlSupervisor.SelectedIndex = 0;
             txtWaterRequired.Text = "";
             txtNotes.Text = "";
-            txtIrrigatedNoTrays.Text = "";
+          //  txtIrrigatedNoTrays.Text = "";
             //txtIrrigationDuration.Text = "";
             txtSprayDate.Text = "";
            // txtSprayTime.Text = "";
@@ -331,7 +331,7 @@ namespace Improvians
                 }
 
             }
-            txtIrrigatedNoTrays.Text = tray.ToString();
+         //   txtIrrigatedNoTrays.Text = tray.ToString();
 
 
         }
