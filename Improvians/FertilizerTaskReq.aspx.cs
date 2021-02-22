@@ -443,6 +443,7 @@ namespace Improvians
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridFerReq();
+            BindGridFerDetails();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
