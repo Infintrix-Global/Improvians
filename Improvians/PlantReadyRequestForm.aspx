@@ -3,9 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main main__header">
+    <div class="main__header">
         <div class="site__container">
-            <h2>Plant Ready </h2>
+            <h2 class="head__title-icon">
+                <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready">
+                Plant Ready </h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
