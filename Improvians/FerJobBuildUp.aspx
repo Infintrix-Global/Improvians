@@ -345,11 +345,11 @@
                           <%--  <div class="col align-self-center">
                                 <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                             </div>--%>
-                            <%--<div class="col-12">
+                            <div class="col-12">
                                 <div class="data__table">
                                     <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
                                         <asp:GridView runat="server" ID="gvFerDetails" AutoGenerateColumns="false" class="Grid1 mb-3"
-                                            GridLines="None" CaptionAlign="NotSet" Width="801px" ForeColor="Black" OnRowDeleting="gvFerDetails_RowDeleting"
+                                            GridLines="None" CaptionAlign="NotSet" Width="801px" ForeColor="Black" 
                                             ShowHeaderWhenEmpty="true">
                                             <Columns>
                                            
@@ -399,7 +399,7 @@
                                         </asp:GridView>
                                     </asp:Panel>
                                 </div>
-                            </div>--%>
+                            </div>
 
                             <div class="col-auto">
                                 <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
