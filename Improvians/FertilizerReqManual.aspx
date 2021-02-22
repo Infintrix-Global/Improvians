@@ -35,7 +35,11 @@
                                     <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("GreenHouseID")%>' />
                                 </ItemTemplate>
                             </asp:Repeater>--%>
-                              <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                            <span class="error_message">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
+                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                            </span>
                         </div>
                     </div>
 
@@ -61,9 +65,9 @@
                 </div>
 
                 <div class="col-lg-3">
-                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
+                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" ValidationGroup="x" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
-                    <asp:Button ID="Button1" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
+                    <asp:Button ID="Button1" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />
 
                 </div>
 
@@ -80,29 +84,19 @@
                                     GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
-                                            <HeaderTemplate>
-                                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
-
-                                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-
+                                        
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                               
+
                                                 <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                 <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>' ></asp:Label>
+                                                <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -123,7 +117,7 @@
                                         </asp:TemplateField>
 
 
-<%--
+                                        <%--
 
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -239,12 +233,12 @@
                             <div class="col">
                                 <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
-                                <asp:TextBox ID="txtTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                <%-- <span class="error_message">
+                                <asp:TextBox ID="txtTrays"  TextMode="Number" runat="server" CssClass="input__control" AutoPostBack="true" OnTextChanged="txtTrays_TextChanged"></asp:TextBox>
+                                 <span class="error_message">
                                     <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>--%>
+                                </span>
                             </div>
 
                             <div class="col">
@@ -257,7 +251,7 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                            <div class="col align-self-center">
+                            <%--  <div class="col align-self-center">
                                 <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                             </div>
                             <div class="col-12">
@@ -267,12 +261,12 @@
                                             GridLines="None" CaptionAlign="NotSet" Width="801px" ForeColor="Black" OnRowDeleting="gvFerDetails_RowDeleting"
                                             ShowHeaderWhenEmpty="true">
                                             <Columns>
-                                                <%--  <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="10%">
+                                                <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="10%">
                                                         <ItemTemplate>
                                                             <span class="auto-style1">
                                                                 <asp:Label ID="Label1" runat="server" ></asp:Label></span>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>--%>
+                                                    </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Fertilizer" ItemStyle-Width="10%">
                                                     <ItemTemplate>
@@ -319,8 +313,9 @@
                                         </asp:GridView>
                                     </asp:Panel>
                                 </div>
-                            </div>
-
+                            </div>--%>
+                        </div>
+                        <div class="row">
                             <div class="col-auto">
                                 <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
 
