@@ -133,15 +133,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-
-
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-                                                 <asp:Button ID="btnView" runat="server" Text="View Job Details" CssClass="bttn bttn-primary bttn-action my-1" CommandName="ViewDetails" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                                <asp:Button ID="btnView" runat="server" Width="140px" Text="View Job Details" CssClass="bttn bttn-primary bttn-action my-1" CommandName="ViewDetails" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
-
-                                                
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
