@@ -25,13 +25,14 @@ namespace Improvians
             {
                 BindFertilizer();
                 BindUnit();
-                BindGridFerReq();
-                BindGridFerDetails();
+              
                 if (Request.QueryString["Bench"] != null)
                 {
                     Bench = Request.QueryString["Bench"].ToString();
                 }
                 lblbench.Text = Bench;
+                BindGridFerReq();
+                BindGridFerDetails();
             }
             }
 
