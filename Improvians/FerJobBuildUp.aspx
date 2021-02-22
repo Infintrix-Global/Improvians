@@ -114,7 +114,7 @@
                                   <h3>Other Jobs</h3>
                                 <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
+                                    GridLines="None" 
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                       <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
