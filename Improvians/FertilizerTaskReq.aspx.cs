@@ -47,13 +47,13 @@ namespace Improvians
 
             nv.Add("@Mode", "10");
             dt = objCommon.GetDataTable("GET_Common", nv);
-            //ddlBenchLocation.DataSource = dt;
-            //ddlBenchLocation.DataTextField = "GreenHouseID";
-            //ddlBenchLocation.DataValueField = "GreenHouseID";
-            //ddlBenchLocation.DataBind();
-            //ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-            repBench.DataSource = dt;
-            repBench.DataBind();
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+            //repBench.DataSource = dt;
+            //repBench.DataBind();
 
         }
 
@@ -113,32 +113,40 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-            int c = 0;
-            string x = "";
-            foreach (RepeaterItem item in repBench.Items)
-            {
-                CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
-                if (chkBench.Checked)
-                {
-                    c = 1;
-                    x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            //int c = 0;
+            //string x = "";
+            //foreach (RepeaterItem item in repBench.Items)
+            //{
+            //    CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
+            //    if (chkBench.Checked)
+            //    {
+            //        c = 1;
+            //        x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
                    
-                }
-            }
-            if (c > 0)
-            {
-                string chkSelected = x.Remove(x.Length - 1, 1);
-                nv.Add("@BenchLocation", chkSelected);
-            }
-            else
-            {
-                nv.Add("@BenchLocation", "0");
-            }
-                dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
-            gvFer.DataSource = dt;
-            gvFer.DataBind();
+            //    }
+            //}
+            //if (c > 0)
+            //{
+            //    string chkSelected = x.Remove(x.Length - 1, 1);
+            //    nv.Add("@BenchLocation", chkSelected);
+            //}
+            //else
+            //{
+            //    nv.Add("@BenchLocation", "0");
+            //}
+               
 
+        }
+
+        public void BindGridFerDetails()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+            gvFerDetails.DataSource = dt;
+            gvFerDetails.DataBind();
         }
 
         public void BindSupervisor()
@@ -253,8 +261,8 @@ namespace Improvians
 
             foreach (GridViewRow row in gvFer.Rows)
             {
-                if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
 
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
@@ -269,10 +277,10 @@ namespace Improvians
 
 
 
-                }
+              //  }
 
             }
-
+            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, ddlUnit.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
 
             string message = "Assignment Successful";
@@ -383,10 +391,10 @@ namespace Improvians
             int tray = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
-                if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
                     tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
-                }
+                //}
 
             }
             txtTrays.Text = tray.ToString();
