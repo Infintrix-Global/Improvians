@@ -16,6 +16,7 @@ namespace Improvians
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
+        BAL_CommonMasters objBAL = new BAL_CommonMasters();
         CommonControl objCommon = new CommonControl();
         BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
@@ -28,7 +29,7 @@ namespace Improvians
                 BindFertilizer();
                 BindUnit();
                 BindJobCode();
-                BindBenchLocation();
+                //BindBenchLocation();
                 Bindcname();
                 BindFacility();
                 dtTrays.Clear();
@@ -67,71 +68,74 @@ namespace Improvians
 
         }
 
-        public void BindBenchLocation()
-        {
+        //public void BindBenchLocation()
+        //{
 
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "10");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            //ddlBenchLocation.DataSource = dt;
-            //ddlBenchLocation.DataTextField = "GreenHouseID";
-            //ddlBenchLocation.DataValueField = "GreenHouseID";
-            //ddlBenchLocation.DataBind();
-            //ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-            repBench.DataSource = dt;
-            repBench.DataBind();
-        }
+        //    nv.Add("@Mode", "10");
+        //    dt = objCommon.GetDataTable("GET_Common", nv);
+        //    //ddlBenchLocation.DataSource = dt;
+        //    //ddlBenchLocation.DataTextField = "GreenHouseID";
+        //    //ddlBenchLocation.DataValueField = "GreenHouseID";
+        //    //ddlBenchLocation.DataBind();
+        //    //ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+        //    repBench.DataSource = dt;
+        //    repBench.DataBind();
+        //}
 
         public void BindFacility()
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
+            ddlFacility.DataSource = objBAL.GetMainLocation(); ;
+            ddlFacility.DataTextField = "l1";
+            ddlFacility.DataValueField = "l1";
             ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
+            BindBenchLocation("");
+        }
 
+        public void BindBenchLocation(string ddlMain)
+        {
+            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataTextField = "p2";
+            ddlBenchLocation.DataValueField = "p2";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
         }
 
         public void BindGridFerReq()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            //nv.Add("@Facility", ddlFacility.SelectedValue);
             //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-            int c = 0;
-            string x = "";
-            foreach (RepeaterItem item in repBench.Items)
-            {
-                CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
-                if (chkBench.Checked)
-                {
-                    c = 1;
-                    x += "'" + ((HiddenField)item.FindControl("hdnValue")).Value + "',";
+           // int c = 0;
+            //string x = ddlBenchLocation.SelectedValue;
+            //foreach (RepeaterItem item in repBench.Items)
+            //{
+            //    CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
+            //    if (chkBench.Checked)
+            //    {
+            //        c = 1;
+            //        x += "'" + ((HiddenField)item.FindControl("hdnValue")).Value + "',";
 
-                }
-            }
-            if (c > 0)
-            {
-                string chkSelected = x.Remove(x.Length - 1, 1);
-                nv.Add("@BenchLocation", chkSelected);
-            }
-            else
-            {
-                nv.Add("@BenchLocation", "0");
-            }
+            //    }
+            //}
+            //if (c > 0)
+            //{
+            //    string chkSelected = x.Remove(x.Length - 1, 1);
+            //    nv.Add("@BenchLocation", chkSelected);
+            //}
+            //else
+            //{
+            //    nv.Add("@BenchLocation", "0");
+            //}
             //dt = objCommon.GetDataTable("SP_GetFertilizerRequestManual", nv);
-            dt = objFer.GetManualFertilizerRequest(x);
-            
+            dt = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue,ddlBenchLocation.SelectedValue);
+
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
@@ -212,7 +216,8 @@ namespace Improvians
 
         protected void gvFer_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvFer.PageIndex = e.NewPageIndex;
+            BindGridFerReq(); 
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -234,8 +239,8 @@ namespace Improvians
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                     nv.Add("@Type", radtype.SelectedValue);
-                //   nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
-               //   nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    //   nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+                    //   nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
                     nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
@@ -247,14 +252,14 @@ namespace Improvians
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                      nv.Add("@FertilizationCode", FertilizationCode.ToString());
+                    nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
-                   
+
 
                 }
             }
 
-            objTask.AddFertilizerRequestDetails(dtTrays,"0", FertilizationCode);
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -356,16 +361,16 @@ namespace Improvians
         {
             userinput.Visible = true;
             ddlsupervisor.Focus();
-            int tray = 0;
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-                if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                {
-                    tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
-                }
+            //int tray = 0;
+            //foreach (GridViewRow row in gvFer.Rows)
+            //{
+            //    if ((row.FindControl("chkSelect") as CheckBox).Checked)
+            //    {
+            //        tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
+            //    }
 
-            }
-            txtTrays.Text = tray.ToString();
+            //}
+           // txtTrays.Text = tray.ToString();
 
 
         }
@@ -373,7 +378,7 @@ namespace Improvians
         protected void txtQty_TextChanged(object sender, EventArgs e)
         {
 
-            txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
+         //   txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -384,7 +389,7 @@ namespace Improvians
         {
             BindJobCode();
             Bindcname();
-            BindBenchLocation();
+            //BindBenchLocation(ddlFacility,"");
 
             BindFacility();
             BindGridFerReq();
@@ -402,6 +407,7 @@ namespace Improvians
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
+            BindBenchLocation(ddlFacility.SelectedValue);
             BindGridFerReq();
         }
 
@@ -409,5 +415,6 @@ namespace Improvians
         {
             BindGridFerReq();
         }
+
     }
 }
