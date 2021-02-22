@@ -157,7 +157,59 @@
                                 </asp:GridView>
 
 
+                                  <asp:GridView ID="GridViewDetails" class="table table-bordered table-hover"
+                                                        AutoGenerateColumns="false" runat="server">
+                                                        <Columns>
 
+                                                            <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Fertilizer" HeaderStyle-Width="40%">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
+                                                                </ItemTemplate>
+
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Quantity" HeaderStyle-Width="10%">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblQuantity" runat="server" Text='<%#Bind("Quantity") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Unit" HeaderStyle-Width="15%">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblUnit" runat="server" Text='<%#Bind("Unit") %>'></asp:Label>
+                                                                </ItemTemplate>
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Tray" HeaderStyle-Width="15%">
+                                                                <ItemTemplate>
+
+                                                                    <asp:Label ID="lblTray" runat="server" Text='<%#Bind("Tray") %>'></asp:Label>
+
+
+                                                                </ItemTemplate>
+
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="SQFT" HeaderStyle-Width="10%">
+                                                                <ItemTemplate>
+
+                                                                    <asp:Label ID="lblSQFT" runat="server" Text='<%#Bind("SQFT") %>'></asp:Label>
+
+                                                                </ItemTemplate>
+
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                        <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
+                                                        <PagerSettings Mode="NumericFirstLast" />
+                                                        <EmptyDataTemplate>
+                                                            No Record Available
+                                                        </EmptyDataTemplate>
+                                                    </asp:GridView>
                             </div>
                         </div>
 
@@ -165,6 +217,8 @@
                 </div>
 
             </div>
+
+
             <div class="dashboard__block dashboard__block--asign">
 
 

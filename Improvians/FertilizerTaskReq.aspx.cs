@@ -135,10 +135,18 @@ namespace Improvians
             //{
             //    nv.Add("@BenchLocation", "0");
             //}
-                dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
-            gvFer.DataSource = dt;
-            gvFer.DataBind();
+               
 
+        }
+
+        public void BindGridFerDetails()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+            gvFerDetails.DataSource = dt;
+            gvFerDetails.DataBind();
         }
 
         public void BindSupervisor()
