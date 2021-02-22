@@ -11,9 +11,11 @@
             </ul>
         </div>
     </div>
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
-            <h2>My Task</h2>
+            <h2 class="head__title-icon">
+                <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation">
+                Irrigation Task</h2>
 
             <div class="filter__row d-flex">
                 <div class="row">

@@ -1,21 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="GerminationAssignmentForm.aspx.cs" Inherits="Improvians.GerminationAssignmentForm" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div class="header__bottom">
+    <div class="header__bottom">
         <div class="header__tabs">
             <ul class="d-flex align-items-center justify-content-center list-inline">
                 <li><a href="/my-tasks.html" class="bttn active" title="My Task">My Task</a></li>
-               <%-- <li><a href="#" class="bttn" title="Site Task">Site Task</a></li>
+                <%-- <li><a href="#" class="bttn" title="Site Task">Site Task</a></li>
                 <li><a href="#" class="bttn" title="Request Task">Request Task</a></li>--%>
                 <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
-             <%--   <li><a href="#" class="bttn" title="Track Task">Track Task</a></li>--%>
+                <%--   <li><a href="#" class="bttn" title="Track Task">Track Task</a></li>--%>
             </ul>
         </div>
     </div>
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
-            <h2>My Task</h2>
+            <h2 class="head__title-icon">
+                <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count">
+                Germination Count Task </h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
@@ -45,7 +48,7 @@
                                     class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvGerm_PageIndexChanging"
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound"
                                     ShowHeaderWhenEmpty="True" Width="100%">
-                                       <Columns>
+                                    <Columns>
                                         <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
@@ -53,13 +56,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
-                                       
+
 
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
-                                                  <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -70,7 +73,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        
+
                                         <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
@@ -107,13 +110,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Germination Count Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Germination Count Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label15" runat="server" Text='<%# Eval("GermDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="Germination Count No" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Germination Count No" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label16" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -125,7 +128,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                               <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -145,17 +148,17 @@
 
                                         <asp:TemplateField HeaderText="" HeaderStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                
+
                                                 <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Assign" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                            
-                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Start" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                            
+
+                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Start" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
                                     </Columns>
-                                   
+
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                                     <PagerSettings Mode="NumericFirstLast" />
