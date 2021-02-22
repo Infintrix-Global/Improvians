@@ -4,9 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
-            <h2>Move </h2>
+            <h2 class="head__title-icon">
+                <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request">
+                
+                Move </h2>
             <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>
                     <div class="filter__row d-flex">

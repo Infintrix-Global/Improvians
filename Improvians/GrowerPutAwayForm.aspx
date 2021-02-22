@@ -3,9 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
-            <h2>Put Away Location Assignment</h2>
+            <h2 class="head__title-icon">
+                <img src="./images/dashboard_put-away.png" width="137" height="140" alt="Put-Away">
+                Put Away Location Assignment
+            </h2>
 
             <div class="row">
                 <div class=" col m12">

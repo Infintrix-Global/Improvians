@@ -5,9 +5,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-    <div class="main main__header">
+    <div class="main__header">
         <div class="site__container">
-            <h2>Irrigation </h2>
+            <h2 class="head__title-icon">
+                <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation">
+                Irrigation </h2>
 
             <div class="row">
                 <div class="col-lg-3">
