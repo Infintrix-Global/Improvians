@@ -21,6 +21,8 @@ namespace Improvians
                 {
                     gtaID = Request.QueryString["GTAID"].ToString();
                 }
+
+                txtInspectionDate.Text= Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindGridGerm();
 
             }
