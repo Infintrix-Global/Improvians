@@ -247,7 +247,7 @@ namespace Improvians
 
             if (e.CommandName == "Job")
             {
-                Response.Redirect(String.Format("~/FerJobBuildUp?Bench={0}", e.CommandArgument.ToString()));
+                Response.Redirect(String.Format("~/FerJobBuildUp.aspx?Bench={0}", e.CommandArgument.ToString()));
             }
             }
 
