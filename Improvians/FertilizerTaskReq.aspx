@@ -79,12 +79,12 @@
                         <div class="portlet-body">
                             <div class="data__table">
 
-                                  <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                 <%--      <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None" Visible="false"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                        <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                     <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                             <HeaderTemplate>
                                                 <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
                                             </HeaderTemplate>
