@@ -19,7 +19,7 @@
     <div class="header__bottom">
         <div class="header__tabs">
             <ul class="d-flex align-items-center justify-content-center list-inline">
-                 <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
+                <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
                 <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
             </ul>
         </div>
@@ -27,7 +27,7 @@
     <div class="main">
         <div class="site__container">
             <h2 class="text-left">Fertilization / Chemical Task Completion </h2>
-           
+
             <div class="dashboard__block dashboard__block--asign">
 
 
@@ -39,18 +39,39 @@
 
 
 
-                            <div class="col m3">
+                            <div class="col-lg-6">
+                                <h3 class="robotobold">
+                                    <label>Bench Location</label><br />
+                                    <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
+                                </h3>
+                            </div>
+
+                            <div class="col-lg-6">
+                            </div>
+
+
+
+                        </div>
+
+                         <br />
+
+
+                        <div class="row">
+
+
+
+                            <div class="col-lg-3">
                                 <label class="d-block">Spray Date</label>
 
                                 <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                             </div>
 
-                            <div class="col m3">
+                            <div class="col-lg-3">
                                 <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
                             </div>
-                            <div class="col m3">
+                            <div class="col-lg-3">
                             </div>
-                            <div class="col m3">
+                            <div class="col-lg-3">
                                 <%-- <label>Job No.</label><br />--%>
 
 

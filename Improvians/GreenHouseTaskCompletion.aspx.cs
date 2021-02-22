@@ -44,12 +44,16 @@ namespace Improvians
 
         public void BindGridGerm()
         {
+
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@GTAID", gtaID);
             dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTaskByGTAID", nv);
+
+
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 lblwoid.Text = dt.Rows[0]["wo"].ToString();
@@ -57,9 +61,9 @@ namespace Improvians
                 lblSeedlot.Text = dt.Rows[0]["TraySize"].ToString();
                 //  txtTrays.Text = dt.Rows[0]["#TraysInspected"].ToString();
 
-
               //  Bindtxttray(Convert.ToInt32(dt.Rows[0]["#TraysInspected"].ToString()));
             }
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

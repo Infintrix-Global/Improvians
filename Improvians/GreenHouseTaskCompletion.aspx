@@ -98,7 +98,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                               <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                                         <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label4" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -116,7 +116,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
+                                         <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label46" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
                                             </ItemTemplate>

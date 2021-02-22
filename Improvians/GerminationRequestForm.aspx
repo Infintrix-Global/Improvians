@@ -7,57 +7,56 @@
         <div class="site__container">
             <h2>Germination Count Task </h2>
 
-       
-                <div class="row">
-                    <div class="col m3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" runat="server" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <%-- <div class="col m3">
+
+            <div class="row">
+                <div class="col m3">
+                    <label>Customer </label>
+                    <asp:DropDownList ID="ddlCustomer" runat="server" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <%-- <div class="col m3">
                         <label>GreenHouse </label>
                         <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>--%>
-                   
-                    <div class="col m3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" runat="server" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                     <div class="col m3">
-                        <label>Put away Facility </label>
-                        <asp:DropDownList ID="ddlFacility" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                     <div class="col m3">
-                        <label>Bench Location </label>
-                        <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col m3">
-                        <asp:RadioButtonList ID="radweek" runat="server"  RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="radweek_SelectedIndexChanged">
-                            <asp:ListItem Text="Last Week" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="This Week" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Next Week" Value="3"></asp:ListItem>
-                        </asp:RadioButtonList>
-                    </div>
 
-                    <div class="col m3">
-                        <asp:RadioButtonList ID="radStatus" runat="server"   OnSelectedIndexChanged="radStatus_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Overdue" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="Today" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Upcoming" Value="3"></asp:ListItem>
-                        </asp:RadioButtonList>
-                    </div>
-                    <div class="col m3">
-                         <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
-                        <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
-                    </div>
-
-                    <div class="col m3">
-                        
-                    </div>
+                <div class="col m3">
+                    <label>Job No </label>
+                    <asp:DropDownList ID="ddlJobNo" runat="server" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-           
+                <div class="col m3">
+                    <label>Put away Facility </label>
+                    <asp:DropDownList ID="ddlFacility" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col m3">
+                    <label>Bench Location </label>
+                    <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col m3">
+                    <asp:RadioButtonList ID="radweek" runat="server" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="radweek_SelectedIndexChanged">
+                        <asp:ListItem Text="Last Week" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="This Week" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="Next Week" Value="3"></asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+
+                <div class="col m3">
+                    <asp:RadioButtonList ID="radStatus" runat="server" OnSelectedIndexChanged="radStatus_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
+                        <asp:ListItem Text="Overdue" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Today" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="Upcoming" Value="3"></asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+                <div class="col m3">
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+                    <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                </div>
+
+                <div class="col m3">
+                </div>
+            </div>
+
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
@@ -113,13 +112,13 @@
 
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+                                                <asp:Label ID="lblBenchLocation" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
+                                                <asp:Label ID="lblTrays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -145,7 +144,7 @@
 
                                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                                <asp:Label ID="lblDescription" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -154,6 +153,9 @@
                                                 <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                 <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschedule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                 <asp:Button ID="btndismiss" runat="server" Text="Dismiss" OnClientClick="return confirm('Are you sure you want to dismiss this ?'); " CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
+                                                <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+
+
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -185,39 +187,71 @@
                 <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
                     <asp:Panel ID="pnlint" runat="server">
                         <h3>Assign Task</h3>
-                        <div class="row align-items-end">
-                            <div class="col-auto m6">
+
+                        <div class="row">
+                            <div class="col-lg-3">
                                 <label>Job No.</label><br />
                                 <h3 class="robotobold">
                                     <asp:Label ID="lblJobID" runat="server"></asp:Label>
                                     <asp:Label ID="lblID" runat="server" Visible="false"></asp:Label>
                                 </h3>
                             </div>
-                            <div class="col m6">
+                            <div class="col-lg-3">
+                                <label>Bench location</label><br />
+                                <h3 class="robotobold">
+                                    <asp:Label ID="lblBenchlocation" runat="server"></asp:Label>
+
+                                </h3>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Total Trays</label><br />
+                                <h3 class="robotobold">
+                                    <asp:Label ID="lblTotalTrays" runat="server"></asp:Label>
+
+                                </h3>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Description </label>
+                                <br />
+                                <h3 class="robotobold">
+                                    <asp:Label ID="lblDescription" runat="server"></asp:Label>
+
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
                                 <label>Assignment</label>
-                                <%-- <h3 class="robotobold"><asp:Label ID="lblSupervisorName" runat="server" ></asp:Label></h3>--%>
-                                <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
-                            <div class="col m6">
+                            <div class="col-lg-3">
                                 <label>Germination Count Date </label>
                                 <asp:TextBox ID="txtDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                             </div>
-                            <div class="col m6">
+                            <div class="col-lg-3">
                                 <label>Number Of Trays To Inspect</label>
                                 <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" class="input__control robotomd"></asp:TextBox>
                             </div>
-                            <%--<div class="clearfix"></div>--%>
-
-                            <div class="col-auto m6">
-                                <br />
-                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
-                            </div>
-                            <div class="col-auto m6">
-                                <br />
-                                <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
+                            <div class="col-lg-3">
                             </div>
                         </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3">
+                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
+                                <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
+                            </div>
+                            <div class="col-lg-2">
+                            </div>
+                            <div class="col m3">
+                            </div>
+
+                        </div>
+
                     </asp:Panel>
                 </div>
 
@@ -231,15 +265,15 @@
                                     <asp:Label ID="lblRescheduleJobID" runat="server"></asp:Label>
                                     <asp:Label ID="lblRescheduleID" runat="server" Visible="false"></asp:Label>
                                 </h3>
-                            </div>                         
+                            </div>
                             <div class="col-auto m6">
                                 <label>New Germination Count Date </label>
                                 <asp:TextBox ID="txtNewDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                             </div>
-                               <div class="col-auto m6">
+                            <div class="col-auto m6">
                                 <asp:RadioButtonList runat="server" ID="radReschedule">
-                                    <asp:ListItem Text="Only move this germination count" Value="1" Selected="True" ></asp:ListItem>
-                                     <asp:ListItem Text="Move all the remaining germination count by same number of days" Value="2" ></asp:ListItem>
+                                    <asp:ListItem Text="Only move this germination count" Value="1" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="Move all the remaining germination count by same number of days" Value="2"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
                             <%--<div class="clearfix"></div>--%>

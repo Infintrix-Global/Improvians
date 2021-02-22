@@ -22,6 +22,7 @@ namespace Improvians
                 BindBenchLocation();
                 BindGridGerm();
                 BindSupervisorList();
+                txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
         }
 
@@ -134,6 +135,7 @@ namespace Improvians
             if (e.CommandName == "Select")
             {
                 userinput.Visible = true;
+                divReschedule.Visible = false;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
                 //string facName = (row.FindControl("lblFacility") as Label).Text;
@@ -148,6 +150,10 @@ namespace Improvians
                 string Datwc = (row.FindControl("lblGermDate") as Label).Text;
 
                 txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+
+                lblBenchlocation.Text = (row.FindControl("lblBenchLocation") as Label).Text;
+                lblDescription.Text = (row.FindControl("lblDescription") as Label).Text;
+                lblTotalTrays.Text = (row.FindControl("lblTrays") as Label).Text;
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
@@ -161,10 +167,13 @@ namespace Improvians
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@GTID", GTID.ToString());
                 result = objCommon.GetDataInsertORUpdate("SP_DismissGerminationRequest", nv);
+
+                BindGridGerm();
             }
             if (e.CommandName == "Reschedule")
             {
                 divReschedule.Visible = true;
+                userinput.Visible = false;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
                 //string facName = (row.FindControl("lblFacility") as Label).Text;
@@ -182,6 +191,7 @@ namespace Improvians
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtNewDate.Focus();
+                BindGridGerm();
             }
         }
 
