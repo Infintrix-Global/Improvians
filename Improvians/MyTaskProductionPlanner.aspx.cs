@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Improvians.Bal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -11,6 +12,7 @@ namespace Improvians
 {
     public partial class MyTaskProductionPlanner : System.Web.UI.Page
     {
+        Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,7 +40,14 @@ namespace Improvians
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
-
+        public void BindSeedlineLocation()
+        {
+            ddlSeedlineLocation.DataSource = objSP.GetSeedlineLocationProductionPlanner();
+            ddlSeedlineLocation.DataTextField = "loc";
+            ddlSeedlineLocation.DataValueField = "loc";
+            ddlSeedlineLocation.DataBind();
+            ddlSeedlineLocation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+        }
 
         public void BindJobCode()
         {
@@ -55,7 +64,7 @@ namespace Improvians
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
-       
+
         public void BindFacility()
         {
 
@@ -109,6 +118,21 @@ namespace Improvians
 
         }
 
+        private string WO
+        {
+            get
+            {
+                if (ViewState["WO"] != null)
+                {
+                    return (string)ViewState["WO"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["WO"] = value;
+            }
+        }
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
@@ -121,6 +145,14 @@ namespace Improvians
                 Response.Redirect(String.Format("~/SeedLineCompletionFinal.aspx?WOId={0}", WO));
 
             }
+
+            if (e.CommandName == "Assign")
+            {
+                string WO1 = e.CommandArgument.ToString();
+                WO = WO1;
+                BindSeedlineLocation();
+              
+            }
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -129,6 +161,14 @@ namespace Improvians
             BindGridGerm();
         }
 
-      
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
