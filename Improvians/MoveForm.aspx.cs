@@ -282,5 +282,9 @@ namespace Improvians
              
             }
         }
+        protected void btnManual_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/MovesReqManual.aspx");
+        }
     }
 }
