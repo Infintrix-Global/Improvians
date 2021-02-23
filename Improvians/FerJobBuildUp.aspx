@@ -16,8 +16,8 @@
 
 
                 <div class="col-lg-3">
-                    <label>Bench Location </label>
-                    <asp:Label ID="lblbench" runat="server"></asp:Label>
+                  <h3>        <label>Bench Location </label>
+            <asp:Label ID="lblbench" runat="server"></asp:Label> </h3>  
                 </div>
             </div>
             <div class="row">
@@ -26,8 +26,8 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <h3>Selected Jobs</h3>
-                                <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <h3>Selected Job on Bench</h3>
+                                      <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None"
                                     ShowHeaderWhenEmpty="True" Width="100%">
@@ -113,9 +113,9 @@
                                 </asp:GridView>
 
                                 <br />
-                                <h3>Other Jobs</h3>
-
-                                <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                  <h3>Other Jobs on Bench</h3>
+                          
+                                  <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None" Visible="false"
                                     ShowHeaderWhenEmpty="True" Width="100%">

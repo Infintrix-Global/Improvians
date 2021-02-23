@@ -107,7 +107,7 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", Bench);
-            dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequestHistory", nv);
             gvJobHistory.DataSource = dt;
             gvJobHistory.DataBind();
         }
