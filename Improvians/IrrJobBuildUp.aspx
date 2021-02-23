@@ -12,9 +12,9 @@
                <div class="row">
 
                 
-                    <div class="col-lg-3">
-                        <label>Bench Location </label>
-                       <h3>  <asp:Label ID="lblbench"  runat="server" ></asp:Label></h3>
+                <div class="col-lg-3">
+                         <h3>    <label>Bench Location </label>
+                        <asp:Label ID="lblbench"  runat="server" ></asp:Label></h3>
                         </div>
                   </div>
                <div class="row">
