@@ -6,7 +6,7 @@
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main">
         <div class="site__container">
-            <h2 class="text-left">Fertilization/Chemical </h2>
+            <h2 class="text-left">Moves</h2>
             <div class="filter__row d-flex">
                 <div class="row">
                     <div class="col-lg-3">

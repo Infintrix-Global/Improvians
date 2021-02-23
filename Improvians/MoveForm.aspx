@@ -8,7 +8,7 @@
         <div class="site__container">
             <h2 class="head__title-icon">
                 <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request">
-                Move </h2>
+                Moves </h2>
             <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>
                     <div class="filter__row d-flex">

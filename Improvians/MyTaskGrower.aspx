@@ -99,7 +99,7 @@
                         <div class="dashboard__box-count dash_green_txt robotobold">
                             <asp:Label ID="lblMove" runat="server" Text="0"></asp:Label>
                         </div>
-                        <h3 class="dashboard__box-title robotomd">Move Request</h3>
+                        <h3 class="dashboard__box-title robotomd">Moves</h3>
                         <p>Review and assign move tasks</p>
                     </div>
                 </a>
