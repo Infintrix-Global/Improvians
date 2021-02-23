@@ -294,13 +294,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.TextBox txtBenchIrrigationCoverage;
 
         /// <summary>
-        /// txtSprayCoverage control.
+        /// txtSprayCoverageperminutes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSprayCoverage;
+        protected global::System.Web.UI.WebControls.TextBox txtSprayCoverageperminutes;
 
         /// <summary>
         /// btnSubmit control.

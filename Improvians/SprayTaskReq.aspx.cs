@@ -62,9 +62,9 @@ namespace Improvians
             //nv1.Add("@LoginID", Session["LoginID"].ToString());
             //nv1.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             //nv1.Add("@FertilizationCode", lblFertilizationCode.Text);
-            nv1.Add("@FertilizationId", FertilizationCode);
+            nv1.Add("@FertilizationCode", FertilizationCode);
 
-            dt1 = objCommon.GetDataTable("SP_GetSprayRequestGreenHouseDetails", nv1);
+            dt1 = objCommon.GetDataTable("SP_GetSprayRequestSelectDetails", nv1);
             lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
 
 

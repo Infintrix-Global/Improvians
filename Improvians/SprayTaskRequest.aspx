@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="SprayTaskRequest.aspx.cs" Inherits="Improvians.SprayTaskRequest" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
-     <div class="header__bottom">
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <div class="header__bottom">
         <div class="header__tabs">
             <ul class="d-flex align-items-center justify-content-center list-inline">
-                 <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
+                <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
                 <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
             </ul>
         </div>
@@ -16,10 +17,10 @@
             <h2 class="head__title-icon">
                 <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
                 Fertilization / Chemical Task Completion </h2>
-          
+
             <br />
 
-            
+
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
@@ -32,106 +33,83 @@
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
 
-                                         <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="100">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblRowNumber" runat="server" Text="<%# Container.DataItemIndex + 1 %>" />
-                                                    <asp:Label ID="lblFertilizationCode" Visible="false" runat="server" Text='<%#Bind("FertilizationCode") %>'></asp:Label>
-                                                 
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                    
-                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="100">
                                             <ItemTemplate>
-                                              <asp:Panel ID="Panel11" runat="server" >
+                                                <asp:Label ID="lblRowNumber" runat="server" Text="<%# Container.DataItemIndex + 1 %>" />
+                                                <asp:Label ID="lblFertilizationCode" Visible="false" runat="server" Text='<%#Bind("FertilizationCode") %>'></asp:Label>
 
-                                                    <asp:GridView ID="GridViewFShow" class="table table-bordered table-hover"
-                                                        AutoGenerateColumns="false" runat="server">
-                                                        <Columns>
-
-                                                            <asp:TemplateField ShowHeader="false">
-                                                                <ItemTemplate>
-
-                                                                    <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
-
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-
-
-                                                        </Columns>
-                                                        <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
-                                                        <PagerSettings Mode="NumericFirstLast" />
-                                                        <EmptyDataTemplate>
-                                                            No Record Available
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-
-                                                </asp:Panel>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-
-                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Bench Location">
                                             <ItemTemplate>
-                                              <asp:Panel ID="Panel1" runat="server">
 
-                                                    <asp:GridView ID="GridViewDetails" class="table table-bordered table-hover"
-                                                        AutoGenerateColumns="false" runat="server">
-                                                        <Columns>
+                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
 
-                                                            <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+                                            </ItemTemplate>
 
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Fertilizer" HeaderStyle-Width="40%">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
-                                                                </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                                            </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Fertilizer">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
+                                            </ItemTemplate>
 
-                                                            <asp:TemplateField HeaderText="Quantity" HeaderStyle-Width="10%">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblQuantity" runat="server" Text='<%#Bind("Quantity") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
+                                        </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Unit" HeaderStyle-Width="15%">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblUnit" runat="server" Text='<%#Bind("Unit") %>'></asp:Label>
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Tray" HeaderStyle-Width="15%">
-                                                                <ItemTemplate>
-
-                                                                    <asp:Label ID="lblTray" runat="server" Text='<%#Bind("Tray") %>'></asp:Label>
-
-
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="SQFT" HeaderStyle-Width="10%">
-                                                                <ItemTemplate>
-
-                                                                    <asp:Label ID="lblSQFT" runat="server" Text='<%#Bind("SQFT") %>'></asp:Label>
-
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
-                                                        <PagerSettings Mode="NumericFirstLast" />
-                                                        <EmptyDataTemplate>
-                                                            No Record Available
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-
-                                                </asp:Panel>
+                                        <asp:TemplateField HeaderText="Concentration [ppm]">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblQuantity" runat="server" Text='<%#Bind("Quantity") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Tray">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblTray" runat="server" Text='<%#Bind("Tray") %>'></asp:Label>
+
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="SQFT of Bench">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblSQFT" runat="server" Text='<%#Bind("SQFT") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Bench Irrigation Flow Rate [Gallons/min]">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblBenchIrrigationFlowRat" runat="server" Text='<%#Bind("BenchIrrigationFlowRat") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+
+                                         <asp:TemplateField HeaderText="Bench Irrigation Coverage [Gallons/Sqft]">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblBenchIrrigationCoverage" runat="server" Text='<%#Bind("BenchIrrigationCoverage") %>'></asp:Label>
+                                                
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Spray Coverage per minutes [sqft/min]">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblSprayCoverageperminutes" runat="server" Text='<%#Bind("SprayCoverageperminutes") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+
+
 
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -170,7 +148,7 @@
                         <div class="row">
 
                             <div class="col-md-auto">
-                              <%--  <label>Job No.</label><br />--%>
+                                <%--  <label>Job No.</label><br />--%>
 
 
                                 <h3 class="robotobold">

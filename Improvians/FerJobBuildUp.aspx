@@ -362,7 +362,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>Spray Coverage per minutes [sqft/min]</label>
-                                <asp:TextBox ID="txtSprayCoverage"  TextMode="Number"  runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtSprayCoverageperminutes"  TextMode="Number"  runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
                             <div class="col-lg-3">

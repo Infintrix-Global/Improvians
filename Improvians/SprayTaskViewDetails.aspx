@@ -18,56 +18,14 @@
             <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
 
-            <div class="row">
 
-                <div class="col m3">
-                    <label>Bench Location </label>
-                    <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-                <div class="col m3">
-                    <label>Job No </label>
-                    <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged1" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-
-
-                <div class="col m3">
-                    <label>Item </label>
-                    <asp:DropDownList ID="ddlItem" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-
-                <div class="col m3">
-                    <label>Tray Size</label>
-                    <asp:DropDownList ID="ddltraysize" AutoPostBack="true" OnSelectedIndexChanged="ddltraysize_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-
-
-
-            </div>
-            <br />
-
-            <div class="row">
-                <div class="col m3">
-                </div>
-
-                <div class="col m3">
-                </div>
-                <div class="col m3">
-                </div>
-
-                <div class="col m3">
-                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click1" />
-                    <asp:Button Text="back" ID="btnBank" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnBank_Click" />
-
-                </div>
-            </div>
-            <br />
             <div class="row">
 
 
 
                 <div class="col-lg-6">
                     <h3 class="robotobold">
-                          <label>Bench Location</label><br />
+                        <label>Bench Location</label><br />
                         <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
                     </h3>
                 </div>
@@ -78,7 +36,7 @@
 
 
             </div>
-                 <br />
+            <br />
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
@@ -181,26 +139,20 @@
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Fertilizer" HeaderStyle-Width="40%">
+                                        <asp:TemplateField HeaderText="Fertilizer">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
                                             </ItemTemplate>
 
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Quantity" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="Concentration [ppm]">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblQuantity" runat="server" Text='<%#Bind("Quantity") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Unit" HeaderStyle-Width="15%">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblUnit" runat="server" Text='<%#Bind("Unit") %>'></asp:Label>
-                                            </ItemTemplate>
-
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Tray" HeaderStyle-Width="15%">
+                                        <asp:TemplateField HeaderText="Tray">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblTray" runat="server" Text='<%#Bind("Tray") %>'></asp:Label>
@@ -209,10 +161,37 @@
                                             </ItemTemplate>
 
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="SQFT" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="SQFT of Bench">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblSQFT" runat="server" Text='<%#Bind("SQFT") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Bench Irrigation Flow Rate [Gallons/min]">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblBenchIrrigationFlowRat" runat="server" Text='<%#Bind("BenchIrrigationFlowRat") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Bench Irrigation Coverage [Gallons/Sqft]">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblBenchIrrigationCoverage" runat="server" Text='<%#Bind("BenchIrrigationCoverage") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Spray Coverage per minutes [sqft/min]">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblSprayCoverageperminutes" runat="server" Text='<%#Bind("SprayCoverageperminutes") %>'></asp:Label>
 
                                             </ItemTemplate>
 

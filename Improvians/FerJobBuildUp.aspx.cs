@@ -157,7 +157,7 @@ namespace Improvians
 
             }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text);
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text,txtBenchIrrigationFlowRate.Text,txtBenchIrrigationCoverage.Text,txtSprayCoverageperminutes.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -183,6 +183,9 @@ namespace Improvians
             txtQty.Text = "";
             txtSQFT.Text = "";
             txtTrays.Text = "";
+            txtBenchIrrigationFlowRate.Text = "";
+            txtBenchIrrigationCoverage.Text = "";
+            txtSprayCoverageperminutes.Text = "";
             radtype.SelectedValue = "Fertilizer";
             BindFertilizer();
             dtTrays.Clear();

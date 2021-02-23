@@ -180,32 +180,27 @@ namespace Improvians
             //nv.Add("@mode", "3");
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@loc_seedline", ddlSeedlineLocation.SelectedItem.Text);
-       
-            nv.Add("@WO",WO);
+
+            nv.Add("@WO", WO);
             result = objCommon.GetDataExecuteScaler("SP_UpdateProductionPlanner", nv);
-            if (result > 0)
-            {
-                //lblmsg.Text = "Assignment Successful";
-                clear();
-                string message = "reassignment Successful";
-                string url = "MyTaskProductionPlanner.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-            }
-            else
-            {
-                lblmsg.Text = "Assignment Not Successful";
-            }
+
+            //lblmsg.Text = "Assignment Successful";
+            clear();
+            string message = "reassignment Successful";
+            string url = "MyTaskProductionPlanner.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
         }
         public void clear()
         {
             ddlSeedlineLocation.SelectedIndex = 0;
-        
+
 
         }
         protected void btnReset_Click(object sender, EventArgs e)

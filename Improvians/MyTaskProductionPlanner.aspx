@@ -32,7 +32,7 @@
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
-                        <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
+                        <asp:Label runat="server" Visible="false" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"

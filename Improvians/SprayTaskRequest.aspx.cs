@@ -243,35 +243,35 @@ namespace Improvians
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                Label lblFertilizationCode = (Label)e.Row.FindControl("lblFertilizationCode");
-                GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
-                GridView GridViewFShow = e.Row.FindControl("GridViewFShow") as GridView;
+                //Label lblFertilizationCode = (Label)e.Row.FindControl("lblFertilizationCode");
+                //GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
+                //GridView GridViewFShow = e.Row.FindControl("GridViewFShow") as GridView;
 
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@FertilizationId", lblFertilizationCode.Text);
+                //DataTable dt = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@FertilizationId", lblFertilizationCode.Text);
 
-                dt = objCommon.GetDataTable("SP_GetSprayRequestFerChemDetails", nv);
+                //dt = objCommon.GetDataTable("SP_GetSprayRequestFerChemDetails", nv);
 
-                GridViewFields.DataSource = dt;
-                GridViewFields.DataBind();
-
-
+                //GridViewFields.DataSource = dt;
+                //GridViewFields.DataBind();
 
 
-                DataTable dt1 = new DataTable();
-                NameValueCollection nv1 = new NameValueCollection();
-                //nv1.Add("@JobCode", ddlJobNo.SelectedValue);
-                //nv1.Add("@CustomerName", ddlCustomer.SelectedValue);
-                //nv1.Add("@Facility", ddlFacility.SelectedValue);
-                //nv1.Add("@LoginID", Session["LoginID"].ToString());
-                //nv1.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-                //nv1.Add("@FertilizationCode", lblFertilizationCode.Text);
-                nv1.Add("@FertilizationId", lblFertilizationCode.Text);
 
-                dt1 = objCommon.GetDataTable("SP_GetSprayRequestGreenHouseDetails", nv1);
-                GridViewFShow.DataSource = dt1;
-                GridViewFShow.DataBind();
+
+                //DataTable dt1 = new DataTable();
+                //NameValueCollection nv1 = new NameValueCollection();
+                ////nv1.Add("@JobCode", ddlJobNo.SelectedValue);
+                ////nv1.Add("@CustomerName", ddlCustomer.SelectedValue);
+                ////nv1.Add("@Facility", ddlFacility.SelectedValue);
+                ////nv1.Add("@LoginID", Session["LoginID"].ToString());
+                ////nv1.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+                ////nv1.Add("@FertilizationCode", lblFertilizationCode.Text);
+                //nv1.Add("@FertilizationId", lblFertilizationCode.Text);
+
+                //dt1 = objCommon.GetDataTable("SP_GetSprayRequestGreenHouseDetails", nv1);
+                //GridViewFShow.DataSource = dt1;
+                //GridViewFShow.DataBind();
             }
         }
     }

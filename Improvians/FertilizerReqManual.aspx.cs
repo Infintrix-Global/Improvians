@@ -26,7 +26,7 @@ namespace Improvians
             {
                 BindSupervisor();
                 BindFertilizer();
-            //    BindUnit();
+                //    BindUnit();
                 BindJobCode();
                 Bindcname();
                 BindFacility();
@@ -181,8 +181,9 @@ namespace Improvians
 
             }
 
-            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode,ddlBenchLocation.SelectedItem.Text);
+            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
+            //   objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode,ddlBenchLocation.SelectedItem.Text);
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, ddlBenchLocation.SelectedItem.Text, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -208,6 +209,9 @@ namespace Improvians
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
+            txtBenchIrrigationFlowRate.Text = "";
+            txtBenchIrrigationCoverage.Text = "";
+            txtSprayCoverageperminutes.Text = "";
             txtQty.Text = "";
             txtSQFT.Text = "";
             txtTrays.Text = "";
