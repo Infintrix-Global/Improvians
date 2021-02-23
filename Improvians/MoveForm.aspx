@@ -8,7 +8,6 @@
         <div class="site__container">
             <h2 class="head__title-icon">
                 <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request">
-                
                 Move </h2>
             <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>
@@ -29,6 +28,9 @@
                             <div class="col m3">
                                 <label>Job No </label>
                                 <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                            </div>
+                            <div class="col m3">
+                                <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                             </div>
                         </div>
                     </div>
@@ -58,7 +60,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                  <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                                     </ItemTemplate>
@@ -70,7 +72,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                            
+
                                                 <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("PTrays")  %>'></asp:Label>
@@ -83,7 +85,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                              <%--  <asp:TemplateField HeaderText="Seed Lot" HeaderStyle-CssClass="autostyle2">
+                                                <%--  <asp:TemplateField HeaderText="Seed Lot" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="Label11" runat="server" Text='<%# Eval("SeedLots")  %>'></asp:Label>
                                                     </ItemTemplate>
@@ -103,10 +105,10 @@
 
                                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                 <%--       <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>--%>
-                                                          <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("GrowerPutAwayID")  %>'></asp:Button>
+                                                        <%--       <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("wo")  %>'></asp:Button>--%>
+                                                        <asp:Button ID="btnSelect" runat="server" Text="Request" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("GrowerPutAwayID")  %>'></asp:Button>
 
-												   </ItemTemplate>
+                                                    </ItemTemplate>
                                                 </asp:TemplateField>
 
 
@@ -142,7 +144,7 @@
                                     <div class="col m3">
                                         <label>Job ID</label>
                                         <asp:Label ID="lbljobid" runat="server"></asp:Label>
-                                          <asp:Label ID="lblGrowerputawayID" runat="server" Visible="false"></asp:Label>
+                                        <asp:Label ID="lblGrowerputawayID" runat="server" Visible="false"></asp:Label>
                                     </div>
                                     <div class="col m3">
                                         <label>Remaining Trays</label>
@@ -176,7 +178,7 @@
                                     <div class="col m3">
                                         <label>Number Of Trays </label>
 
-                                        <asp:TextBox ID="txtTrays"  runat="server" CssClass="input__control"></asp:TextBox>
+                                        <asp:TextBox ID="txtTrays" runat="server" CssClass="input__control"></asp:TextBox>
                                         <span class="error_message">
                                             <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
