@@ -146,6 +146,30 @@
 
             </div>
 
+            <div class="dashboard__block dashboard__block--asign">
+                <h3>Reassign Task</h3>
+                <div id="userinput" visible="false" runat="server" class="assign__task d-flex">
+                    <asp:Panel ID="pnlint" runat="server">
+                        <div class="row">
+                            <div class="col">
+                                <label>Seedline Location</label>
+                                <asp:DropDownList ID="ddlSeedlineLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                            </div>
+
+
+                            <div class="col-auto">
+                                <br />
+                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
+                            </div>
+                            <div class="col-auto">
+                                <br />
+                                <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action"  OnClick="btnReset_Click" runat="server" />
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </div>
+            </div>
+            
         </div>
     </div>
 </asp:Content>
