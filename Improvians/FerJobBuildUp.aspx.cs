@@ -122,11 +122,7 @@ namespace Improvians
             gvJobHistory.DataBind();
         }
 
-        //protected void txtQty_TextChanged(object sender, EventArgs e)
-        //{
-
-        //    txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
-        //}
+     
 
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -153,15 +149,15 @@ namespace Improvians
                 //nv.Add("@WorkOrder", lblwo.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@FertilizationCode", FertilizationCode.ToString());
+               
+
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
-
-
 
                 //  }
 
             }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";

@@ -180,6 +180,7 @@ namespace Improvians
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
 
             }
+
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
 
