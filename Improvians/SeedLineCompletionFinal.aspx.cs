@@ -37,15 +37,7 @@ namespace Improvians
                 //dtTrays.Clear();
                 BindGridDetailsNew();
 
-                if (txtActualTraysNo.Text == "0")
-                {
-                   
-                    txtActualTraysNo.ForeColor = System.Drawing.Color.Green;
-                }
-                else
-                {
-                    txtActualTraysNo.ForeColor = System.Drawing.Color.Black;
-                }
+              
             }
         }
 
@@ -406,7 +398,7 @@ namespace Improvians
                         txtActualTraysNo.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
                         txtActualTraysNo.Focus();
 
-                        if (txtActualTraysNo.Text == "0")
+                        if (txtSeedsAllocated.Text == "0")
                         {
 
                             txtActualTraysNo.ForeColor = System.Drawing.Color.Green;
@@ -415,6 +407,8 @@ namespace Improvians
                         {
                             txtActualTraysNo.ForeColor = System.Drawing.Color.Black;
                         }
+
+
                     }
                     txtSeedsAllocated.Text = (Convert.ToDouble(txtRequestedTrays.Text) - Convert.ToDouble(txtActualTraysNo.Text)).ToString();
                     //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
