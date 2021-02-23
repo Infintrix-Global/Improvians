@@ -88,6 +88,30 @@ namespace Improvians.Bal
             }
             return dt;
         }
+
+
+        public DataTable GetSeedlineLocationProductionPlanner()
+        {
+            Improvians_General objGeneral = new Improvians_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "select  distinct  w.[Location Code] loc ";
+                strQuery += "from [GTI$IA Job Activity Scheme Line] b, [GTI$IA Job Production Scheme Line] p, ";
+                strQuery += "[GTI$Job] j left outer join [GTI$IA Work Order Header] w on j.No_ = w.[Job No_] ";
+                strQuery += "where b.[Job No_] = p.[Job No_] And b.[Job No_] = j.No_ And b.[Item Category] = 'SEED' and p.[Production Phase] = 'SEEDING' And ";
+                strQuery += " b.[Actual Date] < '1/1/2000' and j.[Job Status] in (1,9) ";
+                strQuery += "and b.[Job No_] not in (select jobcode from gti_jobs_seeds_plan) ";
+                strQuery += "order by loc";
+              
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
         public DataTable GetItems(string FromDate, string ToDate)
         {
             Improvians_General objGeneral = new Improvians_General();
