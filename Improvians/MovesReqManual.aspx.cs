@@ -198,7 +198,7 @@ namespace Improvians
 
             long result = 0;
             //result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
-            result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue, "", lblGrowerputawayID.Text);
+           // result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue, "", lblGrowerputawayID.Text);
             if (result > 0)
             {
                 // lblmsg.Text = "Request Successful";
