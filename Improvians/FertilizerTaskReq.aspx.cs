@@ -288,7 +288,7 @@ namespace Improvians
 
             }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, ddlUnit.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode,"");
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
