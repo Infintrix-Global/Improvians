@@ -178,7 +178,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>Concentration [ppm]</label>
-                                <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtQty" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="md"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
