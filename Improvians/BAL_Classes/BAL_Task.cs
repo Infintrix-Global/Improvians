@@ -68,7 +68,7 @@ namespace Improvians.BAL_Classes
             return _isInserted;
         }
 
-        public int AddPTCSeedAllocation(string STCID, string LotID, string ActualSeed, string SeedNo, string Type, string Partial)
+        public int AddPTCSeedAllocation(string STCID, string LotID, string ActualSeed, string SeedNo, string Type, string Partial,string InitialSeedLotWeight, string FinalSeedLotWeight)
         {
             int _isInserted = -1;
             try
@@ -80,6 +80,12 @@ namespace Improvians.BAL_Classes
                 objGeneral.AddParameterWithValueToSQLCommand("@SeedNo", SeedNo);
                 objGeneral.AddParameterWithValueToSQLCommand("@Type", Type);
                 objGeneral.AddParameterWithValueToSQLCommand("@Partial", Partial);
+                objGeneral.AddParameterWithValueToSQLCommand("@InitialSeedLotWeight", InitialSeedLotWeight);
+                objGeneral.AddParameterWithValueToSQLCommand("@FinalSeedLotWeight", FinalSeedLotWeight);
+
+
+
+                
                 _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddPTCLotMap");
                 
             }

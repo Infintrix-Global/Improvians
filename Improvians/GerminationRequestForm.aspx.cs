@@ -193,6 +193,10 @@ namespace Improvians
                 txtNewDate.Focus();
                 BindGridGerm();
             }
+            if (e.CommandName == "Reschedule")
+            {
+
+            }
         }
 
 

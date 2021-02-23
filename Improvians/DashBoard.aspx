@@ -94,7 +94,7 @@
                                         <img src="images/link-assign-task.svg" width="184" height="184" alt="Assign a Task" />
                                         <span>Job Report</span>
                                     </a>
-                                    <a href="#" class="dashboard__task">
+                                    <a runat="server" id="TrackTasks" href="#" class="dashboard__task">
                                         <img src="images/link-track-tasks.svg" width="184" height="184" alt="Track Tasks" />
                                         <span>Track Task</span>
                                     </a>
