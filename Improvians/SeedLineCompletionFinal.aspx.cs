@@ -174,13 +174,14 @@ namespace Improvians
                         string ID = (row.Cells[0].FindControl("lblLotName") as Label).Text;
                         string ActualTray = (row.Cells[2].FindControl("txtActualTray") as TextBox).Text;
                         string SeedNo = (row.Cells[3].FindControl("lblSeed") as Label).Text;
-                        string Type = (row.Cells[4].FindControl("ddlType") as DropDownList).Text;
-                        string Partial = (row.Cells[5].FindControl("txtPartial") as TextBox).Text;
+                        //  string Type = (row.Cells[4].FindControl("ddlType") as DropDownList).Text;
+                        //  string Partial = (row.Cells[5].FindControl("txtPartial") as TextBox).Text;
+                        string InitialSeedLotWeight = (row.Cells[5].FindControl("txtInitialSeedLotWeight") as TextBox).Text;
+                        string FinalSeedLotWeight = (row.Cells[5].FindControl("txtFinalSeedLotWeight") as TextBox).Text;
 
-                        if (Type != "Unused")
-                        {
-                            objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, Type, Partial);
-                        }
+
+                        objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, "", "", InitialSeedLotWeight, FinalSeedLotWeight);
+                       
                     }
                 }
                 Clear();
@@ -394,6 +395,11 @@ namespace Improvians
                         (row.Cells[3].FindControl("lblSeed") as Label).Text = (Convert.ToInt32(txtActual.Text) * Convert.ToInt32(lblTraySize.Text)).ToString();
                         txtActualTraysNo.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
                         txtActualTraysNo.Focus();
+
+                       if( txtActualTraysNo.Text =="0")
+                        {
+                            txtActualTraysNo.ForeColor.Equals("Green");
+                        }
                     }
                     txtSeedsAllocated.Text = (Convert.ToDouble(txtRequestedTrays.Text) - Convert.ToDouble(txtActualTraysNo.Text)).ToString();
                     //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;

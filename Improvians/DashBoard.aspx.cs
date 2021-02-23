@@ -18,6 +18,7 @@ namespace Improvians
             {
                 BindData();
                 BindPlantReadyAVG();
+                SetLinkTrackTasks();
             }
         }
         public void BindData()
@@ -106,5 +107,17 @@ namespace Improvians
                 lblPlantReadyQuality.Text = "00:00";
             }
         }
+
+
+        public void SetLinkTrackTasks()
+        {
+           
+            if (Session["Role"].ToString() == "10")
+            {
+                TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
+            }
+          
+        }
+
     }
 }

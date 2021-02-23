@@ -137,7 +137,7 @@
                                         </span>
 
                                         <span class="ml-2 mr-2">
-                                            <asp:TextBox ID="txtTrayChange" runat="server"   TextMode="Number" Width="100px" placeholder="Tray Size" Visible="false"></asp:TextBox>
+                                            <asp:TextBox ID="txtTrayChange" runat="server" TextMode="Number" Width="100px" placeholder="Tray Size" Visible="false"></asp:TextBox>
                                         </span>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
 
 
                                 <div class="col-lg-3">
-                                      <label>Fill Order</label>
+                                    <label>Fill Order</label>
                                     <br />
                                     <span class="custom-control custom-radio ml-4 mr-2">
                                         <asp:RadioButtonList ID="radOrder" runat="server" Width="300px" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="radOrder_SelectedIndexChanged">
@@ -188,20 +188,7 @@
                                             <asp:Label ID="lblSeedRequired" runat="server"></asp:Label></h3>
                             </div>
 
-                            <%--  <div class="row">
-                                <div class="col m3">
-                                    <label>Seed Lot</label>
-                                    <asp:DropDownList ID="ddlSeedLot" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                    <span class="error_message">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlSeedLot" ValidationGroup="md"
-                                            SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select SeedLot" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    </span>
-                                </div>
-                                <div class="col m3">
-                                    <br />
-                                    <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
-                                </div>
-                            </div>--%>
+
 
 
 
@@ -246,7 +233,7 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Used/Unused">
+                                            <%--                                            <asp:TemplateField HeaderText="Used/Unused">
                                                 <ItemTemplate>
                                                     <asp:DropDownList ID="ddlType" runat="server" class="custom__dropdown robotomd">
                                                         <asp:ListItem Text="Unused" Value="Unused"></asp:ListItem>
@@ -255,13 +242,25 @@
                                                     </asp:DropDownList>
 
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
-                                            <asp:TemplateField HeaderText="Leftover seeds">
+                                            <%--                                            <asp:TemplateField HeaderText="Leftover seeds">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtPartial" class="input__control robotomd" runat="server" Text=""></asp:TextBox>
                                                 </ItemTemplate>
+                                            </asp:TemplateField>--%>
+
+                                            <asp:TemplateField HeaderText="Initial Seed Lot Weight(lb)">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtInitialSeedLotWeight" class="input__control robotomd" runat="server" Text=""></asp:TextBox>
+                                                </ItemTemplate>
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Final Seed Lot Weight(lb)">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtFinalSeedLotWeight" class="input__control robotomd" runat="server" Text=""></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="#">
                                                 <ItemTemplate>
                                                     <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
@@ -281,7 +280,7 @@
 
 
 
-                        </div>   
+                        </div>
                         <br />
 
                         <div class="row">
@@ -338,24 +337,24 @@
                         </div>
                         <%--  </ContentTemplate>
                             </asp:UpdatePanel>--%>
-                
 
-                    <div class="col-12">
-                        <%-- <span class="custom-control custom-checkbox mx-2">--%>
-                        <span>
-                            <asp:CheckBox ID="chkSeedReturn" runat="server" />
-                            <label for="chkSeedReturn">Seed Returns Complete: Partial and Unused Seeds Boxed Up and Labeled, Scanned</label>
-                        </span>
-                    </div>
-                    <div class="col-lg-12 mt-3 text-center">
-                        <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-3" runat="server" OnClick="btnSubmit_Click" ValidationGroup="e" />
 
-                        <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
-                    </div>
+                        <div class="col-12">
+                            <%-- <span class="custom-control custom-checkbox mx-2">--%>
+                            <span>
+                                <asp:CheckBox ID="chkSeedReturn" runat="server" />
+                                <label for="chkSeedReturn">Seed Returns Complete: Partial and Unused Seeds Boxed Up and Labeled, Scanned</label>
+                            </span>
+                        </div>
+                        <div class="col-lg-12 mt-3 text-center">
+                            <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-3" runat="server" OnClick="btnSubmit_Click" ValidationGroup="e" />
 
-                    <div class="col-12 text-center mt-4">
-                        <asp:Label ID="lblsubmsg" runat="server" Text="Job sent to grower for put-away location once submitted." Font-Italic="true"></asp:Label>
-                    </div>
+                            <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
+                        </div>
+
+                        <div class="col-12 text-center mt-4">
+                            <asp:Label ID="lblsubmsg" runat="server" Text="Job sent to grower for put-away location once submitted." Font-Italic="true"></asp:Label>
+                        </div>
                 </div>
                 </asp:Panel>
             </div>
