@@ -11,7 +11,7 @@ using Improvians.BAL_Classes;
 
 namespace Improvians
 {
-    public partial class FertilizerReqManual : System.Web.UI.Page
+    public partial class MovesReqManual : System.Web.UI.Page
     {
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
@@ -24,9 +24,7 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-                BindSupervisor();
-                BindFertilizer();
-            //    BindUnit();
+                BindSupervisor();               
                 BindJobCode();
                 Bindcname();
                 BindFacility();
@@ -34,20 +32,6 @@ namespace Improvians
             }
         }
 
-
-        public void BindSQFTofBench(string benchLoc)
-        {
-
-            DataTable dtSQFT = objFer.GetSQFTofBench(benchLoc);
-            if (dtSQFT != null && dtSQFT.Rows.Count > 0)
-            {
-                txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
-            }
-            else
-            {
-                txtSQFT.Text = "0.00";
-            }
-        }
         public void Bindcname()
         {
 
@@ -138,7 +122,7 @@ namespace Improvians
                 userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvFer.Rows[rowIndex];
-                lblUnMovedTrays.Text = (row.FindControl("lblTotTray") as Label).Text;
+                
                 ddlsupervisor.Focus();
             }
         }
@@ -152,37 +136,36 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            int FertilizationCode = 0;
-            DataTable dt = new DataTable();
-            NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Mode", "12");
-            dt = objCommon.GetDataTable("GET_Common", nv1);
-            FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
+            //int FertilizationCode = 0;
+            //DataTable dt = new DataTable();
+            //NameValueCollection nv1 = new NameValueCollection();
+            //nv1.Add("@Mode", "12");
+            //dt = objCommon.GetDataTable("GET_Common", nv1);
+            //FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
 
-            foreach (GridViewRow row in gvFer.Rows)
-            {
+            //foreach (GridViewRow row in gvFer.Rows)
+            //{
 
-                long result = 0;
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                nv.Add("@Type", radtype.SelectedValue);
-                nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                //nv.Add("@WorkOrder", lblwo.Text);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@FertilizationCode", FertilizationCode.ToString());
-                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
+            //    long result = 0;
+            //    NameValueCollection nv = new NameValueCollection();
+            //    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+            //    nv.Add("@Type", radtype.SelectedValue);
+            //    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+            //    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+            //    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+            //    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+            //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+            //    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+            //    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+            //    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+            //    //nv.Add("@WorkOrder", lblwo.Text);
+            //    nv.Add("@LoginID", Session["LoginID"].ToString());
+            //    nv.Add("@FertilizationCode", FertilizationCode.ToString());
+            //    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
 
-            }
-
-            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode,ddlBenchLocation.SelectedItem.Text);
+            //}
+            //dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
+            //objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -207,79 +190,12 @@ namespace Improvians
             ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
-            ddlJobNo.SelectedIndex = 0;
-            txtQty.Text = "";
-            txtSQFT.Text = "";
-            txtTrays.Text = "";
-            radtype.SelectedValue = "Fertilizer";
-            BindFertilizer();
+            ddlJobNo.SelectedIndex = 0;        
+          
             dtTrays.Clear();
         }
 
-        protected void radtype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (radtype.SelectedValue == "Fertilizer")
-            {
-                lbltype.Text = "Fertilizer";
-                dtTrays.Rows.Clear();
-                BindFertilizer();
-            }
-            else if (radtype.SelectedValue == "Chemical")
-            {
-                lbltype.Text = "Chemical";
-                dtTrays.Rows.Clear();
-                BindChemical();
-            }
-        }
-
-        public void BindChemical()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objFer.GetChemicalList();
-            ddlFertilizer.DataTextField = "Name";
-            ddlFertilizer.DataValueField = "No_";
-            ddlFertilizer.DataBind();
-            ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
-
-        public void BindFertilizer()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objFer.GetFertilizerList();
-            ddlFertilizer.DataTextField = "Name";
-            ddlFertilizer.DataValueField = "No_";
-            ddlFertilizer.DataBind();
-            ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
-
-        //public void BindUnit()
-        //{
-        //    NameValueCollection nv = new NameValueCollection();
-        //    ddlUnit.DataSource = objFer.GetUnitList();
-        //    ddlUnit.DataTextField = "Description";
-        //    ddlUnit.DataValueField = "Code";
-        //    ddlUnit.DataBind();
-        //    ddlUnit.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        //}
-
-        protected void chckchanged(object sender, EventArgs e)
-        {
-            CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                if (chckheader.Checked == true)
-                {
-                    chckrw.Checked = true;
-                }
-                else
-                {
-                    chckrw.Checked = false;
-                }
-            }
-
-        }
-
+       
 
         private string Bench
         {
@@ -302,27 +218,11 @@ namespace Improvians
         {
             userinput.Visible = true;
             ddlsupervisor.Focus();
-            int tray = 0;
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
-                tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
-                //}
-                Bench = (row.FindControl("lblGreenHouse") as Label).Text;
-            }
-            txtTrays.Text = tray.ToString();
-            BindSQFTofBench(ddlBenchLocation.SelectedItem.Text);
+           
 
         }
 
-        protected void txtQty_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtTrays.Text) && !string.IsNullOrEmpty(txtQty.Text))
-            {
-                txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
-            }
-        }
+       
 
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -361,12 +261,5 @@ namespace Improvians
             BindGridFerReq();
         }
 
-        protected void txtTrays_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtTrays.Text) && !string.IsNullOrEmpty(txtQty.Text))
-            {
-                txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
-            }
-        }
     }
 }
