@@ -36,6 +36,16 @@ namespace Improvians
                 txtSeedingDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 //dtTrays.Clear();
                 BindGridDetailsNew();
+
+                if (txtActualTraysNo.Text == "0")
+                {
+                   
+                    txtActualTraysNo.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    txtActualTraysNo.ForeColor = System.Drawing.Color.Black;
+                }
             }
         }
 
@@ -396,9 +406,14 @@ namespace Improvians
                         txtActualTraysNo.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
                         txtActualTraysNo.Focus();
 
-                       if( txtActualTraysNo.Text =="0")
+                        if (txtActualTraysNo.Text == "0")
                         {
-                            txtActualTraysNo.ForeColor.Equals("Green");
+
+                            txtActualTraysNo.ForeColor = System.Drawing.Color.Green;
+                        }
+                        else
+                        {
+                            txtActualTraysNo.ForeColor = System.Drawing.Color.Black;
                         }
                     }
                     txtSeedsAllocated.Text = (Convert.ToDouble(txtRequestedTrays.Text) - Convert.ToDouble(txtActualTraysNo.Text)).ToString();
