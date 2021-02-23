@@ -398,19 +398,20 @@ namespace Improvians
                         txtActualTraysNo.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTraysNo.Text)).ToString();
                         txtActualTraysNo.Focus();
 
-                        if (txtSeedsAllocated.Text == "0")
-                        {
-
-                            txtActualTraysNo.ForeColor = System.Drawing.Color.Green;
-                        }
-                        else
-                        {
-                            txtActualTraysNo.ForeColor = System.Drawing.Color.Black;
-                        }
 
 
                     }
                     txtSeedsAllocated.Text = (Convert.ToDouble(txtRequestedTrays.Text) - Convert.ToDouble(txtActualTraysNo.Text)).ToString();
+
+                    if (txtSeedsAllocated.Text == "0")
+                    {
+
+                        txtActualTraysNo.ForeColor = System.Drawing.Color.Green;
+                    }
+                    else
+                    {
+                        txtActualTraysNo.ForeColor = System.Drawing.Color.Black;
+                    }
                     //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
                     //txtSeedsAllocated.Text = (Convert.ToInt32(txtSeedsAllocated.Text) + Convert.ToInt32(lotseed)).ToString();
                     //if (Convert.ToDouble(txtSeedsAllocated.Text) >= Convert.ToDouble(lblSeedRequired.Text))
