@@ -271,7 +271,6 @@
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
 
-
                             <div class="col-lg-3">
                                 <label class="d-block">Assignment </label>
                                 <asp:DropDownList ID="ddlsupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -281,6 +280,8 @@
                                 </span>
                             </div>
 
+
+
                             <div class="col-lg-3">
                                 <label>Type of Request</label>
 
@@ -289,6 +290,7 @@
                                     <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
+
                             <div class="col-lg-3">
                             </div>
                             <div class="col-lg-3">
@@ -423,6 +425,7 @@
                                     </asp:Panel>
                                 </div>
                             </div>--%>
+
                         <br />
                         <div class="row">
                             <div class="col-auto">
