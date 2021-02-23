@@ -34,6 +34,7 @@ namespace Improvians
             }
         }
 
+
         public void BindSQFTofBench(string benchLoc)
         {
 
@@ -298,7 +299,7 @@ namespace Improvians
                 Bench = (row.FindControl("lblGreenHouse") as Label).Text;
             }
             txtTrays.Text = tray.ToString();
-            BindSQFTofBench(Bench);
+            BindSQFTofBench(ddlBenchLocation.SelectedItem.Text);
 
         }
 
