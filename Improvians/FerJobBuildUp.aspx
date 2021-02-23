@@ -14,20 +14,20 @@
             </h2>
             <div class="row">
 
-                
-                    <div class="col-lg-3">
-                        <label>Bench Location </label>
-                         <asp:Label ID="lblbench"  runat="server"></asp:Label>
-                        </div>
-                  </div>
-      <div class="row">
+
+                <div class="col-lg-3">
+                    <label>Bench Location </label>
+                    <asp:Label ID="lblbench" runat="server"></asp:Label>
+                </div>
+            </div>
+            <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
                                 <h3>Selected Jobs</h3>
-                                      <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None"
                                     ShowHeaderWhenEmpty="True" Width="100%">
@@ -41,7 +41,7 @@
                                                 <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-                                          <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -67,7 +67,7 @@
                                                 <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                      
+
 
 
 
@@ -113,11 +113,11 @@
                                 </asp:GridView>
 
                                 <br />
-                                  <h3>Other Jobs</h3>
-                          
-                                  <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <h3>Other Jobs</h3>
+
+                                <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None"  Visible="false"
+                                    GridLines="None" Visible="false"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                         <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
@@ -130,7 +130,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
-                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -155,7 +155,7 @@
                                                 <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                       
+
 
 
 
@@ -270,15 +270,9 @@
 
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                            <%-- <div class="col-auto">
-                                <label>Job No.</label><br />
-                                <h3 class="robotobold">
-                                    <asp:Label ID="lblJobID" runat="server"></asp:Label>
-                                    <asp:Label ID="lblwo" Visible="false" runat="server"></asp:Label>
-                                </h3>
-                            </div>--%>
 
-                            <div class="col-auto">
+
+                            <div class="col-lg-3">
                                 <label class="d-block">Assignment </label>
                                 <asp:DropDownList ID="ddlsupervisor" runat="server" class="d-block custom__dropdown input__control-auto"></asp:DropDownList>
                                 <span class="error_message">
@@ -287,7 +281,7 @@
                                 </span>
                             </div>
 
-                            <div class="col-auto">
+                            <div class="col-lg-3">
                                 <label>Type of Request</label>
 
                                 <asp:RadioButtonList ID="radtype" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
@@ -295,9 +289,13 @@
                                     <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-lg-3">
 
                                 <label>
                                     <asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label><br />
@@ -307,24 +305,24 @@
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Fertilizer" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                            <div class="col">
-                                <label>Quantity</label>
+                            <div class="col-lg-3">
+                                <label>Concentration[ppm]</label>
                                 <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="md"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                            <div class="col">
+                            <%-- <div class="col">
                                 <label>Unit </label>
                                 <asp:DropDownList ID="ddlUnit" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlUnit" ValidationGroup="md"
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Unit" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
-                            </div>
+                            </div>--%>
 
-                            <div class="col">
+                            <div class="col-lg-3">
                                 <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
                                 <asp:TextBox ID="txtTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
@@ -335,8 +333,8 @@
                                 </span>--%>
                             </div>
 
-                            <div class="col">
-                                <label>SQFT </label>
+                            <div class="col-lg-3">
+                                <label>SQFT of Bench </label>
 
                                 <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
@@ -345,10 +343,32 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                            <%--  <div class="col align-self-center">
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Bench Irrigation Flow Rate [Gallons/min]</label>
+                                <asp:TextBox ID="txtBenchIrrigationFlowRate" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
+                                <asp:TextBox ID="txtBenchIrrigationCoverage" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Spray Coverage per minutes [sqft/min]</label>
+                                <asp:TextBox ID="txtSprayCoverage" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                        </div>
+                        <%--  <div class="col align-self-center">
                                 <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                             </div>--%>
-                           <%-- <div class="col-12">
+                        <%-- <div class="col-12">
                                 <div class="data__table">
                                     <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
                                         <asp:GridView runat="server" ID="gvFerDetails" AutoGenerateColumns="false" class="Grid1 mb-3"
@@ -403,7 +423,7 @@
                                     </asp:Panel>
                                 </div>
                             </div>--%>
-
+                        <div class="row">
                             <div class="col-auto">
                                 <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
 

@@ -24,8 +24,8 @@ namespace Improvians
             if (!IsPostBack)
             {
                 BindFertilizer();
-                BindUnit();
-              
+                //BindUnit();
+
                 if (Request.QueryString["Bench"] != null)
                 {
                     Bench = Request.QueryString["Bench"].ToString();
@@ -34,8 +34,9 @@ namespace Improvians
                 BindGridFerReq();
                 BindGridFerDetails();
                 BindSupervisor();
+                BindSQFTofBench();
             }
-            }
+        }
 
         public void BindSupervisor()
         {
@@ -94,7 +95,7 @@ namespace Improvians
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", "0");
             nv.Add("@BenchLocation", Bench);
-          
+
             dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
             gvFer.DataSource = dt;
             gvFer.DataBind();
@@ -158,7 +159,7 @@ namespace Improvians
                 //  }
 
             }
-            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, ddlUnit.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
+            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
 
             string message = "Assignment Successful";
@@ -197,7 +198,7 @@ namespace Improvians
                 // gvFerDetails.HeaderRow.Cells[0].Text = "Fertilizer";
                 lbltype.Text = "Fertilizer";
                 dtTrays.Rows.Clear();
-              //  gvFerDetails.DataSource = dtTrays;
+                //  gvFerDetails.DataSource = dtTrays;
                 //gvFerDetails.DataBind();
                 BindFertilizer();
 
@@ -209,11 +210,27 @@ namespace Improvians
                 //gvFerDetails.HeaderRow.Cells[0].Text = "Chemical";
                 lbltype.Text = "Chemical";
                 dtTrays.Rows.Clear();
-               // gvFerDetails.DataSource = dtTrays;
+                // gvFerDetails.DataSource = dtTrays;
                 //gvFerDetails.DataBind();
                 BindChemical();
             }
         }
+
+        public void BindSQFTofBench()
+        {
+
+            DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
+            if (dtSQFT != null && dtSQFT.Rows.Count > 0)
+            {
+                txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("{0:####}");
+            }
+            else
+            {
+                txtSQFT.Text = "0.00";
+            }
+        }
+
+
 
         public void BindChemical()
         {
@@ -235,15 +252,15 @@ namespace Improvians
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
-        public void BindUnit()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            ddlUnit.DataSource = objFer.GetUnitList();
-            ddlUnit.DataTextField = "Description";
-            ddlUnit.DataValueField = "Code";
-            ddlUnit.DataBind();
-            ddlUnit.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+        //public void BindUnit()
+        //{
+        //    NameValueCollection nv = new NameValueCollection();
+        //    ddlUnit.DataSource = objFer.GetUnitList();
+        //    ddlUnit.DataTextField = "Description";
+        //    ddlUnit.DataValueField = "Code";
+        //    ddlUnit.DataBind();
+        //    ddlUnit.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        //}
 
     }
 }

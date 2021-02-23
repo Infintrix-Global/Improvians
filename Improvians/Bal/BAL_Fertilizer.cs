@@ -104,5 +104,23 @@ namespace Improvians.Bal
             return dt;
         }
 
+        public DataTable GetSQFTofBench(string BenchLocation)
+        {
+           
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "select s.[Position Code] BenchLocation, s.[Net Area] Sqft from [GTI$IA Subsection] s where s.[Position Code] ='"+ BenchLocation + "'";
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
     }
 }
