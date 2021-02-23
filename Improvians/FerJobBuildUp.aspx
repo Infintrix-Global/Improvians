@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="FerJobBuildUp.aspx.cs" Inherits="Improvians.FerJobBuildUp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
@@ -11,12 +12,12 @@
 
 
             </h2>
-              <div class="row">
+            <div class="row">
 
                 
                     <div class="col-lg-3">
                         <label>Bench Location </label>
-                       <h3>  <asp:Label ID="lblbench"  runat="server" ></asp:Label></h3>
+                         <asp:Label ID="lblbench"  runat="server"></asp:Label>
                         </div>
                   </div>
       <div class="row">
@@ -25,13 +26,13 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <h3>Selected Job on Bench</h3>
+                                <h3>Selected Jobs</h3>
                                       <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None" 
+                                    GridLines="None"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                      <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                        <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                             <HeaderTemplate>
                                                 <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
                                             </HeaderTemplate>
@@ -112,14 +113,14 @@
                                 </asp:GridView>
 
                                 <br />
-                                  <h3>Other Jobs on Bench</h3>
+                                  <h3>Other Jobs</h3>
                           
                                   <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None"  
+                                    GridLines="None"  Visible="false"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                      <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                        <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                             <HeaderTemplate>
                                                 <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
                                             </HeaderTemplate>
@@ -198,8 +199,8 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>
-                               
-                              <%--    <asp:GridView ID="GridViewDetails" class="table table-bordered table-hover"
+
+                                <%--    <asp:GridView ID="GridViewDetails" class="table table-bordered table-hover"
                                                         AutoGenerateColumns="false" runat="server">
                                                         <Columns>
 
@@ -264,7 +265,7 @@
             <div class="dashboard__block dashboard__block--asign">
 
 
-                <div id="userinput" runat="server" class="assign__task d-flex" >
+                <div id="userinput" runat="server" class="assign__task d-flex">
 
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
@@ -343,17 +344,17 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                          <%--  <div class="col align-self-center">
+                            <%--  <div class="col align-self-center">
                                 <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                             </div>--%>
                            <%-- <div class="col-12">
                                 <div class="data__table">
                                     <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
                                         <asp:GridView runat="server" ID="gvFerDetails" AutoGenerateColumns="false" class="Grid1 mb-3"
-                                            GridLines="None" CaptionAlign="NotSet" Width="801px" ForeColor="Black" 
+                                            GridLines="None" CaptionAlign="NotSet" Width="801px" ForeColor="Black"
                                             ShowHeaderWhenEmpty="true">
                                             <Columns>
-                                           
+
 
                                                 <asp:TemplateField HeaderText="Fertilizer" ItemStyle-Width="10%">
                                                     <ItemTemplate>
@@ -411,6 +412,6 @@
                     </asp:Panel>
                 </div>
             </div>
-             </div>
+        </div>
     </div>
 </asp:Content>
