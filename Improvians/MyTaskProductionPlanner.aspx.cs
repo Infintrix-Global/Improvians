@@ -148,10 +148,11 @@ namespace Improvians
 
             if (e.CommandName == "Assign")
             {
+                userinput.Visible = true;
                 string WO1 = e.CommandArgument.ToString();
                 WO = WO1;
                 BindSeedlineLocation();
-              
+                ddlSeedlineLocation.Focus();
             }
         }
 

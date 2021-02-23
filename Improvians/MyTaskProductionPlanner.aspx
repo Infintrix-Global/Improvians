@@ -73,7 +73,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Seedline Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblloc" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -146,9 +146,9 @@
 
             </div>
 
-            <div class="dashboard__block dashboard__block--asign">
+            <div id="userinput" visible="false" runat="server" class="dashboard__block dashboard__block--asign">
                 <h3>Reassign Task</h3>
-                <div id="userinput" visible="false" runat="server" class="assign__task d-flex">
+                <div  class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
                             <div class="col">
