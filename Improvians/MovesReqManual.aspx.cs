@@ -89,27 +89,87 @@ namespace Improvians
             gvFer.DataBind();
 
         }
+        protected void ddlToFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlToFacility.SelectedIndex != 0)
+            {
+                //  NameValueCollection nv = new NameValueCollection();
+                //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
+                ddlToGreenHouse.DataSource = objBAL.GetLocation(ddlToFacility.SelectedValue);
+                ddlToGreenHouse.DataTextField = "p2";
+                ddlToGreenHouse.DataValueField = "p2";
+                ddlToGreenHouse.DataBind();
+                ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
+
+
+            }
+        }
+        protected void GridMove_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+               // string tray = (GridMove.Rows[e.RowIndex].FindControl("lblTray") as Label).Text;
+                //lblUnmovedTrays.Text = ((Convert.ToInt32(lblUnmovedTrays.Text) + Convert.ToInt32(tray)).ToString());
+                dtTrays.Rows.RemoveAt(e.RowIndex);
+                GridMove.DataSource = dtTrays;
+                GridMove.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+      
+
+        protected void btnAddTray_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblUnmovedTrays.Text))
+                //{
+                //    lblerrmsg.Text = "";
+                //    dtTrays.Rows.Add(lblFromFacility.Text, ddlToFacility.SelectedItem.Text, ddlToFacility.SelectedValue, ddlToGreenHouse.SelectedItem.Text, ddlToGreenHouse.SelectedValue, txtTrays.Text);
+                //    GridMove.DataSource = dtTrays;
+                //    GridMove.DataBind();
+                //    lblUnmovedTrays.Text = (Convert.ToInt32(lblUnmovedTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+                //    txtTrays.Text = "";
+                //    ddlToFacility.SelectedIndex = 0;
+                //    ddlToGreenHouse.SelectedIndex = 0;
+
+                //}
+                //else
+                //{
+
+                //    lblerrmsg.Text = "Number of Trays exceed Remaining trays";
+
+                //}
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         public void BindSupervisor()
         {
             NameValueCollection nv = new NameValueCollection();
             if (Session["Role"].ToString() == "1")
             {
-                ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlsupervisor.DataTextField = "EmployeeName";
-                ddlsupervisor.DataValueField = "ID";
-                ddlsupervisor.DataBind();
-                ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                //ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlLogisticManager.DataTextField = "EmployeeName";
+                ddlLogisticManager.DataValueField = "ID";
+                ddlLogisticManager.DataBind();
+                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
             }
             if (Session["Role"].ToString() == "12")
             {
-                ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlsupervisor.DataTextField = "EmployeeName";
-                ddlsupervisor.DataValueField = "ID";
-                ddlsupervisor.DataBind();
-                ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+                //ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlLogisticManager.DataTextField = "EmployeeName";
+                ddlLogisticManager.DataValueField = "ID";
+                ddlLogisticManager.DataBind();
+                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
             }
         }
 
@@ -123,7 +183,7 @@ namespace Improvians
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvFer.Rows[rowIndex];
                 
-                ddlsupervisor.Focus();
+                //ddlLogisticManager.Focus();
             }
         }
 
@@ -136,48 +196,30 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            //int FertilizationCode = 0;
-            //DataTable dt = new DataTable();
-            //NameValueCollection nv1 = new NameValueCollection();
-            //nv1.Add("@Mode", "12");
-            //dt = objCommon.GetDataTable("GET_Common", nv1);
-            //FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
-
-            //foreach (GridViewRow row in gvFer.Rows)
-            //{
-
-            //    long result = 0;
-            //    NameValueCollection nv = new NameValueCollection();
-            //    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-            //    nv.Add("@Type", radtype.SelectedValue);
-            //    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-            //    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-            //    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-            //    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-            //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-            //    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-            //    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-            //    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-            //    //nv.Add("@WorkOrder", lblwo.Text);
-            //    nv.Add("@LoginID", Session["LoginID"].ToString());
-            //    nv.Add("@FertilizationCode", FertilizationCode.ToString());
-            //    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
-
-            //}
-            //dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
-            //objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
-
-            string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
-            Clear();
+            long result = 0;
+            //result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
+            result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue, "", lblGrowerputawayID.Text);
+            if (result > 0)
+            {
+                // lblmsg.Text = "Request Successful";
+                Clear();
+                //BindGridMoveReq();
+                string message = "Request Successful";
+                string url = "MovesReqManual.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Request Successful')", true);
+                userinput.Visible = false;
+            }
+            else
+            {
+                lblmsg.Text = "Request Not Successful";
+            }
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -217,8 +259,8 @@ namespace Improvians
         protected void btnAssign_Click(object sender, EventArgs e)
         {
             userinput.Visible = true;
-            ddlsupervisor.Focus();
-           
+            //ddlLogisticManager.Focus();
+            lblFromFacility.Text = ddlFacility.SelectedValue;
 
         }
 

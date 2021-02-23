@@ -30,6 +30,7 @@
                                 <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
                             <div class="col m3">
+                                <label></label>
                                 <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                             </div>
                         </div>
