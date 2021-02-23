@@ -284,7 +284,7 @@
                             <div class="col-lg-3">
                                 <label>Type of Request</label>
 
-                                <asp:RadioButtonList ID="radtype" Width="110px" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
+                                <asp:RadioButtonList ID="radtype" Width="250px" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
                                     <asp:ListItem Text="Chemical" Value="Chemical" class="custom-control custom-radio mr-2"></asp:ListItem>
                                     <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>

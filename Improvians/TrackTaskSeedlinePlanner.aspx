@@ -107,7 +107,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Status" HeaderStyle-CssClass="autostyle2">
+                                         <asp:TemplateField HeaderText="Seeding Status" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblstatus" runat="server" Text=""></asp:Label>
                                            

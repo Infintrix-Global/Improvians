@@ -26,7 +26,7 @@ namespace Improvians
             {
                 BindSupervisor();
                 BindFertilizer();
-                BindUnit();
+            //    BindUnit();
                 BindJobCode();
                 Bindcname();
                 BindFacility();
@@ -34,6 +34,19 @@ namespace Improvians
             }
         }
 
+        public void BindSQFTofBench(string benchLoc)
+        {
+
+            DataTable dtSQFT = objFer.GetSQFTofBench(benchLoc);
+            if (dtSQFT != null && dtSQFT.Rows.Count > 0)
+            {
+                txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
+            }
+            else
+            {
+                txtSQFT.Text = "0.00";
+            }
+        }
         public void Bindcname()
         {
 
@@ -154,7 +167,7 @@ namespace Improvians
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
 
             }
-            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, ddlUnit.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
+            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode);
 
             string message = "Assignment Successful";
@@ -225,15 +238,15 @@ namespace Improvians
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
-        public void BindUnit()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            ddlUnit.DataSource = objFer.GetUnitList();
-            ddlUnit.DataTextField = "Description";
-            ddlUnit.DataValueField = "Code";
-            ddlUnit.DataBind();
-            ddlUnit.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+        //public void BindUnit()
+        //{
+        //    NameValueCollection nv = new NameValueCollection();
+        //    ddlUnit.DataSource = objFer.GetUnitList();
+        //    ddlUnit.DataTextField = "Description";
+        //    ddlUnit.DataValueField = "Code";
+        //    ddlUnit.DataBind();
+        //    ddlUnit.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        //}
 
         protected void chckchanged(object sender, EventArgs e)
         {
@@ -253,6 +266,24 @@ namespace Improvians
 
         }
 
+
+        private string Bench
+        {
+            get
+            {
+                if (ViewState["Bench"] != null)
+                {
+                    return (string)ViewState["Bench"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Bench"] = value;
+            }
+        }
+
+
         protected void btnAssign_Click(object sender, EventArgs e)
         {
             userinput.Visible = true;
@@ -264,10 +295,10 @@ namespace Improvians
                 //{
                 tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
                 //}
-
+                Bench = (row.FindControl("lblGreenHouse") as Label).Text;
             }
             txtTrays.Text = tray.ToString();
-
+            BindSQFTofBench(Bench);
 
         }
 
