@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="col m3">
-                    <label>Put away Facility </label>
+                    <label>Seedline Facility </label>
                     <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
 
@@ -63,7 +63,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Seedline Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblloc" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
                                             </ItemTemplate>

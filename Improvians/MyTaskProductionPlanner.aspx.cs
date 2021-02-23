@@ -163,12 +163,54 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            long result = 0;
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@OperatorID", ddlOperator.SelectedValue);
+            //nv.Add("@Notes", txtNotes.Text);
+            //nv.Add("@JobID","");
+            //nv.Add("@LoginID", Session["LoginID"].ToString());
+            //nv.Add("@CropId","");
+            //nv.Add("@UpdatedReadyDate", "");
+            //nv.Add("@PlantExpirationDate","");
+            //nv.Add("@RootQuality","");
+            //nv.Add("@wo",wo);
+            //nv.Add("@PlantHeight","");
+
+            //nv.Add("@mode", "3");
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@loc_seedline", ddlSeedlineLocation.SelectedItem.Text);
+       
+            nv.Add("@WO",WO);
+            result = objCommon.GetDataExecuteScaler("SP_UpdateProductionPlanner", nv);
+            if (result > 0)
+            {
+                //lblmsg.Text = "Assignment Successful";
+                clear();
+                string message = "reassignment Successful";
+                string url = "MyTaskProductionPlanner.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            }
+            else
+            {
+                lblmsg.Text = "Assignment Not Successful";
+            }
+        }
+        public void clear()
+        {
+            ddlSeedlineLocation.SelectedIndex = 0;
+        
 
         }
-
         protected void btnReset_Click(object sender, EventArgs e)
         {
-
+            clear();
+            Response.Redirect("~/MyTaskProductionPlanner.aspx");
         }
     }
 }
