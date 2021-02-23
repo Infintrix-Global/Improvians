@@ -17,6 +17,7 @@
 
                 <div class="col-lg-3">
                   <h3>        <label>Bench Location </label>
+                      <br />
             <asp:Label ID="lblbench" runat="server"></asp:Label> </h3>  
                 </div>
             </div>
@@ -117,7 +118,7 @@
                           
                                   <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None" Visible="false"
+                                    GridLines="None" 
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                         <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">

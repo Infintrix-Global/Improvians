@@ -236,7 +236,7 @@
 
                                            <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnSelect" runat="server" Text="Job BuildUp" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# Eval("GreenHouseID")  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Job Build Up" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# Eval("GreenHouseID")  %>'></asp:Button>
                                               
                                             </ItemTemplate>
                                         </asp:TemplateField>

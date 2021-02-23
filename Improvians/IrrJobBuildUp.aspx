@@ -14,6 +14,7 @@
                 
                 <div class="col-lg-3">
                          <h3>    <label>Bench Location </label>
+                             <br />
                         <asp:Label ID="lblbench"  runat="server" ></asp:Label></h3>
                         </div>
                   </div>
@@ -25,8 +26,8 @@
                <div class="data__table">
                     <h3>Selected Job on Bench</h3>
                 <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                    class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="GridIrrigation_PageIndexChanging"
-                    GridLines="None" OnRowCommand="GridIrrigation_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId"
+                    class="striped" AllowSorting="true" PageSize="10" 
+                    GridLines="None" DataKeyNames="wo,jobcode,GrowerPutAwayId"
                     ShowHeaderWhenEmpty="True" Width="100%">
                     <Columns>
 
