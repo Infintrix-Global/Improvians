@@ -274,7 +274,7 @@
 
                             <div class="col-lg-3">
                                 <label class="d-block">Assignment </label>
-                                <asp:DropDownList ID="ddlsupervisor" runat="server" class="d-block custom__dropdown input__control-auto"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlsupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlsupervisor" ValidationGroup="e"
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Supervisor" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -284,7 +284,7 @@
                             <div class="col-lg-3">
                                 <label>Type of Request</label>
 
-                                <asp:RadioButtonList ID="radtype" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
+                                <asp:RadioButtonList ID="radtype" Width="110px" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
                                     <asp:ListItem Text="Chemical" Value="Chemical" class="custom-control custom-radio mr-2"></asp:ListItem>
                                     <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>
@@ -307,7 +307,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>Concentration [ppm]</label>
-                                <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="md"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -349,7 +349,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <label>Bench Irrigation Flow Rate [Gallons/min]</label>
-                                <asp:TextBox ID="txtBenchIrrigationFlowRate" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtBenchIrrigationFlowRate" TextMode="Number"  runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
                             <div class="col-lg-3">
@@ -359,7 +359,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>Spray Coverage per minutes [sqft/min]</label>
-                                <asp:TextBox ID="txtSprayCoverage" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtSprayCoverage"  TextMode="Number"  runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
                             <div class="col-lg-3">
