@@ -26,7 +26,7 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <h3>Selected Jobs</h3>
+                                <h3>Selected Job on Bench</h3>
                                       <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None"
@@ -113,7 +113,7 @@
                                 </asp:GridView>
 
                                 <br />
-                                  <h3>Other Jobs</h3>
+                                  <h3>Other Jobs on Bench</h3>
                           
                                   <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
