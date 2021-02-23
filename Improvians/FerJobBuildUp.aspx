@@ -16,7 +16,7 @@
                 
                     <div class="col-lg-3">
                         <label>Bench Location </label>
-                         <asp:Label ID="lblbench"  runat="server"></asp:Label>
+                       <h3>  <asp:Label ID="lblbench"  runat="server" ></asp:Label></h3>
                         </div>
                   </div>
       <div class="row">
@@ -25,7 +25,7 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <h3>Selected Jobs</h3>
+                                <h3>Selected Job on Bench</h3>
                                       <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None" 
@@ -112,11 +112,11 @@
                                 </asp:GridView>
 
                                 <br />
-                                  <h3>Other Jobs</h3>
+                                  <h3>Other Jobs on Bench</h3>
                           
                                   <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None"  Visible="false"
+                                    GridLines="None"  
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                       <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
@@ -346,7 +346,7 @@
                           <%--  <div class="col align-self-center">
                                 <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                             </div>--%>
-                            <div class="col-12">
+                           <%-- <div class="col-12">
                                 <div class="data__table">
                                     <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
                                         <asp:GridView runat="server" ID="gvFerDetails" AutoGenerateColumns="false" class="Grid1 mb-3"
@@ -400,7 +400,7 @@
                                         </asp:GridView>
                                     </asp:Panel>
                                 </div>
-                            </div>
+                            </div>--%>
 
                             <div class="col-auto">
                                 <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />

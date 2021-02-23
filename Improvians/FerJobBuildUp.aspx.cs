@@ -197,8 +197,8 @@ namespace Improvians
                 // gvFerDetails.HeaderRow.Cells[0].Text = "Fertilizer";
                 lbltype.Text = "Fertilizer";
                 dtTrays.Rows.Clear();
-                gvFerDetails.DataSource = dtTrays;
-                gvFerDetails.DataBind();
+              //  gvFerDetails.DataSource = dtTrays;
+                //gvFerDetails.DataBind();
                 BindFertilizer();
 
 
@@ -209,8 +209,8 @@ namespace Improvians
                 //gvFerDetails.HeaderRow.Cells[0].Text = "Chemical";
                 lbltype.Text = "Chemical";
                 dtTrays.Rows.Clear();
-                gvFerDetails.DataSource = dtTrays;
-                gvFerDetails.DataBind();
+               // gvFerDetails.DataSource = dtTrays;
+                //gvFerDetails.DataBind();
                 BindChemical();
             }
         }

@@ -54,28 +54,28 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            // nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-            int c = 0;
-            string x = "";
-            foreach (RepeaterItem item in repBench.Items)
-            {
-                CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
-                if (chkBench.Checked)
-                {
-                    c = 1;
-                    x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
+             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            //int c = 0;
+            //string x = "";
+            //foreach (RepeaterItem item in repBench.Items)
+            //{
+            //    CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
+            //    if (chkBench.Checked)
+            //    {
+            //        c = 1;
+            //        x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
 
-                }
-            }
-            if (c > 0)
-            {
-                string chkSelected = x.Remove(x.Length - 1, 1);
-                nv.Add("@BenchLocation", chkSelected);
-            }
-            else
-            {
-                nv.Add("@BenchLocation", "0");
-            }
+            //    }
+            //}
+            //if (c > 0)
+            //{
+            //    string chkSelected = x.Remove(x.Length - 1, 1);
+            //    nv.Add("@BenchLocation", chkSelected);
+            //}
+            //else
+            //{
+            //    nv.Add("@BenchLocation", "0");
+            //}
             dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
@@ -121,14 +121,14 @@ namespace Improvians
 
             nv.Add("@Mode", "10");
             dt = objCommon.GetDataTable("GET_Common", nv);
-            //ddlBenchLocation.DataSource = dt;
-            //ddlBenchLocation.DataTextField = "GreenHouseID";
-            //ddlBenchLocation.DataValueField = "GreenHouseID";
-            //ddlBenchLocation.DataBind();
-            //ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
 
-            repBench.DataSource = dt;
-            repBench.DataBind();
+            //repBench.DataSource = dt;
+            //repBench.DataBind();
 
         }
         public void BindFacility()
@@ -235,6 +235,11 @@ namespace Improvians
 
                 txtNotes.Focus();
                 
+            }
+
+            if (e.CommandName == "Job")
+            {
+                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}", e.CommandArgument.ToString()));
             }
         }
 

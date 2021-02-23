@@ -270,6 +270,7 @@
     <Content Include="IrrigationTaskCompletion.aspx" />
     <Content Include="IrrigationRequestForm.aspx" />
     <Content Include="IrrigationTaskAssignment.aspx" />
+    <Content Include="IrrJobBuildUp.aspx" />
     <Content Include="JS1\jquery.min.js" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -507,6 +508,13 @@
     </Compile>
     <Compile Include="IrrigationTaskAssignment.aspx.designer.cs">
       <DependentUpon>IrrigationTaskAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrJobBuildUp.aspx.cs">
+      <DependentUpon>IrrJobBuildUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrJobBuildUp.aspx.designer.cs">
+      <DependentUpon>IrrJobBuildUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
