@@ -322,7 +322,9 @@ namespace Improvians
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
-            BindGridFerReq();
+            //BindGridFerReq();
+            gvFer.DataSource = null;
+            gvFer.DataBind();
         }
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
