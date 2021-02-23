@@ -122,11 +122,12 @@ namespace Improvians
             gvJobHistory.DataBind();
         }
 
-        protected void txtQty_TextChanged(object sender, EventArgs e)
-        {
+        //protected void txtQty_TextChanged(object sender, EventArgs e)
+        //{
 
-            txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
-        }
+        //    txtSQFT.Text = Convert.ToString(1.23 * Convert.ToInt32(txtTrays.Text) * Convert.ToInt32(txtQty.Text));
+        //}
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -222,7 +223,7 @@ namespace Improvians
             DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
             if (dtSQFT != null && dtSQFT.Rows.Count > 0)
             {
-                txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("{0:####}");
+                txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
             }
             else
             {

@@ -306,7 +306,7 @@
                                 </span>
                             </div>
                             <div class="col-lg-3">
-                                <label>Concentration[ppm]</label>
+                                <label>Concentration [ppm]</label>
                                 <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="md"
@@ -354,7 +354,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
-                                <asp:TextBox ID="txtBenchIrrigationCoverage" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtBenchIrrigationCoverage"  TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
                             <div class="col-lg-3">
@@ -423,6 +423,7 @@
                                     </asp:Panel>
                                 </div>
                             </div>--%>
+                        <br />
                         <div class="row">
                             <div class="col-auto">
                                 <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
