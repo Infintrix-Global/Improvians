@@ -118,6 +118,11 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", Bench);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+
+            DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench);
+          
+            dt.Merge(dtManual);
+            dt.AcceptChanges();
             gvJobHistory.DataSource = dt;
             gvJobHistory.DataBind();
         }
