@@ -69,6 +69,16 @@
                                     GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
+                                           <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                            <HeaderTemplate>
+                                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+
+                                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
 
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -172,12 +182,12 @@
                             <div class="row">
                                 <div class="col m3">
 
-                                    <label>From Facility</label><br />
+                                    <label>From Bench Location</label><br />
                                     <h3 class="robotobold">
                                         <asp:Label ID="lblFromFacility" runat="server"></asp:Label></h3>
                                 </div>
                                 <div class="col m3">
-                                    <label>To Facility </label>
+                                    <label>To Facility Location </label>
                                     <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
                                     <span class="error_message">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
@@ -185,7 +195,7 @@
                                     </span>
                                 </div>
                                 <div class="col m3">
-                                    <label>Greenhouse </label>
+                                    <label>Bench Location </label>
                                     <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     <span class="error_message">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
@@ -203,25 +213,31 @@
                                             SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </span>
                                 </div>
-                                <div class="col align-self-center">
+
+                                  <div class="col-lg-3">
+                                <label>Date </label>
+
+                                <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                <span class="error_message">
+                                    <asp:Label ID="Label3" runat="server" ForeColor="red"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtDate" ValidationGroup="e"
+                                        SetFocusOnError="true" ErrorMessage="Please Enter Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </span>
+                            </div>
+                               <%-- <div class="col align-self-center">
 
                                     <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
-                                </div>
+                                </div>--%>
                             </div>
-                            <div class="data__table">
+                           <div class="data__table">
 
 
-                                <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
+                           <%--      <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
                                     <asp:GridView runat="server" ID="GridMove" AutoGenerateColumns="false" class="Grid1"
                                         GridLines="None" CaptionAlign="NotSet" Width="801px" ForeColor="Black"
                                         OnRowDeleting="GridMove_RowDeleting">
                                         <Columns>
-                                            <%--  <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="10%">
-                                                    <ItemTemplate>
-                                                        <span class="auto-style1">
-                                                            <asp:Label ID="Label1" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label></span>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>--%>
+                                         
 
                                             <asp:TemplateField HeaderText="From Facility" ItemStyle-Width="20%">
                                                 <ItemTemplate>
@@ -291,13 +307,12 @@
                                         <br />
                                         <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                                     </div>
-                                </div>
-                            </div>
+                               
                         </asp:Panel>
                     </asp:Panel>
                 </div>
             </div>
 
+      </div>
         </div>
-    </div>
 </asp:Content>
