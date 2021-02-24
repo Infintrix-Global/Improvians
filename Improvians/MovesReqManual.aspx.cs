@@ -25,10 +25,10 @@ namespace Improvians
             if (!IsPostBack)
             {
                 BindSupervisor();               
-                BindJobCode();
+                //BindJobCode();
                 Bindcname();
                 BindFacility();
-              
+                txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 dtTrays.Clear();
             }
         }
@@ -49,20 +49,13 @@ namespace Improvians
 
         }
 
-        public void BindJobCode()
+        public void BindJobCode(string ddlBench)
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
         }
 
         public void BindFacility()
@@ -97,7 +90,7 @@ namespace Improvians
 
         public void BindGridFerReq()
         {
-            gvFer.DataSource = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue);
+            gvFer.DataSource = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue,ddlJobNo.SelectedValue);
             gvFer.DataBind();
 
         }
@@ -291,7 +284,7 @@ namespace Improvians
 
             userinput.Visible = true;
             //ddlLogisticManager.Focus();
-            lblFromFacility.Text = ddlFacility.SelectedValue;
+            lblFromFacility.Text = ddlBenchLocation.SelectedValue;
 
         }
 
@@ -348,6 +341,7 @@ namespace Improvians
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridFerReq();
+            BindJobCode(ddlBenchLocation.SelectedValue);
         }
 
     }

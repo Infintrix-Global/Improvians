@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-lg-3">
                         <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                     <div class="col-lg-3">
                         <label>Customer </label>
@@ -293,7 +293,7 @@
                                         <%-- <h3 class="robotobold"><asp:Label ID="lblSupervisorName" runat="server" ></asp:Label></h3>--%>
 
                                   <div class="col-lg-3">
-                                <label>Assignement </label>
+                                <label>Assignment </label>
 
                                         <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                                         <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>

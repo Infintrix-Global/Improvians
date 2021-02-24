@@ -30,6 +30,7 @@ namespace Improvians
                 {
                     Bench = Request.QueryString["Bench"].ToString();
                 }
+                //txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
                 BindGridFerReq();
                 BindGridFerDetails();
@@ -119,10 +120,12 @@ namespace Improvians
             nv.Add("@BenchLocation", Bench);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench);
-          
-            dt.Merge(dtManual);
-            dt.AcceptChanges();
+            DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench,"");
+            if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                dt.Merge(dtManual);
+                dt.AcceptChanges();
+            }
             gvJobHistory.DataSource = dt;
             gvJobHistory.DataBind();
         }
