@@ -44,12 +44,14 @@
                     </div>
 
                 </div>
+            <br />
                 <div class="row">
-                    <div class="col-lg-9">
-                       
+                    <div class="col-lg-10">
+                         <asp:Label ID="lblTotal" ForeColor="#488949" runat="server" Text=""></asp:Label>
+
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                   
 
 
@@ -63,18 +65,7 @@
 
             
             <br />
-            <div class="row">
-                <div class="col m6">
-                    <asp:Label ID="lblTotal" ForeColor="#488949" runat="server" Text=""></asp:Label>
-
-                </div>
-
-                <div class="col m3">
-                </div>
-                <div class="col m3">
-                </div>
-
-            </div>
+            
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">
