@@ -120,9 +120,11 @@ namespace Improvians
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
             DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench);
-          
-            dt.Merge(dtManual);
-            dt.AcceptChanges();
+            if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                dt.Merge(dtManual);
+                dt.AcceptChanges();
+            }ditio
             gvJobHistory.DataSource = dt;
             gvJobHistory.DataBind();
         }
