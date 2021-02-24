@@ -266,6 +266,7 @@
                                 <h3 class="robotobold">
                                     <asp:Label ID="lblRescheduleJobID" runat="server"></asp:Label>
                                     <asp:Label ID="lblRescheduleID" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label ID="lblOldDate" runat="server" Visible="false"></asp:Label>
                                 </h3>
                             </div>
                             <div class="col-auto m6">
