@@ -28,7 +28,7 @@ namespace Improvians
                 BindJobCode();
                 Bindcname();
                 BindFacility();
-              
+                txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 dtTrays.Clear();
             }
         }
@@ -291,7 +291,7 @@ namespace Improvians
 
             userinput.Visible = true;
             //ddlLogisticManager.Focus();
-            lblFromFacility.Text = ddlFacility.SelectedValue;
+            lblFromFacility.Text = ddlBenchLocation.SelectedValue;
 
         }
 

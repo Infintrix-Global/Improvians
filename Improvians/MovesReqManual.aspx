@@ -293,7 +293,7 @@
                                         <%-- <h3 class="robotobold"><asp:Label ID="lblSupervisorName" runat="server" ></asp:Label></h3>--%>
 
                                   <div class="col-lg-3">
-                                <label>Assignement </label>
+                                <label>Assignment </label>
 
                                         <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                                         <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
