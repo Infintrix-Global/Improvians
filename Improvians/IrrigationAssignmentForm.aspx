@@ -115,78 +115,28 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Bench Location">
                                             <ItemTemplate>
-                                                <asp:Panel ID="Panel11" runat="server">
 
-                                                    <asp:GridView ID="GridViewFShow" class="table table-bordered table-hover"
-                                                        AutoGenerateColumns="false" runat="server">
-                                                        <Columns>
+                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
 
-                                                            <asp:TemplateField ShowHeader="false">
-                                                                <ItemTemplate>
-
-                                                                    <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
-
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-
-
-                                                        </Columns>
-                                                        <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
-                                                        <PagerSettings Mode="NumericFirstLast" />
-                                                        <EmptyDataTemplate>
-                                                            No Record Available
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-
-                                                </asp:Panel>
                                             </ItemTemplate>
+
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Spray Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Panel ID="Panel1" runat="server">
-
-                                                    <asp:GridView ID="GridViewDetails" class="table table-bordered table-hover"
-                                                        AutoGenerateColumns="false" runat="server">
-                                                        <Columns>
-
-                                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
-
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-
-                                                            <asp:TemplateField HeaderText="Spray Date" HeaderStyle-CssClass="autostyle2">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="Label12" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-
-
-
-                                                            <asp:TemplateField HeaderText="Water Required" HeaderStyle-CssClass="autostyle2">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="Label13" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
-                                                        <PagerSettings Mode="NumericFirstLast" />
-                                                        <EmptyDataTemplate>
-                                                            No Record Available
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-
-                                                </asp:Panel>
+                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
 
+                                        <asp:TemplateField HeaderText="Water Required" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
 
 

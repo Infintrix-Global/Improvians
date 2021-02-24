@@ -13,49 +13,51 @@
 
             
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <label>From Date </label>
 
                         <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="form-control" placeholder="From Date"
                             ClientIDMode="Static"></asp:TextBox>
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <label>To Date </label>
                         <asp:TextBox ID="txtToDate" runat="server" TextMode="Date" class="form-control" placeholder="To Date"
                             ClientIDMode="Static"></asp:TextBox>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <label>Seedline Location</label>
                         <asp:DropDownList ID="ddlSeedlineLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <label>Seeds Allocated </label>
                         <asp:DropDownList ID="ddlSeedAllocated" runat="server" class="custom__dropdown robotomd">
                         </asp:DropDownList>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3">
+                     <div class="col-lg-2">
                         <label>Item</label>
                         <asp:DropDownList ID="ddlItem" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <label>Tray Size</label>
                         <asp:DropDownList ID="ddlTraySize" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
-                    <div class="col-lg-6">
-                        <br />
+                </div>
+                <div class="row">
+                    <div class="col-lg-9">
+                       
+                    </div>
+
+                    <div class="col-lg-3">
+                  
 
 
                         <asp:Button ID="btnSearch" OnClick="btnSearch_Click" runat="server" Text="Search" CssClass="bttn bttn-primary bttn-action"></asp:Button>
                         <asp:Button ID="btnSearchReset" OnClick="btnSearchReset_Click" runat="server" Text="Reset" CssClass="bttn bttn-primary bttn-action"></asp:Button>
                     </div>
 
-                    <div class="col-lg-3">
-                       
-                    </div>
+                   
                 </div>
 
 

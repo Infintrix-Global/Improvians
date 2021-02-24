@@ -20,6 +20,8 @@ namespace Improvians
         BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
+
+           
             if (!IsPostBack)
             {
                 //BindFacility();
@@ -79,20 +81,6 @@ namespace Improvians
             }
         }
 
-        //public void BindSeedLot()
-        //{
-
-        //    //  NameValueCollection nv = new NameValueCollection();
-        //    // nv.Add("@mode", "6");
-
-
-
-        //    ddlSeedLot.DataSource = objCom.GetSeedLot(lblJobID.Text);
-        //    ddlSeedLot.DataTextField = "l1";
-        //    ddlSeedLot.DataValueField = "l1";
-        //    ddlSeedLot.DataBind();
-        //    ddlSeedLot.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        //}
 
         protected void radOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -125,6 +113,16 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
+        
+            if(txtRequestedTrays.Text != txtActualTraysNo.Text)
+            {
+                string message = "Seeded Trays are not equal to Requested Trays. Are you are sure you want to submit this job?";
+                ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
+
+            }
+
+
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@ConfirmTraySize", radtraysize.SelectedValue);
