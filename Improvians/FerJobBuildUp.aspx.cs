@@ -154,7 +154,7 @@ namespace Improvians
                 //nv.Add("@WorkOrder", lblwo.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@FertilizationCode", FertilizationCode.ToString());
-               
+                nv.Add("@FertilizationDate", txtDate.Text);
 
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 

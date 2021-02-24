@@ -191,6 +191,7 @@
     <Content Include="css\custom.css" />
     <Content Include="DashBoard.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
+    <Content Include="MoveReqAsssignment.aspx" />
     <Content Include="MovesReqManual.aspx" />
     <Content Include="FertilizerReqManual.aspx" />
     <Content Include="FertilizerTaskAssignmentaspx.aspx" />
@@ -390,6 +391,13 @@
     </Compile>
     <Compile Include="FerJobBuildUp.aspx.designer.cs">
       <DependentUpon>FerJobBuildUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoveReqAsssignment.aspx.cs">
+      <DependentUpon>MoveReqAsssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoveReqAsssignment.aspx.designer.cs">
+      <DependentUpon>MoveReqAsssignment.aspx</DependentUpon>
     </Compile>
     <Compile Include="MovesReqManual.aspx.cs">
       <DependentUpon>MovesReqManual.aspx</DependentUpon>

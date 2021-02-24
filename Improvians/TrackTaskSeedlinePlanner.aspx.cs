@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +13,7 @@ namespace Improvians
     public partial class TrackTaskSeedlinePlanner : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        public static DataTable AllData = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -87,24 +89,34 @@ namespace Improvians
             BindGridGerm();
         }
 
+
+
+
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+         
             Bindcname();
             BindJobCode();
             BindFacility();
             BindGridGerm();
+
         }
 
         public void BindGridGerm()
         {
+
+
+
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             // nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            dt = objCommon.GetDataTable("SP_GetTrackTaskSeedlinePlanner", nv);
-            gvGerm.DataSource = dt;
+
+
+            AllData = objCommon.GetDataTable("SP_GetTrackTaskSeedlinePlanner", nv);
+            gvGerm.DataSource = AllData;
             gvGerm.DataBind();
 
         }
@@ -119,7 +131,7 @@ namespace Improvians
 
         protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-          
+
         }
 
         protected void gvGerm_RowDataBound1(object sender, GridViewRowEventArgs e)
@@ -129,8 +141,9 @@ namespace Improvians
 
                 Label lblstatus = (Label)e.Row.FindControl("lblstatus");
                 Label lblStatusValues = (Label)e.Row.FindControl("lblStatusValues");
-
-                if (lblStatusValues.Text == "1")
+                Label lblPudawayDate = (Label)e.Row.FindControl("lblPudawayDate");
+                Label lblPutawayStatusValues = (Label)e.Row.FindControl("lblPutawayStatusValues");
+                if (lblStatusValues.Text == "1" || lblStatusValues.Text == "2")
                 {
                     lblstatus.Text = "Completed";
                 }
@@ -139,7 +152,101 @@ namespace Improvians
                     lblstatus.Text = "Pending";
                 }
 
+                if (lblStatusValues.Text == "2")
+                {
+                    lblPudawayDate.Text = lblPudawayDate.Text;
+                }
+                else
+                {
+                    lblPudawayDate.Text = "Pending";
+                }
 
+            }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BindGridGerm();
+                string search = "";
+                //if (txtSearch.Text != "")
+                //{
+
+                string SeedlineStatus = "", PutAwayStatus = "";
+
+                //if (radJSeedlineStatus.SelectedValue == "2")
+                //{
+                //    SeedlineStatus = "";
+                //}
+                //else if (radJSeedlineStatus.SelectedValue == "1")
+                //{
+                //    SeedlineStatus = "1,2";
+                //}
+                //else
+                //{
+                //    SeedlineStatus = "0";
+                //}
+
+                //if (RadioPutAwayStatus.SelectedValue == "2")
+                //{
+                //    PutAwayStatus = "";
+                //}
+                //else if (RadioPutAwayStatus.SelectedValue == "1")
+                //{
+                //    PutAwayStatus = "2";
+                //}
+                //else
+                //{
+                //    PutAwayStatus = "0,1";
+                //}
+
+
+
+                if (radJSeedlineStatus.SelectedValue == "1")
+                {
+                    search += "jstatus in (1,2)";
+                }
+                else if (radJSeedlineStatus.SelectedValue == "0")
+                {
+                    search += "jstatus in (0)";
+                }
+                else
+                {
+                 //   search += "jstatus in (0,1,2)";
+                }
+
+                if (RadioPutAwayStatus.SelectedValue == "1")
+                {
+                    search += "jstatus in (2)";
+                }
+                else if (RadioPutAwayStatus.SelectedValue == "0")
+                {
+                    search += "jstatus in (0,1)";
+                }
+                else
+                {
+                   // search += "jstatus in (0,1,2)";
+                }
+
+
+                DataRow[] dtSearch1 = AllData.Select(search);
+                if (dtSearch1.Count() > 0)
+                {
+                    DataTable dtSearch = dtSearch1.CopyToDataTable();
+                    gvGerm.DataSource = dtSearch;
+                    gvGerm.DataBind();
+                }
+                else
+                {
+                    DataTable dt = new DataTable();
+                    gvGerm.DataSource = dt;
+                    gvGerm.DataBind();
+                }
+
+            }
+            catch (Exception ex)
+            {
             }
         }
     }
