@@ -11,7 +11,7 @@
             <h2>Seedline Planning</h2>
             <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action" />
 
-            <div class="filter__row d-flex">
+            
                 <div class="row">
                     <div class="col-lg-3">
                         <label>From Date </label>
@@ -59,7 +59,7 @@
                 </div>
 
 
-            </div>
+            
             <br />
             <div class="row">
                 <div class="col m6">
