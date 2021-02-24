@@ -71,7 +71,7 @@ namespace Improvians.Bal
             }
             return dt;
         }
-        public DataTable GetManualFertilizerRequest(string FacilityLocation, string BenchLocation)
+        public DataTable GetManualFertilizerRequest(string FacilityLocation, string BenchLocation, string JobCode)
         {
             Improvians_General objGeneral = new Improvians_General();
             DataTable dt = new DataTable();
@@ -86,6 +86,10 @@ namespace Improvians.Bal
                 if (!string.IsNullOrEmpty(BenchLocation))
                 {
                     strQuery += " and t.[Position Code] ='" + BenchLocation + "'";
+                }
+                if (!string.IsNullOrEmpty(JobCode))
+                {
+                    strQuery += " and t.[Job No_] ='" + JobCode + "'";
                 }
                 strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code] HAVING sum(t.Quantity) > 0";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
