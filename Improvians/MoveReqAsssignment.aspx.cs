@@ -71,7 +71,7 @@ namespace Improvians
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Completion Successful";
-                string url = "SprayTaskRequest.aspx";
+                string url = "MyTaskGreenSupervisorFinal.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
