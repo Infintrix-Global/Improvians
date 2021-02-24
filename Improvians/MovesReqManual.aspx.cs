@@ -72,6 +72,17 @@ namespace Improvians
             ddlFacility.DataValueField = "l1";
             ddlFacility.DataBind();
             ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
+
+           
+                // NameValueCollection nv = new NameValueCollection();
+                // nv.Add("@mode", "4");
+                // ddlToFacility.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
+                ddlToFacility.DataSource = objBAL.GetMainLocation();
+                ddlToFacility.DataTextField = "l1";
+                ddlToFacility.DataValueField = "l1";
+                ddlToFacility.DataBind();
+                ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
+           
             BindBenchLocation("");
         }
 

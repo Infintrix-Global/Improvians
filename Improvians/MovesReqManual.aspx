@@ -229,7 +229,7 @@
                                     <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                                 </div>--%>
                             </div>
-                           <div class="data__table">
+                         <%--  <div class="data__table">--%>
 
 
                            <%--      <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
@@ -291,6 +291,10 @@
                                     <div class="col m6">
                                         <label runat="server" id="lblfacsupervisor">Assignment</label>
                                         <%-- <h3 class="robotobold"><asp:Label ID="lblSupervisorName" runat="server" ></asp:Label></h3>--%>
+
+                                  <div class="col-lg-3">
+                                <label>Assignement </label>
+
                                         <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                                         <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                         <span class="error_message">
@@ -298,7 +302,7 @@
                                                 SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </span>
                                     </div>
-
+                              <%-- </div>--%>
                                     <div class="col-auto">
                                         <br />
                                         <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
