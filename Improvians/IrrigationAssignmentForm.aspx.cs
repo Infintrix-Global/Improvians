@@ -85,7 +85,6 @@ namespace Improvians
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-
             nv.Add("@Mode", "8");
             dt = objCommon.GetDataTable("GET_Common", nv);
             ddlCustomer.DataSource = dt;
@@ -93,6 +92,7 @@ namespace Improvians
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
 
         }
 
