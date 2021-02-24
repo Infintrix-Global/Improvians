@@ -30,7 +30,7 @@ namespace Improvians
                 {
                     Bench = Request.QueryString["Bench"].ToString();
                 }
-                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                //txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
                 BindGridFerReq();
                 BindGridFerDetails();

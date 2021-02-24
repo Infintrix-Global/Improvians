@@ -94,7 +94,18 @@ namespace Improvians
 
         public void BindGridFerReq()
         {
-            gvFer.DataSource = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue,ddlJobNo.SelectedValue);
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+
+            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+            if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                dt.Merge(dtManual);
+                dt.AcceptChanges();
+            }
+            gvFer.DataSource = dt;
             gvFer.DataBind();
 
         }
