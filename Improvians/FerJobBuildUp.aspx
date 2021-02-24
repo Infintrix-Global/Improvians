@@ -304,7 +304,7 @@
                                     <asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label><br />
                                 <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 <span class="error_message">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlFertilizer" ValidationGroup="md"
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlFertilizer" ValidationGroup="e"
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Fertilizer" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
@@ -312,7 +312,7 @@
                                 <label>Concentration [ppm]</label>
                                 <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="md"
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="e"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
@@ -342,8 +342,19 @@
                                 <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:Label ID="Label2" runat="server" ForeColor="red"></asp:Label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtSQFT" ValidationGroup="md"
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
                                         SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </span>
+                            </div>
+
+                               <div class="col-lg-3">
+                                <label>Date </label>
+
+                                <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                <span class="error_message">
+                                    <asp:Label ID="Label3" runat="server" ForeColor="red"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtDate" ValidationGroup="e"
+                                        SetFocusOnError="true" ErrorMessage="Please Enter Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
 

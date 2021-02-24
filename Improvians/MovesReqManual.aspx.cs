@@ -28,6 +28,7 @@ namespace Improvians
                 BindJobCode();
                 Bindcname();
                 BindFacility();
+              
                 dtTrays.Clear();
             }
         }
@@ -105,21 +106,7 @@ namespace Improvians
 
             }
         }
-        protected void GridMove_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            try
-            {
-               // string tray = (GridMove.Rows[e.RowIndex].FindControl("lblTray") as Label).Text;
-                //lblUnmovedTrays.Text = ((Convert.ToInt32(lblUnmovedTrays.Text) + Convert.ToInt32(tray)).ToString());
-                dtTrays.Rows.RemoveAt(e.RowIndex);
-                GridMove.DataSource = dtTrays;
-                GridMove.DataBind();
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
+       
       
 
         protected void btnAddTray_Click(object sender, EventArgs e)
@@ -195,31 +182,53 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
+                    nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+                    nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                   
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@FromFacility", lblFromFacility.Text);
+                    nv.Add("@ToFacility", ddlToFacility.SelectedValue);
+                    nv.Add("@ToGreenHouse", ddlToGreenHouse.Text);
+                    nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text); 
+                    nv.Add("@MoveDate", txtDate.Text);
 
-            long result = 0;
-            //result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
-           // result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue, "", lblGrowerputawayID.Text);
-            if (result > 0)
-            {
-                // lblmsg.Text = "Request Successful";
-                Clear();
-                //BindGridMoveReq();
-                string message = "Request Successful";
-                string url = "MovesReqManual.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Request Successful')", true);
-                userinput.Visible = false;
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManual", nv);
+                    //result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
+                    // result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue, "", lblGrowerputawayID.Text);
+                    //if (result > 0)
+                    //{
+                     
+                      
+                    //}
+                    //else
+                    //{
+                    //    lblmsg.Text = "Request Not Successful";
+                    //}
+                }
             }
-            else
-            {
-                lblmsg.Text = "Request Not Successful";
-            }
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+            Clear();
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -258,13 +267,40 @@ namespace Improvians
 
         protected void btnAssign_Click(object sender, EventArgs e)
         {
+            int tray = 0;
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                {
+                    tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
+                }
+
+            }
+            txtTrays.Text = tray.ToString();
+
             userinput.Visible = true;
             //ddlLogisticManager.Focus();
             lblFromFacility.Text = ddlFacility.SelectedValue;
 
         }
 
-       
+        protected void chckchanged(object sender, EventArgs e)
+        {
+            CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckheader.Checked == true)
+                {
+                    chckrw.Checked = true;
+                }
+                else
+                {
+                    chckrw.Checked = false;
+                }
+            }
+
+        }
 
 
         protected void btnSearch_Click(object sender, EventArgs e)
