@@ -118,8 +118,8 @@ namespace Improvians
             if(txtRequestedTrays.Text != txtActualTraysNo.Text)
             {
                 string message = "Seeded Trays are not equal to Requested Trays. Are you are sure you want to submit this job?";
-                ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
-
+              //  ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "confirm", "return confirm('" + message + "');");
             }
 
 
