@@ -8,22 +8,49 @@
             <h2>Track Task</h2>
 
             <div class="row">
-                <div class="col m3">
+                <div class="col-lg-3">
                     <label>Customer </label>
                     <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-                <div class="col m3">
+                <div class="col-lg-3">
                     <label>Job No </label>
                     <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
 
-                <div class="col m3">
+                <div class="col-lg-3">
                     <label>Seedline Facility </label>
                     <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
 
+                <div class="col-lg-3">
+                    <label>Seedline Status </label>
+                    <span class="custom-control custom-radio ml-4 mr-2">
+                        <asp:RadioButtonList ID="radJSeedlineStatus" runat="server" Width="250px" RepeatDirection="Horizontal" >
+                            <asp:ListItem Value="0" Text="Pending"></asp:ListItem>
+                            <asp:ListItem Value="1" Text="Completed"></asp:ListItem>
+                         
+                        </asp:RadioButtonList>
+                    </span>
+
+                </div>
+            </div>
+             <br />
+            <div class="row">
+                <div class="col-lg-3">
+                    <label>Put away Status </label>
+                    <span class="custom-control custom-radio ml-4 mr-2">
+                        <asp:RadioButtonList ID="RadioPutAwayStatus" runat="server" Width="250px" RepeatDirection="Horizontal" >
+                            <asp:ListItem Value="0" Text="Pending" ></asp:ListItem>
+                            <asp:ListItem Value="1" Text="Completed"></asp:ListItem>
+                            
+                        </asp:RadioButtonList>
+                    </span>
+
+                </div>
+
                 <div class="col m3">
                     <br />
+                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                 </div>
 
@@ -37,7 +64,7 @@
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" OnPageIndexChanging="gvGerm_PageIndexChanging"
-                                    GridLines="None"  OnRowDataBound="gvGerm_RowDataBound1"
+                                    GridLines="None" OnRowDataBound="gvGerm_RowDataBound1"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
 
@@ -56,12 +83,6 @@
                                         </asp:TemplateField>
 
 
-
-                                        <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblitemno" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Seedline Facility" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -107,16 +128,29 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Seeding Status" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Seeding Status" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblstatus" runat="server" Text=""></asp:Label>
-                                           
-                                                 <asp:Label ID="lblStatusValues" Visible="false" runat="server" Text='<%# Eval("jstatus")  %>'></asp:Label>
-                                           
-                                                
+
+                                                <asp:Label ID="lblStatusValues" Visible="false" runat="server" Text='<%# Eval("jstatus")  %>'></asp:Label>
+
+
                                             </ItemTemplate>
+
+
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Put away Status" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblPutawayStatusValues" Visible="false" runat="server" Text='<%# Eval("jstatus")  %>'></asp:Label>
+                                                <asp:Label ID="lblPudawayDate" runat="server" Text='<%# Eval("CreateOn","{0:MM/dd/yyyy}")  %>'></asp:Label>
+
+
+                                            </ItemTemplate>
+
+
+                                        </asp:TemplateField>
 
 
 
