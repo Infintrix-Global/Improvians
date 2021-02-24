@@ -121,7 +121,7 @@ namespace Improvians
                 //  ClientScript.RegisterOnSubmitStatement(this.GetType(), "confirm", "return confirm('" + message + "');");
               //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "confirm", "return confirm('" + message + "');");
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "confirm", "confirm('" + message + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "confirm", "return confirm('" + message + "')", true);
             }
 
 
