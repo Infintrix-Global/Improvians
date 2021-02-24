@@ -3846,3 +3846,4 @@ Ambiguous column name 'GreenHouseID'. at 23-02-2021 18:27:38
    at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
    at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
    at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\18-02-2021\Improvians\CommonControl.cs:line 237Conversion failed when converting the varchar value 'JB032067' to data type int. at 24-02-2021 14:08:48
+*****Error message=****@WorkOrder:WO110889 at 2/24/2021 4:00:51 AM
