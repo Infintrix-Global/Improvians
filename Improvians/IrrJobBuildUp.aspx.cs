@@ -186,7 +186,7 @@ namespace Improvians
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
 
-
+                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
                     nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());

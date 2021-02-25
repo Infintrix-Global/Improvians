@@ -106,7 +106,14 @@ namespace Improvians
             //nv.Add("@Mode", "5");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@IrrigationCode", IrrigationCode);
-            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
+            if (Session["Role"].ToString() == "2")
+            {
+                dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIrrigationCode", nv);
+            }
+            else if (Session["Role"].ToString() == "3")
+            {
+                dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
+            }
 
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();

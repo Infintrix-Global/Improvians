@@ -216,8 +216,13 @@ namespace Improvians
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-
-                    long result = 0;
+                int IrrigationCode = 0;
+                DataTable dt = new DataTable();
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("@Mode", "13");
+                dt = objCommon.GetDataTable("GET_Common", nv1);
+                IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+                long result = 0;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
 
@@ -230,9 +235,9 @@ namespace Improvians
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
 
-      
-                   // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                    nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
+                nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
                     nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
                     nv.Add("@IrrigationDuration", "");
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
