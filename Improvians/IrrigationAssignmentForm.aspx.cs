@@ -177,7 +177,7 @@ namespace Improvians
                 nv.Add("@LoginID", Session["LoginID"].ToString());
             
 
-                result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
+                result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignmentStart", nv);
                 if (result > 0)
                 {
                     Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", IrrigationCode));

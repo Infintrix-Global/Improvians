@@ -30,7 +30,7 @@ namespace Improvians
                 {
                     Bench = Request.QueryString["Bench"].ToString();
                 }
-                //txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
                 BindGridFerReq();
                 BindGridFerDetails();
@@ -144,6 +144,28 @@ namespace Improvians
 
 
             foreach (GridViewRow row in gvFer.Rows)
+            {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
+
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                nv.Add("@Type", radtype.SelectedValue);
+                nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                //nv.Add("@WorkOrder", lblwo.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@FertilizationCode", FertilizationCode.ToString());
+                nv.Add("@FertilizationDate", txtDate.Text);
+
+                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+
+                //  }
+
+            }
+
+            foreach (GridViewRow row in gvJobHistory.Rows)
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{

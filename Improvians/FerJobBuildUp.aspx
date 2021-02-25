@@ -16,9 +16,11 @@
 
 
                 <div class="col-lg-3">
-                  <h3>        <label>Bench Location </label>
-                      <br />
-            <asp:Label ID="lblbench" runat="server"></asp:Label> </h3>  
+                    <h3>
+                        <label>Bench Location </label>
+                        <br />
+                        <asp:Label ID="lblbench" runat="server"></asp:Label>
+                    </h3>
                 </div>
             </div>
             <div class="row">
@@ -28,7 +30,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <h3>Selected Job on Bench</h3>
-                                      <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None"
                                     ShowHeaderWhenEmpty="True" Width="100%">
@@ -114,11 +116,11 @@
                                 </asp:GridView>
 
                                 <br />
-                                  <h3>Other Jobs on Bench</h3>
-                          
-                                  <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <h3>Other Jobs on Bench</h3>
+
+                                <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None" 
+                                    GridLines="None"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                         <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
@@ -291,7 +293,7 @@
                                     <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
-  <div class="col-lg-3">
+                            <div class="col-lg-3">
                                 <label>Spray Date </label>
 
                                 <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
@@ -354,24 +356,24 @@
                                 </span>
                             </div>
 
-                             
+
 
                         </div>
 
                         <div class="row">
                             <div class="col-lg-3">
                                 <label>Bench Irrigation Flow Rate [Gallons/min]</label>
-                                <asp:TextBox ID="txtBenchIrrigationFlowRate" TextMode="Number"  runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtBenchIrrigationFlowRate" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
                             <div class="col-lg-3">
                                 <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
-                                <asp:TextBox ID="txtBenchIrrigationCoverage"  TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtBenchIrrigationCoverage" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
                             <div class="col-lg-3">
                                 <label>Spray Coverage per minutes [sqft/min]</label>
-                                <asp:TextBox ID="txtSprayCoverageperminutes"  TextMode="Number"  runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtSprayCoverageperminutes" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
                             <div class="col-lg-3">

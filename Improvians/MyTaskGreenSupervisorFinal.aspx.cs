@@ -30,6 +30,8 @@ namespace Improvians
             lblIrr.Text = dt.Tables[1].Rows.Count.ToString();
             lblpr.Text = dt.Tables[2].Rows.Count.ToString();
             lblPutAway.Text = dt.Tables[3].Rows.Count.ToString();
+            lblFer.Text= dt.Tables[4].Rows.Count.ToString();
+            lblMove.Text= dt.Tables[5].Rows.Count.ToString();
 
         }
 

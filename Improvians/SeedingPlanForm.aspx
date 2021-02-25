@@ -158,8 +158,9 @@
                                                 <asp:HiddenField ID="HiddenFieldsodate" Value='<%# Eval("sodate","{0:yyyy-MM-dd}") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFieldduedate" Value='<%# Eval("duedate","{0:yyyy-MM-dd}") %>' runat="server" />
                                                 <asp:HiddenField ID="HiddenFieldwo" Value='<%# Eval("wo") %>' runat="server" />
+                                                   <asp:HiddenField ID="HiddenFieldGenusCode" Value='<%# Eval("GenusCode") %>' runat="server" />
 
-
+                                                
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

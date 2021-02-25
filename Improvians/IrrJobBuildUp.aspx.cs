@@ -155,6 +155,31 @@ namespace Improvians
                     }
                 //}
             }
+            foreach (GridViewRow row in gvJobHistory.Rows)
+            {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
+
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+
+                //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
+                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
+                // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
+                nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
+                nv.Add("@IrrigationDuration", "");
+                nv.Add("@SprayDate", txtSprayDate.Text.Trim());
+                nv.Add("@SprayTime", "");
+                nv.Add("@Nots", txtNotes.Text.Trim());
+                nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@NoOfPasses", "");
+
+                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
+               
+            }
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
