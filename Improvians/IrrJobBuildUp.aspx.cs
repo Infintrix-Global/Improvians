@@ -6,6 +6,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Improvians.Bal;
 
 namespace Improvians
 {
@@ -13,6 +14,7 @@ namespace Improvians
     {
 
         CommonControl objCommon = new CommonControl();
+        BAL_Fertilizer objFer = new BAL_Fertilizer();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,6 +28,7 @@ namespace Improvians
                 BindSupervisorList();
                 BindGridIrrDetails();
                 lblbench.Text = Bench;
+                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
         }
 
@@ -107,7 +110,13 @@ namespace Improvians
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", Bench);
-            dt = objCommon.GetDataTable("SP_GetIrrigationRequestHistory", nv);
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+            DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench, "");
+            if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                dt.Merge(dtManual);
+                dt.AcceptChanges();
+            }
             gvJobHistory.DataSource = dt;
             gvJobHistory.DataBind();
         }
@@ -150,7 +159,7 @@ namespace Improvians
                     }
                     else
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                        //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                         //  lblmsg.Text = "Assignment Not Successful";
                     }
                 //}
