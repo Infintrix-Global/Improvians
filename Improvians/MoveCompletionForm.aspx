@@ -118,7 +118,7 @@
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
                             <div class="col">
-                                <label>Move Date </label>
+                                <label>Put Away Date </label>
                                 <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtMoveDate" ValidationGroup="md"
