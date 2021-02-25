@@ -114,6 +114,7 @@ namespace Improvians
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+
             //int c = 0;
             //string x = "";
             //foreach (RepeaterItem item in repBench.Items)
