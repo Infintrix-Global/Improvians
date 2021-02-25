@@ -157,8 +157,6 @@
                                                 <asp:Button ID="btndismiss" runat="server" Text="Dismiss" OnClientClick="return confirm('Are you sure you want to dismiss this ?'); " CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
                                                 <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
 
-
-
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
