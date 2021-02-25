@@ -80,7 +80,12 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="Genus Code">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>'></asp:Label>
 
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
