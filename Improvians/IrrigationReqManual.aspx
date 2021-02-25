@@ -1,45 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationReqManual.aspx.cs" Inherits="Improvians.IrrigationReqManual" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <div class="main main__header">
+    <div class="main main__header">
         <div class="site__container">
             <h2>Irrigation </h2>
-
             <div class="row">
-                    <div class="col m3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <div class="col m3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                  
-                    <div class="col m3">
-                        <label>Put Away Main Location </label>
-                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
-                    <div class="col m3">
-                        <label>Bench Location </label>
-                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
+                <div class="col m3">
+                    <label>Facility Location </label>
+                    <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-         
+
+                <div class="col m3">
+                    <label>Bench Location </label>
+                    <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col m3">
+                    <label>Job No </label>
+                    <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col m3">
+                    <label>Customer </label>
+                    <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+            </div>
+
             <br />
             <div class="row">
                 <div class="col m3">
                 </div>
-                 <div class="col m3">
-                </div>
-                 <div class="col m3">
+                <div class="col m3">
                 </div>
                 <div class="col m3">
-                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
+                </div>
+                <div class="col m3">
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
-                   
+
                 </div>
 
             </div>
@@ -52,15 +50,15 @@
                     ShowHeaderWhenEmpty="True" Width="100%">
                     <Columns>
 
-                          <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
-                                            <HeaderTemplate>
-                                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
+                        <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                            <HeaderTemplate>
+                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
+                            </HeaderTemplate>
+                            <ItemTemplate>
 
-                                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -83,11 +81,11 @@
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                          <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -108,11 +106,11 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                     <%--   <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
 
 
 
@@ -122,7 +120,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                      <%--  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                        <%--  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
 
 
@@ -132,8 +130,6 @@
 
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-
-
                     </Columns>
 
 
@@ -149,36 +145,19 @@
 
                 <div id="userinput" runat="server" visible="false" class="row justify-content-center">
                     <div class="col-12">
-                        <h3>User Inputs:</h3>
-                        <div class="row">
-
-                           <%-- <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                <label>Job No.</label><br />
-
-
-                                <h3 class="robotobold">
-                                    <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
-                                <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
-
-
-                            </div>
-
-                        </div>--%>
-
-
-                        <div class="row">
+                       <div class="row">
 
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <label>Assignment</label>
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
 
-                            <div class="col-12 col-sm-6 col-lg-3">
+                           <%-- <div class="col-12 col-sm-6 col-lg-3">
                                 <label>No. Of Trays to be Irrigated</label>
 
                                 <asp:TextBox ID="txtIrrigatedNoTrays" ReadOnly="true" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
 
-                            </div>
+                            </div>--%>
 
                             <div class="col-12 col-sm-6 col-md-auto">
                                 <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
@@ -206,11 +185,11 @@
 
                                 <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                             </div>
-                            <div class="col-auto">
+                            <%--  <div class="col-auto">
                                 <label class="d-block">Spray Time</label>
 
                                 <asp:TextBox ID="txtSprayTime" TextMode="Time" class="input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
-                            </div>
+                            </div>--%>
                         </div>
 
                         <div class="row align-items-center mt-sm-3">
@@ -228,10 +207,10 @@
                         </div>
 
                     </div>
+                    </div>
+
                 </div>
 
             </div>
-
         </div>
-    </div>
 </asp:Content>

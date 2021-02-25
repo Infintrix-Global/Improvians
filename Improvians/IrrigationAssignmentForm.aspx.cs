@@ -190,6 +190,11 @@ namespace Improvians
             {
                 Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
             }
+
+            if (e.CommandName == "ViewDetails")
+            {
+                Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
+            }
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
