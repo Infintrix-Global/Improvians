@@ -51,7 +51,6 @@
 
             </div>
 
-            <br />
             <div class="row">
                 <div class="col-lg-3">
                 </div>
@@ -161,7 +160,6 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>--%>
-                                <br />
                                 <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
