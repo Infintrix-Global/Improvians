@@ -185,6 +185,7 @@ namespace Improvians
                 //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblRescheduleJobID.Text = (row.FindControl("lbljobID") as Label).Text;
                 lblRescheduleID.Text = (row.FindControl("lblID") as Label).Text;
+                lblGermNo.Text = (row.FindControl("lblGermNo") as Label).Text;
 
                 DateTime Germdt = DateTime.ParseExact((row.FindControl("lblGermDate") as Label).Text, "MM-dd-yyyy", CultureInfo.InvariantCulture);
                 lblOldDate.Text =  Germdt.ToString();
@@ -205,11 +206,10 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@GTID", GTID.ToString());
             nv.Add("@GermDate", txtNewDate.Text);
-            if (radReschedule.SelectedValue == "2")
+            if (radReschedule.SelectedValue == "2" && lblGermNo.Text =="Germination 1")
             {
                 double diff = (Convert.ToDateTime(txtNewDate.Text) - Convert.ToDateTime(lblOldDate.Text)).TotalDays;
                 nv.Add("@diff", diff.ToString());
-                // result = objCommon.GetDataInsertORUpdate("SP_RescheduleGerminationSecondRequest", nv);
             }
             else
             {

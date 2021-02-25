@@ -258,6 +258,15 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Label lblOldDate;
 
         /// <summary>
+        /// lblGermNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGermNo;
+
+        /// <summary>
         /// txtNewDate control.
         /// </summary>
         /// <remarks>
