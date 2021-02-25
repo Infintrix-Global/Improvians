@@ -124,6 +124,12 @@ namespace Improvians
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
+                if ((row.FindControl("lblGrowerputawayID") as Label).Text == "0")
+                {
+
+                }
+                else
+                {
 
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
@@ -138,6 +144,7 @@ namespace Improvians
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
                     nv.Add("@SprayTime", "");
                     nv.Add("@Nots", txtNotes.Text.Trim());
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                     nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@NoOfPasses", "");
@@ -153,6 +160,7 @@ namespace Improvians
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                         //  lblmsg.Text = "Assignment Not Successful";
                     }
+                }
                 //}
             }
             foreach (GridViewRow row in gvJobHistory.Rows)
@@ -173,6 +181,7 @@ namespace Improvians
                 nv.Add("@SprayDate", txtSprayDate.Text.Trim());
                 nv.Add("@SprayTime", "");
                 nv.Add("@Nots", txtNotes.Text.Trim());
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@IrrigationCode", IrrigationCode.ToString());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@NoOfPasses", "");
