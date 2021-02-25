@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Move Completion</h2>
+            <h2>Put Away Completion</h2>
 
             <div class="row">
                 <div class=" col m12">
@@ -105,7 +105,7 @@
             </div>
 
             <div  runat="server" id="AddDetails"  class="dashboard__block dashboard__block--asign">
-                <h3>Move Completion</h3>
+                <h3>Put Away Completion</h3>
                 <div class="row">
                     <div class="col">
                       <%--  <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>--%>
