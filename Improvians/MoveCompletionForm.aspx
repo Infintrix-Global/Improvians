@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Move Completion</h2>
+            <h2>Put Away Completion</h2>
 
             <div class="row">
                 <div class=" col m12">
@@ -105,7 +105,7 @@
             </div>
 
             <div  runat="server" id="AddDetails"  class="dashboard__block dashboard__block--asign">
-                <h3>Move Completion</h3>
+                <h3>Put Away Completion</h3>
                 <div class="row">
                     <div class="col">
                       <%--  <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>--%>
@@ -118,7 +118,7 @@
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
                             <div class="col">
-                                <label>Move Date </label>
+                                <label>Put Away Date </label>
                                 <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtMoveDate" ValidationGroup="md"
