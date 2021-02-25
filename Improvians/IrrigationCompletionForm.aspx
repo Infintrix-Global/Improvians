@@ -76,7 +76,7 @@
 
 
 
-                                        <asp:TemplateField HeaderText="Water Required" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Number of Passes" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
                                             </ItemTemplate>

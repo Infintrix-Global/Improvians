@@ -47,7 +47,7 @@
 
             </div>
 
-            <br />
+            
             <div class="row">
                 <div class="col m3">
                 </div>
@@ -63,7 +63,7 @@
                 </div>
 
             </div>
-
+            <br />
 
             <div class="data__table">
                 <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False"
