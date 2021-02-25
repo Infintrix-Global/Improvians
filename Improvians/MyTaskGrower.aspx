@@ -97,6 +97,24 @@
                         <p>Review and assign move tasks</p>
                     </div>
                 </a>
+                <a href="#" class="dashboard__box">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_dump-request.png" width="137" height="136" alt="Dump Request" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <h3 class="dashboard__box-title robotomd">Dump</h3>
+                        <p>Review and Assign Dump Tasks</p>
+                    </div>
+                </a>
+                <a href="#" class="dashboard__box">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_general-task.png" width="137" height="124" alt="General Task" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <h3 class="dashboard__box-title robotomd">General Task</h3>
+                        <p>Review and Assign Tasks</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
