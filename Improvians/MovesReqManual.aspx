@@ -304,11 +304,11 @@
                                     </div>
                               <%-- </div>--%>
                                     <div class="col-auto">
-                                        <br />
+                                        
                                         <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                                     </div>
                                     <div class="col-auto">
-                                        <br />
+                                       
                                         <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                                     </div>
                                
