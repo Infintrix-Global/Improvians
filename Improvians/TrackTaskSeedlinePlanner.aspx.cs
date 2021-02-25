@@ -203,11 +203,11 @@ namespace Improvians
 
 
 
-                if (radJSeedlineStatus.SelectedValue == "1")
+                if (radJSeedlineStatus.SelectedValue == "2")
                 {
                     search += "jstatus in (1,2)";
                 }
-                else if (radJSeedlineStatus.SelectedValue == "0")
+                else if (radJSeedlineStatus.SelectedValue == "1")
                 {
                     search += "jstatus in (0)";
                 }
@@ -216,11 +216,12 @@ namespace Improvians
                  //   search += "jstatus in (0,1,2)";
                 }
 
-                if (RadioPutAwayStatus.SelectedValue == "1")
+               
+                if (RadioPutAwayStatus.SelectedValue == "2")
                 {
                     search += "jstatus in (2)";
                 }
-                else if (RadioPutAwayStatus.SelectedValue == "0")
+                else if (RadioPutAwayStatus.SelectedValue == "2")
                 {
                     search += "jstatus in (0,1)";
                 }

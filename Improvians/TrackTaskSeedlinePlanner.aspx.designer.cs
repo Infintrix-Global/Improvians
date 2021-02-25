@@ -48,7 +48,7 @@ namespace Improvians
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList radJSeedlineStatus;
+        protected global::System.Web.UI.WebControls.DropDownList radJSeedlineStatus;
 
         /// <summary>
         /// RadioPutAwayStatus control.
@@ -57,7 +57,7 @@ namespace Improvians
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioPutAwayStatus;
+        protected global::System.Web.UI.WebControls.DropDownList RadioPutAwayStatus;
 
         /// <summary>
         /// btnSearch control.

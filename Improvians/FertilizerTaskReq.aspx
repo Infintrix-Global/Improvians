@@ -16,8 +16,10 @@
                 <ContentTemplate>--%>
 
             <div class="row">
-
-
+                <div class="col-lg-3">
+                    <label>Facility Location </label>
+                    <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
                 <div class="col-lg-3">
                     <label>Bench Location </label>
                     <%--   <div class="control__box">
@@ -45,10 +47,6 @@
                 </div>
 
 
-                <div class="col-lg-3">
-                    <label>Facility Location </label>
-                    <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
 
 
             </div>
@@ -64,10 +62,10 @@
                 <div class="col m3">
                     <%--  <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />--%>
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
-                 
+
                     <%--<asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />--%>
                     <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
-                        <%-- <asp:Button ID="btnJob" runat="server" Text="JobBuildUp" CssClass="bttn bttn-primary bttn-action" OnClick="btnJob_Click" />--%>
+                    <%-- <asp:Button ID="btnJob" runat="server" Text="JobBuildUp" CssClass="bttn bttn-primary bttn-action" OnClick="btnJob_Click" />--%>
                 </div>
 
             </div>
@@ -79,7 +77,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
 
-                                 <%--      <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <%--      <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None" Visible="false"
                                     ShowHeaderWhenEmpty="True" Width="100%">
@@ -179,7 +177,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
-                                          <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -199,12 +197,12 @@
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Put Away Main Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                      
+
 
 
 
@@ -234,10 +232,10 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                           <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Job Build Up" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# Eval("GreenHouseID")  %>'></asp:Button>
-                                              
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -403,8 +401,8 @@
                                 </span>
                             </div>
 
-                            
-                         
+
+
                             <%--  <div class="col align-self-center">
                                 <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                             </div>--%>

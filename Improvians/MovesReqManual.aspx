@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-lg-3">
                         <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
                     <div class="col-lg-3">
                         <label>Customer </label>

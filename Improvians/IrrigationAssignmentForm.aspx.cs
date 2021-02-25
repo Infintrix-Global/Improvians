@@ -85,7 +85,6 @@ namespace Improvians
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-
             nv.Add("@Mode", "8");
             dt = objCommon.GetDataTable("GET_Common", nv);
             ddlCustomer.DataSource = dt;
@@ -93,6 +92,7 @@ namespace Improvians
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
 
         }
 
@@ -209,23 +209,23 @@ namespace Improvians
                     btnAssign.Visible = false;
                 }
 
-                GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
-                GridView GridViewFShow = e.Row.FindControl("GridViewFShow") as GridView;
-                Label lblIrrigationCode = (Label)e.Row.FindControl("lblIrrigationCode");
+                //GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
+                //GridView GridViewFShow = e.Row.FindControl("GridViewFShow") as GridView;
+                //Label lblIrrigationCode = (Label)e.Row.FindControl("lblIrrigationCode");
 
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@IrrigationCode", lblIrrigationCode.Text);
-                dt = objCommon.GetDataTable("SP_GetIrrigationRequestDetails", nv);
-                GridViewFields.DataSource = dt;
-                GridViewFields.DataBind();
+                //DataTable dt = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@IrrigationCode", lblIrrigationCode.Text);
+                //dt = objCommon.GetDataTable("SP_GetIrrigationRequestDetails", nv);
+                //GridViewFields.DataSource = dt;
+                //GridViewFields.DataBind();
 
-                DataTable dt1 = new DataTable();
-                NameValueCollection nv1 = new NameValueCollection();
-                nv1.Add("@IrrigationCode", lblIrrigationCode.Text);
-                dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
-                GridViewFShow.DataSource = dt1;
-                GridViewFShow.DataBind();
+                //DataTable dt1 = new DataTable();
+                //NameValueCollection nv1 = new NameValueCollection();
+                //nv1.Add("@IrrigationCode", lblIrrigationCode.Text);
+                //dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
+                //GridViewFShow.DataSource = dt1;
+                //GridViewFShow.DataBind();
             }
         }
     }

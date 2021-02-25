@@ -1,6 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="SeedLineCompletionFinal.aspx.cs" Inherits="Improvians.SeedLineCompletionFinal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function checkTray()
+        {
+            var txt1 = document.getElementById('<%= txtActualTraysNo.ClientID %>').value;
+         <%--   var value = document.getElementById('<%=txtActualTraysNo.ClientID%>').value;--%>
+            var txt2 = document.getElementById('<%= txtRequestedTrays.ClientID %>').value;
+            //alert(value);
+            if (txt1 != txt2)
+                return confirm('Seeded Trays are not equal to Requested Trays. Are you are sure you want to submit this job?');
+            else
+                return true;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="Sc1" runat="server"></asp:ScriptManager>
@@ -347,7 +360,7 @@
                             </span>
                         </div>
                         <div class="col-lg-12 mt-3 text-center">
-                            <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-3" runat="server" OnClick="btnSubmit_Click" ValidationGroup="e" />
+                            <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-3" runat="server" OnClientClick="return checkTray();" OnClick="btnSubmit_Click" ValidationGroup="e" />
 
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                         </div>

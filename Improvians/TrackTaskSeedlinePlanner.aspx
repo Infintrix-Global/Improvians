@@ -8,52 +8,51 @@
             <h2>Track Task</h2>
 
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <label>Customer </label>
                     <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <label>Job No </label>
                     <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <label>Seedline Facility </label>
                     <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <label>Seedline Status </label>
-                    <span class="custom-control custom-radio ml-4 mr-2">
-                        <asp:RadioButtonList ID="radJSeedlineStatus" runat="server" Width="250px" RepeatDirection="Horizontal" >
-                            <asp:ListItem Value="0" Text="Pending"></asp:ListItem>
-                            <asp:ListItem Value="1" Text="Completed"></asp:ListItem>
-                         
-                        </asp:RadioButtonList>
-                    </span>
+                    <asp:DropDownList ID="radJSeedlineStatus" runat="server" class="custom__dropdown robotomd">
+                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                        <asp:ListItem Value="1" Text="Pending"></asp:ListItem>
+                        <asp:ListItem Value="2" Text="Completed"></asp:ListItem>
+                    </asp:DropDownList>
+
 
                 </div>
-            </div>
-             <br />
-            <div class="row">
-                <div class="col-lg-3">
-                    <label>Put away Status </label>
-                    <span class="custom-control custom-radio ml-4 mr-2">
-                        <asp:RadioButtonList ID="RadioPutAwayStatus" runat="server" Width="250px" RepeatDirection="Horizontal" >
-                            <asp:ListItem Value="0" Text="Pending" ></asp:ListItem>
-                            <asp:ListItem Value="1" Text="Completed"></asp:ListItem>
-                            
-                        </asp:RadioButtonList>
-                    </span>
+                <div class="col-lg-2">
+                    <label>Put Away Status </label>
+                    <asp:DropDownList ID="RadioPutAwayStatus" runat="server" class="custom__dropdown robotomd">
+
+
+                        <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
+                        <asp:ListItem Value="1" Text="Pending"></asp:ListItem>
+                        <asp:ListItem Value="2" Text="Completed"></asp:ListItem>
+                    </asp:DropDownList>
+
 
                 </div>
 
-                <div class="col m3">
+                <div class="col m2">
                     <br />
                     <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                 </div>
-
+            </div>
+            <br />
+            <div class="row">
             </div>
 
             <div class="row">
@@ -140,7 +139,7 @@
 
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Put away Status" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Put Away Status" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblPutawayStatusValues" Visible="false" runat="server" Text='<%# Eval("jstatus")  %>'></asp:Label>

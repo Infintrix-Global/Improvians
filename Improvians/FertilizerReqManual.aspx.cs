@@ -27,7 +27,7 @@ namespace Improvians
                 BindSupervisor();
                 BindFertilizer();
                 //    BindUnit();
-                BindJobCode();
+                BindJobCode(ddlBenchLocation.SelectedValue);
                 Bindcname();
                 BindFacility();
                 dtTrays.Clear();
@@ -64,20 +64,13 @@ namespace Improvians
 
         }
 
-        public void BindJobCode()
+        public void BindJobCode(string ddlBench)
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
         }
 
         public void BindFacility()
@@ -101,7 +94,18 @@ namespace Improvians
 
         public void BindGridFerReq()
         {
-            gvFer.DataSource = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue);
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+
+            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+            if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                dt.Merge(dtManual);
+                dt.AcceptChanges();
+            }
+            gvFer.DataSource = dt;
             gvFer.DataBind();
 
         }
@@ -364,6 +368,7 @@ namespace Improvians
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridFerReq();
+            BindJobCode(ddlBenchLocation.SelectedValue);
         }
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)

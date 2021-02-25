@@ -85,7 +85,7 @@
 
                                         <asp:TemplateField HeaderText="Germination Count No" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label16" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
+                                                <asp:Label ID="lblGermNo" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -266,6 +266,8 @@
                                 <h3 class="robotobold">
                                     <asp:Label ID="lblRescheduleJobID" runat="server"></asp:Label>
                                     <asp:Label ID="lblRescheduleID" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label ID="lblOldDate" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label ID="lblGermNo" runat="server" Visible="false"></asp:Label>
                                 </h3>
                             </div>
                             <div class="col-auto m6">
