@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="IrrigationTaskCompletion.aspx.cs" Inherits="Improvians.IrrigationCompletionForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationTaskViewDetails.aspx.cs" Inherits="Improvians.IrrigationTaskViewDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -6,10 +6,27 @@
     <div class="main__header">
         <div class="site__container">
             <h2>Irrigation Completion</h2>
+            <div class="row">
 
 
 
-            <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>
+                <div class="col-lg-6">
+                    <h3 class="robotobold">
+                        <label>Bench Location</label><br />
+                        <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
+                    </h3>
+                </div>
+
+                <div class="col-lg-6">
+                </div>
+
+
+
+            </div>
+            <br />
+
+
+
             <div class="data__table">
                 <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                 <asp:GridView ID="gvIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -91,53 +108,60 @@
                 <form class="web__form pt-2">
                     <div class="row justify-content-center">
                         <div class="col-12">
-                            <h3>User Inputs:</h3>
-                            <div class="row">
+
+
+                            <div class="data__table">
+                                <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                    class="striped" AllowSorting="true" PageSize="20"
+                                    GridLines="None"
+                                    ShowHeaderWhenEmpty="True" Width="100%">
+                                    <Columns>
+
+                                        <asp:TemplateField HeaderText="Bench Location">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
+                                                <asp:Label ID="lblIrrigationCode" Visible="false" runat="server" Text='<%#Bind("IrrigationCode") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
 
 
 
-                                <div class="col-lg-6">
-                                    <h3 class="robotobold">
-                                        <label>Bench Location</label><br />
-                                        <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
-                                    </h3>
-                                </div>
 
-                                <div class="col-lg-6">
-                                </div>
+                                        <asp:TemplateField HeaderText="Spray Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
 
 
+                                        <asp:TemplateField HeaderText="Water Required" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+
+
+
+
+
+
+                                    </Columns>
+
+
+                                    <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                    <PagerSettings Mode="NumericFirstLast" />
+                                    <EmptyDataTemplate>
+                                        No Record Available
+                                    </EmptyDataTemplate>
+                                </asp:GridView>
                             </div>
 
-                            <br />
-                            <div class="row">
 
-                                <div class="col-12 col-sm-5 col-md-4 col-lg-3">
-                                    <label class="d-block">Spray completion date </label>
-
-                                    <asp:TextBox ID="txtSprayDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
-                                </div>
-
-                                   <div class="col-sm col-sm-auto">
-                                    <label class="d-block">No of Passes</label>
-
-                                    <asp:TextBox ID="txtNoofPasses" class="input__control" placeholder="No of Passes" runat="server"></asp:TextBox>
-                                </div>
-
-                                <%--<div class="col-12 col-sm-auto">
-                                    <label class="pr-2 pr-lg-0 d-block">Spray Duration</label>
-
-                                    <asp:TextBox ID="txtSprayDuration" class="mb-2 input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
-
-                                </div>--%>
-
-                                <div class="col-12 my-3">
-                                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
-                                    <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />
-
-                                </div>
-                            </div>
 
                         </div>
                     </div>

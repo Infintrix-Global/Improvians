@@ -191,6 +191,7 @@
     <Content Include="css\custom.css" />
     <Content Include="DashBoard.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
+    <Content Include="IrrigationTaskViewDetails.aspx" />
     <Content Include="MoveReqAsssignment.aspx" />
     <Content Include="MovesReqManual.aspx" />
     <Content Include="FertilizerReqManual.aspx" />
@@ -391,6 +392,13 @@
     </Compile>
     <Compile Include="FerJobBuildUp.aspx.designer.cs">
       <DependentUpon>FerJobBuildUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationTaskViewDetails.aspx.cs">
+      <DependentUpon>IrrigationTaskViewDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationTaskViewDetails.aspx.designer.cs">
+      <DependentUpon>IrrigationTaskViewDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="MoveReqAsssignment.aspx.cs">
       <DependentUpon>MoveReqAsssignment.aspx</DependentUpon>
