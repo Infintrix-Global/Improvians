@@ -71,10 +71,7 @@
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_crop-health-report.png" width="137" height="131" alt="Crop Health Report" />
                     </div>
-                    <div class="dashboard__box-desc">
-                         <div class="dashboard__box-count dash_green_txt robotobold">
-                            <asp:Label ID="lblCrop" runat="server" Text="0"></asp:Label>
-                        </div>
+                    <div class="dashboard__box-desc">                       
                         <h3 class="dashboard__box-title robotomd">Crop Health Report</h3>
                         <p>Assign Crop Health Report Request</p>
                     </div>
@@ -95,10 +92,7 @@
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
                     </div>
-                    <div class="dashboard__box-desc">
-                        <div class="dashboard__box-count dash_green_txt robotobold">
-                            <asp:Label ID="lblMove" runat="server" Text="0"></asp:Label>
-                        </div>
+                    <div class="dashboard__box-desc">                        
                         <h3 class="dashboard__box-title robotomd">Moves</h3>
                         <p>Review and assign move tasks</p>
                     </div>

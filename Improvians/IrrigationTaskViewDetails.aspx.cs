@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Improvians
 {
-    public partial class IrrigationCompletionForm : System.Web.UI.Page
+    public partial class IrrigationTaskViewDetails : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
@@ -21,7 +21,7 @@ namespace Improvians
                 {
                     IrrigationCode = Request.QueryString["IrrigationCode"].ToString();
                 }
-                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                BindGridViewDetailsGerm();
                 BindenchLocation();
                 BindgvIrrigation();
 
@@ -77,6 +77,24 @@ namespace Improvians
             }
         }
 
+
+        public void BindGridViewDetailsGerm()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@wo", "");
+            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            //nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@IrrigationCode", IrrigationCode);
+            //nv.Add("@Mode", "6");
+            //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetails", nv);
+            gvGerm.DataSource = dt;
+            gvGerm.DataBind();
+
+        }
+
         public void BindgvIrrigation()
         {
             DataTable dt = new DataTable();
@@ -89,11 +107,11 @@ namespace Improvians
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@IrrigationCode", IrrigationCode);
             dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
-            
+
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();
 
-            txtNoofPasses.Text = dt.Rows[0]["WaterRequired"].ToString();
+          
         }
 
         protected void gvIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -102,83 +120,10 @@ namespace Improvians
             BindgvIrrigation();
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-
-            long result = 0;
-       
-            NameValueCollection nv = new NameValueCollection();
-           // nv.Add("@OperatorID", Session["LoginID"].ToString());
-            //nv.Add("@wo", wo);
-            nv.Add("@IrrigationCode", IrrigationCode);
-            nv.Add("@SprayDate",txtSprayDate.Text.Trim());
-            nv.Add("@TraysSprayed","");
-            nv.Add("@SprayDuration","");
-            nv.Add("@NoOfPasses", txtNoofPasses.Text.Trim());
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            //if (Request.QueryString["ICom"] =="1")
-            //{
-            //    nv.Add("@mode", "1");
-
-            //}
-            //else
-            //{
-            //    nv.Add("@mode", "3");
-            //}
-
-            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskCompletion", nv);
-
-         
-            if (result > 0)
-            {
-                // lblmsg.Text = "Completion Successful";
-                clear();
-                string message = "Completion Successful";
-                string url;
-                if (Session["Role"].ToString() == "3")
-                {
-                    url = "IrrigationCompletionForm.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                }
-                if (Session["Role"].ToString() == "2")
-                {
-                    url = "IrrigationAssignmentForm.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                }
-
-
-            }
-            else
-            {
-                lblmsg.Text = "Completion Not Successful";
-            }
-        }
-
-        public void clear()
-        {
-            txtSprayDate.Text = "";
-            //   txtSprayDuration.Text = "";
-            //  txtTraysSprayed.Text = "";
-
-            txtNoofPasses.Text = "";
-        }
-
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            clear();
+           
             if (Session["Role"].ToString() == "3")
             {
                 Response.Redirect("~/IrrigationCompletionForm.aspx");
@@ -187,6 +132,6 @@ namespace Improvians
 
         }
 
-    
+
     }
 }

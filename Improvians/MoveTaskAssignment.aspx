@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main">
         <div class="site__container">
-            <h2>Move Task Assignment</h2>
+            <h2>Put Away Task Assignment</h2>
 
             <div class="row">
                 <div class=" col m12">
@@ -108,7 +108,7 @@
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row align-items-end">
                             <div class="col">
-                                <label>Shipping Coordinator </label>
+                                <label>Assignment</label>
 
                                 <asp:DropDownList ID="ddlShippingCoordinator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>

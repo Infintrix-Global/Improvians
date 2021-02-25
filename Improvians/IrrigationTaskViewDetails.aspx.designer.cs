@@ -11,61 +11,43 @@ namespace Improvians
 {
 
 
-    public partial class MyTaskGreenSupervisorFinal
+    public partial class IrrigationTaskViewDetails
     {
 
         /// <summary>
-        /// lblPutAway control.
+        /// lblBenchLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPutAway;
+        protected global::System.Web.UI.WebControls.Label lblBenchLocation;
 
         /// <summary>
-        /// lblGerm control.
+        /// lblmsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGerm;
+        protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// lblFer control.
+        /// gvIrrigation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFer;
+        protected global::System.Web.UI.WebControls.GridView gvIrrigation;
 
         /// <summary>
-        /// lblIrr control.
+        /// gvGerm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIrr;
-
-        /// <summary>
-        /// lblpr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpr;
-
-        /// <summary>
-        /// lblMove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMove;
+        protected global::System.Web.UI.WebControls.GridView gvGerm;
     }
 }

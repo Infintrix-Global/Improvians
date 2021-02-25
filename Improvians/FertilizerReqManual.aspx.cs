@@ -31,6 +31,7 @@ namespace Improvians
                 Bindcname();
                 BindFacility();
                 dtTrays.Clear();
+                txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
         }
 
