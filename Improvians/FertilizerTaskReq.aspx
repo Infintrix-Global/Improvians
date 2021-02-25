@@ -224,9 +224,9 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                           <asp:TemplateField HeaderText="Fertilize Seeded Date" HeaderStyle-CssClass="autostyle2">
+                                           <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("FertilizeSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="Label19" runat="server" Text='<%# Eval("FertilizeSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -399,7 +399,7 @@
 
                                 <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
-                                    <asp:Label ID="Label2" runat="server" ForeColor="red"></asp:Label>
+                                    <asp:Label ID="Label5" runat="server" ForeColor="red"></asp:Label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
                                         SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
