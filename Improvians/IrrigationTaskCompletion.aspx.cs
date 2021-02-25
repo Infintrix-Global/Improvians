@@ -126,7 +126,7 @@ namespace Improvians
             //    nv.Add("@mode", "3");
             //}
 
-            result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskCompletion", nv);
+            result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskCompletion", nv);
 
          
             if (result > 0)
