@@ -109,7 +109,7 @@
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
                             <div class="col">
-                                <label>Plant Ready Operator </label>
+                                <label>Assignment</label>
                                 <asp:DropDownList ID="ddlOperator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
                           <%--  <div class="col">

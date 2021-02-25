@@ -3946,3 +3946,23 @@ Ambiguous column name 'GreenHouseID'. at 23-02-2021 18:27:38
    at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
    at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
    at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in F:\Office Prpoject\Improvians\18-02-2021\Improvians\CommonControl.cs:line 237A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - The specified network name is no longer available.) at 25-02-2021 15:54:14
+*****Error message=****@SupervisorID:2 at 2/25/2021 3:11:37 AM
+*****Error message=****@GrowerPutAwayID:11 at 2/25/2021 3:11:37 AM
+*****Error message=****@IrrigatedNoTrays:3604 at 2/25/2021 3:11:37 AM
+*****Error message=****@WaterRequired:10 at 2/25/2021 3:11:37 AM
+*****Error message=****@IrrigationDuration: at 2/25/2021 3:11:37 AM
+*****Error message=****@SprayDate:2021-02-17 at 2/25/2021 3:11:37 AM
+*****Error message=****@SprayTime: at 2/25/2021 3:11:37 AM
+*****Error message=****@Nots:test at 2/25/2021 3:11:37 AM
+*****Error message=****@IrrigationCode:7 at 2/25/2021 3:11:37 AM
+*****Error message=****@LoginID:1 at 2/25/2021 3:11:37 AM
+*****Error message=****@NoOfPasses: at 2/25/2021 3:11:37 AM
+*****Error message=****@SupervisorID:2 at 2/25/2021 3:13:24 AM
+*****Error message=****@GrowerPutAwayID:0 at 2/25/2021 3:13:24 AM
+*****Error message=****@IrrigatedNoTrays:33 at 2/25/2021 3:13:24 AM
+*****Error message=****@WaterRequired:10 at 2/25/2021 3:13:24 AM
+*****Error message=****@IrrigationDuration: at 2/25/2021 3:13:24 AM
+*****Error message=****@SprayDate:2021-02-25 at 2/25/2021 3:13:24 AM
+*****Error message=****@Nots: at 2/25/2021 3:13:24 AM
+*****Error message=****@LoginID:1 at 2/25/2021 3:13:24 AM
+*****Error message=****Sql Error is=Procedure or function 'SP_AddIrrigationRequestManual' expects parameter '@SprayTime', which was not supplied. at 2/25/2021 3:13:24 AM

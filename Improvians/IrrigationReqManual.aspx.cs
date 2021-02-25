@@ -6,21 +6,26 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Improvians.Bal;
 
 namespace Improvians
 {
     public partial class IrrigationReqManual : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objBAL = new BAL_CommonMasters();
+        BAL_Fertilizer objFer = new BAL_Fertilizer();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Bindcname();
-                BindJobCode();
-                BindFacility();
-                BindBenchLocation();
-                BindGridIrrigation();
+                //Bindcname();
+                //BindJobCode();
+                //BindFacility();
+                //BindBenchLocation();
+                //BindGridIrrigation();
+                BindFacility();                
+                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindSupervisorList();
             }
         }
@@ -57,7 +62,14 @@ namespace Improvians
             nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
 
-            dt = objCommon.GetDataTable("SP_GetIrrigationRequestManual", nv);
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+
+            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+            if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                dt.Merge(dtManual);
+                dt.AcceptChanges();
+            }
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
         }
@@ -79,51 +91,35 @@ namespace Improvians
         }
 
 
-        public void BindJobCode()
+        public void BindJobCode(string ddlBench)
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
         }
-        public void BindBenchLocation()
-        {
 
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "10");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlBenchLocation.DataSource = dt;
-            ddlBenchLocation.DataTextField = "GreenHouseID";
-            ddlBenchLocation.DataValueField = "GreenHouseID";
-            ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
         public void BindFacility()
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
+            ddlFacility.DataSource = objBAL.GetMainLocation();
+            ddlFacility.DataTextField = "l1";
+            ddlFacility.DataValueField = "l1";
             ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
+            BindBenchLocation("");
         }
+
+        public void BindBenchLocation(string ddlMain)
+        {
+            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataTextField = "p2";
+            ddlBenchLocation.DataValueField = "p2";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
+        }
+
+       
         public void BindSupervisorList()
         {
             //NameValueCollection nv = new NameValueCollection();
@@ -161,7 +157,7 @@ namespace Improvians
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindBenchLocation(ddlFacility.SelectedValue);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -176,10 +172,10 @@ namespace Improvians
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
-            Bindcname();
-            BindJobCode();
-            BindFacility();
-            BindBenchLocation();
+            ddlFacility.SelectedIndex = 0;
+            ddlBenchLocation.SelectedIndex = 0;
+            ddlCustomer.SelectedIndex = 0;
+            ddlJobNo.SelectedIndex = 0;
             BindGridIrrigation();
         }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -232,7 +228,7 @@ namespace Improvians
                     nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
                     nv.Add("@IrrigationDuration", "");
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
-                    nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                    //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@Nots", txtNotes.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestManual", nv);
@@ -267,10 +263,10 @@ namespace Improvians
             ddlSupervisor.SelectedIndex = 0;
             txtWaterRequired.Text = "";
             txtNotes.Text = "";
-            txtIrrigatedNoTrays.Text = "";
+            //txtIrrigatedNoTrays.Text = "";
             //txtIrrigationDuration.Text = "";
             txtSprayDate.Text = "";
-            txtSprayTime.Text = "";
+            //txtSprayTime.Text = "";
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -298,7 +294,7 @@ namespace Improvians
                 }
 
             }
-            txtIrrigatedNoTrays.Text = tray.ToString();
+            //txtIrrigatedNoTrays.Text = tray.ToString();
 
 
         }
