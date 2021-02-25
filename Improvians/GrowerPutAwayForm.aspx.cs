@@ -7,12 +7,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Improvians.Bal; 
+
 namespace Improvians
 {
     public partial class GetGrowerPutAwayForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
         BAL_CommonMasters objCOm = new BAL_CommonMasters();
+        Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -123,6 +125,7 @@ namespace Improvians
                     lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeededDate"]).ToString("MM-dd-yyyy");
                     lblSeededTrays.Text = dt.Rows[0]["ActualTraySeeded"].ToString();
                     PutAwayFacility = dt.Rows[0]["loc_seedline"].ToString();
+                    lblGenusCode.Text= dt.Rows[0]["GenusCode"].ToString();
                 }
 
                 AddGrowerPutRow(true);
@@ -304,6 +307,35 @@ namespace Improvians
                 long _isInserted = 1;
                 int SelectedItems = 0;
 
+                string IrrigateSeedDate = "";
+                string FertilizeSeedDate = "";
+
+                // IrrigateSeedDate 
+
+                DataTable dtISD = objSP.GetSeedDateData("IRRIGATE",lblGenusCode.Text, lblSeededTrays.Text);
+                DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, lblSeededTrays.Text);
+
+                if (dtISD.Rows.Count > 0 && dtISD != null)
+                {
+                    IrrigateSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(dtISD.Rows[0]["DateShift"]))).ToString();
+                }
+                else
+                {
+                    IrrigateSeedDate = lblSeedDate.Text;
+                }
+
+                if (dtISD.Rows.Count > 0 && dtISD != null)
+                {
+                    FertilizeSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(dtISD.Rows[0]["DateShift"]))).ToString();
+
+                }
+                else
+                {
+                    FertilizeSeedDate = lblSeedDate.Text;
+                }
+               
+
+
                 foreach (GridViewRow item in GridSplitJob.Rows)
                 {
 
@@ -326,9 +358,9 @@ namespace Improvians
                         nv.Add("@SeedDate", lblSeedDate.Text);
                         nv.Add("@CreateBy", Session["LoginID"].ToString());
                         nv.Add("@Supervisor",ddlSupervisor.SelectedValue);
+                        nv.Add("@IrrigateSeedDate", IrrigateSeedDate);
+                        nv.Add("@FertilizeSeedDate", FertilizeSeedDate);
 
-
-                        
                         if (txtTrays.Text != "")
                         {
                             nv.Add("@mode", "1");
