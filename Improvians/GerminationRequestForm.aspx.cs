@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -184,18 +185,16 @@ namespace Improvians
                 //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
                 lblRescheduleJobID.Text = (row.FindControl("lbljobID") as Label).Text;
                 lblRescheduleID.Text = (row.FindControl("lblID") as Label).Text;
+                lblGermNo.Text = (row.FindControl("lblGermNo") as Label).Text;
 
-
-                txtNewDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+                DateTime Germdt = DateTime.ParseExact((row.FindControl("lblGermDate") as Label).Text, "MM-dd-yyyy", CultureInfo.InvariantCulture);
+                lblOldDate.Text =  Germdt.ToString();
+                txtNewDate.Text = Germdt.ToString("yyyy-MM-dd");
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtNewDate.Focus();
                 BindGridGerm();
-            }
-            if (e.CommandName == "Reschedule")
-            {
-
             }
         }
 
@@ -207,10 +206,18 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@GTID", GTID.ToString());
             nv.Add("@GermDate", txtNewDate.Text);
+            if (radReschedule.SelectedValue == "2" && lblGermNo.Text =="Germination 1")
+            {
+                double diff = (Convert.ToDateTime(txtNewDate.Text) - Convert.ToDateTime(lblOldDate.Text)).TotalDays;
+                nv.Add("@diff", diff.ToString());
+            }
+            else
+            {
+                nv.Add("@diff", "0");
+            }
             result = objCommon.GetDataInsertORUpdate("SP_RescheduleGerminationRequest", nv);
             if (result > 0)
             {
-
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Reschedule Successful";
                 string url = "GerminationRequestForm.aspx";
@@ -233,6 +240,8 @@ namespace Improvians
             }
 
         }
+
+
         protected void btnResetReschedule_Click(object sender, EventArgs e)
         {
             txtNewDate.Text = "";

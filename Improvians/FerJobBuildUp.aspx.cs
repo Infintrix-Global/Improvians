@@ -164,6 +164,28 @@ namespace Improvians
                 //  }
 
             }
+
+            foreach (GridViewRow row in gvJobHistory.Rows)
+            {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
+
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                nv.Add("@Type", radtype.SelectedValue);
+                nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                //nv.Add("@WorkOrder", lblwo.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@FertilizationCode", FertilizationCode.ToString());
+                nv.Add("@FertilizationDate", txtDate.Text);
+
+                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+
+                //  }
+
+            }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text,txtBenchIrrigationFlowRate.Text,txtBenchIrrigationCoverage.Text,txtSprayCoverageperminutes.Text);
 
