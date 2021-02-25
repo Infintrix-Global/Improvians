@@ -235,8 +235,9 @@ namespace Improvians
                         HiddenField HiddenFieldsodate = (item.Cells[0].FindControl("HiddenFieldsodate") as HiddenField);
                         HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
                         HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
+                        HiddenField HiddenFieldGenusCode = (item.Cells[0].FindControl("HiddenFieldGenusCode") as HiddenField);
 
-
+                        
                         if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
                         {
 
@@ -265,6 +266,8 @@ namespace Improvians
                             nv.Add("@SoDate", lblSODate.Text);
                             nv.Add("@TraySize", lblTraySize.Text);
                             nv.Add("@wo", HiddenFieldwo.Value);
+                            nv.Add("@GenusCode", HiddenFieldGenusCode.Value);
+                            
                             nv.Add("@mode", "1");
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
 

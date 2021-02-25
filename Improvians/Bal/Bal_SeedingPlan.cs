@@ -34,7 +34,7 @@ namespace Improvians.Bal
                 //strQuery += "  order by alloc desc, loc desc, sodate ";
 
 
-                strQuery = "select w.No_ wo, b.[Job No_] jobcode, j.[Bill-to Name] cname, p.[Starting Date] sodate, j.[Item Description] itmdescp, j.[Item No_] itm, j.[Variant Code] ts, b.[Container Qty_] sotrays, j.[Bill-to Customer No_] cusno, j.[Delivery Date] duedate, w.[Location Code] loc,";
+                strQuery = "select w.No_ wo, b.[Job No_] jobcode, j.[Bill-to Name] cname, p.[Starting Date] sodate, j.[Item Description] itmdescp, j.[Item No_] itm, j.[Variant Code] ts, b.[Container Qty_] sotrays, j.[Bill-to Customer No_] cusno, j.[Delivery Date] duedate,b.[Genus Code] GenusCode,w.[Location Code] loc,";
                 strQuery += " w.[Calc_ Quantity] wotrays, w.[Planned Date] wodate, case when j.[Job Status] =1 then 'Yes' else 'No'end alloc ";
                 strQuery += "from [GTI$IA Job Activity Scheme Line] b, [GTI$IA Job Production Scheme Line] p, ";
                 strQuery += "[GTI$Job] j left outer join [GTI$IA Work Order Header] w on j.No_ = w.[Job No_] ";
