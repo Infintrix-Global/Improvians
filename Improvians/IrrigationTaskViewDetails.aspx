@@ -50,7 +50,7 @@
 
                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenhouseID")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -120,7 +120,7 @@
                                         <asp:TemplateField HeaderText="Bench Location">
                                             <ItemTemplate>
 
-                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
+                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("BenchLocation") %>'></asp:Label>
                                                 <asp:Label ID="lblIrrigationCode" Visible="false" runat="server" Text='<%#Bind("IrrigationCode") %>'></asp:Label>
 
                                             </ItemTemplate>
