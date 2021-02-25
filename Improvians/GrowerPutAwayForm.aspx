@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
                                             <label class="d-block">Seed Date</label>
-
+                                             <asp:Label ID="lblGenusCode" Visible="false" runat="server"></asp:Label>
                                             <asp:Label ID="lblSeedDate" runat="server"></asp:Label>
                                         </div>
 
