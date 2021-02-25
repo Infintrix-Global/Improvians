@@ -118,7 +118,7 @@
                                         <asp:TemplateField HeaderText="Bench Location">
                                             <ItemTemplate>
 
-                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Eval("BenchLocation") %>'></asp:Label>
+                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Eval("GreenHouseID") %>'></asp:Label>
 
                                             </ItemTemplate>
 
