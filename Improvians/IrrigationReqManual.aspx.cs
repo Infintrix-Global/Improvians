@@ -214,24 +214,32 @@ namespace Improvians
         {
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
-                if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
 
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
 
-                    //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
-                    nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jobcode", (row.FindControl("lbljobID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+
+      
+                   // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
-                    // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
                     nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
                     nv.Add("@IrrigationDuration", "");
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
                     //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@Nots", txtNotes.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestManual", nv);
+                    result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
                     if (result > 0)
                     {
                         // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
@@ -242,7 +250,7 @@ namespace Improvians
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                         //  lblmsg.Text = "Assignment Not Successful";
                     }
-                }
+               // }
             }
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -288,10 +296,10 @@ namespace Improvians
             int tray = 0;
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
-                if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
                     tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
-                }
+               // }
 
             }
             //txtIrrigatedNoTrays.Text = tray.ToString();

@@ -158,5 +158,25 @@ namespace Improvians.Bal
             }
             return dt;
         }
+
+
+        public DataTable GetSeedDateData(string ActivityCode, string GenusCode, string ContainerCode)
+        {
+            Improvians_General objGeneral = new Improvians_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "select top 1 h.Code, h.[Container Code], h.[Genus Code], l.[Activity Code], l.[Date Shift] DateShift 	 ";
+                strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
+                strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='"+ ActivityCode + "' and  h.[Genus Code]='"+ GenusCode + "'  and h.[Container Code]='"+ ContainerCode + "' ";
+
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
     }
 }
