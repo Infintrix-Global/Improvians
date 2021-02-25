@@ -138,7 +138,8 @@ namespace Improvians
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
                     nv.Add("@SprayTime", "");
                     nv.Add("@Nots", txtNotes.Text.Trim());
-                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@NoOfPasses", "");
 
@@ -173,6 +174,7 @@ namespace Improvians
                 nv.Add("@SprayDate", txtSprayDate.Text.Trim());
                 nv.Add("@SprayTime", "");
                 nv.Add("@Nots", txtNotes.Text.Trim());
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@IrrigationCode", IrrigationCode.ToString());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@NoOfPasses", "");

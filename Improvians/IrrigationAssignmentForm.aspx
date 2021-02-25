@@ -110,7 +110,7 @@
                                         <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="100">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblRowNumber" runat="server" Text="<%# Container.DataItemIndex + 1 %>" />
-                                                <asp:Label ID="lblIrrigationCode" Visible="false" runat="server" Text='<%#Bind("IrrigationCode") %>'></asp:Label>
+                                                <asp:Label ID="lblIrrigationCode" Visible="false" runat="server" Text='<%#Eval("IrrigationCode") %>'></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -118,7 +118,7 @@
                                         <asp:TemplateField HeaderText="Bench Location">
                                             <ItemTemplate>
 
-                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
+                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Eval("BenchLocation") %>'></asp:Label>
 
                                             </ItemTemplate>
 
