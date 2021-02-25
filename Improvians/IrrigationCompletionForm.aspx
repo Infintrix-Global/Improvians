@@ -90,6 +90,7 @@
                                             <ItemTemplate>
 
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("IrrigationCode")  %>'></asp:Button>
+                                                  <asp:Button ID="btnView" runat="server" Width="140px" Text="View Job Details" CssClass="bttn bttn-primary bttn-action my-1" CommandName="ViewDetails" CommandArgument='<%# Eval("IrrigationCode")  %>'></asp:Button>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>

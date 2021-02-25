@@ -133,6 +133,11 @@ namespace Improvians
                 //Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
             }
+
+            if (e.CommandName == "ViewDetails")
+            {
+                Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
+            }
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
