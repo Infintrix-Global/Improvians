@@ -315,7 +315,7 @@ namespace Improvians
                 DataTable dtISD = objSP.GetSeedDateData("IRRIGATE",lblGenusCode.Text, lblSeededTrays.Text);
                 DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, lblSeededTrays.Text);
 
-                if (dtISD.Rows.Count > 0 && dtISD != null)
+                if (dtISD != null && dtISD.Rows.Count > 0)
                 {
                     IrrigateSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(dtISD.Rows[0]["DateShift"]))).ToString();
                 }
@@ -324,7 +324,7 @@ namespace Improvians
                     IrrigateSeedDate = lblSeedDate.Text;
                 }
 
-                if (dtISD.Rows.Count > 0 && dtISD != null)
+                if (dtFez != null && dtFez.Rows.Count > 0)
                 {
                     FertilizeSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(dtISD.Rows[0]["DateShift"]))).ToString();
 
