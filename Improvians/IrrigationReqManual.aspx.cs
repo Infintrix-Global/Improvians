@@ -212,16 +212,17 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            int IrrigationCode = 0;
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mode", "13");
+            dt = objCommon.GetDataTable("GET_Common", nv1);
+            IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                int IrrigationCode = 0;
-                DataTable dt = new DataTable();
-                NameValueCollection nv1 = new NameValueCollection();
-                nv1.Add("@Mode", "13");
-                dt = objCommon.GetDataTable("GET_Common", nv1);
-                IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+              
                 long result = 0;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
