@@ -127,7 +127,11 @@ namespace Improvians
 
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
+
+
             nv.Add("@BenchLocation", Bench);
+
+
             dt = objCommon.GetDataSet("SP_GetSelectBenchLocation", nv);
 
             ddlBenchesInHouseList.DataSource = dt.Tables[0];
