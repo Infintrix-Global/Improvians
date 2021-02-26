@@ -306,10 +306,10 @@
                                     <asp:Label ID="lblBench1" runat="server" Text="Label"></asp:Label>
                                 </asp:Panel>
                                 <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
-                                    <asp:DropDownList ID="ddlBenchesInHouseList" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlBenchesInHouseList" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
                                 </asp:Panel>
                                 <asp:Panel ID="PanelHouse" Visible="false" runat="server">
-                                    <asp:ListBox ID="ListBoxHouse" runat="server"></asp:ListBox>
+                                    <asp:ListBox ID="ListBoxHouse" class="custom__dropdown robotomd" runat="server"></asp:ListBox>
                                 </asp:Panel>
 
                             </div>

@@ -98,16 +98,24 @@ namespace Improvians
                 // Bench
 
                 PanelBench.Visible = true;
+                PanelBenchesInHouse.Visible = false;
+                PanelHouse.Visible = false;
             }
             else if (RadioBench.SelectedValue == "2")
             {
-                //Benches in house
+                PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
+                PanelHouse.Visible = false;
+
+             
             }
             else if (RadioBench.SelectedValue == "3")
             {
                 // House
+                PanelBench.Visible = false;
+                PanelBenchesInHouse.Visible = false;
                 PanelHouse.Visible = true;
+
             }
             else
             {
