@@ -88,6 +88,66 @@ namespace Improvians
                 ViewState["Bench"] = value;
             }
         }
+
+        protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectBenchLocation();
+
+            if (RadioBench.SelectedValue == "1")
+            {
+                // Bench
+
+                PanelBench.Visible = true;
+                PanelBenchesInHouse.Visible = false;
+                PanelHouse.Visible = false;
+            }
+            else if (RadioBench.SelectedValue == "2")
+            {
+                PanelBench.Visible = false;
+                PanelBenchesInHouse.Visible = true;
+                PanelHouse.Visible = false;
+
+             
+            }
+            else if (RadioBench.SelectedValue == "3")
+            {
+                // House
+                PanelBench.Visible = false;
+                PanelBenchesInHouse.Visible = false;
+                PanelHouse.Visible = true;
+
+            }
+            else
+            {
+
+            }
+        }
+        public void SelectBenchLocation()
+        {
+
+            DataSet dt = new DataSet();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@BenchLocation", Bench);
+            dt = objCommon.GetDataSet("SP_GetSelectBenchLocation", nv);
+
+            ddlBenchesInHouseList.DataSource = dt.Tables[0];
+            ddlBenchesInHouseList.DataTextField = "GreenHouseID";
+            ddlBenchesInHouseList.DataValueField = "GreenHouseID";
+            ddlBenchesInHouseList.DataBind();
+            ddlBenchesInHouseList.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
+
+            ListBoxHouse.DataSource = dt.Tables[1];
+            ddlBenchesInHouseList.DataTextField = "GreenHouseID";
+            ddlBenchesInHouseList.DataValueField = "GreenHouseID";
+            ddlBenchesInHouseList.DataBind();
+
+
+
+        }
+
+
         public void BindGridFerReq()
         {
             DataTable dt = new DataTable();
@@ -120,7 +180,7 @@ namespace Improvians
             nv.Add("@BenchLocation", Bench);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench,"");
+            DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench, "");
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -128,9 +188,10 @@ namespace Improvians
             }
             gvJobHistory.DataSource = dt;
             gvJobHistory.DataBind();
+
         }
 
-     
+
 
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -169,7 +230,7 @@ namespace Improvians
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                if ((row.FindControl("lblGrowerputawayID") as Label).Text =="0")
+                if ((row.FindControl("lblGrowerputawayID") as Label).Text == "0")
                 {
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
@@ -207,8 +268,8 @@ namespace Improvians
                 //  }
 
             }
-            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text,"", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text,txtBenchIrrigationFlowRate.Text,txtBenchIrrigationCoverage.Text,txtSprayCoverageperminutes.Text);
+            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -302,6 +363,8 @@ namespace Improvians
             ddlFertilizer.DataBind();
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
+
+
 
         //public void BindUnit()
         //{

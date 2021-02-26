@@ -59,7 +59,7 @@
                                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -152,7 +152,7 @@
                                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -281,6 +281,45 @@
                 <div id="userinput" runat="server" class="assign__task d-flex">
 
                     <asp:Panel ID="pnlint" runat="server">
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <asp:RadioButtonList ID="RadioBench" Width="60%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
+                                    <asp:ListItem Text="Bench" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
+                                    <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio" ></asp:ListItem>
+                                    <asp:ListItem Text="House" Value="3" class="custom-control custom-radio" ></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+
+                            <div class="col-lg-6">
+                               
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <asp:Panel ID="PanelBench" Visible="false" runat="server">
+                                    <asp:Label ID="lblBench1" runat="server" Text="Label"></asp:Label>
+                                </asp:Panel>
+                                <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
+                                    <asp:DropDownList ID="ddlBenchesInHouseList" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                </asp:Panel>
+                                <asp:Panel ID="PanelHouse" Visible="false" runat="server">
+                                    <asp:ListBox ID="ListBoxHouse" class="custom__dropdown robotomd" runat="server"></asp:ListBox>
+                                </asp:Panel>
+
+                            </div>
+
+                            <div class="col-lg-6">
+                               
+
+                            </div>
+
+                        </div>
+                         <br />
                         <div class="row">
 
                             <div class="col-lg-3">
