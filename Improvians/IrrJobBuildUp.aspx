@@ -340,6 +340,21 @@
                                 <asp:TextBox ID="txtSprayTime" TextMode="Time" class="input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
                             </div>--%>
                         </div>
+                                                <br />
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Reset Spray Task For Days</label>
+                                <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                        </div>
+                        <br />
 
                         <div class="row align-items-center mt-sm-3">
                             <div class="col-12 col-sm-6 col-lg-4">

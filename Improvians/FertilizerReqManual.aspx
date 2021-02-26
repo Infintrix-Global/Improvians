@@ -79,8 +79,8 @@
                 </div>
 
                 <div class="col-lg-2">
-                    <asp:Button ID="Button1" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
-                    <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                    <asp:Button ID="Button1" ValidationGroup="x" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
+                    <asp:Button Text="Reset" ID="btnResetSearch" ValidationGroup="x" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                 </div>
                 <div class="col-lg-6">
                 </div>
