@@ -37,7 +37,7 @@ namespace Improvians
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@IrrigationCode", IrrigationCode);
             dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
-            lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
+           // lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
 
         }
 
@@ -92,7 +92,7 @@ namespace Improvians
             dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetails", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
-
+            //lblBenchLocation.Text = dt.Rows[0]["BenchLocation"].ToString();
         }
 
         public void BindgvIrrigation()
@@ -106,7 +106,14 @@ namespace Improvians
             //nv.Add("@Mode", "5");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@IrrigationCode", IrrigationCode);
-            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
+            if (Session["Role"].ToString() == "2")
+            {
+                dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIrrigationCode", nv);
+            }
+            else if (Session["Role"].ToString() == "3" || Session["Role"].ToString() == "11")
+            {
+                dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
+            }
 
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();

@@ -37,7 +37,7 @@ namespace Improvians
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@IrrigationCode", IrrigationCode);
             dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
-            lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
+           // lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
 
         }
 
@@ -94,6 +94,7 @@ namespace Improvians
             gvIrrigation.DataBind();
 
             txtNoofPasses.Text = dt.Rows[0]["WaterRequired"].ToString();
+            lblBenchLocation.Text = dt.Rows[0]["GreenHouseID"].ToString();
         }
 
         protected void gvIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
