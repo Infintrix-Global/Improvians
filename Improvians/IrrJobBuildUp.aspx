@@ -125,24 +125,61 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>
+                                </div>
+                                <br />
+                                <h3>Other Jobs</h3>
 
                                 <br />
-                                <h3>Other Jobs on Bench</h3>
+                                <div class="row">
+
+                                    <div class="col-lg-4">
+                                        <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
+                                            <asp:ListItem Text="Bench" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
+                                            <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio"></asp:ListItem>
+                                            <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
+                                        </asp:RadioButtonList>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <asp:Button ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
+                                        <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+
+                                    <div class="col-lg-4">
+                                        <asp:Panel ID="PanelBench" Visible="false" runat="server">
+                                            <asp:Label ID="lblBench1" runat="server" Text="Label"></asp:Label>
+                                        </asp:Panel>
+                                        <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
+
+                                            <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" Width="60%" Height="150px" runat="server"></asp:ListBox>
+                                        </asp:Panel>
+                                        <asp:Panel ID="PanelHouse" Visible="false" runat="server">
+                                        </asp:Panel>
+
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                    </div>
+                                    <div class="col-lg-6">
+                                    </div>
+                                </div>
+                                <br />
+
+
+
+                                 <div class="data__table">
                                 <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="10"
+                                    class="striped" AllowSorting="true" PageSize="10"  OnPageIndexChanging="gvJobHistory_PageIndexChanging"
                                     GridLines="None" DataKeyNames="wo,jobcode,GrowerPutAwayId"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
 
-                                        <%--                        <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
-                            <HeaderTemplate>
-                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
-                            </HeaderTemplate>
-                            <ItemTemplate>
 
-                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -158,7 +195,7 @@
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                             </ItemTemplate>

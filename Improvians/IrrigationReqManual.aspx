@@ -41,7 +41,46 @@
                 </div>
 
             </div>
+            <br />
+            <div class="row">
 
+                <div class="col-lg-4">
+                    <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
+                        <asp:ListItem Text="Bench" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
+                        <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio"></asp:ListItem>
+                        <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+
+                <div class="col-lg-2">
+                    <asp:Button ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
+                    <asp:Button Text="Reset1" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click1" />
+                </div>
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <asp:Panel ID="PanelBench" Visible="false" runat="server">
+                        <asp:Label ID="lblBench1" runat="server" Text="Label"></asp:Label>
+                    </asp:Panel>
+                    <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
+
+                        <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" Width="60%" Height="150px" runat="server"></asp:ListBox>
+                    </asp:Panel>
+                    <asp:Panel ID="PanelHouse" Visible="false" runat="server">
+                    </asp:Panel>
+
+                </div>
+
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <br />
 
             <div class="data__table">
                 <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -69,11 +108,11 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -112,7 +151,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                     <%--   <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                        <%--   <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
@@ -151,14 +190,14 @@
 
                 <div id="userinput" runat="server" visible="false" class="row justify-content-center">
                     <div class="col-12">
-                       <div class="row">
+                        <div class="row">
 
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <label>Assignment</label>
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
 
-                           <%-- <div class="col-12 col-sm-6 col-lg-3">
+                            <%-- <div class="col-12 col-sm-6 col-lg-3">
                                 <label>No. Of Trays to be Irrigated</label>
 
                                 <asp:TextBox ID="txtIrrigatedNoTrays" ReadOnly="true" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
@@ -213,10 +252,10 @@
                         </div>
 
                     </div>
-                    </div>
-
                 </div>
 
             </div>
+
         </div>
+    </div>
 </asp:Content>

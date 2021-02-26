@@ -29,7 +29,7 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <h3>Selected Job on Bench</h3>
+                                <h3>Selected Job</h3>
                                 <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None"
@@ -121,7 +121,7 @@
                                 </asp:GridView>
                             </div>
                             <br />
-                            <h3>Other Jobs on Bench</h3>
+                            <h3>Other Jobs</h3>
                             <br />
                             <div class="row">
 
@@ -426,6 +426,22 @@
                                 <label>Spray Coverage per minutes [sqft/min]</label>
                                 <asp:TextBox ID="txtSprayCoverageperminutes" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                        </div>
+                         <br />
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Reset Spray Task For Days</label>
+                                <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                            </div>
+                            <div class="col-lg-3">
+                              
+                            </div>
+                            <div class="col-lg-3">
+                             
                             </div>
                             <div class="col-lg-3">
                             </div>

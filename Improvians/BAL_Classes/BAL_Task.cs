@@ -41,7 +41,7 @@ namespace Improvians.BAL_Classes
             return _isInserted;
         }
 
-        public int AddFertilizerRequestDetails(DataTable dt, string FertilizationID,int FertilizationCode,string bencLoc, string BenchIrrigationFlowRat, string BenchIrrigationCoverage, string SprayCoverageperminutes)
+        public int AddFertilizerRequestDetails(DataTable dt, string FertilizationID,int FertilizationCode,string bencLoc, string BenchIrrigationFlowRat, string BenchIrrigationCoverage, string SprayCoverageperminutes,string ResetSprayTaskForDays)
         {
             int _isInserted = -1;
             try
@@ -60,8 +60,9 @@ namespace Improvians.BAL_Classes
                     objGeneral.AddParameterWithValueToSQLCommand("@BenchIrrigationFlowRat", BenchIrrigationFlowRat);
                     objGeneral.AddParameterWithValueToSQLCommand("@BenchIrrigationCoverage", BenchIrrigationCoverage);
                     objGeneral.AddParameterWithValueToSQLCommand("@SprayCoverageperminutes", SprayCoverageperminutes);
+                    objGeneral.AddParameterWithValueToSQLCommand("@ResetSprayTaskForDays", ResetSprayTaskForDays);
 
-
+                    
                     _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddFertilizerDetails");
                 }
             }

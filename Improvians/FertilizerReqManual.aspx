@@ -7,7 +7,7 @@
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
-                
+
                 <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
                 Fertilization/Chemical 
 
@@ -59,13 +59,54 @@
                 </div>
 
                 <div class="col-lg-3">
-                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" ValidationGroup="x" />
+                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" Visible="false" ValidationGroup="x" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />
 
                 </div>
 
             </div>
+            <br />
+
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
+                        <asp:ListItem Text="Bench" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
+                        <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio"></asp:ListItem>
+                        <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
+                    </asp:RadioButtonList>
+                </div>
+
+                <div class="col-lg-2">
+                    <asp:Button ID="Button1" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
+                    <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                </div>
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <asp:Panel ID="PanelBench" Visible="false" runat="server">
+                        <asp:Label ID="lblBench1" runat="server" Text="Label"></asp:Label>
+                    </asp:Panel>
+                    <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
+
+                        <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" Width="60%" Height="150px" runat="server"></asp:ListBox>
+                    </asp:Panel>
+                    <asp:Panel ID="PanelHouse" Visible="false" runat="server">
+                    </asp:Panel>
+
+                </div>
+
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <br />
 
             <div class="row">
                 <div class=" col m12">
@@ -169,10 +210,10 @@
                                     <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
-                           <div class="col-lg-3">
+                            <div class="col-lg-3">
                                 <label>Spray Date </label>
 
-                              <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:Label ID="Label3" runat="server" ForeColor="red"></asp:Label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtDate" ValidationGroup="e"
@@ -224,7 +265,7 @@
                                 </span>
                             </div>
 
-                            
+
                         </div>
 
                         <div class="row">
@@ -242,6 +283,20 @@
                                 <label>Spray Coverage per minutes [sqft/min]</label>
                                 <asp:TextBox ID="txtSprayCoverageperminutes" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Reset Spray Task For Days</label>
+                                <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3">
                             </div>
                             <div class="col-lg-3">
                             </div>

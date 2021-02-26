@@ -158,7 +158,7 @@ namespace Improvians.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select s.[Position Code] as PositionCode from [GTI$IA Subsection] s where [Location Code] ='" + LocationCode + "' and s.[Section Code] ='"+ SectionCode + "'";
+                strQuery = "select s.[Position Code] as PositionCode from [GTI$IA Subsection] s where [Location Code] ='" + LocationCode + "' and s.[Section Code] ='"+ SectionCode + "'  and s.Level=3";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 
@@ -176,7 +176,7 @@ namespace Improvians.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = " select  s.[Position Code] as PositionCode from [GTI$IA Subsection] s where s.[Position Code] like '" + LocationCode + "%' order by s.[Position Code] DESC";
+                strQuery = " select  s.[Position Code] as PositionCode from [GTI$IA Subsection] s where s.[Position Code] like '" + LocationCode + "%' and s.Level=3 order by s.[Position Code] DESC";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 

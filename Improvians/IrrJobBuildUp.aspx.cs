@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Improvians.Bal;
+using System.Text.RegularExpressions;
 
 namespace Improvians
 {
@@ -26,7 +27,7 @@ namespace Improvians
 
                 BindGridIrrigation();
                 BindSupervisorList();
-                BindGridIrrDetails();
+                BindGridIrrDetails("'" + Bench + "'");
                 lblbench.Text = Bench;
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
@@ -46,6 +47,147 @@ namespace Improvians
             {
                 ViewState["Bench"] = value;
             }
+        }
+
+
+
+        protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectBenchLocation();
+
+            if (RadioBench.SelectedValue == "1")
+            {
+                // Bench
+                SelectBench();
+                PanelBench.Visible = true;
+                PanelBenchesInHouse.Visible = false;
+                PanelHouse.Visible = false;
+            }
+            else if (RadioBench.SelectedValue == "2")
+            {
+                SelectBenchLocation();
+                PanelBench.Visible = false;
+                PanelBenchesInHouse.Visible = true;
+                PanelHouse.Visible = false;
+
+            }
+            else if (RadioBench.SelectedValue == "3")
+            {
+                // House
+                PanelBench.Visible = false;
+                PanelBenchesInHouse.Visible = false;
+                PanelHouse.Visible = true;
+
+            }
+            else
+            {
+
+            }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string chkSelected = "";
+            if (RadioBench.SelectedValue == "1")
+            {
+                chkSelected = "'" + lblBench1.Text + "'";
+            }
+            else if (RadioBench.SelectedValue == "2")
+            {
+                int c = 0;
+                string x = "";
+
+                foreach (ListItem item in ListBoxBenchesInHouse.Items)
+                {
+
+                    if (item.Selected)
+                    {
+                        c = 1;
+                        x += "'" + item.Text + "',";
+
+                    }
+                }
+                if (c > 0)
+                {
+                    chkSelected = x.Remove(x.Length - 1, 1);
+
+                }
+                else
+                {
+
+                }
+
+
+            }
+            else if (RadioBench.SelectedValue == "3")
+            {
+                int P = 0;
+                string Q = "";
+                string[] words = Regex.Split(Bench, @"\W+");
+
+                DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataColumn col = dt.Columns["PositionCode"];
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        //strJsonData = row[col].ToString();
+
+                        P = 1;
+                        Q += "'" + row[col].ToString() + "',";
+                    }
+                }
+
+                if (P > 0)
+                {
+                    chkSelected = Q.Remove(Q.Length - 1, 1);
+
+                }
+                else
+                {
+
+                }
+
+            }
+
+            BindGridIrrDetails(chkSelected);
+
+
+        }
+
+        public void SelectBench()
+        {
+            string YourString = Bench;
+
+            // ENC2 - SHADE - 2 - A
+            //string input = Bench;
+            //string[] array = input.Split('-');
+            YourString = YourString.Remove(YourString.Length - 1);
+
+            DataTable dt = objFer.GetSelectBench(YourString);
+
+            lblBench1.Text = dt.Rows[0]["PositionCode"].ToString();
+
+        }
+
+        public void SelectBenchLocation()
+        {
+
+
+            // ENC2 - SHADE - 2 - A
+            //string input = Bench;
+            //string[] array = input.Split('-');
+
+            string[] words = Regex.Split(Bench, @"\W+");
+
+            DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
+
+            ListBoxBenchesInHouse.DataSource = dt;
+            ListBoxBenchesInHouse.DataTextField = "PositionCode";
+            ListBoxBenchesInHouse.DataValueField = "PositionCode";
+            ListBoxBenchesInHouse.DataBind();
+
         }
 
         public void BindGridIrrigation()
@@ -105,13 +247,14 @@ namespace Improvians
             }
         }
 
-        public void BindGridIrrDetails()
+        public void BindGridIrrDetails(string BenchLoc)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@BenchLocation", Bench);
-            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
-            DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench, "");
+            nv.Add("@BenchLocation", BenchLoc);
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequestSelect", nv);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect("", BenchLoc, "");
+         
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -252,6 +395,18 @@ namespace Improvians
             Response.Redirect("~/MyTaskGrower.aspx");
         }
 
+        protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvJobHistory.PageIndex = e.NewPageIndex;
+        }
 
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            RadioBench.Items[0].Selected = false;
+
+            //To unselect all Items
+            RadioBench.ClearSelection();
+            BindGridIrrDetails("'" + Bench + "'");
+        }
     }
 }
