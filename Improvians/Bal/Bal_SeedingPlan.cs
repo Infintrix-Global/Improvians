@@ -77,8 +77,6 @@ namespace Improvians.Bal
                     " group by t.[Job No_], j.[Bill - to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date]" +
                     "  HAVING sum(t.Quantity) > 0";
 
-
-               
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 

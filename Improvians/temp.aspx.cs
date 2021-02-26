@@ -26,8 +26,7 @@ namespace Improvians
             long _isInserted = 1;
             int SelectedItems = 0;
             AllData = objSP.GetDataSeedingPlanManual();
-            DGJob.DataSource = AllData;
-            DGJob.DataBind();
+        
             for (int i= 0; i < AllData.Rows.Count;i++)
             {
 
