@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Improvians.Bal;
 using Improvians.BAL_Classes;
-
+using System.Text.RegularExpressions;
 namespace Improvians
 {
     public partial class FerJobBuildUp : System.Web.UI.Page
@@ -33,7 +33,7 @@ namespace Improvians
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
                 BindGridFerReq();
-                BindGridFerDetails();
+                BindGridFerDetails("'" + Bench +"'");
                 BindSupervisor();
                 BindSQFTofBench();
             }
@@ -96,18 +96,18 @@ namespace Improvians
             if (RadioBench.SelectedValue == "1")
             {
                 // Bench
-
+                SelectBench();
                 PanelBench.Visible = true;
                 PanelBenchesInHouse.Visible = false;
                 PanelHouse.Visible = false;
             }
             else if (RadioBench.SelectedValue == "2")
             {
+                SelectBenchLocation();
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
 
-             
             }
             else if (RadioBench.SelectedValue == "3")
             {
@@ -122,33 +122,112 @@ namespace Improvians
 
             }
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string chkSelected = "";
+            if (RadioBench.SelectedValue == "1")
+            {
+                chkSelected ="'"+ lblBench1.Text + "'";
+            }
+            else if (RadioBench.SelectedValue == "2")
+            {
+                int c = 0;
+                string x = "";
+
+                foreach (ListItem item in ListBoxBenchesInHouse.Items)
+                {
+
+                    if (item.Selected)
+                    {
+                        c = 1;
+                        x += "'" + item.Text + "',";
+
+                    }
+                }
+                if (c > 0)
+                {
+                    chkSelected = x.Remove(x.Length - 1, 1);
+
+                }
+                else
+                {
+
+                }
+
+              
+            }
+            else if (RadioBench.SelectedValue == "3")
+            {
+                int P = 0;
+                string Q = "";
+                string[] words = Regex.Split(Bench, @"\W+");
+
+                DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataColumn col = dt.Columns["PositionCode"];
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        //strJsonData = row[col].ToString();
+
+                        P = 1;
+                        Q += "'" + row[col].ToString() + "',";
+                    }
+                }
+
+                if (P > 0)
+                {
+                    chkSelected = Q.Remove(Q.Length - 1, 1);
+
+                }
+                else
+                {
+
+                }
+
+            }
+
+            BindGridFerDetails(chkSelected);
+
+
+        }
+
+        public void SelectBench()
+        {
+            string YourString = Bench;
+
+            // ENC2 - SHADE - 2 - A
+            //string input = Bench;
+            //string[] array = input.Split('-');
+          YourString = YourString.Remove(YourString.Length - 1);
+
+            DataTable dt = objFer.GetSelectBench(YourString);
+
+            lblBench1.Text = dt.Rows[0]["PositionCode"].ToString();
+
+        }
+
+
+
         public void SelectBenchLocation()
         {
 
-            DataSet dt = new DataSet();
-            NameValueCollection nv = new NameValueCollection();
+           
+            // ENC2 - SHADE - 2 - A
+            //string input = Bench;
+            //string[] array = input.Split('-');
 
+            string[] words = Regex.Split(Bench, @"\W+");
 
-            nv.Add("@BenchLocation", Bench);
+            DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
 
-
-            dt = objCommon.GetDataSet("SP_GetSelectBenchLocation", nv);
-
-            ddlBenchesInHouseList.DataSource = dt.Tables[0];
-            ddlBenchesInHouseList.DataTextField = "GreenHouseID";
-            ddlBenchesInHouseList.DataValueField = "GreenHouseID";
-            ddlBenchesInHouseList.DataBind();
-            ddlBenchesInHouseList.Items.Insert(0, new ListItem("--Select--", "0"));
-
-
-
-            ListBoxHouse.DataSource = dt.Tables[1];
-            ddlBenchesInHouseList.DataTextField = "GreenHouseID";
-            ddlBenchesInHouseList.DataValueField = "GreenHouseID";
-            ddlBenchesInHouseList.DataBind();
-
-
-
+            ListBoxBenchesInHouse.DataSource = dt;
+            ListBoxBenchesInHouse.DataTextField = "PositionCode";
+            ListBoxBenchesInHouse.DataValueField = "PositionCode";
+            ListBoxBenchesInHouse.DataBind();
+          
         }
 
 
@@ -177,14 +256,15 @@ namespace Improvians
             txtTrays.Text = tray.ToString();
         }
 
-        public void BindGridFerDetails()
+        public void BindGridFerDetails(string BenchLoc)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@BenchLocation", Bench);
+            nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequest("", Bench, "");
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect("", BenchLoc, "");
+
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -195,6 +275,11 @@ namespace Improvians
 
         }
 
+        protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvJobHistory.PageIndex = e.NewPageIndex;
+           
+        }
 
 
 
@@ -367,6 +452,19 @@ namespace Improvians
             ddlFertilizer.DataBind();
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
+
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+         
+            RadioBench.Items[0].Selected = false;
+
+            //To unselect all Items
+            RadioBench.ClearSelection();
+            BindGridFerDetails("'" + Bench + "'");
+        }
+
+
+
 
 
 

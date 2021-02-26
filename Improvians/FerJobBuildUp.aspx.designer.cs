@@ -51,33 +51,6 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.GridView gvFer;
 
         /// <summary>
-        /// gvJobHistory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvJobHistory;
-
-        /// <summary>
-        /// userinput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
-
-        /// <summary>
-        /// pnlint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlint;
-
-        /// <summary>
         /// RadioBench control.
         /// </summary>
         /// <remarks>
@@ -85,6 +58,24 @@ namespace Improvians
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioBench;
+
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+
+        /// <summary>
+        /// btnResetSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResetSearch;
 
         /// <summary>
         /// PanelBench control.
@@ -114,13 +105,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Panel PanelBenchesInHouse;
 
         /// <summary>
-        /// ddlBenchesInHouseList control.
+        /// ListBoxBenchesInHouse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBenchesInHouseList;
+        protected global::System.Web.UI.WebControls.ListBox ListBoxBenchesInHouse;
 
         /// <summary>
         /// PanelHouse control.
@@ -132,13 +123,31 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Panel PanelHouse;
 
         /// <summary>
-        /// ListBoxHouse control.
+        /// gvJobHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBoxHouse;
+        protected global::System.Web.UI.WebControls.GridView gvJobHistory;
+
+        /// <summary>
+        /// userinput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
+
+        /// <summary>
+        /// pnlint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlint;
 
         /// <summary>
         /// ddlsupervisor control.

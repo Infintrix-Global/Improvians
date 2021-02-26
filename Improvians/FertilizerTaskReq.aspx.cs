@@ -123,7 +123,7 @@ namespace Improvians
             //    if (chkBench.Checked)
             //    {
             //        c = 1;
-            //        x += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
+            //        x += "'" +((HiddenField)item.FindControl("hdnValue")).Value + "',";
 
             //    }
             //}
