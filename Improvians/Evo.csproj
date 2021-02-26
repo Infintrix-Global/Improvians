@@ -318,6 +318,7 @@
     <Content Include="SprayTaskReq.aspx" />
     <Content Include="SprayTaskRequest.aspx" />
     <Content Include="SprayTaskViewDetails.aspx" />
+    <Content Include="temp.aspx" />
     <Content Include="TrackTaskSeedlinePlanner.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -780,6 +781,13 @@
     </Compile>
     <Compile Include="SprayTaskViewDetails.aspx.designer.cs">
       <DependentUpon>SprayTaskViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="temp.aspx.cs">
+      <DependentUpon>temp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="temp.aspx.designer.cs">
+      <DependentUpon>temp.aspx</DependentUpon>
     </Compile>
     <Compile Include="TrackTaskSeedlinePlanner.aspx.cs">
       <DependentUpon>TrackTaskSeedlinePlanner.aspx</DependentUpon>
