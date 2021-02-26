@@ -285,20 +285,19 @@
                         <div class="row">
 
                             <div class="col-lg-6">
-                                <asp:RadioButtonList ID="RadioBench" Width="250px" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
+                                <asp:RadioButtonList ID="RadioBench" Width="60%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
                                     <asp:ListItem Text="Bench" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
-                                    <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="House" Value="3" class="custom-control custom-radio" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio" ></asp:ListItem>
+                                    <asp:ListItem Text="House" Value="3" class="custom-control custom-radio" ></asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Spray Date </label>
-
+                               
                             </div>
 
                         </div>
-
+                        <br />
                         <div class="row">
 
                             <div class="col-lg-6">
@@ -315,12 +314,12 @@
                             </div>
 
                             <div class="col-lg-6">
-                                <label>Spray Date </label>
+                               
 
                             </div>
 
                         </div>
-
+                         <br />
                         <div class="row">
 
                             <div class="col-lg-3">
