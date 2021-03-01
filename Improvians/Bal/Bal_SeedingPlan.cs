@@ -72,9 +72,9 @@ namespace Improvians.Bal
             try
             {
                 strQuery = "select distinct top 1  t.[Job No_] as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno" +
-                    " ,t.[Posting Date] seeddate ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int) as Trays,j.[Variant Code] as TraySize" +
-                    "  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 and t.[Activity Code] = 'SEEDING'" +
-                    " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date]" +
+                    " ,t.[Genus Code] GenusCode,t.[Posting Date] seeddate ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int) as Trays,j.[Variant Code] as TraySize" +
+                    "  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j ,[GTI$IA Job Activity Scheme Line] b where j.No_ = t.[Job No_] and j.[Job Status] = 2 and t.[Activity Code] = 'SEEDING'" +
+                    " group by t.[Job No_], j.[Bill-to Name], j.[Item Description],t.[Genus Code], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date]" +
                     "  HAVING sum(t.Quantity) > 0";
 
 
@@ -199,6 +199,25 @@ namespace Improvians.Bal
                 strQuery = "select top 1 h.Code, h.[Container Code], h.[Genus Code], l.[Activity Code], l.[Date Shift] DateShift 	 ";
                 strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
                 strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='"+ ActivityCode + "' and  h.[Genus Code]='"+ GenusCode + "'  and h.[Container Code]='"+ ContainerCode + "' ";
+
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+        public DataTable GetSeedDateDatanew(string ActivityCode, string GenusCode, string ContainerCode)
+        {
+            Improvians_General objGeneral = new Improvians_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "select  h.Code, h.[Container Code], h.[Genus Code], l.[Activity Code], l.[Date Shift] DateShift 	 ";
+                strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
+                strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='" + ActivityCode + "' and  h.[Genus Code]='" + GenusCode + "'  and h.[Container Code]='" + ContainerCode + "' ";
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }

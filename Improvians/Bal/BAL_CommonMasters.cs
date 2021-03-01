@@ -82,8 +82,11 @@ namespace Improvians.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '"+ MainLocation + "'";              
-                dt = objGeneral.GetDatasetByCommand(strQuery);
+                // strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '"+ MainLocation + "'";
+                strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '" + MainLocation + "'  AND s.[Position Code] Not in ('" + MainLocation + "') ";
+
+               
+              dt = objGeneral.GetDatasetByCommand(strQuery);
 
 
             }
