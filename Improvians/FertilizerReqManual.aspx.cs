@@ -113,7 +113,7 @@ namespace Improvians
 
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectBenchLocation();
+           // SelectBenchLocation();
 
             if (RadioBench.SelectedValue == "1")
             {
@@ -528,10 +528,20 @@ namespace Improvians
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            Bench1 = ddlBenchLocation.SelectedItem.Text;
+           
             BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridFerReq("'" + Bench1 + "'");
+         
+            if (ddlBenchLocation.SelectedValue == "")
+            {
+                Panel_Bench.Visible = false;
+            }
+            else
+            {
+                Panel_Bench.Visible = true;
+                Bench1 = ddlBenchLocation.SelectedItem.Text;
+                BindGridFerReq("'" + Bench1 + "'");
+            }
+        
         }
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)

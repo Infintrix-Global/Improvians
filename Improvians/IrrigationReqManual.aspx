@@ -8,14 +8,24 @@
             <h2>Irrigation </h2>
             <div class="row">
                 <div class="col m3">
-                    <label>Facility Location </label>
+                    <label>Facility Location </label><span style="color: red">*</span>
+                
                     <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <span class="error_message">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlFacility" ValidationGroup="x"
+                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </span>
+                    
                 </div>
 
                 <div class="col m3">
-                    <label>Bench Location </label>
+                    <label>Bench Location </label><span style="color: red">*</span>
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
+                <span class="error_message">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
+                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </span>
+                   </div>
                 <div class="col m3">
                     <label>Job No </label>
                     <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -35,30 +45,34 @@
                 <div class="col m3">
                 </div>
                 <div class="col m3">
-                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
-                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" />
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action"  OnClick="btnResetSearch_Click" />
+                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" ValidationGroup="x" CssClass="bttn bttn-primary bttn-action my-1" />
 
                 </div>
 
             </div>
             <br />
+            <asp:Panel ID="Panel_Bench" Visible="false" runat="server">
             <div class="row">
 
                 <div class="col-lg-4">
-                    <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
+
+                    <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server"  AutoPostBack="true" ValidationGroup="x" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
                         <asp:ListItem Text="Bench" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
                         <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio"></asp:ListItem>
                         <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
                     </asp:RadioButtonList>
+
                 </div>
 
                 <div class="col-lg-2">
-                    <asp:Button ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
+                    <asp:Button ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" ValidationGroup="x" OnClick="btnSearch_Click" Text="Search" />
                     <asp:Button Text="Reset1" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click1" />
                 </div>
                 <div class="col-lg-6">
                 </div>
             </div>
+            </asp:Panel>
             <br />
             <div class="row">
 

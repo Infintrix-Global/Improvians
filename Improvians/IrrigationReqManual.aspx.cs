@@ -25,7 +25,7 @@ namespace Improvians
                 //BindFacility();
                 //BindBenchLocation();
                 //BindGridIrrigation();
-                BindFacility();                
+                BindFacility();
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindSupervisorList();
             }
@@ -74,6 +74,8 @@ namespace Improvians
                 PanelBench.Visible = true;
                 PanelBenchesInHouse.Visible = false;
                 PanelHouse.Visible = false;
+                GridIrrigation.DataSource = null;
+                GridIrrigation.DataBind();
             }
             else if (RadioBench.SelectedValue == "2")
             {
@@ -81,7 +83,8 @@ namespace Improvians
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-
+                GridIrrigation.DataSource = null;
+                GridIrrigation.DataBind();
             }
             else if (RadioBench.SelectedValue == "3")
             {
@@ -89,7 +92,8 @@ namespace Improvians
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = false;
                 PanelHouse.Visible = true;
-
+                GridIrrigation.DataSource = null;
+                GridIrrigation.DataBind();
             }
             else
             {
@@ -279,7 +283,7 @@ namespace Improvians
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
         }
 
-       
+
         public void BindSupervisorList()
         {
             //NameValueCollection nv = new NameValueCollection();
@@ -327,10 +331,18 @@ namespace Improvians
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //  BindGridIrrigation();
-            Bench1 = ddlBenchLocation.SelectedItem.Text;
-          //  BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridIrrigation("'" + Bench1 + "'");
+            if (ddlBenchLocation.SelectedValue == "")
+            {
+                Panel_Bench.Visible = false;
+            }
+            else
+            {
+                Panel_Bench.Visible = true;
+
+                Bench1 = ddlBenchLocation.SelectedItem.Text;
+
+                BindGridIrrigation("'" + Bench1 + "'");
+            }
         }
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
@@ -339,7 +351,7 @@ namespace Improvians
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
-         //   BindGridIrrigation();
+            //   BindGridIrrigation();
         }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -362,8 +374,8 @@ namespace Improvians
                 //  lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
 
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-              //  lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
-              //  lblGrowerID.Text = GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
+                //  lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
+                //  lblGrowerID.Text = GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
 
 
                 txtNotes.Focus();
@@ -385,41 +397,41 @@ namespace Improvians
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-              
-                long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
 
-                    nv.Add("@Jobcode", (row.FindControl("lbljobID") as Label).Text);
-                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+
+                nv.Add("@Jobcode", (row.FindControl("lbljobID") as Label).Text);
+                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
 
                 nv.Add("@IrrigationCode", IrrigationCode.ToString());
                 // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                 nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
-                    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                    nv.Add("@IrrigationDuration", "");
-                    nv.Add("@SprayDate", txtSprayDate.Text.Trim());
-                    //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                    nv.Add("@Nots", txtNotes.Text.Trim());
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
-                    if (result > 0)
-                    {
-                        // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
+                nv.Add("@IrrigationDuration", "");
+                nv.Add("@SprayDate", txtSprayDate.Text.Trim());
+                //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                nv.Add("@Nots", txtNotes.Text.Trim());
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
+                if (result > 0)
+                {
+                    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
 
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                        //  lblmsg.Text = "Assignment Not Successful";
-                    }
-               // }
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                    //  lblmsg.Text = "Assignment Not Successful";
+                }
+                // }
             }
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -455,7 +467,7 @@ namespace Improvians
         protected void GridIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridIrrigation.PageIndex = e.NewPageIndex;
-           // BindGridIrrigation();
+            // BindGridIrrigation();
         }
 
         protected void btnAssign_Click(object sender, EventArgs e)
@@ -467,8 +479,8 @@ namespace Improvians
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                    tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
-               // }
+                tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
+                // }
 
             }
             //txtIrrigatedNoTrays.Text = tray.ToString();

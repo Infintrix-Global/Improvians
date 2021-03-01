@@ -134,8 +134,8 @@
                                 </div>
 
                                 <div class="col-lg-2">
-                                    <asp:Button ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
-                                      <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                                    <asp:Button ID="btnSearch" runat="server" Visible="false" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
+                                      <asp:Button Text="Reset" ID="btnResetSearch" Visible="false" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                                 </div>
                                 <div class="col-lg-6">
                                 </div>
@@ -149,7 +149,7 @@
                                     </asp:Panel>
                                     <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
 
-                                        <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" Width="60%" Height="150px" runat="server"></asp:ListBox>
+                                        <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged" Width="60%" Height="150px" runat="server"></asp:ListBox>
                                     </asp:Panel>
                                     <asp:Panel ID="PanelHouse" Visible="false" runat="server">
                                     </asp:Panel>
