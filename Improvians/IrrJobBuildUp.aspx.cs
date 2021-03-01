@@ -53,15 +53,48 @@ namespace Improvians
 
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectBenchLocation();
-
+            // SelectBenchLocation();
+            string chkSelected = "";
             if (RadioBench.SelectedValue == "1")
             {
                 // Bench
-                SelectBench();
+                //  SelectBench();
                 PanelBench.Visible = true;
                 PanelBenchesInHouse.Visible = false;
                 PanelHouse.Visible = false;
+                int P1 = 0;
+                string Q1 = "";
+
+                string YourString = Bench;
+
+                YourString = YourString.Remove(YourString.Length - 1);
+
+                DataTable dt12 = objFer.GetSelectBench(YourString);
+
+                lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
+
+
+                if (dt12.Rows.Count > 0)
+                {
+                    DataColumn col = dt12.Columns["PositionCode"];
+                    foreach (DataRow row in dt12.Rows)
+                    {
+                        //strJsonData = row[col].ToString();
+
+                        P1 = 1;
+                        Q1 += "'" + row[col].ToString() + "',";
+                    }
+                }
+
+                if (P1 > 0)
+                {
+                    chkSelected = Q1.Remove(Q1.Length - 1, 1);
+
+                }
+                else
+                {
+
+                }
             }
             else if (RadioBench.SelectedValue == "2")
             {
@@ -69,6 +102,7 @@ namespace Improvians
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
+            
 
             }
             else if (RadioBench.SelectedValue == "3")
@@ -77,13 +111,79 @@ namespace Improvians
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = false;
                 PanelHouse.Visible = true;
+                int P = 0;
+                string Q = "";
+                string[] words = Regex.Split(Bench, @"\W+");
+
+                DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataColumn col = dt.Columns["PositionCode"];
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        //strJsonData = row[col].ToString();
+
+                        P = 1;
+                        Q += "'" + row[col].ToString() + "',";
+                    }
+                }
+
+                if (P > 0)
+                {
+                    chkSelected = Q.Remove(Q.Length - 1, 1);
+
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+
+            }
+            DataTable dt123 = new DataTable();
+            gvJobHistory.DataSource = dt123;
+            gvJobHistory.DataBind();
+            BindGridIrrDetails(chkSelected);
+
+        }
+
+
+        protected void ListBoxBenchesInHouse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int c = 0;
+            string x = "";
+            string chkSelected = "";
+            foreach (ListItem item in ListBoxBenchesInHouse.Items)
+            {
+
+                if (item.Selected)
+                {
+                    c = 1;
+                    x += "'" + item.Text + "',";
+
+                }
+            }
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
 
             }
             else
             {
 
             }
+
+            BindGridIrrDetails(chkSelected);
         }
+
+
+
+
+
+
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -403,10 +503,13 @@ namespace Improvians
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             RadioBench.Items[0].Selected = false;
-
+            ListBoxBenchesInHouse.Items.Clear();
             //To unselect all Items
             RadioBench.ClearSelection();
             BindGridIrrDetails("'" + Bench + "'");
+
+            PanelBench.Visible = false;
+            PanelBenchesInHouse.Visible = false;
         }
     }
 }

@@ -127,7 +127,7 @@
 
                                 <div class="col-lg-4">
                                     <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
-                                        <asp:ListItem Text="Bench" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
+                                        <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
                                         <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio"></asp:ListItem>
                                         <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
                                     </asp:RadioButtonList>
@@ -135,7 +135,7 @@
 
                                 <div class="col-lg-2">
                                     <asp:Button ID="btnSearch" runat="server" Visible="false" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
-                                      <asp:Button Text="Reset" ID="btnResetSearch" Visible="false" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                                      <asp:Button Text="Reset" ID="btnResetSearch"  CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                                 </div>
                                 <div class="col-lg-6">
                                 </div>
@@ -145,7 +145,7 @@
 
                                 <div class="col-lg-4">
                                     <asp:Panel ID="PanelBench" Visible="false" runat="server">
-                                        <asp:Label ID="lblBench1" runat="server" Text="Label"></asp:Label>
+                                        <asp:Label ID="lblBench1" Visible="false" runat="server" Text="Label"></asp:Label>
                                     </asp:Panel>
                                     <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
 

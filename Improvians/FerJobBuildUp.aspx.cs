@@ -182,7 +182,9 @@ namespace Improvians
             {
 
             }
-
+            DataTable dt123 = new DataTable();
+            gvJobHistory.DataSource = dt123;
+            gvJobHistory.DataBind();
             BindGridFerDetails(chkSelected);
 
         }
@@ -526,10 +528,12 @@ namespace Improvians
         {
          
             RadioBench.Items[0].Selected = false;
-
+            ListBoxBenchesInHouse.Items.Clear();
             //To unselect all Items
             RadioBench.ClearSelection();
             BindGridFerDetails("'" + Bench + "'");
+            PanelBench.Visible = false;
+            PanelBenchesInHouse.Visible = false;
         }
 
      
