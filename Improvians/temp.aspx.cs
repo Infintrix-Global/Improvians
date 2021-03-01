@@ -59,11 +59,20 @@ namespace Improvians
                         nv.Add("@TotalTray", Trays);
                         nv.Add("@Seeddate", seeddate);
                        
-                        _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
+                   _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
 
-                       // _isInserted = 1;
-                   
-                    SelectedItems++;
+              //  DataTable dtISD = objSP.GetSeedDateData("IRRIGATE", lblGenusCode.Text, lblSeededTrays.Text);
+               // DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, lblSeededTrays.Text);
+
+               // if (dtISD != null && dtISD.Rows.Count > 0)
+               // {
+                  //  IrrigateSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(dtISD.Rows[0]["DateShift"]))).ToString();
+              //  }
+             
+
+                // _isInserted = 1;
+
+                SelectedItems++;
 
             }
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ')", true);
