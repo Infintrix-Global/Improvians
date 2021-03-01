@@ -70,31 +70,35 @@
             <asp:Panel ID="Panel_Bench" Visible="false" runat="server">
                 <div class="row">
 
+
                     <div class="col-lg-4">
                         <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" ValidationGroup="x" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Bench" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
+                            <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
                             <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio"></asp:ListItem>
                             <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
 
+
                     <div class="col-lg-2">
-                        <asp:Button ID="Button1" ValidationGroup="x" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
+                        <asp:Button ID="Button1" ValidationGroup="x" Visible="false" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
                         <asp:Button Text="Reset" ID="btnResetSearch" ValidationGroup="x" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                     </div>
                     <div class="col-lg-6">
                     </div>
+
+
                 </div>
                 <br />
                 <div class="row">
 
                     <div class="col-lg-4">
                         <asp:Panel ID="PanelBench" Visible="false" runat="server">
-                            <asp:Label ID="lblBench1" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="lblBench1" Visible="false" runat="server" Text="Label"></asp:Label>
                         </asp:Panel>
                         <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
 
-                            <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" Width="60%" Height="150px" runat="server"></asp:ListBox>
+                            <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged" Width="60%" Height="150px" runat="server"></asp:ListBox>
                         </asp:Panel>
                         <asp:Panel ID="PanelHouse" Visible="false" runat="server">
                         </asp:Panel>
