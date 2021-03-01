@@ -27,9 +27,12 @@ namespace Improvians
             int SelectedItems = 0;
             NameValueCollection nv1 = new NameValueCollection();
             DataTable dt = objCommon.GetDataTable("SP_GetMaxSeedDateManual", nv1);
-
-
-            AllData = objSP.GetDataSeedingPlanManual(dt.Rows[0]["SeedDate"].ToString());
+            string SeedDate = string.Empty;
+            if (dt!= null && dt.Rows.Count>0)
+            {
+                SeedDate= dt.Rows[0]["SeedDate"].ToString(); 
+            }
+            AllData = objSP.GetDataSeedingPlanManual(SeedDate);
            // DGJob.DataSource = AllData;
           //  DGJob.DataBind();
             for (int i= 0; i < AllData.Rows.Count;i++)
