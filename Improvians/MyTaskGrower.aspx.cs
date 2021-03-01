@@ -182,7 +182,7 @@ namespace Improvians
 
             }
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ')", true);
-
+            CountTotal();
         }
 
     }
