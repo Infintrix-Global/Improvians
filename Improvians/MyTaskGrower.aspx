@@ -14,7 +14,10 @@
     <div class="main">
         <div class="site__container">
             <h2>My Tasks</h2>
-
+            <div style="margin-left: 90%;">
+                 <asp:Button Text="Pull Data" ID="btnSubmit"  CssClass="ml-2 submit-bttn bttn bttn-primary" OnClick="btnSubmit_Click" runat="server"  />
+          
+            </div>
             <p class="pt-3">The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. Most of these tasks are auto-generated based on the plant's production profile schedule after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose.</p>
 
             <div class="dashboard__grid">
