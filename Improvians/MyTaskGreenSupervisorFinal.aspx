@@ -121,4 +121,8 @@
             </div>
         </div>
     </div>
+    <!-- Floating QR Code Button -->
+    <button title="Scan QR Code" type="button" class="floating__qrcode">
+        <i class="fas fa-qrcode"></i>
+    </button>
 </asp:Content>

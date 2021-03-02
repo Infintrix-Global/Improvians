@@ -195,11 +195,7 @@
                 </li>
             </ul>
         </footer>
-          <!-- Floating QR Code Button -->
-        <button title="Scan QR Code" type="button" class="floating__qrcode">
-            <i class="fas fa-qrcode"></i>
-        </button>
-
+       
         <script src="js/jquery.min.js"></script>
         <script defer="defer" src="js/popper.min.js"></script>
         <script defer="defer" src="js/bootstrap.min.js"></script>

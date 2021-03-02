@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <div class="header__bottom">
+    <%-- <div class="header__bottom">
             <div class="d-flex align-items-center justify-content-center">
                 <select class="custom__dropdown robotomd">
                     <option>Encinal 1</option>
@@ -11,7 +11,7 @@
                     <option>Encinal 3</option>
                 </select>                
             </div>
-        </div>
+        </div>--%>
 
 
       <div class="main">
