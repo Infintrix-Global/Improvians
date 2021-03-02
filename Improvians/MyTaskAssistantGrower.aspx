@@ -2,18 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="header__bottom">
-        <div class="header__tabs">
-            <ul class="d-flex align-items-center justify-content-center list-inline">
-                <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
-                <%--<li><a href="#" class="bttn" title="Site Task">Site Task</a></li>
-                <li><a href="#" class="bttn active" title="Request Task">Request Task</a></li>--%>
-                <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
-                <%--  <li><a href="#" class="bttn" title="Track Task">Track Task</a></li>--%>
-            </ul>
-        </div>
-    </div>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">   
     <div class="main">
         <div class="site__container">
             <h2>My Tasks</h2>

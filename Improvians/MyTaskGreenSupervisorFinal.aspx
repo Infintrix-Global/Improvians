@@ -3,14 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="header__bottom">
-        <div class="header__tabs">
-            <ul class="d-flex align-items-center justify-content-center list-inline">
-                <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
-                <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
-            </ul>
-        </div>
-    </div>
+    
     <div class="main">
         <div class="site__container">
             <h2>My Tasks</h2>
@@ -128,4 +121,8 @@
             </div>
         </div>
     </div>
+    <!-- Floating QR Code Button -->
+    <button title="Scan QR Code" type="button" class="floating__qrcode">
+        <i class="fas fa-qrcode"></i>
+    </button>
 </asp:Content>
