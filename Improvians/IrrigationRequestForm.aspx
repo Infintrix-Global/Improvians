@@ -14,7 +14,7 @@
             <div class="filter__row d-flex">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label>Facility Location</label><span style="color: red">*</span>
+                        <label>Facility Location</label>
                         <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
                         <span class="error_message">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlFacility" ValidationGroup="x"
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-lg-3">
                         <label>Bench Location </label>
-                        <span style="color: red">*</span>
+                       
                         <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         <span class="error_message">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"

@@ -18,7 +18,7 @@ namespace Improvians
             if (!IsPostBack)
             {
                 Bindcname();
-                Bindcname();
+               
                 BindFacility();
                 BindBenchLocation(ddlFacility.SelectedValue);
                 BindJobCode(ddlBenchLocation.SelectedValue);
