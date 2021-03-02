@@ -162,10 +162,10 @@
                                 </div>
                             </div>
                             <br />
-                            <div class="data__table">
-                                <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="10" 
-                                    GridLines="None" OnPageIndexChanging="gvJobHistory_PageIndexChanging"
+                            <div class="data__table data__table-height">
+                                <asp:GridView ID="gvJobHistory" runat="server"  AutoGenerateColumns="False"
+                                    class="striped" 
+                                    GridLines="None" 
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                         <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
@@ -428,24 +428,13 @@
 
                             </div>
                             <div class="col-lg-3">
-                            </div>
-                        </div>
-                         <br />
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>Reset Spray Task For Days</label>
+                                   <label>Reset Spray Task For Days</label>
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
-                            <div class="col-lg-3">
-                              
-                            </div>
-                            <div class="col-lg-3">
-                             
-                            </div>
-                            <div class="col-lg-3">
-                            </div>
                         </div>
+                         <br />
+                        
                         <%--  <div class="col align-self-center">
                                 <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
                             </div>--%>

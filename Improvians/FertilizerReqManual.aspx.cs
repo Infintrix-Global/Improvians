@@ -28,9 +28,10 @@ namespace Improvians
                 BindSupervisor();
                 BindFertilizer();
                 //    BindUnit();
-                BindJobCode(ddlBenchLocation.SelectedValue);
+              
                 Bindcname();
                 BindFacility();
+                BindJobCode(ddlBenchLocation.SelectedValue);
                 dtTrays.Clear();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }

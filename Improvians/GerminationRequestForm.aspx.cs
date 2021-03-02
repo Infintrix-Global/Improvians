@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Improvians.Bal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -13,14 +14,16 @@ namespace Improvians
     public partial class GerminationRequestForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objBAL = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Bindcname();
-                BindJobCode();
+
                 BindFacility();
-                BindBenchLocation();
+                BindBenchLocation(ddlFacility.SelectedValue);
+                BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridGerm();
                 BindSupervisorList();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -44,54 +47,56 @@ namespace Improvians
 
         }
 
-
-        public void BindJobCode()
+        public void BindJobCode(string ddlBench)
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
         public void BindFacility()
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
+            ddlFacility.DataSource = objBAL.GetMainLocation();
+            ddlFacility.DataTextField = "l1";
+            ddlFacility.DataValueField = "l1";
             ddlFacility.DataBind();
             ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            BindBenchLocation("");
         }
 
-        public void BindBenchLocation()
+        public void BindBenchLocation(string ddlMain)
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "10");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlBenchLocation.DataSource = dt;
-            ddlBenchLocation.DataTextField = "GreenHouseID";
-            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataTextField = "p2";
+            ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindBenchLocation(ddlFacility.SelectedValue);
+            //BindGridFerReq();
+        }
+
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindJobCode(ddlBenchLocation.SelectedValue);
+            BindGridGerm();
 
         }
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
+
 
         public void BindGridGerm()
         {
@@ -312,20 +317,7 @@ namespace Improvians
             Response.Redirect("~/GerminationRequestManual.aspx");
         }
 
-        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridGerm();
-        }
-
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridGerm();
-        }
-
-        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridGerm();
-        }
+       
 
         protected void radStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -338,16 +330,14 @@ namespace Improvians
             radweek.SelectedValue = null;
 
             Bindcname();
-            BindJobCode();
+
             BindFacility();
-            BindBenchLocation();
+            BindBenchLocation(ddlFacility.SelectedValue);
+            BindJobCode(ddlBenchLocation.SelectedValue);
             BindGridGerm();
 
         }
 
-        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridGerm();
-        }
+      
     }
 }

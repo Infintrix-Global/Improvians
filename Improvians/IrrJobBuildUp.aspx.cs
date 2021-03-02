@@ -24,7 +24,10 @@ namespace Improvians
                 {
                     Bench = Request.QueryString["Bench"].ToString();
                 }
-
+                if (Request.QueryString["jobCode"] != null)
+                {
+                    JobCode = Request.QueryString["jobCode"].ToString();
+                }
                 BindGridIrrigation();
                 BindSupervisorList();
                 BindGridIrrDetails("'" + Bench + "'");
@@ -46,6 +49,21 @@ namespace Improvians
             set
             {
                 ViewState["Bench"] = value;
+            }
+        }
+        private string JobCode
+        {
+            get
+            {
+                if (ViewState["JobCode"] != null)
+                {
+                    return (string)ViewState["JobCode"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["JobCode"] = value;
             }
         }
 
@@ -86,11 +104,12 @@ namespace Improvians
 
                 DataTable dt12 = objFer.GetSelectBench(YourString);
 
-                lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
 
-
-                if (dt12.Rows.Count > 0)
+                if (dt12 != null && dt12.Rows.Count > 0)
                 {
+
+                    lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
+
                     DataColumn col = dt12.Columns["PositionCode"];
                     foreach (DataRow row in dt12.Rows)
                     {
@@ -99,17 +118,26 @@ namespace Improvians
                         P1 = 1;
                         Q1 += "'" + row[col].ToString() + "',";
                     }
-                }
+                    if (P1 > 0)
+                    {
+                        chkSelected = Q1.Remove(Q1.Length - 1, 1);
 
-                if (P1 > 0)
-                {
-                    chkSelected = Q1.Remove(Q1.Length - 1, 1);
+                    }
+                    else
+                    {
 
+                    }
                 }
                 else
                 {
-
+                    chkSelected = "'" + Bench + "'";
                 }
+
+                DataTable dt123 = new DataTable();
+                gvJobHistory.DataSource = dt123;
+                gvJobHistory.DataBind();
+                BindGridIrrDetails(chkSelected);
+
             }
             else if (RadioBench.SelectedValue == "2")
             {
@@ -132,7 +160,7 @@ namespace Improvians
 
                 DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
 
-                if (dt.Rows.Count > 0)
+                if (dt != null && dt.Rows.Count > 0)
                 {
                     DataColumn col = dt.Columns["PositionCode"];
                     foreach (DataRow row in dt.Rows)
@@ -142,26 +170,31 @@ namespace Improvians
                         P = 1;
                         Q += "'" + row[col].ToString() + "',";
                     }
-                }
+                    if (P > 0)
+                    {
+                        chkSelected = Q.Remove(Q.Length - 1, 1);
 
-                if (P > 0)
-                {
-                    chkSelected = Q.Remove(Q.Length - 1, 1);
+                    }
+                    else
+                    {
 
+                    }
                 }
                 else
                 {
-
+                    chkSelected = "'" + Bench + "'";
                 }
+                DataTable dt123 = new DataTable();
+                gvJobHistory.DataSource = dt123;
+                gvJobHistory.DataBind();
+                BindGridIrrDetails(chkSelected);
+
             }
             else
             {
 
             }
-            DataTable dt123 = new DataTable();
-            gvJobHistory.DataSource = dt123;
-            gvJobHistory.DataBind();
-            BindGridIrrDetails(chkSelected);
+           
 
         }
 
@@ -316,7 +349,7 @@ namespace Improvians
             //   nv.Add("@Facility",ddlFacility.SelectedValue);
             //  nv.Add("@Mode", "1");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            nv.Add("@JobCode", "0");
+            nv.Add("@JobCode",JobCode);
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", "0");
             nv.Add("@BenchLocation", Bench);
@@ -516,10 +549,7 @@ namespace Improvians
             Response.Redirect("~/MyTaskGrower.aspx");
         }
 
-        protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvJobHistory.PageIndex = e.NewPageIndex;
-        }
+     
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {

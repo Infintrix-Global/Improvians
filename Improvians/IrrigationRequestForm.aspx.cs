@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Improvians.Bal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -11,14 +12,16 @@ namespace Improvians
     public partial class IrrigationRequestForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objBAL = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Bindcname();
-                BindJobCode();
+               
                 BindFacility();
-                BindBenchLocation();
+                BindBenchLocation(ddlFacility.SelectedValue);
+                BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridIrrigation();
                 BindSupervisorList();
             }
@@ -39,6 +42,75 @@ namespace Improvians
                 ViewState["wo"] = value;
             }
         }
+
+
+
+        public void Bindcname()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "8");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlCustomer.DataSource = dt;
+            ddlCustomer.DataTextField = "cname";
+            ddlCustomer.DataValueField = "cname";
+            ddlCustomer.DataBind();
+            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindJobCode(string ddlBench)
+        {
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+            ddlJobNo.DataTextField = "Jobcode";
+            ddlJobNo.DataValueField = "Jobcode";
+            ddlJobNo.DataBind();
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+        }
+
+        public void BindFacility()
+        {
+            ddlFacility.DataSource = objBAL.GetMainLocation();
+            ddlFacility.DataTextField = "l1";
+            ddlFacility.DataValueField = "l1";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+            BindBenchLocation("");
+        }
+
+        public void BindBenchLocation(string ddlMain)
+        {
+            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataTextField = "p2";
+            ddlBenchLocation.DataValueField = "p2";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindBenchLocation(ddlFacility.SelectedValue);
+            //BindGridFerReq();
+        }
+
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindJobCode(ddlBenchLocation.SelectedValue);
+            BindGridIrrigation();
+
+        }
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
+
 
         public void BindGridIrrigation()
         {
@@ -81,71 +153,7 @@ namespace Improvians
             GridIrrigation.DataBind();
         }
 
-        public void Bindcname()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-           
-            nv.Add("@Mode", "8");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlCustomer.DataSource = dt;
-            ddlCustomer.DataTextField = "cname";
-            ddlCustomer.DataValueField = "cname";
-            ddlCustomer.DataBind();
-            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
-
-
-        public void BindJobCode()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlJobNo.DataSource = dt;
-            ddlJobNo.DataTextField = "Jobcode";
-            ddlJobNo.DataValueField = "Jobcode";
-            ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
-        public void BindBenchLocation()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "10");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlBenchLocation.DataSource = dt;
-            ddlBenchLocation.DataTextField = "GreenHouseID";
-            ddlBenchLocation.DataValueField = "GreenHouseID";
-            ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-
-            //repBench.DataSource = dt;
-            //repBench.DataBind();
-
-        }
-        public void BindFacility()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
+     
         public void BindSupervisorList()
         {
             //NameValueCollection nv = new NameValueCollection();
@@ -176,36 +184,15 @@ namespace Improvians
             }
         }
 
-        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
+     
 
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
-
-        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
-
-        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
+       
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             Bindcname();
-            BindJobCode();
             BindFacility();
-            BindBenchLocation();
+            BindBenchLocation(ddlFacility.SelectedValue);
+            BindJobCode(ddlBenchLocation.SelectedValue);
             BindGridIrrigation();
         }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -239,7 +226,10 @@ namespace Improvians
 
             if (e.CommandName == "Job")
             {
-                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}", e.CommandArgument.ToString()));
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string BatchLocation = GridIrrigation.DataKeys[rowIndex].Values[0].ToString();
+                string jobCode = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
+                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}&jobCode={1}", BatchLocation, jobCode));
             }
         }
 
