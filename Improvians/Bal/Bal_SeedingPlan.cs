@@ -72,9 +72,9 @@ namespace Improvians.Bal
             try
             {
                 strQuery = "select distinct t.[Job No_] as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno" +
-                    " ,t.[Genus Code] GenusCode,t.[Posting Date] seeddate ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int ) as Trays,j.[Variant Code] as TraySize" +
+                    " ,t.[Genus Code] GenusCode,t.[Posting Date] seeddate ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int ) as Trays,j.[Variant Code] as TraySize, j.[Shortcut Property 1 Value] germcount" +
                     "  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j  where j.No_ = t.[Job No_] and j.[Job Status] = 2 and t.[Activity Code] = 'SEEDING'" +
-                    " group by t.[Job No_], j.[Bill-to Name], j.[Item Description],t.[Genus Code], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date]" +
+                    " group by t.[Job No_], j.[Bill-to Name], j.[Item Description],t.[Genus Code], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date],j.[Shortcut Property 1 Value] " +
                     "  HAVING CAST(sum(t.Quantity) AS int )  > 0   ";
 
 
