@@ -104,11 +104,12 @@ namespace Improvians
 
                 DataTable dt12 = objFer.GetSelectBench(YourString);
 
-                lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
-
 
                 if (dt12 != null && dt12.Rows.Count > 0)
                 {
+
+                    lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
+
                     DataColumn col = dt12.Columns["PositionCode"];
                     foreach (DataRow row in dt12.Rows)
                     {
@@ -130,8 +131,8 @@ namespace Improvians
                 else
                 {
                     chkSelected = "'" + Bench + "'";
-                   
                 }
+
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
