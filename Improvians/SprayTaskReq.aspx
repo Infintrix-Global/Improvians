@@ -16,14 +16,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
-    <div class="header__bottom">
-        <div class="header__tabs">
-            <ul class="d-flex align-items-center justify-content-center list-inline">
-                <li><a href="#" class="bttn active" title="My Task">My Tasks</a></li>
-                <li><a href="#" class="bttn" title="Job Reports">Job Reports</a></li>
-            </ul>
-        </div>
-    </div>
     <div class="main">
         <div class="site__container">
             <h2 class="text-left">Fertilization / Chemical Task Completion </h2>
