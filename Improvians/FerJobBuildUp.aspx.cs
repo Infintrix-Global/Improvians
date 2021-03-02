@@ -30,10 +30,15 @@ namespace Improvians
                 {
                     Bench = Request.QueryString["Bench"].ToString();
                 }
+
+                if (Request.QueryString["jobCode"] != null)
+                {
+                    JobCode = Request.QueryString["jobCode"].ToString();
+                }
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
                 BindGridFerReq();
-                BindGridFerDetails("'" + Bench +"'");
+                BindGridFerDetails("'" + Bench + "'");
                 BindSupervisor();
                 BindSQFTofBench();
             }
@@ -103,6 +108,22 @@ namespace Improvians
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (ViewState["JobCode"] != null)
+                {
+                    return (string)ViewState["JobCode"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["JobCode"] = value;
+            }
+        }
+
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
             // SelectBenchLocation();
@@ -110,7 +131,7 @@ namespace Improvians
             if (RadioBench.SelectedValue == "1")
             {
                 // Bench
-              //  SelectBench();
+                //  SelectBench();
                 PanelBench.Visible = true;
                 PanelBenchesInHouse.Visible = false;
                 PanelHouse.Visible = false;
@@ -127,7 +148,7 @@ namespace Improvians
                     lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
 
 
-                    if (dt12 !=null && dt12.Rows.Count > 0)
+                    if (dt12 != null && dt12.Rows.Count > 0)
                     {
                         DataColumn col = dt12.Columns["PositionCode"];
                         foreach (DataRow row in dt12.Rows)
@@ -137,17 +158,22 @@ namespace Improvians
                             P1 = 1;
                             Q1 += "'" + row[col].ToString() + "',";
                         }
-                    }
+                        if (P1 > 0)
+                        {
+                            chkSelected = Q1.Remove(Q1.Length - 1, 1);
 
-                    if (P1 > 0)
-                    {
-                        chkSelected = Q1.Remove(Q1.Length - 1, 1);
+                        }
+                        else
+                        {
 
+                        }
                     }
                     else
                     {
-
+                        chkSelected = "'" + Bench + "'";
                     }
+
+
                     DataTable dt123 = new DataTable();
                     gvJobHistory.DataSource = dt123;
                     gvJobHistory.DataBind();
@@ -160,7 +186,7 @@ namespace Improvians
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-             
+
 
             }
             else if (RadioBench.SelectedValue == "3")
@@ -175,7 +201,7 @@ namespace Improvians
 
                 DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
 
-                if (dt !=null && dt.Rows.Count > 0)
+                if (dt != null && dt.Rows.Count > 0)
                 {
                     DataColumn col = dt.Columns["PositionCode"];
                     foreach (DataRow row in dt.Rows)
@@ -185,17 +211,23 @@ namespace Improvians
                         P = 1;
                         Q += "'" + row[col].ToString() + "',";
                     }
-                }
+                    if (P > 0)
+                    {
+                        chkSelected = Q.Remove(Q.Length - 1, 1);
 
-                if (P > 0)
-                {
-                    chkSelected = Q.Remove(Q.Length - 1, 1);
+                    }
+                    else
+                    {
 
+                    }
                 }
                 else
                 {
-
+                    chkSelected = "'" + Bench + "'";
                 }
+
+
+
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
@@ -205,7 +237,7 @@ namespace Improvians
             {
 
             }
-          
+
 
         }
 
@@ -245,7 +277,7 @@ namespace Improvians
             string chkSelected = "";
             if (RadioBench.SelectedValue == "1")
             {
-                chkSelected ="'"+ lblBench1.Text + "'";
+                chkSelected = "'" + lblBench1.Text + "'";
             }
             else if (RadioBench.SelectedValue == "2")
             {
@@ -272,11 +304,11 @@ namespace Improvians
 
                 }
 
-              
+
             }
             else if (RadioBench.SelectedValue == "3")
             {
-               
+
 
             }
 
@@ -292,7 +324,7 @@ namespace Improvians
             // ENC2 - SHADE - 2 - A
             //string input = Bench;
             //string[] array = input.Split('-');
-          YourString = YourString.Remove(YourString.Length - 1);
+            YourString = YourString.Remove(YourString.Length - 1);
 
             DataTable dt = objFer.GetSelectBench(YourString);
 
@@ -305,7 +337,7 @@ namespace Improvians
         public void SelectBenchLocation()
         {
 
-           
+
             // ENC2 - SHADE - 2 - A
             //string input = Bench;
             //string[] array = input.Split('-');
@@ -318,7 +350,7 @@ namespace Improvians
             ListBoxBenchesInHouse.DataTextField = "PositionCode";
             ListBoxBenchesInHouse.DataValueField = "PositionCode";
             ListBoxBenchesInHouse.DataBind();
-          
+
         }
 
 
@@ -326,7 +358,7 @@ namespace Improvians
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobCode", "0");
+            nv.Add("@JobCode", JobCode);
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", "0");
             nv.Add("@BenchLocation", Bench);
@@ -368,11 +400,11 @@ namespace Improvians
 
         }
 
-        protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvJobHistory.PageIndex = e.NewPageIndex;
-           
-        }
+        //protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    gvJobHistory.PageIndex = e.NewPageIndex;
+
+        //}
 
 
 
@@ -405,7 +437,7 @@ namespace Improvians
 
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
                 NameValueCollection nv123 = new NameValueCollection();
-                nv123.Add("@Jid",Jid);
+                nv123.Add("@Jid", Jid);
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
                 //  }
 
@@ -454,7 +486,7 @@ namespace Improvians
 
             }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text,txtResetSprayTaskForDays.Text);
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -551,7 +583,7 @@ namespace Improvians
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
-         
+
             RadioBench.Items[0].Selected = false;
             ListBoxBenchesInHouse.Items.Clear();
             //To unselect all Items
@@ -561,7 +593,7 @@ namespace Improvians
             PanelBenchesInHouse.Visible = false;
         }
 
-     
+
 
 
 

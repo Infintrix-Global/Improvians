@@ -125,56 +125,56 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>
+                            </div>
+                            <br />
+                            <h3>Other Jobs</h3>
+
+                            <br />
+                            <div class="row">
+
+                                <div class="col-lg-4">
+                                    <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
+                                        <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
+                                        <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio"></asp:ListItem>
+                                        <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
+                                    </asp:RadioButtonList>
                                 </div>
-                                <br />
-                                <h3>Other Jobs</h3>
 
-                                <br />
-                                <div class="row">
-
-                                    <div class="col-lg-4">
-                                        <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
-                                            <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-2"></asp:ListItem>
-                                            <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio"></asp:ListItem>
-                                            <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
-                                        </asp:RadioButtonList>
-                                    </div>
-
-                                    <div class="col-lg-2">
-                                        <asp:Button ID="btnSearch" runat="server" Visible="false" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
-                                        <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
-                                    </div>
-                                    <div class="col-lg-6">
-                                    </div>
+                                <div class="col-lg-2">
+                                    <asp:Button ID="btnSearch" runat="server" Visible="false" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
+                                    <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                                 </div>
-                                <br />
-                                <div class="row">
-
-                                    <div class="col-lg-4">
-                                        <asp:Panel ID="PanelBench" Visible="false" runat="server">
-                                            <asp:Label ID="lblBench1" Visible="false" runat="server" Text="Label"></asp:Label>
-                                        </asp:Panel>
-                                        <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
-
-                                            <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged" Width="60%" Height="150px" runat="server"></asp:ListBox>
-                                        </asp:Panel>
-                                        <asp:Panel ID="PanelHouse" Visible="false" runat="server">
-                                        </asp:Panel>
-
-                                    </div>
-
-                                    <div class="col-lg-2">
-                                    </div>
-                                    <div class="col-lg-6">
-                                    </div>
+                                <div class="col-lg-6">
                                 </div>
-                                <br />
+                            </div>
+                            <br />
+                            <div class="row">
+
+                                <div class="col-lg-4">
+                                    <asp:Panel ID="PanelBench" Visible="false" runat="server">
+                                        <asp:Label ID="lblBench1" Visible="false" runat="server" Text="Label"></asp:Label>
+                                    </asp:Panel>
+                                    <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
+
+                                        <asp:ListBox ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged" Width="60%" Height="150px" runat="server"></asp:ListBox>
+                                    </asp:Panel>
+                                    <asp:Panel ID="PanelHouse" Visible="false" runat="server">
+                                    </asp:Panel>
+
+                                </div>
+
+                                <div class="col-lg-2">
+                                </div>
+                                <div class="col-lg-6">
+                                </div>
+                            </div>
+                            <br />
 
 
 
-                                 <div class="data__table">
-                                <asp:GridView ID="gvJobHistory" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="10"  OnPageIndexChanging="gvJobHistory_PageIndexChanging"
+                            <div class="data__table data__table-height">
+                                <asp:GridView ID="gvJobHistory" runat="server" AutoGenerateColumns="False"
+                                    class="striped" AllowSorting="true"
                                     GridLines="None" DataKeyNames="wo,jobcode,GrowerPutAwayId"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
@@ -233,11 +233,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                                        <%-- <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
 
 
@@ -292,74 +292,55 @@
 
                             </div>--%>
                         </div>
-
-
                         <div class="row">
 
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-lg-3">
                                 <label>Assignment</label>
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
 
-                            <%-- <div class="col-12 col-sm-6 col-lg-3">
-                                <label>No. Of Trays to be Irrigated</label>
 
-                                <asp:TextBox ID="txtIrrigatedNoTrays" ReadOnly="true" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
 
-                            </div>--%>
-
-                            <div class="col-12 col-sm-6 col-md-auto">
+                            <div class="col-lg-3">
                                 <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
 
-
-
-                                <asp:TextBox ID="txtWaterRequired" class="mb-0 input__control input__control-auto" placeholder="" runat="server"></asp:TextBox>
-
+                                <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                             </div>
-
-                            <%-- <div class="col-12  col-sm-6 col-md-auto">
-                                <label class="pr-2 pr-lg-0 d-lg-block">Irrigation Duration</label>
-                               
-                                <asp:TextBox ID="txtIrrigationDuration" class="mb-0 input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
-
-                            </div>--%>
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
                         </div>
-
-                        <div class="row align-items-center mt-sm-3">
-                            <div class="col-12 mt-4 mb-3 my-sm-0 col-sm-auto">
-                                <h4 class="mb-0">Schedule:</h4>
-                            </div>
-                            <div class="col-auto">
-                                <label class="d-block">Spray Date</label>
-
-                                <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
-                            </div>
-                            <%--  <div class="col-auto">
-                                <label class="d-block">Spray Time</label>
-
-                                <asp:TextBox ID="txtSprayTime" TextMode="Time" class="input__control input__control-auto" placeholder="00:00" runat="server"></asp:TextBox>
-                            </div>--%>
-                        </div>
-                                                <br />
+                          <br />
                         <div class="row">
+
+                            <div class="col-lg-3">
+                                  <label class="d-block">Spray Date</label>
+
+                                <asp:TextBox ID="txtSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
+                            </div>
+
+
+
                             <div class="col-lg-3">
                                 <label>Reset Spray Task For Days</label>
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
                             <div class="col-lg-3">
-                            </div>
-                            <div class="col-lg-3">
+                                <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-lg-3">
                             </div>
                         </div>
-                        <br />
+
+                       
+               
 
                         <div class="row align-items-center mt-sm-3">
                             <div class="col-12 col-sm-6 col-lg-4">
 
-                                <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
+                                
                             </div>
 
                             <div class="col-12 my-3">

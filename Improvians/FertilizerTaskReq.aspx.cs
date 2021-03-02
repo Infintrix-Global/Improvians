@@ -248,7 +248,11 @@ namespace Improvians
 
             if (e.CommandName == "Job")
             {
-                Response.Redirect(String.Format("~/FerJobBuildUp.aspx?Bench={0}", e.CommandArgument.ToString()));
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+               string BatchLocation = gvFer.DataKeys[rowIndex].Values[0].ToString();
+               string jobCode= gvFer.DataKeys[rowIndex].Values[1].ToString();
+
+                Response.Redirect(String.Format("~/FerJobBuildUp.aspx?Bench={0}&jobCode={1}", BatchLocation, jobCode));
             }
          }
 
