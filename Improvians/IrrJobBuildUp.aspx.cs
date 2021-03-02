@@ -49,6 +49,21 @@ namespace Improvians
             }
         }
 
+        private string Jid
+        {
+            get
+            {
+                if (ViewState["Jid"] != null)
+                {
+                    return (string)ViewState["Jid"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Jid"] = value;
+            }
+        }
 
 
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,7 +117,7 @@ namespace Improvians
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-            
+
 
             }
             else if (RadioBench.SelectedValue == "3")
@@ -305,15 +320,17 @@ namespace Improvians
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", "0");
             nv.Add("@BenchLocation", Bench);
-           
+
             dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
             int tray = 0;
+
+            Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
-                    tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
-               
+                tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
+
             }
         }
 
@@ -354,7 +371,7 @@ namespace Improvians
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetIrrigationRequestSelect", nv);
             DataTable dtManual = objFer.GetManualFertilizerRequestSelect("", BenchLoc, "");
-         
+
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -376,38 +393,42 @@ namespace Improvians
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-               
 
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
 
-                    //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
-                    nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                    nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
-                    // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
-                    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                    nv.Add("@IrrigationDuration", "");
-                    nv.Add("@SprayDate", txtSprayDate.Text.Trim());
-                    nv.Add("@SprayTime", "");
-                    nv.Add("@Nots", txtNotes.Text.Trim());
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@NoOfPasses", "");
+                long result = 0;
+                long Mresult = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
 
-                    result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
-                    if (result > 0)
-                    {
-                        // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
+                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
+                // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
+                nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
+                nv.Add("@IrrigationDuration", "");
+                nv.Add("@SprayDate", txtSprayDate.Text.Trim());
+                nv.Add("@SprayTime", "");
+                nv.Add("@Nots", txtNotes.Text.Trim());
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@NoOfPasses", "");
 
-                    }
-                    else
-                    {
-                      //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                        //  lblmsg.Text = "Assignment Not Successful";
-                    }
-               
+                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
+                NameValueCollection nv123 = new NameValueCollection();
+                nv123.Add("@Jid", Jid);
+                Mresult = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestMenualUpdate", nv123);
+                if (result > 0)
+                {
+                    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
+                }
+                else
+                {
+                    //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                    //  lblmsg.Text = "Assignment Not Successful";
+                }
+
                 //}
             }
             foreach (GridViewRow row in gvJobHistory.Rows)

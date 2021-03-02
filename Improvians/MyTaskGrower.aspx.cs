@@ -42,6 +42,8 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long _isInserted = 1;
+            long _isIGCodeInserted = 1;
+            long _isFCdeInserted = 1;
             int SelectedItems = 0;
 
             NameValueCollection nv1 = new NameValueCollection();
@@ -56,7 +58,7 @@ namespace Improvians
             //  DGJob.DataBind();
             for (int i = 0; i < AllData.Rows.Count; i++)
             {
-
+                
                 string GreenHouseID = (AllData.Rows[i]["GreenHouseID"].ToString());
                 string FacilityID = (AllData.Rows[i]["FacilityID"].ToString());
                 string jobcode = (AllData.Rows[i]["jobcode"].ToString());
@@ -85,14 +87,7 @@ namespace Improvians
 
 
                 DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", GenusCode, Trays);
-                int FertilizationCode = 0;
-                DataTable dtFCode = new DataTable();
-                NameValueCollection nvFCode1 = new NameValueCollection();
-                nvFCode1.Add("@Mode", "12");
-                dtFCode = objCommon.GetDataTable("GET_Common", nvFCode1);
-
-                FertilizationCode = Convert.ToInt32(dtFCode.Rows[0]["FCode"]);
-
+              
                 if (dtFez != null && dtFez.Rows.Count > 0)
                 {
 
@@ -105,28 +100,52 @@ namespace Improvians
                         FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(row[col]))).ToString();
                         NameValueCollection nv11 = new NameValueCollection();
 
-                        nv11.Add("@ManualID", _isInserted.ToString());
-                        nv11.Add("@Type", "FERTILIZE");
-                        nv11.Add("@FertilizationDate", FertilizationDate);
-                        nv11.Add("@FertilizationCode", FertilizationCode.ToString());
+                        //nv11.Add("@ManualID", _isInserted.ToString());
+                        //nv11.Add("@Type", "FERTILIZE");
+                        //nv11.Add("@FertilizationDate", FertilizationDate);
+                        //nv11.Add("@FertilizationCode", FertilizationCode.ToString());
+                        //nv11.Add("@GreenHouseID", GreenHouseID);
+                        nv11.Add("@GrowerPutAwayId", "");
+                        nv11.Add("@wo", "");
+                        nv11.Add("@Jid", _isInserted.ToString());
+                        nv11.Add("@jobcode", jobcode);
+                        nv11.Add("@FacilityID", FacilityID);
                         nv11.Add("@GreenHouseID", GreenHouseID);
+                        nv11.Add("@Trays", Trays);
 
-                        _isInserted = objCommon.GetDataExecuteScaler("SP_AddFertilizationRequestManualNavision", nv11);
+                        nv11.Add("@SeedDate", seeddate);
+                        nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                        nv11.Add("@Supervisor", "0");
+                        nv11.Add("@IrrigateSeedDate", "");
+                        nv11.Add("@FertilizeSeedDate", FertilizationDate);
+
+
+                        _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv11);
                     }
 
                 }
                 else
                 {
-                    string IrrigateSeedDate = string.Empty;
-                    IrrigateSeedDate = seeddate;
+                   
                     NameValueCollection nv111 = new NameValueCollection();
 
-                    nv111.Add("@ManualID", _isInserted.ToString());
-                    nv111.Add("@Type", "FERTILIZE");
-                    nv111.Add("@FertilizationDate", IrrigateSeedDate);
-                    nv111.Add("@FertilizationCode", FertilizationCode.ToString());
+                   
+                    nv111.Add("@GrowerPutAwayId", "");
+                    nv111.Add("@wo", "");
+                    nv111.Add("@Jid", _isInserted.ToString());
+                    nv111.Add("@jobcode", jobcode);
+                    nv111.Add("@FacilityID", FacilityID);
                     nv111.Add("@GreenHouseID", GreenHouseID);
-                    _isInserted = objCommon.GetDataExecuteScaler("SP_AddFertilizationRequestManualNavision", nv111);
+                    nv111.Add("@Trays", Trays);
+
+                    nv111.Add("@SeedDate", seeddate);
+                    nv111.Add("@CreateBy", Session["LoginID"].ToString());
+                    nv111.Add("@Supervisor", "0");
+                    nv111.Add("@IrrigateSeedDate", "");
+                    nv111.Add("@FertilizeSeedDate", seeddate);
+                    nv111.Add("@ID", "");
+
+                    _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv111);
                 }
 
                 DataTable dtISD = objSP.GetSeedDateDatanew("IRRIGATE", GenusCode, Trays);
@@ -150,13 +169,25 @@ namespace Improvians
                         IrrigateDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(row[col]))).ToString();
                         NameValueCollection nv11 = new NameValueCollection();
 
-                        nv11.Add("@ManualID", _isInserted.ToString());
-
-                        nv11.Add("@SprayDate", IrrigateDate);
-                        nv11.Add("@IrrigationCode", IrrigateCode.ToString());
+                        nv11.Add("@GrowerPutAwayIrrigatId", "");
+                        nv11.Add("@wo", "");
+                        nv11.Add("@Jid", _isInserted.ToString());
+                        nv11.Add("@jobcode", jobcode);
+                        nv11.Add("@FacilityID", FacilityID);
                         nv11.Add("@GreenHouseID", GreenHouseID);
+                        nv11.Add("@Trays", Trays);
 
-                        _isInserted = objCommon.GetDataExecuteScaler("SP_AddFertilizationRequestManualNavision", nv11);
+                        nv11.Add("@SeedDate", seeddate);
+                        nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                        nv11.Add("@Supervisor", "0");
+                        nv11.Add("@IrrigateSeedDate", IrrigateDate);
+                        nv11.Add("@FertilizeSeedDate", "");
+                        nv11.Add("@ID", "");
+
+
+
+
+                        _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsIrrigationMenual", nv11);
                     }
 
                 }
@@ -165,13 +196,21 @@ namespace Improvians
                     string IrrigateSeedDate = string.Empty;
                     IrrigateSeedDate = seeddate;
                     NameValueCollection nv111 = new NameValueCollection();
-
-                    nv111.Add("@ManualID", _isInserted.ToString());
-
-                    nv111.Add("@SprayDate", IrrigateSeedDate);
-                    nv111.Add("@IrrigationCode", IrrigateCode.ToString());
+                    nv111.Add("@GrowerPutAwayIrrigatId", "");
+                    nv111.Add("@wo", "");
+                    nv111.Add("@Jid", _isInserted.ToString());
+                    nv111.Add("@jobcode", jobcode);
+                    nv111.Add("@FacilityID", FacilityID);
                     nv111.Add("@GreenHouseID", GreenHouseID);
-                    _isInserted = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestRequestManualNavision", nv111);
+                    nv111.Add("@Trays", Trays);
+
+                    nv111.Add("@SeedDate", seeddate);
+                    nv111.Add("@CreateBy", Session["LoginID"].ToString());
+                    nv111.Add("@Supervisor", "0");
+                    nv111.Add("@IrrigateSeedDate", seeddate);
+                    nv111.Add("@FertilizeSeedDate", "");
+                    nv111.Add("@ID", "");
+                    _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsIrrigationMenual", nv111);
                 }
 
 

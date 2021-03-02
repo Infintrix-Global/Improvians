@@ -71,7 +71,21 @@ namespace Improvians
                 ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
             }
         }
-
+        private string Jid
+        {
+            get
+            {
+                if (ViewState["Jid"] != null)
+                {
+                    return (string)ViewState["Jid"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Jid"] = value;
+            }
+        }
 
         private string Bench
         {
@@ -108,30 +122,36 @@ namespace Improvians
                 YourString = YourString.Remove(YourString.Length - 1);
 
                 DataTable dt12 = objFer.GetSelectBench(YourString);
-
-                lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
-
-
-                if (dt12.Rows.Count > 0)
+                if (dt12 != null && dt12.Rows.Count > 0)
                 {
-                    DataColumn col = dt12.Columns["PositionCode"];
-                    foreach (DataRow row in dt12.Rows)
+                    lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
+
+
+                    if (dt12 !=null && dt12.Rows.Count > 0)
                     {
-                        //strJsonData = row[col].ToString();
+                        DataColumn col = dt12.Columns["PositionCode"];
+                        foreach (DataRow row in dt12.Rows)
+                        {
+                            //strJsonData = row[col].ToString();
 
-                        P1 = 1;
-                        Q1 += "'" + row[col].ToString() + "',";
+                            P1 = 1;
+                            Q1 += "'" + row[col].ToString() + "',";
+                        }
                     }
-                }
 
-                if (P1 > 0)
-                {
-                    chkSelected = Q1.Remove(Q1.Length - 1, 1);
+                    if (P1 > 0)
+                    {
+                        chkSelected = Q1.Remove(Q1.Length - 1, 1);
 
-                }
-                else
-                {
+                    }
+                    else
+                    {
 
+                    }
+                    DataTable dt123 = new DataTable();
+                    gvJobHistory.DataSource = dt123;
+                    gvJobHistory.DataBind();
+                    BindGridFerDetails(chkSelected);
                 }
             }
             else if (RadioBench.SelectedValue == "2")
@@ -140,8 +160,7 @@ namespace Improvians
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-                gvJobHistory.DataSource = null;
-                gvJobHistory.DataBind();
+             
 
             }
             else if (RadioBench.SelectedValue == "3")
@@ -156,7 +175,7 @@ namespace Improvians
 
                 DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
 
-                if (dt.Rows.Count > 0)
+                if (dt !=null && dt.Rows.Count > 0)
                 {
                     DataColumn col = dt.Columns["PositionCode"];
                     foreach (DataRow row in dt.Rows)
@@ -177,15 +196,16 @@ namespace Improvians
                 {
 
                 }
+                DataTable dt123 = new DataTable();
+                gvJobHistory.DataSource = dt123;
+                gvJobHistory.DataBind();
+                BindGridFerDetails(chkSelected);
             }
             else
             {
 
             }
-            DataTable dt123 = new DataTable();
-            gvJobHistory.DataSource = dt123;
-            gvJobHistory.DataBind();
-            BindGridFerDetails(chkSelected);
+          
 
         }
 
@@ -315,12 +335,14 @@ namespace Improvians
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
-            int tray = 0;
+            Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
+
+            decimal tray = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
+                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
                 //}
 
             }
@@ -370,6 +392,7 @@ namespace Improvians
                 //{
 
                 long result = 0;
+                long Mresult = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                 nv.Add("@Type", radtype.SelectedValue);
@@ -381,7 +404,9 @@ namespace Improvians
                 nv.Add("@FertilizationDate", txtDate.Text);
 
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
-
+                NameValueCollection nv123 = new NameValueCollection();
+                nv123.Add("@Jid",Jid);
+                Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
                 //  }
 
             }
