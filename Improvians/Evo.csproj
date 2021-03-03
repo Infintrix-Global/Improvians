@@ -198,7 +198,6 @@
     <Content Include="MoveReqAsssignment.aspx" />
     <Content Include="MovesReqManual.aspx" />
     <Content Include="FertilizerReqManual.aspx" />
-    <Content Include="FertilizerTaskAssignmentaspx.aspx" />
     <Content Include="FertilizerTaskReq.aspx" />
     <Content Include="fonts\icons\rxicons.svg" />
     <Content Include="GerminationAssignmentForm.aspx" />
@@ -310,7 +309,6 @@
     <Content Include="PlantReadyTaskCompletion.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="PutAwayTaskCompletion.aspx" />
-    <Content Include="ResetData.aspx" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
     <Content Include="SeedingPlanForm.aspx" />
     <Content Include="SeedLineCompletionFinal.aspx" />
@@ -319,10 +317,8 @@
     <Content Include="SprayTaskReq.aspx" />
     <Content Include="SprayTaskRequest.aspx" />
     <Content Include="SprayTaskViewDetails.aspx" />
-    <Content Include="temp.aspx" />
     <Content Include="TrackTaskSeedlinePlanner.aspx" />
     <Content Include="Web.config" />
-    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AddEmployee.aspx.cs">
@@ -431,13 +427,6 @@
     </Compile>
     <Compile Include="FertilizerReqManual.aspx.designer.cs">
       <DependentUpon>FertilizerReqManual.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FertilizerTaskAssignmentaspx.aspx.cs">
-      <DependentUpon>FertilizerTaskAssignmentaspx.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FertilizerTaskAssignmentaspx.aspx.designer.cs">
-      <DependentUpon>FertilizerTaskAssignmentaspx.aspx</DependentUpon>
     </Compile>
     <Compile Include="FertilizerTaskReq.aspx.cs">
       <DependentUpon>FertilizerTaskReq.aspx</DependentUpon>
@@ -727,13 +716,6 @@
     <Compile Include="PutAwayTaskCompletion.aspx.designer.cs">
       <DependentUpon>PutAwayTaskCompletion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ResetData.aspx.cs">
-      <DependentUpon>ResetData.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ResetData.aspx.designer.cs">
-      <DependentUpon>ResetData.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SeedingPlan\SeedingPlanForm.aspx.cs">
       <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -790,26 +772,12 @@
     <Compile Include="SprayTaskViewDetails.aspx.designer.cs">
       <DependentUpon>SprayTaskViewDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="temp.aspx.cs">
-      <DependentUpon>temp.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="temp.aspx.designer.cs">
-      <DependentUpon>temp.aspx</DependentUpon>
-    </Compile>
     <Compile Include="TrackTaskSeedlinePlanner.aspx.cs">
       <DependentUpon>TrackTaskSeedlinePlanner.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TrackTaskSeedlinePlanner.aspx.designer.cs">
       <DependentUpon>TrackTaskSeedlinePlanner.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
