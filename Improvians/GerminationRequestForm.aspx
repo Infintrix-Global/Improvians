@@ -46,13 +46,14 @@
                 </div>
 
                 <div class="col-lg-2">
-                    <label>Germination Count Typ </label>
+                    <label>Germination Count Type </label>
                     <asp:DropDownList ID="RadioButtonListGno" runat="server" OnSelectedIndexChanged="RadioButtonListF_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
 
 
                         <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
                         <asp:ListItem Text="Germination 1" Value="Germination 1"></asp:ListItem>
                         <asp:ListItem Text="Germination 2" Value="Germination 2"></asp:ListItem>
+                        <asp:ListItem Text="Crop Health" Value="Crop Health"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
