@@ -19,6 +19,12 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
+                string Fdate = "", TDate = "";
+                Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(7).ToString("yyyy-MM-dd");
+               
+                txtFromDate.Text = Fdate;
+                txtToDate.Text = TDate;
                 Bindcname();
 
                 BindFacility();
@@ -49,11 +55,15 @@ namespace Improvians
 
         public void BindJobCode(string ddlBench)
         {
+          
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
+          
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlJobNo.Items[0].Selected = false;
+            ddlJobNo.ClearSelection();
         }
 
         public void BindFacility()
@@ -63,22 +73,26 @@ namespace Improvians
             ddlFacility.DataValueField = "l1";
             ddlFacility.DataBind();
             ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-            BindBenchLocation("");
+         
         }
 
         public void BindBenchLocation(string ddlMain)
         {
+          
             ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
             ddlBenchLocation.DataTextField = "p2";
             ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlBenchLocation.Items[0].Selected = false;
+            ddlBenchLocation.ClearSelection();
+           
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindBenchLocation(ddlFacility.SelectedValue);
-            //BindGridFerReq();
+            BindGridGerm();
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -359,15 +373,15 @@ namespace Improvians
 
         protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
 
-            //    Label lblsource = (Label)e.Row.FindControl("lblsource");
-            //    if(lblsource.Text== "Automatic")
-            //    {
-            //        lblsource.Text = "App";
-            //    }
-            //}
+                Label lblsource = (Label)e.Row.FindControl("lblsource");
+                if (lblsource.Text == "Manual")
+                {
+                    lblsource.Text = "Navision";
+                }
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

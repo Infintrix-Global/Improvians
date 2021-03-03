@@ -24,7 +24,12 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
+                string Fdate = "", TDate = "";
+                Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(7).ToString("yyyy-MM-dd");
 
+                txtFromDate.Text = Fdate;
+                txtToDate.Text = TDate;
                 BindSupervisor();
                 BindFertilizer();
                 BindUnit();
@@ -61,6 +66,8 @@ namespace Improvians
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlJobNo.Items[0].Selected = false;
+            ddlJobNo.ClearSelection();
         }
 
         public void BindFacility()
@@ -80,12 +87,14 @@ namespace Improvians
             ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlBenchLocation.Items[0].Selected = false;
+            ddlBenchLocation.ClearSelection();
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindBenchLocation(ddlFacility.SelectedValue);
-            //BindGridFerReq();
+            BindGridFerReq();
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -468,6 +477,21 @@ namespace Improvians
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridFerReq();
+        }
+
+     
+
+        protected void gvFer_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblsource = (Label)e.Row.FindControl("lblsource");
+                if (lblsource.Text == "Manual")
+                {
+                    lblsource.Text = "Navision";
+                }
+            }
         }
     }
 }

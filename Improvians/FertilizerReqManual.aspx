@@ -118,10 +118,10 @@
                     <div class="portlet light ">
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
-                            <div class="data__table">
-                                <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="10"
-                                    GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
+                            <div class="data__table data__table-height">
+                                <asp:GridView ID="gvFer" runat="server" AutoGenerateColumns="False"
+                                    class="striped" AllowSorting="true"
+                                    GridLines="None" OnRowCommand="gvFer_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
 

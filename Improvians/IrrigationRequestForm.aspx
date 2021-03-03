@@ -45,7 +45,7 @@
                     <label>Job Source </label>
                     <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                         <asp:ListItem Text="---Select---" Value="0"></asp:ListItem>
-                        <asp:ListItem Text="Manual" Value="Manual"></asp:ListItem>
+                        <asp:ListItem Text="Navision" Value="Manual"></asp:ListItem>
                         <asp:ListItem Text="App" Value="App"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
@@ -72,7 +72,7 @@
             <br />
 
             <div class="data__table">
-                <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="GridIrrigation_RowDataBound"
                     class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="GridIrrigation_PageIndexChanging"
                     GridLines="None" OnRowCommand="GridIrrigation_RowCommand" DataKeyNames="GreenHouseID,jobcode,GrowerPutAwayId"
                     ShowHeaderWhenEmpty="True" Width="100%">

@@ -83,7 +83,7 @@ namespace Improvians.Bal
             try
             {
                 // strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '"+ MainLocation + "'";
-                strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '" + MainLocation + "'  AND s.[Position Code] Not in ('" + MainLocation + "') ";
+                strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Location Code] = '" + MainLocation + "'  AND s.[Position Code] Not in ('" + MainLocation + "') ";
 
                
               dt = objGeneral.GetDatasetByCommand(strQuery);
