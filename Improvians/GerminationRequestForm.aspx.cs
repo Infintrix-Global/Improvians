@@ -381,7 +381,8 @@ namespace Improvians
                 {
                     lblsource.Text = "Navision";
                 }
-
+                HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
+                lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text;
             }
         }
 

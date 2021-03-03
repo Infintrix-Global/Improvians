@@ -139,7 +139,7 @@
                                                 <asp:Label ID="lblGrowerID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>' Visible="false"></asp:Label>
-                                                <asp:HyperLink ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>' NavigateUrl='~/JobReports.aspx?JobCode=<%# Eval("jobcode")  %>' ></asp:HyperLink>
+                                                <asp:HyperLink ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'  ></asp:HyperLink>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
