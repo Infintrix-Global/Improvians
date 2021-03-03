@@ -36,6 +36,9 @@ namespace Improvians
             lblFer.Text = dt.Tables[2].Rows.Count.ToString();
             lblIrr.Text = dt.Tables[3].Rows.Count.ToString();
             lblpr.Text = dt.Tables[4].Rows.Count.ToString();
+            lblCropHealthReport.Text = dt.Tables[6].Rows.Count.ToString();
+
+          
             //lnkMove.Text = dt.Tables[5].Rows.Count.ToString();
         }
 
@@ -87,7 +90,7 @@ namespace Improvians
                 _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
 
 
-                DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", GenusCode, Trays);
+                DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);
 
                 if (dtFez != null && dtFez.Rows.Count > 0)
                 {
@@ -153,7 +156,7 @@ namespace Improvians
                     _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv111);
                 }
 
-                DataTable dtISD = objSP.GetSeedDateDatanew("IRRIGATE", GenusCode, Trays);
+                DataTable dtISD = objSP.GetSeedDateDatanew("IRRIGATE", GenusCode, TraySize);
 
                 int IrrigateCode = 0;
                 DataTable dtIG = new DataTable();

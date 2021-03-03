@@ -185,6 +185,7 @@
     <Content Include="Admin\ViewEmployee.aspx" />
     <Content Include="bin\ajaxcontroltoolkit.dll" />
     <Content Include="bin\itextsharp.dll" />
+    <Content Include="CropHealthDetails.aspx" />
     <Content Include="CropHealthReport.aspx" />
     <Content Include="css\all.min.css" />
     <Content Include="css\aos.css" />
@@ -379,6 +380,13 @@
     <Compile Include="BAL_Classes\RandomImage.cs" />
     <Compile Include="CommonControl.cs" />
     <Compile Include="CommonControlNavision.cs" />
+    <Compile Include="CropHealthDetails.aspx.cs">
+      <DependentUpon>CropHealthDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CropHealthDetails.aspx.designer.cs">
+      <DependentUpon>CropHealthDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CropHealthReport.aspx.cs">
       <DependentUpon>CropHealthReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

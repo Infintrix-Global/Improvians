@@ -413,11 +413,7 @@ namespace Improvians
             }
         }
 
-        protected void gvFer_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvFer.PageIndex = e.NewPageIndex;
-          //  BindGridFerReq();
-        }
+      
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {

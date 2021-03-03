@@ -61,11 +61,14 @@
                         <p>Review and assign irrigation tasks to Greenhouse Supervisor</p>
                     </div>
                 </a>
-                <a class="dashboard__box" href="CropHealthReport.aspx">
+                <a class="dashboard__box" href="CropHealthDetails.aspx">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_crop-health-report.png" width="137" height="131" alt="Crop Health Report" />
                     </div>
                     <div class="dashboard__box-desc">
+                          <div class="dashboard__box-count dash_blue_txt robotobold">
+                            <asp:Label ID="lblCropHealthReport" runat="server" Text="0"></asp:Label>
+                        </div>
                         <h3 class="dashboard__box-title robotomd">Crop Health Report</h3>
                         <p>Assign Crop Health Report Request</p>
                     </div>

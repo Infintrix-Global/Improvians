@@ -57,6 +57,21 @@ namespace Improvians
             }
         }
 
+        private string TraySize
+        {
+            get
+            {
+                if (ViewState["TraySize"] != null)
+                {
+                    return (string)ViewState["TraySize"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TraySize"] = value;
+            }
+        }
 
         public void BindSupervisorList()
         {
@@ -126,6 +141,7 @@ namespace Improvians
                     lblSeededTrays.Text = dt.Rows[0]["ActualTraySeeded"].ToString();
                     PutAwayFacility = dt.Rows[0]["loc_seedline"].ToString();
                     lblGenusCode.Text= dt.Rows[0]["GenusCode"].ToString();
+                    TraySize = dt.Rows[0]["TraySize"].ToString();
                 }
 
                 AddGrowerPutRow(true);
@@ -312,8 +328,8 @@ namespace Improvians
 
                 // IrrigateSeedDate 
 
-                DataTable dtISD = objSP.GetSeedDateData("IRRIGATE",lblGenusCode.Text, lblSeededTrays.Text);
-                DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, lblSeededTrays.Text);
+                DataTable dtISD = objSP.GetSeedDateData("IRRIGATE",lblGenusCode.Text, TraySize);
+                DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, TraySize);
 
                 if (dtISD != null && dtISD.Rows.Count > 0)
                 {
