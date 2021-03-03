@@ -53,6 +53,7 @@
                         <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
                         <asp:ListItem Text="Germination 1" Value="Germination 1"></asp:ListItem>
                         <asp:ListItem Text="Germination 2" Value="Germination 2"></asp:ListItem>
+                        <asp:ListItem Text="Crop Health" Value="Crop Health"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
