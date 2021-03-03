@@ -15,7 +15,7 @@
             <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
 
-            <div class="filter__row d-flex">
+          
                 <div class="row">
                     <div class="col-lg-3">
                         <label>Facility Location</label>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-lg-3">
                         <label>Bench Location </label>
-                      
+
                         <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         <span class="error_message">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
@@ -42,26 +42,41 @@
                         <label>Customer </label>
                         <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
+                    
+                  
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Job Source </label>
+                        <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                            <asp:ListItem Text="---Select---" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Manual" Value="Manual"></asp:ListItem>
+                            <asp:ListItem Text="App" Value="App"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>From Date</label>
+                        <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>To Date </label>
+                        <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                    </div>
+                    <div class="col-lg-4">
+                        <br />
+                           <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click1" />
+                        <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
 
-            <div class="row">
-                <div class="col-lg-3">
-                </div>
-                <div class="col-lg-3">
-                </div>
-                <div class="col-lg-2">
-                </div>
-                <div class="col m3">
-                    <%--  <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />--%>
-                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+                        <%--<asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />--%>
+                        <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                        <%-- <asp:Button ID="btnJob" runat="server" Text="JobBuildUp" CssClass="bttn bttn-primary bttn-action" OnClick="btnJob_Click" />--%>
+                    </div>
+                  
 
-                    <%--<asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />--%>
-                    <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
-                    <%-- <asp:Button ID="btnJob" runat="server" Text="JobBuildUp" CssClass="bttn bttn-primary bttn-action" OnClick="btnJob_Click" />--%>
                 </div>
+            
 
-            </div>
+
 
             <div class="row">
                 <div class=" col m12">
@@ -218,7 +233,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                           <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label19" runat="server" Text='<%# Eval("FertilizeSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -229,7 +244,11 @@
                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
+                                          <asp:TemplateField HeaderText="Job source" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblsource" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Job Build Up" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>

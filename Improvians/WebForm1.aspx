@@ -10,6 +10,9 @@
     <form id="form1" runat="server">
         <div>
             <asp:TextBox ID="TextBox1" ForeColor="Green" runat="server"></asp:TextBox>
+            <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:ListItem Value="" Text=""></asp:ListItem>
+            </asp:DropDownList>
         </div>
     </form>
 </body>

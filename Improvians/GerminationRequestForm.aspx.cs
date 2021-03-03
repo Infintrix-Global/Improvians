@@ -96,7 +96,15 @@ namespace Improvians
         {
             BindGridGerm();
         }
+        protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
 
+        protected void RadioButtonListF_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
 
         public void BindGridGerm()
         {
@@ -108,6 +116,10 @@ namespace Improvians
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@Week", radweek.SelectedValue);
             nv.Add("@Status", radStatus.SelectedValue);
+            nv.Add("@Jobsource", RadioButtonListSourse.SelectedValue);
+            nv.Add("@GermNo", RadioButtonListGno.SelectedValue);
+            nv.Add("@FromDate",txtFromDate.Text);
+            nv.Add("@ToDate",txtToDate.Text);
             dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
 
             gvGerm.DataSource = dt;
@@ -194,7 +206,7 @@ namespace Improvians
                 lblGermNo.Text = (row.FindControl("lblGermNo") as Label).Text;
 
                 DateTime Germdt = DateTime.ParseExact((row.FindControl("lblGermDate") as Label).Text, "MM-dd-yyyy", CultureInfo.InvariantCulture);
-                lblOldDate.Text =  Germdt.ToString();
+                lblOldDate.Text = Germdt.ToString();
                 txtNewDate.Text = Germdt.ToString("yyyy-MM-dd");
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
@@ -212,7 +224,7 @@ namespace Improvians
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@GTID", GTID.ToString());
             nv.Add("@GermDate", txtNewDate.Text);
-            if (radReschedule.SelectedValue == "2" && lblGermNo.Text =="Germination 1")
+            if (radReschedule.SelectedValue == "2" && lblGermNo.Text == "Germination 1")
             {
                 double diff = (Convert.ToDateTime(txtNewDate.Text) - Convert.ToDateTime(lblOldDate.Text)).TotalDays;
                 nv.Add("@diff", diff.ToString());
@@ -317,7 +329,7 @@ namespace Improvians
             Response.Redirect("~/GerminationRequestManual.aspx");
         }
 
-       
+
 
         protected void radStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -329,6 +341,13 @@ namespace Improvians
             radStatus.SelectedValue = null;
             radweek.SelectedValue = null;
 
+            RadioButtonListSourse.Items[0].Selected = false;
+
+
+            RadioButtonListSourse.ClearSelection();
+            RadioButtonListGno.Items[0].Selected = false;
+
+            RadioButtonListGno.ClearSelection();
             Bindcname();
 
             BindFacility();
@@ -338,6 +357,22 @@ namespace Improvians
 
         }
 
-      
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+
+            //    Label lblsource = (Label)e.Row.FindControl("lblsource");
+            //    if(lblsource.Text== "Automatic")
+            //    {
+            //        lblsource.Text = "App";
+            //    }
+            //}
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
     }
 }

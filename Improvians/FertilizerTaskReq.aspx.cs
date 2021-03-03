@@ -112,6 +112,9 @@ namespace Improvians
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@RequestType", RadioButtonListSourse.SelectedValue);
+            nv.Add("@FromDate", txtFromDate.Text);
+            nv.Add("@ToDate", txtToDate.Text);
 
             //int c = 0;
             //string x = "";
@@ -426,6 +429,10 @@ namespace Improvians
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+            RadioButtonListSourse.Items[0].Selected = false;
+
+
+            RadioButtonListSourse.ClearSelection();
             Bindcname();
             BindFacility();
             BindBenchLocation(ddlFacility.SelectedValue);
@@ -451,6 +458,16 @@ namespace Improvians
             //{
             //    gvJobHistory.Visible = true;
             //}
+        }
+
+        protected void btnSearch_Click1(object sender, EventArgs e)
+        {
+            BindGridFerReq();
+        }
+
+        protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Improvians
             if (!IsPostBack)
             {
                 Bindcname();
-               
+
                 BindFacility();
                 BindBenchLocation(ddlFacility.SelectedValue);
                 BindJobCode(ddlBenchLocation.SelectedValue);
@@ -126,7 +126,10 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@RequestType", RadioButtonListSourse.SelectedValue);
+            nv.Add("@FromDate", txtFromDate.Text);
+            nv.Add("@ToDate", txtToDate.Text);
             //int c = 0;
             //string x = "";
             //foreach (RepeaterItem item in repBench.Items)
@@ -153,7 +156,7 @@ namespace Improvians
             GridIrrigation.DataBind();
         }
 
-     
+
         public void BindSupervisorList()
         {
             //NameValueCollection nv = new NameValueCollection();
@@ -184,11 +187,15 @@ namespace Improvians
             }
         }
 
-     
 
-       
+
+
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
+            RadioButtonListSourse.Items[0].Selected = false;
+
+
+            RadioButtonListSourse.ClearSelection();
             Bindcname();
             BindFacility();
             BindBenchLocation(ddlFacility.SelectedValue);
@@ -216,12 +223,12 @@ namespace Improvians
                 //  lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
 
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-             //  lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
-              // lblGrowerID.Text= GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
+                //  lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
+                // lblGrowerID.Text= GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
 
 
                 txtNotes.Focus();
-                
+
             }
 
             if (e.CommandName == "Job")
@@ -255,7 +262,7 @@ namespace Improvians
                     //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
-                   // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
+                    // nv.Add("@IrrigatedNoTrays", txtIrrigatedNoTrays.Text.Trim());
                     nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
                     nv.Add("@IrrigationDuration", "");
                     nv.Add("@SprayDate", txtSprayDate.Text.Trim());
@@ -263,13 +270,13 @@ namespace Improvians
                     nv.Add("@Nots", txtNotes.Text.Trim());
                     nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@NoOfPasses","");
+                    nv.Add("@NoOfPasses", "");
 
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
                     if (result > 0)
                     {
                         // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                        
+
                     }
                     else
                     {
@@ -297,10 +304,10 @@ namespace Improvians
             ddlSupervisor.SelectedIndex = 0;
             txtWaterRequired.Text = "";
             txtNotes.Text = "";
-          //  txtIrrigatedNoTrays.Text = "";
+            //  txtIrrigatedNoTrays.Text = "";
             //txtIrrigationDuration.Text = "";
             txtSprayDate.Text = "";
-           // txtSprayTime.Text = "";
+            // txtSprayTime.Text = "";
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -328,7 +335,7 @@ namespace Improvians
                 }
 
             }
-         //   txtIrrigatedNoTrays.Text = tray.ToString();
+            //   txtIrrigatedNoTrays.Text = tray.ToString();
 
 
         }
@@ -356,8 +363,14 @@ namespace Improvians
             Response.Redirect("~/IrrigationReqManual.aspx");
         }
 
+        protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
 
-
-      
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindGridIrrigation();
+        }
     }
 }
