@@ -22,7 +22,7 @@ namespace Improvians
                 string Fdate = "", TDate = "";
                 Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(7).ToString("yyyy-MM-dd");
-               
+
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
                 Bindcname();
@@ -55,12 +55,12 @@ namespace Improvians
 
         public void BindJobCode(string ddlBench)
         {
-          
+
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
-          
+
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
             ddlJobNo.Items[0].Selected = false;
             ddlJobNo.ClearSelection();
@@ -73,12 +73,12 @@ namespace Improvians
             ddlFacility.DataValueField = "l1";
             ddlFacility.DataBind();
             ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-         
+
         }
 
         public void BindBenchLocation(string ddlMain)
         {
-          
+
             ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
             ddlBenchLocation.DataTextField = "p2";
             ddlBenchLocation.DataValueField = "p2";
@@ -86,7 +86,7 @@ namespace Improvians
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
             ddlBenchLocation.Items[0].Selected = false;
             ddlBenchLocation.ClearSelection();
-           
+
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,8 +132,8 @@ namespace Improvians
             nv.Add("@Status", radStatus.SelectedValue);
             nv.Add("@Jobsource", RadioButtonListSourse.SelectedValue);
             nv.Add("@GermNo", RadioButtonListGno.SelectedValue);
-            nv.Add("@FromDate",txtFromDate.Text);
-            nv.Add("@ToDate",txtToDate.Text);
+            nv.Add("@FromDate", txtFromDate.Text);
+            nv.Add("@ToDate", txtToDate.Text);
             dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
 
             gvGerm.DataSource = dt;
@@ -381,6 +381,7 @@ namespace Improvians
                 {
                     lblsource.Text = "Navision";
                 }
+
             }
         }
 

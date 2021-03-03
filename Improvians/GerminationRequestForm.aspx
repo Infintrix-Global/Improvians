@@ -139,6 +139,7 @@
                                                 <asp:Label ID="lblGrowerID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                                <asp:LinkButton ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'  ></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

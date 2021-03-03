@@ -147,7 +147,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="bttn d-flex align-items-center" title="Job Reports">
+                        <a href="JobReports.aspx" class="bttn d-flex align-items-center" title="Job Reports">
                             <span class="rxicon-icon-job-reports mr-2 "></span>
                             Job Reports
                         </a>

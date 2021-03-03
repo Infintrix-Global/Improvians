@@ -196,6 +196,7 @@
     <Content Include="images\dashboard_dump-request.png" />
     <Content Include="images\dashboard_general-task.png" />
     <Content Include="IrrigationTaskViewDetails.aspx" />
+    <Content Include="JobReports.aspx" />
     <Content Include="MoveReqAsssignment.aspx" />
     <Content Include="MovesReqManual.aspx" />
     <Content Include="FertilizerReqManual.aspx" />
@@ -414,6 +415,13 @@
     </Compile>
     <Compile Include="IrrigationTaskViewDetails.aspx.designer.cs">
       <DependentUpon>IrrigationTaskViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JobReports.aspx.cs">
+      <DependentUpon>JobReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JobReports.aspx.designer.cs">
+      <DependentUpon>JobReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="MoveReqAsssignment.aspx.cs">
       <DependentUpon>MoveReqAsssignment.aspx</DependentUpon>
