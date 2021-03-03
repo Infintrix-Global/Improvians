@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Improvians.Bal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -12,14 +13,15 @@ namespace Improvians
     public partial class GerminationRequestManual : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objBAL = new BAL_CommonMasters();
+
+        BAL_Fertilizer objFer = new BAL_Fertilizer();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Bindcname();
-                BindJobCode();
                 BindFacility();
-                BindBenchLocation();
                 BindGridGerm();
                 BindSupervisorList();
             }
@@ -43,52 +45,34 @@ namespace Improvians
         }
 
 
-        public void BindJobCode()
+        public void BindJobCode(string ddlBench)
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
         }
 
         public void BindFacility()
         {
 
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
+            ddlFacility.DataSource = objBAL.GetMainLocation();
+            ddlFacility.DataTextField = "l1";
+            ddlFacility.DataValueField = "l1";
             ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
+            BindBenchLocation("");
 
         }
 
-        public void BindBenchLocation()
+        public void BindBenchLocation(string ddlMain)
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "10");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlBenchLocation.DataSource = dt;
-            ddlBenchLocation.DataTextField = "GreenHouseID";
-            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataTextField = "p2";
+            ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
         }
 
 
@@ -104,6 +88,12 @@ namespace Improvians
             //nv.Add("@Week", radweek.SelectedValue);
             //nv.Add("@Status", radStatus.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetGerminationManualRequest", nv);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+            if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                dt.Merge(dtManual);
+                dt.AcceptChanges();
+            }
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -148,8 +138,8 @@ namespace Improvians
                 lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
                 lblGrowerID.Text = (row.FindControl("lblGrowerID") as Label).Text;
                 lblfacsupervisor.InnerText = "Assignment"; //+ facName;
-                                                                       // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
-                                                                       //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
+                                                           // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
+                                                           //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtDate.Focus();
             }
 
@@ -216,29 +206,37 @@ namespace Improvians
             BindGridGerm();
         }
 
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridGerm();
-        }
+
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridGerm();
         }
 
+
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindBenchLocation(ddlFacility.SelectedValue);
+
+        }
+
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm();
+
+            BindJobCode(ddlBenchLocation.SelectedValue);
+
+
         }
+
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-           
+
 
             Bindcname();
-            BindJobCode();
+          
             BindFacility();
-            BindBenchLocation();
+           
             BindGridGerm();
 
 

@@ -7,27 +7,33 @@
         <div class="site__container">
             <h2>Germination Count Task </h2>
 
-            <div class="row">
-                <div class="col m3">
-                    <label>Customer </label>
-                    <asp:DropDownList ID="ddlCustomer" runat="server" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-                <%-- <div class="col m3">
-                        <label>GreenHouse </label>
-                        <asp:DropDownList ID="ddlGreenhouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>--%>
-
-                <div class="col m3">
-                    <label>Job No </label>
-                    <asp:DropDownList ID="ddlJobNo" runat="server" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-                <div class="col m3">
-                    <label>Main Location </label>
-                    <asp:DropDownList ID="ddlFacility" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-                <div class="col m3">
-                    <label>Bench Location </label>
-                    <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+             <div class="filter__row d-flex">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>Facility Location</label><span style="color: red">*</span>
+                        <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
+                        <span class="error_message">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlFacility" ValidationGroup="x"
+                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </span>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Bench Location </label>
+                        <span style="color: red">*</span>
+                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <span class="error_message">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
+                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </span>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Job No </label>
+                        <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Customer </label>
+                        <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
                 </div>
             </div>
             <br />
