@@ -26,14 +26,32 @@ namespace Improvians
         {
             if (!IsPostBack)
             {
-              
-                //    BindUnit();
-              //  BindJobCode(ddlBenchLocation.SelectedValue);
-                Bindcname();
-                BindFacility();
+                if (Request.QueryString["Chid"] != null)
+                {
+                    Chid = Request.QueryString["Chid"].ToString();
+                    BindGridCropHealth();
+                    PanelView.Visible = true;
+                    PanelList.Visible = false;
+                }
+                else
+                {
+                    PanelView.Visible = false;
+                    PanelList.Visible = true;
+                    //    BindUnit();
+                    //  BindJobCode(ddlBenchLocation.SelectedValue);
+                    Bindcname();
+                    BindFacility();
+                    dtTrays.Clear();
+                }
+
+             
+
                
-                dtTrays.Clear();
             }
+
+
+
+
             if (Request.Browser.IsMobileDevice)
             {
                 divMobile.Visible = true;
@@ -44,6 +62,48 @@ namespace Improvians
             }
         }
 
+        private string Chid
+        {
+            get
+            {
+                if (ViewState["Chid"] != null)
+                {
+                    return (string)ViewState["Chid"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Chid"] = value;
+            }
+        }
+
+        public void BindGridCropHealth()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Chid", Chid); 
+             dt = objCommon.GetDataTable("SP_GetCropHealthReportSelectView", nv);
+
+            GridViewView.DataSource = dt;
+            GridViewView.DataBind();
+
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Chid", Chid);
+            dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
+
+            if(dt1 !=null && dt1.Rows.Count >0)
+            {
+                ddlpr.SelectedItem.Text = dt1.Rows[0]["typeofProblem"].ToString();
+                 DropDownListCause.SelectedItem.Text = dt1.Rows[0]["Causeofproblem"].ToString();
+                DropDownListSv.SelectedValue = dt1.Rows[0]["Severityofproblem"].ToString();
+                txtTrays.Text = dt1.Rows[0]["NoTrays"].ToString();
+                percentageDamage.Text = dt1.Rows[0]["PerDamage"].ToString();
+                txtDate.Text = Convert.ToDateTime(dt1.Rows[0]["Date"]).ToString("yyyy-MM-dd");
+            }
+
+        }
 
 
         public void BindGridFerReq(string BenchLoc)
@@ -182,7 +242,7 @@ namespace Improvians
             }
 
             string message = "Assignment Successful";
-            string url = "CropHealthReport.aspx";
+            string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";

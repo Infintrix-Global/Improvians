@@ -41,7 +41,7 @@
                             <div class="data__table data__table-height">
                                 <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" OnPageIndexChanging="gvCropHealth_PageIndexChanging"
-                                    GridLines="None"
+                                    GridLines="None" OnRowCommand="gvCropHealth_RowCommand" DataKeyNames="chid"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
 

@@ -49,5 +49,16 @@ namespace Improvians
             gvCropHealth.PageIndex = e.NewPageIndex;
             BindGridCropHealth();
         }
+
+        protected void gvCropHealth_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string Chid = gvCropHealth.DataKeys[rowIndex].Values[0].ToString();
+              
+                Response.Redirect(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
+            }
+        }
     }
 }
