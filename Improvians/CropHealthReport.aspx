@@ -165,7 +165,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <label>Type of problem</label><span style="color: red">*</span>
-                                <asp:DropDownList ID="ddlpr" runat="server" class="custom__dropdown robotomd" >
+                                <asp:DropDownList ID="ddlpr" runat="server" class="custom__dropdown robotomd">
                                     <asp:ListItem Value="0">Select</asp:ListItem>
                                     <asp:ListItem Value="1">Germination</asp:ListItem>
                                     <asp:ListItem Value="2">Irrigation</asp:ListItem>
@@ -180,7 +180,7 @@
 
                             <div class="col-lg-3">
                                 <label>Cause of problem</label><span style="color: red">*</span>
-                                <asp:DropDownList ID="DropDownListCause" runat="server" class="custom__dropdown robotomd" >
+                                <asp:DropDownList ID="DropDownListCause" runat="server" class="custom__dropdown robotomd">
                                     <asp:ListItem Value="0">Select</asp:ListItem>
                                     <asp:ListItem Value="1">Cause1</asp:ListItem>
                                     <asp:ListItem Value="2">Cause2</asp:ListItem>
@@ -195,7 +195,7 @@
 
                             <div class="col-lg-3">
                                 <label>Severity of problem</label><span style="color: red">*</span>
-                                <asp:DropDownList ID="DropDownListSv" runat="server" class="custom__dropdown robotomd" >
+                                <asp:DropDownList ID="DropDownListSv" runat="server" class="custom__dropdown robotomd">
                                     <asp:ListItem Value="0">Select</asp:ListItem>
                                     <asp:ListItem Value="1">1</asp:ListItem>
                                     <asp:ListItem Value="2">2</asp:ListItem>

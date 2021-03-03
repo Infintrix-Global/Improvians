@@ -353,7 +353,9 @@ namespace Improvians
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", "0");
             nv.Add("@BenchLocation", Bench);
-
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
             dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();

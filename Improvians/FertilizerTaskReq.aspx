@@ -50,7 +50,7 @@
                         <label>Job Source </label>
                         <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                             <asp:ListItem Text="---Select---" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Manual" Value="Manual"></asp:ListItem>
+                            <asp:ListItem Text="Navision" Value="Manual"></asp:ListItem>
                             <asp:ListItem Text="App" Value="App"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
@@ -170,7 +170,7 @@
                                     </EmptyDataTemplate>
                                 </asp:GridView>--%>
                                 <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode"
+                                    class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode" OnRowDataBound="gvFer_RowDataBound"
                                     GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
