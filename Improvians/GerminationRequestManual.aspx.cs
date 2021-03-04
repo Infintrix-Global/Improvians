@@ -51,7 +51,7 @@ namespace Improvians
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
         }
 
         public void BindFacility()
@@ -61,7 +61,7 @@ namespace Improvians
             ddlFacility.DataTextField = "l1";
             ddlFacility.DataValueField = "l1";
             ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
             BindBenchLocation("");
 
         }
@@ -72,7 +72,7 @@ namespace Improvians
             ddlBenchLocation.DataTextField = "p2";
             ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
         }
 
 
@@ -85,11 +85,10 @@ namespace Improvians
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-
             //nv.Add("@Week", radweek.SelectedValue);
             //nv.Add("@Status", radStatus.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetGerminationManualRequest", nv);
-            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(ddlFacility.SelectedValue, "'" + ddlBenchLocation.SelectedValue +"'", ddlJobNo.SelectedValue);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
