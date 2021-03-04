@@ -193,7 +193,9 @@
     <Content Include="css\custom.css" />
     <Content Include="DashBoard.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
+    <Content Include="images\dashboard_chemical.png" />
     <Content Include="images\dashboard_dump-request.png" />
+    <Content Include="images\dashboard_fertilization.png" />
     <Content Include="images\dashboard_fertilizer.png" />
     <Content Include="images\dashboard_general-task.png" />
     <Content Include="IrrigationTaskViewDetails.aspx" />
