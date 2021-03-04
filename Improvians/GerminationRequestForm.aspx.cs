@@ -219,7 +219,7 @@ namespace Improvians
                 lblRescheduleID.Text = (row.FindControl("lblID") as Label).Text;
                 lblGermNo.Text = (row.FindControl("lblGermNo") as Label).Text;
 
-                DateTime Germdt = DateTime.ParseExact((row.FindControl("lblGermDate") as Label).Text, "MM-dd-yyyy", CultureInfo.InvariantCulture);
+                DateTime Germdt = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text);
                 lblOldDate.Text = Germdt.ToString();
                 txtNewDate.Text = Germdt.ToString("yyyy-MM-dd");
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
