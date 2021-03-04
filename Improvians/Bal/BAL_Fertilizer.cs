@@ -79,7 +79,7 @@ namespace Improvians.Bal
             try
             {
                 strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno " +
-                            " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize,'' as SeededDate from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
+                            " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySizet,t.[Posting Date] as SeededDate from [GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
                 if (!string.IsNullOrEmpty(FacilityLocation))
                 {
                     strQuery += " and t.[Location Code] ='" + FacilityLocation + "'";
