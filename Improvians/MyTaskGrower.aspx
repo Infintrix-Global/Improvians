@@ -39,13 +39,25 @@
                 </a>
                 <a class="dashboard__box" href="FertilizerTaskReq.aspx">
                     <div class="dashboard__box-img">
-                        <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical" />
+                        <img src="./images/dashboard_fertilizer.png" width="137" height="136" alt="Fertilization" />
                     </div>
                     <div class="dashboard__box-desc">
                         <div class="dashboard__box-count dash_green_txt robotobold">
                             <asp:Label ID="lblFer" runat="server" Text="0"></asp:Label>
                         </div>
-                        <h3 class="dashboard__box-title robotomd">Fertilization / Chemical</h3>
+                        <h3 class="dashboard__box-title robotomd">Fertilization</h3>
+                        <p>Review and assign these tasks to the Sprayer</p>
+                    </div>
+                </a>
+                 <a class="dashboard__box" href="FertilizerTaskReq.aspx">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <div class="dashboard__box-count dash_green_txt robotobold">
+                            <asp:Label ID="lblChemical" runat="server" Text="0"></asp:Label>
+                        </div>
+                        <h3 class="dashboard__box-title robotomd">Chemical</h3>
                         <p>Review and assign these tasks to the Sprayer</p>
                     </div>
                 </a>
