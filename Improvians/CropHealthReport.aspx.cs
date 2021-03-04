@@ -46,6 +46,7 @@ namespace Improvians
 
                 BindSupervisor();
 
+                BindChemical();
 
             }
 

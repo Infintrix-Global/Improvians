@@ -425,6 +425,7 @@ namespace Improvians
             dt = objCommon.GetDataTable("GET_Common", nv1);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
 
+
             foreach (GridViewRow row in gvFer.Rows)
             {
 
