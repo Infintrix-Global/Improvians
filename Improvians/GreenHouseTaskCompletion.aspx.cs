@@ -44,6 +44,22 @@ namespace Improvians
             }
         }
 
+        private string Jid
+        {
+            get
+            {
+                if (ViewState["Jid"] != null)
+                {
+                    return (string)ViewState["Jid"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Jid"] = value;
+            }
+        }
+
         public void BindGridGerm()
         {
 
@@ -61,9 +77,10 @@ namespace Improvians
                 lblwoid.Text = dt.Rows[0]["wo"].ToString();
                 lblJobid.Text = dt.Rows[0]["jobcode"].ToString();
                 lblSeedlot.Text = dt.Rows[0]["TraySize"].ToString();
+                Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
                 //  txtTrays.Text = dt.Rows[0]["#TraysInspected"].ToString();
 
-              //  Bindtxttray(Convert.ToInt32(dt.Rows[0]["#TraysInspected"].ToString()));
+                //  Bindtxttray(Convert.ToInt32(dt.Rows[0]["#TraysInspected"].ToString()));
             }
 
         }
@@ -82,7 +99,8 @@ namespace Improvians
             // nv.Add("@GermHealth", lblcrophealth.Text);
             // nv.Add("@JobID", Session["JobID"].ToString());
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataExecuteScaler("SP_AddGerminationCompletion", nv);
+            nv.Add("@Jid",Jid);
+            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationCompletion", nv);
             if (result > 0)
             {
                 // lblmsg.Text = "Completion Successful";

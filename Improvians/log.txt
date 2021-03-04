@@ -5278,3 +5278,12 @@ Ambiguous column name 'GreenHouseID'. at 23-02-2021 18:27:38
 *****Error message=****@InspectionDueDate:2021-03-04 at 3/4/2021 2:33:24 AM
 *****Error message=****@TraysInspected:1598 at 3/4/2021 2:33:24 AM
 *****Error message=****@LoginId:1 at 3/4/2021 2:33:24 AM
+*****Error message=****@InspectionDate:2021-03-04 at 3/4/2021 4:17:20 AM
+*****Error message=****@GTAID:9 at 3/4/2021 4:17:20 AM
+*****Error message=****@#TraysInspected:2 at 3/4/2021 4:17:20 AM
+*****Error message=****@Germination:99.74 at 3/4/2021 4:17:20 AM
+*****Error message=****@WorkOrderID:1344 at 3/4/2021 4:17:20 AM
+*****Error message=****@#BadPlants:2 at 3/4/2021 4:17:20 AM
+*****Error message=****@GermVigor:100.00 at 3/4/2021 4:17:20 AM
+*****Error message=****@LoginID:2 at 3/4/2021 4:17:20 AM
+*****Error message=****Sql Error is=Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression. at 3/4/2021 4:20:27 AM
