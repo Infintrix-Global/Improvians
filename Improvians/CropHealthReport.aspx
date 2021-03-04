@@ -477,7 +477,7 @@
                                     </div>
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label class="d-block">Spray Date</label>
-                                        <asp:TextBox ID="TextBox1" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <asp:TextBox ID="txtFDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label>
