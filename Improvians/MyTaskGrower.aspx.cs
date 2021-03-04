@@ -76,7 +76,7 @@ namespace Improvians
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 // nv.Add("@jid", _isInserted.ToString());
-
+               
                 nv.Add("@jobcode", jobcode);
                 nv.Add("@Item", itemno);
                 nv.Add("@Itemdesc", itemdescp);

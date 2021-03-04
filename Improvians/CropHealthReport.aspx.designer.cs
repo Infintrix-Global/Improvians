@@ -456,13 +456,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.RadioButtonList radtype;
 
         /// <summary>
-        /// TextBox1 control.
+        /// txtFDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtFDate;
 
         /// <summary>
         /// lbltype control.
