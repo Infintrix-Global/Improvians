@@ -88,7 +88,7 @@ namespace Improvians
             //nv.Add("@Week", radweek.SelectedValue);
             //nv.Add("@Status", radStatus.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetGerminationManualRequest", nv);
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(ddlFacility.SelectedValue, "'" + ddlBenchLocation.SelectedValue +"'", ddlJobNo.SelectedValue);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
