@@ -6,7 +6,9 @@ using System.Collections.Specialized;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -30,6 +32,7 @@ namespace Improvians
                 {
                     Chid = Request.QueryString["Chid"].ToString();
                     BindGridCropHealth();
+                    BindSupervisorList();
                     PanelView.Visible = true;
                     PanelList.Visible = false;
                 }
@@ -41,6 +44,7 @@ namespace Improvians
                     //  BindJobCode(ddlBenchLocation.SelectedValue);
                     Bindcname();
                     BindFacility();
+                    
                     dtTrays.Clear();
                 }
 
@@ -489,6 +493,50 @@ namespace Improvians
         protected void btngerminationReset_Click(object sender, EventArgs e)
         {
 
+        }
+        public void BindSupervisorList()
+        {
+            NameValueCollection nv = new NameValueCollection();
+
+            ddlAssignments.DataSource = objCommon.GetDataTable("SP_GetSeedsRoles", nv);
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlAssignments.DataTextField = "EmployeeName";
+            ddlAssignments.DataValueField = "Email";
+            ddlAssignments.DataBind();
+            ddlAssignments.Items.Insert(0, new ListItem("--Select--", "0"));
+        }
+
+        //protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    NameValueCollection nv = new NameValueCollection();
+        //    nv.Add("@Uid", ddlAssignments.SelectedValue);
+        //    DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
+        //    ReceiverEmail = dt.Rows[0]["Email"].ToString();
+        //}
+        protected void btnSendMail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+
+                smtpClient.Credentials = new System.Net.NetworkCredential("rajshreewadkar.jarvis@gmail.com", "jarvis@123");
+                 smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+                MailMessage mail = new MailMessage();
+                mail.Subject = "Crop Health Report";
+                mail.Body = txtcomments.Text;
+                //Setting From , To and CC
+                string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+                mail.From = new MailAddress(FromMail);
+                mail.To.Add(new MailAddress(ddlAssignments.SelectedValue));
+                smtpClient.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

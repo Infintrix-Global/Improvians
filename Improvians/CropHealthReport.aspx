@@ -130,17 +130,17 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            
-                                        <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
-                                                   
+
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -209,11 +209,11 @@
                                                     <asp:Label ID="lblTraySize1" runat="server" Text='<%# Eval("TraySize","{0:####}")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                             <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblSeededDate1" runat="server" Text='<%# Eval("SeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblSeededDate1" runat="server" Text='<%# Eval("SeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
 
                                             <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
@@ -347,18 +347,16 @@
 
                         <div class="row">
                             <div class="col-lg-3">
-                              <label>Comments </label>
-                              
+                                <label>Comments </label>
+
                                 <asp:TextBox ID="txtcomments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-                              
+
                             </div>
 
                             <div class="col-lg-3">
-                              
                             </div>
 
                             <div class="col-lg-3">
-                               
                             </div>
 
 
@@ -642,7 +640,42 @@
 
                         <div id="general_task_request" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
-                                Assign task form for General Task
+                                <div id="divcomments" runat="server">
+
+                                    <div class=" col m12">
+                                        <div class="portlet light ">
+
+                                            <div class="portlet-body">
+                                                <asp:Panel ID="Panel1" runat="server">
+                                                    <div class="row" style="margin-left: 15px;">
+                                                        <div class="col-lg-4">
+                                                            <label>Comments</label>
+                                                            <asp:TextBox TextMode="MultiLine" runat="server" ID="TextBox2" CssClass="input__control"></asp:TextBox>
+                                                            <span class="error_message">
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtcomments" ValidationGroup="x"
+                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label>Assignment</label>
+
+                                                            <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" ></asp:DropDownList>
+                                                            <span class="error_message">
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div style="margin-top: 9%;">
+                                                                  <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" /> </div>
+                                                        </div>
+                                                    </div>
+                                                </asp:Panel>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
