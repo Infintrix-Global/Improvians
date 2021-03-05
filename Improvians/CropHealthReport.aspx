@@ -654,14 +654,14 @@
                                             <div class="portlet-body">
                                                 <asp:Panel ID="Panel1" runat="server">
                                                     <div class="row" style="margin-left: 15px;">
-                                                        <div class="col-lg-4">
+                                                       <%-- <div class="col-lg-4">
                                                             <label>Comments</label>
                                                             <asp:TextBox TextMode="MultiLine" runat="server" ID="txtComment" CssClass="input__control"></asp:TextBox>
                                                             <span class="error_message">
                                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtcomments" ValidationGroup="x"
                                                                     SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
                                                             </span>
-                                                        </div>
+                                                        </div>--%>
                                                         <div class="col-lg-4">
                                                             <label>Assignment</label>
 

@@ -642,7 +642,7 @@ namespace Improvians
                 //  smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials       
                 MailMessage mail = new MailMessage();
                 mail.Subject = "Crop Health Report";
-                mail.Body = txtComment.Text;
+                mail.Body = txtcomments.Text;
                 //Setting From , To and CC
                 string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
                 mail.From = new MailAddress(FromMail);
