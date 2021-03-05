@@ -5598,3 +5598,16 @@ Ambiguous column name 'GreenHouseID'. at 23-02-2021 18:27:38
 *****Error message=****@TraysInspected:448 at 3/5/2021 1:41:45 AM
 *****Error message=****@Chid:13 at 3/5/2021 1:41:45 AM
 *****Error message=****@LoginId:1 at 3/5/2021 1:41:45 AM
+*****Error message=****@chid:14 at 3/5/2021 3:24:38 AM
+*****Error message=****@jobcode:JB033473 at 3/5/2021 3:24:38 AM
+*****Error message=****@itemno:TMC-SVTM9016 at 3/5/2021 3:24:38 AM
+*****Error message=****@itemdescp:TOMATO-CANNING-SVTM9016 - 339 at 3/5/2021 3:24:38 AM
+*****Error message=****@cname:DONALD BEEMAN - TM at 3/5/2021 3:24:38 AM
+*****Error message=****@loc_seedline: at 3/5/2021 3:24:38 AM
+*****Error message=****@Trays:1155 at 3/5/2021 3:24:38 AM
+*****Error message=****@seedsreceived: at 3/5/2021 3:24:38 AM
+*****Error message=****@SeedDate:02/17/2021 at 3/5/2021 3:24:38 AM
+*****Error message=****@SoDate: at 3/5/2021 3:24:38 AM
+*****Error message=****@TraySize:339 at 3/5/2021 3:24:38 AM
+*****Error message=****@GenusCode: at 3/5/2021 3:24:38 AM
+*****Error message=****@GreenHouseID:ENC1-H01-5-A at 3/5/2021 3:24:38 AM

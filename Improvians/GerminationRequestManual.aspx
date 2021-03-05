@@ -227,7 +227,7 @@
                         <h3>Assign Task</h3>
                         <div class="row align-items-end">
                             <div class="col-auto m6">
-                                <label>Job No.</label><br />
+                                <%--<label>Job No.</label>--%><br />
                                 <h3 class="robotobold">
                                     <asp:Label ID="lblJobID" runat="server"></asp:Label>
                                     <asp:Label ID="lblGrowerID" runat="server" Visible="false"></asp:Label>

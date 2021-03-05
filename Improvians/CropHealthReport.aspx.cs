@@ -24,7 +24,7 @@ namespace Improvians
         CommonControl objCommon = new CommonControl();
         BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
-
+        static string ReceiverEmail = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,7 +33,7 @@ namespace Improvians
                 {
                     Chid = Request.QueryString["Chid"].ToString();
                     BindGridCropHealth();
-                    BindSupervisorList();
+              
                     PanelView.Visible = true;
                     PanelList.Visible = false;
                 }
@@ -52,7 +52,7 @@ namespace Improvians
                 BindSupervisor();
 
                 BindChemical();
-
+                BindSupervisorList();
             }
 
 
@@ -580,18 +580,7 @@ namespace Improvians
         {
 
         }
-        public void BindSupervisorList()
-        {
-            NameValueCollection nv = new NameValueCollection();
-
-            ddlAssignments.DataSource = objCommon.GetDataTable("SP_GetSeedsRoles", nv);
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlAssignments.DataTextField = "EmployeeName";
-            ddlAssignments.DataValueField = "Email";
-            ddlAssignments.DataBind();
-            ddlAssignments.Items.Insert(0, new ListItem("--Select--", "0"));
-        }
-
+      
         //protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    NameValueCollection nv = new NameValueCollection();
@@ -604,21 +593,19 @@ namespace Improvians
             try
             {
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-                //smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new System.Net.NetworkCredential("rajshreewadkar.jarvis@gmail.com", "jarvis@123");
-                 smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+                string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
+                smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
+                // smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.EnableSsl = true;
-                System.Net.ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
-                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                //  smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials       
                 MailMessage mail = new MailMessage();
-                mail.Subject = "Crop Health Report";
-                mail.Body = txtComment.Text;
+                mail.Subject = "Task Assignment based on Crop Health Report";
+                mail.Body = txtcomments.Text;
                 //Setting From , To and CC
-                string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+
                 mail.From = new MailAddress(FromMail);
-                mail.To.Add(new MailAddress(ddlAssignments.SelectedValue));
+                mail.To.Add(new MailAddress(ReceiverEmail));
                 smtpClient.Send(mail);
             }
             catch (Exception ex)
@@ -627,7 +614,25 @@ namespace Improvians
                 throw ex;
             }
         }
+        public void BindSupervisorList()
+        {
+            NameValueCollection nv = new NameValueCollection();
 
+            ddlAssignments.DataSource = objCommon.GetDataTable("SP_GetSeedsRoles", nv);
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlAssignments.DataTextField = "EmployeeName";
+            ddlAssignments.DataValueField = "ID";
+            ddlAssignments.DataBind();
+            ddlAssignments.Items.Insert(0, new ListItem("--Select--", "0"));
+        }
+
+        protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Uid", ddlAssignments.SelectedValue);
+            DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
+            ReceiverEmail = dt.Rows[0]["Email"].ToString();
+        }
         //----------------------------------------------------------------------irrigatio
 
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
