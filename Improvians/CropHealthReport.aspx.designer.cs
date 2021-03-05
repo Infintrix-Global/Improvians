@@ -627,6 +627,33 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Button btnirrigationReset;
 
         /// <summary>
+        /// ddlplant_readySupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlplant_readySupervisor;
+
+        /// <summary>
+        /// btnplant_readySubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnplant_readySubmit;
+
+        /// <summary>
+        /// btnplant_readyReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnplant_readyReset;
+
+        /// <summary>
         /// divcomments control.
         /// </summary>
         /// <remarks>

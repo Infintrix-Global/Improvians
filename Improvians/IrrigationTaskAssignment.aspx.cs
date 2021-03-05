@@ -73,6 +73,7 @@ namespace Improvians
 
         public void BindGridGerm()
         {
+            string ChId = "";
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             //nv.Add("@wo", wo);
@@ -86,9 +87,31 @@ namespace Improvians
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
 
+
+            ChId = dt.Rows[0]["CropHealth"].ToString();
+            if (ChId == "")
+            {
+                ChId = "0";
+            }
+            else
+            {
+                ChId = ChId;
+            }
+            BindGridCropHealth(Convert.ToInt32(ChId));
+
         }
 
+        public void BindGridCropHealth(int Chid)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Chid", Chid.ToString());
+            dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
 
+            gvCropHealth.DataSource = dt1;
+            gvCropHealth.DataBind();
+
+        }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {

@@ -31,7 +31,7 @@ namespace Improvians
 
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindenchLocation();
-
+                BindGridSprayReq();
             }
         }
 
@@ -49,6 +49,43 @@ namespace Improvians
             {
                 ViewState["FertilizationCode"] = value;
             }
+        }
+
+        public void BindGridSprayReq()
+        {
+            string ChId = "";
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@JobCode", "0");
+            nv.Add("@TraySize", "0");
+            nv.Add("@itemno", "0");
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@FertilizationCode", FertilizationCode);
+            dt = objCommon.GetDataTable("SP_GetSprayRequestst", nv);
+         
+            ChId = dt.Rows[0]["CropHealth"].ToString();
+            if (ChId == "")
+            {
+                ChId = "0";
+            }
+            else
+            {
+                ChId = ChId;
+            }
+            BindGridCropHealth(Convert.ToInt32(ChId));
+
+        }
+
+        public void BindGridCropHealth(int Chid)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Chid", Chid.ToString());
+            dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
+
+            gvCropHealth.DataSource = dt1;
+            gvCropHealth.DataBind();
+
         }
 
 

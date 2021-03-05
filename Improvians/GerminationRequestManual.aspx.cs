@@ -350,11 +350,11 @@ namespace Improvians
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@BenchLocation", BenchLoc);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             //nv.Add("@Week", radweek.SelectedValue);
             //nv.Add("@Status", radStatus.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetGerminationManualRequest", nv);
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(ddlFacility.SelectedValue, BenchLoc, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -508,17 +508,18 @@ namespace Improvians
         {
             BindJobCode(ddlBenchLocation.SelectedValue);
 
-            if (ddlBenchLocation.SelectedValue == "")
-            {
-                Panel_Bench.Visible = false;
-            }
-            else
-            {
-                Panel_Bench.Visible = true;
-                Bench1 = ddlBenchLocation.SelectedItem.Text;
-                BindGridGerm("'" + Bench1 + "'");
-            }
+            //if (ddlBenchLocation.SelectedValue == "")
+            //{
+            //    Panel_Bench.Visible = false;
+            //}
+            //else
+            //{
+            //    Panel_Bench.Visible = true;
+            //    Bench1 = ddlBenchLocation.SelectedItem.Text;
+            //    BindGridGerm("'" + Bench1 + "'");
+            //}
 
+               BindGridGerm(Bench1);
 
         }
 

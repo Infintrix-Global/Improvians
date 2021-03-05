@@ -94,6 +94,64 @@
             </div>
 
             <div class="text-left dashboard__block my-4">
+                   <h2 class="text-left">Crop Health Report </h2>
+                                  <br />
+                <div class="portlet-body">
+                    <div class="data__table">
+                        <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
+                            class="striped" AllowSorting="true"
+                            GridLines="None" DataKeyNames="chid"
+                            ShowHeaderWhenEmpty="True" Width="100%">
+                            <Columns>
+
+                                <asp:TemplateField HeaderText="Type of Problem" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("typeofProblem")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Cause of Problem" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("Causeofproblem")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Severity of Problem" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblitem" runat="server" Text='<%# Eval("Severityofproblem")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="No. of Trays" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("NoTrays")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="% of Damage" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("PerDamage")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("Date","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+
+                            </Columns>
+
+                            <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                            <PagerSettings Mode="NumericFirstLast" />
+                            <EmptyDataTemplate>
+                                No Record Available
+                            </EmptyDataTemplate>
+                        </asp:GridView>
+
+                    </div>
+                </div>
+                 <br />
                 <form class="web__form pt-2">
                     <div class="row justify-content-center">
                         <div class="col-12">

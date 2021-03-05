@@ -98,6 +98,7 @@ namespace Improvians
         {
             string Wo = "";
             string GTRID = "";
+            string ChId = "";
             long result = 0;
             if (e.CommandName == "Start")
             {
@@ -106,6 +107,16 @@ namespace Improvians
 
                 Wo = (row.FindControl("lblWo") as Label).Text;
                 GTRID = (row.FindControl("lblID") as Label).Text;
+                ChId = (row.FindControl("lblChid") as Label).Text;
+                if(ChId =="")
+                {
+                    ChId = "0";
+                }
+                else
+                {
+                    ChId = ChId;
+                }
+                                                                    
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Notes", "");
@@ -115,14 +126,23 @@ namespace Improvians
                 result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignment", nv);
 
                 // Session["WorkOrder"] = JobID;
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", result.ToString()));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}", result.ToString(), ChId));
             }
             if (e.CommandName == "Assign")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
                 GTRID = (row.FindControl("lblID") as Label).Text;
-                Response.Redirect(String.Format("~/GerminationTaskAssignment.aspx?GTRID={0}", GTRID));
+                ChId = (row.FindControl("lblChid") as Label).Text;
+                if (ChId == "")
+                {
+                    ChId = "0";
+                }
+                else
+                {
+                    ChId = ChId;
+                }
+                Response.Redirect(String.Format("~/GerminationTaskAssignment.aspx?GTRID={0}&Chid={1}", GTRID, ChId));
             }
         }
 

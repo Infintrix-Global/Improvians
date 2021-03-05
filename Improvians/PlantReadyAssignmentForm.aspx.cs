@@ -112,24 +112,46 @@ namespace Improvians
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string JobID = "";
+            string ChId = "";
             string TaskID = "";
             if (e.CommandName == "Assign")
             {
                 //int rowIndex = Convert.ToInt32(e.CommandArgument);
                 //GridViewRow row = gvGerm.Rows[rowIndex];
 
-                string PRID = e.CommandArgument.ToString();
+               // string PRID = e.CommandArgument.ToString();
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string PRID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                ChId = gvGerm.DataKeys[rowIndex].Values[1].ToString();
 
-                Response.Redirect(String.Format("~/PlantReadyTaskAssignment.aspx?PRID={0}", PRID));
+                if (ChId == "")
+                {
+                    ChId = "0";
+                }
+                else
+                {
+                    ChId = ChId;
+                }
+                Response.Redirect(String.Format("~/PlantReadyTaskAssignment.aspx?PRID={0}&Chid={1}",PRID,ChId));
 
             }
 
 
             if (e.CommandName == "Select")
             {
-               
-                string PRID = e.CommandArgument.ToString();
 
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string PRID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                ChId = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+
+                if (ChId == "")
+                {
+                    ChId = "0";
+                }
+                else
+                {
+                    ChId = ChId;
+                }
                 //NameValueCollection nv = new NameValueCollection();
                 //nv.Add("@OperatorID", Session["LoginID"].ToString());
                 //nv.Add("@Notes", "");
@@ -154,7 +176,7 @@ namespace Improvians
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", result));
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}", result, ChId));
                 }
             }
         }
