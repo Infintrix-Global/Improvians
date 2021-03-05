@@ -601,7 +601,7 @@ namespace Improvians
                 smtpClient.EnableSsl = true;
                 MailMessage mail = new MailMessage();
                 mail.Subject = "Crop Health Report";
-                mail.Body = txtComment.Text;
+                mail.Body ="Crop Health Report Comments:" + txtcomments.Text;
                 //Setting From , To and CC
 
                 mail.From = new MailAddress(FromMail);
