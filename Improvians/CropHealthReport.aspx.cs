@@ -44,7 +44,7 @@ namespace Improvians
                     //  BindJobCode(ddlBenchLocation.SelectedValue);
                     Bindcname();
                     BindFacility();
-                    
+
                     dtTrays.Clear();
                 }
 
@@ -277,17 +277,38 @@ namespace Improvians
 
             }
 
-            string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            //string message = "Assignment Successful";
+            //string url = "";
+            //string script = "window.onload = function(){ alert('";
+            //script += message;
+            //script += "');";
+            //script += "window.location = '";
+            //script += url;
+            //script += "'; }";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
-            Clear();
+            if (result > 0)
+            {
+                Chid = result.ToString();
+                BindGridCropHealth();
+                BindSupervisorList();
+                PanelView.Visible = true;
+                PanelList.Visible = false;
+            }
+            else
+            {
+                PanelView.Visible = false;
+                PanelList.Visible = true;
+                //    BindUnit();
+                //  BindJobCode(ddlBenchLocation.SelectedValue);
+                Bindcname();
+                BindFacility();
+                dtTrays.Clear();
+
+            }
+
+
+          //  Clear();
         }
 
         public void Clear()
@@ -399,8 +420,14 @@ namespace Improvians
             ddlirrigationSupervisor.DataBind();
             ddlirrigationSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
+            ddlplant_readySupervisor.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlplant_readySupervisor.DataTextField = "EmployeeName";
+            ddlplant_readySupervisor.DataValueField = "ID";
+            ddlplant_readySupervisor.DataBind();
+            ddlplant_readySupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
-            
+
         }
         public void BindChemical()
         {
@@ -459,68 +486,36 @@ namespace Improvians
             nv1.Add("@Mode", "12");
             dt = objCommon.GetDataTable("GET_Common", nv1);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
-            if (Request.QueryString["Chid"] != null)
+
+
+            foreach (GridViewRow row in GridViewView.Rows)
             {
 
-                foreach (GridViewRow row in GridViewView.Rows)
-                {
-
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
-                    nv.Add("@Type", radtype.SelectedValue);
-                    nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
-                    nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                    nv.Add("@Facility", "");
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                    //nv.Add("@WorkOrder", lblwo.Text);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@FertilizationCode", FertilizationCode.ToString());
-                    nv.Add("@FertilizationDate", txtFDate.Text);
-                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
-                    Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
-                }
-
-                dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
-
-                objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, Batchlocation, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
-
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
+                nv.Add("@Type", radtype.SelectedValue);
+                nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                nv.Add("@Facility", "");
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                //nv.Add("@WorkOrder", lblwo.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@FertilizationCode", FertilizationCode.ToString());
+                nv.Add("@FertilizationDate", txtFDate.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
+                Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
             }
-            else
-            {
 
-                foreach (GridViewRow row in gvFer.Rows)
-                {
+            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
 
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
-                    nv.Add("@Type", radtype.SelectedValue);
-                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                    //nv.Add("@WorkOrder", lblwo.Text);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@FertilizationCode", FertilizationCode.ToString());
-                    nv.Add("@FertilizationDate", txtFDate.Text);
-                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
-                    Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
-                }
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, Batchlocation, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
 
-                dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
 
-                objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, Batchlocation, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
-
-            }
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
@@ -536,8 +531,7 @@ namespace Improvians
         protected void btngerminationSumit_Click(object sender, EventArgs e)
         {
             long result = 0;
-            if (Request.QueryString["Chid"] != null)
-            {
+           
                 foreach (GridViewRow row in GridViewView.Rows)
                 {
                     NameValueCollection nv = new NameValueCollection();
@@ -558,30 +552,7 @@ namespace Improvians
 
                     result = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
                 }
-            }
-            else
-            {
-                foreach (GridViewRow row in gvFer.Rows)
-                {
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                    nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                    nv.Add("@Facility", "");
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                    nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
-                    nv.Add("@InspectionDueDate", txtGerDate.Text);
-                    nv.Add("@TraysInspected", txtTGerTrays.Text);
-                    nv.Add("@Chid", Chid);
-                    nv.Add("@LoginId", Session["LoginID"].ToString());
-
-                    result = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
-                }
-            }
+          
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
@@ -634,7 +605,7 @@ namespace Improvians
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
 
                 smtpClient.Credentials = new System.Net.NetworkCredential("rajshreewadkar.jarvis@gmail.com", "jarvis@123");
-                 smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.EnableSsl = true;
                 MailMessage mail = new MailMessage();
@@ -668,67 +639,38 @@ namespace Improvians
             nv1.Add("@Mode", "13");
             dt = objCommon.GetDataTable("GET_Common", nv1);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
-           
+
             foreach (GridViewRow row in GridViewView.Rows)
             {
-               
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
 
-                    nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
-                    nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                    nv.Add("@Facility","");
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
 
-                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                    // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                    nv.Add("@IrrigatedNoTrays", (row.FindControl("lblTotTray1") as Label).Text);
-                    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                    nv.Add("@IrrigationDuration", "");
-                    nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
-                    //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                    nv.Add("@Nots", txtirrigationNotes.Text.Trim());
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
-               
+                nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                nv.Add("@Facility", "");
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
 
-            }
+                nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                nv.Add("@IrrigatedNoTrays", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
+                nv.Add("@IrrigationDuration", "");
+                nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
+                //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                nv.Add("@Nots", txtirrigationNotes.Text.Trim());
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
 
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-               
-              
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
-
-                    nv.Add("@Jobcode", (row.FindControl("lbljobID") as Label).Text);
-                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-
-                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                    // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                    nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
-                    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                    nv.Add("@IrrigationDuration", "");
-                    nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
-                    //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                    nv.Add("@Nots", txtirrigationNotes.Text.Trim());
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
-              
 
             }
+
+           
 
 
             string message = "Assignment Successful";
@@ -740,6 +682,57 @@ namespace Improvians
             script += url;
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
+
+        protected void btnplant_readySubmit_Click(object sender, EventArgs e)
+        {
+            int IrrigationCode = 0;
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mode", "13");
+            dt = objCommon.GetDataTable("GET_Common", nv1);
+            IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+
+            foreach (GridViewRow row in GridViewView.Rows)
+            {
+
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlplant_readySupervisor.SelectedValue);
+
+                nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                nv.Add("@Facility", "");
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+
+              
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaNew", nv);
+               
+
+            }
+
+
+
+
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
+
+        protected void btnplant_readyReset_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

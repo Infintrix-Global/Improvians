@@ -20,10 +20,26 @@ namespace Improvians
                 {
                     PRID = Request.QueryString["PRID"].ToString();
                 }
+                if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
+                {
+                    BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
+                }
 
                 BindGridGerm();
                 BindOperatorList();
             }
+        }
+
+        public void BindGridCropHealth(int Chid)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Chid", Chid.ToString());
+            dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
+
+            gvCropHealth.DataSource = dt1;
+            gvCropHealth.DataBind();
+
         }
 
         private string wo

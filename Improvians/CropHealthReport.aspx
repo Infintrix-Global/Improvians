@@ -581,28 +581,21 @@
                         <div id="plant_ready_count" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
                                 <div class="row">
-                                    <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                    <%--<div class="mb-3 mb-md-0 col-12 col-md-auto">
                                         <label class="d-block">Job No.</label>
                                         <input type="readonly" value="JB033372" size="10" class="input__control w-100 input__control-auto" />
-                                    </div>
+                                    </div>--%>
                                     <div class="mb-3 mb-md-0 col-12 col-md-auto">
                                         <label class="d-block">Assignment</label>
-                                        <select class="custom__dropdown w-100 input__control-auto">
-                                            <option>--Select--</option>
-                                            <option>Assistant Grower</option>
-                                            <option>Supervisor</option>
-                                            <option>Irrigator</option>
-                                            <option>Crew Lead</option>
-                                            <option>Sprayer</option>
-                                        </select>
+
+                                       <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
                                     </div>
                                     <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
-                                        <button type="button" class="bttn bttn-primary">
-                                            Submit
-                                        </button>
-                                        <button type="reset" class="ml-2 bttn bttn-primary">
-                                            Reset
-                                        </button>
+                                         <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
+
+                                         <asp:Button Text="Reset" ID="btnplant_readyReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnplant_readyReset_Click" />
+
                                     </div>
                                 </div>
                             </div>

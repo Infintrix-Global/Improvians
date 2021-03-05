@@ -39,7 +39,7 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="PlantReadyId,CropHealth"
                                     class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvGerm_PageIndexChanging"
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand"  OnRowDataBound="gvGerm_RowDataBound1"
                                     ShowHeaderWhenEmpty="True" Width="100%">
@@ -59,6 +59,9 @@
 
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                                <asp:Label ID="lblCropHealth" Visible="false" runat="server" Text='<%# Eval("CropHealth")  %>'></asp:Label>
+
+                                                
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -111,11 +114,13 @@
 
                                         <asp:TemplateField HeaderText="" ItemStyle-Width="15%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
+                                                
+                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                                <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
-                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("PlantReadyId")  %>'></asp:Button>
-                                                <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Eval("PlantReadyId")  %>'></asp:Button>
 
-                                            </ItemTemplate>
+                                                    
+                                                </ItemTemplate>
                                         </asp:TemplateField>
 
 

@@ -79,6 +79,7 @@ namespace Improvians
 
         public void BindgvIrrigation()
         {
+            string ChId = "";
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             //nv.Add("@wo", wo);
@@ -95,7 +96,32 @@ namespace Improvians
 
             txtNoofPasses.Text = dt.Rows[0]["WaterRequired"].ToString();
             lblBenchLocation.Text = dt.Rows[0]["GreenHouseID"].ToString();
+
+            ChId = dt.Rows[0]["CropHealth"].ToString();
+            if (ChId == "")
+            {
+                ChId = "0";
+            }
+            else
+            {
+                ChId = ChId;
+            }
+            BindGridCropHealth(Convert.ToInt32(ChId));
+
+
         }
+        public void BindGridCropHealth(int Chid)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Chid", Chid.ToString());
+            dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
+
+            gvCropHealth.DataSource = dt1;
+            gvCropHealth.DataBind();
+
+        }
+
 
         protected void gvIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
