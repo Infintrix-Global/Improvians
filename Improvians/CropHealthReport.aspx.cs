@@ -258,7 +258,8 @@ namespace Improvians
             nv.Add("@PerDamage", percentageDamage.Text);
             nv.Add("@Date", txtDate.Text);
             nv.Add("@Filepath", folderPath);
-
+            nv.Add("@CropHealthCommit", txtcomments.Text);
+            
             result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
 
 
@@ -321,7 +322,7 @@ namespace Improvians
             nv.Add("@PerDamage", percentageDamage.Text);
             nv.Add("@Date", txtDate.Text);
             nv.Add("@Filepath", folderPath);
-
+            nv.Add("@CropHealthCommit", txtcomments.Text);
             result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
 
 
