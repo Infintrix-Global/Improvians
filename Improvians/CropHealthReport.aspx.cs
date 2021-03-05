@@ -677,8 +677,8 @@ namespace Improvians
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.EnableSsl = true;
                 MailMessage mail = new MailMessage();
-                mail.Subject = "Task Assignment based on Crop Health Report";
-                mail.Body = txtcomments.Text;
+                mail.Subject = "Crop Health Report";
+                mail.Body ="Crop Health Report Comments:" + txtcomments.Text;
                 //Setting From , To and CC
 
                 mail.From = new MailAddress(FromMail);
