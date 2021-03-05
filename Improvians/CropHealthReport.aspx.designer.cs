@@ -672,13 +672,13 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
-        /// TextBox2 control.
+        /// txtComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtComment;
 
         /// <summary>
         /// RequiredFieldValidator6 control.
