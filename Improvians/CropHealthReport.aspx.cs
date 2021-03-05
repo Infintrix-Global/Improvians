@@ -25,6 +25,7 @@ namespace Improvians
         BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
         static string ReceiverEmail = "";
+        static string folderPath = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -240,12 +241,12 @@ namespace Improvians
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-            string folderPath = "";
+           
             NameValueCollection nv = new NameValueCollection();
             if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
             {
-                folderPath = Server.MapPath("~/images/");
-                FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                folderPath = Server.MapPath("~/images/") + Path.GetFileName(FileUpload1.FileName);
+                FileUpload1.SaveAs(folderPath );               
             }
             else
             {
@@ -684,6 +685,8 @@ namespace Improvians
 
                 mail.From = new MailAddress(FromMail);
                 mail.To.Add(new MailAddress(ReceiverEmail));
+                Attachment atc = new Attachment(folderPath, "Uploded Picture");
+                mail.Attachments.Add(atc);
                 smtpClient.Send(mail);
             }
             catch (Exception ex)
