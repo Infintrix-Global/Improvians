@@ -109,7 +109,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="" ItemStyle-Width="15%" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText=""  HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("PlantReadyId")  %>'></asp:Button>

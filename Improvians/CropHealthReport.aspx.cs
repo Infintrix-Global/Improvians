@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net;
 
 namespace Improvians
 {
@@ -303,7 +304,7 @@ namespace Improvians
             ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
-            ddlJobNo.SelectedIndex = 0;
+            //ddlJobNo.SelectedIndex = 0;
             //BindGridFerReq();
             gvFer.DataSource = null;
             gvFer.DataBind();
@@ -632,14 +633,16 @@ namespace Improvians
             try
             {
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-
+                //smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = new System.Net.NetworkCredential("rajshreewadkar.jarvis@gmail.com", "jarvis@123");
-                 smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.EnableSsl = true;
+                System.Net.ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                //  smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials       
                 MailMessage mail = new MailMessage();
                 mail.Subject = "Crop Health Report";
-                mail.Body = txtcomments.Text;
+                mail.Body = txtComment.Text;
                 //Setting From , To and CC
                 string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
                 mail.From = new MailAddress(FromMail);
