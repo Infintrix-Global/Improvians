@@ -36,9 +36,12 @@ namespace Improvians
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@Chid", Chid.ToString());
             dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
-
-            gvCropHealth.DataSource = dt1;
-            gvCropHealth.DataBind();
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                PanelCropHealth.Visible = true;
+                gvCropHealth.DataSource = dt1;
+                gvCropHealth.DataBind();
+            }
 
         }
 
@@ -102,21 +105,21 @@ namespace Improvians
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-          
-             long result = 0;
+
+            long result = 0;
             NameValueCollection nv = new NameValueCollection();
             //  nv.Add("@OperatorID",Session["LoginID"].ToString());
             //   nv.Add("@Notes", txtNots.Text);
             //    nv.Add("@JobID", "");
             nv.Add("@PRAID", PRAID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@CropId","");
-            nv.Add("@UpdatedReadyDate",txtUpdatedReadyDate.Text);
-            nv.Add("@PlantExpirationDate",txtPlantExpirationDate.Text);
-            nv.Add("@RootQuality",ddlRootQuality.SelectedItem.Text);
+            nv.Add("@CropId", "");
+            nv.Add("@UpdatedReadyDate", txtUpdatedReadyDate.Text);
+            nv.Add("@PlantExpirationDate", txtPlantExpirationDate.Text);
+            nv.Add("@RootQuality", ddlRootQuality.SelectedItem.Text);
             nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
-         //   nv.Add("@wo",wo);
-          //  nv.Add("@mode","2");
+            //   nv.Add("@wo",wo);
+            //  nv.Add("@mode","2");
 
             result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyCompletion", nv);
 
@@ -163,11 +166,11 @@ namespace Improvians
         {
             //txtNots.Text = "";
             txtPlantExpirationDate.Text = "";
-          //  txtPlantHeight.Text = "";
+            //  txtPlantHeight.Text = "";
             txtUpdatedReadyDate.Text = "";
             ddlPlantHeight.SelectedValue = "0";
             ddlRootQuality.SelectedValue = "0";
-             
+
 
         }
 

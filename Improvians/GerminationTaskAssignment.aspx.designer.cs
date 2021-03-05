@@ -33,6 +33,15 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.GridView gvGerm;
 
         /// <summary>
+        /// PanelCropHealth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelCropHealth;
+
+        /// <summary>
         /// gvCropHealth control.
         /// </summary>
         /// <remarks>

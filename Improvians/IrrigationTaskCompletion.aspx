@@ -79,8 +79,11 @@
             </div>
 
             <div class="text-left dashboard__block my-4">
-                  <h2 class="text-left">Crop Health Report </h2>
-                                  <br />
+               <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
+                    <br />
+                    <h2 class="text-left">Crop Health Report </h2>
+                  
+                    <br />
                       <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
@@ -136,6 +139,7 @@
 
                     </div>
                 </div>
+                   </asp:Panel>
                  <br />
                 <div class="row justify-content-center">
                     <div class="col-12">

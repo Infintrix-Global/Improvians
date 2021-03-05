@@ -128,14 +128,14 @@ namespace Improvians
         }
 
 
-        public void BindGridFerReq(string BenchLoc)
+        public void BindGridFerReq(string BenchLoc, string JobNo)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, BenchLoc, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, BenchLoc, JobNo);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -208,12 +208,12 @@ namespace Improvians
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq("");
+            BindGridFerReq("","");
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq(ddlBenchLocation.SelectedValue);
+            BindGridFerReq("",ddlBenchLocation.SelectedValue);
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
@@ -227,11 +227,80 @@ namespace Improvians
 
             BindJobCode(ddlBenchLocation.SelectedValue);
 
-            BindGridFerReq(ddlBenchLocation.SelectedValue);
+            BindGridFerReq(ddlBenchLocation.SelectedValue,"");
 
         }
 
+        protected void btnSearchDet_Click(object sender, EventArgs e)
+        {
+
+            BindGridFerReq(ddlBenchLocation.SelectedValue,txtSearchJobNo.Text.Trim());
+        }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            long result = 0;
+            string folderPath = "";
+            NameValueCollection nv = new NameValueCollection();
+            if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+            {
+                folderPath = Server.MapPath("~/images/");
+                FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+            }
+            else
+            {
+                folderPath = "";
+            }
+            nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+            nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
+            nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
+            nv.Add("@NoTrays", txtTrays.Text);
+            nv.Add("@PerDamage", percentageDamage.Text);
+            nv.Add("@Date", txtDate.Text);
+            nv.Add("@Filepath", folderPath);
+
+            result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+
+
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+
+                long result1 = 0;
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("@chid", result.ToString());
+                nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                nv1.Add("@loc_seedline", "");
+                nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                nv1.Add("@seedsreceived", "");
+                nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                nv1.Add("@SoDate", "");
+                nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                nv1.Add("@GenusCode", "");
+                nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+
+            }
+
+            string message = "Assignment Successful";
+            string url = "CropHealthDetails.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+
+
+
+            //  Clear();
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
         {
             long result = 0;
             string folderPath = "";
@@ -308,9 +377,10 @@ namespace Improvians
 
             }
 
-
-          //  Clear();
         }
+
+
+
 
         public void Clear()
         {
@@ -515,7 +585,10 @@ namespace Improvians
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
 
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, Batchlocation, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
-
+            long result1 = 0;
+            NameValueCollection nv11 = new NameValueCollection();
+            nv11.Add("@Chid",Chid);
+            result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -556,6 +629,10 @@ namespace Improvians
           
             if (result > 0)
             {
+                long result1 = 0;
+                NameValueCollection nv11 = new NameValueCollection();
+                nv11.Add("@Chid", Chid);
+                result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
                 string url = "MyTaskGrower.aspx";
@@ -679,8 +756,11 @@ namespace Improvians
 
             }
 
-           
 
+            long result1 = 0;
+            NameValueCollection nv11 = new NameValueCollection();
+            nv11.Add("@Chid", Chid);
+            result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -726,7 +806,10 @@ namespace Improvians
             }
 
 
-
+            long result1 = 0;
+            NameValueCollection nv11 = new NameValueCollection();
+            nv11.Add("@Chid", Chid);
+            result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -743,5 +826,7 @@ namespace Improvians
         {
 
         }
+
+     
     }
 }

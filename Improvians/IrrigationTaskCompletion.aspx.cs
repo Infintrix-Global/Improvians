@@ -116,10 +116,12 @@ namespace Improvians
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@Chid", Chid.ToString());
             dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
-
-            gvCropHealth.DataSource = dt1;
-            gvCropHealth.DataBind();
-
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                PanelCropHealth.Visible = true;
+                gvCropHealth.DataSource = dt1;
+                gvCropHealth.DataBind();
+            }
         }
 
 
