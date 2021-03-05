@@ -685,8 +685,8 @@ namespace Improvians
 
                 mail.From = new MailAddress(FromMail);
                 mail.To.Add(new MailAddress(ReceiverEmail));
-                Attachment atc = new Attachment(folderPath, "Uploded Picture");
-                mail.Attachments.Add(atc);
+              //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
+             //   mail.Attachments.Add(atc);
                 smtpClient.Send(mail);
             }
             catch (Exception ex)
