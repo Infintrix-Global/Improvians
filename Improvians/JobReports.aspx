@@ -31,11 +31,17 @@
                         </div>--%>
                         <div class="col-lg-3">
                             <label>Job No </label>
-                            <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlJobNo" Visible="false" runat="server" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
+                            <asp:TextBox ID="txtJobNo" runat="server" CssClass="input__control"></asp:TextBox>
                         </div>
+                        <div class="col-lg-3">
+                            <br />
+                            <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
+                            <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
 
+                        </div>
                     </div>
-
+                    <br />
                     <div class="portlet light ">
 
                         <div class="portlet-body">

@@ -625,7 +625,7 @@ namespace Improvians
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindBenchLocation(ddlFacility.SelectedValue);
-            //BindGridFerReq();
+            BindGridFerReq("");
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)

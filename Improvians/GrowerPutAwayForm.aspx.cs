@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Improvians.Bal; 
+using Improvians.Bal;
 
 namespace Improvians
 {
@@ -122,7 +122,7 @@ namespace Improvians
 
             if (e.CommandName == "Assign")
             {
-              
+
                 // invoiceSplitJob();
                 PanelAdd.Visible = true;
                 PanelList.Visible = false;
@@ -140,7 +140,7 @@ namespace Improvians
                     lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeededDate"]).ToString("MM-dd-yyyy");
                     lblSeededTrays.Text = dt.Rows[0]["ActualTraySeeded"].ToString();
                     PutAwayFacility = dt.Rows[0]["loc_seedline"].ToString();
-                    lblGenusCode.Text= dt.Rows[0]["GenusCode"].ToString();
+                    lblGenusCode.Text = dt.Rows[0]["GenusCode"].ToString();
                     TraySize = dt.Rows[0]["TraySize"].ToString();
                 }
 
@@ -169,15 +169,15 @@ namespace Improvians
                 Label lblLocation = (Label)e.Row.FindControl("lblLocation");
 
 
-              //  NameValueCollection nv = new NameValueCollection();
-              //   nv.Add("@mode", "4");
-              //ddlMain.DataSource = objCommon.GetDataTable("GET_Common", nv); 
+                //  NameValueCollection nv = new NameValueCollection();
+                //   nv.Add("@mode", "4");
+                //ddlMain.DataSource = objCommon.GetDataTable("GET_Common", nv); 
                 ddlMain.DataSource = objCOm.GetMainLocation();
                 ddlMain.DataTextField = "l1";
                 ddlMain.DataValueField = "l1";
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
-               // ddlLocation.SelectedValue = "ENC1";
+                // ddlLocation.SelectedValue = "ENC1";
                 //  BindLocation();
                 BindLocationNew(ref ddlLocation, PutAwayFacility);
                 ddlMain.SelectedValue = PutAwayFacility;
@@ -328,12 +328,22 @@ namespace Improvians
 
                 // IrrigateSeedDate 
 
-                DataTable dtISD = objSP.GetSeedDateData("IRRIGATE",lblGenusCode.Text, TraySize);
+                DataTable dtISD = objSP.GetSeedDateData("IRRIGATE", lblGenusCode.Text, TraySize);
                 DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, TraySize);
 
                 if (dtISD != null && dtISD.Rows.Count > 0)
                 {
-                    IrrigateSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(dtISD.Rows[0]["DateShift"]))).ToString();
+                    string IDay = dtISD.Rows[0]["DateShift"].ToString();
+                    int ivalue = 0;
+                    if (int.TryParse(IDay, out ivalue))
+                    {
+                        IrrigateSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(ivalue)).ToString();
+                    }
+                    else
+                    {
+                        IrrigateSeedDate = lblSeedDate.Text;
+                    }
+
                 }
                 else
                 {
@@ -342,14 +352,24 @@ namespace Improvians
 
                 if (dtFez != null && dtFez.Rows.Count > 0)
                 {
-                    FertilizeSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(dtISD.Rows[0]["DateShift"]))).ToString();
+                    string FDay = dtFez.Rows[0]["DateShift"].ToString();
+                    int Fvalue = 0;
+                    if (int.TryParse(FDay, out Fvalue))
+                    {
+                        FertilizeSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Fvalue)).ToString();
+                    }
+                    else
+                    {
+                        FertilizeSeedDate = lblSeedDate.Text;
+                    }
+
 
                 }
                 else
                 {
                     FertilizeSeedDate = lblSeedDate.Text;
                 }
-               
+
 
 
                 foreach (GridViewRow item in GridSplitJob.Rows)
@@ -373,7 +393,7 @@ namespace Improvians
 
                         nv.Add("@SeedDate", lblSeedDate.Text);
                         nv.Add("@CreateBy", Session["LoginID"].ToString());
-                        nv.Add("@Supervisor",ddlSupervisor.SelectedValue);
+                        nv.Add("@Supervisor", ddlSupervisor.SelectedValue);
                         nv.Add("@IrrigateSeedDate", IrrigateSeedDate);
                         nv.Add("@FertilizeSeedDate", FertilizeSeedDate);
 
@@ -412,13 +432,13 @@ namespace Improvians
                     script += url;
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                  //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
+                    //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
 
                     Clear();
                 }
 
 
-           
+
 
 
             }
@@ -465,7 +485,7 @@ namespace Improvians
 
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice, 1,"","", "");
+                    AddGrowerput(ref objinvoice, 1, "", "", "");
 
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;

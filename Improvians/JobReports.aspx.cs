@@ -27,12 +27,37 @@ namespace Improvians
                 if (string.IsNullOrEmpty(JobCode))
                 {
                     divFilter.Visible = true;
+
                     BindJobCode();
                 }
                 else
+                {
                     BindGridOne(JobCode);
+                    JobCode= Request.QueryString["jobCode"];
+                }
+
             }
         }
+
+        private string JobCode
+        {
+            get
+            {
+                if (ViewState["JobCode"] != null)
+                {
+                    return (string)ViewState["JobCode"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["JobCode"] = value;
+            }
+        }
+
+
+
+
         public void BindJobCode()
         {
 
@@ -123,6 +148,17 @@ namespace Improvians
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridOne(ddlJobNo.SelectedValue);
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindGridOne(txtJobNo.Text.Trim());
+        }
+
+        protected void btnSearchRest_Click(object sender, EventArgs e)
+        {
+            txtJobNo.Text = "";
+            BindGridOne(txtJobNo.Text);
         }
     }
 }

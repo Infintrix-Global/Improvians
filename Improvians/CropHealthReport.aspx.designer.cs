@@ -564,6 +564,69 @@ namespace Improvians
         protected global::System.Web.UI.WebControls.Button btnFReset;
 
         /// <summary>
+        /// ddlirrigationSupervisor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlirrigationSupervisor;
+
+        /// <summary>
+        /// txtWaterRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtWaterRequired;
+
+        /// <summary>
+        /// txtirrigationSprayDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtirrigationSprayDate;
+
+        /// <summary>
+        /// txtirrigationResetSprayTaskForDays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtirrigationResetSprayTaskForDays;
+
+        /// <summary>
+        /// txtirrigationNotes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtirrigationNotes;
+
+        /// <summary>
+        /// btnirrigationSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnirrigationSubmit;
+
+        /// <summary>
+        /// btnirrigationReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnirrigationReset;
+
+        /// <summary>
         /// divcomments control.
         /// </summary>
         /// <remarks>

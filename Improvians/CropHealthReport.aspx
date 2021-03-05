@@ -485,7 +485,7 @@
                                     </div>
                                     <div class="mb-3 col-xl-2 col-md-6 col-12">
                                         <label class="d-block">Concentration [ppm]</label>
-                                        <asp:TextBox ID="txtQty"  TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <asp:TextBox ID="txtQty" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
                                     <div class="mb-3 col-xl-2 col-md-6 col-12">
                                         <label class="d-block">Trays</label>
@@ -529,46 +529,52 @@
 
                         <div id="irrigation_count" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
-                                <div class="row">
-                                    <div class="col-12 col-md-6 col-lg-5 col-xl-4">
+                               
                                         <div class="row">
-                                            <div class="mb-3 col-12">
+                                            <div class="col-xl-3">
                                                 <label class="d-block">Assignment</label>
-                                                <select class="custom__dropdown w-100 input__control-auto">
-                                                    <option>--Select--</option>
-                                                    <option>Assistant Grower</option>
-                                                    <option>Supervisor</option>
-                                                    <option>Irrigator</option>
-                                                    <option>Crew Lead</option>
-                                                    <option>Sprayer</option>
-                                                </select>
+                                                <asp:DropDownList ID="ddlirrigationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                             </div>
-                                            <div class="mb-3 col-12">
-                                                <label class="d-block robotobold">Schedule</label>
+                                            <div class="col-xl-3">
+                                              
                                                 <div class="d-flex flex-wrap align-items-center">
-                                                    <span class="mr-3 mb-2 mb-sm-0">Spray Date: </span>
-                                                    <input type="date" class="input__control input__control-auto" />
+                                                    <span class="mr-3 mb-2 mb-sm-0"># of passes </span>
+                                                    <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                                                 </div>
                                             </div>
-                                            <div class="mb-3 col-12">
+                                            <div class="col-xl-3">
+                                               
+                                                <div class="d-flex flex-wrap align-items-center">
+                                                    <span class="mr-3 mb-2 mb-sm-0">Spray Date: </span>
+                                                    <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
                                                 <label class="d-block">Reset Spray Task For Days </label>
-                                                <input type="text" class="input__control" />
-                                            </div>
-                                            <div class="mb-3 col-12">
-                                                <label class="d-block">Notes:</label>
-                                                <textarea class="w-100 input__control"></textarea>
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="button" class="mr-2 bttn bttn-primary">
-                                                    Submit
-                                                </button>
-                                                <button type="reset" class="bttn bttn-primary">
-                                                    Reset
-                                                </button>
+                                                <asp:TextBox ID="txtirrigationResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                        <div class="row">
+                                            <div class="col-xl-3">
+
+                                                <label class="d-block">Notes:</label>
+                                                <asp:TextBox ID="txtirrigationNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
+                                            </div>
+                                               
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
+
+                                                <asp:Button Text="Submit" ID="btnirrigationSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnirrigationSubmit_Click" />
+
+                                                <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnirrigationReset_Click1" />
+
+                                            </div>
+                                        </div>
+                                   
+                              
                             </div>
                         </div>
 
@@ -659,7 +665,7 @@
                                                         <div class="col-lg-4">
                                                             <label>Assignment</label>
 
-                                                            <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" ></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                                             <span class="error_message">
                                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
                                                                     SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -667,7 +673,8 @@
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div style="margin-top: 9%;">
-                                                                  <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" /> </div>
+                                                                <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </asp:Panel>
