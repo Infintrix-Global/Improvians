@@ -45,66 +45,70 @@
 
                         </div>
 
-                         <br />
+                        <br />
+                        <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
+                            <br />
+                            <h2 class="text-left">Crop Health Report </h2>
 
-                           <div class="portlet-body">
-                                 <h2 class="text-left">Crop Health Report </h2>
-                                  <br />
-                    <div class="data__table">
-                        <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
-                            class="striped" AllowSorting="true"
-                            GridLines="None" DataKeyNames="chid"
-                            ShowHeaderWhenEmpty="True" Width="100%">
-                            <Columns>
+                            <br />
+                            <div class="portlet-body">
 
-                                <asp:TemplateField HeaderText="Type of Problem" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("typeofProblem")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                <div class="data__table">
+                                    <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
+                                        class="striped" AllowSorting="true"
+                                        GridLines="None" DataKeyNames="chid"
+                                        ShowHeaderWhenEmpty="True" Width="100%">
+                                        <Columns>
 
-                                <asp:TemplateField HeaderText="Cause of Problem" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("Causeofproblem")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Type of Problem" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("typeofProblem")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Severity of Problem" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblitem" runat="server" Text='<%# Eval("Severityofproblem")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="No. of Trays" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("NoTrays")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Cause of Problem" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("Causeofproblem")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="% of Damage" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("PerDamage")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Severity of Problem" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblitem" runat="server" Text='<%# Eval("Severityofproblem")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="No. of Trays" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("NoTrays")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("Date","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="% of Damage" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("PerDamage")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("Date","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
 
-                            </Columns>
+                                        </Columns>
 
-                            <PagerStyle CssClass="paging" HorizontalAlign="Right" />
-                            <PagerSettings Mode="NumericFirstLast" />
-                            <EmptyDataTemplate>
-                                No Record Available
-                            </EmptyDataTemplate>
-                        </asp:GridView>
+                                        <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                        <PagerSettings Mode="NumericFirstLast" />
+                                        <EmptyDataTemplate>
+                                            No Record Available
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
 
-                    </div>
-                </div>
-                 <br />
+                                </div>
+                            </div>
+                        </asp:Panel>
+                        <br />
                         <div class="row">
 
 

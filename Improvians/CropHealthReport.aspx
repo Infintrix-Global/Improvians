@@ -61,18 +61,26 @@
                 <div class="row">
 
                     <div class="col-lg-3">
+
+                          <label>Job No</label>
+                                <asp:TextBox ID="txtSearchJobNo"  runat="server" class="input__control robotomd"></asp:TextBox>
+
+
                     </div>
 
                     <div class="col-lg-3">
-                    </div>
-
-                    <div class="col-lg-3">
-                    </div>
-
-                    <div class="col-lg-3">
+                        <br />
+                         <asp:Button Text="Search" ID="btnSearchDet" runat="server"  CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
 
                         <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
 
+                    </div>
+
+                    <div class="col-lg-3">
+                    </div>
+
+                    <div class="col-lg-3">
+                        
                     </div>
 
                 </div>
@@ -364,6 +372,9 @@
                         <br />
                         <div class="row">
                             <div class="col-auto">
+                                <asp:Button Text="Save" ValidationGroup="e" CausesValidation="true" ID="btnSave" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSave_Click" />
+
+
                                 <asp:Button Text="Save for later" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
 
                                 <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
@@ -431,7 +442,9 @@
                     <div class="request__block">
                         <div id="germination_count" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
-
+                                <br />
+                                <h2 class="text-left">Germination Count</h2>
+                                <br />
                                 <div class="row">
                                     <div class="col-xl-3">
                                         <label class="d-block">Assignment</label>
@@ -459,6 +472,9 @@
                         </div>
                         <div id="fertilization_count" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
+                                <br />
+                                <h2 class="text-left">Fertilization / Chemical</h2>
+                                <br />
                                 <div class="row align-items-end">
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label class="d-block">Assignment</label>
@@ -529,57 +545,62 @@
 
                         <div id="irrigation_count" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
-                               
-                                        <div class="row">
-                                            <div class="col-xl-3">
-                                                <label class="d-block">Assignment</label>
-                                                <asp:DropDownList ID="ddlirrigationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                            </div>
-                                            <div class="col-xl-3">
-                                              
-                                                <div class="d-flex flex-wrap align-items-center">
-                                                    <span class="mr-3 mb-2 mb-sm-0"># of passes </span>
-                                                    <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3">
-                                               
-                                                <div class="d-flex flex-wrap align-items-center">
-                                                    <span class="mr-3 mb-2 mb-sm-0">Spray Date: </span>
-                                                    <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3">
-                                                <label class="d-block">Reset Spray Task For Days </label>
-                                                <asp:TextBox ID="txtirrigationResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <br />
+                                <h2 class="text-left">Irrigation</h2>
+                                <br />
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <label class="d-block">Assignment</label>
+                                        <asp:DropDownList ID="ddlirrigationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-xl-3">
 
-                                            </div>
+                                        <div class="d-flex flex-wrap align-items-center">
+                                            <span class="mr-3 mb-2 mb-sm-0"># of passes </span>
+                                            <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-xl-3">
+                                    </div>
+                                    <div class="col-xl-3">
 
-                                                <label class="d-block">Notes:</label>
-                                                <asp:TextBox ID="txtirrigationNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
-                                            </div>
-                                               
+                                        <div class="d-flex flex-wrap align-items-center">
+                                            <span class="mr-3 mb-2 mb-sm-0">Spray Date: </span>
+                                            <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="row">
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <label class="d-block">Reset Spray Task For Days </label>
+                                        <asp:TextBox ID="txtirrigationResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
-                                            <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3">
 
-                                                <asp:Button Text="Submit" ID="btnirrigationSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnirrigationSubmit_Click" />
+                                        <label class="d-block">Notes:</label>
+                                        <asp:TextBox ID="txtirrigationNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
+                                    </div>
 
-                                                <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnirrigationReset_Click1" />
+                                </div>
+                                <div class="row">
 
-                                            </div>
-                                        </div>
-                                   
-                              
+                                    <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
+
+                                        <asp:Button Text="Submit" ID="btnirrigationSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnirrigationSubmit_Click" />
+
+                                        <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnirrigationReset_Click1" />
+
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
 
                         <div id="plant_ready_count" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
+                                <br />
+                                <h2 class="text-left">Plant Ready</h2>
+                                <br />
                                 <div class="row">
                                     <%--<div class="mb-3 mb-md-0 col-12 col-md-auto">
                                         <label class="d-block">Job No.</label>
@@ -588,13 +609,13 @@
                                     <div class="mb-3 mb-md-0 col-12 col-md-auto">
                                         <label class="d-block">Assignment</label>
 
-                                       <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
                                     </div>
                                     <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
-                                         <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
+                                        <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
 
-                                         <asp:Button Text="Reset" ID="btnplant_readyReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnplant_readyReset_Click" />
+                                        <asp:Button Text="Reset" ID="btnplant_readyReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnplant_readyReset_Click" />
 
                                     </div>
                                 </div>
@@ -609,6 +630,9 @@
 
                         <div id="dump_request" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
+                                <br />
+                                <h2 class="text-left">Dumpt</h2>
+                                <br />
                                 <div class="row">
                                     <div class="mb-3 col-12 col-md-auto">
                                         <label class="d-block">Job No.</label>
@@ -639,6 +663,9 @@
 
                         <div id="general_task_request" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
+                                <br />
+                                <h2 class="text-left">General Task</h2>
+                                <br />
                                 <div id="divcomments" runat="server">
 
                                     <div class=" col m12">
@@ -681,7 +708,7 @@
                     </div>
                 </div>
 
-                <div class="form__action mt-4">
+                <%--  <div class="form__action mt-4">
                     <button type="reset" class="mr-2 bttn bttn-primary mb-2">
                         Reset
                     </button>
@@ -691,7 +718,7 @@
                     <button type="submit" class="bttn bttn-primary mb-2">
                         Submit
                     </button>
-                </div>
+                </div>--%>
             </div>
 
         </div>
