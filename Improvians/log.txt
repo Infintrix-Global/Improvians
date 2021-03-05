@@ -5611,3 +5611,110 @@ Ambiguous column name 'GreenHouseID'. at 23-02-2021 18:27:38
 *****Error message=****@TraySize:339 at 3/5/2021 3:24:38 AM
 *****Error message=****@GenusCode: at 3/5/2021 3:24:38 AM
 *****Error message=****@GreenHouseID:ENC1-H01-5-A at 3/5/2021 3:24:38 AM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in C:\Users\evo3\Source\Repos\Improvians\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/5/2021 5:52:48 AM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in C:\Users\evo3\Source\Repos\Improvians\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/5/2021 5:53:00 AM
+*****Error message=****@Customer:CAL SUN GROWER SERVICES, LLC at 3/5/2021 5:53:46 AM
+*****Error message=****@jobcode:JB032802 at 3/5/2021 5:53:46 AM
+*****Error message=****@Item:TMC-4707 at 3/5/2021 5:53:46 AM
+*****Error message=****@Facility: at 3/5/2021 5:53:46 AM
+*****Error message=****@GreenHouseID:ENC1-H01-2-A at 3/5/2021 5:53:46 AM
+*****Error message=****@TotalTray:188 at 3/5/2021 5:53:46 AM
+*****Error message=****@TraySize:392 at 3/5/2021 5:53:46 AM
+*****Error message=****@Seeddate:01/29/2021 at 3/5/2021 5:53:46 AM
+*****Error message=****@Itemdesc:TOMATO-CANNING-4707 - 392 at 3/5/2021 5:53:46 AM
+*****Error message=****@SupervisorID:2 at 3/5/2021 5:53:47 AM
+*****Error message=****@InspectionDueDate:2021-03-06 at 3/5/2021 5:53:47 AM
+*****Error message=****@TraysInspected:1548 at 3/5/2021 5:53:47 AM
+*****Error message=****@Chid:1 at 3/5/2021 5:53:47 AM
+*****Error message=****@LoginId:1 at 3/5/2021 5:53:47 AM
+*****Error message=****@Customer:CAL SUN GROWER SERVICES, LLC at 3/5/2021 5:53:47 AM
+*****Error message=****@jobcode:JB032795 at 3/5/2021 5:53:47 AM
+*****Error message=****@Item:TMC-1662 at 3/5/2021 5:53:47 AM
+*****Error message=****@Facility: at 3/5/2021 5:53:47 AM
+*****Error message=****@GreenHouseID:ENC1-H01-2-A at 3/5/2021 5:53:47 AM
+*****Error message=****@TotalTray:1360 at 3/5/2021 5:53:47 AM
+*****Error message=****@TraySize:392 at 3/5/2021 5:53:47 AM
+*****Error message=****@Seeddate:02/03/2021 at 3/5/2021 5:53:47 AM
+*****Error message=****@Itemdesc:TOMATO-CANNING-1662 - 392 at 3/5/2021 5:53:47 AM
+*****Error message=****@SupervisorID:2 at 3/5/2021 5:53:47 AM
+*****Error message=****@InspectionDueDate:2021-03-06 at 3/5/2021 5:53:47 AM
+*****Error message=****@TraysInspected:1548 at 3/5/2021 5:53:47 AM
+*****Error message=****@Chid:1 at 3/5/2021 5:53:47 AM
+*****Error message=****@LoginId:1 at 3/5/2021 5:53:47 AM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in C:\Users\evo3\Source\Repos\Improvians\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/5/2021 5:53:59 AM
+*****Error message=****@InspectionDate:2021-03-05 at 3/5/2021 5:55:18 AM
+*****Error message=****@GTAID:30 at 3/5/2021 5:55:18 AM
+*****Error message=****@#TraysInspected:2 at 3/5/2021 5:55:18 AM
+*****Error message=****@Germination:99.74 at 3/5/2021 5:55:18 AM
+*****Error message=****@WorkOrderID:0 at 3/5/2021 5:55:18 AM
+*****Error message=****@#BadPlants:2 at 3/5/2021 5:55:18 AM
+*****Error message=****@GermVigor:100.00 at 3/5/2021 5:55:18 AM
+*****Error message=****@LoginID:2 at 3/5/2021 5:55:18 AM
+*****Error message=****@Jid:390 at 3/5/2021 5:55:18 AM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in C:\Users\evo3\Source\Repos\Improvians\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/5/2021 6:17:38 AM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in C:\Users\evo3\Source\Repos\Improvians\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/5/2021 6:26:00 AM
