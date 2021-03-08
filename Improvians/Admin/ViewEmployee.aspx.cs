@@ -18,7 +18,7 @@ namespace Evo.Admin
         {
             if (!IsPostBack)
             {
-                BindDepartment();
+               // BindDepartment();
                 BindRole();
                 GetEmployeeList();
             }
