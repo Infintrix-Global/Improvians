@@ -356,7 +356,7 @@ namespace Improvians
             ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
-            ddlJobNo.SelectedIndex = 0;
+           // ddlJobNo.SelectedIndex = 0;
             //BindGridFerReq();
             gvFer.DataSource = null;
             gvFer.DataBind();

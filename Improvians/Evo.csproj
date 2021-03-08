@@ -185,6 +185,8 @@
     <Content Include="Admin\ViewEmployee.aspx" />
     <Content Include="bin\ajaxcontroltoolkit.dll" />
     <Content Include="bin\itextsharp.dll" />
+    <Content Include="ChemicalJobBuildUp.aspx" />
+    <Content Include="ChemicalTaskReq.aspx" />
     <Content Include="CropHealthDetails.aspx" />
     <Content Include="CropHealthReport.aspx" />
     <Content Include="css\all.min.css" />
@@ -387,6 +389,20 @@
     <Compile Include="BAL_Classes\clsCommonMasters.cs" />
     <Compile Include="BAL_Classes\General.cs" />
     <Compile Include="BAL_Classes\RandomImage.cs" />
+    <Compile Include="ChemicalJobBuildUp.aspx.cs">
+      <DependentUpon>ChemicalJobBuildUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChemicalJobBuildUp.aspx.designer.cs">
+      <DependentUpon>ChemicalJobBuildUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChemicalTaskReq.aspx.cs">
+      <DependentUpon>ChemicalTaskReq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChemicalTaskReq.aspx.designer.cs">
+      <DependentUpon>ChemicalTaskReq.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CommonControl.cs" />
     <Compile Include="CommonControlNavision.cs" />
     <Compile Include="CropHealthDetails.aspx.cs">

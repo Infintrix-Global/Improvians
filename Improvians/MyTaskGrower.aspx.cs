@@ -38,7 +38,7 @@ namespace Improvians
             lblpr.Text = dt.Tables[4].Rows.Count.ToString();
             lblCropHealthReport.Text = dt.Tables[6].Rows.Count.ToString();
 
-          
+            lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
             //lnkMove.Text = dt.Tables[5].Rows.Count.ToString();
         }
 
@@ -155,6 +155,70 @@ namespace Improvians
 
                     _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv111);
                 }
+
+
+                //-------------------------------------------------------Chemical
+
+
+                DataTable dtChemical = objSP.GetSeedDateDatanew("SPRAYING", GenusCode, TraySize);
+
+                if (dtChemical != null && dtFez.Rows.Count > 0)
+                {
+                    DataColumn col = dtChemical.Columns["DateShift"];
+                    foreach (DataRow row in dtChemical.Rows)
+                    {
+
+                        string ChemicalDate = string.Empty;
+                        int fvalue = 0;
+                        if (int.TryParse(row[col].ToString(), out fvalue))
+                        {
+                            ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(fvalue)).ToString();
+                            NameValueCollection nv11 = new NameValueCollection();
+
+                         
+                            nv11.Add("@GrowerPutAwayId", "");
+                            nv11.Add("@wo", "");
+                            nv11.Add("@Jid", _isInserted.ToString());
+                            nv11.Add("@jobcode", jobcode);
+                            nv11.Add("@FacilityID", FacilityID);
+                            nv11.Add("@GreenHouseID", GreenHouseID);
+                            nv11.Add("@Trays", Trays);
+
+                            nv11.Add("@SeedDate", seeddate);
+                            nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                            nv11.Add("@Supervisor", "0");
+                           
+                            nv11.Add("@ChemicalSeedDate", ChemicalDate);
+                            _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsChemicalMenual", nv11);
+                        }
+                    }
+
+                }
+                else
+                {
+
+                    NameValueCollection nv111 = new NameValueCollection();
+
+
+                    nv111.Add("@GrowerPutAwayId", "");
+                    nv111.Add("@wo", "");
+                    nv111.Add("@Jid", _isInserted.ToString());
+                    nv111.Add("@jobcode", jobcode);
+                    nv111.Add("@FacilityID", FacilityID);
+                    nv111.Add("@GreenHouseID", GreenHouseID);
+                    nv111.Add("@Trays", Trays);
+
+                    nv111.Add("@SeedDate", seeddate);
+                    nv111.Add("@CreateBy", Session["LoginID"].ToString());
+                    nv111.Add("@Supervisor", "0");
+                   
+                    nv111.Add("@ChemicalSeedDate", seeddate);
+                    nv111.Add("@ID", "");
+
+                    _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsChemicalMenual", nv111);
+                }
+
+                //------
 
                 DataTable dtISD = objSP.GetSeedDateDatanew("IRRIGATE", GenusCode, TraySize);
 

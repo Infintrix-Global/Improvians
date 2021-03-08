@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="FerJobBuildUp.aspx.cs" Inherits="Improvians.FerJobBuildUp" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="ChemicalJobBuildUp.aspx.cs" Inherits="Improvians.ChemicalJobBuildUp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -7,8 +7,8 @@
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
-                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
-                Fertilization 
+                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
+                Chemical 
 
 
             </h2>
@@ -104,13 +104,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <%--   <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                 <asp:Button ID="btnReschdule" runat="server" Text="Reschdule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                                 <asp:Button ID="btnDismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
+
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -135,7 +129,7 @@
 
                                 <div class="col-lg-2">
                                     <asp:Button ID="btnSearch" runat="server" Visible="false" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" Text="Search" />
-                                      <asp:Button Text="Reset" ID="btnResetSearch"  CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
+                                    <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                                 </div>
                                 <div class="col-lg-6">
                                 </div>
@@ -163,20 +157,12 @@
                             </div>
                             <br />
                             <div class="data__table data__table-height">
-                                <asp:GridView ID="gvJobHistory" runat="server"  AutoGenerateColumns="False"
-                                    class="striped" 
-                                    GridLines="None" 
+                                <asp:GridView ID="gvJobHistory" runat="server" AutoGenerateColumns="False"
+                                    class="striped"
+                                    GridLines="None"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                        <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
-                                            <HeaderTemplate>
-                                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
 
-                                                <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -253,59 +239,7 @@
                                     </EmptyDataTemplate>
                                 </asp:GridView>
 
-                                <%--    <asp:GridView ID="GridViewDetails" class="table table-bordered table-hover"
-                                                        AutoGenerateColumns="false" runat="server">
-                                                        <Columns>
 
-                                                            <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
-
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Fertilizer" HeaderStyle-Width="40%">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-
-                                                            <asp:TemplateField HeaderText="Quantity" HeaderStyle-Width="10%">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblQuantity" runat="server" Text='<%#Bind("Quantity") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-
-                                                            <asp:TemplateField HeaderText="Unit" HeaderStyle-Width="15%">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblUnit" runat="server" Text='<%#Bind("Unit") %>'></asp:Label>
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Tray" HeaderStyle-Width="15%">
-                                                                <ItemTemplate>
-
-                                                                    <asp:Label ID="lblTray" runat="server" Text='<%#Bind("Tray") %>'></asp:Label>
-
-
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="SQFT" HeaderStyle-Width="10%">
-                                                                <ItemTemplate>
-
-                                                                    <asp:Label ID="lblSQFT" runat="server" Text='<%#Bind("SQFT") %>'></asp:Label>
-
-                                                                </ItemTemplate>
-
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
-                                                        <PagerSettings Mode="NumericFirstLast" />
-                                                        <EmptyDataTemplate>
-                                                            No Record Available
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>--%>
                             </div>
                         </div>
 
@@ -335,17 +269,28 @@
                             </div>
 
 
-
                             <div class="col-lg-3">
-                                <label>Type of Request</label>
 
-                                <asp:RadioButtonList ID="radtype" Width="250px" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
-                                    <asp:ListItem Text="Chemical" Value="Chemical" class="custom-control custom-radio mr-2"></asp:ListItem>
-                                    <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
-                                </asp:RadioButtonList>
+                                <label>
+                                    <asp:Label ID="lbltype" runat="server" Text="Chemical"></asp:Label></label><br />
+                                <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                <span class="error_message">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlFertilizer" ValidationGroup="e"
+                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Fertilizer" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </span>
                             </div>
                             <div class="col-lg-3">
-                                <label>Spray Date </label>
+                                <label>Method</label>
+
+                                <asp:DropDownList ID="ddlMethod" Width="250px" runat="server" RepeatDirection="Horizontal">
+                                    <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="Hand" Value="Hand"></asp:ListItem>
+                                    <asp:ListItem Text="Avion" Value="Avion"></asp:ListItem>
+                                    <asp:ListItem Text="Drench" Value="Drench"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Chemical Spray Date </label>
 
                                 <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
@@ -358,42 +303,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
 
-                                <label>
-                                    <asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label><br />
-                                <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                <span class="error_message">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlFertilizer" ValidationGroup="e"
-                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Fertilizer" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>
-                            </div>
-                            <div class="col-lg-3">
-                                <label>Concentration [ppm]</label>
-                                <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                <span class="error_message">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="e"
-                                        SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>
-                            </div>
-                            <%-- <div class="col">
-                                <label>Unit </label>
-                                <asp:DropDownList ID="ddlUnit" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                <span class="error_message">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlUnit" ValidationGroup="md"
-                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Unit" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>
-                            </div>--%>
+
 
                             <div class="col-lg-3">
                                 <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
                                 <asp:TextBox ID="txtTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                <%-- <span class="error_message">
-                                    <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
-                                        SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>--%>
+
                             </div>
 
                             <div class="col-lg-3">
@@ -407,92 +324,22 @@
                                 </span>
                             </div>
 
-
-
-                        </div>
-
-                        <div class="row">
                             <div class="col-lg-3">
-                                <label>Bench Irrigation Flow Rate [Gallons/min]</label>
-                                <asp:TextBox ID="txtBenchIrrigationFlowRate" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                            </div>
-                            <div class="col-lg-3">
-                                <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
-                                <asp:TextBox ID="txtBenchIrrigationCoverage" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                            </div>
-                            <div class="col-lg-3">
-                                <label>Spray Coverage per minutes [sqft/min]</label>
-                                <asp:TextBox ID="txtSprayCoverageperminutes" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                            </div>
-                            <div class="col-lg-3">
-                                   <label>Reset Spray Task For Days</label>
+                                <label>Reset Spray Task For Days</label>
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
+                            <div class="col-lg-3">
+                                <label>Comments</label>
+                                <asp:TextBox ID="txtComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                            </div>
+
                         </div>
-                         <br />
-                        
-                        <%--  <div class="col align-self-center">
-                                <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
-                            </div>--%>
-                        <%-- <div class="col-12">
-                                <div class="data__table">
-                                    <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
-                                        <asp:GridView runat="server" ID="gvFerDetails" AutoGenerateColumns="false" class="Grid1 mb-3"
-                                            GridLines="None" CaptionAlign="NotSet" Width="801px" ForeColor="Black"
-                                            ShowHeaderWhenEmpty="true">
-                                            <Columns>
 
 
-                                                <asp:TemplateField HeaderText="Fertilizer" ItemStyle-Width="10%">
-                                                    <ItemTemplate>
-
-                                                        <asp:Label ID="lblFertilizer" runat="server" Text='<%# Bind("[Fertilizer]")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="QTY" ItemStyle-Width="10%">
-                                                    <ItemTemplate>
-
-                                                        <asp:Label ID="lblQTY" runat="server" Text='<%# Bind("[Quantity]")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
 
 
-                                                <asp:TemplateField HeaderText="Unit of Measurement" ItemStyle-Width="10%">
-                                                    <ItemTemplate>
-
-                                                        <asp:Label ID="lblUOM" runat="server" Text='<%# Bind("[Unit]")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="Tray" ItemStyle-Width="10%">
-                                                    <ItemTemplate>
-
-                                                        <asp:Label ID="lblTray" runat="server" Text='<%# Bind("[Tray]")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="SQFT" ItemStyle-Width="10%">
-                                                    <ItemTemplate>
-
-                                                        <asp:Label ID="lblSQFT" runat="server" Text='<%# Bind("[SQFT]")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField ItemStyle-Width="20%">
-                                                    <ItemTemplate>
-                                                        <asp:Button class="submit-bttn bttn bttn-primary mb-0" ID="deletebtn" runat="server" CommandName="Delete"
-                                                            Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </asp:Panel>
-                                </div>
-                            </div>--%>
 
                         <br />
                         <div class="row">
