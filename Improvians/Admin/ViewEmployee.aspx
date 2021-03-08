@@ -57,13 +57,7 @@
                                                     <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Department" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("DepartmentName")  %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-
+                                           
                                             <asp:TemplateField HeaderText="Employee Name" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label7" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
@@ -75,12 +69,7 @@
                                                     <asp:Label ID="Label11" runat="server" Text='<%# Eval("EmployeeCode")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Contact Number" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label8" runat="server" Text='<%# Eval("Mobile")  %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                           
                                             <asp:TemplateField HeaderText="Email" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label9" runat="server" Text='<%# Eval("Email")  %>'></asp:Label>
@@ -92,7 +81,11 @@
                                                     <asp:Label ID="Label10" runat="server" Text='<%# Eval("RoleName")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
+                                             <asp:TemplateField HeaderText="Facility" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                   <%-- <asp:Label ID="Label8" runat="server" Text='<%# Eval("Facility")  %>'></asp:Label>--%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <div class="d-flex align-items-center">
