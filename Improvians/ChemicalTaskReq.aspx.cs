@@ -267,5 +267,10 @@ namespace Improvians
                 }
             }
         }
+
+        protected void btnManual_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ChemicalReqManual.aspx");
+        }
     }
 }

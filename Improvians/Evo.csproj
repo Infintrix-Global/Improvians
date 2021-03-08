@@ -186,6 +186,7 @@
     <Content Include="bin\ajaxcontroltoolkit.dll" />
     <Content Include="bin\itextsharp.dll" />
     <Content Include="ChemicalJobBuildUp.aspx" />
+    <Content Include="ChemicalReqManual.aspx" />
     <Content Include="ChemicalTaskReq.aspx" />
     <Content Include="CropHealthDetails.aspx" />
     <Content Include="CropHealthReport.aspx" />
@@ -395,6 +396,13 @@
     </Compile>
     <Compile Include="ChemicalJobBuildUp.aspx.designer.cs">
       <DependentUpon>ChemicalJobBuildUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChemicalReqManual.aspx.cs">
+      <DependentUpon>ChemicalReqManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChemicalReqManual.aspx.designer.cs">
+      <DependentUpon>ChemicalReqManual.aspx</DependentUpon>
     </Compile>
     <Compile Include="ChemicalTaskReq.aspx.cs">
       <DependentUpon>ChemicalTaskReq.aspx</DependentUpon>
