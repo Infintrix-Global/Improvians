@@ -105,7 +105,7 @@ namespace Evo
                 //}
                 BatchLocd = (row.FindControl("lblGreenHouse1") as Label).Text;
             }
-            txtTGerTrays.Text = tray.ToString();
+            txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
 
             BindSQFTofBench(BatchLocd);
@@ -155,7 +155,7 @@ namespace Evo
                 //}
                 BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
             }
-            txtTGerTrays.Text = tray.ToString();
+            txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
 
             BindSQFTofBench(BatchLocd);
