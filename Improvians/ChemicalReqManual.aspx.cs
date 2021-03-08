@@ -500,7 +500,7 @@ namespace Evo
         public void BindFertilizer()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objFer.GetFertilizerList();
+            ddlFertilizer.DataSource = objFer.GetChemicalList();
             ddlFertilizer.DataTextField = "Name";
             ddlFertilizer.DataValueField = "No_";
             ddlFertilizer.DataBind();

@@ -203,8 +203,12 @@
                             </asp:GridView>
 
                         </div>
-                        <div class="row">
+                        <br />
 
+                        <br />
+
+                        <div class="row">
+                             <label>Commment:</label>
                             <div class="col-lg-12">
                                 <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
                             </div>
