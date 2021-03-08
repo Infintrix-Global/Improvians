@@ -6,11 +6,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Improvians
+namespace Evo
 {
     public partial class JobReport : System.Web.UI.Page
     {
-        Improvians_General objGeneral = new Improvians_General();
+        Evo_General objGeneral = new Evo_General();
         string jb;
         protected void Page_Load(object sender, EventArgs e)
         {

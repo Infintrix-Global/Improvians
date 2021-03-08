@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="PlantReadyTaskCompletion.aspx.cs" Inherits="Improvians.PlantReadyTaskCompletion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="PlantReadyTaskCompletion.aspx.cs" Inherits="Evo.PlantReadyTaskCompletion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

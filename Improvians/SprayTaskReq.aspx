@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="SprayTaskReq.aspx.cs" Inherits="Improvians.SprayTaskReq" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="SprayTaskReq.aspx.cs" Inherits="Evo.SprayTaskReq" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript" src="<%= ResolveUrl("~/JS1/jquery.min.js") %>"></script>

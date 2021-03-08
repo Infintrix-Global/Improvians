@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Improvians.Admin
+namespace Evo.Admin
 {
 
 

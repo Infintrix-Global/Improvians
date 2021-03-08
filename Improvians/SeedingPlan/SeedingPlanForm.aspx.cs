@@ -7,13 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Improvians.BAL_Classes;
+using Evo.BAL_Classes;
 using System.Data.SqlClient;
-namespace Improvians.SeedingPlan
+namespace Evo.SeedingPlan
 {
     public partial class SeedingPlanForm : System.Web.UI.Page
     {
-        string CS = ConfigurationManager.ConnectionStrings["ImproviansNavision"].ToString();
+        string CS = ConfigurationManager.ConnectionStrings["EvoNavision"].ToString();
         CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
         {

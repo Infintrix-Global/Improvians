@@ -6,9 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Improvians.BAL_Classes;
+using Evo.BAL_Classes;
 
-namespace Improvians
+namespace Evo
 {
     public partial class SeedLineLotFulfillment : System.Web.UI.Page
     {

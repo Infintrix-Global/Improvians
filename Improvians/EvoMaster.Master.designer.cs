@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Improvians
+namespace Evo
 {
 
 
-    public partial class ImproviansMaster
+    public partial class EvoMaster
     {
 
         /// <summary>

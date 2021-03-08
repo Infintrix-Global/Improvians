@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Improvians.SeedingPlan
+namespace Evo.SeedingPlan
 {
 
 

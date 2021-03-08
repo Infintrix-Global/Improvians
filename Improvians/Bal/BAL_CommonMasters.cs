@@ -6,18 +6,18 @@ using System.Data;
 using Evo.Bal;
 
 
-namespace Improvians.Bal
+namespace Evo.Bal
 {
     public class BAL_CommonMasters
     {
-        Improvians_General objGeneral = new Improvians_General();
+        Evo_General objGeneral = new Evo_General();
         DataSet ds = new DataSet();
 
 
         private string strQuery = string.Empty;
         public DataTable GetSeedLot(string JobCode)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -40,7 +40,7 @@ namespace Improvians.Bal
 
         public DataTable GetSeedLotNofset(string SeedlotNo)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -58,7 +58,7 @@ namespace Improvians.Bal
 
         public DataTable GetMainLocation()
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -78,7 +78,7 @@ namespace Improvians.Bal
 
         public DataTable GetLocation(string MainLocation)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -99,7 +99,7 @@ namespace Improvians.Bal
 
         public DataTable GetJobsForBenchLocation(string BenchLocation)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {

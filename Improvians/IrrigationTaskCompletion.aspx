@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="IrrigationTaskCompletion.aspx.cs" Inherits="Improvians.IrrigationCompletionForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="IrrigationTaskCompletion.aspx.cs" Inherits="Evo.IrrigationCompletionForm" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

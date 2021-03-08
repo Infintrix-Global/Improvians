@@ -6,10 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Improvians.Admin.BAL_Classes;
-using Improvians.Admin;
+using Evo.Admin.BAL_Classes;
+using Evo.Admin;
 
-namespace Improvians.Admin
+namespace Evo.Admin
 {
     public partial class AddEmployee : System.Web.UI.Page
     {

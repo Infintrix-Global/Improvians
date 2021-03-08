@@ -6,18 +6,18 @@ using System.Data;
 using Evo.Bal;
 
 
-namespace Improvians.Bal
+namespace Evo.Bal
 {
     public class BAL_Fertilizer
     {
-        Improvians_General objGeneral = new Improvians_General();
+        Evo_General objGeneral = new Evo_General();
         DataSet ds = new DataSet();
 
 
         private string strQuery = string.Empty;
         public DataTable GetChemicalList()
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -36,7 +36,7 @@ namespace Improvians.Bal
 
         public DataTable GetFertilizerList()
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -56,7 +56,7 @@ namespace Improvians.Bal
 
         public DataTable GetUnitList()
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -74,7 +74,7 @@ namespace Improvians.Bal
         }
         public DataTable GetManualFertilizerRequest(string FacilityLocation, string BenchLocation, string JobCode)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -108,7 +108,7 @@ namespace Improvians.Bal
 
         public DataTable GetManualFertilizerRequestSelect(string FacilityLocation, string BenchLocation, string JobCode)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -139,7 +139,7 @@ namespace Improvians.Bal
 
         public DataTable GetManualFertilizerRequestCropHealthReport(string FacilityLocation, string BenchLocation, string JobCode)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {

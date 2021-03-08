@@ -12,7 +12,7 @@ using System.Web.Hosting;
 namespace Evo.Bal
 {
 
-    public class Improvians_General
+    public class Evo_General
     {
         private string mstr_ConnectionString;
         private SqlConnection mobj_SqlConnection;
@@ -29,11 +29,11 @@ namespace Evo.Bal
             ImageType = 4
         }
 
-        public Improvians_General()
+        public Evo_General()
         {
             try
             {
-                mstr_ConnectionString = ConfigurationManager.ConnectionStrings["ImproviansNavision"].ToString();
+                mstr_ConnectionString = ConfigurationManager.ConnectionStrings["EvoNavision"].ToString();
                 mobj_SqlConnection = new SqlConnection(mstr_ConnectionString);
                 mobj_SqlCommand = new SqlCommand();
                 mobj_SqlCommand.CommandTimeout = mint_CommandTimeout;

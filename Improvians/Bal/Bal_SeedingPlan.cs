@@ -5,18 +5,18 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace Improvians.Bal
+namespace Evo.Bal
 {
     public class Bal_SeedingPlan
     {
-        Improvians_General objGeneral = new Improvians_General();
+        Evo_General objGeneral = new Evo_General();
         DataSet ds = new DataSet();
 
 
         private string strQuery = string.Empty;
         public DataTable GetDataSeedingPlan(string FromDate, string ToDate, string loc, string item, string SeedAllocation, string traysize)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -67,7 +67,7 @@ namespace Improvians.Bal
 
         public DataTable GetDataSeedingPlanManual(string SeedDate)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -97,7 +97,7 @@ namespace Improvians.Bal
 
         public DataTable GetSeedlineLocation(string FromDate, string ToDate)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -122,7 +122,7 @@ namespace Improvians.Bal
 
         public DataTable GetSeedlineLocationProductionPlanner()
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -144,7 +144,7 @@ namespace Improvians.Bal
         }
         public DataTable GetItems(string FromDate, string ToDate)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -167,7 +167,7 @@ namespace Improvians.Bal
         }
         public DataTable GetTraysize(string FromDate, string ToDate)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -192,7 +192,7 @@ namespace Improvians.Bal
 
         public DataTable GetSeedDateData(string ActivityCode, string GenusCode, string ContainerCode)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
@@ -211,7 +211,7 @@ namespace Improvians.Bal
 
         public DataTable GetSeedDateDatanew(string ActivityCode, string GenusCode, string ContainerCode)
         {
-            Improvians_General objGeneral = new Improvians_General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
