@@ -34,7 +34,7 @@ namespace Improvians
                 {
                     Chid = Request.QueryString["Chid"].ToString();
                     BindGridCropHealth();
-              
+
                     PanelView.Visible = true;
                     PanelList.Visible = false;
                 }
@@ -209,12 +209,12 @@ namespace Improvians
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq("","");
+            BindGridFerReq("", "");
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq("",ddlBenchLocation.SelectedValue);
+            BindGridFerReq(ddlBenchLocation.SelectedValue,ddlJobNo.SelectedValue);
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
@@ -228,25 +228,25 @@ namespace Improvians
 
             BindJobCode(ddlBenchLocation.SelectedValue);
 
-            BindGridFerReq(ddlBenchLocation.SelectedValue,"");
+            BindGridFerReq(ddlBenchLocation.SelectedValue, "");
 
         }
 
         protected void btnSearchDet_Click(object sender, EventArgs e)
         {
 
-            BindGridFerReq(ddlBenchLocation.SelectedValue,txtSearchJobNo.Text.Trim());
+            BindGridFerReq(ddlBenchLocation.SelectedValue, txtSearchJobNo.Text.Trim());
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-           
+
             NameValueCollection nv = new NameValueCollection();
             if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
             {
                 folderPath = Server.MapPath("~/images/") + Path.GetFileName(FileUpload1.FileName);
-                FileUpload1.SaveAs(folderPath );               
+                FileUpload1.SaveAs(folderPath);
             }
             else
             {
@@ -260,30 +260,34 @@ namespace Improvians
             nv.Add("@Date", txtDate.Text);
             nv.Add("@Filepath", folderPath);
             nv.Add("@CropHealthCommit", txtcomments.Text);
-            
+
             result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
 
 
             foreach (GridViewRow row in gvFer.Rows)
             {
 
-                long result1 = 0;
-                NameValueCollection nv1 = new NameValueCollection();
-                nv1.Add("@chid", result.ToString());
-                nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
-                nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
-                nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
-                nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
-                nv1.Add("@loc_seedline", "");
-                nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
-                nv1.Add("@seedsreceived", "");
-                nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                nv1.Add("@SoDate", "");
-                nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv1.Add("@GenusCode", "");
-                nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
 
+                    long result1 = 0;
+                    NameValueCollection nv1 = new NameValueCollection();
+                    nv1.Add("@chid", result.ToString());
+                    nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                    nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                    nv1.Add("@loc_seedline", "");
+                    nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                    nv1.Add("@seedsreceived", "");
+                    nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                    nv1.Add("@SoDate", "");
+                    nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv1.Add("@GenusCode", "");
+                    nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                }
             }
 
             string message = "Assignment Successful";
@@ -302,86 +306,7 @@ namespace Improvians
             //  Clear();
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            long result = 0;
-            string folderPath = "";
-            NameValueCollection nv = new NameValueCollection();
-            if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-            {
-                folderPath = Server.MapPath("~/images/");
-                FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-            }
-            else
-            {
-                folderPath = "";
-            }
-            nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
-            nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
-            nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
-            nv.Add("@NoTrays", txtTrays.Text);
-            nv.Add("@PerDamage", percentageDamage.Text);
-            nv.Add("@Date", txtDate.Text);
-            nv.Add("@Filepath", folderPath);
-            nv.Add("@CropHealthCommit", txtcomments.Text);
-            result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
-
-
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-
-                long result1 = 0;
-                NameValueCollection nv1 = new NameValueCollection();
-                nv1.Add("@chid", result.ToString());
-                nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
-                nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
-                nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
-                nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
-                nv1.Add("@loc_seedline", "");
-                nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
-                nv1.Add("@seedsreceived", "");
-                nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                nv1.Add("@SoDate", "");
-                nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv1.Add("@GenusCode", "");
-                nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
-
-            }
-
-            //string message = "Assignment Successful";
-            //string url = "";
-            //string script = "window.onload = function(){ alert('";
-            //script += message;
-            //script += "');";
-            //script += "window.location = '";
-            //script += url;
-            //script += "'; }";
-            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
-            if (result > 0)
-            {
-                Chid = result.ToString();
-                BindGridCropHealth();
-                BindSupervisorList();
-                PanelView.Visible = true;
-                PanelList.Visible = false;
-            }
-            else
-            {
-                PanelView.Visible = false;
-                PanelList.Visible = true;
-                //    BindUnit();
-                //  BindJobCode(ddlBenchLocation.SelectedValue);
-                Bindcname();
-                BindFacility();
-                dtTrays.Clear();
-
-            }
-
-        }
-
-
+     
 
 
         public void Clear()
@@ -555,42 +480,104 @@ namespace Improvians
             string Batchlocation = "";
             int FertilizationCode = 0;
             DataTable dt = new DataTable();
-            NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Mode", "12");
-            dt = objCommon.GetDataTable("GET_Common", nv1);
+            NameValueCollection nv14 = new NameValueCollection();
+            nv14.Add("@Mode", "12");
+            dt = objCommon.GetDataTable("GET_Common", nv14);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
+
+            if (Chid == "")
+            {
+                long result = 0;
+                string folderPath = "";
+                NameValueCollection nv = new NameValueCollection();
+                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                {
+                    folderPath = Server.MapPath("~/images/");
+                    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                }
+                else
+                {
+                    folderPath = "";
+                }
+                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+                nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
+                nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
+                nv.Add("@NoTrays", txtTrays.Text);
+                nv.Add("@PerDamage", percentageDamage.Text);
+                nv.Add("@Date", txtDate.Text);
+                nv.Add("@Filepath", folderPath);
+                nv.Add("@CropHealthCommit", txtcomments.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+
+
+                foreach (GridViewRow row in gvFer.Rows)
+                {
+                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                    if (chckrw.Checked == true)
+                    {
+                        long result1 = 0;
+                        NameValueCollection nv1 = new NameValueCollection();
+                        nv1.Add("@chid", result.ToString());
+                        nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                        nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                        nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                        nv1.Add("@loc_seedline", "");
+                        nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                        nv1.Add("@seedsreceived", "");
+                        nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv1.Add("@SoDate", "");
+                        nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                    }
+
+                }
+
+                if (result > 0)
+                {
+                    Chid = result.ToString();
+                    BindGridCropHealth();
+                    BindSupervisorList();
+                    PanelView.Visible = false;
+                    PanelList.Visible = true;
+                }
+
+            }
+
 
 
             foreach (GridViewRow row in GridViewView.Rows)
             {
 
-                long result = 0;
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
-                nv.Add("@Type", radtype.SelectedValue);
-                nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
-                nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                nv.Add("@Facility", "");
-                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                long result2 = 0;
+                NameValueCollection nv4 = new NameValueCollection();
+                nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
+                nv4.Add("@Type", radtype.SelectedValue);
+                nv4.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv4.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                nv4.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                nv4.Add("@Facility", "");
+                nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv4.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv4.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
                 //nv.Add("@WorkOrder", lblwo.Text);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@FertilizationCode", FertilizationCode.ToString());
-                nv.Add("@FertilizationDate", txtFDate.Text);
-                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
+                nv4.Add("@LoginID", Session["LoginID"].ToString());
+                nv4.Add("@FertilizationCode", FertilizationCode.ToString());
+                nv4.Add("@FertilizationDate", txtFDate.Text);
+                result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
 
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, Batchlocation, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
-            long result1 = 0;
+            long result16 = 0;
             NameValueCollection nv11 = new NameValueCollection();
-            nv11.Add("@Chid",Chid);
-            result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+            nv11.Add("@Chid", Chid);
+            result16 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -606,30 +593,92 @@ namespace Improvians
 
         protected void btngerminationSumit_Click(object sender, EventArgs e)
         {
-            long result = 0;
-           
-                foreach (GridViewRow row in GridViewView.Rows)
-                {
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
-                    nv.Add("@jobcode", (row.FindControl("lblID1") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                    nv.Add("@Facility", "");
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
-                    nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                    nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
-                    nv.Add("@InspectionDueDate", txtGerDate.Text);
-                    nv.Add("@TraysInspected", txtTGerTrays.Text);
-                    nv.Add("@Chid", Chid);
-                    nv.Add("@LoginId", Session["LoginID"].ToString());
 
-                    result = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
+            if (Chid == "")
+            {
+                long result = 0;
+                string folderPath = "";
+                NameValueCollection nv = new NameValueCollection();
+                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                {
+                    folderPath = Server.MapPath("~/images/");
+                    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
                 }
-          
-            if (result > 0)
+                else
+                {
+                    folderPath = "";
+                }
+                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+                nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
+                nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
+                nv.Add("@NoTrays", txtTrays.Text);
+                nv.Add("@PerDamage", percentageDamage.Text);
+                nv.Add("@Date", txtDate.Text);
+                nv.Add("@Filepath", folderPath);
+                nv.Add("@CropHealthCommit", txtcomments.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+
+
+                foreach (GridViewRow row in gvFer.Rows)
+                {
+                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                    if (chckrw.Checked == true)
+                    {
+                        long result1 = 0;
+                        NameValueCollection nv1 = new NameValueCollection();
+                        nv1.Add("@chid", result.ToString());
+                        nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                        nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                        nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                        nv1.Add("@loc_seedline", "");
+                        nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                        nv1.Add("@seedsreceived", "");
+                        nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv1.Add("@SoDate", "");
+                        nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                    }
+
+                }
+
+                if (result > 0)
+                {
+                    Chid = result.ToString();
+                    BindGridCropHealth();
+                    BindSupervisorList();
+                    PanelView.Visible = false;
+                    PanelList.Visible = true;
+                }
+
+            }
+
+            long result16 = 0;
+
+            foreach (GridViewRow row in GridViewView.Rows)
+            {
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                nv.Add("@jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                nv.Add("@Facility", "");
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
+                nv.Add("@InspectionDueDate", txtGerDate.Text);
+                nv.Add("@TraysInspected", txtTGerTrays.Text);
+                nv.Add("@Chid", Chid);
+                nv.Add("@LoginId", Session["LoginID"].ToString());
+
+                result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
+            }
+
+            if (result16 > 0)
             {
                 long result1 = 0;
                 NameValueCollection nv11 = new NameValueCollection();
@@ -659,7 +708,7 @@ namespace Improvians
         {
 
         }
-      
+
         //protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    NameValueCollection nv = new NameValueCollection();
@@ -680,13 +729,13 @@ namespace Improvians
                 smtpClient.EnableSsl = true;
                 MailMessage mail = new MailMessage();
                 mail.Subject = "Crop Health Report";
-                mail.Body ="Crop Health Report Comments:" + txtcomments.Text;
+                mail.Body = "Crop Health Report Comments:" + txtcomments.Text;
                 //Setting From , To and CC
 
                 mail.From = new MailAddress(FromMail);
                 mail.To.Add(new MailAddress(ReceiverEmail));
-              //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
-             //   mail.Attachments.Add(atc);
+                //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
+                //   mail.Attachments.Add(atc);
                 smtpClient.Send(mail);
             }
             catch (Exception ex)
@@ -725,15 +774,81 @@ namespace Improvians
         {
             int IrrigationCode = 0;
             DataTable dt = new DataTable();
-            NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Mode", "13");
-            dt = objCommon.GetDataTable("GET_Common", nv1);
+            NameValueCollection nv17 = new NameValueCollection();
+            nv17.Add("@Mode", "13");
+            dt = objCommon.GetDataTable("GET_Common", nv17);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+
+
+            if (Chid == "")
+            {
+                long result = 0;
+                string folderPath = "";
+                NameValueCollection nv = new NameValueCollection();
+                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                {
+                    folderPath = Server.MapPath("~/images/");
+                    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                }
+                else
+                {
+                    folderPath = "";
+                }
+                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+                nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
+                nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
+                nv.Add("@NoTrays", txtTrays.Text);
+                nv.Add("@PerDamage", percentageDamage.Text);
+                nv.Add("@Date", txtDate.Text);
+                nv.Add("@Filepath", folderPath);
+                nv.Add("@CropHealthCommit", txtcomments.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+
+
+                foreach (GridViewRow row in gvFer.Rows)
+                {
+                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                    if (chckrw.Checked == true)
+                    {
+                        long result11 = 0;
+                        NameValueCollection nv1 = new NameValueCollection();
+                        nv1.Add("@chid", result.ToString());
+                        nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                        nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                        nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                        nv1.Add("@loc_seedline", "");
+                        nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                        nv1.Add("@seedsreceived", "");
+                        nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv1.Add("@SoDate", "");
+                        nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                    }
+
+                }
+
+                if (result > 0)
+                {
+                    Chid = result.ToString();
+                    BindGridCropHealth();
+                    BindSupervisorList();
+                    PanelView.Visible = false;
+                    PanelList.Visible = true;
+                }
+
+            }
+
+
+
+
 
             foreach (GridViewRow row in GridViewView.Rows)
             {
 
-                long result = 0;
+                long result16 = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
 
@@ -755,16 +870,16 @@ namespace Improvians
                 //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                 nv.Add("@Nots", txtirrigationNotes.Text.Trim());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
+                result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
 
 
             }
 
 
-            long result1 = 0;
+            long result18 = 0;
             NameValueCollection nv11 = new NameValueCollection();
             nv11.Add("@Chid", Chid);
-            result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+            result18 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -781,10 +896,74 @@ namespace Improvians
         {
             int IrrigationCode = 0;
             DataTable dt = new DataTable();
-            NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Mode", "13");
-            dt = objCommon.GetDataTable("GET_Common", nv1);
+            NameValueCollection nv11 = new NameValueCollection();
+            nv11.Add("@Mode", "13");
+            dt = objCommon.GetDataTable("GET_Common", nv11);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+
+
+            if (Chid == "")
+            {
+                long result = 0;
+                string folderPath = "";
+                NameValueCollection nv = new NameValueCollection();
+                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                {
+                    folderPath = Server.MapPath("~/images/");
+                    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                }
+                else
+                {
+                    folderPath = "";
+                }
+                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+                nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
+                nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
+                nv.Add("@NoTrays", txtTrays.Text);
+                nv.Add("@PerDamage", percentageDamage.Text);
+                nv.Add("@Date", txtDate.Text);
+                nv.Add("@Filepath", folderPath);
+                nv.Add("@CropHealthCommit", txtcomments.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+
+
+                foreach (GridViewRow row in gvFer.Rows)
+                {
+                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                    if (chckrw.Checked == true)
+                    {
+                        long result11 = 0;
+                        NameValueCollection nv1 = new NameValueCollection();
+                        nv1.Add("@chid", result.ToString());
+                        nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                        nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                        nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                        nv1.Add("@loc_seedline", "");
+                        nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                        nv1.Add("@seedsreceived", "");
+                        nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv1.Add("@SoDate", "");
+                        nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                    }
+
+                }
+
+                if (result > 0)
+                {
+                    Chid = result.ToString();
+                    BindGridCropHealth();
+                    BindSupervisorList();
+                    PanelView.Visible = false;
+                    PanelList.Visible = true;
+                }
+
+            }
+
+
 
             foreach (GridViewRow row in GridViewView.Rows)
             {
@@ -801,19 +980,19 @@ namespace Improvians
                 nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-
-              
                 nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@ChId",Chid);
+                
                 result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaNew", nv);
-               
+
 
             }
 
 
             long result1 = 0;
-            NameValueCollection nv11 = new NameValueCollection();
-            nv11.Add("@Chid", Chid);
-            result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+            NameValueCollection nv111 = new NameValueCollection();
+            nv111.Add("@Chid", Chid);
+            result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv111);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -831,6 +1010,24 @@ namespace Improvians
 
         }
 
-     
+
+        protected void chckchanged(object sender, EventArgs e)
+        {
+            CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckheader.Checked == true)
+                {
+                    chckrw.Checked = true;
+                }
+                else
+                {
+                    chckrw.Checked = false;
+                }
+            }
+
+        }
+
     }
 }

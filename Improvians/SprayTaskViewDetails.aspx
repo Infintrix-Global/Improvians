@@ -156,7 +156,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="New Estimated Ship Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("Date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -173,7 +173,12 @@
                                 </asp:GridView>
 
                             </div>
+                             <div class="row">
 
+                            <div class="col-lg-12">
+                                <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
                         </div>
                     </asp:Panel>
                     <br />

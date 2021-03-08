@@ -46,6 +46,8 @@ namespace Improvians
                 PanelCropHealth.Visible = true;
                 gvCropHealth.DataSource = dt1;
                 gvCropHealth.DataBind();
+
+                lblCommment.Text = dt1.Rows[0]["CropHealthCommit"].ToString();
             }
         }
 

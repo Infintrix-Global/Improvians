@@ -6056,3 +6056,173 @@ Ambiguous column name 'GreenHouseID'. at 23-02-2021 18:27:38
 *****Error message=****@GenusCode: at 3/5/2021 6:39:58 AM
 *****Error message=****@GreenHouseID:ENC1-H01-8-A at 3/5/2021 6:39:58 AM
 *****Error message=****@Chid:30 at 3/5/2021 6:41:57 AM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/7/2021 10:44:02 PM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/7/2021 10:47:12 PM
+*****Error message=****@Chid: at 3/7/2021 10:48:39 PM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/7/2021 10:48:58 PM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/7/2021 10:49:27 PM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/7/2021 10:49:31 PM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Improvians.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Error converting data type nvarchar to numeric. at 3/7/2021 10:49:40 PM
+*****Error message=****@Chid: at 3/7/2021 10:51:12 PM
+*****Error message=****@chid:1 at 3/7/2021 10:55:10 PM
+*****Error message=****@jobcode:JB031886 at 3/7/2021 10:55:12 PM
+*****Error message=****@itemno:TMC-BQ398 at 3/7/2021 10:55:13 PM
+*****Error message=****@itemdescp:TOMATO-CANNING-BQ398 - 392 at 3/7/2021 10:55:14 PM
+*****Error message=****@cname:CAL SUN GROWER SERVICES, LLC at 3/7/2021 10:55:15 PM
+*****Error message=****@loc_seedline: at 3/7/2021 10:55:16 PM
+*****Error message=****@Trays:1032 at 3/7/2021 10:55:18 PM
+*****Error message=****@seedsreceived: at 3/7/2021 10:55:19 PM
+*****Error message=****@SeedDate:01/14/2021 at 3/7/2021 10:55:20 PM
+*****Error message=****@SoDate: at 3/7/2021 10:55:21 PM
+*****Error message=****@TraySize:392 at 3/7/2021 10:55:22 PM
+*****Error message=****@GenusCode: at 3/7/2021 10:55:23 PM
+*****Error message=****@GreenHouseID:ENC2-H01-06-A at 3/7/2021 10:55:25 PM
+*****Error message=****@Chid:1 at 3/7/2021 10:55:38 PM
+*****Error message=****@chid:2 at 3/7/2021 11:04:34 PM
+*****Error message=****@jobcode:JB033475 at 3/7/2021 11:04:34 PM
+*****Error message=****@itemno:TMC-6428 at 3/7/2021 11:04:34 PM
+*****Error message=****@itemdescp:TOMATO-CANNING-6428 - 339 at 3/7/2021 11:04:34 PM
+*****Error message=****@cname:DONALD BEEMAN - TM at 3/7/2021 11:04:34 PM
+*****Error message=****@loc_seedline: at 3/7/2021 11:04:34 PM
+*****Error message=****@Trays:1598 at 3/7/2021 11:04:34 PM
+*****Error message=****@seedsreceived: at 3/7/2021 11:04:34 PM
+*****Error message=****@SeedDate:02/16/2021 at 3/7/2021 11:04:34 PM
+*****Error message=****@SoDate: at 3/7/2021 11:04:34 PM
+*****Error message=****@TraySize:339 at 3/7/2021 11:04:34 PM
+*****Error message=****@GenusCode: at 3/7/2021 11:04:34 PM
+*****Error message=****@GreenHouseID:ENC1-H01-6-A at 3/7/2021 11:04:34 PM
+*****Error message=****@Customer:DONALD BEEMAN - TM at 3/7/2021 11:04:40 PM
+*****Error message=****@jobcode:JB033475 at 3/7/2021 11:04:40 PM
+*****Error message=****@Item:TMC-6428 at 3/7/2021 11:04:40 PM
+*****Error message=****@Facility: at 3/7/2021 11:04:40 PM
+*****Error message=****@GreenHouseID:ENC1-H01-6-A at 3/7/2021 11:04:40 PM
+*****Error message=****@TotalTray:1598 at 3/7/2021 11:04:40 PM
+*****Error message=****@TraySize:339 at 3/7/2021 11:04:40 PM
+*****Error message=****@Seeddate:02/16/2021 at 3/7/2021 11:04:40 PM
+*****Error message=****@Itemdesc:TOMATO-CANNING-6428 - 339 at 3/7/2021 11:04:40 PM
+*****Error message=****@SupervisorID:2 at 3/7/2021 11:04:40 PM
+*****Error message=****@InspectionDueDate:2021-03-07 at 3/7/2021 11:04:40 PM
+*****Error message=****@TraysInspected:1598 at 3/7/2021 11:04:40 PM
+*****Error message=****@Chid:2 at 3/7/2021 11:04:40 PM
+*****Error message=****@LoginId:1 at 3/7/2021 11:04:40 PM
+*****Error message=****@Chid:2 at 3/7/2021 11:04:41 PM
+*****Error message=****@chid:3 at 3/7/2021 11:05:58 PM
+*****Error message=****@jobcode:JB032952 at 3/7/2021 11:05:58 PM
+*****Error message=****@itemno:TMC-BP43 at 3/7/2021 11:05:58 PM
+*****Error message=****@itemdescp:TOMATO-CANNING-BP43 - 339 at 3/7/2021 11:05:58 PM
+*****Error message=****@cname:JIM BORCHARD FARMING - TM at 3/7/2021 11:05:58 PM
+*****Error message=****@loc_seedline: at 3/7/2021 11:05:59 PM
+*****Error message=****@Trays:1228 at 3/7/2021 11:05:59 PM
+*****Error message=****@seedsreceived: at 3/7/2021 11:05:59 PM
+*****Error message=****@SeedDate:02/15/2021 at 3/7/2021 11:05:59 PM
+*****Error message=****@SoDate: at 3/7/2021 11:05:59 PM
+*****Error message=****@TraySize:339 at 3/7/2021 11:05:59 PM
+*****Error message=****@GenusCode: at 3/7/2021 11:05:59 PM
+*****Error message=****@GreenHouseID:ENC1-H01-5-B at 3/7/2021 11:05:59 PM
+*****Error message=****@Chid:3 at 3/7/2021 11:06:02 PM
+*****Error message=****@chid:4 at 3/7/2021 11:06:51 PM
+*****Error message=****@jobcode:JB031886 at 3/7/2021 11:06:51 PM
+*****Error message=****@itemno:TMC-BQ398 at 3/7/2021 11:06:51 PM
+*****Error message=****@itemdescp:TOMATO-CANNING-BQ398 - 392 at 3/7/2021 11:06:51 PM
+*****Error message=****@cname:CAL SUN GROWER SERVICES, LLC at 3/7/2021 11:06:51 PM
+*****Error message=****@loc_seedline: at 3/7/2021 11:06:51 PM
+*****Error message=****@Trays:1032 at 3/7/2021 11:06:51 PM
+*****Error message=****@seedsreceived: at 3/7/2021 11:06:51 PM
+*****Error message=****@SeedDate:01/14/2021 at 3/7/2021 11:06:51 PM
+*****Error message=****@SoDate: at 3/7/2021 11:06:51 PM
+*****Error message=****@TraySize:392 at 3/7/2021 11:06:51 PM
+*****Error message=****@GenusCode: at 3/7/2021 11:06:51 PM
+*****Error message=****@GreenHouseID:ENC2-H01-07-A at 3/7/2021 11:06:51 PM
+*****Error message=****@Chid:4 at 3/7/2021 11:06:57 PM
+*****Error message=****@chid:5 at 3/7/2021 11:18:40 PM
+*****Error message=****@jobcode:JB032795 at 3/7/2021 11:18:40 PM
+*****Error message=****@itemno:TMC-1662 at 3/7/2021 11:18:40 PM
+*****Error message=****@itemdescp:TOMATO-CANNING-1662 - 392 at 3/7/2021 11:18:40 PM
+*****Error message=****@cname:CAL SUN GROWER SERVICES, LLC at 3/7/2021 11:18:40 PM
+*****Error message=****@loc_seedline: at 3/7/2021 11:18:40 PM
+*****Error message=****@Trays:1598 at 3/7/2021 11:18:40 PM
+*****Error message=****@seedsreceived: at 3/7/2021 11:18:40 PM
+*****Error message=****@SeedDate:02/03/2021 at 3/7/2021 11:18:40 PM
+*****Error message=****@SoDate: at 3/7/2021 11:18:40 PM
+*****Error message=****@TraySize:392 at 3/7/2021 11:18:40 PM
+*****Error message=****@GenusCode: at 3/7/2021 11:18:40 PM
+*****Error message=****@GreenHouseID:ENC1-H01-7-B at 3/7/2021 11:18:40 PM
+*****Error message=****@Chid:5 at 3/7/2021 11:18:46 PM
