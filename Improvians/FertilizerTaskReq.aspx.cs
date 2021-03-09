@@ -34,7 +34,15 @@ namespace Evo
                 BindFertilizer();
                 BindUnit();
                 Bindcname();
-                BindFacility();
+                if (Session["Facility"].ToString() != string.Empty)
+                {
+                    divFacility.Visible = false;
+                    BindBenchLocation(Session["Facility"].ToString());
+                }
+                else
+                {
+                    BindFacility();
+                }
                 BindBenchLocation(ddlFacility.SelectedValue);
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridFerReq();

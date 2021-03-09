@@ -30,7 +30,15 @@ namespace Evo
                 //    BindUnit();
               
                 Bindcname();
-                BindFacility();
+                if (Session["Facility"].ToString() != string.Empty)
+                {
+                    divFacility.Visible = false;
+                    BindBenchLocation(Session["Facility"].ToString());
+                }
+                else
+                {
+                    BindFacility();
+                }
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 dtTrays.Clear();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
