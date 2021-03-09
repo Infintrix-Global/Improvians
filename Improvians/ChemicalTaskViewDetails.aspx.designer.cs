@@ -11,79 +11,97 @@ namespace Evo
 {
 
 
-    public partial class MyTaskSpray
+    public partial class ChemicalTaskViewDetails
     {
 
         /// <summary>
-        /// lblPutAway control.
+        /// sc1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPutAway;
+        protected global::System.Web.UI.ScriptManager sc1;
 
         /// <summary>
-        /// lblGerm control.
+        /// lblBenchLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGerm;
+        protected global::System.Web.UI.WebControls.Label lblBenchLocation;
 
         /// <summary>
-        /// lblFer control.
+        /// lblmsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFer;
+        protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// lblChemical control.
+        /// gvSpray control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblChemical;
+        protected global::System.Web.UI.WebControls.GridView gvSpray;
 
         /// <summary>
-        /// lblIrr control.
+        /// userinput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIrr;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
 
         /// <summary>
-        /// lblCropHealthReport control.
+        /// PanelCropHealth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCropHealthReport;
+        protected global::System.Web.UI.WebControls.Panel PanelCropHealth;
 
         /// <summary>
-        /// lblpr control.
+        /// gvCropHealth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpr;
+        protected global::System.Web.UI.WebControls.GridView gvCropHealth;
 
         /// <summary>
-        /// lblMove control.
+        /// lblCommment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMove;
+        protected global::System.Web.UI.WebControls.Label lblCommment;
+
+        /// <summary>
+        /// pnlint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlint;
+
+        /// <summary>
+        /// GridViewDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewDetails;
     }
 }

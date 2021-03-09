@@ -187,7 +187,10 @@
     <Content Include="bin\itextsharp.dll" />
     <Content Include="ChemicalJobBuildUp.aspx" />
     <Content Include="ChemicalReqManual.aspx" />
+    <Content Include="ChemicalTaskCompletion.aspx" />
     <Content Include="ChemicalTaskReq.aspx" />
+    <Content Include="ChemicalTaskRequest.aspx" />
+    <Content Include="ChemicalTaskViewDetails.aspx" />
     <Content Include="CropHealthDetails.aspx" />
     <Content Include="CropHealthReport.aspx" />
     <Content Include="css\all.min.css" />
@@ -404,12 +407,33 @@
     <Compile Include="ChemicalReqManual.aspx.designer.cs">
       <DependentUpon>ChemicalReqManual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChemicalTaskCompletion.aspx.cs">
+      <DependentUpon>ChemicalTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChemicalTaskCompletion.aspx.designer.cs">
+      <DependentUpon>ChemicalTaskCompletion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChemicalTaskReq.aspx.cs">
       <DependentUpon>ChemicalTaskReq.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ChemicalTaskReq.aspx.designer.cs">
       <DependentUpon>ChemicalTaskReq.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChemicalTaskRequest.aspx.cs">
+      <DependentUpon>ChemicalTaskRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChemicalTaskRequest.aspx.designer.cs">
+      <DependentUpon>ChemicalTaskRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChemicalTaskViewDetails.aspx.cs">
+      <DependentUpon>ChemicalTaskViewDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChemicalTaskViewDetails.aspx.designer.cs">
+      <DependentUpon>ChemicalTaskViewDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="CommonControl.cs" />
     <Compile Include="CommonControlNavision.cs" />

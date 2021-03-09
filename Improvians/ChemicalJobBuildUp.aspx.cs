@@ -14,7 +14,7 @@ namespace Evo
     public partial class ChemicalJobBuildUp : System.Web.UI.Page
     {
         public static DataTable dtTrays = new DataTable()
-        { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
+        { Columns = { "Fertilizer", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
         CommonControl objCommon = new CommonControl();
         BAL_Fertilizer objFer = new BAL_Fertilizer();
@@ -414,12 +414,12 @@ namespace Evo
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            int FertilizationCode = 0;
+            int ChemicalCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@Mode", "16");
             dt = objCommon.GetDataTable("GET_Common", nv1);
-            FertilizationCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
+            ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
 
 
             foreach (GridViewRow row in gvFer.Rows)
@@ -436,7 +436,7 @@ namespace Evo
                 nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                 //nv.Add("@WorkOrder", lblwo.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@ChemicalCode", FertilizationCode.ToString());
+                nv.Add("@ChemicalCode", ChemicalCode.ToString());
                 nv.Add("@ChemicalDate", txtDate.Text);
                 nv.Add("@Comments", txtComments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
@@ -469,7 +469,7 @@ namespace Evo
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@ChemicalCode", FertilizationCode.ToString());
+                    nv.Add("@ChemicalCode", ChemicalCode.ToString());
                     nv.Add("@ChemicalDate", txtDate.Text);
                     nv.Add("@Comments", txtComments.Text);
                     nv.Add("@Method",ddlMethod.SelectedValue);
@@ -486,7 +486,7 @@ namespace Evo
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@ChemicalCode", FertilizationCode.ToString());
+                    nv.Add("@ChemicalCode", ChemicalCode.ToString());
                     nv.Add("@ChemicalDate", txtDate.Text);
 
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
@@ -495,7 +495,7 @@ namespace Evo
 
             }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text,txtTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtTrays,ddlFertilizer.SelectedValue, FertilizationCode, lblbench.Text, txtResetSprayTaskForDays.Text);
+            objTask.AddChemicalRequestDetails(dtTrays,ddlFertilizer.SelectedValue, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
