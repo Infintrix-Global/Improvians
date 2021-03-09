@@ -195,6 +195,14 @@
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Method">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblMethod" runat="server" Text='<%#Bind("Method") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Fertilizer">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
@@ -220,7 +228,14 @@
                                             </ItemTemplate>
 
                                         </asp:TemplateField>
-                                      
+                                       <asp:TemplateField HeaderText="Comments">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblComments" runat="server" Text='<%#Bind("Comments") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
                                     </Columns>
                                     <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
                                     <PagerSettings Mode="NumericFirstLast" />

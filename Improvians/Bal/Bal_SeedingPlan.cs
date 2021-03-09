@@ -71,17 +71,17 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select distinct t.[Job No_] as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno" +
+                strQuery = "select distinct top 1  t.[Job No_] as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno" +
                     " ,t.[Genus Code] GenusCode,t.[Posting Date] seeddate ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int ) as Trays,j.[Variant Code] as TraySize, j.[Shortcut Property 1 Value] germcount" +
-                    "  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j  where j.No_ = t.[Job No_] and j.[Job Status] = 2 and t.[Activity Code] = 'PUTAWAY INSIDE'" +
+                    "  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j  where j.No_ = t.[Job No_] and j.[Job Status] = 2 and t.[Activity Code] = 'PUTAWAY INSIDE' and  t.[Job No_]='JB022251'" +
                     " group by t.[Job No_], j.[Bill-to Name], j.[Item Description],t.[Genus Code], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date],j.[Shortcut Property 1 Value] " +
                     "  HAVING CAST(sum(t.Quantity) AS int )  > 0   ";
 
 
-                if (SeedDate != "")
-                {
-                    strQuery += " And t.[Posting Date]> " + "'" + SeedDate + "'";
-                }
+                //if (SeedDate != "")
+                //{
+                //    strQuery += " And t.[Posting Date]> " + "'" + SeedDate + "'";
+                //}
 
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
@@ -208,6 +208,29 @@ namespace Evo.Bal
             }
             return dt;
         }
+
+
+
+
+        public DataTable GetSeedDataCheck(string JobCode,string ActivityCode)
+        {
+            Evo_General objGeneral = new Evo_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "	select w.[Activity Code] act, w.Date assigndate, w.[Actual Date] compdate from [GTI$IA Job Activity Scheme Line] w  ";
+                strQuery += " where w.[Job No_] = '"+ JobCode + "' and w.Type = 2 and  w.[Activity Code]='"+ ActivityCode + "' order by w.Date 	 ";
+              
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+
 
         public DataTable GetSeedDateDatanew(string ActivityCode, string GenusCode, string ContainerCode)
         {

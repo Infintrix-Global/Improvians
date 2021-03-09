@@ -48,7 +48,7 @@ namespace Evo
             long _isIGCodeInserted = 1;
             long _isFCdeInserted = 1;
             int SelectedItems = 0;
-
+            string FertilizationDate = string.Empty;
             NameValueCollection nv1 = new NameValueCollection();
             DataTable dt = objCommon.GetDataTable("SP_GetMaxSeedDateManual", nv1);
             string SeedDate = string.Empty;
@@ -76,7 +76,7 @@ namespace Evo
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 // nv.Add("@jid", _isInserted.ToString());
-               
+
                 nv.Add("@jobcode", jobcode);
                 nv.Add("@Item", itemno);
                 nv.Add("@Itemdesc", itemdescp);
@@ -90,46 +90,91 @@ namespace Evo
                 _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
 
 
+
                 DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);
+
+               // DataTable dtFez = objSP.GetSeedDataCheck(jobcode, "FERTILIZE");
+                NameValueCollection nvChDate = new NameValueCollection();
+
+                nvChDate.Add("@GreenHouseID", GreenHouseID);
+                DataTable ChFdt = objCommon.GetDataTable("SP_GetFertilizationCheckResetSprayTask", nvChDate);
+
+
 
                 if (dtFez != null && dtFez.Rows.Count > 0)
                 {
 
+                    string A = dtFez.Rows[0]["DateShift"].ToString().Replace("\u0002","");
 
                     DataColumn col = dtFez.Columns["DateShift"];
                     foreach (DataRow row in dtFez.Rows)
                     {
+                        
+                        string AD = row[col].ToString().Replace("\u0002", "");
 
-                        string FertilizationDate = string.Empty;
-                        int fvalue = 0;
-                        if (int.TryParse(row[col].ToString(), out fvalue))
-                        {
-                            FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(fvalue)).ToString();
-                            NameValueCollection nv11 = new NameValueCollection();
+                            FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(AD))).ToString();
 
-                            //nv11.Add("@ManualID", _isInserted.ToString());
-                            //nv11.Add("@Type", "FERTILIZE");
-                            //nv11.Add("@FertilizationDate", FertilizationDate);
-                            //nv11.Add("@FertilizationCode", FertilizationCode.ToString());
-                            //nv11.Add("@GreenHouseID", GreenHouseID);
-                            nv11.Add("@GrowerPutAwayId", "");
-                            nv11.Add("@wo", "");
-                            nv11.Add("@Jid", _isInserted.ToString());
-                            nv11.Add("@jobcode", jobcode);
-                            nv11.Add("@FacilityID", FacilityID);
-                            nv11.Add("@GreenHouseID", GreenHouseID);
-                            nv11.Add("@Trays", Trays);
+                           
+                            string TodatDate;
+                            string ReSetSprayDate = "";
 
-                            nv11.Add("@SeedDate", seeddate);
-                            nv11.Add("@CreateBy", Session["LoginID"].ToString());
-                            nv11.Add("@Supervisor", "0");
-                            nv11.Add("@IrrigateSeedDate", "");
-                            nv11.Add("@FertilizeSeedDate", FertilizationDate);
+                          //  FertilizationDate = Convert.ToDateTime(row[col]).ToShortDateString();
+                            TodatDate = System.DateTime.Now.ToShortDateString();
 
 
-                            _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv11);
+
+                            if (ChFdt != null && ChFdt.Rows.Count > 0)
+                            {
+                                ReSetSprayDate = Convert.ToDateTime(ChFdt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChFdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            }
+
+                            if (DateTime.Parse(FertilizationDate) >= DateTime.Parse(TodatDate))
+                            {
+
+                                if (ReSetSprayDate == "" || DateTime.Parse(FertilizationDate) >= DateTime.Parse(ReSetSprayDate))
+                                {
+                                    FertilizationDate = row[col].ToString();
+                                    break;
+                                }
+
+                        //    }
                         }
+
+                        //if (Convert.ToDateTime(TodatDate) >= Convert.ToDateTime(FertilizationDate))
+                        //{
+                        //    if (ReSetSprayDate == "" || Convert.ToDateTime(ReSetSprayDate) >= Convert.ToDateTime(FertilizationDate))
+                        //    {
+                        //        FertilizationDate = row[col].ToString();
+                        //        break;
+                        //    }
+                        //}
+
+
+
                     }
+
+
+                    NameValueCollection nv11 = new NameValueCollection();
+
+
+                    nv11.Add("@GrowerPutAwayId", "");
+                    nv11.Add("@wo", "");
+                    nv11.Add("@Jid", _isInserted.ToString());
+                    nv11.Add("@jobcode", jobcode);
+                    nv11.Add("@FacilityID", FacilityID);
+                    nv11.Add("@GreenHouseID", GreenHouseID);
+                    nv11.Add("@Trays", Trays);
+
+                    nv11.Add("@SeedDate", seeddate);
+                    nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                    nv11.Add("@Supervisor", "0");
+                    nv11.Add("@IrrigateSeedDate", "");
+                    nv11.Add("@FertilizeSeedDate", FertilizationDate);
+
+
+                    _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv11);
+
+
 
                 }
                 else
@@ -157,10 +202,84 @@ namespace Evo
                 }
 
 
+
+
+
+
+
+                //if (dtFez != null && dtFez.Rows.Count > 0)
+                //{
+
+
+                //    DataColumn col = dtFez.Columns["DateShift"];
+                //    foreach (DataRow row in dtFez.Rows)
+                //    {
+
+                //        string FertilizationDate = string.Empty;
+                //        int fvalue = 0;
+                //        if (int.TryParse(row[col].ToString(), out fvalue))
+                //        {
+                //            FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(fvalue)).ToString();
+                //            NameValueCollection nv11 = new NameValueCollection();
+
+                //            //nv11.Add("@ManualID", _isInserted.ToString());
+                //            //nv11.Add("@Type", "FERTILIZE");
+                //            //nv11.Add("@FertilizationDate", FertilizationDate);
+                //            //nv11.Add("@FertilizationCode", FertilizationCode.ToString());
+                //            //nv11.Add("@GreenHouseID", GreenHouseID);
+                //            nv11.Add("@GrowerPutAwayId", "");
+                //            nv11.Add("@wo", "");
+                //            nv11.Add("@Jid", _isInserted.ToString());
+                //            nv11.Add("@jobcode", jobcode);
+                //            nv11.Add("@FacilityID", FacilityID);
+                //            nv11.Add("@GreenHouseID", GreenHouseID);
+                //            nv11.Add("@Trays", Trays);
+
+                //            nv11.Add("@SeedDate", seeddate);
+                //            nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                //            nv11.Add("@Supervisor", "0");
+                //            nv11.Add("@IrrigateSeedDate", "");
+                //            nv11.Add("@FertilizeSeedDate", FertilizationDate);
+
+
+                //            _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv11);
+                //        }
+                //    }
+
+                //}
+                //else
+                //{
+
+                //    NameValueCollection nv111 = new NameValueCollection();
+
+
+                //    nv111.Add("@GrowerPutAwayId", "");
+                //    nv111.Add("@wo", "");
+                //    nv111.Add("@Jid", _isInserted.ToString());
+                //    nv111.Add("@jobcode", jobcode);
+                //    nv111.Add("@FacilityID", FacilityID);
+                //    nv111.Add("@GreenHouseID", GreenHouseID);
+                //    nv111.Add("@Trays", Trays);
+
+                //    nv111.Add("@SeedDate", seeddate);
+                //    nv111.Add("@CreateBy", Session["LoginID"].ToString());
+                //    nv111.Add("@Supervisor", "0");
+                //    nv111.Add("@IrrigateSeedDate", "");
+                //    nv111.Add("@FertilizeSeedDate", seeddate);
+                //    nv111.Add("@ID", "");
+
+                //    _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv111);
+                //}
+
+
                 //-------------------------------------------------------Chemical
 
 
                 DataTable dtChemical = objSP.GetSeedDateDatanew("SPRAYING", GenusCode, TraySize);
+
+
+
+
 
                 if (dtChemical != null && dtFez.Rows.Count > 0)
                 {
@@ -175,7 +294,7 @@ namespace Evo
                             ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(fvalue)).ToString();
                             NameValueCollection nv11 = new NameValueCollection();
 
-                         
+
                             nv11.Add("@GrowerPutAwayId", "");
                             nv11.Add("@wo", "");
                             nv11.Add("@Jid", _isInserted.ToString());
@@ -187,7 +306,7 @@ namespace Evo
                             nv11.Add("@SeedDate", seeddate);
                             nv11.Add("@CreateBy", Session["LoginID"].ToString());
                             nv11.Add("@Supervisor", "0");
-                           
+
                             nv11.Add("@ChemicalSeedDate", ChemicalDate);
                             _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsChemicalMenual", nv11);
                         }
@@ -211,7 +330,7 @@ namespace Evo
                     nv111.Add("@SeedDate", seeddate);
                     nv111.Add("@CreateBy", Session["LoginID"].ToString());
                     nv111.Add("@Supervisor", "0");
-                   
+
                     nv111.Add("@ChemicalSeedDate", seeddate);
                     nv111.Add("@ID", "");
 
