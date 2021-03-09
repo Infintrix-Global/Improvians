@@ -18,7 +18,7 @@
 
             <div class="filter__row d-flex">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" runat="server" id="divFacility">
                         <label>Facility Location</label><span style="color: red">*</span>
                         <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
                         <span class="error_message">
