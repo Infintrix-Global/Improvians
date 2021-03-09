@@ -42,8 +42,8 @@ namespace Evo
                 else
                 {
                     BindFacility();
-                }
-                BindBenchLocation(ddlFacility.SelectedValue);
+                    BindBenchLocation(ddlFacility.SelectedValue);
+                }               
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridFerReq();
                 dtTrays.Clear();

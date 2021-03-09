@@ -34,8 +34,8 @@ namespace Evo
                 else
                 {
                     BindFacility();
-                }
-                BindJobCode(ddlBenchLocation.SelectedValue);
+                    BindJobCode(ddlBenchLocation.SelectedValue);
+                }              
                 BindGridGerm();
                 BindSupervisorList();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");

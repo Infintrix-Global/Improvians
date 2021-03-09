@@ -18,7 +18,14 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                BindFacility();
+                if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
+                {
+                    divFacility.Visible = false;                  
+                }
+                else
+                {
+                    BindFacility();
+                }
                 BindGridIrrigation();
 
             }

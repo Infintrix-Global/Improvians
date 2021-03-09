@@ -38,8 +38,8 @@ namespace Evo
                 else
                 {
                     BindFacility();
-                }
-                BindJobCode(ddlBenchLocation.SelectedValue);
+                    BindJobCode(ddlBenchLocation.SelectedValue);
+                }                
                 dtTrays.Clear();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }

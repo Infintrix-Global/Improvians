@@ -45,7 +45,16 @@ namespace Evo
                     //    BindUnit();
                     //  BindJobCode(ddlBenchLocation.SelectedValue);
                     Bindcname();
-                    BindFacility();
+                    if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
+                    {
+                        divFacility.Visible = false;
+                        BindBenchLocation(Session["Facility"].ToString());
+                    }
+                    else
+                    {
+                        BindFacility();
+                        BindBenchLocation(ddlFacility.SelectedValue);
+                    }
 
                     dtTrays.Clear();
                 }
