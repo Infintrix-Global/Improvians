@@ -32,8 +32,17 @@ namespace Evo
                 txtToDate.Text = TDate;
            
                 Bindcname();
-                BindFacility();
-                BindBenchLocation(ddlFacility.SelectedValue);
+                if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
+                {
+                    divFacility.Visible = false;
+                    BindBenchLocation(Session["Facility"].ToString());
+                }
+                else
+                {
+                    BindFacility();
+                    BindBenchLocation(ddlFacility.SelectedValue);
+                }
+               
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridFerReq();
                 dtTrays.Clear();
