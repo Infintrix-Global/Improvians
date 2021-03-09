@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationReqManual.aspx.cs" Inherits="Improvians.IrrigationReqManual" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationReqManual.aspx.cs" Inherits="Evo.IrrigationReqManual" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -7,7 +7,7 @@
         <div class="site__container">
             <h2>Irrigation </h2>
             <div class="row">
-                <div class="col m3">
+                <div class="col m3"  runat="server" id="divFacility">
                     <label>Facility Location </label><span style="color: red">*</span>
                 
                     <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>

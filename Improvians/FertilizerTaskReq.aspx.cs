@@ -6,10 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Improvians.BAL_Classes;
-using Improvians.Bal;
+using Evo.BAL_Classes;
+using Evo.Bal;
 
-namespace Improvians
+namespace Evo
 {
     public partial class FertilizerTaskReq : System.Web.UI.Page
     {
@@ -34,7 +34,15 @@ namespace Improvians
                 BindFertilizer();
                 BindUnit();
                 Bindcname();
-                BindFacility();
+                if (Session["Facility"].ToString() != string.Empty)
+                {
+                    divFacility.Visible = false;
+                    BindBenchLocation(Session["Facility"].ToString());
+                }
+                else
+                {
+                    BindFacility();
+                }
                 BindBenchLocation(ddlFacility.SelectedValue);
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridFerReq();

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="PlantReadyTaskCompletion.aspx.cs" Inherits="Improvians.PlantReadyTaskCompletion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="PlantReadyTaskCompletion.aspx.cs" Inherits="Evo.PlantReadyTaskCompletion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -136,7 +136,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                    <asp:TemplateField HeaderText="New Estimated Ship Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("Date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
@@ -154,6 +154,12 @@
 
                         </div>
                     </div>
+                     <div class="row">
+
+                            <div class="col-lg-12">
+                                <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
                 </asp:Panel>
                 <br />
                 <form class="web__form pt-2">

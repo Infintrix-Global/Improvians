@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MyTaskGrower.aspx.cs" Inherits="Improvians.MyTask1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MyTaskGrower.aspx.cs" Inherits="Evo.MyTask1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -52,7 +52,7 @@
                         <p>Review and assign these tasks to the Sprayer</p>
                     </div>
                 </a>
-                <a href="FertilizerTaskReq.aspx" class="dashboard__box">
+                <a href="ChemicalTaskReq.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_chemical.png" width="137" height="136" alt="Chemical" />
                     </div>

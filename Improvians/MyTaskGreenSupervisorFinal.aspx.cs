@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Improvians
+namespace Evo
 {
     public partial class MyTaskGreenSupervisorFinal : System.Web.UI.Page
     {
@@ -32,6 +32,7 @@ namespace Improvians
             lblPutAway.Text = dt.Tables[3].Rows.Count.ToString();
             lblFer.Text= dt.Tables[4].Rows.Count.ToString();
             lblMove.Text= dt.Tables[5].Rows.Count.ToString();
+            lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
 
         }
 

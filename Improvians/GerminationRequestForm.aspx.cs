@@ -1,4 +1,4 @@
-﻿using Improvians.Bal;
+﻿using Evo.Bal;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Improvians
+namespace Evo
 {
     public partial class GerminationRequestForm : System.Web.UI.Page
     {
@@ -26,9 +26,15 @@ namespace Improvians
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
                 Bindcname();
-
-                BindFacility();
-                BindBenchLocation(ddlFacility.SelectedValue);
+                if (Session["Facility"].ToString() != string.Empty)
+                {
+                    divFacility.Visible = false;
+                    BindBenchLocation(Session["Facility"].ToString());
+                }
+                else
+                {
+                    BindFacility();
+                }
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridGerm();
                 BindSupervisorList();

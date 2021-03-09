@@ -11,10 +11,10 @@ using System.Web;
 
 using System.Web.Mail;
 using System.Web.UI.WebControls;
-using Improvians.Admin.BAL_Classes;
+using Evo.Admin.BAL_Classes;
 using MailMessage = System.Net.Mail.MailMessage;
 
-namespace Improvians.Admin
+namespace Evo.Admin
 {
     public class clsCommonMasters
     {

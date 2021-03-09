@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 
-namespace Improvians
+namespace Evo
 {
     public partial class MyTaskSpray : System.Web.UI.Page
     {
@@ -42,6 +42,7 @@ namespace Improvians
 
             lblpr.Text = dt.Tables[4].Rows.Count.ToString();
 
+            lblChemical.Text = dt.Tables[5].Rows.Count.ToString();
 
 
         }

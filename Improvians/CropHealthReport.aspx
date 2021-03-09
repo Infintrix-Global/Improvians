@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="CropHealthReport.aspx.cs" Inherits="Improvians.CropHealthReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="CropHealthReport.aspx.cs" Inherits="Evo.CropHealthReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="js/jquery.min.js"></script>
@@ -14,6 +14,27 @@
             }
         }
     </script>
+
+
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="Scripts/jquery.searchabledropdown-1.0.8.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("--Select--").searchable({
+                maxListSize: 200, // if list size are less than maxListSize, show them all
+                maxMultiMatch: 300, // how many matching entries should be displayed
+                exactMatch: false, // Exact matching on search
+                wildcards: true, // Support for wildcard characters (*, ?)
+                ignoreCase: true, // Ignore case sensitivity
+                latency: 200, // how many millis to wait until starting search
+                warnMultiMatch: 'top {0} matches ...',
+                warnNoMatch: 'no matches ...',
+                zIndex: 'auto'
+            });
+        });
+
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -62,15 +83,15 @@
 
                     <div class="col-lg-3">
 
-                          <label>Job No</label>
-                                <asp:TextBox ID="txtSearchJobNo"  runat="server" class="input__control robotomd"></asp:TextBox>
+                        <label>Job No</label>
+                        <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
 
 
                     </div>
 
                     <div class="col-lg-3">
                         <br />
-                         <asp:Button Text="Search" ID="btnSearchDet" runat="server"  CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
+                        <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
 
                         <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
 
@@ -80,7 +101,6 @@
                     </div>
 
                     <div class="col-lg-3">
-                        
                     </div>
 
                 </div>
@@ -97,6 +117,15 @@
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
 
+                                            <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                                <HeaderTemplate>
+                                                    <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+
+                                                    <asp:CheckBox runat="server" Checked="true" ID="chkSelect"></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -372,8 +401,6 @@
                         <br />
                         <div class="row">
                             <div class="col-auto">
-                                <asp:Button Text="Save" ValidationGroup="e" CausesValidation="true" ID="btnSave" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSave_Click" />
-
 
                                 <asp:Button Text="Save for later" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
 
@@ -674,7 +701,7 @@
                                             <div class="portlet-body">
                                                 <asp:Panel ID="Panel1" runat="server">
                                                     <div class="row" style="margin-left: 15px;">
-                                                       <%-- <div class="col-lg-4">
+                                                        <%-- <div class="col-lg-4">
                                                             <label>Comments</label>
                                                             <asp:TextBox TextMode="MultiLine" runat="server" ID="txtComment" CssClass="input__control"></asp:TextBox>
                                                             <span class="error_message">

@@ -17,13 +17,13 @@ using System.Net;
 
 
 
-namespace Improvians.Admin
+namespace Evo.Admin
 {
     public class CommonControl
     {
         #region "Common functions"
 
-        string CS = ConfigurationManager.ConnectionStrings["Improvians"].ToString();
+        string CS = ConfigurationManager.ConnectionStrings["Evo"].ToString();
         CultureInfo CurrentCulture = CultureInfo.GetCultureInfo(ConfigurationManager.AppSettings["Culture"]);
 
         public CultureInfo GetCurrentCulture()

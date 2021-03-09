@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 
-namespace Improvians.BAL_Classes
+namespace Evo.BAL_Classes
 {
     public class BAL_Task
     {
@@ -72,6 +72,39 @@ namespace Improvians.BAL_Classes
             }
             return _isInserted;
         }
+
+        public int AddChemicalRequestDetails(DataTable dt, string FertilizationID, int FertilizationCode, string bencLoc, string ResetSprayTaskForDays,string Method, string Comments)
+        {
+            int _isInserted = -1;
+            try
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    objGeneral.ClearParameters();
+                    objGeneral.AddParameterWithValueToSQLCommand("@ChemicalId", FertilizationID);
+                    objGeneral.AddParameterWithValueToSQLCommand("@Fertilizer", dt.Rows[i]["Fertilizer"].ToString());
+                
+                    objGeneral.AddParameterWithValueToSQLCommand("@Tray", dt.Rows[i]["Tray"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@SQFT", dt.Rows[i]["SQFT"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@ChemicalCode", FertilizationCode.ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@GreenHouseID", bencLoc);
+            
+                    objGeneral.AddParameterWithValueToSQLCommand("@ResetSprayTaskForDays", ResetSprayTaskForDays);
+
+                    objGeneral.AddParameterWithValueToSQLCommand("@Method", Method);
+
+                    objGeneral.AddParameterWithValueToSQLCommand("@Comments", Comments);
+
+                    _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddChemicalRequestDetails");
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
 
         public int AddPTCSeedAllocation(string STCID, string LotID, string ActualSeed, string SeedNo, string Type, string Partial,string InitialSeedLotWeight, string FinalSeedLotWeight)
         {

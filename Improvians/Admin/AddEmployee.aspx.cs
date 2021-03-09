@@ -6,10 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Improvians.Admin.BAL_Classes;
-using Improvians.Admin;
+using Evo.Admin.BAL_Classes;
+using Evo.Admin;
 
-namespace Improvians.Admin
+namespace Evo.Admin
 {
     public partial class AddEmployee : System.Web.UI.Page
     {
@@ -18,36 +18,22 @@ namespace Improvians.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-                BindDepartment();
+            {                
                 BindRole();
                 BindFacility();
             }
-        }
-
-        public void BindDepartment()
-        {
-            ddlDepartment.DataSource = objCommon.GetDepartmentMaster();
-            ddlDepartment.DataTextField = "DepartmentName";
-            ddlDepartment.DataValueField = "DepartmentID";
-            ddlDepartment.DataBind();
-            ddlDepartment.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+        }      
 
         public void BindRole()
         {
-            ddlDesignation.DataSource = objCommon.GetRoleMaster();
-            ddlDesignation.DataTextField = "RoleName";
-            ddlDesignation.DataValueField = "RoleID";
-            ddlDesignation.DataBind();
-            ddlDesignation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            repDesignation.DataSource = objCommon.GetRoleMaster(); 
+            repDesignation.DataBind();           
         }
 
         public void BindFacility()
         {
             repFacility.DataSource = objCommon.GetFacilityMaster();
             repFacility.DataBind();
-            //ddlFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         protected void btAdd_Click(object sender, EventArgs e)
@@ -58,6 +44,15 @@ namespace Improvians.Admin
                 if ((dtCheckEmail = objCommon.CheckEmailExists(txtEmail.Text.Trim())).Rows.Count == 0)
                 {
                     int _isInserted = -1;
+                    string strDesignation = string.Empty;
+                    foreach (RepeaterItem item in repDesignation.Items)
+                    {
+                        CheckBox chkFacility = (CheckBox)item.FindControl("chkRole");
+                        if (chkFacility.Checked)
+                        {
+                           strDesignation=((HiddenField)item.FindControl("hdnRoleValue")).Value;
+                        }
+                    }
                     Employee objEmployee = new Employee()
                     {
 
@@ -66,8 +61,8 @@ namespace Improvians.Admin
                         Password = objCommon.Encrypt(txtPassword.Text),
                         EmployeeCode=txtUserName.Text,
                         Email = txtEmail.Text,
-                        Designation = ddlDesignation.SelectedValue,
-                        Department = ddlDepartment.SelectedValue,
+                        Designation = strDesignation,
+                        Department = "",
                         Photo = lblProfile.Text
                     };
 
@@ -80,12 +75,12 @@ namespace Improvians.Admin
                         lblmsg.ForeColor = System.Drawing.Color.Red;
 
                     }
-                    else if (_isInserted == 0)
-                    {
+                    //else if (_isInserted == 0)
+                    //{
 
-                        lblmsg.Text = "Mobile Number Exists";
-                        lblmsg.ForeColor = System.Drawing.Color.Red;
-                    }
+                    //    lblmsg.Text = "Mobile Number Exists";
+                    //    lblmsg.ForeColor = System.Drawing.Color.Red;
+                    //}
                     else if (_isInserted == -2)
                     {
 
@@ -126,9 +121,8 @@ namespace Improvians.Admin
             txtName.Text = "";
             txtMobile.Text = "";
             txtEmail.Text = "";
-            ddlDesignation.SelectedIndex = 0;
-            ddlDepartment.SelectedIndex = 0;
-
+            repDesignation.DataBind();
+            repDesignation.DataBind();
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)
@@ -202,9 +196,6 @@ namespace Improvians.Admin
             {
                 this.Page.ClientScript.RegisterStartupScript(GetType(), "ShowAlert", "alert('Please select valid file.');", true);
             }
-
-
-
         }
 
     }

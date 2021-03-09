@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="SprayTaskReq.aspx.cs" Inherits="Improvians.SprayTaskReq" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="SprayTaskReq.aspx.cs" Inherits="Evo.SprayTaskReq" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript" src="<%= ResolveUrl("~/JS1/jquery.min.js") %>"></script>
@@ -89,7 +89,7 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="New Estimated Ship Date" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("Date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                 </ItemTemplate>
@@ -105,6 +105,12 @@
                                         </EmptyDataTemplate>
                                     </asp:GridView>
 
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+                                        <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
+                                    </div>
                                 </div>
                             </div>
                         </asp:Panel>

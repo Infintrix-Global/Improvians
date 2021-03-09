@@ -13,14 +13,14 @@ using System.IO;
 using System.Globalization;
 using System.Net;
 
-namespace Improvians
+namespace Evo
 {
     public class CommonControlNavision
     {
 
         #region "Common functions"
 
-        string CS = ConfigurationManager.ConnectionStrings["ImproviansNavision"].ToString();
+        string CS = ConfigurationManager.ConnectionStrings["EvoNavision"].ToString();
         CultureInfo CurrentCulture = CultureInfo.GetCultureInfo(ConfigurationManager.AppSettings["Culture"]);
 
         public CultureInfo GetCurrentCulture()

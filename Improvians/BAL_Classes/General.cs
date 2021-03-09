@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Web.Hosting;
 using System.IO;
 
-namespace Improvians.BAL_Classes
+namespace Evo.BAL_Classes
 {
     public class General
     {
@@ -32,7 +32,7 @@ namespace Improvians.BAL_Classes
         {
             try
             {
-                mstr_ConnectionString = ConfigurationManager.ConnectionStrings["Improvians"].ToString();
+                mstr_ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ToString();
                 mobj_SqlConnection = new SqlConnection(mstr_ConnectionString);
                 mobj_SqlCommand = new SqlCommand();
                 mobj_SqlCommand.CommandTimeout = mint_CommandTimeout;

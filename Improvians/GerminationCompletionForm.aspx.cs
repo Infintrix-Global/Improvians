@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Improvians
+namespace Evo
 {
     public partial class GerminationCompletionForm : System.Web.UI.Page
     {
@@ -18,7 +18,15 @@ namespace Improvians
             {
                 Bindcname();
                 BindJobCode();
-                BindFacility();
+                if (Session["Facility"].ToString() != string.Empty)
+                {
+                    divFacility.Visible = false;
+                   // BindBenchLocation(Session["Facility"].ToString());
+                }
+                else
+                {
+                    BindFacility();
+                }
                 BindGridGerm();
 
             }

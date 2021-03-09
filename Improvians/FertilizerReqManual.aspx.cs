@@ -6,11 +6,11 @@ using System.Collections.Specialized;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Improvians.Bal;
-using Improvians.BAL_Classes;
+using Evo.Bal;
+using Evo.BAL_Classes;
 using System.Text.RegularExpressions;
 
-namespace Improvians
+namespace Evo
 {
     public partial class FertilizerReqManual : System.Web.UI.Page
     {
@@ -30,7 +30,15 @@ namespace Improvians
                 //    BindUnit();
               
                 Bindcname();
-                BindFacility();
+                if (Session["Facility"].ToString() != string.Empty)
+                {
+                    divFacility.Visible = false;
+                    BindBenchLocation(Session["Facility"].ToString());
+                }
+                else
+                {
+                    BindFacility();
+                }
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 dtTrays.Clear();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");

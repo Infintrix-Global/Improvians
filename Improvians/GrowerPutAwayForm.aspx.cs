@@ -6,9 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Improvians.Bal;
+using Evo.Bal;
 
-namespace Improvians
+namespace Evo
 {
     public partial class GetGrowerPutAwayForm : System.Web.UI.Page
     {
@@ -325,11 +325,35 @@ namespace Improvians
 
                 string IrrigateSeedDate = "";
                 string FertilizeSeedDate = "";
-
+                string ChemicalSeedDate = "";
                 // IrrigateSeedDate 
 
                 DataTable dtISD = objSP.GetSeedDateData("IRRIGATE", lblGenusCode.Text, TraySize);
                 DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, TraySize);
+                DataTable dtCem = objSP.GetSeedDateData("SPRAYING", lblGenusCode.Text, TraySize);
+
+
+
+                if (dtCem != null && dtCem.Rows.Count > 0)
+                {
+                    string IDay = dtCem.Rows[0]["DateShift"].ToString();
+                    int ivalue = 0;
+                    if (int.TryParse(IDay, out ivalue))
+                    {
+                        ChemicalSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(ivalue)).ToString();
+                    }
+                    else
+                    {
+                        ChemicalSeedDate = lblSeedDate.Text;
+                    }
+
+                }
+                else
+                {
+                    ChemicalSeedDate = lblSeedDate.Text;
+                }
+
+
 
                 if (dtISD != null && dtISD.Rows.Count > 0)
                 {
@@ -396,7 +420,8 @@ namespace Improvians
                         nv.Add("@Supervisor", ddlSupervisor.SelectedValue);
                         nv.Add("@IrrigateSeedDate", IrrigateSeedDate);
                         nv.Add("@FertilizeSeedDate", FertilizeSeedDate);
-
+                        nv.Add("@ChemicalSeedDate", ChemicalSeedDate);
+                        
                         if (txtTrays.Text != "")
                         {
                             nv.Add("@mode", "1");

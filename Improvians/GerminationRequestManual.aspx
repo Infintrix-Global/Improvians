@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="GerminationRequestManual.aspx.cs" Inherits="Improvians.GerminationRequestManual" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="GerminationRequestManual.aspx.cs" Inherits="Evo.GerminationRequestManual" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -7,9 +7,9 @@
         <div class="site__container">
             <h2>Germination Count Task </h2>
 
-             <div class="filter__row d-flex">
+            <div class="filter__row d-flex">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" runat="server" id="divFacility">
                         <label>Facility Location</label><span style="color: red">*</span>
                         <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
                         <span class="error_message">
@@ -44,17 +44,16 @@
                 <div class="col m3">
                 </div>
                 <div class="col m3">
-                   
                 </div>
 
                 <div class="col m3">
-                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
-                      <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+                    <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />
 
                 </div>
             </div>
 
-             <br />
+            <br />
             <asp:Panel ID="Panel_Bench" Visible="false" runat="server">
                 <div class="row">
 
@@ -108,7 +107,7 @@
                         <div class="portlet-body">
                             <div class="data__table data__table-height">
                                 <asp:GridView ID="gvGerm" runat="server" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" 
+                                    class="striped" AllowSorting="true"
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
@@ -192,15 +191,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                     <%--   <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                                        <%--   <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                 <%--  <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                                 <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-
-
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />

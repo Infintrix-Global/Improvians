@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="FerJobBuildUp.aspx.cs" Inherits="Improvians.FerJobBuildUp" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="FerJobBuildUp.aspx.cs" Inherits="Evo.FerJobBuildUp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -7,8 +7,8 @@
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
-                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
-                Fertilization/Chemical 
+                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
+                Fertilization 
 
 
             </h2>

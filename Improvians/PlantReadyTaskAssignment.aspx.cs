@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Improvians
+namespace Evo
 {
     public partial class PlantReadyTaskAssignment : System.Web.UI.Page
     {
@@ -41,6 +41,8 @@ namespace Improvians
                 PanelCropHealth.Visible = true;
                 gvCropHealth.DataSource = dt1;
                 gvCropHealth.DataBind();
+
+                lblCommment.Text = dt1.Rows[0]["CropHealthCommit"].ToString();
             }
 
         }

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="EvoMaster.Master.cs" Inherits="Improvians.ImproviansMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="EvoMaster.Master.cs" Inherits="Evo.EvoMaster" %>
 
 <!DOCTYPE html>
 
@@ -137,7 +137,7 @@
 
             </div>
         </header>
-        <div class="header__bottom">
+        <%--<div class="header__bottom">
             <div class="header__tabs">
                 <ul class="d-flex align-items-center justify-content-center list-inline">
                     <li>
@@ -147,14 +147,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="JobReport.aspx" class="bttn d-flex align-items-center" title="Job Reports">
+                        <a href="JobReports.aspx" class="bttn d-flex align-items-center" title="Job Reports">
                             <span class="rxicon-icon-job-reports mr-2 "></span>
                             Job Reports
                         </a>
                     </li>
                 </ul>
             </div>
-        </div>
+        </div>--%>
 
 
         <div class="main">

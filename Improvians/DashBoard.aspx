@@ -1,17 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="DashBoard.aspx.cs" Inherits="Improvians.DashBoard1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="DashBoard.aspx.cs" Inherits="Evo.DashBoard1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <%-- <div class="header__bottom">
+     <div class="header__bottom">
             <div class="d-flex align-items-center justify-content-center">
-                <select class="custom__dropdown robotomd">
-                    <option>Encinal 1</option>
-                    <option>Encinal 2</option>
-                    <option>Encinal 3</option>
-                </select>                
+                 <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
             </div>
-        </div>--%>
+        </div>
 
 
       <div class="main">
@@ -88,15 +84,15 @@
                                     </a>
                                     <a href="#" class="dashboard__task">
                                         <img src="images/link-site-tasks.svg" width="184" height="184" alt="Site Tasks" />
-                                        <span>Site Task</span>
+                                        <span>Create Task</span>
                                     </a>
                                     <a href="#" class="dashboard__task">
                                         <img src="images/link-assign-task.svg" width="184" height="184" alt="Assign a Task" />
-                                        <span>Job Report</span>
+                                        <span>Reports</span>
                                     </a>
                                     <a runat="server" id="TrackTasks" href="#" class="dashboard__task">
                                         <img src="images/link-track-tasks.svg" width="184" height="184" alt="Track Tasks" />
-                                        <span>Track Task</span>
+                                        <span>Manage Task</span>
                                     </a>
                                 </div>
                             </div>
