@@ -30,7 +30,7 @@ namespace Evo
                 //    BindUnit();
               
                 Bindcname();
-                if (Session["Facility"].ToString() != string.Empty)
+                if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
                 {
                     divFacility.Visible = false;
                     BindBenchLocation(Session["Facility"].ToString());

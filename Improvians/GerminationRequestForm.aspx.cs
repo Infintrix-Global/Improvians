@@ -26,7 +26,7 @@ namespace Evo
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
                 Bindcname();
-                if (Session["Facility"].ToString() != string.Empty)
+                if (Session["Facility"] !=null && Session["Facility"].ToString() != string.Empty)
                 {
                     divFacility.Visible = false;
                     BindBenchLocation(Session["Facility"].ToString());
