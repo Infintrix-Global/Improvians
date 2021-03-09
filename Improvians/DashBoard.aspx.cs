@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Evo.Admin.BAL_Classes;
+using Evo.Bal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -12,10 +14,12 @@ namespace Evo
     public partial class DashBoard1 : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objBAL = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                BindFacility();
                 BindData();
                 BindPlantReadyAVG();
                 SetLinkTrackTasks();
@@ -88,6 +92,21 @@ namespace Evo
             }
         }
 
+        public void BindFacility()
+        {
+            BAL_Task objTask = new BAL_Task();
+            DataSet ds = objTask.GetEmployeeByID(Convert.ToInt32(Session["LoginID"]));
+            ddlFacility.DataSource = ds.Tables[1];
+            ddlFacility.DataTextField = "FacilityName";
+            ddlFacility.DataValueField = "FacilityName";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["Facility"] = ddlFacility.SelectedValue;
+        }
 
         public void BindPlantReadyAVG()
         {
@@ -98,7 +117,7 @@ namespace Evo
             nv.Add("@Mode", "11");
             dt = objCommon.GetDataTable("GET_Common", nv);
 
-            if(dt!=null & dt.Rows.Count>0)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 lblPlantReadyQuality.Text = dt.Rows[0]["PlantReadyAVG"].ToString();
             }
@@ -111,12 +130,12 @@ namespace Evo
 
         public void SetLinkTrackTasks()
         {
-           
+
             if (Session["Role"].ToString() == "7")
             {
                 TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
             }
-          
+
         }
 
     }
