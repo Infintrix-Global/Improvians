@@ -5,7 +5,7 @@
      <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main">
         <div class="site__container">
-            <h2 class="text-left">Fertilization / Chemical Task Completion </h2>
+            <h2 class="text-left">Chemical Task Completion </h2>
 
             <div class="dashboard__block dashboard__block--asign">
 
@@ -107,7 +107,7 @@
 
 
                             <div class="col-lg-3">
-                                <label class="d-block">Spray Date</label>
+                                <label class="d-block">Chemical Spary Date</label>
 
                                 <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                             </div>

@@ -42,6 +42,14 @@
 
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Method">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblMethod" runat="server" Text='<%#Bind("Method") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Chemical">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
