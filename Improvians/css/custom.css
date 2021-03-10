@@ -947,7 +947,6 @@ textarea.input__control {
     display: flex;
     flex-wrap: wrap;
     max-width: 632px;
-    justify-content: space-between;
 }
 
 .request__block-head {
@@ -963,6 +962,8 @@ textarea.input__control {
     border-radius: 10px;
     background-color: #ffffff;
     margin-bottom: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .request__block-head > span { display: flex; align-items: center; }
