@@ -25,6 +25,7 @@ namespace Evo
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommonControl.GetDataSet("SP_GetGreenhouseSupervisorEachTaskCount", nv);
             lblGerm.Text = dt.Tables[0].Rows.Count.ToString();
             lblIrr.Text = dt.Tables[1].Rows.Count.ToString();
