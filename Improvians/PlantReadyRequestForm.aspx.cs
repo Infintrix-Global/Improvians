@@ -154,7 +154,7 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-            BindFacility();
+            
             BindGridPlantReady();
         }
         protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
