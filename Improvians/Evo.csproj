@@ -197,8 +197,10 @@
     <Content Include="css\aos.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\custom.css" />
+    <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
+    <Content Include="images\cancel.png" />
     <Content Include="images\dashboard_chemical.png" />
     <Content Include="images\dashboard_dump-request.png" />
     <Content Include="images\dashboard_fertilization.png" />
@@ -211,6 +213,7 @@
     </Content>
     <Content Include="JobReport.aspx" />
     <Content Include="JobReports.aspx" />
+    <Content Include="js\jquery.uploadify.js" />
     <Content Include="MoveReqAsssignment.aspx" />
     <Content Include="MovesReqManual.aspx" />
     <Content Include="FertilizerReqManual.aspx" />
@@ -325,6 +328,9 @@
     <Content Include="PlantReadyTaskCompletion.aspx" />
     <Content Include="ProductionPlannerTaskCompletionForm.aspx" />
     <Content Include="PutAwayTaskCompletion.aspx" />
+    <Content Include="scripts\jquery-1.3.2.min.js" />
+    <Content Include="scripts\jquery.uploadify.js" />
+    <Content Include="scripts\uploader.swf" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
     <Content Include="SeedingPlanForm.aspx" />
     <Content Include="SeedLineCompletionFinal.aspx" />
@@ -912,6 +918,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <Content Include="scripts\uploader.fla" />
+    <Content Include="Upload.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -919,7 +927,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="uploads\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

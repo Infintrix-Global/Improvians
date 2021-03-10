@@ -63,7 +63,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="has__footer">
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" enctype="Multipart/Form-Data">
         <header>
             <div class="site__container">
 
