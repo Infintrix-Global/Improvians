@@ -301,7 +301,7 @@
                                 <label>Type of problem</label><span style="color: red">*</span>
                                 <asp:DropDownList ID="ddlpr" runat="server" class="custom__dropdown robotomd">
                                     <asp:ListItem Value="0">Select</asp:ListItem>
-                                    <asp:ListItem Value="1">Germination</asp:ListItem>
+                                    <asp:ListItem Value="1"><%--Germination--%></asp:ListItem>
                                     <asp:ListItem Value="2">Irrigation</asp:ListItem>
                                     <asp:ListItem Value="3">Seeding</asp:ListItem>
                                     <asp:ListItem Value="4">Soil</asp:ListItem>
@@ -447,14 +447,14 @@
 
                         <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#fertilization_count">
                             <span class="">
-                                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
+                                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization">
                                 Fertilization
                             </span>
                         </button>
 
-                        <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#fertilization_count">
+                        <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#Chemical_count">
                             <span class="">
-                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
+                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical">
                                 Chemical
                             </span>
                         </button>
@@ -531,32 +531,27 @@
                         <div id="fertilization_count" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
                                 <br />
-                                <h2 class="text-left">Fertilization / Chemical</h2>
+                                <h2 class="text-left">Fertilization</h2>
                                 <br />
                                 <div class="row align-items-end">
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label class="d-block">Assignment</label>
                                         <asp:DropDownList ID="ddlFertilizationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label class="d-block">Type of Request</label>
-                                        <div class="d-flex flex-wrap align-items-center pt-2">
-                                            <asp:RadioButtonList ID="radtype" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
-                                                <asp:ListItem Text="Chemical" Value="Chemical" class="custom-control custom-radio mr-2"></asp:ListItem>
-                                                <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
-                                            </asp:RadioButtonList>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label class="d-block">Spray Date</label>
                                         <asp:TextBox ID="txtFDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
+                                   
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>
-                                            <asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label>
+                                          <label class="d-block">
+                                            Fertilizer
                                         </label>
                                         <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
+                                       <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                          </div>
                                     <div class="mb-3 col-xl-2 col-md-6 col-12">
                                         <label class="d-block">Concentration [ppm]</label>
                                         <asp:TextBox ID="txtQty" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
@@ -600,6 +595,74 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <div id="Chemical_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                            <div class="request__body">
+                                <br />
+                                <h2 class="text-left">Chemical</h2>
+                                <br />
+                                <div class="row align-items-end">
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                        <label class="d-block">Assignment</label>
+                                        <asp:DropDownList ID="ddlChemicalSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    </div>
+                                    
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                        <label class="d-block">Spray Date</label>
+                                        <asp:TextBox ID="TextBox1" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                        <label class="d-block">
+                                            Chemical
+                                        </label>
+                                        <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    </div>
+                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
+                                        <label class="d-block">Concentration [ppm]</label>
+                                        <asp:TextBox ID="TextBox2" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
+                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
+                                        <label class="d-block">Trays</label>
+                                        <asp:TextBox ID="TextBox3" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
+                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
+                                        <label class="d-block">SQFT of Bench</label>
+                                        <asp:TextBox ID="TextBox4" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                        <label>Bench Irrigation Flow Rate [Gallons/min]</label>
+                                        <asp:TextBox ID="TextBox5" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                    </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                        <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
+                                        <asp:TextBox ID="TextBox6" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                    </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                        <label>Spray Coverage per minutes [sqft/min]</label>
+                                        <asp:TextBox ID="TextBox7" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                    </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                        <label>Reset Spray Task For Days</label>
+                                        <asp:TextBox ID="TextBox8" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                    </div>
+                                    <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
+
+
+                                        <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="Button1" CssClass="mr-2 bttn bttn-primary" runat="server"  />
+
+                                        <asp:Button Text="Reset" ID="Button2" runat="server" CssClass="bttn bttn-primary"  />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
 
                         <div id="irrigation_count" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">

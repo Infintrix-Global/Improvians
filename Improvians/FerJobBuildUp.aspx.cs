@@ -41,6 +41,7 @@ namespace Evo
                 BindGridFerDetails("'" + Bench + "'");
 
                 BindSupervisor();
+                BindFertilizer();
                 BindSQFTofBench();
             }
         }
@@ -431,7 +432,7 @@ namespace Evo
                 long Mresult = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                nv.Add("@Type", radtype.SelectedValue);
+                nv.Add("@Type", "Fertilizer");
                 nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
                 nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                 //nv.Add("@WorkOrder", lblwo.Text);
@@ -456,7 +457,7 @@ namespace Evo
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                    nv.Add("@Type", radtype.SelectedValue);
+                    nv.Add("@Type", "Fertilizer");
                     nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
                     nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
@@ -476,7 +477,7 @@ namespace Evo
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                    nv.Add("@Type", radtype.SelectedValue);
+                    nv.Add("@Type", "Fertilizer");
                     nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     //nv.Add("@WorkOrder", lblwo.Text);
@@ -519,35 +520,12 @@ namespace Evo
             txtBenchIrrigationFlowRate.Text = "";
             txtBenchIrrigationCoverage.Text = "";
             txtSprayCoverageperminutes.Text = "";
-            radtype.SelectedValue = "Fertilizer";
+         
             BindFertilizer();
             dtTrays.Clear();
         }
 
-        protected void radtype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (radtype.SelectedValue == "Fertilizer")
-            {
-                // gvFerDetails.HeaderRow.Cells[0].Text = "Fertilizer";
-                lbltype.Text = "Fertilizer";
-                dtTrays.Rows.Clear();
-                //  gvFerDetails.DataSource = dtTrays;
-                //gvFerDetails.DataBind();
-                BindFertilizer();
-
-
-            }
-            else if (radtype.SelectedValue == "Chemical")
-            {
-
-                //gvFerDetails.HeaderRow.Cells[0].Text = "Chemical";
-                lbltype.Text = "Chemical";
-                dtTrays.Rows.Clear();
-                // gvFerDetails.DataSource = dtTrays;
-                //gvFerDetails.DataBind();
-                BindChemical();
-            }
-        }
+       
 
         public void BindSQFTofBench()
         {
@@ -565,15 +543,15 @@ namespace Evo
 
 
 
-        public void BindChemical()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objFer.GetChemicalList();
-            ddlFertilizer.DataTextField = "Name";
-            ddlFertilizer.DataValueField = "No_";
-            ddlFertilizer.DataBind();
-            ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+        //public void BindChemical()
+        //{
+        //    NameValueCollection nv = new NameValueCollection();
+        //    ddlFertilizer.DataSource = objFer.GetChemicalList();
+        //    ddlFertilizer.DataTextField = "Name";
+        //    ddlFertilizer.DataValueField = "No_";
+        //    ddlFertilizer.DataBind();
+        //    ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        //}
 
         public void BindFertilizer()
         {

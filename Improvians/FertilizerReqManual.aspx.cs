@@ -27,6 +27,7 @@ namespace Evo
             {
                 BindSupervisor();
                 BindFertilizer();
+
                 Bindcname();
                 BindBenchLocation(Session["Facility"].ToString());
                 dtTrays.Clear();
@@ -419,7 +420,7 @@ namespace Evo
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                nv.Add("@Type", radtype.SelectedValue);
+                nv.Add("@Type", "Fertilizer");
                 nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                 nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
                 nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
@@ -469,36 +470,22 @@ namespace Evo
             txtQty.Text = "";
             txtSQFT.Text = "";
             txtTrays.Text = "";
-            radtype.SelectedValue = "Fertilizer";
+         //   radtype.SelectedValue = "Fertilizer";
             BindFertilizer();
             dtTrays.Clear();
         }
 
-        protected void radtype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (radtype.SelectedValue == "Fertilizer")
-            {
-                lbltype.Text = "Fertilizer";
-                dtTrays.Rows.Clear();
-                BindFertilizer();
-            }
-            else if (radtype.SelectedValue == "Chemical")
-            {
-                lbltype.Text = "Chemical";
-                dtTrays.Rows.Clear();
-                BindChemical();
-            }
-        }
+      
 
-        public void BindChemical()
-        {
-            NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objFer.GetChemicalList();
-            ddlFertilizer.DataTextField = "Name";
-            ddlFertilizer.DataValueField = "No_";
-            ddlFertilizer.DataBind();
-            ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+        //public void BindChemical()
+        //{
+        //    NameValueCollection nv = new NameValueCollection();
+        //    ddlFertilizer.DataSource = objFer.GetChemicalList();
+        //    ddlFertilizer.DataTextField = "Name";
+        //    ddlFertilizer.DataValueField = "No_";
+        //    ddlFertilizer.DataBind();
+        //    ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        //}
 
         public void BindFertilizer()
         {

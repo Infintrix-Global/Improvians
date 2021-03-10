@@ -354,7 +354,6 @@ namespace Evo
                 }
 
 
-
                 if (dtISD != null && dtISD.Rows.Count > 0)
                 {
                     string IDay = dtISD.Rows[0]["DateShift"].ToString();

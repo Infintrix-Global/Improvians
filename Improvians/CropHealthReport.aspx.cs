@@ -57,8 +57,11 @@ namespace Evo
 
                 BindSupervisor();
 
-                BindChemical();
+               
                 BindSupervisorList();
+                BindFertilizer();
+
+                BindChemical();
             }
 
 
@@ -233,6 +236,7 @@ namespace Evo
             long result = 0;
             long imgresult = 0;
             NameValueCollection nv = new NameValueCollection();
+            NameValueCollection nvimg = new NameValueCollection();
             //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
             //{
             //    folderPath = Server.MapPath("~/images/") + Path.GetFileName(FileUpload1.FileName);
@@ -264,7 +268,7 @@ namespace Evo
                     nv.Add("@chid ", result.ToString());
                     nv.Add("@ImageName", fname);
                     nv.Add("@Imagepath", folderPath);
-                    imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                    imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                 }
             }
 
@@ -432,11 +436,11 @@ namespace Evo
         public void BindChemical()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objFer.GetChemicalList();
-            ddlFertilizer.DataTextField = "Name";
-            ddlFertilizer.DataValueField = "No_";
-            ddlFertilizer.DataBind();
-            ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlChemical.DataSource = objFer.GetChemicalList();
+            ddlChemical.DataTextField = "Name";
+            ddlChemical.DataValueField = "No_";
+            ddlChemical.DataBind();
+            ddlChemical.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         public void BindFertilizer()
@@ -449,28 +453,7 @@ namespace Evo
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
-        protected void radtype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (radtype.SelectedValue == "Fertilizer")
-            {
-
-                lbltype.Text = "Fertilizer";
-                dtTrays.Rows.Clear();
-
-                BindFertilizer();
-
-
-            }
-            else if (radtype.SelectedValue == "Chemical")
-            {
-
-
-                lbltype.Text = "Chemical";
-                dtTrays.Rows.Clear();
-
-                BindChemical();
-            }
-        }
+     
 
         protected void btnFReset_Click(object sender, EventArgs e)
         {
@@ -483,6 +466,7 @@ namespace Evo
             int FertilizationCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv14 = new NameValueCollection();
+                NameValueCollection nvimg = new NameValueCollection();
             nv14.Add("@Mode", "12");
             dt = objCommon.GetDataTable("GET_Common", nv14);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
@@ -524,7 +508,7 @@ namespace Evo
                         nv.Add("@chid ", result.ToString());
                         nv.Add("@ImageName", fname);
                         nv.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                     }
                 }
                 foreach (GridViewRow row in gvFer.Rows)
@@ -571,7 +555,7 @@ namespace Evo
                 long result2 = 0;
                 NameValueCollection nv4 = new NameValueCollection();
                 nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
-                nv4.Add("@Type", radtype.SelectedValue);
+                nv4.Add("@Type", "Fertilizer");
                 nv4.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv4.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
                 nv4.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
@@ -646,10 +630,10 @@ namespace Evo
 
                         folderPath = Server.MapPath("~/images/");
                         file.SaveAs(folderPath + Path.GetFileName(fname));
-                        nv.Add("@chid ", result.ToString());
-                        nv.Add("@ImageName", fname);
-                        nv.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                        nvimg.Add("@chid", result.ToString());
+                        nvimg.Add("@ImageName", fname);
+                        nvimg.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataInsertORUpdate("InsertCropHealthImage", nvimg);
                     }
                 }
 
@@ -825,6 +809,7 @@ namespace Evo
             int IrrigationCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv17 = new NameValueCollection();
+            NameValueCollection nvimg = new NameValueCollection();
             nv17.Add("@Mode", "13");
             dt = objCommon.GetDataTable("GET_Common", nv17);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
@@ -866,7 +851,7 @@ namespace Evo
                         nv.Add("@chid ", result.ToString());
                         nv.Add("@ImageName", fname);
                         nv.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                     }
                 }
 
@@ -974,6 +959,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
+                NameValueCollection nvimg = new NameValueCollection();
                 //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 //{
                 //    folderPath = Server.MapPath("~/images/");
@@ -1004,7 +990,7 @@ namespace Evo
                         nv.Add("@chid ", result.ToString());
                         nv.Add("@ImageName", fname);
                         nv.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                     }
                 }
 
@@ -1151,9 +1137,12 @@ namespace Evo
                     return customers;
                 }
             }
+        }
+
 
         }
     }
 
-   
+
+
 }
