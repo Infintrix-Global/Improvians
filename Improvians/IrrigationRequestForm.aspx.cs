@@ -281,6 +281,7 @@ namespace Evo
                     nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@NoOfPasses", "");
+                    nv.Add("@ResetSprayTaskForDays","");
 
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
                     if (result > 0)

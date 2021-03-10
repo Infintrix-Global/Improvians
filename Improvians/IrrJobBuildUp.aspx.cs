@@ -448,7 +448,9 @@ namespace Evo
                 nv.Add("@IrrigationCode", IrrigationCode.ToString());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@NoOfPasses", "");
+                nv.Add("@ResetSprayTaskForDays",txtResetSprayTaskForDays.Text);
 
+                
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
