@@ -18,15 +18,6 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
-                {
-                    divFacility.Visible = false;
-                   // BindBenchLocation(Session["Facility"].ToString());
-                }
-                else
-                {
-                    BindFacility();
-                }
                 BindGridGerm();
 
             }
@@ -65,31 +56,14 @@ namespace Evo
 
         }
 
-        public void BindFacility()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
-
-
-        public void BindGridGerm()
+              public void BindGridGerm()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -112,7 +86,7 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
                 GTAID = (row.FindControl("lblID") as Label).Text;
-               
+
                 Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", GTAID));
             }
         }

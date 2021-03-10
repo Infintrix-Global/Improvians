@@ -8,15 +8,7 @@
         <div class="site__container">
             <h2 class="text-left">Moves</h2>
             <div class="filter__row d-flex">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label>Facility Location</label><span style="color: red">*</span>
-                        <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
-                        <span class="error_message">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlFacility" ValidationGroup="x"
-                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>
-                    </div>
+                <div class="row">                  
                     <div class="col-lg-3">
                         <label>Bench Location </label>
                         <span style="color: red">*</span>

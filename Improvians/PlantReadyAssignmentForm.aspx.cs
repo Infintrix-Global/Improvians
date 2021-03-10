@@ -17,9 +17,7 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                BindFacility();
                 BindGridGerm();
-
             }
         }
 
@@ -56,21 +54,6 @@ namespace Evo
 
         }
 
-        public void BindFacility()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
         public void BindGridGerm()
         {
             DataTable dt = new DataTable();
@@ -106,7 +89,6 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-            BindFacility();
             BindGridGerm();
         }
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -119,7 +101,7 @@ namespace Evo
                 //int rowIndex = Convert.ToInt32(e.CommandArgument);
                 //GridViewRow row = gvGerm.Rows[rowIndex];
 
-               // string PRID = e.CommandArgument.ToString();
+                // string PRID = e.CommandArgument.ToString();
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string PRID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 ChId = gvGerm.DataKeys[rowIndex].Values[1].ToString();
@@ -132,7 +114,7 @@ namespace Evo
                 {
                     ChId = ChId;
                 }
-                Response.Redirect(String.Format("~/PlantReadyTaskAssignment.aspx?PRID={0}&Chid={1}",PRID,ChId));
+                Response.Redirect(String.Format("~/PlantReadyTaskAssignment.aspx?PRID={0}&Chid={1}", PRID, ChId));
 
             }
 
@@ -170,7 +152,7 @@ namespace Evo
                 nv.Add("@Notes", "");
                 nv.Add("@PRID", PRID);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-               long result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignment", nv);
+                long result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignment", nv);
 
                 //  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
 

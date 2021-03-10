@@ -20,12 +20,6 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                //Bindcname();
-                //BindJobCode();
-                //BindFacility();
-                //BindBenchLocation();
-                //BindGridIrrigation();
-                BindFacility();
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindSupervisorList();
             }
@@ -114,7 +108,7 @@ namespace Evo
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-               
+
             }
             else if (RadioBench.SelectedValue == "3")
             {
@@ -312,12 +306,12 @@ namespace Evo
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", BenchLoc);
 
             dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(ddlFacility.SelectedValue, BenchLoc, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, ddlJobNo.SelectedValue);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -351,16 +345,6 @@ namespace Evo
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
-        }
-
-        public void BindFacility()
-        {
-            ddlFacility.DataSource = objBAL.GetMainLocation();
-            ddlFacility.DataTextField = "l1";
-            ddlFacility.DataValueField = "l1";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
-            BindBenchLocation("");
         }
 
         public void BindBenchLocation(string ddlMain)
@@ -408,11 +392,6 @@ namespace Evo
             BindGridIrrigation("");
         }
 
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindBenchLocation(ddlFacility.SelectedValue);
-        }
-
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridIrrigation("");
@@ -436,7 +415,6 @@ namespace Evo
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
-            ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;

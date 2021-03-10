@@ -100,10 +100,14 @@ namespace Evo
             ddlFacility.DataTextField = "FacilityName";
             ddlFacility.DataValueField = "FacilityName";
             ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+            //ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
             if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
             {
-                 ddlFacility.SelectedValue= Session["Facility"].ToString() ;
+                ddlFacility.SelectedValue = Session["Facility"].ToString();
+            }
+            else
+            {
+                Session["Facility"] = ddlFacility.SelectedValue;
             }
            
         }
