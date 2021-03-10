@@ -301,7 +301,7 @@
                                 <label>Type of problem</label><span style="color: red">*</span>
                                 <asp:DropDownList ID="ddlpr" runat="server" class="custom__dropdown robotomd">
                                     <asp:ListItem Value="0">Select</asp:ListItem>
-                                    <asp:ListItem Value="1">Germination</asp:ListItem>
+                                    <asp:ListItem Value="1"><%--Germination--%></asp:ListItem>
                                     <asp:ListItem Value="2">Irrigation</asp:ListItem>
                                     <asp:ListItem Value="3">Seeding</asp:ListItem>
                                     <asp:ListItem Value="4">Soil</asp:ListItem>

@@ -233,6 +233,7 @@ namespace Evo
             long result = 0;
             long imgresult = 0;
             NameValueCollection nv = new NameValueCollection();
+            NameValueCollection nvimg = new NameValueCollection();
             //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
             //{
             //    folderPath = Server.MapPath("~/images/") + Path.GetFileName(FileUpload1.FileName);
@@ -264,7 +265,7 @@ namespace Evo
                     nv.Add("@chid ", result.ToString());
                     nv.Add("@ImageName", fname);
                     nv.Add("@Imagepath", folderPath);
-                    imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                    imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                 }
             }
 
@@ -483,6 +484,7 @@ namespace Evo
             int FertilizationCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv14 = new NameValueCollection();
+                NameValueCollection nvimg = new NameValueCollection();
             nv14.Add("@Mode", "12");
             dt = objCommon.GetDataTable("GET_Common", nv14);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
@@ -524,7 +526,7 @@ namespace Evo
                         nv.Add("@chid ", result.ToString());
                         nv.Add("@ImageName", fname);
                         nv.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                     }
                 }
                 foreach (GridViewRow row in gvFer.Rows)
@@ -646,10 +648,10 @@ namespace Evo
 
                         folderPath = Server.MapPath("~/images/");
                         file.SaveAs(folderPath + Path.GetFileName(fname));
-                        nv.Add("@chid ", result.ToString());
-                        nv.Add("@ImageName", fname);
-                        nv.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                        nvimg.Add("@chid", result.ToString());
+                        nvimg.Add("@ImageName", fname);
+                        nvimg.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataInsertORUpdate("InsertCropHealthImage", nvimg);
                     }
                 }
                 
@@ -825,6 +827,7 @@ namespace Evo
             int IrrigationCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv17 = new NameValueCollection();
+            NameValueCollection nvimg = new NameValueCollection();
             nv17.Add("@Mode", "13");
             dt = objCommon.GetDataTable("GET_Common", nv17);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
@@ -866,7 +869,7 @@ namespace Evo
                         nv.Add("@chid ", result.ToString());
                         nv.Add("@ImageName", fname);
                         nv.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                     }
                 }
 
@@ -974,6 +977,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
+                NameValueCollection nvimg = new NameValueCollection();
                 //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 //{
                 //    folderPath = Server.MapPath("~/images/");
@@ -1004,7 +1008,7 @@ namespace Evo
                         nv.Add("@chid ", result.ToString());
                         nv.Add("@ImageName", fname);
                         nv.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                     }
                 }
 
@@ -1124,9 +1128,6 @@ namespace Evo
             }
             
         }
-    }
-}
-
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
         public static List<string> SearchCustomers(string prefixText, int count)
@@ -1154,11 +1155,13 @@ namespace Evo
                     return customers;
                 }
             }
-
-
         }
+
+    
+
+
     }
-
-
-
 }
+
+       
+   
