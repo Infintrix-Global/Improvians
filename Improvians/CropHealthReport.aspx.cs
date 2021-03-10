@@ -241,17 +241,17 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-
+            long imgresult = 0;
             NameValueCollection nv = new NameValueCollection();
-            if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-            {
-                folderPath = Server.MapPath("~/images/") + Path.GetFileName(FileUpload1.FileName);
-                FileUpload1.SaveAs(folderPath);
-            }
-            else
-            {
-                folderPath = "";
-            }
+            //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+            //{
+            //    folderPath = Server.MapPath("~/images/") + Path.GetFileName(FileUpload1.FileName);
+            //    FileUpload1.SaveAs(folderPath);
+            //}
+            //else
+            //{
+            //    folderPath = "";
+            //}
             nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
             nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
             nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -262,7 +262,21 @@ namespace Evo
             nv.Add("@CropHealthCommit", txtcomments.Text);
 
             result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                HttpPostedFile file = Request.Files[i];
+                if (file.ContentLength > 0)
+                {
+                    string fname = Path.GetFileName(file.FileName);
 
+                    folderPath = Server.MapPath("~/images/");
+                    file.SaveAs(folderPath + Path.GetFileName(fname));
+                    nv.Add("@chid ", result.ToString());
+                    nv.Add("@ImageName", fname);
+                    nv.Add("@Imagepath", folderPath);
+                    imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                }
+            }
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -339,10 +353,10 @@ namespace Evo
             }
 
             //Save the File to the Directory (Folder).
-            FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+            //FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
 
-            //Display the success message.
-            lblMessage.Text = Path.GetFileName(FileUpload1.FileName) + " has been uploaded.";
+            ////Display the success message.
+            //lblMessage.Text = Path.GetFileName(FileUpload1.FileName) + " has been uploaded.";
 
         }
 
@@ -488,17 +502,18 @@ namespace Evo
             if (Chid == "")
             {
                 long result = 0;
+                long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                {
-                    folderPath = Server.MapPath("~/images/");
-                    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                }
-                else
-                {
-                    folderPath = "";
-                }
+                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                //{
+                //    folderPath = Server.MapPath("~/images/");
+                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                //}
+                //else
+                //{
+                //    folderPath = "";
+                //}
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -509,7 +524,21 @@ namespace Evo
                 nv.Add("@CropHealthCommit", txtcomments.Text);
                 result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
 
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFile file = Request.Files[i];
+                    if (file.ContentLength > 0)
+                    {
+                        string fname = Path.GetFileName(file.FileName);
 
+                        folderPath = Server.MapPath("~/images/");
+                        file.SaveAs(folderPath + Path.GetFileName(fname));
+                        nv.Add("@chid ", result.ToString());
+                        nv.Add("@ImageName", fname);
+                        nv.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                    }
+                }
                 foreach (GridViewRow row in gvFer.Rows)
                 {
                     CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -597,18 +626,21 @@ namespace Evo
             if (Chid == "")
             {
                 long result = 0;
+                long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                {
-                    folderPath = Server.MapPath("~/images/");
-                    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                }
-                else
-                {
-                    folderPath = "";
-                }
-                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+                NameValueCollection nvimg = new NameValueCollection();
+                
+                    //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                    //{
+                    //    folderPath = Server.MapPath("~/images/");
+                    //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                    //}
+                    //else
+                    //{
+                    //    folderPath = "";
+                    //}
+                    nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
                 nv.Add("@NoTrays", txtTrays.Text);
@@ -617,7 +649,23 @@ namespace Evo
                 nv.Add("@Filepath", folderPath);
                 nv.Add("@CropHealthCommit", txtcomments.Text);
                 result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFile file = Request.Files[i];
+                    if (file.ContentLength > 0)
+                    {
+                        string fname = Path.GetFileName(file.FileName);
 
+                        folderPath = Server.MapPath("~/images/");
+                        file.SaveAs(folderPath + Path.GetFileName(fname));
+                        nv.Add("@chid ", result.ToString());
+                        nv.Add("@ImageName", fname);
+                        nv.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                    }
+                }
+                
+                
 
                 foreach (GridViewRow row in gvFer.Rows)
                 {
@@ -720,6 +768,20 @@ namespace Evo
         {
             try
             {
+                long result = 0;
+
+                NameValueCollection nv = new NameValueCollection();
+                // nv.Add("@OperatorID", Session["LoginID"].ToString());
+                //nv.Add("@wo", wo);
+                nv.Add("@Comments", txtgeneralCommnet.Text.Trim());
+                nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
+                nv.Add("@TaskType", ddlTaskType.SelectedValue);
+                nv.Add("@MoveFrom", txtFrom.Text.Trim());
+                nv.Add("@MoveTo", txtTo.Text.Trim());
+                nv.Add("@IsActive", "1");
+
+
+                result = objCommon.GetDataInsertORUpdate("InsertGeneralTask", nv);
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
                 string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
                 string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
@@ -783,17 +845,18 @@ namespace Evo
             if (Chid == "")
             {
                 long result = 0;
+                long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                {
-                    folderPath = Server.MapPath("~/images/");
-                    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                }
-                else
-                {
-                    folderPath = "";
-                }
+                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                //{
+                //    folderPath = Server.MapPath("~/images/");
+                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                //}
+                //else
+                //{
+                //    folderPath = "";
+                //}
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -803,6 +866,21 @@ namespace Evo
                 nv.Add("@Filepath", folderPath);
                 nv.Add("@CropHealthCommit", txtcomments.Text);
                 result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFile file = Request.Files[i];
+                    if (file.ContentLength > 0)
+                    {
+                        string fname = Path.GetFileName(file.FileName);
+
+                        folderPath = Server.MapPath("~/images/");
+                        file.SaveAs(folderPath + Path.GetFileName(fname));
+                        nv.Add("@chid ", result.ToString());
+                        nv.Add("@ImageName", fname);
+                        nv.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                    }
+                }
 
 
                 foreach (GridViewRow row in gvFer.Rows)
@@ -905,17 +983,18 @@ namespace Evo
             if (Chid == "")
             {
                 long result = 0;
+                long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                {
-                    folderPath = Server.MapPath("~/images/");
-                    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                }
-                else
-                {
-                    folderPath = "";
-                }
+                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                //{
+                //    folderPath = Server.MapPath("~/images/");
+                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                //}
+                //else
+                //{
+                //    folderPath = "";
+                //}
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -925,7 +1004,21 @@ namespace Evo
                 nv.Add("@Filepath", folderPath);
                 nv.Add("@CropHealthCommit", txtcomments.Text);
                 result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFile file = Request.Files[i];
+                    if (file.ContentLength > 0)
+                    {
+                        string fname = Path.GetFileName(file.FileName);
 
+                        folderPath = Server.MapPath("~/images/");
+                        file.SaveAs(folderPath + Path.GetFileName(fname));
+                        nv.Add("@chid ", result.ToString());
+                        nv.Add("@ImageName", fname);
+                        nv.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
+                    }
+                }
 
                 foreach (GridViewRow row in gvFer.Rows)
                 {
@@ -1029,5 +1122,19 @@ namespace Evo
 
         }
 
+        protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlTaskType.SelectedItem.Value == "3")
+            {
+                divFrom.Style["display"] = "block";
+                divTo.Style["display"] = "block";
+            }
+            else
+            {
+                divFrom.Style["display"] = "none";
+                divTo.Style["display"] = "none";
+            }
+            
+        }
     }
 }
