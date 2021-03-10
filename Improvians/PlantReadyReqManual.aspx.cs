@@ -18,7 +18,7 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                BindFacility();
+               
                 BindGridPlantReady();
                 BindSupervisorList();
             }
@@ -48,7 +48,7 @@ namespace Evo
             // nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             // nv.Add("@Mode", "7");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequestManual", nv);
@@ -99,21 +99,6 @@ namespace Evo
 
         }
 
-        public void BindFacility()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridPlantReady();
@@ -133,7 +118,6 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-            BindFacility();
             BindGridPlantReady();
         }
         protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)

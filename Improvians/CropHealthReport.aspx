@@ -2,10 +2,48 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="js/jquery.min.js"></script>
+    <%--<script src="js/jquery.min.js"></script>--%>
+    <script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+
+    <script src="js/jquery.uploadify.js"></script>
     <script>
         $(document).ready(function () {
             $('[id$=takePictureField]').on("change", gotPic);
+
+
+            if (window.File && window.FileList && window.FileReader) {
+                $("#files").on("change", function (e) {
+                    var files = e.target.files,
+                        filesLength = files.length;
+                    for (var i = 0; i < filesLength; i++) {
+                        var f = files[i]
+                        var fileReader = new FileReader();
+                        fileReader.onload = (function (e) {
+                            var file = e.target;
+                            $("<span class=\"pip\">" +
+                                "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                                "<br/><span class=\"remove\">Remove image</span>" +
+                                "</span>").insertAfter("#files");
+                            $(".remove").click(function () {
+                                $(this).parent(".pip").remove();
+                            });
+
+                            // Old code here
+                            /*$("<img></img>", {
+                              class: "imageThumb",
+                              src: e.target.result,
+                              title: file.name + " | Click to remove"
+                            }).insertAfter("#files").click(function(){$(this).remove();});*/
+
+                        });
+                        fileReader.readAsDataURL(f);
+                    }
+                });
+            } else {
+                alert("Your browser doesn't support to File API")
+            }
+
         });
 
         function gotPic(event) {
@@ -14,10 +52,8 @@
                 $('[id$=yourimage]').attr("src", URL.createObjectURL(event.target.files[0]));
             }
         }
+
     </script>
-
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -265,7 +301,7 @@
                                 <label>Type of problem</label><span style="color: red">*</span>
                                 <asp:DropDownList ID="ddlpr" runat="server" class="custom__dropdown robotomd">
                                     <asp:ListItem Value="0">Select</asp:ListItem>
-                                    <asp:ListItem Value="1">Germination</asp:ListItem>
+                                    <asp:ListItem Value="1"><%--Germination--%></asp:ListItem>
                                     <asp:ListItem Value="2">Irrigation</asp:ListItem>
                                     <asp:ListItem Value="3">Seeding</asp:ListItem>
                                     <asp:ListItem Value="4">Soil</asp:ListItem>
@@ -347,10 +383,14 @@
                             <div class="col-lg-3">
                                 <label>&nbsp; </label>
                                 <div id="divLaptop" runat="server" visible="false">
-                                    <asp:FileUpload ID="FileUpload1" runat="server" Width="100%" Height="45px" />
-                                    <%--<hr />
-<asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="UploadFile" />
-<br />--%>
+                                  <%--  <asp:FileUpload ID="FileUpload1" runat="server" name="files[]" AllowMultiple="true" Width="100%" Height="45px" />--%>
+
+    
+                                   <%-- <div class="field" align="left">
+                                        <h3>Upload your images</h3>--%>
+                                    
+                                        <input type="file" id="files" name="files" multiple />
+                                  <%--  </div>--%>
                                 </div>
                                 <asp:Label ID="lblMessage" ForeColor="Green" runat="server" />
                                 <div id="divMobile" runat="server" visible="false">
@@ -753,9 +793,11 @@
                                         <div class="portlet light ">
 
                                             <div class="portlet-body">
-                                                <asp:Panel ID="Panel1" runat="server">
-                                                    <div class="row" style="margin-left: 15px;">
-                                                        <%-- <div class="col-lg-4">
+                                                <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
+                                                    <ContentTemplate>
+                                                        <asp:Panel ID="Panel1" runat="server">
+                                                            <div class="row" style="margin-left: 15px;">
+                                                                <%-- <div class="col-lg-4">
                                                             <label>Comments</label>
                                                             <asp:TextBox TextMode="MultiLine" runat="server" ID="txtComment" CssClass="input__control"></asp:TextBox>
                                                             <span class="error_message">
@@ -763,22 +805,70 @@
                                                                     SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
                                                             </span>
                                                         </div>--%>
-                                                        <div class="col-lg-4">
-                                                            <label>Assignment</label>
+                                                                <div class="col-lg-4">
+                                                                    <label>Task Type</label>
 
-                                                            <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
-                                                            <span class="error_message">
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
-                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                            </span>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div style="margin-top: 9%;">
-                                                                <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
+                                                                    <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                                                                        <asp:ListItem Text="--Select--" Value="0" />
+                                                                        <asp:ListItem Text="Add Bird Neeting" Value="1" />
+                                                                        <asp:ListItem Text="Remove Bird Neeting" Value="2" />
+                                                                        <asp:ListItem Text="Move" Value="3" />
+                                                                        <asp:ListItem Text="Other" Value="4" />
+                                                                    </asp:DropDownList>
+                                                                    <span class="error_message">
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label>Assignment</label>
+
+                                                                    <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                                                    <span class="error_message">
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                                    </span>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4">
+                                                                    <label>Comments</label>
+                                                                    <asp:TextBox ID="txtgeneralCommnet" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                                                    <span class="error_message">
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="col-lg-4" id="divFrom" style="display: none;" runat="server">
+                                                                    <label>From</label>
+                                                                    <asp:TextBox ID="txtFrom" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                                                    <span class="error_message">
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-lg-4" id="divTo" style="display: none;" runat="server">
+                                                                    <label>To</label>
+                                                                    <asp:TextBox ID="txtTo" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                                                    <span class="error_message">
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="col-lg-4">
+                                                                    <div style="margin-top: 9%;">
+                                                                        <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
+                                                                        <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server"  Visible="false"/>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </asp:Panel>
+                                                        </asp:Panel>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
                                             </div>
                                         </div>
                                     </div>

@@ -18,7 +18,7 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                BindFacility();
+               // BindFacility();
                 BindGridPlantReady();
                 BindSupervisorList();
             }
@@ -48,7 +48,7 @@ namespace Evo
            // nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
            // nv.Add("@Mode", "7");
            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
@@ -119,21 +119,21 @@ namespace Evo
 
         }
 
-        public void BindFacility()
-        {
+        //public void BindFacility()
+        //{
 
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+        //    nv.Add("@Mode", "9");
+        //    dt = objCommon.GetDataTable("GET_Common", nv);
+        //    ddlFacility.DataSource = dt;
+        //    ddlFacility.DataTextField = "loc_seedline";
+        //    ddlFacility.DataValueField = "loc_seedline";
+        //    ddlFacility.DataBind();
+        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        }
+        //}
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridPlantReady();
