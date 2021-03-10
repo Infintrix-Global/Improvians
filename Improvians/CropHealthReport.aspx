@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="CropHealthReport.aspx.cs" Inherits="Evo.CropHealthReport" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--<script src="js/jquery.min.js"></script>--%>
     <script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
@@ -53,37 +54,6 @@
         }
 
     </script>
-    <style>
-        input[type="file"] {
-            display: block;
-        }
-
-        .imageThumb {
-            max-height: 75px;
-            border: 2px solid;
-            padding: 1px;
-            cursor: pointer;
-        }
-
-        .pip {
-            display: inline-block;
-            margin: 10px 10px 0 0;
-        }
-
-        .remove {
-            display: block;
-            background: #444;
-            border: 1px solid black;
-            color: white;
-            text-align: center;
-            cursor: pointer;
-        }
-
-            .remove:hover {
-                background: white;
-                color: black;
-            }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -100,14 +70,7 @@
 
                 <div class="filter__row d-flex">
                     <div class="row">
-                        <div class="col-lg-3">
-                            <label>Facility Location</label><span style="color: red">*</span>
-                            <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
-                            <span class="error_message">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlFacility" ValidationGroup="x"
-                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                            </span>
-                        </div>
+                       
                         <div class="col-lg-3">
                             <label>Bench Location </label>
                             <span style="color: red">*</span>
@@ -136,6 +99,12 @@
                         <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
 
 
+                        <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                            MinimumPrefixLength="2"
+                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                            TargetControlID="txtSearchJobNo"
+                            ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                        </cc1:AutoCompleteExtender>
                     </div>
 
                     <div class="col-lg-3">
@@ -478,10 +447,18 @@
 
                         <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#fertilization_count">
                             <span class="">
-                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
-                                Fertilization / Chemical
+                                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
+                                Fertilization
                             </span>
                         </button>
+
+                        <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#fertilization_count">
+                            <span class="">
+                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
+                                Chemical
+                            </span>
+                        </button>
+
 
                         <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#irrigation_count">
                             <span class="">
@@ -517,6 +494,7 @@
                                 General Task
                             </span>
                         </button>
+
                     </div>
 
                     <div class="request__block">

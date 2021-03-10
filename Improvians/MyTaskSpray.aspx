@@ -10,20 +10,20 @@
             <p class="pt-3">The list of tasks below are items for you to complete.</p>
 
             <div class="dashboard__grid">
-                <a class="dashboard__box" href="MyTaskShippingCoordinator.aspx">
+                <a href="MyTaskShippingCoordinator.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_put-away.png" width="137" height="140" alt="Put-Away" />
                     </div>
                     <div class="dashboard__box-desc">
                         <div class="dashboard__box-count dash_green_txt robotobold">
                             <asp:Label ID="lblPutAway" runat="server" Text="0"></asp:Label>
+
                         </div>
                         <h3 class="dashboard__box-title robotomd">Put-Away</h3>
                         <p>A list of put away location for a job.</p>
                     </div>
                 </a>
-
-                <a class="dashboard__box" href="GerminationCompletionForm.aspx">
+                <a href="GerminationCompletionForm.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                     </div>
@@ -35,63 +35,75 @@
                         <p>A list of germination count tasks to complete.</p>
                     </div>
                 </a>
-                <a class="dashboard__box" href="SprayTaskRequest.aspx">
+                <a href="SprayTaskRequest.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
-                        <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical" />
+                        <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization" />
                     </div>
                     <div class="dashboard__box-desc">
                         <div class="dashboard__box-count dash_green_txt robotobold">
                             <asp:Label ID="lblFer" runat="server" Text="0"></asp:Label>
                         </div>
-                        <h3 class="dashboard__box-title robotomd">Fertilization / Chemical</h3>
+                        <h3 class="dashboard__box-title robotomd">Fertilization</h3>
                         <p>A list of spray task to complete</p>
                     </div>
                 </a>
-                <a class="dashboard__box" href="IrrigationCompletionForm.aspx">
+                <a href="ChemicalTaskRequest.aspx" class="dashboard__box">
+                    <div class="dashboard__box-img">
+                        <img src="./images/dashboard_chemical.png" width="137" height="136" alt="Chemical" />
+                    </div>
+                    <div class="dashboard__box-desc">
+                        <div class="dashboard__box-count dash_blue_txt robotobold">
+                            <asp:Label ID="lblChemical" runat="server" Text="0"></asp:Label>
+                        </div>
+                        <h3 class="dashboard__box-title robotomd">Chemical</h3>
+                        <p>A list of spray task to complete</p>
+                    </div>
+                </a>
+                <a href="IrrigationCompletionForm.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
                     </div>
                     <div class="dashboard__box-desc">
-                        <div class="dashboard__box-count dash_blue_txt robotobold">
+                        <div class="dashboard__box-count dash_green_txt robotobold">
                             <asp:Label ID="lblIrr" runat="server" Text="0"></asp:Label>
                         </div>
                         <h3 class="dashboard__box-title robotomd">Irrigation</h3>
                         <p>A list of irrigation tasks to complete</p>
                     </div>
                 </a>
-                <div class="dashboard__box">
+                <a href="CropHealthDetails.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_crop-health-report.png" width="137" height="131" alt="Crop Health Report" />
                     </div>
                     <div class="dashboard__box-desc">
-                        <div class="dashboard__box-count dash_green_txt robotobold">
-                            <asp:Label ID="lblCrop" runat="server" Text="0"></asp:Label>
+                        <div class="dashboard__box-count dash_blue_txt robotobold">
+                            <asp:Label ID="lblCropHealthReport" runat="server" Text="0"></asp:Label>
                         </div>
                         <h3 class="dashboard__box-title robotomd">Crop Health Report</h3>
                         <p>Assign Crop Health Report Request</p>
                     </div>
-                </div>
-                <a class="dashboard__box" href="PlantReadyCompletionForm.aspx">
+                </a>
+                <a href="PlantReadyCompletionForm.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
                     </div>
                     <div class="dashboard__box-desc">
-                        <div class="dashboard__box-count dash_blue_txt robotobold">
+                        <div class="dashboard__box-count dash_green_txt robotobold">
                             <asp:Label ID="lblpr" runat="server" Text="0"></asp:Label>
                         </div>
                         <h3 class="dashboard__box-title robotomd">Plant Ready</h3>
                         <p>A list of Plant Ready Reporting tasks to complete</p>
                     </div>
                 </a>
-                <a class="dashboard__box" href="MoveForm.aspx">
+                <a href="MoveForm.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
                     </div>
                     <div class="dashboard__box-desc">
-                        <div class="dashboard__box-count dash_green_txt robotobold">
-                            <asp:Label ID="lblMove" runat="server" Text="0"></asp:Label>
+                        <div class="dashboard__box-count dash_blue_txt robotobold">
+                                <asp:Label ID="lblMove" runat="server" Text="0"></asp:Label>
                         </div>
-                        <h3 class="dashboard__box-title robotomd">Moves</h3>
+                        <h3 class="dashboard__box-title robotomd">Move Request</h3>
                         <p>Review and assign move tasks</p>
                     </div>
                 </a>

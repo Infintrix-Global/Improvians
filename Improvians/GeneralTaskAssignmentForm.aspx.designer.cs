@@ -7,30 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Evo
+namespace Improvians
 {
 
 
-    public partial class GerminationCompletionForm
+    public partial class GeneralTaskAssignmentForm
     {
-
-        /// <summary>
-        /// ddlCustomer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
-
-        /// <summary>
-        /// ddlJobNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
 
         /// <summary>
         /// lblmsg control.
@@ -42,12 +24,12 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// gvGerm control.
+        /// gvTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGerm;
+        protected global::System.Web.UI.WebControls.GridView gvTask;
     }
 }

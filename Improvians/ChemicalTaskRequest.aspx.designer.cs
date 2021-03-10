@@ -11,35 +11,17 @@ namespace Evo
 {
 
 
-    public partial class IrrigationAssignmentForm
+    public partial class ChemicalTaskRequest
     {
 
         /// <summary>
-        /// ddlCustomer control.
+        /// sc1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
-
-        /// <summary>
-        /// ddlJobNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
-
-        /// <summary>
-        /// btnResetSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnResetSearch;
+        protected global::System.Web.UI.ScriptManager sc1;
 
         /// <summary>
         /// lblmsg control.
@@ -51,12 +33,12 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// gvGerm control.
+        /// gvSpray control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGerm;
+        protected global::System.Web.UI.WebControls.GridView gvSpray;
     }
 }

@@ -42,6 +42,7 @@ namespace Evo
 
             lblpr.Text = dt.Tables[4].Rows.Count.ToString();
 
+            lblChemical.Text = dt.Tables[5].Rows.Count.ToString();
 
 
         }

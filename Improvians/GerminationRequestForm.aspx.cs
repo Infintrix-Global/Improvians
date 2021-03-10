@@ -26,10 +26,7 @@ namespace Evo
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
                 Bindcname();
-
-                BindFacility();
-                BindBenchLocation(ddlFacility.SelectedValue);
-                BindJobCode(ddlBenchLocation.SelectedValue);
+                BindBenchLocation(Session["Facility"].ToString());
                 BindGridGerm();
                 BindSupervisorList();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -66,16 +63,6 @@ namespace Evo
             ddlJobNo.ClearSelection();
         }
 
-        public void BindFacility()
-        {
-            ddlFacility.DataSource = objBAL.GetMainLocation();
-            ddlFacility.DataTextField = "l1";
-            ddlFacility.DataValueField = "l1";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
-
         public void BindBenchLocation(string ddlMain)
         {
 
@@ -87,12 +74,6 @@ namespace Evo
             ddlBenchLocation.Items[0].Selected = false;
             ddlBenchLocation.ClearSelection();
 
-        }
-
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindBenchLocation(ddlFacility.SelectedValue);
-            BindGridGerm();
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,7 +107,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@Week", radweek.SelectedValue);
             nv.Add("@Status", radStatus.SelectedValue);
@@ -362,10 +343,8 @@ namespace Evo
             RadioButtonListGno.Items[0].Selected = false;
 
             RadioButtonListGno.ClearSelection();
-            Bindcname();
-
-            BindFacility();
-            BindBenchLocation(ddlFacility.SelectedValue);
+            Bindcname();            
+            BindBenchLocation(Session["Facility"].ToString());
             BindJobCode(ddlBenchLocation.SelectedValue);
             BindGridGerm();
 

@@ -12,14 +12,6 @@
 
             <div class="row">
                 <div class="col-lg-2">
-                    <label>Facility Location</label>
-                    <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
-                    <span class="error_message">
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlFacility" ValidationGroup="x"
-                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                    </span>
-                </div>
-                <div class="col-lg-2">
                     <label>Bench Location </label>
 
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -139,7 +131,7 @@
                                                 <asp:Label ID="lblGrowerID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>' Visible="false"></asp:Label>
-                                                <asp:HyperLink ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'  ></asp:HyperLink>
+                                                <asp:HyperLink ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:HyperLink>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

@@ -137,7 +137,7 @@
 
             </div>
         </header>
-        <div class="header__bottom">
+        <%--<div class="header__bottom">
             <div class="header__tabs">
                 <ul class="d-flex align-items-center justify-content-center list-inline">
                     <li>
@@ -154,7 +154,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div>--%>
 
 
         <div class="main">

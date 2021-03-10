@@ -12,6 +12,12 @@ using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
+using System.Data.SqlClient;
+using System.Configuration;
+
+
+
+
 
 namespace Evo
 {
@@ -45,8 +51,7 @@ namespace Evo
                     //    BindUnit();
                     //  BindJobCode(ddlBenchLocation.SelectedValue);
                     Bindcname();
-                    BindFacility();
-
+                    BindBenchLocation(Session["Facility"].ToString());
                     dtTrays.Clear();
                 }
 
@@ -136,7 +141,7 @@ namespace Evo
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, BenchLoc, JobNo);
+            DataTable dtManual = objFer.GetManualFertilizerRequest(Session["Facility"].ToString(), BenchLoc, JobNo);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -188,16 +193,6 @@ namespace Evo
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
         }
 
-        public void BindFacility()
-        {
-            ddlFacility.DataSource = objBAL.GetMainLocation();
-            ddlFacility.DataTextField = "l1";
-            ddlFacility.DataValueField = "l1";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
-            BindBenchLocation("");
-        }
-
         public void BindBenchLocation(string ddlMain)
         {
             ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
@@ -214,14 +209,9 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq(ddlBenchLocation.SelectedValue,ddlJobNo.SelectedValue);
+            BindGridFerReq(ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
         }
 
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindBenchLocation(ddlFacility.SelectedValue);
-            //BindGridFerReq();
-        }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -320,7 +310,7 @@ namespace Evo
             //  Clear();
         }
 
-     
+
 
 
         public void Clear()
@@ -333,7 +323,6 @@ namespace Evo
             txtDate.Text = "";
             percentageDamage.Text = "";
             dtTrays.Clear();
-            ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             //ddlJobNo.SelectedIndex = 0;
@@ -367,10 +356,9 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-            ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
-           // ddlJobNo.SelectedIndex = 0;
+            // ddlJobNo.SelectedIndex = 0;
             //BindGridFerReq();
             gvFer.DataSource = null;
             gvFer.DataBind();
@@ -1074,8 +1062,8 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@ChId",Chid);
-                
+                nv.Add("@ChId", Chid);
+
                 result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaNew", nv);
 
 
@@ -1137,4 +1125,40 @@ namespace Evo
             
         }
     }
+}
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager
+                        .ConnectionStrings["EvoNavision"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    " AND t.[Job No_] like '" + prefixText + "%'";
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+                    return customers;
+                }
+            }
+
+
+        }
+    }
+
+
+
 }

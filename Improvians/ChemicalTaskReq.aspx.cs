@@ -30,10 +30,9 @@ namespace Evo
 
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
-           
+
                 Bindcname();
-                BindFacility();
-                BindBenchLocation(ddlFacility.SelectedValue);
+                BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridFerReq();
                 dtTrays.Clear();
@@ -68,16 +67,6 @@ namespace Evo
             ddlJobNo.ClearSelection();
         }
 
-        public void BindFacility()
-        {
-            ddlFacility.DataSource = objBAL.GetMainLocation();
-            ddlFacility.DataTextField = "l1";
-            ddlFacility.DataValueField = "l1";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-            BindBenchLocation("");
-        }
-
         public void BindBenchLocation(string ddlMain)
         {
             ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
@@ -89,12 +78,7 @@ namespace Evo
             ddlBenchLocation.ClearSelection();
         }
 
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindBenchLocation(ddlFacility.SelectedValue);
-            BindGridFerReq();
-        }
-
+      
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindJobCode(ddlBenchLocation.SelectedValue);
@@ -117,7 +101,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@RequestType", RadioButtonListSourse.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
@@ -160,14 +144,14 @@ namespace Evo
             // gvJobHistory.DataBind();
         }
 
-    
-  
-       
+
+
+
 
         protected void gvFer_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
-          
+
 
             if (e.CommandName == "Job")
             {
@@ -185,7 +169,7 @@ namespace Evo
             BindGridFerReq();
         }
 
-   
+
 
         protected void chckchanged(object sender, EventArgs e)
         {
@@ -207,7 +191,7 @@ namespace Evo
 
         protected void btnManual_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/FertilizerReqManual.aspx");
+            Response.Redirect("~/ChemicalReqManual.aspx");
         }
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
@@ -217,8 +201,8 @@ namespace Evo
 
             RadioButtonListSourse.ClearSelection();
             Bindcname();
-            BindFacility();
-            BindBenchLocation(ddlFacility.SelectedValue);
+           
+            BindBenchLocation(Session["Facility"].ToString());
             BindJobCode(ddlBenchLocation.SelectedValue);
 
             BindGridFerReq();

@@ -280,7 +280,7 @@
                                 </span>
                             </div>
                             <div class="col-lg-3">
-                                <label>Method</label>
+                                <label class="d-block">Method</label>
 
                                 <asp:DropDownList ID="ddlMethod" Width="250px" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>

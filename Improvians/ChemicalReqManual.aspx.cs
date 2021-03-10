@@ -16,7 +16,7 @@ namespace Evo
     public partial class ChemicalReqManual : System.Web.UI.Page
     {
         public static DataTable dtTrays = new DataTable()
-        { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
+        { Columns = { "Fertilizer", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
         BAL_CommonMasters objBAL = new BAL_CommonMasters();
         CommonControl objCommon = new CommonControl();
@@ -28,10 +28,7 @@ namespace Evo
             {
                 BindSupervisor();
                 BindFertilizer();
-                //    BindUnit();
-
                 Bindcname();
-                BindFacility();
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 dtTrays.Clear();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -77,15 +74,6 @@ namespace Evo
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
         }
 
-        public void BindFacility()
-        {
-            ddlFacility.DataSource = objBAL.GetMainLocation();
-            ddlFacility.DataTextField = "l1";
-            ddlFacility.DataValueField = "l1";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
-            BindBenchLocation("");
-        }
 
         public void BindBenchLocation(string ddlMain)
         {
@@ -366,7 +354,7 @@ namespace Evo
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(ddlFacility.SelectedValue, BenchLoc, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, ddlJobNo.SelectedValue);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -419,12 +407,12 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            int FertilizationCode = 0;
+            int ChemicalCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Mode", "12");
+            nv1.Add("@Mode", "16");
             dt = objCommon.GetDataTable("GET_Common", nv1);
-            FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
+            ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
 
 
             foreach (GridViewRow row in gvFer.Rows)
@@ -443,7 +431,7 @@ namespace Evo
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                 //nv.Add("@WorkOrder", lblwo.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@ChemicalCode", FertilizationCode.ToString());
+                nv.Add("@ChemicalCode", ChemicalCode.ToString());
                 nv.Add("@ChemicalDate", txtDate.Text);
                 nv.Add("@Comments", txtComments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
@@ -451,7 +439,7 @@ namespace Evo
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtTrays, ddlFertilizer.SelectedValue, FertilizationCode, Bench1, txtResetSprayTaskForDays.Text);
+            objTask.AddChemicalRequestDetails(dtTrays, ddlFertilizer.SelectedValue, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -473,19 +461,18 @@ namespace Evo
 
         public void Clear()
         {
-            ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
-          
+
             txtSQFT.Text = "";
             txtTrays.Text = "";
-          
+
             BindFertilizer();
             dtTrays.Clear();
         }
 
-        
+
 
         public void BindChemical()
         {
@@ -500,7 +487,7 @@ namespace Evo
         public void BindFertilizer()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objFer.GetFertilizerList();
+            ddlFertilizer.DataSource = objFer.GetChemicalList();
             ddlFertilizer.DataTextField = "Name";
             ddlFertilizer.DataValueField = "No_";
             ddlFertilizer.DataBind();
@@ -571,7 +558,7 @@ namespace Evo
 
         }
 
-       
+
 
 
         //protected void btnSearch_Click(object sender, EventArgs e)
@@ -580,7 +567,6 @@ namespace Evo
         //}
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-            ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
@@ -598,13 +584,6 @@ namespace Evo
         {
             BindGridFerReq("");
         }
-
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindBenchLocation(ddlFacility.SelectedValue);
-            BindGridFerReq("");
-        }
-
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -623,7 +602,7 @@ namespace Evo
 
         }
 
-       
+
 
 
     }

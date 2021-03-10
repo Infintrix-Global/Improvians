@@ -327,7 +327,7 @@ namespace Evo
                 string FertilizeSeedDate = "";
                 string ChemicalSeedDate = "";
                 // IrrigateSeedDate 
-
+               // GetSeedDataCheck
                 DataTable dtISD = objSP.GetSeedDateData("IRRIGATE", lblGenusCode.Text, TraySize);
                 DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, TraySize);
                 DataTable dtCem = objSP.GetSeedDateData("SPRAYING", lblGenusCode.Text, TraySize);

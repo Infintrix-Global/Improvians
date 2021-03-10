@@ -18,7 +18,6 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                BindFacility();
                 BindGridIrrigation();
 
             }
@@ -45,12 +44,6 @@ namespace Evo
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            //nv.Add("@wo", "");
-            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            //nv.Add("@Facility", ddlFacility.SelectedValue);
-            //nv.Add("@Mode", "3");
-            //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTask", nv);
             gvGerm.DataSource = dt;
@@ -59,11 +52,6 @@ namespace Evo
 
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridIrrigation();
-        }
-
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridIrrigation();
         }
@@ -77,7 +65,6 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-            BindFacility();
             BindGridIrrigation();
         }
         public void Bindcname()
@@ -92,10 +79,7 @@ namespace Evo
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
-
         }
-
 
         public void BindJobCode()
         {
@@ -112,25 +96,6 @@ namespace Evo
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
-
-        public void BindFacility()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
-
-
-
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -183,7 +148,7 @@ namespace Evo
                     Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", IrrigationCode));
                 }
 
-              
+
             }
 
             if (e.CommandName == "ViewDetails")
@@ -192,7 +157,7 @@ namespace Evo
                 Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", IrrigationCode));
             }
 
-          
+
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)

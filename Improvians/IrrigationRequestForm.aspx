@@ -13,14 +13,7 @@
 
 
             <div class="row">
-                <div class="col-lg-3">
-                    <label>Facility Location</label>
-                    <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
-                    <span class="error_message">
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlFacility" ValidationGroup="x"
-                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                    </span>
-                </div>
+                
                 <div class="col-lg-3">
                     <label>Bench Location </label>
 
