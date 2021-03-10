@@ -1,31 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="ChemicalReqManual.aspx.cs" Inherits="Evo.ChemicalReqManual" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-      <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
 
                 <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
-                 Chemical 
-
-
+                Chemical 
             </h2>
-
-
-
             <div class="filter__row d-flex">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <label>Facility Location</label><span style="color: red">*</span>
-                        <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
-                        <span class="error_message">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlFacility" ValidationGroup="x"
-                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>
-                    </div>
                     <div class="col-lg-3">
                         <label>Bench Location </label>
                         <span style="color: red">*</span>
@@ -197,7 +185,7 @@
             <div class="dashboard__block dashboard__block--asign">
                 <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
                     <asp:Panel ID="pnlint" runat="server">
-                       <div class="row">
+                        <div class="row">
 
                             <div class="col-lg-3">
                                 <label class="d-block">Assignment </label>
@@ -220,7 +208,7 @@
                                 </span>
                             </div>
                             <div class="col-lg-3">
-                             <label class="d-block">Method</label>
+                                <label class="d-block">Method</label>
 
                                 <asp:DropDownList ID="ddlMethod" Width="250px" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>

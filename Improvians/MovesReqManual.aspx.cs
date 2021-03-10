@@ -27,6 +27,7 @@ namespace Evo
                 BindSupervisor();
                 //BindJobCode();
                 Bindcname();
+                BindFacility();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 dtTrays.Clear();
             }
