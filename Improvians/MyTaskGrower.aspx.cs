@@ -89,8 +89,6 @@ namespace Evo
                 nv.Add("@germcount", germcount);
                 _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
 
-
-
                 DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);
 
                 // DataTable dtFez = objSP.GetSeedDataCheck(jobcode, "FERTILIZE");

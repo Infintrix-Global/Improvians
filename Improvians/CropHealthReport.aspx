@@ -69,7 +69,7 @@
                         <label>Job No</label>
                         <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
 
-                       
+
                         <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
                             MinimumPrefixLength="2"
                             CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
@@ -414,10 +414,18 @@
 
                         <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#fertilization_count">
                             <span class="">
-                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
-                                Fertilization / Chemical
+                                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
+                                Fertilization
                             </span>
                         </button>
+
+                        <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#fertilization_count">
+                            <span class="">
+                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
+                                Chemical
+                            </span>
+                        </button>
+
 
                         <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#irrigation_count">
                             <span class="">
@@ -453,6 +461,7 @@
                                 General Task
                             </span>
                         </button>
+
                     </div>
 
                     <div class="request__block">
