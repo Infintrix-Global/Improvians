@@ -22,17 +22,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 Bindcname();
-
-                if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
-                {
-                    divFacility.Visible = false;
-                    BindBenchLocation(Session["Facility"].ToString());
-                }
-                else
-                {
-                    BindFacility();
-                }
-
+                BindBenchLocation(Session["Facility"].ToString());
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindSupervisorList();
             }
@@ -63,18 +53,6 @@ namespace Evo
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
-        }
-
-        public void BindFacility()
-        {
-
-            ddlFacility.DataSource = objBAL.GetMainLocation();
-            ddlFacility.DataTextField = "l1";
-            ddlFacility.DataValueField = "l1";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
-            BindBenchLocation("");
-
         }
 
         public void BindBenchLocation(string ddlMain)
@@ -357,12 +335,12 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             //nv.Add("@Week", radweek.SelectedValue);
             //nv.Add("@Status", radStatus.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetGerminationManualRequest", nv);
-            DataTable dtManual = objFer.GetManualFertilizerRequest(ddlFacility.SelectedValue, ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequest(Session["Facility"].ToString(), ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -504,14 +482,6 @@ namespace Evo
             BindGridGerm("");
         }
 
-
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindBenchLocation(ddlFacility.SelectedValue);
-            BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridGerm("");
-        }
-
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindJobCode(ddlBenchLocation.SelectedValue);
@@ -527,23 +497,15 @@ namespace Evo
             //    BindGridGerm("'" + Bench1 + "'");
             //}
 
-               BindGridGerm(Bench1);
+            BindGridGerm(Bench1);
 
         }
 
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-
-
             Bindcname();
-
-            BindFacility();
-
-            //BindGridGerm();
-
-
-
+                       
         }
 
         protected void btnAssign_Click(object sender, EventArgs e)

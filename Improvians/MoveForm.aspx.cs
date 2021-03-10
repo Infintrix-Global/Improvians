@@ -22,7 +22,6 @@ namespace Evo
             if (!IsPostBack)
             {
                 BindGridMoveReq();
-                BindFacility();
                 BindLogisticList();
             }
         }
@@ -75,18 +74,7 @@ namespace Evo
                 ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
             }
         }
-        public void BindFacility()
-        {
-            // NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@mode", "4");
-            // ddlToFacility.DataSource = objCommon.GetDataTable("GET_Common", nv); ;
-            ddlToFacility.DataSource=objCOm.GetMainLocation();
-            ddlToFacility.DataTextField = "l1";
-            ddlToFacility.DataValueField = "l1";
-            ddlToFacility.DataBind();
-            ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
-
+       
         public void BindGridMoveReq()
         {
             DataTable dt = new DataTable();
@@ -142,7 +130,7 @@ namespace Evo
 
                 DataTable dt11 = new DataTable();
                 NameValueCollection nv11 = new NameValueCollection();
-                nv11.Add("@mode","2");
+                nv11.Add("@mode", "2");
                 //  nv11.Add("@wo", rowIndex);
                 nv11.Add("@GrowerPutAwayID", rowIndex);
                 dt11 = objCommon.GetDataTable("SP_GetMoveRequest", nv11);
@@ -161,8 +149,8 @@ namespace Evo
 
                 //if (string.IsNullOrEmpty(dt.Rows[0]["UnMovedTrays"].ToString()))
                 //{
-                if(dt != null && dt.Rows.Count >0)
-                { 
+                if (dt != null && dt.Rows.Count > 0)
+                {
                     lblUnmovedTrays.Text = dt11.Rows[0]["Trays"].ToString();
 
                 }
@@ -223,7 +211,7 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-           //result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
+            //result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
             result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue, wo, lblGrowerputawayID.Text);
             if (result > 0)
             {
@@ -239,7 +227,7 @@ namespace Evo
                 script += url;
                 script += "'; }";
                 ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-              //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Request Successful')", true);
+                //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Request Successful')", true);
                 userinput.Visible = false;
             }
             else
@@ -270,8 +258,8 @@ namespace Evo
         {
             if (ddlToFacility.SelectedIndex != 0)
             {
-              //  NameValueCollection nv = new NameValueCollection();
-              //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
+                //  NameValueCollection nv = new NameValueCollection();
+                //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
                 ddlToGreenHouse.DataSource = objCOm.GetLocation(ddlToFacility.SelectedValue);
                 ddlToGreenHouse.DataTextField = "p2";
                 ddlToGreenHouse.DataValueField = "p2";
@@ -279,7 +267,7 @@ namespace Evo
                 ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
 
-             
+
             }
         }
         protected void btnManual_Click(object sender, EventArgs e)

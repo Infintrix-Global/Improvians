@@ -28,10 +28,7 @@ namespace Evo
             {
                 BindSupervisor();
                 BindFertilizer();
-                //    BindUnit();
-
                 Bindcname();
-                BindFacility();
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 dtTrays.Clear();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -77,15 +74,6 @@ namespace Evo
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
         }
 
-        public void BindFacility()
-        {
-            ddlFacility.DataSource = objBAL.GetMainLocation();
-            ddlFacility.DataTextField = "l1";
-            ddlFacility.DataValueField = "l1";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", ""));
-            BindBenchLocation("");
-        }
 
         public void BindBenchLocation(string ddlMain)
         {
@@ -366,7 +354,7 @@ namespace Evo
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(ddlFacility.SelectedValue, BenchLoc, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, ddlJobNo.SelectedValue);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -473,19 +461,18 @@ namespace Evo
 
         public void Clear()
         {
-            ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
-          
+
             txtSQFT.Text = "";
             txtTrays.Text = "";
-          
+
             BindFertilizer();
             dtTrays.Clear();
         }
 
-        
+
 
         public void BindChemical()
         {
@@ -571,7 +558,7 @@ namespace Evo
 
         }
 
-       
+
 
 
         //protected void btnSearch_Click(object sender, EventArgs e)
@@ -580,7 +567,6 @@ namespace Evo
         //}
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-            ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
@@ -598,13 +584,6 @@ namespace Evo
         {
             BindGridFerReq("");
         }
-
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindBenchLocation(ddlFacility.SelectedValue);
-            BindGridFerReq("");
-        }
-
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -623,7 +602,7 @@ namespace Evo
 
         }
 
-       
+
 
 
     }
