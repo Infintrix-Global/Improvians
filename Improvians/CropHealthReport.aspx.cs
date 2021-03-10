@@ -57,8 +57,11 @@ namespace Evo
 
                 BindSupervisor();
 
-                BindChemical();
+               
                 BindSupervisorList();
+                BindFertilizer();
+
+                BindChemical();
             }
 
 
@@ -418,11 +421,11 @@ namespace Evo
         public void BindChemical()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlFertilizer.DataSource = objFer.GetChemicalList();
-            ddlFertilizer.DataTextField = "Name";
-            ddlFertilizer.DataValueField = "No_";
-            ddlFertilizer.DataBind();
-            ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlChemical.DataSource = objFer.GetChemicalList();
+            ddlChemical.DataTextField = "Name";
+            ddlChemical.DataValueField = "No_";
+            ddlChemical.DataBind();
+            ddlChemical.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         public void BindFertilizer()
@@ -435,28 +438,7 @@ namespace Evo
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
-        protected void radtype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (radtype.SelectedValue == "Fertilizer")
-            {
-
-                lbltype.Text = "Fertilizer";
-                dtTrays.Rows.Clear();
-
-                BindFertilizer();
-
-
-            }
-            else if (radtype.SelectedValue == "Chemical")
-            {
-
-
-                lbltype.Text = "Chemical";
-                dtTrays.Rows.Clear();
-
-                BindChemical();
-            }
-        }
+     
 
         protected void btnFReset_Click(object sender, EventArgs e)
         {
@@ -542,7 +524,7 @@ namespace Evo
                 long result2 = 0;
                 NameValueCollection nv4 = new NameValueCollection();
                 nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
-                nv4.Add("@Type", radtype.SelectedValue);
+                nv4.Add("@Type", "Fertilizer");
                 nv4.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv4.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
                 nv4.Add("@Item", (row.FindControl("lblitem1") as Label).Text);

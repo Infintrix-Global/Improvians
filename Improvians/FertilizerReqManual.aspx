@@ -9,7 +9,7 @@
             <h2 class="head__title-icon">
 
                 <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
-                Fertilization/Chemical 
+                Fertilization
 
 
             </h2>
@@ -198,15 +198,6 @@
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Supervisor" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-
-                            <div class="col-lg-3">
-                                <label>Type of Request</label>
-
-                                <asp:RadioButtonList ID="radtype" Width="250px" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
-                                    <asp:ListItem Text="Chemical" Value="Chemical" class="custom-control custom-radio mr-2"></asp:ListItem>
-                                    <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </div>
                             <div class="col-lg-3">
                                 <label>Spray Date </label>
 
@@ -217,6 +208,10 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
+                            <div class="col-lg-3">
+                               
+                            </div>
+                            
                             <div class="col-lg-3">
                             </div>
                         </div>
@@ -282,23 +277,14 @@
 
                             </div>
                             <div class="col-lg-3">
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>Reset Spray Task For Days</label>
+                                 <label>Reset Spray Task For Days</label>
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
-                            <div class="col-lg-3">
-                            </div>
-                            <div class="col-lg-3">
-                            </div>
-                            <div class="col-lg-3">
-                            </div>
                         </div>
                         <br />
+                        
+                       
                         <div class="row">
                             <div class="col-auto">
                                 <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
