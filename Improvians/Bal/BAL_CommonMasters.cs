@@ -104,6 +104,8 @@ namespace Evo.Bal
             try
             {
                 strQuery = "select distinct t.[Job No_]  as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  and t.[Position Code] = '" + BenchLocation + "'  group by t.[Job No_]  HAVING sum(t.Quantity) > 0";
+                
+                
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)
@@ -112,6 +114,30 @@ namespace Evo.Bal
             }
             return dt;
         }
+
+
+        public DataTable GetJobsForBenchLocation1(string BenchLocation)
+        {
+            Evo_General objGeneral = new Evo_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "select distinct t.[Job No_]  as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2    ";
+                if (BenchLocation != "")
+                {
+                    strQuery += " and t.[Position Code] = '" + BenchLocation + "' ";
+                }
+                strQuery += " group by t.[Job No_]  HAVING sum(t.Quantity) > 0";
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+
 
         public DataTable GetJobsSearch(string prefixText)
         {

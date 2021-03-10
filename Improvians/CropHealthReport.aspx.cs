@@ -60,7 +60,7 @@ namespace Evo
                
                 BindSupervisorList();
                 BindFertilizer();
-
+                BindJobCode("");
                 BindChemical();
             }
 
@@ -189,7 +189,7 @@ namespace Evo
 
         public void BindJobCode(string ddlBench)
         {
-            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation1(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
