@@ -16,14 +16,14 @@
                         <label>Name </label>
                         <asp:TextBox ID="txtName" runat="server" CssClass="input__control "></asp:TextBox>
                     </div>
-                    <div class="col m3">
+                    <%--<div class="col m3">
                         <label>Mobile </label>
                         <asp:TextBox ID="txtMobile" runat="server" CssClass="input__control "></asp:TextBox>
                     </div>
                     <div class="col m3">
                         <label>Department </label>
                         <asp:DropDownList ID="ddlDepartment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
+                    </div>--%>
                     <div class="col m3">
                         <label>Designation</label>
                         <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -83,7 +83,7 @@
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText="Facility" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                   <%-- <asp:Label ID="Label8" runat="server" Text='<%# Eval("Facility")  %>'></asp:Label>--%>
+                                                    <asp:Label ID="Label8" runat="server" Text='<%# Eval("Facility")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">

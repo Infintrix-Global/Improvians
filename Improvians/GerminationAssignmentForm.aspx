@@ -17,10 +17,10 @@
                         <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
-                    <div class="col m3">
+                   <%-- <div class="col m3">
                         <label>Facility </label>
                         <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
+                    </div>--%>
                     <div class="col m3">
                         <label>Job No </label>
                         <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>

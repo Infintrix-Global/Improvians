@@ -18,7 +18,7 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                BindFacility();
+                //BindFacility();
                 BindGridGerm();
 
             }
@@ -57,22 +57,6 @@ namespace Evo
 
         }
 
-        public void BindFacility()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
-
 
         public void BindGridGerm()
         {
@@ -81,7 +65,7 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorGerminationTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
