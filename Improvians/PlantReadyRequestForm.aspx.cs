@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -153,7 +154,7 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-            BindFacility();
+            
             BindGridPlantReady();
         }
         protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -243,4 +244,8 @@ namespace Evo
             Response.Redirect("~/PlantReadyReqManual.aspx");
         }
     }
-}
+    
+    }
+
+
+

@@ -282,7 +282,7 @@ namespace Evo
                     nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
                     nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
                     nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
-                    nv1.Add("@loc_seedline", "");
+                    nv1.Add("@loc_seedline", Session["Facility"].ToString());
                     nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
                     nv1.Add("@seedsreceived", "");
                     nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
@@ -539,7 +539,7 @@ namespace Evo
                         nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
                         nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
                         nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
-                        nv1.Add("@loc_seedline", "");
+                        nv1.Add("@loc_seedline", Session["Facility"].ToString());
                         nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
                         nv1.Add("@seedsreceived", "");
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
@@ -618,17 +618,17 @@ namespace Evo
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
                 NameValueCollection nvimg = new NameValueCollection();
-                
-                    //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                    //{
-                    //    folderPath = Server.MapPath("~/images/");
-                    //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                    //}
-                    //else
-                    //{
-                    //    folderPath = "";
-                    //}
-                    nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+
+                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                //{
+                //    folderPath = Server.MapPath("~/images/");
+                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                //}
+                //else
+                //{
+                //    folderPath = "";
+                //}
+                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
                 nv.Add("@NoTrays", txtTrays.Text);
@@ -652,8 +652,8 @@ namespace Evo
                         imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nv);
                     }
                 }
-                
-                
+
+
 
                 foreach (GridViewRow row in gvFer.Rows)
                 {
@@ -667,7 +667,7 @@ namespace Evo
                         nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
                         nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
                         nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
-                        nv1.Add("@loc_seedline", "");
+                        nv1.Add("@loc_seedline", Session["Facility"].ToString());
                         nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
                         nv1.Add("@seedsreceived", "");
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
@@ -883,7 +883,7 @@ namespace Evo
                         nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
                         nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
                         nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
-                        nv1.Add("@loc_seedline", "");
+                        nv1.Add("@loc_seedline", Session["Facility"].ToString());
                         nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
                         nv1.Add("@seedsreceived", "");
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
@@ -1020,7 +1020,7 @@ namespace Evo
                         nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
                         nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
                         nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
-                        nv1.Add("@loc_seedline", "");
+                        nv1.Add("@loc_seedline", Session["Facility"].ToString());
                         nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
                         nv1.Add("@seedsreceived", "");
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
@@ -1112,7 +1112,7 @@ namespace Evo
 
         protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ddlTaskType.SelectedItem.Value == "3")
+            if (ddlTaskType.SelectedItem.Value == "3")
             {
                 divFrom.Style["display"] = "block";
                 divTo.Style["display"] = "block";
@@ -1122,11 +1122,8 @@ namespace Evo
                 divFrom.Style["display"] = "none";
                 divTo.Style["display"] = "none";
             }
-            
-        }
-    }
-}
 
+        }
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
         public static List<string> SearchCustomers(string prefixText, int count)
@@ -1155,10 +1152,8 @@ namespace Evo
                 }
             }
 
-
         }
     }
 
-
-
+   
 }
