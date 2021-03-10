@@ -185,7 +185,7 @@
                                                 <asp:Label ID="lblDescription" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Job source" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Job Source" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblsource" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
                                             </ItemTemplate>

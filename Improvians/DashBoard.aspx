@@ -86,7 +86,7 @@
                                         <img src="images/link-site-tasks.svg" width="184" height="184" alt="Site Tasks" />
                                         <span>Create Task</span>
                                     </a>
-                                    <a href="#" class="dashboard__task">
+                                    <a href="JobReports.aspx" class="dashboard__task">
                                         <img src="images/link-assign-task.svg" width="184" height="184" alt="Assign a Task" />
                                         <span>Reports</span>
                                     </a>
