@@ -284,20 +284,17 @@ namespace Evo
                         IrrigateDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(IDay))).ToString();
 
 
-                        string TodatDate;
+                        string TodatDate1;
                         string ReSetIrrigateDate = "";
 
-
-                        TodatDate = System.DateTime.Now.ToShortDateString();
-
-
+                        TodatDate1 = System.DateTime.Now.ToShortDateString();
 
                         if (Irrigationdt != null && Irrigationdt.Rows.Count > 0)
                         {
                             ReSetIrrigateDate = Convert.ToDateTime(Irrigationdt.Rows[0]["CreatedOn"]).AddDays(Convert.ToInt32(Irrigationdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
                         }
 
-                        if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate))
+                        if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate1))
                         {
 
                             if (ReSetIrrigateDate == "" || DateTime.Parse(IrrigateDate) >= DateTime.Parse(ReSetIrrigateDate))
@@ -329,8 +326,6 @@ namespace Evo
 
                     }
                 }
-
-
 
 
                 // _isInserted = 1;
