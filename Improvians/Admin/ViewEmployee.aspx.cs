@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using Evo.Admin.BAL_Classes;
 
 namespace Evo.Admin
-{ 
+{
     public partial class ViewEmployee : System.Web.UI.Page
     {
         General objGeneral = new General();
@@ -18,7 +18,7 @@ namespace Evo.Admin
         {
             if (!IsPostBack)
             {
-               // BindDepartment();
+                // BindDepartment();
                 BindRole();
                 GetEmployeeList();
             }
@@ -32,15 +32,6 @@ namespace Evo.Admin
             count.Text = "Number of Employees =" + dt.Rows.Count;
             ViewState["dirState"] = dt;
             ViewState["sortdr"] = "Asc";
-        }
-
-        public void BindDepartment()
-        {
-            ddlDepartment.DataSource = objCommon.GetDepartmentMaster();
-            ddlDepartment.DataTextField = "DepartmentName";
-            ddlDepartment.DataValueField = "DepartmentID";
-            ddlDepartment.DataBind();
-            ddlDepartment.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         public void BindRole()
@@ -104,19 +95,19 @@ namespace Evo.Admin
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             DataTable dtSearch1;
-            string sqr = "Select * from Login L inner Join Department D on D.DepartmentID=L.DepartmentID inner join Role R on L.RoleID=R.RoleID where L.IsActive=1";
+            string sqr = "Select *,STUFF((SELECT  ',' + FacilityName  FROM Facility F join[FacilityEmployeeMap] FM ON  F.FacilityID = FM.FacilityID   where EmployeeID = L.ID        FOR XML PATH('')), 1, 1, '') AS Facility from Login L  inner join Role R on L.RoleID=R.RoleID where L.IsActive=1";
             if (txtName.Text != "")
             {
                 sqr += "and L.EmployeeName like '%' +'" + txtName.Text + "'+ '%'";
             }
-            if (txtMobile.Text != "")
-            {
-                sqr += "and L.Mobile like '%' + '" + txtMobile.Text + "'+ '%'";
-            }
-            if (ddlDepartment.SelectedIndex !=0)
-            {
-                sqr += "and L.DepartmentID =" + ddlDepartment.SelectedValue ;
-            }
+            //if (txtMobile.Text != "")
+            //{
+            //    sqr += "and L.Mobile like '%' + '" + txtMobile.Text + "'+ '%'";
+            //}
+            //if (ddlDepartment.SelectedIndex !=0)
+            //{
+            //    sqr += "and L.DepartmentID =" + ddlDepartment.SelectedValue ;
+            //}
             if (ddlDesignation.SelectedIndex != 0)
             {
                 sqr += "and L.RoleID =" + ddlDesignation.SelectedValue;
@@ -154,8 +145,8 @@ namespace Evo.Admin
         protected void btnClear_Click(object sender, EventArgs e)
         {
             txtName.Text = "";
-            txtMobile.Text = "";
-            ddlDepartment.SelectedIndex = 0;
+            //txtMobile.Text = "";
+            //ddlDepartment.SelectedIndex = 0;
             ddlDesignation.SelectedIndex = 0;
         }
     }
