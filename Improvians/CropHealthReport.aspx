@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="CropHealthReport.aspx.cs" Inherits="Evo.CropHealthReport" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="js/jquery.min.js"></script>
     <script>
@@ -16,7 +17,7 @@
     </script>
 
 
-     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="Scripts/jquery.searchabledropdown-1.0.8.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -51,7 +52,7 @@
 
                 <div class="filter__row d-flex">
                     <div class="row">
-                       <div class="col-lg-3" runat="server" id="divFacility">
+                        <div class="col-lg-3" runat="server" id="divFacility">
                             <label>Facility Location</label><span style="color: red">*</span>
                             <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
                             <span class="error_message">
@@ -86,7 +87,13 @@
                         <label>Job No</label>
                         <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
 
-
+                       
+                        <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                            MinimumPrefixLength="2"
+                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                            TargetControlID="txtSearchJobNo"
+                            ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                        </cc1:AutoCompleteExtender>
                     </div>
 
                     <div class="col-lg-3">

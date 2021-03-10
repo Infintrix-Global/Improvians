@@ -12,6 +12,12 @@ using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
+using System.Data.SqlClient;
+using System.Configuration;
+
+
+
+
 
 namespace Evo
 {
@@ -223,7 +229,7 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq(ddlBenchLocation.SelectedValue,ddlJobNo.SelectedValue);
+            BindGridFerReq(ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
@@ -315,7 +321,7 @@ namespace Evo
             //  Clear();
         }
 
-     
+
 
 
         public void Clear()
@@ -365,7 +371,7 @@ namespace Evo
             ddlFacility.SelectedIndex = 0;
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
-           // ddlJobNo.SelectedIndex = 0;
+            // ddlJobNo.SelectedIndex = 0;
             //BindGridFerReq();
             gvFer.DataSource = null;
             gvFer.DataBind();
@@ -990,8 +996,8 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@ChId",Chid);
-                
+                nv.Add("@ChId", Chid);
+
                 result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaNew", nv);
 
 
@@ -1038,5 +1044,39 @@ namespace Evo
 
         }
 
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager
+                        .ConnectionStrings["EvoNavision"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    " AND t.[Job No_] like '" + prefixText + "%'";
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+                    return customers;
+                }
+            }
+
+
+        }
     }
+
+
+
 }
