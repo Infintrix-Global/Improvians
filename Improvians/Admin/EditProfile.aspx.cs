@@ -11,7 +11,7 @@ using Evo.Admin.BAL_Classes;
 
 namespace Evo.Admin
 {
-   
+
     public partial class EditProfile : System.Web.UI.Page
     {
         clsCommonMasters objCommon = new clsCommonMasters();
@@ -20,7 +20,6 @@ namespace Evo.Admin
         {
             if (!IsPostBack)
             {
-                BindDepartment();
                 BindFacility();
                 BindRole();
                 string eid = Session["EmployeeID"].ToString();
@@ -36,22 +35,13 @@ namespace Evo.Admin
             //ddlFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
-        public void BindDepartment()
-        {
-            ddlDepartment.DataSource = objCommon.GetDepartmentMaster();
-            ddlDepartment.DataTextField = "DepartmentName";
-            ddlDepartment.DataValueField = "DepartmentID";
-            ddlDepartment.DataBind();
-
-        }
-
         public void BindRole()
         {
             ddlDesignation.DataSource = objCommon.GetRoleMaster();
             ddlDesignation.DataTextField = "RoleName";
             ddlDesignation.DataValueField = "RoleID";
             ddlDesignation.DataBind();
-
+            ddlDesignation.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)
@@ -105,10 +95,10 @@ namespace Evo.Admin
                             System.IO.Directory.CreateDirectory(path);
                             FileUpProfile.SaveAs(path + @"\" + Imgname);
 
-                            ImageProfile.ImageUrl = @"~\EmployeeProfile\" + Imgname ;
+                            ImageProfile.ImageUrl = @"~\EmployeeProfile\" + Imgname;
                             ImageProfile.Visible = true;
                             lblProfile.Visible = true;
-                            lblProfile.Text = Imgname ;
+                            lblProfile.Text = Imgname;
 
                             //  IdentityPolicyImageUrl = Imgname + ext;
 
@@ -145,7 +135,7 @@ namespace Evo.Admin
                     lblProfile.Visible = false;
                     ImageProfile.ImageUrl = @"~\Admin\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
                     txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
-                    ddlDepartment.SelectedValue = dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
+                    //ddlDepartment.SelectedValue = dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
                     txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();
                     ddlDesignation.SelectedValue = dt1.Tables[0].Rows[0]["RoleID"].ToString();
                     txtMobile.Text = dt1.Tables[0].Rows[0]["Mobile"].ToString();
@@ -182,10 +172,10 @@ namespace Evo.Admin
                     Name = txtName.Text,
                     Mobile = txtMobile.Text,
                     Email = txtEmail.Text,
-                  Department=ddlDepartment.SelectedValue,
-                  Designation=ddlDesignation.SelectedValue,
+                    Department = "",
+                    Designation = ddlDesignation.SelectedValue,
                     Photo = lblProfile.Text,
-                    EmployeeCode=txtUserName.Text,
+                    EmployeeCode = txtUserName.Text,
                     Password = objCommon.Encrypt(txtPassword.Text)
                 };
                 _isInserted = objCommon.UpdateEmployee(objEmployee);
