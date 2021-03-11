@@ -41,7 +41,7 @@ namespace Evo
                 BindGridFerDetails("'" + Bench + "'");
 
                 BindSupervisor();
-                BindSQFTofBench();
+                BindSQFTofBench("'" + Bench + "'");
             }
         }
 
@@ -179,6 +179,7 @@ namespace Evo
                     gvJobHistory.DataSource = dt123;
                     gvJobHistory.DataBind();
                     BindGridFerDetails(chkSelected);
+                    BindSQFTofBench(chkSelected);
                 }
             }
             else if (RadioBench.SelectedValue == "2")
@@ -233,6 +234,7 @@ namespace Evo
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
                 BindGridFerDetails(chkSelected);
+                BindSQFTofBench(chkSelected);
             }
             else
             {
@@ -269,6 +271,7 @@ namespace Evo
             }
 
             BindGridFerDetails(chkSelected);
+            BindSQFTofBench(chkSelected);
         }
 
 
@@ -402,6 +405,17 @@ namespace Evo
             gvJobHistory.DataSource = dt;
             gvJobHistory.DataBind();
 
+            decimal tray = 0;
+            foreach (GridViewRow row in gvJobHistory.Rows)
+            {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
+                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
+                //}
+
+            }
+            txtTrays.Text = tray.ToString();
+
         }
 
         //protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -526,10 +540,11 @@ namespace Evo
             dtTrays.Clear();
         }
 
-        public void BindSQFTofBench()
+        public void BindSQFTofBench(string Bench)
         {
 
-            DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
+            //  DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
+            DataTable dtSQFT = objFer.GetSQFTofBenchNew(Bench);
             if (dtSQFT != null && dtSQFT.Rows.Count > 0)
             {
                 txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");

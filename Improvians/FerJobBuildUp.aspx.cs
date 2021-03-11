@@ -42,7 +42,7 @@ namespace Evo
 
                 BindSupervisor();
                 BindFertilizer();
-                BindSQFTofBench();
+                BindSQFTofBench("'" + Bench + "'");
             }
         }
 
@@ -180,6 +180,7 @@ namespace Evo
                     gvJobHistory.DataSource = dt123;
                     gvJobHistory.DataBind();
                     BindGridFerDetails(chkSelected);
+                    BindSQFTofBench(chkSelected);
                 }
             }
             else if (RadioBench.SelectedValue == "2")
@@ -234,6 +235,7 @@ namespace Evo
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
                 BindGridFerDetails(chkSelected);
+                BindSQFTofBench(chkSelected);
             }
             else
             {
@@ -270,6 +272,7 @@ namespace Evo
             }
 
             BindGridFerDetails(chkSelected);
+            BindSQFTofBench(chkSelected);
         }
 
 
@@ -315,6 +318,7 @@ namespace Evo
             }
 
             BindGridFerDetails(chkSelected);
+          
 
 
         }
@@ -374,16 +378,8 @@ namespace Evo
 
             Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
 
-            decimal tray = 0;
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
-                //}
-
-            }
-            txtTrays.Text = tray.ToString();
+           
+           
         }
 
         public void BindGridFerDetails(string BenchLoc)
@@ -402,7 +398,16 @@ namespace Evo
             }
             gvJobHistory.DataSource = dt;
             gvJobHistory.DataBind();
+            decimal tray = 0;
+            foreach (GridViewRow row in gvJobHistory.Rows)
+            {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
+                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
+                //}
 
+            }
+            txtTrays.Text = tray.ToString();
         }
 
         //protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -527,10 +532,11 @@ namespace Evo
 
        
 
-        public void BindSQFTofBench()
+        public void BindSQFTofBench(string Bench)
         {
-
-            DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
+          
+            //  DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
+            DataTable dtSQFT = objFer.GetSQFTofBenchNew(Bench);
             if (dtSQFT != null && dtSQFT.Rows.Count > 0)
             {
                 txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");

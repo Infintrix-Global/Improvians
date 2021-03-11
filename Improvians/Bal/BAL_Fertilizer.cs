@@ -178,7 +178,27 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select s.[Position Code] BenchLocation, s.[Net Area] Sqft from [GTI$IA Subsection] s where s.[Position Code] ='" + BenchLocation + "'";
+                //and t.[Position Code] in (" + BenchLocation + ")"
+                strQuery = "select s.[Position Code] BenchLocation, s.[Net Area] Sqft from [GTI$IA Subsection] s where s.[Position Code] in (" + BenchLocation + ")";
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+        public DataTable GetSQFTofBenchNew(string BenchLocation)
+        {
+
+            DataTable dt = new DataTable();
+            try
+            {
+                //and t.[Position Code] in (" + BenchLocation + ")"
+                strQuery = "select  Sum(s.[Net Area]) Sqft from [GTI$IA Subsection] s where s.[Position Code] in (" + BenchLocation + ")";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 

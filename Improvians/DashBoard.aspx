@@ -82,7 +82,7 @@
                                         <img src="images/link-my-task.svg" width="184" height="184" alt="My Tasks" />
                                         <span>My Task</span>
                                     </a>
-                                    <a href="#" class="dashboard__task">
+                                    <a href="CreateTask.aspx" class="dashboard__task">
                                         <img src="images/link-site-tasks.svg" width="184" height="184" alt="Site Tasks" />
                                         <span>Create Task</span>
                                     </a>

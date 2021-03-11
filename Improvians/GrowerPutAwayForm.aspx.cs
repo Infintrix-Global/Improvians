@@ -330,7 +330,9 @@ namespace Evo
                // GetSeedDataCheck
                 DataTable dtISD = objSP.GetSeedDateData("IRRIGATE", lblGenusCode.Text, TraySize);
                 DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, TraySize);
-                DataTable dtCem = objSP.GetSeedDateData("SPRAYING", lblGenusCode.Text, TraySize);
+                DataTable dtChemical = objSP.GetSeedDateData("SPRAYING", lblGenusCode.Text, TraySize);
+
+              
 
 
 
@@ -340,26 +342,24 @@ namespace Evo
 
 
 
+                //if (dtCem != null && dtCem.Rows.Count > 0)
+                //{
+                //    string IDay = dtCem.Rows[0]["DateShift"].ToString();
+                //    int ivalue = 0;
+                //    if (int.TryParse(IDay, out ivalue))
+                //    {
+                //        ChemicalSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(ivalue)).ToString();
+                //    }
+                //    else
+                //    {
+                //        ChemicalSeedDate = lblSeedDate.Text;
+                //    }
 
-
-                if (dtCem != null && dtCem.Rows.Count > 0)
-                {
-                    string IDay = dtCem.Rows[0]["DateShift"].ToString();
-                    int ivalue = 0;
-                    if (int.TryParse(IDay, out ivalue))
-                    {
-                        ChemicalSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(ivalue)).ToString();
-                    }
-                    else
-                    {
-                        ChemicalSeedDate = lblSeedDate.Text;
-                    }
-
-                }
-                else
-                {
-                    ChemicalSeedDate = lblSeedDate.Text;
-                }
+                //}
+                //else
+                //{
+                //    ChemicalSeedDate = lblSeedDate.Text;
+                //}
 
 
                 if (dtISD != null && dtISD.Rows.Count > 0)
@@ -413,12 +413,11 @@ namespace Evo
                         DropDownList ddlLocation = (item.Cells[0].FindControl("ddlLocation") as DropDownList);
                         //-------------
                         string FertilizationDate = string.Empty;
+                        string ChemicalDate = string.Empty;
                         NameValueCollection nvChDate = new NameValueCollection();
 
                         nvChDate.Add("@GreenHouseID", ddlLocation.SelectedValue);
                         DataTable ChFdt = objCommon.GetDataTable("SP_GetFertilizationCheckResetSprayTask", nvChDate);
-
-
 
                         if (dtFez != null && dtFez.Rows.Count > 0)
                         {
@@ -437,10 +436,7 @@ namespace Evo
                                 string TodatDate;
                                 string ReSetSprayDate = "";
 
-
-
                                 TodatDate = System.DateTime.Now.ToShortDateString();
-
 
 
                                 if (ChFdt != null && ChFdt.Rows.Count > 0)
@@ -454,26 +450,129 @@ namespace Evo
                                     if (ReSetSprayDate == "" || DateTime.Parse(FertilizationDate) >= DateTime.Parse(ReSetSprayDate))
                                     {
                                         FertilizationDate = FertilizationDate;
+
                                         break;
+                                    }
+                                    else
+                                    {
+                                        FertilizationDate = ReSetSprayDate;
                                     }
                                 }
 
                             }
                         }
 
-
-
-
-
                         ///-----
 
+                        //------ Chemical
+
+                        NameValueCollection nvChemChDate = new NameValueCollection();
+
+                        nvChemChDate.Add("@GreenHouseID", ddlLocation.SelectedValue);
+                        DataTable ChChemidt = objCommon.GetDataTable("SP_GetChemicalCheckResetSprayTas", nvChemChDate);
+
+
+                        if (dtChemical != null && dtChemical.Rows.Count > 0)
+                        {
+                            DataColumn col = dtChemical.Columns["DateShift"];
+                            foreach (DataRow row in dtChemical.Rows)
+                            {
+                                
+                                string FDay = row[col].ToString().Replace("\u0002", "");
+
+                                ChemicalDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(FDay))).ToString();
+
+
+                                string TodatDate;
+                                string ReSetChemicalDate = "";
+
+
+                                TodatDate = System.DateTime.Now.ToShortDateString();
 
 
 
+                                if (ChChemidt != null && ChChemidt.Rows.Count > 0)
+                                {
+                                    ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                                }
+
+
+                                if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
+                                {
+
+                                    if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
+                                    {
+                                        ChemicalDate = ChemicalDate;
+
+
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        ChemicalDate = ReSetChemicalDate;
+                                    }
+                                }
 
 
 
+                            }
 
+                        }
+
+
+                        //---
+
+                        //---
+                        NameValueCollection nvIRRChDate = new NameValueCollection();
+
+                        nvIRRChDate.Add("@GreenHouseID", ddlLocation.SelectedValue);
+                        DataTable Irrigationdt = objCommon.GetDataTable("SP_GetIrrigationResetSprayTask", nvIRRChDate);
+
+
+
+                        if (dtISD != null && dtISD.Rows.Count > 0)
+                        {
+
+
+                            DataColumn col = dtISD.Columns["DateShift"];
+                            foreach (DataRow row in dtISD.Rows)
+                            {
+
+                                string IrrigateDate = string.Empty;
+                                string IDay = row[col].ToString().Replace("\u0002", "");
+
+                                IrrigateDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(IDay))).ToString();
+
+
+                                string TodatDate1;
+                                string ReSetIrrigateDate = "";
+
+                                TodatDate1 = System.DateTime.Now.ToShortDateString();
+
+                                if (Irrigationdt != null && Irrigationdt.Rows.Count > 0)
+                                {
+                                    ReSetIrrigateDate = Convert.ToDateTime(Irrigationdt.Rows[0]["CreatedOn"]).AddDays(Convert.ToInt32(Irrigationdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                                }
+
+                                if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate1))
+                                {
+
+                                    if (ReSetIrrigateDate == "" || DateTime.Parse(IrrigateDate) >= DateTime.Parse(ReSetIrrigateDate))
+                                    {
+                                        IrrigateDate = IrrigateDate;
+
+
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        IrrigateDate = ReSetIrrigateDate;
+                                    }
+                                }
+
+
+                            }
+                        }
 
 
                         long result = 0;
@@ -490,8 +589,8 @@ namespace Evo
                         nv.Add("@CreateBy", Session["LoginID"].ToString());
                         nv.Add("@Supervisor", ddlSupervisor.SelectedValue);
                         nv.Add("@IrrigateSeedDate", IrrigateSeedDate);
-                        nv.Add("@FertilizeSeedDate", FertilizeSeedDate);
-                        nv.Add("@ChemicalSeedDate", ChemicalSeedDate);
+                        nv.Add("@FertilizeSeedDate", FertilizationDate);
+                        nv.Add("@ChemicalSeedDate", ChemicalDate);
                         
                         if (txtTrays.Text != "")
                         {

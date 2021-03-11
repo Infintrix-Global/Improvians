@@ -116,15 +116,16 @@ namespace Evo.Bal
         }
 
 
-        public DataTable GetJobsForBenchLocation1(string BenchLocation)
+        public DataTable GetJobsForBenchLocation1(string BenchLocation ,string Facility)
         {
             Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select distinct t.[Job No_]  as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2    ";
+                strQuery = "select distinct t.[Job No_]  as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 and t.[Location Code]='"+ Facility + "'  ";
                 if (BenchLocation != "")
                 {
+                 
                     strQuery += " and t.[Position Code] = '" + BenchLocation + "' ";
                 }
                 strQuery += " group by t.[Job No_]  HAVING sum(t.Quantity) > 0";
