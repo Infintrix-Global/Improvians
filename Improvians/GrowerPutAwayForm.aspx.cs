@@ -334,6 +334,14 @@ namespace Evo
 
 
 
+
+
+
+
+
+
+
+
                 if (dtCem != null && dtCem.Rows.Count > 0)
                 {
                     string IDay = dtCem.Rows[0]["DateShift"].ToString();
@@ -373,25 +381,25 @@ namespace Evo
                     IrrigateSeedDate = lblSeedDate.Text;
                 }
 
-                if (dtFez != null && dtFez.Rows.Count > 0)
-                {
-                    string FDay = dtFez.Rows[0]["DateShift"].ToString();
-                    int Fvalue = 0;
-                    if (int.TryParse(FDay, out Fvalue))
-                    {
-                        FertilizeSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Fvalue)).ToString();
-                    }
-                    else
-                    {
-                        FertilizeSeedDate = lblSeedDate.Text;
-                    }
+                //if (dtFez != null && dtFez.Rows.Count > 0)
+                //{
+                //    string FDay = dtFez.Rows[0]["DateShift"].ToString();
+                //    int Fvalue = 0;
+                //    if (int.TryParse(FDay, out Fvalue))
+                //    {
+                //        FertilizeSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Fvalue)).ToString();
+                //    }
+                //    else
+                //    {
+                //        FertilizeSeedDate = lblSeedDate.Text;
+                //    }
 
 
-                }
-                else
-                {
-                    FertilizeSeedDate = lblSeedDate.Text;
-                }
+                //}
+                //else
+                //{
+                //    FertilizeSeedDate = lblSeedDate.Text;
+                //}
 
 
 
@@ -403,6 +411,70 @@ namespace Evo
                         TextBox txtTrays = (item.Cells[0].FindControl("txtTrays") as TextBox);
                         DropDownList ddlMain = (item.Cells[0].FindControl("ddlMain") as DropDownList);
                         DropDownList ddlLocation = (item.Cells[0].FindControl("ddlLocation") as DropDownList);
+                        //-------------
+                        string FertilizationDate = string.Empty;
+                        NameValueCollection nvChDate = new NameValueCollection();
+
+                        nvChDate.Add("@GreenHouseID", ddlLocation.SelectedValue);
+                        DataTable ChFdt = objCommon.GetDataTable("SP_GetFertilizationCheckResetSprayTask", nvChDate);
+
+
+
+                        if (dtFez != null && dtFez.Rows.Count > 0)
+                        {
+
+                            //  string A = dtFez.Rows[0]["DateShift"].ToString().Replace("\u0002", "");
+
+                            DataColumn col = dtFez.Columns["DateShift"];
+                            foreach (DataRow row in dtFez.Rows)
+                            {
+
+                                string AD = row[col].ToString().Replace("\u0002", "");
+
+                                FertilizationDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(AD))).ToString();
+
+
+                                string TodatDate;
+                                string ReSetSprayDate = "";
+
+
+
+                                TodatDate = System.DateTime.Now.ToShortDateString();
+
+
+
+                                if (ChFdt != null && ChFdt.Rows.Count > 0)
+                                {
+                                    ReSetSprayDate = Convert.ToDateTime(ChFdt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChFdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                                }
+
+                                if (DateTime.Parse(FertilizationDate) >= DateTime.Parse(TodatDate))
+                                {
+
+                                    if (ReSetSprayDate == "" || DateTime.Parse(FertilizationDate) >= DateTime.Parse(ReSetSprayDate))
+                                    {
+                                        FertilizationDate = FertilizationDate;
+                                        break;
+                                    }
+                                }
+
+                            }
+                        }
+
+
+
+
+
+                        ///-----
+
+
+
+
+
+
+
+
+
 
                         long result = 0;
                         NameValueCollection nv = new NameValueCollection();
