@@ -236,7 +236,7 @@ namespace Evo
             long result = 0;
             long imgresult = 0;
             NameValueCollection nv = new NameValueCollection();
-            NameValueCollection nvimg = new NameValueCollection();
+          
             //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
             //{
             //    folderPath = Server.MapPath("~/images/") + Path.GetFileName(FileUpload1.FileName);
@@ -262,7 +262,7 @@ namespace Evo
                 if (file.ContentLength > 0)
                 {
                     string fname = Path.GetFileName(file.FileName);
-
+                    NameValueCollection nvimg = new NameValueCollection();
                     folderPath = Server.MapPath("~/images/");
                     file.SaveAs(folderPath + Path.GetFileName(fname));
                     nv.Add("@chid ", result.ToString());
@@ -466,7 +466,7 @@ namespace Evo
             int FertilizationCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv14 = new NameValueCollection();
-                NameValueCollection nvimg = new NameValueCollection();
+                
             nv14.Add("@Mode", "12");
             dt = objCommon.GetDataTable("GET_Common", nv14);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
@@ -495,14 +495,13 @@ namespace Evo
                 nv.Add("@Filepath", folderPath);
                 nv.Add("@CropHealthCommit", txtcomments.Text);
                 result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
-
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     HttpPostedFile file = Request.Files[i];
                     if (file.ContentLength > 0)
                     {
                         string fname = Path.GetFileName(file.FileName);
-
+                        NameValueCollection nvimg = new NameValueCollection();
                         folderPath = Server.MapPath("~/images/");
                         file.SaveAs(folderPath + Path.GetFileName(fname));
                         nv.Add("@chid ", result.ToString());
@@ -601,7 +600,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                NameValueCollection nvimg = new NameValueCollection();
+                
 
                 //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 //{
@@ -627,13 +626,13 @@ namespace Evo
                     if (file.ContentLength > 0)
                     {
                         string fname = Path.GetFileName(file.FileName);
-
+                        NameValueCollection nvimg = new NameValueCollection();
                         folderPath = Server.MapPath("~/images/");
                         file.SaveAs(folderPath + Path.GetFileName(fname));
-                        nvimg.Add("@chid", result.ToString());
-                        nvimg.Add("@ImageName", fname);
-                        nvimg.Add("@Imagepath", folderPath);
-                        imgresult = objCommon.GetDataInsertORUpdate("InsertCropHealthImage", nvimg);
+                        nv.Add("@chid ", result.ToString());
+                        nv.Add("@ImageName", fname);
+                        nv.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                     }
                 }
 
@@ -792,6 +791,11 @@ namespace Evo
 
         protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ddlAssignments.SelectedItem.Value != "7" && ddlAssignments.SelectedItem.Value != "9")
+            {
+                btngeneraltasksave.Visible = true;
+               
+            }
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Uid", ddlAssignments.SelectedValue);
             DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
@@ -809,7 +813,7 @@ namespace Evo
             int IrrigationCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv17 = new NameValueCollection();
-            NameValueCollection nvimg = new NameValueCollection();
+            
             nv17.Add("@Mode", "13");
             dt = objCommon.GetDataTable("GET_Common", nv17);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
@@ -845,7 +849,7 @@ namespace Evo
                     if (file.ContentLength > 0)
                     {
                         string fname = Path.GetFileName(file.FileName);
-
+                        NameValueCollection nvimg = new NameValueCollection();
                         folderPath = Server.MapPath("~/images/");
                         file.SaveAs(folderPath + Path.GetFileName(fname));
                         nv.Add("@chid ", result.ToString());
@@ -959,7 +963,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                NameValueCollection nvimg = new NameValueCollection();
+              
                 //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 //{
                 //    folderPath = Server.MapPath("~/images/");
@@ -984,7 +988,7 @@ namespace Evo
                     if (file.ContentLength > 0)
                     {
                         string fname = Path.GetFileName(file.FileName);
-
+                        NameValueCollection nvimg = new NameValueCollection();
                         folderPath = Server.MapPath("~/images/");
                         file.SaveAs(folderPath + Path.GetFileName(fname));
                         nv.Add("@chid ", result.ToString());
@@ -1139,6 +1143,136 @@ namespace Evo
             }
         }
 
+        protected void btngeneraltasksave_Click(object sender, EventArgs e)
+        {
+           
+            if (Chid == "")
+            {
+                long result = 0;
+                long imgresult = 0;
+                string folderPath = "";
+                NameValueCollection nv = new NameValueCollection();
+               
 
+                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                //{
+                //    folderPath = Server.MapPath("~/images/");
+                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                //}
+                //else
+                //{
+                //    folderPath = "";
+                //}
+                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+                nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
+                nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
+                nv.Add("@NoTrays", txtTrays.Text);
+                nv.Add("@PerDamage", percentageDamage.Text);
+                nv.Add("@Date", txtDate.Text);
+                nv.Add("@Filepath", folderPath);
+                nv.Add("@CropHealthCommit", txtcomments.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFile file = Request.Files[i];
+                    if (file.ContentLength > 0)
+                    {
+                        string fname = Path.GetFileName(file.FileName);
+                        NameValueCollection nvimg = new NameValueCollection();
+                        folderPath = Server.MapPath("~/images/");
+                        file.SaveAs(folderPath + Path.GetFileName(fname));
+                        nvimg.Add("@chid", result.ToString());
+                        nvimg.Add("@ImageName", fname);
+                        nvimg.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataInsertORUpdate("InsertCropHealthImage", nvimg);
+                    }
+                }
+
+
+
+                foreach (GridViewRow row in gvFer.Rows)
+                {
+                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                    if (chckrw.Checked == true)
+                    {
+                        long result1 = 0;
+                        NameValueCollection nv1 = new NameValueCollection();
+                        nv1.Add("@chid", result.ToString());
+                        nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                        nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                        nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                        nv1.Add("@loc_seedline", Session["Facility"].ToString());
+                        nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                        nv1.Add("@seedsreceived", "");
+                        nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv1.Add("@SoDate", "");
+                        nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                    }
+
+                }
+
+                if (result > 0)
+                {
+                    Chid = result.ToString();
+                    BindGridCropHealth();
+                    BindSupervisorList();
+                    PanelView.Visible = false;
+                    PanelList.Visible = true;
+                }
+
+            }
+
+            long result16 = 0;
+
+            foreach (GridViewRow row in GridViewView.Rows)
+            {
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                nv.Add("@jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                nv.Add("@Facility", "");
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
+                nv.Add("@InspectionDueDate", txtGerDate.Text);
+                nv.Add("@TraysInspected", txtTGerTrays.Text);
+                nv.Add("@Chid", Chid);
+                nv.Add("@LoginId", Session["LoginID"].ToString());
+
+                result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
+            }
+
+            if (result16 > 0)
+            {
+                long result1 = 0;
+                NameValueCollection nv11 = new NameValueCollection();
+                nv11.Add("@Chid", Chid);
+                result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                string message = "Assignment Successful";
+                string url = "MyTaskGrower.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                // lblmsg.Text = "Assignment Successful";
+                //  clear();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                //  lblmsg.Text = "Assignment Not Successful";
+            }
         }
+    }
     }
