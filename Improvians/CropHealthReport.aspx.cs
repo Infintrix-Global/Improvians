@@ -167,8 +167,8 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
 
-            BindSQFTofBench(BatchLocd);
-
+           
+            BindSQFTofBench("'" + BatchLocd + "'");
         }
 
 
@@ -365,6 +365,8 @@ namespace Evo
             ddlCustomer.SelectedIndex = 0;
             // ddlJobNo.SelectedIndex = 0;
             //BindGridFerReq();
+            txtSearchJobNo.Text = "";
+            txtSearchJobNo.Text = "JB";
             gvFer.DataSource = null;
             gvFer.DataBind();
         }

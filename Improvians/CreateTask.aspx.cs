@@ -32,7 +32,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-              
+
 
                 Bindcname();
                 BindBenchLocation(Session["Facility"].ToString());
@@ -50,7 +50,7 @@ namespace Evo
         }
 
 
-     
+
         public void Bindcname()
         {
 
@@ -197,7 +197,7 @@ namespace Evo
             gvFer.DataSource = dt85;
             gvFer.DataBind();
 
-            BindGridFerReq(chkSelected);
+            BindGridFerReq(chkSelected, "");
             BindSQFTofBench(chkSelected);
         }
 
@@ -226,7 +226,7 @@ namespace Evo
 
             }
 
-            BindGridFerReq(chkSelected);
+            BindGridFerReq(chkSelected, "");
             BindSQFTofBench(chkSelected);
         }
 
@@ -238,7 +238,7 @@ namespace Evo
             PanelBenchesInHouse.Visible = false;
             //To unselect all Items
             RadioBench.ClearSelection();
-            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'");
+            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'", "");
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -307,7 +307,7 @@ namespace Evo
 
             }
 
-            BindGridFerReq(chkSelected);
+            BindGridFerReq(chkSelected, "");
 
 
         }
@@ -349,14 +349,14 @@ namespace Evo
         }
 
 
-        public void BindGridFerReq(string BenchLoc)
+        public void BindGridFerReq(string BenchLoc, string jobNo)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, ddlJobNo.SelectedValue);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -374,12 +374,12 @@ namespace Evo
                 //{
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
                 //}
-               // BatchLocd = (row.FindControl("lblGreenHouse1") as Label).Text;
+                // BatchLocd = (row.FindControl("lblGreenHouse1") as Label).Text;
             }
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
 
-         //   BindSQFTofBench(BatchLocd);
+            //   BindSQFTofBench(BatchLocd);
 
 
         }
@@ -388,12 +388,12 @@ namespace Evo
         protected void gvFer_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
-           
+
         }
 
 
 
-     
+
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Clear();
@@ -404,13 +404,13 @@ namespace Evo
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
-           
+
             dtTrays.Clear();
         }
 
 
 
-      
+
 
         protected void chckchanged(object sender, EventArgs e)
         {
@@ -448,7 +448,7 @@ namespace Evo
         }
 
 
-      
+
 
         //protected void btnSearch_Click(object sender, EventArgs e)
         //{
@@ -466,12 +466,12 @@ namespace Evo
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq("");
+            BindGridFerReq("", "");
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq("");
+            BindGridFerReq("", ddlJobNo.SelectedValue);
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -487,7 +487,7 @@ namespace Evo
             {
                 Panel_Bench.Visible = true;
                 Bench1 = ddlBenchLocation.SelectedItem.Text;
-                BindGridFerReq("'" + Bench1 + "'");
+                BindGridFerReq("'" + Bench1 + "'", "");
                 BindSQFTofBench("'" + Bench1 + "'");
             }
 
@@ -596,7 +596,7 @@ namespace Evo
             dt = objCommon.GetDataTable("GET_Common", nv14);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
 
-         
+
 
 
             foreach (GridViewRow row in gvFer.Rows)
@@ -620,13 +620,13 @@ namespace Evo
                 nv4.Add("@FertilizationDate", txtFDate.Text);
                 result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
                 Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
-           
+
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, Batchlocation, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
-           
+
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
@@ -642,7 +642,7 @@ namespace Evo
         protected void btngerminationSumit_Click(object sender, EventArgs e)
         {
 
-          
+
 
             long result16 = 0;
 
@@ -689,8 +689,8 @@ namespace Evo
 
             if (result16 > 0)
             {
-               
-             
+
+
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
                 string url = "MyTaskGrower.aspx";
@@ -833,7 +833,7 @@ namespace Evo
             }
 
 
-           
+
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
@@ -880,7 +880,7 @@ namespace Evo
             }
 
 
-           
+
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
@@ -898,7 +898,7 @@ namespace Evo
         }
 
 
-     
+
 
         protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -914,5 +914,48 @@ namespace Evo
             }
 
         }
+
+        protected void btnSearchDet_Click(object sender, EventArgs e)
+        {
+            BindGridFerReq("", txtSearchJobNo.Text);
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            txtSearchJobNo.Text = "";
+            txtSearchJobNo.Text = "JB";
+            BindGridFerReq("", txtSearchJobNo.Text);
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager
+                        .ConnectionStrings["EvoNavision"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    " AND t.[Job No_] like '" + prefixText + "%'";
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+                    return customers;
+                }
+            }
+        }
+
     }
 }

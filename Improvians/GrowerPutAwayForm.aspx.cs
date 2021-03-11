@@ -419,6 +419,7 @@ namespace Evo
                         nvChDate.Add("@GreenHouseID", ddlLocation.SelectedValue);
                         DataTable ChFdt = objCommon.GetDataTable("SP_GetFertilizationCheckResetSprayTask", nvChDate);
 
+
                         if (dtFez != null && dtFez.Rows.Count > 0)
                         {
 

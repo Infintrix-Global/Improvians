@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="CreateTask.aspx.cs" Inherits="Evo.CreateTask" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -16,7 +16,40 @@
 
 
 
-            <div class="filter__row d-flex">
+       
+                <div class="row">
+
+                    <div class="col-lg-3">
+
+                        <label>Job No</label>
+                        <asp:TextBox ID="txtSearchJobNo" runat="server" Text="JB" class="input__control robotomd"></asp:TextBox>
+
+
+                        <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                            MinimumPrefixLength="2"
+                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                            TargetControlID="txtSearchJobNo"
+                            ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                        </cc1:AutoCompleteExtender>
+                    </div>
+
+
+                    <div class="col-lg-3">
+                        <br />
+                        <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
+
+                        <asp:Button Text="Reset" ID="Button4" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="Button4_Click" />
+
+                    </div>
+
+                    <div class="col-lg-3">
+                    </div>
+
+                    <div class="col-lg-3">
+                    </div>
+
+                </div>
+            <br />
                 <div class="row">
                     <div class="col-lg-3">
                         <label>Bench Location </label>
@@ -43,7 +76,7 @@
                     </div>
 
                 </div>
-            </div>
+          
 
 
             <br />
