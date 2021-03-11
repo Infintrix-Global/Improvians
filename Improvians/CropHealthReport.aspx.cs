@@ -117,7 +117,8 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
 
-            BindSQFTofBench(BatchLocd);
+            if (BatchLocd != string.Empty)
+                BindSQFTofBench(BatchLocd);
 
 
             DataTable dt1 = new DataTable();
@@ -167,7 +168,7 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
 
-           
+
             BindSQFTofBench("'" + BatchLocd + "'");
         }
 
@@ -237,7 +238,7 @@ namespace Evo
             long result = 0;
             long imgresult = 0;
             NameValueCollection nv = new NameValueCollection();
-          
+
             //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
             //{
             //    folderPath = Server.MapPath("~/images/") + Path.GetFileName(FileUpload1.FileName);
@@ -376,15 +377,14 @@ namespace Evo
         //---------------------------------------------------------------- Tab Details-------
         public void BindSQFTofBench(string benchLoc)
         {
-
-            DataTable dtSQFT = objFer.GetSQFTofBench(benchLoc);
-            if (dtSQFT != null && dtSQFT.Rows.Count > 0)
+            txtSQFT.Text = "0.00";
+            if (!string.IsNullOrEmpty(benchLoc))
             {
-                txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
-            }
-            else
-            {
-                txtSQFT.Text = "0.00";
+                DataTable dtSQFT = objFer.GetSQFTofBench(benchLoc);
+                if (dtSQFT != null && dtSQFT.Rows.Count > 0)
+                {
+                    txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
+                }
             }
         }
         public void BindSupervisor()
@@ -469,7 +469,7 @@ namespace Evo
             int FertilizationCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv14 = new NameValueCollection();
-                
+
             nv14.Add("@Mode", "12");
             dt = objCommon.GetDataTable("GET_Common", nv14);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
@@ -603,7 +603,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                
+
 
                 //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 //{
@@ -797,7 +797,7 @@ namespace Evo
             if (ddlAssignments.SelectedItem.Value != "7" && ddlAssignments.SelectedItem.Value != "9")
             {
                 btngeneraltasksave.Visible = true;
-               
+
             }
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Uid", ddlAssignments.SelectedValue);
@@ -816,7 +816,7 @@ namespace Evo
             int IrrigationCode = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv17 = new NameValueCollection();
-            
+
             nv17.Add("@Mode", "13");
             dt = objCommon.GetDataTable("GET_Common", nv17);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
@@ -966,7 +966,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-              
+
                 //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 //{
                 //    folderPath = Server.MapPath("~/images/");
@@ -1150,14 +1150,14 @@ namespace Evo
 
         protected void btngeneraltasksave_Click(object sender, EventArgs e)
         {
-           
+
             if (Chid == "")
             {
                 long result = 0;
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-               
+
 
                 //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 //{
@@ -1280,4 +1280,4 @@ namespace Evo
             }
         }
     }
-    }
+}
