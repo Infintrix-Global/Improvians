@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="CropHealthReport.aspx.cs" Inherits="Evo.CropHealthReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeFile="CropHealthReport.aspx.cs" Inherits="Evo.CropHealthReport" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -25,6 +25,33 @@
                                 "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
                                 "<br/><span class=\"remove\">Remove image</span>" +
                                 "</span>").insertAfter("#files");
+                            $(".remove").click(function () {
+                                $(this).parent(".pip").remove();
+                            });
+
+                            // Old code here
+                            /*$("<img></img>", {
+                              class: "imageThumb",
+                              src: e.target.result,
+                              title: file.name + " | Click to remove"
+                            }).insertAfter("#files").click(function(){$(this).remove();});*/
+
+                        });
+                        fileReader.readAsDataURL(f);
+                    }
+                });
+                $("#takePictureField").on("change", function (e) {
+                    var files = e.target.files,
+                        filesLength = files.length;
+                    for (var i = 0; i < filesLength; i++) {
+                        var f = files[i]
+                        var fileReader = new FileReader();
+                        fileReader.onload = (function (e) {
+                            var file = e.target;
+                            $("<span class=\"pip\">" +
+                                "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                                "<br/><span class=\"remove\">Remove image</span>" +
+                                "</span>").insertAfter("#takePictureField");
                             $(".remove").click(function () {
                                 $(this).parent(".pip").remove();
                             });
@@ -396,7 +423,7 @@
                                 </div>
                                 <asp:Label ID="lblMessage" ForeColor="Green" runat="server" />
                                 <div id="divMobile" runat="server" visible="false">
-                                    <input type="file" accept="image/*;capture=camera" id="takePictureField" name="takePictureField" runat="server" />
+                                    <input type="file"  accept="image/*;capture=camera" id="takePictureField" name="takePictureField" multiple/>
                                     <div class="row">
                                         <div class="col m6">
                                             <img id="yourimage" runat="server" width="320" height="240" />
@@ -525,6 +552,7 @@
                                 <div class="row">
                                     <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
                                         <asp:Button Text="Submit" ID="btngerminationSumit" CssClass="bttn bttn-primary bttn-action" OnClick="btngerminationSumit_Click" runat="server" />
+                                        
                                         <asp:Button Text="Reset" ID="btngerminationReset" runat="server" OnClick="btngerminationReset_Click" CssClass="bttn bttn-primary bttn-action" />
                                     </div>
                                 </div>
@@ -795,8 +823,8 @@
                                         <div class="portlet light ">
 
                                             <div class="portlet-body">
-                                                <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
-                                                    <ContentTemplate>
+                                               <%-- <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
+                                                    <ContentTemplate>--%>
                                                         <asp:Panel ID="Panel1" runat="server">
                                                             <div class="row" style="margin-left: 15px;">
                                                                 <%-- <div class="col-lg-4">
@@ -864,13 +892,15 @@
                                                                 <div class="col-lg-4">
                                                                     <div style="margin-top: 9%;">
                                                                         <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
+                                                                        
+                                                                        <asp:Button Text="Submit" ID="btngeneraltasksave" type="submit" CssClass="bttn bttn-primary bttn-action" OnClick="btngeneraltasksave_Click" runat="server" />
                                                                         <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server"  Visible="false"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </asp:Panel>
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
+                                             <%--       </ContentTemplate>
+                                                </asp:UpdatePanel>--%>
                                             </div>
                                         </div>
                                     </div>

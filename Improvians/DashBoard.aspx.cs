@@ -68,7 +68,8 @@ namespace Evo
             }
             if (Session["Role"].ToString() == "7")
             {
-                amytask.HRef = "SeedingPlanForm.aspx";
+                //amytask.HRef = "SeedingPlanForm.aspx";
+                amytask.HRef = "MyTaskSeedlinePlanner.aspx";
             }
             if (Session["Role"].ToString() == "8")
             {

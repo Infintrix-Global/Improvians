@@ -314,6 +314,7 @@
     <Content Include="MyTaskGreenSupervisor.aspx" />
     <Content Include="MyTaskGreenSupervisorFinal.aspx" />
     <Content Include="MyTaskAssistantGrower.aspx" />
+    <Content Include="MyTaskSeedlinePlanner.aspx" />
     <Content Include="MyTaskGrower.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
     <Content Include="MyTaskProductionPlanner.aspx" />
@@ -335,6 +336,7 @@
     <Content Include="scripts\uploader.swf" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
     <Content Include="SeedingPlanForm.aspx" />
+    <Content Include="seedline-planning.html" />
     <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
@@ -703,6 +705,13 @@
     </Compile>
     <Compile Include="MyTaskAssistantGrower.aspx.designer.cs">
       <DependentUpon>MyTaskAssistantGrower.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskSeedlinePlanner.aspx.cs">
+      <DependentUpon>MyTaskSeedlinePlanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskSeedlinePlanner.aspx.designer.cs">
+      <DependentUpon>MyTaskSeedlinePlanner.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskGrower.aspx.cs">
       <DependentUpon>MyTaskGrower.aspx</DependentUpon>
