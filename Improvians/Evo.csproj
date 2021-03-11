@@ -208,6 +208,7 @@
     <Content Include="images\dashboard_fertilization.png" />
     <Content Include="images\dashboard_fertilizer.png" />
     <Content Include="images\dashboard_general-task.png" />
+    <Content Include="images\dashboard_seedline-planning.png" />
     <Content Include="IrrigationTaskViewDetails.aspx" />
     <Content Include="jobcard.aspx" />
     <Content Include="jobcard.aspx.vb">
