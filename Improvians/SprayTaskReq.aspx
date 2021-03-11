@@ -18,7 +18,7 @@
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main">
         <div class="site__container">
-            <h2 class="text-left">Fertilization / Chemical Task Completion </h2>
+            <h2 class="text-left">Fertilization Task Completion </h2>
 
             <div class="dashboard__block dashboard__block--asign">
 
