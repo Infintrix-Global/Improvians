@@ -8,7 +8,7 @@
         <div class="site__container">
             <h2 class="head__title-icon">
                 <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Fertilization / Chemical">
-                Fertilization / Chemical Task Completion </h2>
+                Fertilization Task Completion </h2>
 
             <br />
 
