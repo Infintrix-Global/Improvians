@@ -185,7 +185,7 @@ namespace Evo
                 NameValueCollection nvChemChDate = new NameValueCollection();
 
                 nvChemChDate.Add("@GreenHouseID", GreenHouseID);
-                DataTable ChChemidt = objCommon.GetDataTable("SP_GetChemicalCheckResetSprayTas", nvChemChDate);
+                DataTable ChChemidt = objCommon.GetDataTable("SP_GetChemicalCheckResetSprayTask", nvChemChDate);
 
 
 
