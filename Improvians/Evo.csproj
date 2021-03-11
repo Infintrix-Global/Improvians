@@ -201,6 +201,7 @@
     <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
+    <Content Include="GeneralTaskAssignmentForm.aspx" />
     <Content Include="images\cancel.png" />
     <Content Include="images\dashboard_chemical.png" />
     <Content Include="images\dashboard_dump-request.png" />
@@ -478,6 +479,13 @@
     </Compile>
     <Compile Include="FerJobBuildUp.aspx.designer.cs">
       <DependentUpon>FerJobBuildUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralTaskAssignmentForm.aspx.cs">
+      <DependentUpon>GeneralTaskAssignmentForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GeneralTaskAssignmentForm.aspx.designer.cs">
+      <DependentUpon>GeneralTaskAssignmentForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="IrrigationTaskViewDetails.aspx.cs">
       <DependentUpon>IrrigationTaskViewDetails.aspx</DependentUpon>

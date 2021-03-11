@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.Master" AutoEventWireup="true" CodeBehind="EditProfile.aspx.cs" Inherits="Evo.Admin.EditProfile" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
     <div class="admin__content">
         <div class="container-fluid">
             <h1 class="text-center text-sm-left">Add Employee</h1>
@@ -87,13 +88,13 @@
                             </span>
                         </label>
                     </div>
-                         <div class="col-md-6 col-xl-5 order-md-1">
+                    <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>User Name</h3>
-                                 <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
 
                             <span class="error_message">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtUserName"  ErrorMessage="Please Enter UserName" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtUserName" ErrorMessage="Please Enter UserName" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
 
                             </span>
                         </label>
@@ -103,29 +104,16 @@
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>Password</h3>
-                                <asp:TextBox ID="txtPassword" class="input__control input__control-icon " placeholder="Enter your passord here" TabIndex="6" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" class="input__control input__control-icon " placeholder="Enter your passord here" TabIndex="6" runat="server"></asp:TextBox>
                             <span class="error_message">-    
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword"  ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>
                         </label>
                     </div>
 
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
-                            <h3>Department</h3>
-                            <asp:DropDownList ID="ddlDepartment" runat="server" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>
-
-                            <span class="error_message">
-                                <asp:RequiredFieldValidator ID="requiredRole" runat="server" ControlToValidate="ddlDepartment" InitialValue="0" ErrorMessage="Please Select Department" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
-
-                            </span>
-                        </label>
-                    </div>
-
-
-                    <div class="col-md-6 col-xl-5 order-md-1">
-                        <label>
-                            <h3>Designation</h3>
+                            <h3>Role</h3>
                             <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd" TabIndex="8"></asp:DropDownList>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Designation" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
@@ -133,32 +121,33 @@
                         </label>
                     </div>
 
-                  <div class="col-md-10 col-12 order-md-1">
+                    <div class="col-md-10 col-12 order-md-1">
                         <label class="mb-0">
                             <h3>Facility</h3>
                         </label>
                         <%--<asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" TabIndex="6"></asp:DropDownList>--%>
                         <div class="control__box">
-                            <asp:Repeater ID="repFacility"  runat="server"  >
+                            <asp:Repeater ID="repFacility" runat="server">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkFacility" Text='<%#Bind("FacilityName")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
-                               <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("FacilityID")%>' /> </ItemTemplate>
+                                    <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("FacilityID")%>' />
+                                </ItemTemplate>
                             </asp:Repeater>
                         </div>
-                       
+
                         <%-- <span class="error_message d-block">
                             <asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one facility."
                                 ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" ValidationGroup="e" />
                         </span>--%>
                     </div>
-                    
+
 
                     <div class="clearfix"></div>
 
                     <div class="col-12 text-center order-md-1">
 
-                         <asp:Button runat="server" ID="btnUpdate"  CssClass="bttn bttn-primary bttn-action" ClientIDMode="Static" OnClick="btnUpdate_Click" Text="Update" ValidationGroup="e" />
-                     
+                        <asp:Button runat="server" ID="btnUpdate" CssClass="bttn bttn-primary bttn-action" ClientIDMode="Static" OnClick="btnUpdate_Click" Text="Update" ValidationGroup="e" />
+
 
 
                     </div>
