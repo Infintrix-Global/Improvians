@@ -34,8 +34,8 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
            
             nv.Add("@LoginID", Session["LoginID"].ToString());
-           
-            dt = objCommon.GetDataTable("SP_GetChemicalRequestDetailsNew", nv);
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetChemical_RequestDetailsNew", nv);
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
 

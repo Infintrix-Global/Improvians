@@ -107,8 +107,8 @@ namespace Evo
             //nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-            //nv.Add("@FertilizationCode","0");
-            dt = objCommon.GetDataTable("SP_GetSprayRequestDetails", nv);
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetSprayRequestDetailsNew", nv);
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
 

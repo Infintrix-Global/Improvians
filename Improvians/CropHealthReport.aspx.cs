@@ -23,6 +23,7 @@ namespace Evo
 {
     public partial class CropHealthReport : System.Web.UI.Page
     {
+
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
@@ -57,7 +58,7 @@ namespace Evo
 
                 BindSupervisor();
 
-               
+
                 BindSupervisorList();
                 BindFertilizer();
                 BindJobCode("");
@@ -166,8 +167,8 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
 
-            BindSQFTofBench(BatchLocd);
-
+           
+            BindSQFTofBench("'" + BatchLocd + "'");
         }
 
 
@@ -189,7 +190,7 @@ namespace Evo
 
         public void BindJobCode(string ddlBench)
         {
-            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation1(ddlBench);
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation1(ddlBench, Session["Facility"].ToString());
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
@@ -364,6 +365,8 @@ namespace Evo
             ddlCustomer.SelectedIndex = 0;
             // ddlJobNo.SelectedIndex = 0;
             //BindGridFerReq();
+            txtSearchJobNo.Text = "";
+            txtSearchJobNo.Text = "JB";
             gvFer.DataSource = null;
             gvFer.DataBind();
         }
@@ -453,7 +456,7 @@ namespace Evo
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
-     
+
 
         protected void btnFReset_Click(object sender, EventArgs e)
         {
@@ -571,7 +574,7 @@ namespace Evo
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
             }
 
-            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
+            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, Batchlocation, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
             long result16 = 0;
@@ -1114,6 +1117,7 @@ namespace Evo
             }
 
         }
+
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
         public static List<string> SearchCustomers(string prefixText, int count)
@@ -1124,6 +1128,7 @@ namespace Evo
                         .ConnectionStrings["EvoNavision"].ConnectionString;
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
                     cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
                     " AND t.[Job No_] like '" + prefixText + "%'";
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);

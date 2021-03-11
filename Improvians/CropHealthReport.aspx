@@ -95,7 +95,40 @@
             </h2>
             <asp:Panel ID="PanelList" runat="server">
 
-                <div class="filter__row d-flex">
+               
+                    <div class="row">
+
+                    <div class="col-lg-3">
+
+                        <label>Job No</label>
+                        <asp:TextBox ID="txtSearchJobNo" runat="server" Text="JB" class="input__control robotomd"></asp:TextBox>
+
+
+                        <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                            MinimumPrefixLength="2"
+                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                            TargetControlID="txtSearchJobNo"
+                            ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                        </cc1:AutoCompleteExtender>
+                    </div>
+
+
+                    <div class="col-lg-3">
+                        <br />
+                        <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
+
+                        <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+
+                    </div>
+
+                    <div class="col-lg-3">
+                    </div>
+
+                    <div class="col-lg-3">
+                    </div>
+
+                </div>
+                      <br />
                     <div class="row">
                        
                         <div class="col-lg-3">
@@ -116,39 +149,8 @@
                             <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-3">
-
-                        <label>Job No</label>
-                        <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
-
-
-                        <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
-                            MinimumPrefixLength="2"
-                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                            TargetControlID="txtSearchJobNo"
-                            ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
-                        </cc1:AutoCompleteExtender>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <br />
-                        <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
-
-                        <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
-
-                    </div>
-
-                    <div class="col-lg-3">
-                    </div>
-
-                    <div class="col-lg-3">
-                    </div>
-
-                </div>
+             
+                
 
                 <div class="row">
                     <div class=" col m12">

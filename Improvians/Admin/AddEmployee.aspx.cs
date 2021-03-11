@@ -26,8 +26,11 @@ namespace Evo.Admin
 
         public void BindRole()
         {
-            repDesignation.DataSource = objCommon.GetRoleMaster(); 
-            repDesignation.DataBind();           
+            ddlDesignation.DataSource = objCommon.GetRoleMaster();
+            ddlDesignation.DataTextField = "RoleName";
+            ddlDesignation.DataValueField = "RoleID";
+            ddlDesignation.DataBind();
+            ddlDesignation.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         public void BindFacility()
@@ -44,15 +47,7 @@ namespace Evo.Admin
                 if ((dtCheckEmail = objCommon.CheckEmailExists(txtEmail.Text.Trim())).Rows.Count == 0)
                 {
                     int _isInserted = -1;
-                    string strDesignation = string.Empty;
-                    foreach (RepeaterItem item in repDesignation.Items)
-                    {
-                        CheckBox chkFacility = (CheckBox)item.FindControl("chkRole");
-                        if (chkFacility.Checked)
-                        {
-                           strDesignation=((HiddenField)item.FindControl("hdnRoleValue")).Value;
-                        }
-                    }
+                  
                     Employee objEmployee = new Employee()
                     {
 
@@ -61,7 +56,7 @@ namespace Evo.Admin
                         Password = objCommon.Encrypt(txtPassword.Text),
                         EmployeeCode=txtUserName.Text,
                         Email = txtEmail.Text,
-                        Designation = strDesignation,
+                        Designation = ddlDesignation.SelectedValue,
                         Department = "",
                         Photo = lblProfile.Text
                     };
@@ -121,8 +116,7 @@ namespace Evo.Admin
             txtName.Text = "";
             txtMobile.Text = "";
             txtEmail.Text = "";
-            repDesignation.DataBind();
-            repDesignation.DataBind();
+            ddlDesignation.DataBind();
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)
