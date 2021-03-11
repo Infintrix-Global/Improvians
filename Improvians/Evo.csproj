@@ -336,7 +336,6 @@
     <Content Include="scripts\uploader.swf" />
     <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
     <Content Include="SeedingPlanForm.aspx" />
-    <Content Include="seedline-planning.html" />
     <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
     <Content Include="SeedLineTaskCompletion.aspx" />
