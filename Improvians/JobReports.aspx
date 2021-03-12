@@ -216,7 +216,7 @@
                                             <asp:TemplateField HeaderText="Starting Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
 
-                                                    <asp:Label ID="lblSD" runat="server" Text='<%# Eval("StartingDate")  %>'></asp:Label>
+                                                    <asp:Label ID="lblSD" runat="server" Text='<%# Eval("StartingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -235,7 +235,7 @@
 
                                             <asp:TemplateField HeaderText="Completion Date " ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblED" runat="server" Text='<%# Eval("EndingDate")  %>'></asp:Label>
+                                                    <asp:Label ID="lblED" runat="server" Text='<%# Eval("EndingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <%-- <asp:TemplateField HeaderText="Germ" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -268,15 +268,7 @@
                                         GridLines="None" PageSize="10" OnRowDataBound="GV5_RowDataBound"
                                         ShowHeaderWhenEmpty="True" Width="100%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <asp:Button ID="btn_Edit" runat="server" Text="Edit" CssClass="bttn bttn-primary bttn-action" CommandName="Edit" />
-                                                </ItemTemplate>
-                                                <EditItemTemplate>
-                                                    <asp:Button ID="btn_Update" runat="server" Text="Update" CssClass="bttn bttn-primary bttn-action" CommandName="Update" />
-                                                    <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" CssClass="bttn bttn-primary bttn-action" CommandName="Cancel" />
-                                                </EditItemTemplate>
-                                            </asp:TemplateField>
+                                            
                                             <asp:TemplateField HeaderText="House/Section" Visible="false" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -305,6 +297,15 @@
                                                 </ItemTemplate>
                                                 <EditItemTemplate>
                                                     <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Trays") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btn_Edit" runat="server" Text="Edit" CssClass="bttn bttn-primary bttn-action" CommandName="Edit" />
+                                                </ItemTemplate>
+                                                <EditItemTemplate>
+                                                    <asp:Button ID="btn_Update" runat="server" Text="Update" CssClass="bttn bttn-primary bttn-action" CommandName="Update" />
+                                                    <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" CssClass="bttn bttn-primary bttn-action" CommandName="Cancel" />
                                                 </EditItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
