@@ -117,7 +117,7 @@
                                             <asp:TemplateField HeaderText="Actual Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
 
-                                                    <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("actual_date")  %>'></asp:Label>
+                                                    <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("actual_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
