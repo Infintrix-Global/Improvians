@@ -71,62 +71,60 @@
                                         GridLines="None" PageSize="10"
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Cust. No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <%--<asp:TemplateField HeaderText="Cust. No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lblcusno" runat="server" Text='<%# Eval("cusno")  %>'></asp:Label>
 
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Cust. Name" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lblcname" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Item. No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lbliteno" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Crop" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lblitemdescp" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Size" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lbltraysize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="NO of trays" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Actual Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("actual_date")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Due Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                          <%--  <asp:TemplateField HeaderText="Due Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>                                                  
                                                     <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("due_date")  %>'></asp:Label>
-
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
 
 
@@ -165,21 +163,21 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Planning Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lblCD" runat="server" Text='<%# Eval("CreatedOn")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Lot ID" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lblLOTID" runat="server" Text='<%# Eval("LotID")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Number of seeds" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lblNS" runat="server" Text='<%# Eval("NumberOfSeed")  %>'></asp:Label>
 
                                                 </ItemTemplate>
@@ -210,6 +208,13 @@
                                         GridLines="None" PageSize="10"
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
+                                               <asp:TemplateField HeaderText="Description" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                   
+                                                    <asp:Label ID="lblD" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Starting Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
 
@@ -217,43 +222,29 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Operation No" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                         <%--   <asp:TemplateField HeaderText="Operation No" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate> 
                                                     <asp:Label ID="lblON" runat="server" Text='<%# Eval("OperationNo")  %>'></asp:Label>
-
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Description" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                    <asp:Label ID="lblD" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                         
                                             <asp:TemplateField HeaderText="RunTime" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                     <asp:Label ID="lblRT" runat="server" Text='<%# Eval("RunTime")  %>'></asp:Label>
-
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
 
                                             <asp:TemplateField HeaderText="Completion Date " ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                <ItemTemplate>                                                   
                                                     <asp:Label ID="lblED" runat="server" Text='<%# Eval("EndingDate")  %>'></asp:Label>
-
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Germ" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                           <%-- <asp:TemplateField HeaderText="Germ" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>                                                    
                                                     <asp:Label ID="lblG" runat="server" Text='<%# Eval("Germ")  %>'></asp:Label>
-
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
                                         </Columns>
                                     </asp:GridView>
@@ -280,21 +271,21 @@
                                         GridLines="None" PageSize="10"
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Facility" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                    <asp:Label ID="lblFID" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                          
                                             <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                   
                                                     <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+                                              <asp:TemplateField HeaderText="Trays" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                   
+                                                    <asp:Label ID="lblFID" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
 
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
                                 </div>
