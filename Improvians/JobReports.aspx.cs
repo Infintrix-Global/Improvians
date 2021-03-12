@@ -3,7 +3,9 @@ using Evo.Bal;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -27,13 +29,12 @@ namespace Evo
                 if (string.IsNullOrEmpty(JobCode))
                 {
                     divFilter.Visible = true;
-
-                    BindJobCode();
+                    BindBenchLocation(Session["Facility"].ToString());
                 }
                 else
                 {
                     BindGridOne(JobCode);
-                    JobCode= Request.QueryString["jobCode"];
+                    JobCode = Request.QueryString["jobCode"];
                 }
 
             }
@@ -55,56 +56,6 @@ namespace Evo
             }
         }
 
-
-
-
-        public void BindJobCode()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "7");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlJobNo.DataSource = dt;
-            ddlJobNo.DataTextField = "Jobcode";
-            ddlJobNo.DataValueField = "Jobcode";
-            ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
-
-        //public void BindFacility()
-        //{
-
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-
-        //    nv.Add("@Mode", "9");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlFacility.DataSource = dt;
-        //    ddlFacility.DataTextField = "loc_seedline";
-        //    ddlFacility.DataValueField = "loc_seedline";
-        //    ddlFacility.DataBind();
-        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        //}
-
-        //public void BindBenchLocation()
-        //{
-
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-
-        //    nv.Add("@Mode", "10");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlBenchLocation.DataSource = dt;
-        //    ddlBenchLocation.DataTextField = "GreenHouseID";
-        //    ddlBenchLocation.DataValueField = "GreenHouseID";
-        //    ddlBenchLocation.DataBind();
-        //    ddlBenchLocation.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        //}
         public void BindGridOne(string jobCode)
         {
             DataTable dt = new DataTable();
@@ -132,19 +83,27 @@ namespace Evo
             GV5.DataBind();
 
         }
+        public void BindBenchLocation(string ddlMain)
+        {
+            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataTextField = "p2";
+            ddlBenchLocation.DataValueField = "p2";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
 
-        //protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    BindBenchLocation(ddlFacility.SelectedValue);
-
-        //}
-
-        //protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    BindJobCode(ddlBenchLocation.SelectedValue);
-
-
-        //}
+        }
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindJobCode(ddlBenchLocation.SelectedValue);
+        }
+        public void BindJobCode(string ddlBench)
+        {
+            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+            ddlJobNo.DataTextField = "Jobcode";
+            ddlJobNo.DataValueField = "Jobcode";
+            ddlJobNo.DataBind();
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
+        }
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridOne(ddlJobNo.SelectedValue);
@@ -152,13 +111,45 @@ namespace Evo
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridOne(txtJobNo.Text.Trim());
+            BindGridOne(txtSearchJobNo.Text.Trim());
         }
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-            txtJobNo.Text = "";
-            BindGridOne(txtJobNo.Text);
+            txtSearchJobNo.Text = "JB";
+            BindGridOne(txtSearchJobNo.Text);
+        }
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+                    return customers;
+                }
+            }
         }
     }
 }

@@ -565,8 +565,8 @@ namespace Evo
                 //}
                 Bench = (row.FindControl("lblGreenHouse") as Label).Text;
             }
-          //  txtTrays.Text = tray.ToString();
-         //   BindSQFTofBench(ddlBenchLocation.SelectedItem.Text);
+            txtTrays.Text = tray.ToString();
+            BindSQFTofBench(ddlBenchLocation.SelectedItem.Text);
 
         }
 
