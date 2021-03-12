@@ -433,7 +433,6 @@ namespace Evo
 
                                 FertilizationDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(AD))).ToString();
 
-
                                 string TodatDate;
                                 string ReSetSprayDate = "";
 
@@ -504,8 +503,6 @@ namespace Evo
                                     if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
                                     {
                                         ChemicalDate = ChemicalDate;
-
-
                                         break;
                                     }
                                     else
@@ -514,12 +511,9 @@ namespace Evo
                                     }
                                 }
 
-
-
                             }
 
                         }
-
 
                         //---
 
@@ -529,11 +523,8 @@ namespace Evo
                         nvIRRChDate.Add("@GreenHouseID", ddlLocation.SelectedValue);
                         DataTable Irrigationdt = objCommon.GetDataTable("SP_GetIrrigationResetSprayTask", nvIRRChDate);
 
-
-
                         if (dtISD != null && dtISD.Rows.Count > 0)
                         {
-
 
                             DataColumn col = dtISD.Columns["DateShift"];
                             foreach (DataRow row in dtISD.Rows)
