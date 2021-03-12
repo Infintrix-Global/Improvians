@@ -1067,7 +1067,42 @@ namespace Evo
 
         protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
+            foreach (GridViewRow row in gvFer.Rows)
+            {
 
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
+                nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@FromFacility", (row.FindControl("lblFacility") as Label).Text);
+                nv.Add("@ToFacility", ddlToFacility.SelectedValue);
+                nv.Add("@ToGreenHouse", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                nv.Add("@MoveDate", txtMoveDate.Text);
+
+                nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManual", nv);
+
+            }
+
+
+
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
     }
 }

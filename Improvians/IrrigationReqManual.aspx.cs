@@ -22,6 +22,8 @@ namespace Evo
             {
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindSupervisorList();
+                Bindcname();
+                BindBenchLocation(Session["Facility"].ToString());
             }
         }
 
@@ -399,6 +401,7 @@ namespace Evo
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            BindJobCode(ddlBenchLocation.SelectedValue);
             if (ddlBenchLocation.SelectedValue == "")
             {
                 Panel_Bench.Visible = false;
@@ -488,17 +491,7 @@ namespace Evo
                 nv.Add("@Nots", txtNotes.Text.Trim());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
-                if (result > 0)
-                {
-                    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-
-                }
-                else
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                    //  lblmsg.Text = "Assignment Not Successful";
-                }
-                // }
+               
             }
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";

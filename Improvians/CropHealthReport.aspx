@@ -617,7 +617,7 @@
                                     <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
 
 
-                                        <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnFSubmit" CssClass="mr-2 bttn bttn-primary" runat="server" OnClick="btnFSubmit_Click" />
+                                        <asp:Button Text="Submit"  CausesValidation="true" ID="btnFSubmit" CssClass="mr-2 bttn bttn-primary" runat="server" OnClick="btnFSubmit_Click" />
 
                                         <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary" OnClick="btnFReset_Click" />
                                     </div>
@@ -709,7 +709,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-auto">
-                                            <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnChemicalSubmit_Click" />
+                                            <asp:Button Text="Submit"  CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnChemicalSubmit_Click" />
 
                                             <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnChemicalReset_Click" />
                                         </div>
@@ -840,7 +840,7 @@
                                         <div class="col-lg-3">
                                             <label>Date </label>
 
-                                            <asp:TextBox ID="txtMoveDare" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                             <span class="error_message"></span>
                                         </div>
 

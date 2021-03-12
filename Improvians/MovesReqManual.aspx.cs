@@ -200,6 +200,8 @@ namespace Evo
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManual", nv);
+
+
                     //result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue,wo);
                     // result = objTask.AddMoveRequest(dtTrays, lbljobid.Text, txtReqDate.Text, Session["LoginID"].ToString(), ddlLogisticManager.SelectedValue, "", lblGrowerputawayID.Text);
                     //if (result > 0)

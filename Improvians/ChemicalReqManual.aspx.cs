@@ -27,7 +27,8 @@ namespace Evo
             if (!IsPostBack)
             {
                 BindSupervisor();
-                BindFertilizer();
+                // BindFertilizer();
+                BindBenchLocation(Session["Facility"].ToString());
                 Bindcname();
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 dtTrays.Clear();
@@ -197,7 +198,7 @@ namespace Evo
             gvFer.DataBind();
 
             BindGridFerReq(chkSelected);
-
+            BindSQFTofBench("'" + Bench1 + "'");
         }
 
         protected void ListBoxBenchesInHouse_SelectedIndexChanged(object sender, EventArgs e)
@@ -226,6 +227,7 @@ namespace Evo
             }
 
             BindGridFerReq(chkSelected);
+            BindSQFTofBench("'" + Bench1 + "'");
         }
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
@@ -363,6 +365,16 @@ namespace Evo
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
+            decimal tray = 0;
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
+                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
+                //}
+
+            }
+            txtTrays.Text = tray.ToString();
         }
 
         public void BindSupervisor()
@@ -553,8 +565,8 @@ namespace Evo
                 //}
                 Bench = (row.FindControl("lblGreenHouse") as Label).Text;
             }
-            txtTrays.Text = tray.ToString();
-            BindSQFTofBench(ddlBenchLocation.SelectedItem.Text);
+          //  txtTrays.Text = tray.ToString();
+         //   BindSQFTofBench(ddlBenchLocation.SelectedItem.Text);
 
         }
 
