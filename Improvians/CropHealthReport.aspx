@@ -181,7 +181,7 @@
                                             <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                                     <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                                    <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
                                                     <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                     <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
@@ -550,6 +550,22 @@
                                     <div class="col-xl-3">
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label>Comments </label>
+
+                                        <asp:TextBox ID="TextBox1" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                    </div>
+
+
+                                </div>
                                 <br />
                                 <div class="row">
                                     <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
@@ -616,10 +632,15 @@
                                         <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                     </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                         <label>Comments</label>
+                                        <asp:TextBox ID="TextBox2" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
+
                                     <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
 
 
-                                        <asp:Button Text="Submit"  CausesValidation="true" ID="btnFSubmit" CssClass="mr-2 bttn bttn-primary" runat="server" OnClick="btnFSubmit_Click" />
+                                        <asp:Button Text="Submit" CausesValidation="true" ID="btnFSubmit" CssClass="mr-2 bttn bttn-primary" runat="server" OnClick="btnFSubmit_Click" />
 
                                         <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary" OnClick="btnFReset_Click" />
                                     </div>
@@ -711,7 +732,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-auto">
-                                            <asp:Button Text="Submit"  CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnChemicalSubmit_Click" />
+                                            <asp:Button Text="Submit" CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnChemicalSubmit_Click" />
 
                                             <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnChemicalReset_Click" />
                                         </div>
@@ -741,6 +762,7 @@
                                             <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                                         </div>
                                     </div>
+                                   
                                     <div class="col-xl-3">
 
                                         <div class="d-flex flex-wrap align-items-center">
@@ -792,6 +814,10 @@
 
                                         <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
+                                    </div>
+                                      <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                         <label>Comments</label>
+                                        <asp:TextBox ID="TextBox3" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
                                     <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                                         <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
