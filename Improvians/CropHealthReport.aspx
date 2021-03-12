@@ -632,8 +632,8 @@
                                 <br />
                                 <h2 class="text-left">Chemical</h2>
                                 <br />
-                             <%--   <div class="row align-items-end">--%>
-                                   <asp:Panel ID="Panel2" runat="server">
+                                <%--   <div class="row align-items-end">--%>
+                                <asp:Panel ID="Panel2" runat="server">
                                     <div class="row">
 
                                         <div class="col-lg-3">
@@ -716,7 +716,7 @@
                                     </div>
                                 </asp:Panel>
 
-                               <%-- </div>--%>
+                                <%-- </div>--%>
                             </div>
                         </div>
 
@@ -803,7 +803,70 @@
 
                         <div id="move_request" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
-                                Assign task form for Move Request
+
+                                <br />
+                                <h2 class="text-left">Assign task form for Move Request</h2>
+                                <br />
+
+
+                                <asp:Panel ID="Panel3" runat="server">
+
+                                    <div class="row">
+
+                                        <div class="col m3">
+                                            <label>To Facility Location </label>
+                                            <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
+                                            <span class="error_message">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
+                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
+                                        <div class="col m3">
+                                            <label>Bench Location </label>
+                                            <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                            <span class="error_message">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
+                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
+
+                                        <div class="col m3">
+                                            <label>Number Of Trays </label>
+
+                                            <asp:TextBox ID="txtMoveNumberOfTrays" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <span class="error_message"></span>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Date </label>
+
+                                            <asp:TextBox ID="txtMoveDare" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <span class="error_message"></span>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Assignment </label>
+
+                                            <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                            <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                            <span class="error_message">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
+                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-auto">
+
+                                            <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
+                                        </div>
+                                        <div class="col-auto">
+
+                                            <asp:Button Text="Reset" ID="MoveReset" OnClick="MoveReset_Click" runat="server" CssClass="bttn bttn-primary bttn-action" />
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+
                             </div>
                         </div>
 
@@ -853,7 +916,7 @@
                                             <div class="portlet-body">
                                                 <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                              
+
                                                         <asp:Panel ID="Panel1" runat="server">
                                                             <div class="row" style="margin-left: 15px;">
                                                                 <%-- <div class="col-lg-4">
@@ -921,7 +984,7 @@
                                                                 <div class="col-lg-4">
                                                                     <div style="margin-top: 9%;">
                                                                         <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
-                                                                                  <triggers>  
+                                                                        <triggers>  
   
          <asp:PostBackTrigger ControlID="btngeneraltasksave" />  
   
@@ -935,12 +998,12 @@
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>
-                                        </div>
-                                    </div>
+                </div>
+            </div>
 
-                                </div>
-                            </div>
-                        </div>
+        </div>
+    </div>
+    </div>
                     </div>
                 </div>
 

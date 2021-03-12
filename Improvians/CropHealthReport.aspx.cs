@@ -60,7 +60,7 @@ namespace Evo
 
                 BindSupervisor();
 
-
+                BindFacility();
                 BindSupervisorList();
                 BindFertilizer();
                 BindJobCode("");
@@ -445,6 +445,17 @@ namespace Evo
             ddlChemical_supervisor.DataValueField = "ID";
             ddlChemical_supervisor.DataBind();
             ddlChemical_supervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
+            ddlLogisticManager.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlLogisticManager.DataTextField = "EmployeeName";
+            ddlLogisticManager.DataValueField = "ID";
+            ddlLogisticManager.DataBind();
+            ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
+
 
         }
         public void BindChemical()
@@ -1419,7 +1430,46 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
 
+        public void BindFacility()
+        {
+            ddlToFacility.DataSource = objBAL.GetMainLocation();
+            ddlToFacility.DataTextField = "l1";
+            ddlToFacility.DataValueField = "l1";
+            ddlToFacility.DataBind();
+            ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlToFacility.SelectedValue = Session["Facility"].ToString();
+            BindBench_Location();
+        }
+
+        public void BindBench_Location()
+        {
+            //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
+            ddlToGreenHouse.DataSource = objBAL.GetLocation(ddlToFacility.SelectedValue);
+            ddlToGreenHouse.DataTextField = "p2";
+            ddlToGreenHouse.DataValueField = "p2";
+            ddlToGreenHouse.DataBind();
+            ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+
+        }
+
+
         protected void btnChemicalReset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlToFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindBench_Location();
+        }
+
+        protected void btnMoveSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void MoveReset_Click(object sender, EventArgs e)
         {
 
         }
