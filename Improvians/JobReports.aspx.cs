@@ -15,6 +15,7 @@ namespace Evo
 {
     public partial class JobReports : System.Web.UI.Page
     {
+        public static string JobCode;
         CommonControlNavision objNav = new CommonControlNavision();
         BAL_CommonMasters objBAL = new BAL_CommonMasters();
         CommonControl objCommon = new CommonControl();
@@ -29,34 +30,20 @@ namespace Evo
                 if (string.IsNullOrEmpty(JobCode))
                 {
                     divFilter.Visible = true;
+                    divFilter1.Visible = true;
                     BindBenchLocation(Session["Facility"].ToString());
                 }
                 else
-                {
-                    BindGridOne(JobCode);
-                    JobCode = Request.QueryString["jobCode"];
+                {                   
+                    BindGridOne();
                 }
 
             }
-        }
+        }    
 
-        private string JobCode
-        {
-            get
-            {
-                if (ViewState["JobCode"] != null)
-                {
-                    return (string)ViewState["JobCode"];
-                }
-                return "";
-            }
-            set
-            {
-                ViewState["JobCode"] = value;
-            }
-        }
 
-        public void BindGridOne(string jobCode)
+
+        public void BindGridOne()
         {
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
@@ -64,7 +51,7 @@ namespace Evo
             DataTable dt4 = new DataTable();
             DataTable dt5 = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobID", jobCode);
+            nv.Add("@JobID", JobCode);
             DataSet ds = objCommon.GetDataSet("GetJobTracibilityReport", nv);
             dt = ds.Tables[0];
             dt2 = ds.Tables[1];
@@ -106,18 +93,20 @@ namespace Evo
         }
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridOne(ddlJobNo.SelectedValue);
+            JobCode = ddlJobNo.SelectedValue.Trim();
+            BindGridOne();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridOne(txtSearchJobNo.Text.Trim());
+            JobCode = txtSearchJobNo.Text.Trim();
+            BindGridOne();
         }
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "JB";
-            BindGridOne(txtSearchJobNo.Text);
+            BindGridOne();
         }
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
@@ -148,6 +137,77 @@ namespace Evo
                     }
                     conn.Close();
                     return customers;
+                }
+            }
+        }
+        protected void GV5_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GV5.EditIndex = e.NewEditIndex;
+            Label lblTray = (Label)(GV5.Rows[GV5.EditIndex].FindControl("lblTrays"));
+            Label lblLocation = (Label)(GV5.Rows[GV5.EditIndex].FindControl("lblGHD"));
+            Session["trays"] = lblTray.Text;
+            Session["location"] = lblLocation.Text;
+            BindGridOne();
+            //DropDownList ddlPbx = (DropDownList)(GV5.Rows[GV5.EditIndex].FindControl("ddlBenchLocation"));
+            //if (ddlPbx != null)
+            //    ddlPbx.DataSource = objBAL.GetLocation(Session["Facility"].ToString());
+            //ddlPbx.DataTextField = "p2";
+            //ddlPbx.DataValueField = "p2";
+            //ddlPbx.DataBind();
+            //ddlPbx.Items.Insert(0, new ListItem("--- Select ---", ""));
+
+        }
+
+        protected void GV5_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+            Label lblid = GV5.Rows[e.RowIndex].FindControl("lblgrowerId") as Label;
+
+            HiddenField field = GV5.Rows[e.RowIndex].FindControl("HiddenField1") as HiddenField;
+            TextBox city = GV5.Rows[e.RowIndex].FindControl("txt_Name") as TextBox;
+            DropDownList ddlBenchLocation = GV5.Rows[e.RowIndex].FindControl("ddlBenchLocation") as DropDownList;
+            long result1 = 0;
+            General objGeneral = new General();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@GrowerPutAwayID", lblid.Text);
+            nv1.Add("@GreenHouseID", ddlBenchLocation.SelectedValue);
+            nv1.Add("@Trays", city.Text);
+            nv1.Add("@JobId", JobCode);
+            nv1.Add("@FromLocation", Session["location"].ToString());
+            nv1.Add("@ToLocation", ddlBenchLocation.SelectedValue);
+            nv1.Add("@OldTotalTrays", Session["trays"].ToString());
+            nv1.Add("@NewTotalTrays", city.Text);
+            nv1.Add("@UserId", Session["LoginID"].ToString());
+            result1 = objCommon.GetDataInsertORUpdate("UpdateJobFacilityHouseDetail", nv1);
+
+
+            GV5.EditIndex = -1;
+            //Call ShowData method for displaying updated data  
+            BindGridOne();
+        }
+
+        protected void GV5_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GV5.EditIndex = -1;
+            BindGridOne();
+        }
+
+        protected void GV5_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+                    DataSet ds = new DataSet();
+                    DropDownList ddList = (DropDownList)e.Row.FindControl("ddlBenchLocation");
+
+                    ddList.DataSource = objBAL.GetLocation(Session["Facility"].ToString()); ;
+                    ddList.DataTextField = "p2";
+                    ddList.DataValueField = "p2";
+                    ddList.DataBind();
+
+                    //DataRowView dr = e.Row.DataItem as DataRowView;
+                    // ddList.SelectedValue = dr["department_id"].ToString();
                 }
             }
         }
