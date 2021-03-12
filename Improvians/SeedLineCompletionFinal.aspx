@@ -55,7 +55,7 @@
                                                     <td>
                                                         <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")%>'></asp:Label></td>
                                                      <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
-
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Item</td>

@@ -702,7 +702,7 @@ namespace Evo
 
                 nv.Add("@LoginId", Session["LoginID"].ToString());
 
-                result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetails", nv);
+                result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
 
 
             }
