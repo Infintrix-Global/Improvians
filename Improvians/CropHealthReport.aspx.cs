@@ -1604,15 +1604,16 @@ namespace Evo
         {
             using (SqlConnection conn = new SqlConnection())
             {
-                conn.ConnectionString = ConfigurationManager
-                        .ConnectionStrings["EvoNavision"].ConnectionString;
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                  
-                   // string A= Facility;
                     //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
-                    cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
-                    " AND t.[Job No_] like '" + prefixText + "%'";
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;
                     conn.Open();

@@ -33,7 +33,9 @@
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblGTAID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                                <asp:Label ID="Label1" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

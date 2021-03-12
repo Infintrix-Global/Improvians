@@ -22,8 +22,11 @@
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                <asp:Label ID="lblID" runat="server" Text='<%# Eval("JobCode")  %>'></asp:Label>
-                                                   <asp:Label ID="lblMoveAssignID" runat="server" Visible="false" Text='<%# Eval("Sh_Co_AssignId")  %>'></asp:Label>
+                                                <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("JobCode")  %>'></asp:Label>
+
+                                                <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+
+                                                <asp:Label ID="lblMoveAssignID" runat="server" Visible="false" Text='<%# Eval("Sh_Co_AssignId")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -74,17 +77,16 @@
 
                                         <asp:TemplateField HeaderText="Trays Left To be Moved" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                              
-                                                  <asp:Label ID="lblTraysRequest" runat="server" ></asp:Label>
+
+                                                <asp:Label ID="lblTraysRequest" runat="server"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                     <%--   <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
+                                        <%--   <asp:TemplateField HeaderText="#" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSelect" runat="server" Text="Select" CssClass="bttn bttn-primary bttn-action" CommandName="Select1" CommandArgument='<%# Container.DataItemIndex %>'></asp:Button>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -104,11 +106,11 @@
 
             </div>
 
-            <div  runat="server" id="AddDetails"  class="dashboard__block dashboard__block--asign">
+            <div runat="server" id="AddDetails" class="dashboard__block dashboard__block--asign">
                 <h3>Put Away Completion</h3>
                 <div class="row">
                     <div class="col">
-                      <%--  <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>--%>
+                        <%--  <asp:Label ID="lblToFacility" runat="server" Visible="false"></asp:Label>--%>
                         <asp:Label ID="lblMoveAssignID" runat="server" Visible="false"></asp:Label>
                         <label>Remaining Trays:</label>
                         <asp:Label ID="lblRemainingTrays" runat="server"></asp:Label>
