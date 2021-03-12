@@ -287,8 +287,8 @@ namespace Evo
 
                         TodatDate1 = System.DateTime.Now.ToShortDateString();
 
-                        if (Irrigationdt != null && Irrigationdt.Rows.Count > 0)
-                        {
+                        if (Irrigationdt != null && Irrigationdt.Rows.Count > 0 && Irrigationdt.Rows[0]["ResetSprayTaskForDays"]!=null)
+                        {                          
                             ReSetIrrigateDate = Convert.ToDateTime(Irrigationdt.Rows[0]["CreatedOn"]).AddDays(Convert.ToInt32(Irrigationdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
                         }
 
