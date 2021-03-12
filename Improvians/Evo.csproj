@@ -294,14 +294,12 @@
     <Content Include="IrrigationRequestForm.aspx" />
     <Content Include="IrrigationTaskAssignment.aspx" />
     <Content Include="IrrJobBuildUp.aspx" />
-    <Content Include="JS1\jquery.min.js" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\popper.min.js" />
     <Content Include="js\slick.min.js" />
-    <Content Include="log.txt" />
     <Content Include="Login.aspx" />
     <Content Include="MoveCompletionForm.aspx" />
     <Content Include="MoveForm.aspx" />
