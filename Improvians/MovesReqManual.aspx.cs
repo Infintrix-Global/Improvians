@@ -66,6 +66,7 @@ namespace Evo
             ddlToFacility.DataBind();
             ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
+
             BindBenchLocation(Session["Facility"].ToString());
         }
 

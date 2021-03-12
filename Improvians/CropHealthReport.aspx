@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeFile="CropHealthReport.aspx.cs" Inherits="Evo.CropHealthReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="CropHealthReport.aspx.cs" Inherits="Evo.CropHealthReport" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -95,8 +95,8 @@
             </h2>
             <asp:Panel ID="PanelList" runat="server">
 
-               
-                    <div class="row">
+
+                <div class="row">
 
                     <div class="col-lg-3">
 
@@ -128,29 +128,29 @@
                     </div>
 
                 </div>
-                      <br />
-                    <div class="row">
-                       
-                        <div class="col-lg-3">
-                            <label>Bench Location </label>
-                            <span style="color: red">*</span>
-                            <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                            <span class="error_message">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
-                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                            </span>
-                        </div>
-                        <div class="col-lg-3">
-                            <label>Job No </label>
-                            <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
-                        </div>
-                        <div class="col-lg-3">
-                            <label>Customer </label>
-                            <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-lg-3">
+                        <label>Bench Location </label>
+                        <span style="color: red">*</span>
+                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <span class="error_message">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
+                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </span>
                     </div>
-             
-                
+                    <div class="col-lg-3">
+                        <label>Job No </label>
+                        <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Customer </label>
+                        <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                </div>
+
+
 
                 <div class="row">
                     <div class=" col m12">
@@ -412,18 +412,18 @@
                             <div class="col-lg-3">
                                 <label>&nbsp; </label>
                                 <div id="divLaptop" runat="server" visible="false">
-                                  <%--  <asp:FileUpload ID="FileUpload1" runat="server" name="files[]" AllowMultiple="true" Width="100%" Height="45px" />--%>
+                                    <%--  <asp:FileUpload ID="FileUpload1" runat="server" name="files[]" AllowMultiple="true" Width="100%" Height="45px" />--%>
 
-    
-                                   <%-- <div class="field" align="left">
+
+                                    <%-- <div class="field" align="left">
                                         <h3>Upload your images</h3>--%>
-                                    
-                                        <input type="file" id="files" name="files" multiple />
-                                  <%--  </div>--%>
+
+                                    <input type="file" id="files" name="files" multiple />
+                                    <%--  </div>--%>
                                 </div>
                                 <asp:Label ID="lblMessage" ForeColor="Green" runat="server" />
                                 <div id="divMobile" runat="server" visible="false">
-                                    <input type="file"  accept="image/*;capture=camera" id="takePictureField" name="takePictureField" multiple/>
+                                    <input type="file" accept="image/*;capture=camera" id="takePictureField" name="takePictureField" multiple />
                                     <div class="row">
                                         <div class="col m6">
                                             <img id="yourimage" runat="server" width="320" height="240" />
@@ -552,7 +552,7 @@
                                 <div class="row">
                                     <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
                                         <asp:Button Text="Submit" ID="btngerminationSumit" CssClass="bttn bttn-primary bttn-action" OnClick="btngerminationSumit_Click" runat="server" />
-                                        
+
                                         <asp:Button Text="Reset" ID="btngerminationReset" runat="server" OnClick="btngerminationReset_Click" CssClass="bttn bttn-primary bttn-action" />
                                     </div>
                                 </div>
@@ -568,20 +568,20 @@
                                         <label class="d-block">Assignment</label>
                                         <asp:DropDownList ID="ddlFertilizationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                    
+
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label class="d-block">Spray Date</label>
                                         <asp:TextBox ID="txtFDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
-                                   
+
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                          <label class="d-block">
+                                        <label class="d-block">
                                             Fertilizer
                                         </label>
                                         <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                       <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                          </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                    </div>
                                     <div class="mb-3 col-xl-2 col-md-6 col-12">
                                         <label class="d-block">Concentration [ppm]</label>
                                         <asp:TextBox ID="txtQty" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
@@ -632,63 +632,91 @@
                                 <br />
                                 <h2 class="text-left">Chemical</h2>
                                 <br />
-                                <div class="row align-items-end">
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label class="d-block">Assignment</label>
-                                        <asp:DropDownList ID="ddlChemicalSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                    </div>
-                                    
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label class="d-block">Spray Date</label>
-                                        <asp:TextBox ID="TextBox1" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label class="d-block">
-                                            Chemical
-                                        </label>
-                                        <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                    </div>
-                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
-                                        <label class="d-block">Concentration [ppm]</label>
-                                        <asp:TextBox ID="TextBox2" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
-                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
-                                        <label class="d-block">Trays</label>
-                                        <asp:TextBox ID="TextBox3" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
-                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
-                                        <label class="d-block">SQFT of Bench</label>
-                                        <asp:TextBox ID="TextBox4" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Bench Irrigation Flow Rate [Gallons/min]</label>
-                                        <asp:TextBox ID="TextBox5" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <%--   <div class="row align-items-end">--%>
+                                <asp:Panel ID="Panel2" runat="server">
+                                    <div class="row">
 
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
-                                        <asp:TextBox ID="TextBox6" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <div class="col-lg-3">
+                                            <label class="d-block">Assignment </label>
+                                            <asp:DropDownList ID="ddlChemical_supervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Spray Coverage per minutes [sqft/min]</label>
-                                        <asp:TextBox ID="TextBox7" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Reset Spray Task For Days</label>
-                                        <asp:TextBox ID="TextBox8" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                    </div>
-                                    <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
+                                        </div>
 
 
-                                        <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="Button1" CssClass="mr-2 bttn bttn-primary" runat="server"  />
+                                        <div class="col-lg-3">
 
-                                        <asp:Button Text="Reset" ID="Button2" runat="server" CssClass="bttn bttn-primary"  />
+                                            <label>
+                                                <asp:Label ID="lbltype" runat="server" Text="Chemical"></asp:Label></label><br />
+                                            <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label class="d-block">Method</label>
+
+                                            <asp:DropDownList ID="ddlMethod" Width="250px" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal">
+                                                <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
+                                                <asp:ListItem Text="Hand" Value="Hand"></asp:ListItem>
+                                                <asp:ListItem Text="Avion" Value="Avion"></asp:ListItem>
+                                                <asp:ListItem Text="Drench" Value="Drench"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Chemical Spray Date </label>
+
+                                            <asp:TextBox ID="txtChemicalSprayDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <span class="error_message"></span>
+                                        </div>
+                                        <div class="col-lg-3">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+
+
+                                        <div class="col-lg-3">
+                                            <label>Trays</label>
+                                            <asp:Label ID="Label5" runat="server" Visible="false"></asp:Label>
+                                            <asp:TextBox ID="txtChemicalTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>SQFT of Bench </label>
+
+                                            <asp:TextBox ID="txtChemicaSQFTofBench" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <span class="error_message">
+                                                <asp:Label ID="Label6" runat="server" ForeColor="red"></asp:Label>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
+                                                    SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Reset Spray Task For Days</label>
+                                            <asp:TextBox ID="txtResetChemicalSprayTask" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Comments</label>
+                                            <asp:TextBox ID="txtChemicalComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                        </div>
+
                                     </div>
 
-                                </div>
+
+
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnChemicalSubmit_Click" />
+
+                                            <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnChemicalReset_Click" />
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+
+                                <%-- </div>--%>
                             </div>
                         </div>
 
@@ -775,7 +803,70 @@
 
                         <div id="move_request" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
-                                Assign task form for Move Request
+
+                                <br />
+                                <h2 class="text-left">Assign task form for Move Request</h2>
+                                <br />
+
+
+                                <asp:Panel ID="Panel3" runat="server">
+
+                                    <div class="row">
+
+                                        <div class="col m3">
+                                            <label>To Facility Location </label>
+                                            <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
+                                            <span class="error_message">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
+                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
+                                        <div class="col m3">
+                                            <label>Bench Location </label>
+                                            <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                            <span class="error_message">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
+                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
+
+                                        <div class="col m3">
+                                            <label>Number Of Trays </label>
+
+                                            <asp:TextBox ID="txtMoveNumberOfTrays" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <span class="error_message"></span>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Date </label>
+
+                                            <asp:TextBox ID="txtMoveDare" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <span class="error_message"></span>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Assignment </label>
+
+                                            <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                            <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                            <span class="error_message">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
+                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-auto">
+
+                                            <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
+                                        </div>
+                                        <div class="col-auto">
+
+                                            <asp:Button Text="Reset" ID="MoveReset" OnClick="MoveReset_Click" runat="server" CssClass="bttn bttn-primary bttn-action" />
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+
                             </div>
                         </div>
 
@@ -823,8 +914,9 @@
                                         <div class="portlet light ">
 
                                             <div class="portlet-body">
-                                               <%-- <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
-                                                    <ContentTemplate>--%>
+                                                <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
+                                                    <ContentTemplate>
+
                                                         <asp:Panel ID="Panel1" runat="server">
                                                             <div class="row" style="margin-left: 15px;">
                                                                 <%-- <div class="col-lg-4">
@@ -859,7 +951,7 @@
                                                                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
                                                                     </span>
                                                                 </div>
-                                                                
+
                                                                 <div class="col-lg-4">
                                                                     <label>Comments</label>
                                                                     <asp:TextBox ID="txtgeneralCommnet" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
@@ -892,22 +984,26 @@
                                                                 <div class="col-lg-4">
                                                                     <div style="margin-top: 9%;">
                                                                         <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
-                                                                        
+                                                                        <triggers>  
+  
+         <asp:PostBackTrigger ControlID="btngeneraltasksave" />  
+  
+</triggers>
                                                                         <asp:Button Text="Submit" ID="btngeneraltasksave" type="submit" CssClass="bttn bttn-primary bttn-action" OnClick="btngeneraltasksave_Click" runat="server" />
-                                                                        <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server"  Visible="false"/>
+                                                                        <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </asp:Panel>
-                                             <%--       </ContentTemplate>
-                                                </asp:UpdatePanel>--%>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
                                             </div>
-                                        </div>
-                                    </div>
+                </div>
+            </div>
 
-                                </div>
-                            </div>
-                        </div>
+        </div>
+    </div>
+    </div>
                     </div>
                 </div>
 
