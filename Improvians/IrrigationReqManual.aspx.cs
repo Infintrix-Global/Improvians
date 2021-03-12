@@ -22,6 +22,7 @@ namespace Evo
             {
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindSupervisorList();
+                BindBenchLocation(Session["Facility"].ToString());
             }
         }
 

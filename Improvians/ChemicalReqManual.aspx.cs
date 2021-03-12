@@ -28,6 +28,7 @@ namespace Evo
             {
                 BindSupervisor();
                 BindFertilizer();
+                BindBenchLocation(Session["Facility"].ToString());
                 Bindcname();
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 dtTrays.Clear();
@@ -554,7 +555,7 @@ namespace Evo
                 Bench = (row.FindControl("lblGreenHouse") as Label).Text;
             }
             txtTrays.Text = tray.ToString();
-            BindSQFTofBench(ddlBenchLocation.SelectedItem.Text);
+            BindSQFTofBench("'" + ddlBenchLocation.SelectedItem.Text + "'");
 
         }
 
