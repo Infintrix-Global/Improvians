@@ -95,8 +95,8 @@
             </h2>
             <asp:Panel ID="PanelList" runat="server">
 
-               
-                    <div class="row">
+
+                <div class="row">
 
                     <div class="col-lg-3">
 
@@ -128,29 +128,29 @@
                     </div>
 
                 </div>
-                      <br />
-                    <div class="row">
-                       
-                        <div class="col-lg-3">
-                            <label>Bench Location </label>
-                            <span style="color: red">*</span>
-                            <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                            <span class="error_message">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
-                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                            </span>
-                        </div>
-                        <div class="col-lg-3">
-                            <label>Job No </label>
-                            <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
-                        </div>
-                        <div class="col-lg-3">
-                            <label>Customer </label>
-                            <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-lg-3">
+                        <label>Bench Location </label>
+                        <span style="color: red">*</span>
+                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <span class="error_message">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
+                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </span>
                     </div>
-             
-                
+                    <div class="col-lg-3">
+                        <label>Job No </label>
+                        <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Customer </label>
+                        <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    </div>
+                </div>
+
+
 
                 <div class="row">
                     <div class=" col m12">
@@ -412,18 +412,18 @@
                             <div class="col-lg-3">
                                 <label>&nbsp; </label>
                                 <div id="divLaptop" runat="server" visible="false">
-                                  <%--  <asp:FileUpload ID="FileUpload1" runat="server" name="files[]" AllowMultiple="true" Width="100%" Height="45px" />--%>
+                                    <%--  <asp:FileUpload ID="FileUpload1" runat="server" name="files[]" AllowMultiple="true" Width="100%" Height="45px" />--%>
 
-    
-                                   <%-- <div class="field" align="left">
+
+                                    <%-- <div class="field" align="left">
                                         <h3>Upload your images</h3>--%>
-                                    
-                                        <input type="file" id="files" name="files" multiple />
-                                  <%--  </div>--%>
+
+                                    <input type="file" id="files" name="files" multiple />
+                                    <%--  </div>--%>
                                 </div>
                                 <asp:Label ID="lblMessage" ForeColor="Green" runat="server" />
                                 <div id="divMobile" runat="server" visible="false">
-                                    <input type="file"  accept="image/*;capture=camera" id="takePictureField" name="takePictureField" multiple/>
+                                    <input type="file" accept="image/*;capture=camera" id="takePictureField" name="takePictureField" multiple />
                                     <div class="row">
                                         <div class="col m6">
                                             <img id="yourimage" runat="server" width="320" height="240" />
@@ -552,7 +552,7 @@
                                 <div class="row">
                                     <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
                                         <asp:Button Text="Submit" ID="btngerminationSumit" CssClass="bttn bttn-primary bttn-action" OnClick="btngerminationSumit_Click" runat="server" />
-                                        
+
                                         <asp:Button Text="Reset" ID="btngerminationReset" runat="server" OnClick="btngerminationReset_Click" CssClass="bttn bttn-primary bttn-action" />
                                     </div>
                                 </div>
@@ -568,20 +568,20 @@
                                         <label class="d-block">Assignment</label>
                                         <asp:DropDownList ID="ddlFertilizationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                    
+
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label class="d-block">Spray Date</label>
                                         <asp:TextBox ID="txtFDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
-                                   
+
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                          <label class="d-block">
+                                        <label class="d-block">
                                             Fertilizer
                                         </label>
                                         <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                       <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                          </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                    </div>
                                     <div class="mb-3 col-xl-2 col-md-6 col-12">
                                         <label class="d-block">Concentration [ppm]</label>
                                         <asp:TextBox ID="txtQty" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
@@ -637,7 +637,7 @@
                                         <label class="d-block">Assignment</label>
                                         <asp:DropDownList ID="ddlChemicalSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                    
+
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label class="d-block">Spray Date</label>
                                         <asp:TextBox ID="TextBox1" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
@@ -683,9 +683,9 @@
                                     <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
 
 
-                                        <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="Button1" CssClass="mr-2 bttn bttn-primary" runat="server"  />
+                                        <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="Button1" CssClass="mr-2 bttn bttn-primary" runat="server" />
 
-                                        <asp:Button Text="Reset" ID="Button2" runat="server" CssClass="bttn bttn-primary"  />
+                                        <asp:Button Text="Reset" ID="Button2" runat="server" CssClass="bttn bttn-primary" />
                                     </div>
 
                                 </div>
@@ -823,8 +823,9 @@
                                         <div class="portlet light ">
 
                                             <div class="portlet-body">
-                                               <%-- <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
-                                                    <ContentTemplate>--%>
+                                                <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
+                                                    <ContentTemplate>
+                                              
                                                         <asp:Panel ID="Panel1" runat="server">
                                                             <div class="row" style="margin-left: 15px;">
                                                                 <%-- <div class="col-lg-4">
@@ -859,7 +860,7 @@
                                                                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
                                                                     </span>
                                                                 </div>
-                                                                
+
                                                                 <div class="col-lg-4">
                                                                     <label>Comments</label>
                                                                     <asp:TextBox ID="txtgeneralCommnet" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
@@ -892,15 +893,19 @@
                                                                 <div class="col-lg-4">
                                                                     <div style="margin-top: 9%;">
                                                                         <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
-                                                                        
+                                                                                  <triggers>  
+  
+         <asp:PostBackTrigger ControlID="btngeneraltasksave" />  
+  
+</triggers>
                                                                         <asp:Button Text="Submit" ID="btngeneraltasksave" type="submit" CssClass="bttn bttn-primary bttn-action" OnClick="btngeneraltasksave_Click" runat="server" />
-                                                                        <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server"  Visible="false"/>
+                                                                        <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </asp:Panel>
-                                             <%--       </ContentTemplate>
-                                                </asp:UpdatePanel>--%>
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
                                             </div>
                                         </div>
                                     </div>
