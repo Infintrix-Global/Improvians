@@ -203,7 +203,7 @@
                                             </ItemTemplate>
 
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Fertilizer">
+                                        <asp:TemplateField HeaderText="Chemical">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
                                             </ItemTemplate>

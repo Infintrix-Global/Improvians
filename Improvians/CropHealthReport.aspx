@@ -632,63 +632,91 @@
                                 <br />
                                 <h2 class="text-left">Chemical</h2>
                                 <br />
-                                <div class="row align-items-end">
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label class="d-block">Assignment</label>
-                                        <asp:DropDownList ID="ddlChemicalSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                    </div>
+                             <%--   <div class="row align-items-end">--%>
+                                   <asp:Panel ID="Panel2" runat="server">
+                                    <div class="row">
 
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label class="d-block">Spray Date</label>
-                                        <asp:TextBox ID="TextBox1" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label class="d-block">
-                                            Chemical
-                                        </label>
-                                        <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                    </div>
-                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
-                                        <label class="d-block">Concentration [ppm]</label>
-                                        <asp:TextBox ID="TextBox2" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
-                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
-                                        <label class="d-block">Trays</label>
-                                        <asp:TextBox ID="TextBox3" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
-                                    <div class="mb-3 col-xl-2 col-md-6 col-12">
-                                        <label class="d-block">SQFT of Bench</label>
-                                        <asp:TextBox ID="TextBox4" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Bench Irrigation Flow Rate [Gallons/min]</label>
-                                        <asp:TextBox ID="TextBox5" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <div class="col-lg-3">
+                                            <label class="d-block">Assignment </label>
+                                            <asp:DropDownList ID="ddlChemical_supervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
-                                        <asp:TextBox ID="TextBox6" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Spray Coverage per minutes [sqft/min]</label>
-                                        <asp:TextBox ID="TextBox7" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                    </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Reset Spray Task For Days</label>
-                                        <asp:TextBox ID="TextBox8" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                    </div>
-                                    <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
+                                        </div>
 
 
-                                        <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="Button1" CssClass="mr-2 bttn bttn-primary" runat="server" />
+                                        <div class="col-lg-3">
 
-                                        <asp:Button Text="Reset" ID="Button2" runat="server" CssClass="bttn bttn-primary" />
+                                            <label>
+                                                <asp:Label ID="lbltype" runat="server" Text="Chemical"></asp:Label></label><br />
+                                            <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label class="d-block">Method</label>
+
+                                            <asp:DropDownList ID="ddlMethod" Width="250px" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal">
+                                                <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
+                                                <asp:ListItem Text="Hand" Value="Hand"></asp:ListItem>
+                                                <asp:ListItem Text="Avion" Value="Avion"></asp:ListItem>
+                                                <asp:ListItem Text="Drench" Value="Drench"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Chemical Spray Date </label>
+
+                                            <asp:TextBox ID="txtChemicalSprayDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <span class="error_message"></span>
+                                        </div>
+                                        <div class="col-lg-3">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+
+
+                                        <div class="col-lg-3">
+                                            <label>Trays</label>
+                                            <asp:Label ID="Label5" runat="server" Visible="false"></asp:Label>
+                                            <asp:TextBox ID="txtChemicalTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>SQFT of Bench </label>
+
+                                            <asp:TextBox ID="txtChemicaSQFTofBench" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
+                                            <span class="error_message">
+                                                <asp:Label ID="Label6" runat="server" ForeColor="red"></asp:Label>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
+                                                    SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Reset Spray Task For Days</label>
+                                            <asp:TextBox ID="txtResetChemicalSprayTask" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Comments</label>
+                                            <asp:TextBox ID="txtChemicalComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                        </div>
+
                                     </div>
 
-                                </div>
+
+
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnChemicalSubmit_Click" />
+
+                                            <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnChemicalReset_Click" />
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+
+                               <%-- </div>--%>
                             </div>
                         </div>
 

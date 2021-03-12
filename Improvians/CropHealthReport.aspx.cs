@@ -26,6 +26,8 @@ namespace Evo
 
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
+        public static DataTable dtCTrays = new DataTable()
+        { Columns = { "Fertilizer", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
         BAL_CommonMasters objBAL = new BAL_CommonMasters();
         CommonControl objCommon = new CommonControl();
@@ -116,7 +118,8 @@ namespace Evo
             }
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
-
+            txtChemicalTrays.Text = tray.ToString();
+         
             if (BatchLocd != string.Empty)
                 BindSQFTofBench(BatchLocd);
 
@@ -167,9 +170,10 @@ namespace Evo
             }
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
+            txtChemicalTrays.Text = tray.ToString();
 
 
-            BindSQFTofBench("'" + BatchLocd + "'");
+            BindSQFTofBench(BatchLocd);
         }
 
 
@@ -380,10 +384,11 @@ namespace Evo
             txtSQFT.Text = "0.00";
             if (!string.IsNullOrEmpty(benchLoc))
             {
-                DataTable dtSQFT = objFer.GetSQFTofBench(benchLoc);
+                DataTable dtSQFT = objFer.GetSQFTofBench("'" + benchLoc + "'" );
                 if (dtSQFT != null && dtSQFT.Rows.Count > 0)
                 {
                     txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
+                    txtChemicaSQFTofBench.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
                 }
             }
         }
@@ -434,6 +439,12 @@ namespace Evo
             ddlplant_readySupervisor.DataBind();
             ddlplant_readySupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
+            ddlChemical_supervisor.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlChemical_supervisor.DataTextField = "EmployeeName";
+            ddlChemical_supervisor.DataValueField = "ID";
+            ddlChemical_supervisor.DataBind();
+            ddlChemical_supervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
         public void BindChemical()
@@ -561,7 +572,7 @@ namespace Evo
                 nv4.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv4.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
                 nv4.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                nv4.Add("@Facility", "");
+                nv4.Add("@Facility", Session["Facility"].ToString());
                 nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
                 nv4.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
                 nv4.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
@@ -1278,6 +1289,139 @@ namespace Evo
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
+        }
+
+        protected void btnChemicalSubmit_Click(object sender, EventArgs e)
+        {
+            string Batchlocation = "";
+            int ChemicalCode = 0;
+            DataTable dt = new DataTable();
+            NameValueCollection nv14 = new NameValueCollection();
+
+            nv14.Add("@Mode", "16");
+            dt = objCommon.GetDataTable("GET_Common", nv14);
+            ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
+
+            if (Chid == "")
+            {
+                long result = 0;
+                long imgresult = 0;
+                string folderPath = "";
+                NameValueCollection nv = new NameValueCollection();
+                
+                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+                nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
+                nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
+                nv.Add("@NoTrays", txtTrays.Text);
+                nv.Add("@PerDamage", percentageDamage.Text);
+                nv.Add("@Date", txtDate.Text);
+                nv.Add("@Filepath", folderPath);
+                nv.Add("@CropHealthCommit", txtcomments.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFile file = Request.Files[i];
+                    if (file.ContentLength > 0)
+                    {
+                        string fname = Path.GetFileName(file.FileName);
+                        NameValueCollection nvimg = new NameValueCollection();
+                        folderPath = Server.MapPath("~/images/");
+                        file.SaveAs(folderPath + Path.GetFileName(fname));
+                        nv.Add("@chid ", result.ToString());
+                        nv.Add("@ImageName", fname);
+                        nv.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
+                    }
+                }
+                foreach (GridViewRow row in gvFer.Rows)
+                {
+                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                    if (chckrw.Checked == true)
+                    {
+
+
+                        long result1 = 0;
+                        NameValueCollection nv1 = new NameValueCollection();
+                        nv1.Add("@chid", result.ToString());
+                        nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                        nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                        nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                        nv1.Add("@loc_seedline", Session["Facility"].ToString());
+                        nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                        nv1.Add("@seedsreceived", "");
+                        nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv1.Add("@SoDate", "");
+                        nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                    }
+
+                }
+
+                if (result > 0)
+                {
+                    Chid = result.ToString();
+                    BindGridCropHealth();
+                    BindSupervisorList();
+                    PanelView.Visible = false;
+                    PanelList.Visible = true;
+                }
+
+            }
+
+
+
+            foreach (GridViewRow row in GridViewView.Rows)
+            {
+
+               
+
+                long result3 = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
+                nv.Add("@Type", "Chemical");
+                nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                nv.Add("@Facility", Session["Facility"].ToString());
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                //nv.Add("@WorkOrder", lblwo.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@ChemicalCode", ChemicalCode.ToString());
+                nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
+                nv.Add("@Comments", txtChemicalComments.Text);
+                nv.Add("@Method", ddlMethod.SelectedValue);
+                result3 = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
+                Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
+            }
+
+            dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
+            objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtChemicalComments.Text);
+
+            long result16 = 0;
+            NameValueCollection nv11 = new NameValueCollection();
+            nv11.Add("@Chid", Chid);
+            result16 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
+
+        protected void btnChemicalReset_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

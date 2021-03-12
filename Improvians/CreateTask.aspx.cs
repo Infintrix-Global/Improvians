@@ -22,6 +22,9 @@ namespace Evo
     {
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
+
+        public static DataTable dtCTrays = new DataTable()
+        { Columns = { "Fertilizer", "Tray", "SQFT" } };
         CommonControlNavision objNav = new CommonControlNavision();
         BAL_CommonMasters objBAL = new BAL_CommonMasters();
         CommonControl objCommon = new CommonControl();
@@ -378,7 +381,7 @@ namespace Evo
             }
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
-
+            txtChemicalTrays.Text = tray.ToString();
             //   BindSQFTofBench(BatchLocd);
 
 
@@ -503,11 +506,15 @@ namespace Evo
             if (dtSQFT != null && dtSQFT.Rows.Count > 0)
             {
                 txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
+                txtChemicalSQFTofBench.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
             }
             else
             {
                 txtSQFT.Text = "0.00";
+                txtChemicalSQFTofBench.Text = "0.00";
             }
+
+
         }
         public void BindSupervisor()
         {
@@ -556,6 +563,12 @@ namespace Evo
             ddlplant_readySupervisor.DataBind();
             ddlplant_readySupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
+            ddlChemical_supervisor.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlChemical_supervisor.DataTextField = "EmployeeName";
+            ddlChemical_supervisor.DataValueField = "ID";
+            ddlChemical_supervisor.DataBind();
+            ddlChemical_supervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
         public void BindChemical()
@@ -957,5 +970,56 @@ namespace Evo
             }
         }
 
+        protected void btnChemicalReset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnChemicalSubmit_Click(object sender, EventArgs e)
+        {
+            int ChemicalCode = 0;
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mode", "16");
+            dt = objCommon.GetDataTable("GET_Common", nv1);
+            ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
+
+
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
+                nv.Add("@Type", "Chemical");
+                nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                //nv.Add("@WorkOrder", lblwo.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@ChemicalCode", ChemicalCode.ToString());
+                nv.Add("@ChemicalDate",txtChemicalSprayDate.Text);
+                nv.Add("@Comments", txtChemicalComments.Text);
+                nv.Add("@Method", ddlMethod.SelectedValue);
+                result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
+            }
+
+            dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
+            objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtChemicalComments.Text);
+
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
     }
 }
