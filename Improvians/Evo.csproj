@@ -183,8 +183,6 @@
     <Content Include="Admin\login.html" />
     <Content Include="Admin\sw.js" />
     <Content Include="Admin\ViewEmployee.aspx" />
-    <Content Include="bin\ajaxcontroltoolkit.dll" />
-    <Content Include="bin\itextsharp.dll" />
     <Content Include="ChemicalJobBuildUp.aspx" />
     <Content Include="ChemicalReqManual.aspx" />
     <Content Include="ChemicalTaskCompletion.aspx" />
@@ -947,6 +945,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="uploads\" />
   </ItemGroup>
   <PropertyGroup>

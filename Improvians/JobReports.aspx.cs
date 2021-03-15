@@ -64,6 +64,7 @@ namespace Evo
 
         public void BindGridOne()
         {
+            string chkSelected = "";
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
             DataTable dt3 = new DataTable();
@@ -88,6 +89,45 @@ namespace Evo
             GV4.DataBind();
             GV5.DataBind();
 
+            int P = 0;
+            string Q = "";
+            if (dt5.Rows.Count > 0)
+            {
+                DataColumn col = dt5.Columns["GreenHouseID"];
+                foreach (DataRow row in dt5.Rows)
+                {
+                    //strJsonData = row[col].ToString();
+
+                    P = 1;
+                    Q += "'" + row[col].ToString() + "',";
+                }
+            }
+
+            if (P > 0)
+            {
+                chkSelected = Q.Remove(Q.Length - 1, 1);
+
+            }
+            else
+            {
+
+            }
+            BindSQFTofBench(chkSelected);
+
+
+            decimal tray = 0;
+            string BatchLocd = string.Empty;
+            foreach (GridViewRow row in GV5.Rows)
+            {
+                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
+                //{
+                tray = tray + Convert.ToDecimal((row.FindControl("lblTrays") as Label).Text);
+                //}
+                // BatchLocd = (row.FindControl("lblGreenHouse1") as Label).Text;
+            }
+            txtTGerTrays.Text = "10";
+            txtFTrays.Text = tray.ToString();
+            txtChemicalTrays.Text = tray.ToString();
         }
         public void BindBenchLocation(string ddlMain)
         {
@@ -344,7 +384,7 @@ namespace Evo
         {
             foreach (GridViewRow row1 in GV5.Rows)
             {
-
+                dtTrays.Clear();
                 string Batchlocation = "";
                 int FertilizationCode = 0;
                 DataTable dt = new DataTable();
@@ -375,13 +415,13 @@ namespace Evo
                     nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv4.Add("@FertilizationDate", txtFDate.Text);
                     result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
-                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+                   // Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
                 }
 
                 dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-                objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, (row1.FindControl("lblGHD") as Label).Text, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
             }
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -431,7 +471,7 @@ namespace Evo
                     nv.Add("@GreenHouseID", (row1.FindControl("lblGHD") as Label).Text);
                     nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
+                    nv.Add("@Seeddate", (row.FindControl("lblActualDate") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
                     nv.Add("@InspectionDueDate", txtGerDate.Text);
@@ -685,6 +725,8 @@ namespace Evo
         {
             foreach (GridViewRow row1 in GV5.Rows)
             {
+                dtCTrays.Clear();
+                
                 int ChemicalCode = 0;
                 DataTable dt = new DataTable();
                 NameValueCollection nv1 = new NameValueCollection();
@@ -701,8 +743,8 @@ namespace Evo
                     nv.Add("@Type", "Chemical");
                     nv.Add("@Jobcode", JobCode);
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                    nv.Add("@Item", Session["Facility"].ToString());
-                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", Session["Facility"].ToString());
                     //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                     nv.Add("@GreenHouseID", (row1.FindControl("lblGHD") as Label).Text);
                     nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
