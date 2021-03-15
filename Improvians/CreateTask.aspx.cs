@@ -389,9 +389,7 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
-            //   BindSQFTofBench(BatchLocd);
-
-
+           
         }
 
 
