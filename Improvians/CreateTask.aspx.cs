@@ -389,9 +389,7 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
-            //   BindSQFTofBench(BatchLocd);
-
-
+           
         }
 
 
@@ -652,7 +650,7 @@ namespace Evo
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtcomments.Text.Trim());
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -708,7 +706,7 @@ namespace Evo
                 nv.Add("@TraysInspected", txtTGerTrays.Text);
 
                 nv.Add("@LoginId", Session["LoginID"].ToString());
-                nv.Add("@Comments", txtcomments.Text);
+                nv.Add("@Comments", txtGcomments.Text);
 
                 result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
 
@@ -760,7 +758,7 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
                 // nv.Add("@OperatorID", Session["LoginID"].ToString());
                 //nv.Add("@wo", wo);
-                nv.Add("@Comments", txtcomments.Text.Trim());
+                nv.Add("@Comments", txtgeneralCommnet.Text.Trim());
                 nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text.Trim());
@@ -853,7 +851,7 @@ namespace Evo
                 nv.Add("@IrrigationDuration", "");
                 nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
                 //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                nv.Add("@Nots", txtcomments.Text.Trim());
+                nv.Add("@Nots", txtIrrComments.Text.Trim());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
 
@@ -901,7 +899,7 @@ namespace Evo
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@ChId", "0");
-                nv.Add("@Comments", txtcomments.Text.Trim());
+                nv.Add("@Comments", txtPlantComments.Text.Trim());
                 result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
 
 
@@ -1021,13 +1019,13 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@ChemicalCode", ChemicalCode.ToString());
                 nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                nv.Add("@Comments", txtcomments.Text);
+                nv.Add("@Comments", txtCComments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
             }
 
             dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtcomments.Text);
+            objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -1100,7 +1098,7 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                 nv.Add("@ChId", "0");
-                nv.Add("@Comments", txtcomments.Text.Trim());
+                nv.Add("@Comments", txtMoveComments.Text.Trim());
                 result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
 
             }

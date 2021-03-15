@@ -213,15 +213,6 @@ namespace Evo
         protected global::System.Web.UI.WebControls.GridView gvFer;
 
         /// <summary>
-        /// txtcomments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcomments;
-
-        /// <summary>
         /// ddlgerminationSupervisor control.
         /// </summary>
         /// <remarks>
@@ -247,6 +238,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTGerTrays;
+
+        /// <summary>
+        /// txtGcomments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGcomments;
 
         /// <summary>
         /// btngerminationSumit control.
@@ -355,6 +355,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSprayCoverageperminutes;
+
+        /// <summary>
+        /// txtFComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFComments;
 
         /// <summary>
         /// btnFSubmit control.
@@ -483,6 +492,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtResetChemicalSprayTask;
 
         /// <summary>
+        /// txtCComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCComments;
+
+        /// <summary>
         /// btnChemicalSubmit control.
         /// </summary>
         /// <remarks>
@@ -537,6 +555,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtirrigationResetSprayTaskForDays;
 
         /// <summary>
+        /// txtIrrComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIrrComments;
+
+        /// <summary>
         /// btnirrigationSubmit control.
         /// </summary>
         /// <remarks>
@@ -562,6 +589,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlplant_readySupervisor;
+
+        /// <summary>
+        /// txtPlantComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPlantComments;
 
         /// <summary>
         /// btnplant_readySubmit control.
@@ -663,6 +699,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator18;
 
         /// <summary>
+        /// txtMoveComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMoveComments;
+
+        /// <summary>
         /// btnMoveSubmit control.
         /// </summary>
         /// <remarks>
@@ -742,6 +787,24 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator10;
+
+        /// <summary>
+        /// txtgeneralCommnet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtgeneralCommnet;
+
+        /// <summary>
+        /// RequiredFieldValidator11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator11;
 
         /// <summary>
         /// divFrom control.
