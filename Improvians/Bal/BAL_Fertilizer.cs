@@ -21,7 +21,7 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "	select i.No_, i.No_ + ' ** ' + i.Description as Name from [GTI$Item] i " +
+                strQuery = "	select i.No_, i.Description+' ** '+ i.No_ as Name from [GTI$Item] i " +
                     " where i.[Gen_ Prod_ Posting Group] in ('CHEMICALS') ORDER BY i.No_";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
@@ -40,7 +40,7 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select i.No_, i.No_ + ' ** ' + i.Description as Name from [GTI$Item] i " +
+                strQuery = "select i.No_,i.Description+' ** '+ i.No_ as Name from [GTI$Item] i " +
                     " where i.[Gen_ Prod_ Posting Group] in ('FERTILIZER') ORDER BY i.No_";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 

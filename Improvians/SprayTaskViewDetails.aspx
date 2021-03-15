@@ -228,7 +228,7 @@
                                             </ItemTemplate>
 
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Bench Irrigation Flow Rate [Gallons/min]">
+                                       <%-- <asp:TemplateField HeaderText="Bench Irrigation Flow Rate [Gallons/min]">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblBenchIrrigationFlowRat" runat="server" Text='<%#Bind("BenchIrrigationFlowRat") %>'></asp:Label>
@@ -254,7 +254,7 @@
 
                                             </ItemTemplate>
 
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                     </Columns>
                                     <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
                                     <PagerSettings Mode="NumericFirstLast" />

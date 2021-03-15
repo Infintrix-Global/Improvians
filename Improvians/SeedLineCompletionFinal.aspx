@@ -53,7 +53,7 @@
                                                 <tr>
                                                     <td>Job No.</td>
                                                     <td>
-                                                        <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")%>'></asp:Label></td>
+                                                        <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")%>'></asp:Label>
                                                      <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
                                                     </td>
                                                 </tr>
@@ -61,7 +61,9 @@
                                                     <td>Item</td>
                                                     <td>
 
-                                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label></td>
+                                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+
+                                                    </td>
 
                                                 </tr>
                                                 <tr>

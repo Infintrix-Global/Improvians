@@ -617,7 +617,7 @@ namespace Evo
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, Batchlocation, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation,"","","", txtResetSprayTaskForDays.Text,txtcomments.Text);
             long result16 = 0;
             NameValueCollection nv11 = new NameValueCollection();
             nv11.Add("@Chid", Chid);
@@ -737,6 +737,7 @@ namespace Evo
                 nv.Add("@TraysInspected", txtTGerTrays.Text);
                 nv.Add("@Chid", Chid);
                 nv.Add("@LoginId", Session["LoginID"].ToString());
+                nv.Add("@Comments",txtcomments.Text);
 
                 result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
             }
@@ -788,7 +789,7 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
                 // nv.Add("@OperatorID", Session["LoginID"].ToString());
                 //nv.Add("@wo", wo);
-                nv.Add("@Comments", txtgeneralCommnet.Text.Trim());
+                nv.Add("@Comments", txtcomments.Text.Trim());
                 nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text.Trim());
@@ -967,7 +968,7 @@ namespace Evo
                 nv.Add("@IrrigationDuration", "");
                 nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
                 //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                nv.Add("@Nots", txtirrigationNotes.Text.Trim());
+                nv.Add("@Nots", txtcomments.Text.Trim());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
 
@@ -1097,8 +1098,8 @@ namespace Evo
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@ChId", Chid);
-
-                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaNew", nv);
+                nv.Add("@Comments", txtcomments.Text.Trim());
+                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
 
 
             }
@@ -1396,14 +1397,14 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@ChemicalCode", ChemicalCode.ToString());
                 nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                nv.Add("@Comments", txtChemicalComments.Text);
+                nv.Add("@Comments", txtcomments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
                 result3 = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
             }
 
             dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtChemicalComments.Text);
+            objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtcomments.Text);
 
             long result16 = 0;
             NameValueCollection nv11 = new NameValueCollection();
@@ -1455,11 +1456,7 @@ namespace Evo
             BindBench_Location();
         }
 
-        public string Method1()
-        {
-            return "Hello World";
-        }
-
+       
         protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
             if (Chid == "")
@@ -1563,7 +1560,9 @@ namespace Evo
                 nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
                 nv.Add("@TraySize", (row.FindControl("lblTraySiz1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                result16 = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManual", nv);
+                nv.Add("@ChId", Chid);
+                nv.Add("@Comments",txtcomments.Text.Trim());
+                result16 = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
 
             }
 
