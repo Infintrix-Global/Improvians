@@ -83,6 +83,7 @@
                                                 <ItemTemplate>
 
                                                     <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
+                                                        <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -194,7 +195,7 @@
 
             <div class="row">
                 <div class=" col m12">
-                    <div class="mb-2"><strong>Routing Steps</strong></div>
+                    <div class="mb-2"><strong>Job History</strong></div>
                     <div class="portlet light ">
 
                         <div class="portlet-body">
@@ -253,7 +254,58 @@
             </div>
 
             <hr class="my-4">
+            <div class="row">
+                <div class=" col m12">
+                    <div class="mb-2"><strong>Plant Profile Details</strong></div>
+                    <div class="portlet light ">
 
+                        <div class="portlet-body">
+
+                            <asp:Panel ID="Panel7" runat="server">
+                                <div class="data__table">
+                                    <asp:GridView ID="GV6" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                        class="striped" AllowSorting="true"
+                                        GridLines="None" PageSize="10"
+                                        ShowHeaderWhenEmpty="True" Width="100%">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Posting Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+
+                                                    <asp:Label ID="lblSD" runat="server" Text='<%# Eval("activitycode")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Actual Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+
+                                                    <asp:Label ID="lblCD" runat="server" Text='<%# Eval("actual_date")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Due Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+
+                                                    <asp:Label ID="lblLOTID" runat="server" Text='<%# Eval("due_date")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Planning Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+
+                                                    <asp:Label ID="lblNS" runat="server" Text='<%# Eval("plan_date")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <hr class="my-4">
             <div class="row">
                 <div class=" col m12">
                     <div class="mb-2"><strong>Facility/House Detail</strong></div>

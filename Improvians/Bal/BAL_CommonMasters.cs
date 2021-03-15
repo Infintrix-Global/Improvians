@@ -38,6 +38,21 @@ namespace Evo.Bal
             return dt;
         }
 
+        public DataTable GetSeedLotWithDate(string JobCode)
+        {
+            Evo_General objGeneral = new Evo_General();
+            DataTable dt = new DataTable();
+            try
+            {                
+                strQuery = "select Date as SeededDate,Date as CreatedOn, l.[Lot No_] as LotID, CAST(CAST ((l.Quantity * -1)as int) as nvarchar(max)) as NumberOfSeed  from[GTI$IA Lot Entry] l where l.[Source Document No_] = '" + JobCode + "'";
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
         public DataTable GetSeedLotNofset(string SeedlotNo)
         {
             Evo_General objGeneral = new Evo_General();
