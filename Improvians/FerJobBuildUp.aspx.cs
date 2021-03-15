@@ -475,6 +475,7 @@ namespace Evo
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv.Add("@FertilizationDate", txtDate.Text);
+
                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
                 }
                 else
