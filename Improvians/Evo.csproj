@@ -182,6 +182,7 @@
     <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\login.html" />
     <Content Include="Admin\sw.js" />
+    <Content Include="Admin\ViewPlantProductionProfile.aspx" />
     <Content Include="Admin\ViewEmployee.aspx" />
     <Content Include="bin\ajaxcontroltoolkit.dll" />
     <Content Include="bin\itextsharp.dll" />
@@ -380,6 +381,13 @@
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewPlantProductionProfile.aspx.cs">
+      <DependentUpon>ViewPlantProductionProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewPlantProductionProfile.aspx.designer.cs">
+      <DependentUpon>ViewPlantProductionProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ViewEmployee.aspx.cs">
       <DependentUpon>ViewEmployee.aspx</DependentUpon>

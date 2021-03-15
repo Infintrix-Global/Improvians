@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -112,7 +113,10 @@ namespace Evo.Admin
             }
         }
 
-       
+        internal long GetDataInsertORUpdate(string v, NameValueCollection nv1)
+        {
+            throw new NotImplementedException();
+        }
 
         public void SendMailForgotPassword(string Email)
         {
@@ -313,6 +317,25 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+        public int UpdateDateShift(ProfilePlanner obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@pid", obj.pid);
+                objGeneral.AddParameterWithValueToSQLCommand("@dateshift", obj.dateshift);
+               
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateDateShift");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
         public int UpdateEmployee(Employee objEmployee)
         {
             int _isInserted = -1;
@@ -353,6 +376,23 @@ namespace Evo.Admin
             return ds.Tables[0];
         }
 
+        public DataTable GetPlanProductionProfile(string code,string activitycode,string traycode)
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@Crop", code);
+                objGeneral.AddParameterWithValueToSQLCommand("@trayCode", traycode);
+                objGeneral.AddParameterWithValueToSQLCommand("@activityCode", activitycode);
+                ds = objGeneral.GetDatasetByCommand_SP("GetPlanProductProfileDetail");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+
         public DataTable GetDepartmentMaster()
         {
             try
@@ -367,7 +407,48 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
+        public DataTable GETCrop()
+        {
+            try
+            {
 
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 17);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+        public DataTable GETActivityCode()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 18);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+        public DataTable GETTrayCode()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 19);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
         public DataTable GetRoleMaster()
         {
             try
@@ -455,6 +536,12 @@ public class Employee
  
 }
 
+public class ProfilePlanner
+{
+    public int pid { get; set; }
+
+    public int dateshift { get; set; }
+}
 
 
 
