@@ -550,22 +550,7 @@
                                     <div class="col-xl-3">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <label>Comments </label>
 
-                                        <asp:TextBox ID="TextBox1" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                    </div>
-
-
-                                </div>
                                 <br />
                                 <div class="row">
                                     <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
@@ -602,7 +587,7 @@
                                     </div>
                                     <div class="mb-3 col-xl-2 col-md-6 col-12">
                                         <label class="d-block">Concentration [ppm]</label>
-                                        <asp:TextBox ID="txtQty" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <asp:TextBox ID="txtQty" TextMode="Number" Text="150" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
                                     <div class="mb-3 col-xl-2 col-md-6 col-12">
                                         <label class="d-block">Trays</label>
@@ -612,7 +597,7 @@
                                         <label class="d-block">SQFT of Bench</label>
                                         <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                    <%--<div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label>Bench Irrigation Flow Rate [Gallons/min]</label>
                                         <asp:TextBox ID="txtBenchIrrigationFlowRate" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
@@ -626,16 +611,13 @@
                                         <label>Spray Coverage per minutes [sqft/min]</label>
                                         <asp:TextBox ID="txtSprayCoverageperminutes" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
-                                    </div>
+                                    </div>--%>
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label>Reset Spray Task For Days</label>
                                         <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                     </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                         <label>Comments</label>
-                                        <asp:TextBox ID="TextBox2" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
+
 
                                     <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
 
@@ -719,11 +701,11 @@
                                             <asp:TextBox ID="txtResetChemicalSprayTask" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                         </div>
-                                        <div class="col-lg-3">
+                                      <%--  <div class="col-lg-3">
                                             <label>Comments</label>
                                             <asp:TextBox ID="txtChemicalComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
-                                        </div>
+                                        </div>--%>
 
                                     </div>
 
@@ -762,7 +744,7 @@
                                             <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="col-xl-3">
 
                                         <div class="d-flex flex-wrap align-items-center">
@@ -776,14 +758,15 @@
 
                                     </div>
                                 </div>
-                                <div class="row">
+                                <br />
+                               <%-- <div class="row">
                                     <div class="col-xl-3">
 
-                                        <label class="d-block">Notes:</label>
+                                        <label class="d-block">Comments:</label>
                                         <asp:TextBox ID="txtirrigationNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
                                     </div>
 
-                                </div>
+                                </div>--%>
                                 <div class="row">
 
                                     <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
@@ -815,10 +798,7 @@
                                         <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
                                     </div>
-                                      <div class="mb-3 mb-md-0 col-12 col-md-auto">
-                                         <label>Comments</label>
-                                        <asp:TextBox ID="TextBox3" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
+                                   
                                     <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                                         <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
 
@@ -980,7 +960,7 @@
                                                                     </span>
                                                                 </div>
 
-                                                                <div class="col-lg-4">
+                                                              <%--  <div class="col-lg-4">
                                                                     <label>Comments</label>
                                                                     <asp:TextBox ID="txtgeneralCommnet" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
@@ -988,7 +968,7 @@
                                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
                                                                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
                                                                     </span>
-                                                                </div>
+                                                                </div>--%>
 
                                                                 <div class="col-lg-4" id="divFrom" style="display: none;" runat="server">
                                                                     <label>From</label>

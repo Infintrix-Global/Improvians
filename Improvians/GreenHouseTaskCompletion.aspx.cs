@@ -318,6 +318,7 @@ namespace Evo
                     count += int.Parse(Request.Form["ctl00$ContentPlaceHolder1$TextBoxRow_1" + "Col_" + j]);
                     //Response.Write(Request.Form["TextBoxRow_" + i + "Col_" + j] + "<BR/>");
                 }
+
             }
             lblbadplants.Text = count.ToString();
             Decimal germ = Convert.ToDecimal(count) / (Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(txtTrays.Text));
