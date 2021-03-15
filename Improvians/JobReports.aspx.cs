@@ -38,7 +38,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                string JobCode = Request.QueryString["jobCode"];
+                JobCode = Request.QueryString["jobCode"];
                 if (string.IsNullOrEmpty(JobCode))
                 {
                     divFilter.Visible = true;
