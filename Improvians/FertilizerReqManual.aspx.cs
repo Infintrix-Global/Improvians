@@ -451,7 +451,7 @@ namespace Evo
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
             //   objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode,ddlBenchLocation.SelectedItem.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, ddlBenchLocation.SelectedItem.Text, txtBenchIrrigationFlowRate.Text, txtBenchIrrigationCoverage.Text, txtSprayCoverageperminutes.Text, txtResetSprayTaskForDays.Text);
+            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, ddlBenchLocation.SelectedItem.Text,"","","", txtResetSprayTaskForDays.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -476,9 +476,9 @@ namespace Evo
             ddlBenchLocation.SelectedIndex = 0;
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
-            txtBenchIrrigationFlowRate.Text = "";
-            txtBenchIrrigationCoverage.Text = "";
-            txtSprayCoverageperminutes.Text = "";
+            //txtBenchIrrigationFlowRate.Text = "";
+            //txtBenchIrrigationCoverage.Text = "";
+            //txtSprayCoverageperminutes.Text = "";
             txtQty.Text = "";
             txtSQFT.Text = "";
             txtTrays.Text = "";

@@ -73,6 +73,42 @@ namespace Evo.BAL_Classes
             return _isInserted;
         }
 
+
+        public int AddFertilizerRequestDetailsCreatTask(DataTable dt, string FertilizationID, int FertilizationCode, string bencLoc, string BenchIrrigationFlowRat, string BenchIrrigationCoverage, string SprayCoverageperminutes, string ResetSprayTaskForDays,string Comments)
+        {
+            int _isInserted = -1;
+            try
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    objGeneral.ClearParameters();
+                    objGeneral.AddParameterWithValueToSQLCommand("@FertilizationID", FertilizationID);
+                    objGeneral.AddParameterWithValueToSQLCommand("@Fertilizer", dt.Rows[i]["Fertilizer"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@Quantity", dt.Rows[i]["Quantity"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@Unit", dt.Rows[i]["Unit"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@Tray", dt.Rows[i]["Tray"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@SQFT", dt.Rows[i]["SQFT"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@FertilizationCode", FertilizationCode.ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@GreenHouseID", bencLoc);
+                    objGeneral.AddParameterWithValueToSQLCommand("@BenchIrrigationFlowRat", BenchIrrigationFlowRat);
+                    objGeneral.AddParameterWithValueToSQLCommand("@BenchIrrigationCoverage", BenchIrrigationCoverage);
+                    objGeneral.AddParameterWithValueToSQLCommand("@SprayCoverageperminutes", SprayCoverageperminutes);
+                    objGeneral.AddParameterWithValueToSQLCommand("@ResetSprayTaskForDays", ResetSprayTaskForDays);
+                    objGeneral.AddParameterWithValueToSQLCommand("@Comments", Comments);
+
+
+                    _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddFertilizerDetailsCreateTask");
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+
+
         public int AddChemicalRequestDetails(DataTable dt, string FertilizationID, int FertilizationCode, string bencLoc, string ResetSprayTaskForDays,string Method, string Comments)
         {
             int _isInserted = -1;
