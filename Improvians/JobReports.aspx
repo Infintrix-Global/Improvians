@@ -83,6 +83,7 @@
                                                 <ItemTemplate>
 
                                                     <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
+                                                        <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -194,7 +195,7 @@
 
             <div class="row">
                 <div class=" col m12">
-                    <div class="mb-2"><strong>Routing Steps</strong></div>
+                    <div class="mb-2"><strong>Job History</strong></div>
                     <div class="portlet light ">
 
                         <div class="portlet-body">

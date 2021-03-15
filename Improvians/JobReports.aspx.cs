@@ -23,10 +23,11 @@ namespace Evo
         BAL_CommonMasters objBAL = new BAL_CommonMasters();
         CommonControl objCommon = new CommonControl();
         BAL_Fertilizer objFer = new BAL_Fertilizer();
-        //  BAL_Task objTask = new BAL_Task();
+        clsCommonMasters objMaster = new clsCommonMasters();
         BAL_Task objTask = new BAL_Task();
-        static string ReceiverEmail = "";
+        Bal_SeedingPlan objSP = new Bal_SeedingPlan();
 
+        static string ReceiverEmail = "";
 
 
         public static DataTable dtTrays = new DataTable()
@@ -79,6 +80,12 @@ namespace Evo
             dt5 = ds.Tables[4];
             gv1.DataSource = dt;
             GV2.DataSource = dt2;
+            DataTable dtTrays = objBAL.GetSeedLotWithDate(JobCode);
+            if (dt3.Rows.Count==0 && dtTrays != null)
+            {
+                dt3.Merge(dtTrays);
+                dt3.AcceptChanges();
+            }
             Gv3.DataSource = dt3;
             GV4.DataSource = dt4;
             GV5.DataSource = dt5;
@@ -87,6 +94,7 @@ namespace Evo
             Gv3.DataBind();
             GV4.DataBind();
             GV5.DataBind();
+           
 
         }
         public void BindBenchLocation(string ddlMain)
@@ -423,7 +431,7 @@ namespace Evo
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@jobcode",JobCode);
+                nv.Add("@jobcode", JobCode);
                 nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
                 nv.Add("@Facility", Session["Facility"].ToString());
                 nv.Add("@GreenHouseID", "");
@@ -565,7 +573,7 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
 
-                nv.Add("@Jobcode",JobCode);
+                nv.Add("@Jobcode", JobCode);
                 nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
                 nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
                 nv.Add("@Facility", Session["Facility"].ToString());
@@ -671,8 +679,8 @@ namespace Evo
 
         }
 
-      
-     
+
+
         protected void btnChemicalReset_Click(object sender, EventArgs e)
         {
 
@@ -699,7 +707,7 @@ namespace Evo
                 nv.Add("@Item", Session["Facility"].ToString());
                 nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
                 //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@GreenHouseID","");
+                nv.Add("@GreenHouseID", "");
                 nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
                 nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
