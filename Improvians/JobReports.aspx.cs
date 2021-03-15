@@ -761,7 +761,7 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@ChemicalCode", ChemicalCode.ToString());
                 nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                nv.Add("@Comments", txtcomments.Text);
+               // nv.Add("@Comments", txtcomments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
             }
