@@ -317,19 +317,6 @@
                 </div>
             </div>
 
-            <br />
-            <div class="row">
-                <div class="col-xl-6">
-                    <label>Comments </label>
-
-                    <asp:TextBox ID="txtcomments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-
-                </div>
-                <div class="col-xl-6">
-                </div>
-
-            </div>
-            <br />
             <h4 class="mt-4 mt-lg-3">Task Requests:</h4>
 
             <div class="task_request_assignments" id="task_request-group">
@@ -414,9 +401,15 @@
                                     <asp:TextBox ID="txtTGerTrays" TextMode="Number" runat="server" class="input__control robotomd"></asp:TextBox>
                                 </div>
                                 <div class="col-xl-3">
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtGcomments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
                                 </div>
                             </div>
                             <br />
+                            <br />
+
                             <div class="row">
                                 <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
                                     <asp:Button Text="Submit" ID="btngerminationSumit" CssClass="bttn bttn-primary bttn-action" OnClick="btngerminationSumit_Click" runat="server" />
@@ -468,6 +461,13 @@
                                     <asp:TextBox ID="txtBenchIrrigationFlowRate" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                     <asp:TextBox ID="txtBenchIrrigationCoverage" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                     <asp:TextBox ID="txtSprayCoverageperminutes" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                </div>
+
+                                <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtFComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
                                 </div>
                                 <%--<div class="mb-3 col-xl-3 col-md-6 col-12">
@@ -567,7 +567,12 @@
 
                                     </div>
 
+                                    <div class="col-lg-3">
+                                        <label>Comments </label>
 
+                                        <asp:TextBox ID="txtCComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                    </div>
                                 </div>
 
 
@@ -618,6 +623,16 @@
 
                                 </div>
                             </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-xl-3">
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtIrrComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                </div>
+                            </div>
+
 
                             <div class="row">
 
@@ -650,6 +665,15 @@
                                     <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
                                 </div>
+
+
+                                <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtPlantComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                </div>
+
                                 <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                                     <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
 
@@ -711,6 +735,14 @@
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
                                                 SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label>Comments </label>
+
+                                        <asp:TextBox ID="txtMoveComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -808,7 +840,7 @@
                                                                 </span>
                                                             </div>
 
-                                                            <%-- <div class="col-lg-4">
+                                                            <div class="col-lg-4">
                                                                 <label>Comments</label>
                                                                 <asp:TextBox ID="txtgeneralCommnet" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
@@ -816,7 +848,7 @@
                                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
                                                                         SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
                                                                 </span>
-                                                            </div>--%>
+                                                            </div>
 
                                                             <div class="col-lg-4" id="divFrom" style="display: none;" runat="server">
                                                                 <label>From</label>
