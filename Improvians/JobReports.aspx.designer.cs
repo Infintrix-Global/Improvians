@@ -159,6 +159,24 @@ namespace Evo
         protected global::System.Web.UI.WebControls.GridView GV4;
 
         /// <summary>
+        /// Panel7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel7;
+
+        /// <summary>
+        /// GV6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GV6;
+
+        /// <summary>
         /// Panel4 control.
         /// </summary>
         /// <remarks>

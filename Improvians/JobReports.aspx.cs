@@ -78,6 +78,7 @@ namespace Evo
             dt2 = ds.Tables[1];
             dt3 = ds.Tables[2];
             dt4 = ds.Tables[3];
+            GV6.DataSource = ds.Tables[5];
             dt5 = ds.Tables[4];
             gv1.DataSource = dt;
             GV2.DataSource = dt2;
@@ -94,8 +95,8 @@ namespace Evo
             GV2.DataBind();
             Gv3.DataBind();
             GV4.DataBind();
-            GV5.DataBind();
-
+            GV5.DataBind();           
+            GV6.DataBind();
             int P = 0;
             string Q = "";
             if (dt5.Rows.Count > 0)
