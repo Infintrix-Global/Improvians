@@ -54,15 +54,15 @@ namespace Evo.Admin
                     if (_isInserted == -1)
                     {
 
-                        lblmsg.Text = "Failed to Add Fertilizer";
-                        lblmsg.ForeColor = System.Drawing.Color.Red;
+                        //lblmsg.Text = "Failed to Add Fertilizer";
+                        //lblmsg.ForeColor = System.Drawing.Color.Red;
 
                     }
                   
                     else
                     {
 
-                        lblmsg.Text = "Fertilizer Added ";
+                       // lblmsg.Text = "Fertilizer Added ";
                     txtName.Text = "";
                     }
                 
