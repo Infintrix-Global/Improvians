@@ -613,7 +613,7 @@
 
                                     </div>--%>
                                     <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                        <label>Reset Spray Task For Days</label>
+                                        <label>Minimum Days Until Next Fertilization</label>
                                         <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                     </div>
@@ -697,7 +697,7 @@
                                         </div>
 
                                         <div class="col-lg-3">
-                                            <label>Reset Spray Task For Days</label>
+                                            <label>Minimum Days Until Next Chemical</label>
                                             <asp:TextBox ID="txtResetChemicalSprayTask" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                         </div>
@@ -753,7 +753,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-3">
-                                        <label class="d-block">Reset Spray Task For Days </label>
+                                        <label class="d-block">Minimum Days Until Next Irrigation </label>
                                         <asp:TextBox ID="txtirrigationResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                     </div>

@@ -53,6 +53,22 @@ namespace Evo.Bal
             }
             return dt;
         }
+
+        public DataTable GetJobHistoryDateFromNavision(string JobCode)
+        {
+            Evo_General objGeneral = new Evo_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "select w.[Activity Code] activitycode, w.Date plan_date from [GTI$IA Job Activity Scheme Line] w where w.[Job No_] = '" + JobCode + "' and w.Type = 2 and w.[Activity Code] in('SEEDING','PUTAWAY INSIDE')";
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
         public DataTable GetSeedLotNofset(string SeedlotNo)
         {
             Evo_General objGeneral = new Evo_General();
