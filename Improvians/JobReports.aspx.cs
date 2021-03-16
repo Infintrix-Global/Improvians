@@ -41,7 +41,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 JobCode = Request.QueryString["jobCode"];
-              
+
                 if (string.IsNullOrEmpty(JobCode))
                 {
                     divFilter.Visible = true;
@@ -76,6 +76,7 @@ namespace Evo
             DataTable dt3 = new DataTable();
             DataTable dt4 = new DataTable();
             DataTable dt5 = new DataTable();
+            DataTable dt6 = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
             DataSet ds = objCommon.GetDataSet("GetJobTracibilityReport", nv);
@@ -83,24 +84,33 @@ namespace Evo
             dt2 = ds.Tables[1];
             dt3 = ds.Tables[2];
             dt4 = ds.Tables[3];
-            GV6.DataSource = ds.Tables[5];
             dt5 = ds.Tables[4];
+            dt6 = ds.Tables[5];
+
             //gv1.DataSource = dt;
-          //  GV2.DataSource = dt2;
+            //  GV2.DataSource = dt2;
             DataTable dtTrays = objBAL.GetSeedLotWithDate(JobCode);
-            if (dt3.Rows.Count==0 && dtTrays != null)
+            if (dt3.Rows.Count == 0 && dtTrays != null)
             {
                 dt3.Merge(dtTrays);
                 dt3.AcceptChanges();
             }
             //Gv3.DataSource = dt3;
-            GV4.DataSource = dt4;
+
             GV5.DataSource = dt5;
             //gv1.DataBind();
-          //  GV2.DataBind();
+            //  GV2.DataBind();
             //Gv3.DataBind();
+            DataTable dthistory = objBAL.GetJobHistoryDateFromNavision(JobCode);
+            if (dt6 != null)
+            {
+                dthistory.Merge(dt6);
+                dthistory.AcceptChanges();
+            }
+            GV6.DataSource = dthistory;
+            GV4.DataSource = dt4;
             GV4.DataBind();
-            GV5.DataBind();           
+            GV5.DataBind();
             GV6.DataBind();
 
             int P = 0;
@@ -127,7 +137,7 @@ namespace Evo
             {
 
             }
-        
+
 
             decimal tray = 0;
             string BatchLocd = string.Empty;
@@ -149,40 +159,23 @@ namespace Evo
 
             string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono,j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t, [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date], m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
 
-
-            GV2.DataSource = objGeneral.GetDatasetByCommand(sql);
+            DataTable ds = objGeneral.GetDatasetByCommand(sql);
+            GV2.DataSource = ds;
             GV2.DataBind();
 
-
-
-            FillDGHeader02();
-        }
-
-        public void FillDGHeader02()
-        {
-
-
-            string sql1 = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono,j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t, [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date], m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
-
-
-            DGHead02.DataSource = objGeneral.GetDatasetByCommand(sql1);
+            DGHead02.DataSource = ds;
             DGHead02.DataBind();
 
             FillDGSeeds();
         }
 
+
         public void FillDGSeeds()
         {
             string sql2;
-
-
-            sql2 = "select le.[Item No_] seed, le.[Lot No_] lot, le.Quantity qty " + "from [GTI$Item Ledger Entry] le " + "where le.[Job No_] = '" + JobCode + "' and le.[Item Category Code] = 'SEED'";
-
+            sql2 = "select le.[Item No_] seed, le.[Lot No_] lot, (le.Quantity * -1) qty " + "from [GTI$Item Ledger Entry] le " + "where le.[Job No_] = '" + JobCode + "' and le.[Item Category Code] = 'SEED'";
             DGSeeds.DataSource = objGeneral.GetDatasetByCommand(sql2);
             DGSeeds.DataBind();
-
-
-          
         }
         public void BindBenchLocation(string ddlMain)
         {
@@ -471,7 +464,7 @@ namespace Evo
                     nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv4.Add("@FertilizationDate", txtFDate.Text);
                     result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
-                   // Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+                    // Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
                 }
 
@@ -519,19 +512,19 @@ namespace Evo
 
                     //result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
 
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@jobcode",JobCode);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@Facility", Session["Facility"].ToString());
-                nv.Add("@GreenHouseID", "");
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
-                nv.Add("@InspectionDueDate", txtGerDate.Text);
-                nv.Add("@TraysInspected", txtTGerTrays.Text);
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@jobcode", JobCode);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    nv.Add("@GreenHouseID", "");
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
+                    nv.Add("@InspectionDueDate", txtGerDate.Text);
+                    nv.Add("@TraysInspected", txtTGerTrays.Text);
 
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtGcomments.Text);
@@ -664,14 +657,14 @@ namespace Evo
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
 
-                nv.Add("@Jobcode",JobCode);
-                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@Facility", Session["Facility"].ToString());
-                nv.Add("@GreenHouseID", "");
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@Jobcode", JobCode);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    nv.Add("@GreenHouseID", "");
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
 
                     nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
@@ -782,7 +775,7 @@ namespace Evo
             foreach (GridViewRow row1 in GV5.Rows)
             {
                 dtCTrays.Clear();
-                
+
                 int ChemicalCode = 0;
                 DataTable dt = new DataTable();
                 NameValueCollection nv1 = new NameValueCollection();
@@ -791,29 +784,29 @@ namespace Evo
                 ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
 
 
-            foreach (GridViewRow row in GV2.Rows)
-            {
-                long result = 0;
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
-                nv.Add("@Type", "Chemical");
-                nv.Add("@Jobcode", JobCode);
-                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@Facility", Session["Facility"].ToString());
-                //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@GreenHouseID","");
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                //nv.Add("@WorkOrder", lblwo.Text);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-               // nv.Add("@Comments", txtcomments.Text);
-                nv.Add("@Method", ddlMethod.SelectedValue);
-                result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
-            }
+                foreach (GridViewRow row in GV2.Rows)
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
+                    nv.Add("@Type", "Chemical");
+                    nv.Add("@Jobcode", JobCode);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@GreenHouseID", "");
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    //nv.Add("@WorkOrder", lblwo.Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChemicalCode", ChemicalCode.ToString());
+                    nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
+                    // nv.Add("@Comments", txtcomments.Text);
+                    nv.Add("@Method", ddlMethod.SelectedValue);
+                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
+                }
 
                 dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
                 objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, (row1.FindControl("lblGHD") as Label).Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
