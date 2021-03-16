@@ -16,12 +16,12 @@
                     <div class="col m3">
                         <label>Filter Crop </label>
                         
-                        <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                     </div>
                     <div class="col m3">
                         <label>Activity Code </label>
                         
-                        <asp:DropDownList ID="ddlActivityCode" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlActivityCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlActivityCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                     </div>
                     <div class="col m3">
                         <label>Tray Code </label>
@@ -53,8 +53,8 @@
                             <div class="portlet-body">
                                 <div class="data__table"> 
                                     
-                                     <asp:GridView ID="gvProductionProfile" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                        class="striped" AllowSorting="true" OnRowCommand="gvProductionProfile_RowCommand"
+                                     <asp:GridView ID="gvProductionProfile" runat="server"  AutoGenerateColumns="False"
+                                        class="striped"  OnRowCommand="gvProductionProfile_RowCommand"
                                         GridLines="None" 
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
@@ -97,8 +97,7 @@
 
                                         </Columns>
 
-                                        <PagerStyle CssClass="paging" HorizontalAlign="Right" />
-                                        <PagerSettings Mode="NumericFirstLast" />
+                                      
                                         <EmptyDataTemplate>
                                             No Record Available
                                         </EmptyDataTemplate>

@@ -16,9 +16,8 @@ namespace Evo.Admin
             {
                 // BindDepartment();
                 BindCrop();
-                BindTrayCode();
-                BindActivityCode();
-
+                ddlActivityCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
+                ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
             }
         }
 
@@ -40,23 +39,8 @@ namespace Evo.Admin
             ddlCrop.DataBind();
             ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
-        public void BindActivityCode()
-        {
-            ddlActivityCode.DataSource = objCommon.GETActivityCode();
-            ddlActivityCode.DataTextField = "ActivityCode";
-            ddlActivityCode.DataValueField = "ActivityCode";
-            ddlActivityCode.DataBind();
-            ddlActivityCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
-        public void BindTrayCode()
-        {
-            ddlTrayCode.DataSource = objCommon.GETTrayCode();
-            ddlTrayCode.DataTextField = "TrayCode";
-            ddlTrayCode.DataValueField = "TrayCode";
-            ddlTrayCode.DataBind();
-            ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
-
+       
+       
         protected void btnClear_Click(object sender, EventArgs e)
         {
             ddlCrop.SelectedIndex = 0;
@@ -104,6 +88,24 @@ namespace Evo.Admin
             //        string id = ((Label)row.FindControl("lblID")).Text;
             //    }
             //}
+        }
+
+        protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlActivityCode.DataSource = objCommon.GETActivityCode(ddlCrop.SelectedValue);
+            ddlActivityCode.DataTextField = "ActivityCode";
+            ddlActivityCode.DataValueField = "ActivityCode";
+            ddlActivityCode.DataBind();
+            ddlActivityCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+        protected void ddlActivityCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlTrayCode.DataSource = objCommon.GETTrayCode(ddlActivityCode.SelectedValue);
+            ddlTrayCode.DataTextField = "TrayCode";
+            ddlTrayCode.DataValueField = "TrayCode";
+            ddlTrayCode.DataBind();
+            ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
     }
 }
