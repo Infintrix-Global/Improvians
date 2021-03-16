@@ -49,7 +49,7 @@
 
                             <asp:Panel ID="Panel1" runat="server">
                                 <div class="data__table mb-2">
-                                    <asp:GridView ID="gv1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                    <%--  <asp:GridView ID="gv1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                         class="striped" AllowSorting="true"
                                         GridLines="None" PageSize="10"
                                         ShowHeaderWhenEmpty="True" Width="100%">
@@ -63,6 +63,18 @@
 
 
                                         </Columns>
+                                    </asp:GridView>--%>
+                                    <asp:GridView ID="DGHead01" runat="server" AutoGenerateColumns="false" DataKeyNames="">
+                                        <Columns>
+                                            <asp:BoundField HeaderText="Cust Name" DataField="cname" />
+                                            <asp:BoundField HeaderText="SO No" DataField="sono" />
+                                            <asp:BoundField HeaderText="SO Line" DataField="soline" />
+                                            <asp:BoundField HeaderText="Item" DataField="itemno" />
+                                            <asp:BoundField HeaderText="Description" DataField="itemdescp" />
+                                            <asp:BoundField HeaderText="Total Trays" DataField="trays" />
+                                            <asp:BoundField HeaderText="Tray Size" DataField="ts" />
+                                            <asp:BoundField HeaderText="Seed Date" DataField="seeddt" />
+                                        </Columns>
                                     </asp:GridView>
 
                                 </div>
@@ -72,13 +84,7 @@
                                         GridLines="None" PageSize="10"
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
-                                            <%--<asp:TemplateField HeaderText="Cust. No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                   
-                                                    <asp:Label ID="lblcusno" runat="server" Text='<%# Eval("cusno")  %>'></asp:Label>
 
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Cust. Name" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
 
@@ -122,14 +128,22 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <%--  <asp:TemplateField HeaderText="Due Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>                                                  
-                                                    <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("due_date")  %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
+
+                                        </Columns>
+                                    </asp:GridView>
+
+                                    <asp:GridView ID="DGHead02" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt">
+                                        <Columns>
+                                            <asp:BoundField HeaderText="Organic" DataField="org" />
+                                            <asp:BoundField HeaderText="Qty Seeded" DataField="trays" DataFormatString="{0:###,0}" />
+                                            <asp:BoundField HeaderText="Seeded Date" DataField="seeddt" DataFormatString="{0:M/d/yy}" />
+                                            <asp:BoundField HeaderText="Plant Age" />
+                                            <asp:BoundField HeaderText="Germ %" DataField="germpct" />
+                                            <asp:BoundField HeaderText="Overage" DataField="overage" />
                                         </Columns>
                                     </asp:GridView>
                                 </div>
+
 
                             </asp:Panel>
                         </div>
@@ -141,14 +155,16 @@
 
             <div class="row">
                 <div class=" col m12">
-                    <div class="mb-2"><h3>Lot Details</h3></div>
+                    <div class="mb-2">
+                        <h3>Lot Details</h3>
+                    </div>
                     <div class="portlet light ">
 
                         <div class="portlet-body">
 
                             <asp:Panel ID="Panel2" runat="server">
                                 <div class="data__table">
-                                    <asp:GridView ID="Gv3" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                    <%-- <asp:GridView ID="Gv3" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                         class="striped" AllowSorting="true"
                                         GridLines="None" PageSize="10"
                                         ShowHeaderWhenEmpty="True" Width="100%">
@@ -183,6 +199,13 @@
                                             </asp:TemplateField>
 
                                         </Columns>
+                                    </asp:GridView>--%>
+                                    <asp:GridView ID="DGSeeds" runat="server" AutoGenerateColumns="false" DataKeyNames="">
+                                        <Columns>
+                                            <asp:BoundField HeaderText="Seed Code" DataField="seed" />
+                                            <asp:BoundField HeaderText="Lot No" DataField="lot" />
+                                            <asp:BoundField HeaderText="Qty Used" DataField="qty" DataFormatString="{0:###,0}" />
+                                        </Columns>
                                     </asp:GridView>
                                 </div>
                             </asp:Panel>
@@ -196,7 +219,9 @@
 
             <div class="row">
                 <div class=" col m12">
-                    <div class="mb-2"><h3>Plant Production Schedule</h3></div>
+                    <div class="mb-2">
+                        <h3>Plant Production Schedule</h3>
+                    </div>
                     <div class="portlet light ">
 
                         <div class="portlet-body">
@@ -215,7 +240,7 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                           <%-- <asp:TemplateField HeaderText="Actual Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <%-- <asp:TemplateField HeaderText="Actual Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
 
                                                     <asp:Label ID="lblCD" runat="server" Text='<%# Eval("actual_date")  %>'></asp:Label>
@@ -248,7 +273,9 @@
             <hr class="my-4">
             <div class="row">
                 <div class=" col m12">
-                    <div class="mb-2"><h3>Job History</h3></div>
+                    <div class="mb-2">
+                        <h3>Job History</h3>
+                    </div>
                     <div class="portlet light ">
 
                         <div class="portlet-body">
@@ -309,7 +336,9 @@
             <hr class="my-4">
             <div class="row">
                 <div class=" col m12">
-                    <div class="mb-2"><h3>Facility/House Detail</h3></div>
+                    <div class="mb-2">
+                        <h3>Facility/House Detail</h3>
+                    </div>
                     <div class="portlet light ">
 
                         <div class="portlet-body">
