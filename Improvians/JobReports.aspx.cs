@@ -102,13 +102,13 @@ namespace Evo
             //  GV2.DataBind();
             //Gv3.DataBind();
             DataTable dthistory = objBAL.GetJobHistoryDateFromNavision(JobCode);
-            if (dt6 != null)
+            if (dt6.Rows.Count>0 && dt6 != null)
             {
                 dthistory.Merge(dt6);
                 dthistory.AcceptChanges();
             }
             GV6.DataSource = dthistory;
-            GV4.DataSource = dt4;
+            GV4.DataSource = dthistory;
             GV4.DataBind();
             GV5.DataBind();
             GV6.DataBind();
