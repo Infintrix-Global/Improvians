@@ -798,8 +798,8 @@ namespace Evo
                 nv.Add("@Type", "Chemical");
                 nv.Add("@Jobcode", JobCode);
                 nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", Session["Facility"].ToString());
-                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                nv.Add("@Facility", Session["Facility"].ToString());
                 //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@GreenHouseID","");
                 nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
