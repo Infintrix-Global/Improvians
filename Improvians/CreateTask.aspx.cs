@@ -72,6 +72,7 @@ namespace Evo
 
         public void BindJobCode(string ddlBench)
         {
+            ddlJobNo.Items.Clear();
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
