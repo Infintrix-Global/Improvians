@@ -120,14 +120,14 @@ namespace Evo
             if (P > 0)
             {
                 chkSelected = Q.Remove(Q.Length - 1, 1);
+                BindSQFTofBench(chkSelected);
 
             }
             else
             {
 
             }
-            BindSQFTofBench(chkSelected);
-
+        
 
             decimal tray = 0;
             string BatchLocd = string.Empty;
