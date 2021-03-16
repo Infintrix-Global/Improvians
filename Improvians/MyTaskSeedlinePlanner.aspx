@@ -9,7 +9,7 @@
 
              <p class="pt-3">The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. Most of these tasks are auto-generated based on the plant's production profile schedule after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose.</p>
             <div style="margin-left: 90%;">
-                <asp:Button Text="Pull Data" ID="btnSubmitplanner" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" />
+              <%--  <asp:Button Text="Pull Data" ID="btnSubmitplanner" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" />--%>
             </div>
 
 
@@ -21,7 +21,8 @@
                     </div>
                     <div class="dashboard__box-desc">
                         <div class="dashboard__box-count dash_green_txt robotobold">
-                            00
+                            
+                              <asp:Label ID="lblSeedlineCount" runat="server" Text="0"></asp:Label>
                         </div>
                         <h3 class="dashboard__box-title robotomd">Seedline Planning</h3>
                         <p>Review and Assign Seeding Date, Seedline and Putaway location</p>
