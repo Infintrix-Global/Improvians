@@ -41,6 +41,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 JobCode = Request.QueryString["jobCode"];
+              
                 if (string.IsNullOrEmpty(JobCode))
                 {
                     divFilter.Visible = true;
@@ -49,6 +50,8 @@ namespace Evo
                 }
                 else
                 {
+                    divJobNo.Visible = true;
+                    lblJobNo.Text = JobCode;
                     BindGridOne();
                 }
 
