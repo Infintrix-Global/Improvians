@@ -87,6 +87,7 @@ namespace Evo
                 nv.Add("@TotalTray", Trays);
                 nv.Add("@Seeddate", seeddate);
                 nv.Add("@germcount", germcount);
+                nv.Add("@GenusCode", GenusCode);
                 _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
 
                 DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);
