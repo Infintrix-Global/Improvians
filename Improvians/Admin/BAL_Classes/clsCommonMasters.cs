@@ -421,28 +421,28 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
-        public DataTable GETActivityCode()
+        public DataTable GETActivityCode(string code)
         {
             try
             {
 
                 General objGeneral = new General();
-                objGeneral.AddParameterWithValueToSQLCommand("@mode", 18);
-                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+                objGeneral.AddParameterWithValueToSQLCommand("@crop", code);
+                ds = objGeneral.GetDatasetByCommand_SP("GetActivityCodeByCrop");
             }
             catch (Exception ex)
             {
             }
             return ds.Tables[0];
         }
-        public DataTable GETTrayCode()
+        public DataTable GETTrayCode(string activitycode)
         {
             try
             {
 
                 General objGeneral = new General();
-                objGeneral.AddParameterWithValueToSQLCommand("@mode", 19);
-                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+                objGeneral.AddParameterWithValueToSQLCommand("@activitycode", activitycode);
+                ds = objGeneral.GetDatasetByCommand_SP("GetTrayCodeByActivityCode");
             }
             catch (Exception ex)
             {

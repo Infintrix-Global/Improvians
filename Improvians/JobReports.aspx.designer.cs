@@ -105,13 +105,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
-        /// gv1 control.
+        /// DGHead01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv1;
+        protected global::System.Web.UI.WebControls.GridView DGHead01;
 
         /// <summary>
         /// GV2 control.
@@ -123,6 +123,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.GridView GV2;
 
         /// <summary>
+        /// DGHead02 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView DGHead02;
+
+        /// <summary>
         /// Panel2 control.
         /// </summary>
         /// <remarks>
@@ -132,13 +141,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Panel Panel2;
 
         /// <summary>
-        /// Gv3 control.
+        /// DGSeeds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Gv3;
+        protected global::System.Web.UI.WebControls.GridView DGSeeds;
 
         /// <summary>
         /// Panel7 control.
