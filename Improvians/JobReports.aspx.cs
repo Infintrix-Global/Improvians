@@ -26,6 +26,7 @@ namespace Evo
         clsCommonMasters objMaster = new clsCommonMasters();
         BAL_Task objTask = new BAL_Task();
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
+        Evo_General objGeneral = new Evo_General();
 
         static string ReceiverEmail = "";
 
@@ -40,6 +41,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 JobCode = Request.QueryString["jobCode"];
+              
                 if (string.IsNullOrEmpty(JobCode))
                 {
                     divFilter.Visible = true;
@@ -48,6 +50,8 @@ namespace Evo
                 }
                 else
                 {
+                    divJobNo.Visible = true;
+                    lblJobNo.Text = JobCode;
                     BindGridOne();
                 }
 
@@ -65,6 +69,7 @@ namespace Evo
 
         public void BindGridOne()
         {
+            FillDGHeader01();
             string chkSelected = "";
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
@@ -80,23 +85,24 @@ namespace Evo
             dt4 = ds.Tables[3];
             GV6.DataSource = ds.Tables[5];
             dt5 = ds.Tables[4];
-            gv1.DataSource = dt;
-            GV2.DataSource = dt2;
+            //gv1.DataSource = dt;
+          //  GV2.DataSource = dt2;
             DataTable dtTrays = objBAL.GetSeedLotWithDate(JobCode);
             if (dt3.Rows.Count==0 && dtTrays != null)
             {
                 dt3.Merge(dtTrays);
                 dt3.AcceptChanges();
             }
-            Gv3.DataSource = dt3;
+            //Gv3.DataSource = dt3;
             GV4.DataSource = dt4;
             GV5.DataSource = dt5;
-            gv1.DataBind();
-            GV2.DataBind();
-            Gv3.DataBind();
+            //gv1.DataBind();
+          //  GV2.DataBind();
+            //Gv3.DataBind();
             GV4.DataBind();
             GV5.DataBind();           
             GV6.DataBind();
+
             int P = 0;
             string Q = "";
             if (dt5.Rows.Count > 0)
@@ -136,6 +142,47 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
+        }
+
+        public void FillDGHeader01()
+        {
+
+            string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono,j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t, [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date], m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
+
+
+            GV2.DataSource = objGeneral.GetDatasetByCommand(sql);
+            GV2.DataBind();
+
+
+
+            FillDGHeader02();
+        }
+
+        public void FillDGHeader02()
+        {
+
+
+            string sql1 = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono,j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t, [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date], m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
+
+
+            DGHead02.DataSource = objGeneral.GetDatasetByCommand(sql1);
+            DGHead02.DataBind();
+
+            FillDGSeeds();
+        }
+
+        public void FillDGSeeds()
+        {
+            string sql2;
+
+
+            sql2 = "select le.[Item No_] seed, le.[Lot No_] lot, le.Quantity qty " + "from [GTI$Item Ledger Entry] le " + "where le.[Job No_] = '" + JobCode + "' and le.[Item Category Code] = 'SEED'";
+
+            DGSeeds.DataSource = objGeneral.GetDatasetByCommand(sql2);
+            DGSeeds.DataBind();
+
+
+          
         }
         public void BindBenchLocation(string ddlMain)
         {
@@ -751,8 +798,8 @@ namespace Evo
                 nv.Add("@Type", "Chemical");
                 nv.Add("@Jobcode", JobCode);
                 nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", Session["Facility"].ToString());
-                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                nv.Add("@Facility", Session["Facility"].ToString());
                 //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@GreenHouseID","");
                 nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
@@ -861,6 +908,24 @@ namespace Evo
             script += url;
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
+
+        protected void GV6_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GV6.PageIndex = e.NewPageIndex;
+            BindGridOne();
+        }
+
+        protected void GV4_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GV4.PageIndex = e.NewPageIndex;
+            BindGridOne();
+        }
+
+        protected void GV5_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GV5.PageIndex = e.NewPageIndex;
+            BindGridOne();
         }
     }
 }

@@ -24,6 +24,24 @@ namespace Evo
         protected global::System.Web.UI.ScriptManager sc1;
 
         /// <summary>
+        /// divJobNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divJobNo;
+
+        /// <summary>
+        /// lblJobNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblJobNo;
+
+        /// <summary>
         /// divFilter control.
         /// </summary>
         /// <remarks>
@@ -105,15 +123,6 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Panel Panel1;
 
         /// <summary>
-        /// gv1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv1;
-
-        /// <summary>
         /// GV2 control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GV2;
+
+        /// <summary>
+        /// DGHead02 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView DGHead02;
 
         /// <summary>
         /// Panel2 control.
@@ -132,13 +150,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Panel Panel2;
 
         /// <summary>
-        /// Gv3 control.
+        /// DGSeeds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Gv3;
+        protected global::System.Web.UI.WebControls.GridView DGSeeds;
 
         /// <summary>
         /// Panel7 control.
