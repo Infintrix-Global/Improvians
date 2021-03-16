@@ -223,11 +223,11 @@
 
                                         </Columns>
                                     </asp:GridView>--%>
-                                <asp:GridView ID="DGSeeds" runat="server" AutoGenerateColumns="false" DataKeyNames="">
+                                <asp:GridView ID="DGSeeds" runat="server" AutoGenerateColumns="false" DataKeyNames="" Width="50%">
                                     <Columns>
                                         <asp:BoundField HeaderText="Seed Code" DataField="seed" />
                                         <asp:BoundField HeaderText="Lot No" DataField="lot" />
-                                        <asp:BoundField HeaderText="Qty Used" DataField="qty" DataFormatString="{0:###,0}" />
+                                        <asp:BoundField HeaderText="Seed Quantity Used" DataField="qty" DataFormatString="{0:###,0}" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -254,9 +254,9 @@
                                 <asp:GridView ID="GV6" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" OnPageIndexChanging="GV6_PageIndexChanging"
                                     GridLines="None" PageSize="10"
-                                    ShowHeaderWhenEmpty="True" Width="100%">
+                                    ShowHeaderWhenEmpty="True" Width="50%">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Posting Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Activity Type" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblSD" runat="server" Text='<%# Eval("activitycode")  %>'></asp:Label>
