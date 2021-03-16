@@ -26,7 +26,7 @@
                     <div class="col m3">
                         <label>Tray Code </label>
                         
-                        <asp:DropDownList ID="ddlTrayCode" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlTrayCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlTrayCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                     </div>
                    <%-- <div class="col m3">
                         <label>Designation</label>
