@@ -64,7 +64,7 @@
 
                                         </Columns>
                                     </asp:GridView>--%>
-                                    <asp:GridView ID="DGHead01" runat="server" AutoGenerateColumns="false" DataKeyNames="">
+                                  <%--  <asp:GridView ID="DGHead01" runat="server" AutoGenerateColumns="false" DataKeyNames="">
                                         <Columns>
                                             <asp:BoundField HeaderText="Cust Name" DataField="cname" />
                                             <asp:BoundField HeaderText="SO No" DataField="sono" />
@@ -75,7 +75,7 @@
                                             <asp:BoundField HeaderText="Tray Size" DataField="ts" />
                                             <asp:BoundField HeaderText="Seed Date" DataField="seeddt" />
                                         </Columns>
-                                    </asp:GridView>
+                                    </asp:GridView>--%>
 
                                 </div>
                                 <div class="data__table">
@@ -85,53 +85,68 @@
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
 
-                                            <asp:TemplateField HeaderText="Cust. Name" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Cust. Name" >
                                                 <ItemTemplate>
 
                                                     <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
-                                                    <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Item. No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="SO No" >
+                                                <ItemTemplate>
+
+                                                    <asp:Label ID="lblsono" runat="server" Text='<%# Eval("sono")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="SO Line" >
+                                                <ItemTemplate>
+
+                                                    <asp:Label ID="lblsoline" runat="server" Text='<%# Eval("soline")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Item" >
                                                 <ItemTemplate>
 
                                                     <asp:Label ID="lblitem" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Crop" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Description" >
                                                 <ItemTemplate>
 
                                                     <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Size" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Size" >
                                                 <ItemTemplate>
 
-                                                    <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
+                                                    <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("ts")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="No of trays" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Total Trays" >
                                                 <ItemTemplate>
 
-                                                    <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("trays_actual")  %>'></asp:Label>
+                                                    <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("trays","{0:####}")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Actual Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Seed Date" >
                                                 <ItemTemplate>
 
-                                                    <asp:Label ID="lblActualDate" runat="server" Text='<%# Eval("actual_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                    <asp:Label ID="lblActualDate" runat="server" Text='<%# Eval("seeddt","{0:MM/dd/yyyy}")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
                                         </Columns>
                                     </asp:GridView>
-
+                                    <br />
                                     <asp:GridView ID="DGHead02" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt">
                                         <Columns>
                                             <asp:BoundField HeaderText="Organic" DataField="org" />
@@ -229,7 +244,7 @@
                             <asp:Panel ID="Panel7" runat="server">
                                 <div class="data__table">
                                     <asp:GridView ID="GV6" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                        class="striped" AllowSorting="true"
+                                        class="striped" AllowSorting="true"  OnPageIndexChanging="GV6_PageIndexChanging"
                                         GridLines="None" PageSize="10"
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
@@ -283,7 +298,7 @@
                             <asp:Panel ID="Panel3" runat="server">
                                 <div class="data__table">
                                     <asp:GridView ID="GV4" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                        class="striped" AllowSorting="true"
+                                        class="striped" AllowSorting="true" OnPageIndexChanging="GV4_PageIndexChanging"
                                         GridLines="None" PageSize="10"
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
@@ -346,7 +361,7 @@
                             <asp:Panel ID="Panel4" runat="server">
                                 <div class="data__table">
                                     <asp:GridView ID="GV5" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                        class="striped" AllowSorting="true"
+                                        class="striped" AllowSorting="true" OnPageIndexChanging="GV5_PageIndexChanging"
                                         GridLines="None" PageSize="10" OnRowDataBound="GV5_RowDataBound"
                                         ShowHeaderWhenEmpty="True" Width="100%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
                                         <Columns>
