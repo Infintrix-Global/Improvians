@@ -13,7 +13,7 @@
 
 
             <div class="row">
-                
+
                 <div class="col-lg-3">
                     <label>Bench Location </label>
 
@@ -91,7 +91,7 @@
                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                 <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -140,18 +140,22 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-
+                        <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblDateCountNo" runat="server" Text='<%# Eval("DateCountNo")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Job source" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblsource" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Job source" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblsource" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Button ID="btnSelect" runat="server" Text="Job BuildUp" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
