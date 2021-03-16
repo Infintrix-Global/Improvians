@@ -212,6 +212,7 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+            txtSearchJobNo.Text = "";
             txtSearchJobNo.Text = "JB";
             BindGridOne();
         }

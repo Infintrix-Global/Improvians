@@ -326,7 +326,7 @@
                             </div>
 
                             <div class="col-lg-3">
-                                <label>Reset Spray Task For Days</label>
+                                <label>Minimum Days Until Next Chemical</label>
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>

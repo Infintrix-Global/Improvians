@@ -551,12 +551,12 @@
                                     <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
 
-                                <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                    <label>Reset Spray Task For Days</label>
-                                    <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                    <asp:TextBox ID="txtBenchIrrigationFlowRate" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                    <asp:TextBox ID="txtBenchIrrigationCoverage" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                    <asp:TextBox ID="txtSprayCoverageperminutes" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                            <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                <label>Minimum Days Until Next Fertilization</label>
+                                <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtBenchIrrigationFlowRate" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtBenchIrrigationCoverage" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtSprayCoverageperminutes" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                 </div>
 
@@ -657,9 +657,9 @@
                                         </span>
                                     </div>
 
-                                    <div class="col-lg-3">
-                                        <label>Reset Spray Task For Days</label>
-                                        <asp:TextBox ID="txtResetChemicalSprayTask" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <div class="col-lg-3">
+                                    <label>Minimum Days Until Next Chemical</label>
+                                    <asp:TextBox ID="txtResetChemicalSprayTask" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                     </div>
 
@@ -708,14 +708,14 @@
                                 </div>
                                 <div class="col-xl-3">
 
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <span class="mr-3 mb-2 mb-sm-0">Spray Date: </span>
-                                        <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
-                                    </div>
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <span class="mr-3 mb-2 mb-sm-0">Spray Date: </span>
+                                    <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
                                 </div>
-                                <div class="col-xl-3">
-                                    <label class="d-block">Reset Spray Task For Days </label>
-                                    <asp:TextBox ID="txtirrigationResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                            </div>
+                            <div class="col-xl-3">
+                                <label class="d-block">Minimum Days Until Next Irrigation </label>
+                                <asp:TextBox ID="txtirrigationResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                 </div>
                             </div>
