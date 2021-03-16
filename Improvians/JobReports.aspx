@@ -22,7 +22,6 @@
 
                         </div>
                     </div>
-                <br />
                 <div class="row" id="divFilter" runat="server" visible="false">
 
                     <div class="col-lg-3">
@@ -281,7 +280,7 @@
                                         <asp:TemplateField HeaderText="Planning Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
-                                                <asp:Label ID="lblNS" runat="server" Text='<%# Eval("plan_date")  %>'></asp:Label>
+                                                <asp:Label ID="lblNS" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
