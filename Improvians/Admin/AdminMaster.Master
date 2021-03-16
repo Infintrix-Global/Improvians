@@ -96,6 +96,13 @@
                                 <i class="side-control fas fa-angle-right"></i>
                             </a>
                         </li>
+                        <li>
+                            <a class="current" href="master/Fertilizer.aspx" title="Master">
+                                <i class="side-icon far fa-user"></i>
+                                <span class="side-title">Master</span>
+                                <i class="side-control fas fa-angle-right"></i>
+                            </a>
+                           
                     </ul>
                 </div>
             </aside>

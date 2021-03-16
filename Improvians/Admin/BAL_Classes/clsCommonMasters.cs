@@ -317,6 +317,25 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+        public int InsertFertilzerMaster(FertilizerMaster obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@Name", obj.FertilizerName);
+                objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
+                
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddFertilzerMaster");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
         public int UpdateDateShift(ProfilePlanner obj)
         {
             int _isInserted = -1;
@@ -376,21 +395,53 @@ namespace Evo.Admin
             return ds.Tables[0];
         }
 
-        public DataTable GetPlanProductionProfile(string code,string activitycode,string traycode)
+        public DataTable GetAllFertilizerList()
         {
             try
             {
 
                 General objGeneral = new General();
-                objGeneral.AddParameterWithValueToSQLCommand("@Crop", code);
-                objGeneral.AddParameterWithValueToSQLCommand("@trayCode", traycode);
-                objGeneral.AddParameterWithValueToSQLCommand("@activityCode", activitycode);
-                ds = objGeneral.GetDatasetByCommand_SP("GetPlanProductProfileDetail");
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 20);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
             catch (Exception ex)
             {
             }
             return ds.Tables[0];
+        }
+
+        public DataTable GetPlanProductionProfile(string code,string activitycode,string traycode)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                
+                General objGeneral = new General();
+                string strQuery = string.Empty;
+                strQuery = "SELECT pid,code, traycode, crop, activitycode, dateshift FROM gti_jobs_prodprofile WHERE";
+                if(code != "0")
+                {
+                    strQuery += " [crop]= " + "'" + code + "'";
+                }
+                if (activitycode != "0")
+                {
+                    strQuery += " And [activitycode]= " + "'" + activitycode + "'";
+                }
+                if (traycode != "0")
+                {
+                    strQuery += " And [traycode]= " + "'" + traycode + "'";
+
+                }
+                //objGeneral.AddParameterWithValueToSQLCommand("@Crop", code);
+                //objGeneral.AddParameterWithValueToSQLCommand("@trayCode", traycode);
+                //objGeneral.AddParameterWithValueToSQLCommand("@activityCode", activitycode);
+                //ds = objGeneral.GetDatasetByCommand_SP("GetPlanProductProfileDetail");
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+            }
+            return dt;
         }
 
         public DataTable GetDepartmentMaster()
@@ -543,5 +594,12 @@ public class ProfilePlanner
     public int dateshift { get; set; }
 }
 
+public class FertilizerMaster
+{
+    public int id { get; set; }
+    public string FertilizerName { get; set; }
+    public bool IsActive { get; set; }
+
+}
 
 
