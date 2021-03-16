@@ -97,15 +97,17 @@ namespace Evo.Admin
             ddlActivityCode.DataValueField = "ActivityCode";
             ddlActivityCode.DataBind();
             ddlActivityCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
 
-        protected void ddlActivityCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ddlTrayCode.DataSource = objCommon.GETTrayCode(ddlActivityCode.SelectedValue);
+            ddlTrayCode.DataSource = objCommon.GETTrayCode(ddlCrop.SelectedValue);
             ddlTrayCode.DataTextField = "TrayCode";
             ddlTrayCode.DataValueField = "TrayCode";
             ddlTrayCode.DataBind();
             ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+        protected void ddlActivityCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
