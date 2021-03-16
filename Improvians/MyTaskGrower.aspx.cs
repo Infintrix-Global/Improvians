@@ -106,9 +106,10 @@ namespace Evo
                     //  string A = dtFez.Rows[0]["DateShift"].ToString().Replace("\u0002", "");
 
                     DataColumn col = dtFez.Columns["DateShift"];
+                    int Fcount = 0;
                     foreach (DataRow row in dtFez.Rows)
                     {
-
+                        Fcount++;
                         string AD = row[col].ToString().Replace("\u0002", "");
 
                         FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(AD))).ToString();
@@ -116,9 +117,9 @@ namespace Evo
 
                         string TodatDate;
                         string ReSetSprayDate = "";
+                        string DateCountNo="0";
 
-
-
+                        DateCountNo = Fcount.ToString();
                         TodatDate = System.DateTime.Now.ToShortDateString();
 
 
@@ -151,7 +152,10 @@ namespace Evo
                                 nv11.Add("@IrrigateSeedDate", "");
                                 nv11.Add("@FertilizeSeedDate", FertilizationDate);
                                 nv11.Add("@ID", "");
-
+                                nv11.Add("@GenusCode", GenusCode);
+                                nv11.Add("@DateCountNo", DateCountNo);
+                                 
+ 
 
                                 _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv11);
 
@@ -194,8 +198,10 @@ namespace Evo
                 if (dtChemical != null && dtChemical.Rows.Count > 0)
                 {
                     DataColumn col = dtChemical.Columns["DateShift"];
+                    int Ccount = 0;
                     foreach (DataRow row in dtChemical.Rows)
                     {
+                        Ccount++;
                         string ChemicalDate = string.Empty;
                         string FDay = row[col].ToString().Replace("\u0002", "");
 
@@ -204,10 +210,10 @@ namespace Evo
 
                         string TodatDate;
                         string ReSetChemicalDate = "";
-
+                        string DateCountNo = "0";
 
                         TodatDate = System.DateTime.Now.ToShortDateString();
-
+                        DateCountNo = Ccount.ToString();
 
 
                         if (ChChemidt != null && ChChemidt.Rows.Count > 0)
@@ -222,6 +228,7 @@ namespace Evo
                             if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
                             {
                                 ChemicalDate = ChemicalDate;
+
 
                                 NameValueCollection nv11 = new NameValueCollection();
 
@@ -239,6 +246,9 @@ namespace Evo
                                 nv11.Add("@Supervisor", "0");
                                 nv11.Add("@ID", "");
                                 nv11.Add("@ChemicalSeedDate", ChemicalDate);
+                                nv11.Add("@GenusCode", GenusCode);
+                                nv11.Add("@DateCountNo", DateCountNo);
+
                                 _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsChemicalMenual", nv11);
                                 break;
                             }
@@ -272,7 +282,7 @@ namespace Evo
                 if (dtISD != null && dtISD.Rows.Count > 0)
                 {
 
-
+                    int Irrcount = 0;
                     DataColumn col = dtISD.Columns["DateShift"];
                     foreach (DataRow row in dtISD.Rows)
                     {
@@ -281,11 +291,12 @@ namespace Evo
                         string IDay = row[col].ToString().Replace("\u0002", "");
 
                         IrrigateDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(IDay))).ToString();
-
-
+                        Irrcount++;
+                        string DateCountNo = "0";
                         string TodatDate1;
                         string ReSetIrrigateDate = "";
 
+                        DateCountNo = Irrcount.ToString();
                         TodatDate1 = System.DateTime.Now.ToShortDateString();
 
                         if (Irrigationdt != null && Irrigationdt.Rows.Count > 0 && Irrigationdt.Rows[0]["ResetSprayTaskForDays"] != System.DBNull.Value)
@@ -316,6 +327,8 @@ namespace Evo
                                 nv11.Add("@IrrigateSeedDate", IrrigateDate);
                                 nv11.Add("@FertilizeSeedDate", "");
                                 nv11.Add("@ID", "");
+                                nv11.Add("@GenusCode", GenusCode);
+                                nv11.Add("@DateCountNo", DateCountNo);
 
                                 _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsIrrigationMenual", nv11);
                                 break;
