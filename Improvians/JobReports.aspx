@@ -26,7 +26,7 @@
 
                         <div class="col-lg-3">
                             <label>Job No</label>
-                            <asp:TextBox ID="txtSearchJobNo" runat="server" Text="JB" class="input__control robotomd"></asp:TextBox>
+                            <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
 
                             <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
                                 MinimumPrefixLength="2"
@@ -166,7 +166,7 @@
                                     <asp:GridView ID="DGHead02" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%">
                                         <Columns>
                                             <asp:BoundField HeaderText="Organic" DataField="org" />
-                                            <asp:BoundField HeaderText="Plant Age" />
+                                            <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay"/>
                                             <asp:BoundField HeaderText="Germ %" DataField="germpct" />
                                             <asp:BoundField HeaderText="Overage" DataField="overage" />
                                         </Columns>
@@ -242,7 +242,71 @@
                     </div>
                 </div>
             </div>
+               <hr class="my-4">
+            <div class="row">
+                <div class=" col m12">
+                    <div class="mb-2">
+                        <h3>Inventory Total Trays : <asp:Label ID="lblTotalTrays" runat="server" Text=""></asp:Label></h3>
+                    </div>
+                    <div class="portlet light ">
 
+                        <div class="portlet-body">
+
+                            <asp:Panel ID="Panel4" runat="server">
+                                <div class="data__table">
+                                    <asp:GridView ID="GV5" runat="server" AllowPaging="True" AutoGenerateColumns="False"  
+                                        class="striped" AllowSorting="true" OnPageIndexChanging="GV5_PageIndexChanging"
+                                        GridLines="None" PageSize="10" OnRowDataBound="GV5_RowDataBound"
+                                        ShowHeaderWhenEmpty="True" Width="50%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
+                                        <Columns>
+
+                                            <asp:TemplateField HeaderText="House/Section" Visible="false" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                    <asp:Label ID="lblgrowerId" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                    <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                                <EditItemTemplate>
+
+
+                                                    <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" DataTextField="GreenHouseId" DataValueField="GreenHouseId" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                                </EditItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+
+                                                    <asp:Label ID="lblTrays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Trays") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btn_Edit" runat="server" Text="Edit" CssClass="bttn bttn-primary bttn-action" CommandName="Edit" />
+                                                </ItemTemplate>
+                                                <EditItemTemplate>
+                                                    <asp:Button ID="btn_Update" runat="server" Text="Update" CssClass="bttn bttn-primary bttn-action" CommandName="Update" />
+                                                    <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" CssClass="bttn bttn-primary bttn-action" CommandName="Cancel" />
+                                                </EditItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <hr class="my-4">
 
 
@@ -361,71 +425,7 @@
                 </div>
             </div>
 
-            <hr class="my-4">
-            <div class="row">
-                <div class=" col m12">
-                    <div class="mb-2">
-                        <h3>Facility/House Detail</h3>
-                    </div>
-                    <div class="portlet light ">
-
-                        <div class="portlet-body">
-
-                            <asp:Panel ID="Panel4" runat="server">
-                                <div class="data__table">
-                                    <asp:GridView ID="GV5" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                        class="striped" AllowSorting="true" OnPageIndexChanging="GV5_PageIndexChanging"
-                                        GridLines="None" PageSize="10" OnRowDataBound="GV5_RowDataBound"
-                                        ShowHeaderWhenEmpty="True" Width="100%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
-                                        <Columns>
-
-                                            <asp:TemplateField HeaderText="House/Section" Visible="false" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                    <asp:Label ID="lblgrowerId" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                                    <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-                                                <EditItemTemplate>
-
-
-                                                    <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" DataTextField="GreenHouseId" DataValueField="GreenHouseId" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                                </EditItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-
-                                                    <asp:Label ID="lblTrays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Trays") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <asp:Button ID="btn_Edit" runat="server" Text="Edit" CssClass="bttn bttn-primary bttn-action" CommandName="Edit" />
-                                                </ItemTemplate>
-                                                <EditItemTemplate>
-                                                    <asp:Button ID="btn_Update" runat="server" Text="Update" CssClass="bttn bttn-primary bttn-action" CommandName="Update" />
-                                                    <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" CssClass="bttn bttn-primary bttn-action" CommandName="Cancel" />
-                                                </EditItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </asp:GridView>
-                                </div>
-                            </asp:Panel>
-                        </div>
-                    </div>
-                </div>
-            </div>
+         
 
             <h4 class="mt-4 mt-lg-3">Task Requests:</h4>
 

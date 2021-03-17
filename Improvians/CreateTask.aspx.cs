@@ -950,7 +950,7 @@ namespace Evo
         protected void Button4_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
-            txtSearchJobNo.Text = "JB";
+          //  txtSearchJobNo.Text = "JB";
             BindGridFerReq("", txtSearchJobNo.Text);
         }
 
@@ -967,7 +967,7 @@ namespace Evo
                     //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
                     //" AND t.[Job No_] like '" + prefixText + "%'";
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
                         "";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
