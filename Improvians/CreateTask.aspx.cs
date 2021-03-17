@@ -667,7 +667,7 @@ namespace Evo
             objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -735,7 +735,7 @@ namespace Evo
 
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
+                string url = "CreateTask.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -879,7 +879,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -930,7 +930,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -1054,7 +1054,7 @@ namespace Evo
             objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -1134,7 +1134,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -1176,7 +1176,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
