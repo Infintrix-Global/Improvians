@@ -48,7 +48,11 @@ namespace Evo
                 BindFertilizer();
                 BindJobCode("");
                 BindChemical();
-                // txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
         }
 
@@ -215,7 +219,7 @@ namespace Evo
         protected void ListBoxBenchesInHouse_SelectedIndexChanged(object sender, EventArgs e)
         {
             int c = 0;
-            string x = "";
+            string x = "'" + Bench1 + "'"+",";
             string chkSelected = "";
             foreach (ListItem item in ListBoxBenchesInHouse.Items)
             {
@@ -390,7 +394,7 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
-           
+
         }
 
 
@@ -485,7 +489,7 @@ namespace Evo
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            txtSearchJobNo.Text = "";
             BindJobCode(ddlBenchLocation.SelectedValue);
 
             if (ddlBenchLocation.SelectedValue == "")
@@ -583,6 +587,13 @@ namespace Evo
             ddlLogisticManager.DataBind();
             ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
 
+            ddlDumptAssignment.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlDumptAssignment.DataTextField = "EmployeeName";
+            ddlDumptAssignment.DataValueField = "ID";
+            ddlDumptAssignment.DataBind();
+            ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
+
         }
         public void BindChemical()
         {
@@ -627,26 +638,28 @@ namespace Evo
 
             foreach (GridViewRow row in gvFer.Rows)
             {
-
-                long result2 = 0;
-                NameValueCollection nv4 = new NameValueCollection();
-                nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
-                nv4.Add("@Type", "Fertilizer");
-                nv4.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                nv4.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv4.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv4.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv4.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv4.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                //nv.Add("@WorkOrder", lblwo.Text);
-                nv4.Add("@LoginID", Session["LoginID"].ToString());
-                nv4.Add("@FertilizationCode", FertilizationCode.ToString());
-                nv4.Add("@FertilizationDate", txtFDate.Text);
-                result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
-                Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
-
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    long result2 = 0;
+                    NameValueCollection nv4 = new NameValueCollection();
+                    nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
+                    nv4.Add("@Type", "Fertilizer");
+                    nv4.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv4.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv4.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv4.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv4.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv4.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    //nv.Add("@WorkOrder", lblwo.Text);
+                    nv4.Add("@LoginID", Session["LoginID"].ToString());
+                    nv4.Add("@FertilizationCode", FertilizationCode.ToString());
+                    nv4.Add("@FertilizationDate", txtFDate.Text);
+                    result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
+                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+                }
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
@@ -691,26 +704,28 @@ namespace Evo
                 //nv.Add("@LoginId", Session["LoginID"].ToString());
 
                 //result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@Customer", "");
+                    nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
+                    nv.Add("@InspectionDueDate", txtGerDate.Text);
+                    nv.Add("@TraysInspected", txtTGerTrays.Text);
 
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@Customer", "");
-                nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
-                nv.Add("@InspectionDueDate", txtGerDate.Text);
-                nv.Add("@TraysInspected", txtTGerTrays.Text);
+                    nv.Add("@LoginId", Session["LoginID"].ToString());
+                    nv.Add("@Comments", txtGcomments.Text);
 
-                nv.Add("@LoginId", Session["LoginID"].ToString());
-                nv.Add("@Comments", txtGcomments.Text);
-
-                result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
-
+                    result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
+                }
 
             }
 
@@ -831,32 +846,34 @@ namespace Evo
 
             foreach (GridViewRow row in gvFer.Rows)
             {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    long result16 = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
 
-                long result16 = 0;
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
 
-                nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                    // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@IrrigatedNoTrays", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
+                    nv.Add("@IrrigationDuration", "");
+                    nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
+                    //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                    nv.Add("@Nots", txtIrrComments.Text.Trim());
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
 
-                nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                nv.Add("@IrrigatedNoTrays", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                nv.Add("@IrrigationDuration", "");
-                nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
-                //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                nv.Add("@Nots", txtIrrComments.Text.Trim());
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
-
-
+                }
             }
 
 
@@ -886,23 +903,26 @@ namespace Evo
             foreach (GridViewRow row in gvFer.Rows)
             {
 
-                long result = 0;
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlplant_readySupervisor.SelectedValue);
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlplant_readySupervisor.SelectedValue);
 
-                nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@ChId", "0");
-                nv.Add("@Comments", txtPlantComments.Text.Trim());
-                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
-
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChId", "0");
+                    nv.Add("@Comments", txtPlantComments.Text.Trim());
+                    result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
+                }
 
             }
 
@@ -950,7 +970,7 @@ namespace Evo
         protected void Button4_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
-          //  txtSearchJobNo.Text = "JB";
+            //  txtSearchJobNo.Text = "JB";
             BindGridFerReq("", txtSearchJobNo.Text);
         }
 
@@ -1004,25 +1024,29 @@ namespace Evo
 
             foreach (GridViewRow row in gvFer.Rows)
             {
-                long result = 0;
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
-                nv.Add("@Type", "Chemical");
-                nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                //nv.Add("@WorkOrder", lblwo.Text);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                nv.Add("@Comments", txtCComments.Text);
-                nv.Add("@Method", ddlMethod.SelectedValue);
-                result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
+                    nv.Add("@Type", "Chemical");
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    //nv.Add("@WorkOrder", lblwo.Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChemicalCode", ChemicalCode.ToString());
+                    nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
+                    nv.Add("@Comments", txtCComments.Text);
+                    nv.Add("@Method", ddlMethod.SelectedValue);
+                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
+                }
             }
 
             dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
@@ -1079,29 +1103,31 @@ namespace Evo
         {
             foreach (GridViewRow row in gvFer.Rows)
             {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
+                    nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+                    nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
-                long result = 0;
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
-                nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
-                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@FromFacility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@ToFacility", ddlToFacility.SelectedValue);
+                    nv.Add("@ToGreenHouse", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@MoveDate", txtMoveDate.Text);
 
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@FromFacility", (row.FindControl("lblFacility") as Label).Text);
-                nv.Add("@ToFacility", ddlToFacility.SelectedValue);
-                nv.Add("@ToGreenHouse", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
-                nv.Add("@MoveDate", txtMoveDate.Text);
-
-                nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                nv.Add("@ChId", "0");
-                nv.Add("@Comments", txtMoveComments.Text.Trim());
-                result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
-
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@ChId", "0");
+                    nv.Add("@Comments", txtMoveComments.Text.Trim());
+                    result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
+                }
             }
 
 
@@ -1115,6 +1141,69 @@ namespace Evo
             script += url;
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
+
+        protected void btnDumpSumbit_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlDumptAssignment.SelectedValue);
+
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChId", "0");
+                    nv.Add("@Comments", txtCommentsDump.Text.Trim());
+                    nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
+                    result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
+
+                }
+            }
+
+
+
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
+
+        protected void btnDumpReset_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void chckchanged1(object sender, EventArgs e)
+        {
+            CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckheader.Checked == true)
+                {
+                    chckrw.Checked = true;
+                }
+                else
+                {
+                    chckrw.Checked = false;
+                }
+            }
+
         }
     }
 }

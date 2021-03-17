@@ -627,6 +627,24 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Panel Panel3;
 
         /// <summary>
+        /// ddlLogisticManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLogisticManager;
+
+        /// <summary>
+        /// RequiredFieldValidator18 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator18;
+
+        /// <summary>
         /// ddlToFacility control.
         /// </summary>
         /// <remarks>
@@ -681,24 +699,6 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtMoveDate;
 
         /// <summary>
-        /// ddlLogisticManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLogisticManager;
-
-        /// <summary>
-        /// RequiredFieldValidator18 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator18;
-
-        /// <summary>
         /// txtMoveComments control.
         /// </summary>
         /// <remarks>
@@ -724,6 +724,51 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button MoveReset;
+
+        /// <summary>
+        /// ddlDumptAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDumptAssignment;
+
+        /// <summary>
+        /// txtQuantityofTray control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQuantityofTray;
+
+        /// <summary>
+        /// txtCommentsDump control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCommentsDump;
+
+        /// <summary>
+        /// btnDumpSumbit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDumpSumbit;
+
+        /// <summary>
+        /// btnDumpReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDumpReset;
 
         /// <summary>
         /// divcomments control.

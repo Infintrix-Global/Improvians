@@ -52,6 +52,7 @@ namespace Evo
                 {
                     divJobNo.Visible = true;
                     lblJobNo.Text = JobCode;
+                    PanelView.Visible = true;
                     BindGridOne();
                 }
 
@@ -62,6 +63,11 @@ namespace Evo
                 BindFertilizer();
                 BindJobCode("");
                 BindChemical();
+                txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
         }
 
@@ -192,10 +198,12 @@ namespace Evo
         }
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtSearchJobNo.Text = "";
             BindJobCode(ddlBenchLocation.SelectedValue);
         }
         public void BindJobCode(string ddlBench)
         {
+            ddlJobNo.Items.Clear();
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
@@ -204,12 +212,14 @@ namespace Evo
         }
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PanelView.Visible = true;
             JobCode = ddlJobNo.SelectedValue.Trim();
             BindGridOne();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            PanelView.Visible = true;
             JobCode = txtSearchJobNo.Text.Trim();
             BindGridOne();
         }
@@ -217,8 +227,39 @@ namespace Evo
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
-         //   txtSearchJobNo.Text = "JB";
+            JobCode = Request.QueryString["jobCode"];
+
+            if (string.IsNullOrEmpty(JobCode))
+            {
+                divFilter.Visible = true;
+                divFilter1.Visible = true;
+                JobCode = "";
+                BindBenchLocation(Session["Facility"].ToString());
+            }
+            else
+            {
+                divJobNo.Visible = true;
+                lblJobNo.Text = JobCode;
+                PanelView.Visible = true;
+                BindGridOne();
+            }
+
+            BindSupervisor();
+
+            BindFacility();
+            BindSupervisorList();
+            BindFertilizer();
+            BindJobCode("");
+            BindChemical();
+            txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             BindGridOne();
+            PanelView.Visible = false;
+            //   txtSearchJobNo.Text = "JB";
+            // BindGridOne();
         }
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
@@ -405,6 +446,12 @@ namespace Evo
             ddlLogisticManager.DataBind();
             ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
 
+            ddlDumptAssignment.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlDumptAssignment.DataTextField = "EmployeeName";
+            ddlDumptAssignment.DataValueField = "ID";
+            ddlDumptAssignment.DataBind();
+            ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
         }
         public void BindChemical()
         {
@@ -908,22 +955,70 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
 
-        protected void GV6_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //protected void GV6_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    GV6.PageIndex = e.NewPageIndex;
+        //    BindGridOne();
+        //}
+
+        //protected void GV4_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    GV4.PageIndex = e.NewPageIndex;
+        //    BindGridOne();
+        //}
+
+        //protected void GV5_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    GV5.PageIndex = e.NewPageIndex;
+        //    BindGridOne();
+        //}
+
+        protected void btnDumpSumbit_Click(object sender, EventArgs e)
         {
-            GV6.PageIndex = e.NewPageIndex;
-            BindGridOne();
+            foreach (GridViewRow row1 in GV5.Rows)
+            {
+                
+
+                foreach (GridViewRow row in GV2.Rows)
+                {
+
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlDumptAssignment.SelectedValue);
+
+                    nv.Add("@Jobcode", JobCode);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    nv.Add("@GreenHouseID", (row1.FindControl("lblGHD") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChId", "0");
+                    nv.Add("@Comments", txtCommentsDump.Text.Trim());
+                    nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
+                    result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
+
+
+                }
+
+            }
+
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
 
-        protected void GV4_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void btnDumpReset_Click(object sender, EventArgs e)
         {
-            GV4.PageIndex = e.NewPageIndex;
-            BindGridOne();
-        }
 
-        protected void GV5_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GV5.PageIndex = e.NewPageIndex;
-            BindGridOne();
         }
     }
 }

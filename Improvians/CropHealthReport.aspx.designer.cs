@@ -726,6 +726,24 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Panel Panel3;
 
         /// <summary>
+        /// ddlLogisticManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLogisticManager;
+
+        /// <summary>
+        /// RequiredFieldValidator18 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator18;
+
+        /// <summary>
         /// ddlToFacility control.
         /// </summary>
         /// <remarks>
@@ -778,24 +796,6 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMoveDate;
-
-        /// <summary>
-        /// ddlLogisticManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLogisticManager;
-
-        /// <summary>
-        /// RequiredFieldValidator18 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator18;
 
         /// <summary>
         /// btnMoveSubmit control.

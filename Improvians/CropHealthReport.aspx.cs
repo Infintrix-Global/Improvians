@@ -66,6 +66,11 @@ namespace Evo
                 BindFertilizer();
                 BindJobCode("");
                 BindChemical();
+                txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
 
 
@@ -214,6 +219,7 @@ namespace Evo
 
         public void BindJobCode(string ddlBench)
         {
+            ddlJobNo.Items.Clear();
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation1(ddlBench, Session["Facility"].ToString());
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
@@ -243,7 +249,7 @@ namespace Evo
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            txtSearchJobNo.Text = "";
             BindJobCode(ddlBenchLocation.SelectedValue);
 
             BindGridFerReq(ddlBenchLocation.SelectedValue, "");
