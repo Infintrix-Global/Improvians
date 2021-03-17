@@ -214,6 +214,7 @@ namespace Evo
         {
             PanelView.Visible = true;
             JobCode = ddlJobNo.SelectedValue.Trim();
+            lblJobNo.Text = JobCode;
             BindGridOne();
         }
 
@@ -221,6 +222,7 @@ namespace Evo
         {
             PanelView.Visible = true;
             JobCode = txtSearchJobNo.Text.Trim();
+            lblJobNo.Text = JobCode;
             BindGridOne();
         }
 
