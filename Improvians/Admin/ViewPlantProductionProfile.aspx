@@ -6,7 +6,7 @@
     <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
     <div class="admin__content">
         <div class="container-fluid">
-            <h1 class="text-center text-sm-left">View Plant Production Profile</h1>
+            <h1 class="text-center text-sm-left">Plant Production Profile</h1>
 
             <hr />
             <!-- BEGIN FORM-->

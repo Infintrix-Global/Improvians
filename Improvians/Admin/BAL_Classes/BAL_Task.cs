@@ -44,5 +44,35 @@ namespace Evo.Admin.BAL_Classes
             }
             return ds;
         }
+        public DataSet GetChemicalByID(int eid)
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", eid);
+
+                ds = objGeneral.GetDatasetByCommand_SP("GetChemicalDetailById");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds;
+        }
+        public DataSet GetTaskTypeByID(int eid)
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", eid);
+
+                ds = objGeneral.GetDatasetByCommand_SP("GetTaskTypeDetailById");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds;
+        }
     }
 }

@@ -484,7 +484,7 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq("", ddlJobNo.SelectedValue);
+            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'", ddlJobNo.SelectedValue);
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)

@@ -336,6 +336,44 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+        public int InsertChemicalMaster(ChemicalMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@Name", obj.ChemicalName);
+                objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddChemicalMaster");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public int InsertTaskTypeMaster(TaskTypeMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@Name", obj.TaskType);
+                objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddTaskTypeMaster");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
         public int UpdateDateShift(ProfilePlanner obj)
         {
             int _isInserted = -1;
@@ -399,6 +437,44 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+        public int UpdateChemical(ChemicalMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
+                objGeneral.AddParameterWithValueToSQLCommand("@chemicalName", obj.ChemicalName);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateChemical");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public int UpdateTaskType(TaskTypeMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
+                objGeneral.AddParameterWithValueToSQLCommand("@tasktype", obj.TaskType);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateTaskType");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
         public DataTable GetAllEmployeeList()
         {
             try
@@ -421,6 +497,36 @@ namespace Evo.Admin
 
                 General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 20);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+
+        public DataTable GetAllChemicalList()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 21);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+
+        public DataTable GetAllTaskTypeList()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 22);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
             catch (Exception ex)
@@ -581,6 +687,22 @@ namespace Evo.Admin
             }
             return _isDeleted;
         }
+
+        public int RemoveChemical(int employeeID)
+        {
+            int _isDeleted = -1;
+            try
+            {
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", employeeID);
+                _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("DeleteChemical");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isDeleted;
+        }
         public int AddEmployeeFacility(int employeeID, string FacilityID)
         {
             int _isInserted = -1;
@@ -632,6 +754,22 @@ public class FertilizerMasters
 {
     public int id { get; set; }
     public string FertilizerName { get; set; }
+    public bool IsActive { get; set; }
+
+}
+
+public class ChemicalMasters
+{
+    public int id { get; set; }
+    public string ChemicalName { get; set; }
+    public bool IsActive { get; set; }
+
+}
+
+public class TaskTypeMasters
+{
+    public int id { get; set; }
+    public string TaskType { get; set; }
     public bool IsActive { get; set; }
 
 }
