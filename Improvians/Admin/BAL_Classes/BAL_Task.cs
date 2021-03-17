@@ -28,5 +28,21 @@ namespace Evo.Admin.BAL_Classes
             }
             return ds;
         }
+
+        public DataSet GetFertilizerByID(int eid)
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", eid);
+
+                ds = objGeneral.GetDatasetByCommand_SP("GetFertilizerDetailById");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds;
+        }
     }
 }

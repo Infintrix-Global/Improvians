@@ -18,16 +18,17 @@
                         
                         <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                     </div>
+                     <div class="col m3">
+                        <label>Tray Code </label>
+                        
+                        <asp:DropDownList ID="ddlTrayCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlTrayCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                    </div>
                     <div class="col m3">
                         <label>Activity Code </label>
                         
                         <asp:DropDownList ID="ddlActivityCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlActivityCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                     </div>
-                    <div class="col m3">
-                        <label>Tray Code </label>
-                        
-                        <asp:DropDownList ID="ddlTrayCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlTrayCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                    </div>
+                   
                    <%-- <div class="col m3">
                         <label>Designation</label>
                         <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -59,35 +60,35 @@
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
 
-                                            <asp:TemplateField HeaderText="Code" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Code" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label4" runat="server" Text='<%# Eval("code")  %>'></asp:Label>
                                                     <asp:Label ID="lblID" runat="server" Text='<%# Eval("pid")  %>' Visible="false"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                            
-                                            <asp:TemplateField HeaderText="Tray Code" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label7" runat="server" Text='<%# Eval("traycode")  %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                         
 
                                              <asp:TemplateField HeaderText="Crop" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label11" runat="server" Text='<%# Eval("crop")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                           
-                                            <asp:TemplateField HeaderText="Activity Code" HeaderStyle-CssClass="autostyle2">
+                                              <asp:TemplateField HeaderText="Tray Code" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label7" runat="server" Text='<%# Eval("traycode")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Activity Code" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label9" runat="server" Text='<%# Eval("activitycode")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Date Shift" HeaderStyle-CssClass="autostyle2" SortExpression="RoleName">
+                                            <asp:TemplateField HeaderText="Date Shift" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2" SortExpression="RoleName">
                                                 <ItemTemplate>
                                                     <%--<asp:Label ID="Label10" runat="server" Text='<%# Eval("dateshift")  %>'></asp:Label>--%>
-                                                    <asp:TextBox ID="txtdateshift" runat="server" Text='<%# Eval("dateshift")  %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtdateshift" runat="server" Width="50%" Text='<%# Eval("dateshift")  %>'></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                              
