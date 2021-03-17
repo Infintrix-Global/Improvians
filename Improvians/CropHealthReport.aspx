@@ -940,8 +940,8 @@
 
                                                                     <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                                                                         <asp:ListItem Text="--Select--" Value="0" />
-                                                                        <asp:ListItem Text="Add Bird Neeting" Value="1" />
-                                                                        <asp:ListItem Text="Remove Bird Neeting" Value="2" />
+                                                                        <asp:ListItem Text="Add Bird Netting" Value="1" />
+                                                                        <asp:ListItem Text="Remove Bird Netting" Value="2" />
                                                                         <asp:ListItem Text="Move" Value="3" />
                                                                         <asp:ListItem Text="Other" Value="4" />
                                                                     </asp:DropDownList>
@@ -992,11 +992,7 @@
                                                                 <div class="col-lg-4">
                                                                     <div style="margin-top: 9%;">
                                                                         <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
-                                                                        <triggers>  
-  
-         <asp:PostBackTrigger ControlID="btngeneraltasksave" />  
-  
-</triggers>
+                                                                      
                                                                         <asp:Button Text="Submit" ID="btngeneraltasksave" type="submit" CssClass="bttn bttn-primary bttn-action" OnClick="btngeneraltasksave_Click" runat="server" />
                                                                         <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
                                                                     </div>

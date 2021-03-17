@@ -145,16 +145,7 @@ namespace Evo
             }
 
 
-            decimal tray = 0;
-            string BatchLocd = string.Empty;
-            foreach (GridViewRow row in GV5.Rows)
-            {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTrays") as Label).Text);
-                //}
-                // BatchLocd = (row.FindControl("lblGreenHouse1") as Label).Text;
-            }
+            decimal tray = 0;          
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             lblTotalTrays.Text = tray.ToString();
