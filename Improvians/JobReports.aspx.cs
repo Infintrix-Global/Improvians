@@ -52,6 +52,7 @@ namespace Evo
                 {
                     divJobNo.Visible = true;
                     lblJobNo.Text = JobCode;
+                    PanelView.Visible = true;
                     BindGridOne();
                 }
 
@@ -62,6 +63,11 @@ namespace Evo
                 BindFertilizer();
                 BindJobCode("");
                 BindChemical();
+                txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
         }
 
@@ -102,13 +108,13 @@ namespace Evo
             //  GV2.DataBind();
             //Gv3.DataBind();
             DataTable dthistory = objBAL.GetJobHistoryDateFromNavision(JobCode);
-            if (dt6 != null)
+            if (dt6.Rows.Count>0 && dt6 != null)
             {
                 dthistory.Merge(dt6);
                 dthistory.AcceptChanges();
             }
             GV6.DataSource = dthistory;
-            GV4.DataSource = dt4;
+            GV4.DataSource = dthistory;
             GV4.DataBind();
             GV5.DataBind();
             GV6.DataBind();
@@ -151,13 +157,17 @@ namespace Evo
             }
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
+            lblTotalTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
         }
 
         public void FillDGHeader01()
         {
 
-            string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono,j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t, [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date], m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
+            string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono," +
+                " j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, DATEDIFF(day, CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END,GETDATE()) as NoOfDay, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t," +
+                " [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date]," +
+                " m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
 
             DataTable ds = objGeneral.GetDatasetByCommand(sql);
             GV2.DataSource = ds;
@@ -188,10 +198,12 @@ namespace Evo
         }
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtSearchJobNo.Text = "";
             BindJobCode(ddlBenchLocation.SelectedValue);
         }
         public void BindJobCode(string ddlBench)
         {
+            ddlJobNo.Items.Clear();
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
@@ -200,12 +212,14 @@ namespace Evo
         }
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PanelView.Visible = true;
             JobCode = ddlJobNo.SelectedValue.Trim();
             BindGridOne();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            PanelView.Visible = true;
             JobCode = txtSearchJobNo.Text.Trim();
             BindGridOne();
         }
@@ -213,8 +227,39 @@ namespace Evo
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
-            txtSearchJobNo.Text = "JB";
+            JobCode = Request.QueryString["jobCode"];
+
+            if (string.IsNullOrEmpty(JobCode))
+            {
+                divFilter.Visible = true;
+                divFilter1.Visible = true;
+                JobCode = "";
+                BindBenchLocation(Session["Facility"].ToString());
+            }
+            else
+            {
+                divJobNo.Visible = true;
+                lblJobNo.Text = JobCode;
+                PanelView.Visible = true;
+                BindGridOne();
+            }
+
+            BindSupervisor();
+
+            BindFacility();
+            BindSupervisorList();
+            BindFertilizer();
+            BindJobCode("");
+            BindChemical();
+            txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             BindGridOne();
+            PanelView.Visible = false;
+            //   txtSearchJobNo.Text = "JB";
+            // BindGridOne();
         }
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
@@ -229,7 +274,7 @@ namespace Evo
                     //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
                     //" AND t.[Job No_] like '" + prefixText + "%'";
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
                         "";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
@@ -401,6 +446,12 @@ namespace Evo
             ddlLogisticManager.DataBind();
             ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
 
+            ddlDumptAssignment.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlDumptAssignment.DataTextField = "EmployeeName";
+            ddlDumptAssignment.DataValueField = "ID";
+            ddlDumptAssignment.DataBind();
+            ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
         }
         public void BindChemical()
         {
@@ -904,22 +955,70 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
 
-        protected void GV6_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //protected void GV6_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    GV6.PageIndex = e.NewPageIndex;
+        //    BindGridOne();
+        //}
+
+        //protected void GV4_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    GV4.PageIndex = e.NewPageIndex;
+        //    BindGridOne();
+        //}
+
+        //protected void GV5_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    GV5.PageIndex = e.NewPageIndex;
+        //    BindGridOne();
+        //}
+
+        protected void btnDumpSumbit_Click(object sender, EventArgs e)
         {
-            GV6.PageIndex = e.NewPageIndex;
-            BindGridOne();
+            foreach (GridViewRow row1 in GV5.Rows)
+            {
+                
+
+                foreach (GridViewRow row in GV2.Rows)
+                {
+
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlDumptAssignment.SelectedValue);
+
+                    nv.Add("@Jobcode", JobCode);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    nv.Add("@GreenHouseID", (row1.FindControl("lblGHD") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChId", "0");
+                    nv.Add("@Comments", txtCommentsDump.Text.Trim());
+                    nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
+                    result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
+
+
+                }
+
+            }
+
+            string message = "Assignment Successful";
+            string url = "MyTaskGrower.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
 
-        protected void GV4_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void btnDumpReset_Click(object sender, EventArgs e)
         {
-            GV4.PageIndex = e.NewPageIndex;
-            BindGridOne();
-        }
 
-        protected void GV5_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GV5.PageIndex = e.NewPageIndex;
-            BindGridOne();
         }
     }
 }

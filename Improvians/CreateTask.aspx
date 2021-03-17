@@ -23,7 +23,7 @@
                 <div class="col-lg-3">
 
                     <label>Job No</label>
-                    <asp:TextBox ID="txtSearchJobNo" runat="server" Text="JB" class="input__control robotomd"></asp:TextBox>
+                    <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
 
 
                     <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
@@ -138,7 +138,15 @@
                                     GridLines="None" OnRowCommand="gvFer_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
+                                         <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                                <HeaderTemplate>
+                                                    <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
 
+                                                    <asp:CheckBox runat="server" Checked="true" ID="chkSelect"></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -587,7 +595,16 @@
                             <asp:Panel ID="Panel3" runat="server">
 
                                 <div class="row">
+                                    <div class="col-lg-3">
+                                        <label>Assignment </label>
 
+                                        <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                        <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                        <span class="error_message">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
+                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </span>
+                                    </div>
                                     <div class="col m3">
                                         <label>To Facility Location </label>
                                         <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
@@ -619,16 +636,7 @@
                                         <span class="error_message"></span>
                                     </div>
 
-                                    <div class="col-lg-3">
-                                        <label>Assignment </label>
 
-                                        <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
-                                        <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                        <span class="error_message">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
-                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        </span>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -655,31 +663,35 @@
                     <div id="dump_request" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
-                            <h2 class="text-left">Dumpt</h2>
+                            <h2 class="text-left">Dump</h2>
                             <br />
                             <div class="row">
                                 <div class="mb-3 col-12 col-md-auto">
-                                    <label class="d-block">Job No.</label>
-                                    <input type="text" disabled="disabled" value="JB033372" class="input__control input__control-auto">
+                                    <label>Assignment </label>
+
+                                    <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                    <asp:DropDownList ID="ddlDumptAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
                                 </div>
                                 <div class="mb-3 col-12 col-md-auto">
-                                    <label class="d-block">Assignment</label>
-                                    <select class="custom__dropdown input__control-auto">
-                                        <option>--Select--</option>
-                                        <option>Assistant Grower</option>
-                                        <option>Supervisor</option>
-                                        <option>Irrigator</option>
-                                        <option>Crew Lead</option>
-                                        <option>Sprayer</option>
-                                    </select>
+
+                                    <label>Quantity of Tray </label>
+                                    <asp:TextBox ID="txtQuantityofTray" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                </div>
+                                <div class="mb-3 col-12 col-md-auto">
+
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtCommentsDump" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+
                                 </div>
                                 <div class="mb-3 col-12 col-md-auto align-self-end">
-                                    <button type="button" class="bttn bttn-primary">
-                                        Submit
-                                    </button>
-                                    <button type="reset" class="ml-2 bttn bttn-primary">
-                                        Reset
-                                    </button>
+                                    <asp:Button Text="Submit" ID="btnDumpSumbit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnDumpSumbit_Click" />
+
+                                    <asp:Button Text="Reset" ID="btnDumpReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnDumpReset_Click" />
+
                                 </div>
                             </div>
                         </div>
@@ -733,7 +745,7 @@
                                                                 </span>
                                                             </div>
 
-                                                             <div class="col-lg-4">
+                                                            <div class="col-lg-4">
                                                                 <label>Comments</label>
                                                                 <asp:TextBox ID="txtgeneralCommnet" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 

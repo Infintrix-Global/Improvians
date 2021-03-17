@@ -820,7 +820,17 @@
                                 <asp:Panel ID="Panel3" runat="server">
 
                                     <div class="row">
+                                        
+                                        <div class="col-lg-3">
+                                            <label>Assignment </label>
 
+                                            <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                            <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                            <span class="error_message">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
+                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
+                                        </div>
                                         <div class="col m3">
                                             <label>To Facility Location </label>
                                             <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
@@ -852,16 +862,6 @@
                                             <span class="error_message"></span>
                                         </div>
 
-                                        <div class="col-lg-3">
-                                            <label>Assignment </label>
-
-                                            <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
-                                            <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                            <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
-                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
-                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-auto">
@@ -881,7 +881,7 @@
                         <div id="dump_request" class="collapse request__block-collapse" data-parent="#task_request-group">
                             <div class="request__body">
                                 <br />
-                                <h2 class="text-left">Dumpt</h2>
+                                <h2 class="text-left">Dump</h2>
                                 <br />
                                 <div class="row">
                                     <div class="mb-3 col-12 col-md-auto">
