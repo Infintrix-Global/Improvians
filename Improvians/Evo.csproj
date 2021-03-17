@@ -103,6 +103,7 @@
   <ItemGroup>
     <Content Include="Admin\AddEmployee.aspx" />
     <Content Include="Admin\AdminDashBoard.aspx" />
+    <Content Include="Admin\TaskTypeMaster.aspx" />
     <Content Include="Admin\css\all.min.css" />
     <Content Include="Admin\css\aos.css" />
     <Content Include="Admin\css\bootstrap.min.css" />
@@ -110,6 +111,7 @@
     <Content Include="Admin\EditProfile.aspx" />
     <Content Include="Admin\EmployeeProfile\data-privacy-and-security-features-you-should-know.jpg" />
     <Content Include="Admin\EmployeeProfile\Screenshot %289%29.png" />
+    <Content Include="Admin\ChemicalMaster.aspx" />
     <Content Include="Admin\FertilizerMaster.aspx" />
     <Content Include="Admin\fonts\icons\rxicons.svg" />
     <Content Include="Admin\images\delete.png" />
@@ -366,6 +368,13 @@
     <Compile Include="Admin\BAL_Classes\BAL_Task.cs" />
     <Compile Include="Admin\BAL_Classes\clsCommonMasters.cs" />
     <Compile Include="Admin\BAL_Classes\General.cs" />
+    <Compile Include="Admin\TaskTypeMaster.aspx.cs">
+      <DependentUpon>TaskTypeMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TaskTypeMaster.aspx.designer.cs">
+      <DependentUpon>TaskTypeMaster.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CommonControl.cs" />
     <Compile Include="Admin\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
@@ -373,6 +382,13 @@
     </Compile>
     <Compile Include="Admin\EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ChemicalMaster.aspx.cs">
+      <DependentUpon>ChemicalMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ChemicalMaster.aspx.designer.cs">
+      <DependentUpon>ChemicalMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\FertilizerMaster.aspx.cs">
       <DependentUpon>FertilizerMaster.aspx</DependentUpon>

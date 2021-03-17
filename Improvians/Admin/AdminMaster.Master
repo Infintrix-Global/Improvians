@@ -99,10 +99,24 @@
                         <li>
                             <a class="current" href="FertilizerMaster.aspx" title="Master">
                                 <i class="side-icon far fa-user"></i>
-                                <span class="side-title">Master</span>
+                                <span class="side-title">Fertilizer Master</span>
                                 <i class="side-control fas fa-angle-right"></i>
                             </a>
-                           
+                          </li>
+                        <li>
+                            <a class="current" href="ChemicalMaster.aspx" title="Master">
+                                <i class="side-icon far fa-user"></i>
+                                <span class="side-title">Chemical Master</span>
+                                <i class="side-control fas fa-angle-right"></i>
+                            </a>
+                          </li>
+                         <li>
+                            <a class="current" href="TaskTypeMaster.aspx" title="Master">
+                                <i class="side-icon far fa-user"></i>
+                                <span class="side-title">TaskType Master</span>
+                                <i class="side-control fas fa-angle-right"></i>
+                            </a>
+                          </li>
                     </ul>
                 </div>
             </aside>

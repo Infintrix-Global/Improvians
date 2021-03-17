@@ -11,7 +11,7 @@ using Evo.Admin;
 
 namespace Evo.Admin
 {
-    public partial class FertilizerMaster : System.Web.UI.Page
+    public partial class ChemicalMaster : System.Web.UI.Page
     {
         clsCommonMasters objCommon = new clsCommonMasters();
         General objGeneral = new General();
@@ -20,20 +20,20 @@ namespace Evo.Admin
         {
             if (!IsPostBack)
             {
-                GetEmployeeList();
+                GetChemicalList();
                 
             }
         }
-        public void bindFertilizer(int eid)
+        public void bindChemical(int eid)
         {
             try
             {
-                DataSet dt1 = objTask.GetFertilizerByID(eid);
+                DataSet dt1 = objTask.GetChemicalByID(eid);
 
 
                 if (dt1.Tables[0].Rows.Count > 0)
                 {
-                    txtName.Text = dt1.Tables[0].Rows[0]["FertilizerName"].ToString();
+                    txtName.Text = dt1.Tables[0].Rows[0]["ChemicalName"].ToString();
                     
                    
                 }
@@ -44,13 +44,13 @@ namespace Evo.Admin
 
             }
         }
-        public void GetEmployeeList()
+        public void GetChemicalList()
         {
             DataTable dt = new DataTable();
-            dt = objCommon.GetAllFertilizerList();
-            gvFertilizer.DataSource = dt;
-            gvFertilizer.DataBind();
-            count.Text = "Number of Fertilizer =" + dt.Rows.Count;
+            dt = objCommon.GetAllChemicalList();
+            gvChemical.DataSource = dt;
+            gvChemical.DataBind();
+            count.Text = "Number of Chemical =" + dt.Rows.Count;
             ViewState["dirState"] = dt;
             ViewState["sortdr"] = "Asc";
         }
@@ -63,24 +63,24 @@ namespace Evo.Admin
                
                     int _isInserted = -1;
 
-                    FertilizerMasters obj = new FertilizerMasters()
+                    ChemicalMasters obj = new ChemicalMasters()
                     {
 
-                        FertilizerName = txtName.Text,
+                        ChemicalName = txtName.Text,
                         IsActive = true,
                       
                     };
-                if (Session["FertilizerId"] != null)
+                if (Session["chemicalID"] != null)
                 {
-                    string id = Session["FertilizerId"].ToString();
+                    string id = Session["chemicalID"].ToString();
                     int x = Convert.ToInt32(id);
                     obj.id = x;
-                    _isInserted = objCommon.UpdateFertilizer(obj);
+                    _isInserted = objCommon.UpdateChemical(obj);
 
                 }
                 else
                 {
-                    _isInserted = objCommon.InsertFertilzerMaster(obj);
+                    _isInserted = objCommon.InsertChemicalMaster(obj);
                 }
 
                     if (_isInserted == -1)
@@ -97,7 +97,7 @@ namespace Evo.Admin
                     // lblmsg.Text = "Fertilizer Added ";
                     pnlList.Visible = true;
                     pnlAdd.Visible = false;
-                    GetEmployeeList();
+                    GetChemicalList();
                     txtName.Text = "";
                     }
                 
@@ -115,15 +115,15 @@ namespace Evo.Admin
 
             {
                 int eid = Convert.ToInt32(e.CommandArgument);
-                Session["FertilizerId"] = eid;
+                Session["chemicalID"] = eid;
                 pnlAdd.Visible = true;
                 pnlList.Visible = false;
-                if (Session["FertilizerId"] != null)
+                if (Session["chemicalID"] != null)
                 {
-                    string id = Session["FertilizerId"].ToString();
+                    string id = Session["chemicalID"].ToString();
                     int x = Convert.ToInt32(id);
                     btAdd.Text = "Update";
-                    bindFertilizer(x);
+                    bindChemical(x);
                 }
             }
 
@@ -132,9 +132,9 @@ namespace Evo.Admin
             {
 
                 int eid = Convert.ToInt32(e.CommandArgument);
-                Session["FertilizerId"] = eid;
-                objCommon.RemoveFertilizer(eid);
-                GetEmployeeList();
+                Session["chemicalID"] = eid;
+                objCommon.RemoveChemical(eid);
+                GetChemicalList();
             }
         }
 
@@ -153,24 +153,24 @@ namespace Evo.Admin
                     dtrslt.DefaultView.Sort = e.SortExpression + " Asc";
                     ViewState["sortdr"] = "Asc";
                 }
-                gvFertilizer.DataSource = dtrslt;
-                gvFertilizer.DataBind();
+                gvChemical.DataSource = dtrslt;
+                gvChemical.DataBind();
             }
         }
 
         protected void GridEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvFertilizer.PageIndex = e.NewPageIndex;
-            GetEmployeeList();
+            gvChemical.PageIndex = e.NewPageIndex;
+            GetChemicalList();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             DataTable dtSearch1;
-            string sqr = "Select * FROM FertilizerMaster WHERE ISActive = 1";
+            string sqr = "Select * FROM ChemicalMaster WHERE ISActive = 1";
             if (txtSearchName.Text != "")
             {
-                sqr += "and FertilizerName like '%' +'" + txtSearchName.Text + "'+ '%'";
+                sqr += "and ChemicalName like '%' +'" + txtSearchName.Text + "'+ '%'";
             }
            
 
@@ -182,18 +182,18 @@ namespace Evo.Admin
                 if (dtSearch1 != null)
                 {
                     //DataTable dtSearch = dtSearch1.CopyToDataTable();
-                    gvFertilizer.DataSource = dtSearch1;
-                    gvFertilizer.DataBind();
+                    gvChemical.DataSource = dtSearch1;
+                    gvChemical.DataBind();
 
-                    count.Text = "Number of Employee= " + (dtSearch1.Rows.Count).ToString();
+                    count.Text = "Number of Chemical= " + (dtSearch1.Rows.Count).ToString();
                 }
                 else
                 {
                     DataTable dt = new DataTable();
-                    gvFertilizer.DataSource = dt;
-                    gvFertilizer.DataBind();
+                    gvChemical.DataSource = dt;
+                    gvChemical.DataBind();
 
-                    count.Text = "Number of Fertilizer= 0";
+                    count.Text = "Number of Chemical= 0";
                 }
                 ViewState["dirState"] = dtSearch1;
                 ViewState["sortdr"] = "Asc";
@@ -207,7 +207,7 @@ namespace Evo.Admin
         {
             txtName.Text = "";
             txtSearchName.Text = "";
-            GetEmployeeList();
+            GetChemicalList();
             //txtMobile.Text = "";
             //ddlDepartment.SelectedIndex = 0;
 
