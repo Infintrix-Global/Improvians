@@ -108,7 +108,7 @@ namespace Evo
             //  GV2.DataBind();
             //Gv3.DataBind();
             DataTable dthistory = objBAL.GetJobHistoryDateFromNavision(JobCode);
-            if (dt6.Rows.Count>0 && dt6 != null)
+            if (dt6.Rows.Count > 0 && dt6 != null)
             {
                 dthistory.Merge(dt6);
                 dthistory.AcceptChanges();
@@ -146,15 +146,6 @@ namespace Evo
 
 
             decimal tray = 0;
-            string BatchLocd = string.Empty;
-            foreach (GridViewRow row in GV5.Rows)
-            {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTrays") as Label).Text);
-                //}
-                // BatchLocd = (row.FindControl("lblGreenHouse1") as Label).Text;
-            }
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             lblTotalTrays.Text = tray.ToString();
@@ -214,6 +205,7 @@ namespace Evo
         {
             PanelView.Visible = true;
             JobCode = ddlJobNo.SelectedValue.Trim();
+            lblJobNo.Text = JobCode;
             BindGridOne();
         }
 
@@ -221,6 +213,7 @@ namespace Evo
         {
             PanelView.Visible = true;
             JobCode = txtSearchJobNo.Text.Trim();
+            lblJobNo.Text = JobCode;
             BindGridOne();
         }
 
@@ -301,28 +294,23 @@ namespace Evo
             Session["trays"] = lblTray.Text;
             Session["location"] = lblLocation.Text;
             BindGridOne();
-            //DropDownList ddlPbx = (DropDownList)(GV5.Rows[GV5.EditIndex].FindControl("ddlBenchLocation"));
-            //if (ddlPbx != null)
-            //    ddlPbx.DataSource = objBAL.GetLocation(Session["Facility"].ToString());
-            //ddlPbx.DataTextField = "p2";
-            //ddlPbx.DataValueField = "p2";
-            //ddlPbx.DataBind();
-            //ddlPbx.Items.Insert(0, new ListItem("--- Select ---", ""));
-
+            DropDownList ddlPbx = (DropDownList)(GV5.Rows[GV5.EditIndex].FindControl("ddlBenchLocation"));
+            ddlPbx.SelectedValue = lblLocation.Text;
+            ddlPbx.Focus();
         }
 
         protected void GV5_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
             Label lblid = GV5.Rows[e.RowIndex].FindControl("lblgrowerId") as Label;
+            Label lbljid = GV5.Rows[e.RowIndex].FindControl("lbljid") as Label;
 
-            HiddenField field = GV5.Rows[e.RowIndex].FindControl("HiddenField1") as HiddenField;
             TextBox city = GV5.Rows[e.RowIndex].FindControl("txt_Name") as TextBox;
             DropDownList ddlBenchLocation = GV5.Rows[e.RowIndex].FindControl("ddlBenchLocation") as DropDownList;
             long result1 = 0;
-            General objGeneral = new General();
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@GrowerPutAwayID", lblid.Text);
+            nv1.Add("@jid", lbljid.Text);
             nv1.Add("@GreenHouseID", ddlBenchLocation.SelectedValue);
             nv1.Add("@Trays", city.Text);
             nv1.Add("@JobId", JobCode);
@@ -332,8 +320,6 @@ namespace Evo
             nv1.Add("@NewTotalTrays", city.Text);
             nv1.Add("@UserId", Session["LoginID"].ToString());
             result1 = objCommon.GetDataInsertORUpdate("UpdateJobFacilityHouseDetail", nv1);
-
-
             GV5.EditIndex = -1;
             //Call ShowData method for displaying updated data  
             BindGridOne();
@@ -977,7 +963,7 @@ namespace Evo
         {
             foreach (GridViewRow row1 in GV5.Rows)
             {
-                
+
 
                 foreach (GridViewRow row in GV2.Rows)
                 {

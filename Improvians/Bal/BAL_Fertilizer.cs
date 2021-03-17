@@ -126,7 +126,7 @@ namespace Evo.Bal
                 {
                     strQuery += " and t.[Job No_] ='" + JobCode + "'";
                 }
-                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date] HAVING sum(t.Quantity) > 0";
+                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date] HAVING sum(t.Quantity) > 0  order by t.[Position Code] ASC";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)

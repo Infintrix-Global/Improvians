@@ -202,6 +202,9 @@
     <Content Include="css\custom.css" />
     <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="DumpAssignmentForm.aspx" />
+    <Content Include="DumpTaskAssignment.aspx" />
+    <Content Include="DumpTaskCompletion.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
     <Content Include="GeneralTaskAssignmentForm.aspx" />
     <Content Include="images\cancel.png" />
@@ -498,6 +501,27 @@
     </Compile>
     <Compile Include="DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DumpAssignmentForm.aspx.cs">
+      <DependentUpon>DumpAssignmentForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DumpAssignmentForm.aspx.designer.cs">
+      <DependentUpon>DumpAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DumpTaskAssignment.aspx.cs">
+      <DependentUpon>DumpTaskAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DumpTaskAssignment.aspx.designer.cs">
+      <DependentUpon>DumpTaskAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DumpTaskCompletion.aspx.cs">
+      <DependentUpon>DumpTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DumpTaskCompletion.aspx.designer.cs">
+      <DependentUpon>DumpTaskCompletion.aspx</DependentUpon>
     </Compile>
     <Compile Include="FerJobBuildUp.aspx.cs">
       <DependentUpon>FerJobBuildUp.aspx</DependentUpon>
