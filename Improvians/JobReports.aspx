@@ -273,14 +273,15 @@
                                                 <asp:TemplateField HeaderText="House/Section" Visible="false" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgrowerId" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>'></asp:Label>
+                                                        <asp:Label ID="lbljid" runat="server" Text='<%# Eval("jid")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>                                                    
+                                                <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="40%" HeaderStyle-CssClass="autostyle2">
+                                                    <ItemTemplate>
                                                         <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <EditItemTemplate>
-                                                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" DataTextField="GreenHouseId" DataValueField="GreenHouseId" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlBenchLocation" DataTextField="GreenHouseId" DataValueField="GreenHouseId" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                                     </EditItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
