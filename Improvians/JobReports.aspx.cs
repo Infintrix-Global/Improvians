@@ -151,13 +151,17 @@ namespace Evo
             }
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
+            lblTotalTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
         }
 
         public void FillDGHeader01()
         {
 
-            string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono,j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t, [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date], m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
+            string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono," +
+                " j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, DATEDIFF(day, CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END,GETDATE()) as NoOfDay, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t," +
+                " [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date]," +
+                " m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
 
             DataTable ds = objGeneral.GetDatasetByCommand(sql);
             GV2.DataSource = ds;
@@ -213,7 +217,7 @@ namespace Evo
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
-            txtSearchJobNo.Text = "JB";
+         //   txtSearchJobNo.Text = "JB";
             BindGridOne();
         }
         [System.Web.Script.Services.ScriptMethod()]
@@ -229,7 +233,7 @@ namespace Evo
                     //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
                     //" AND t.[Job No_] like '" + prefixText + "%'";
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
                         "";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);

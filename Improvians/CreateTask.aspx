@@ -23,7 +23,7 @@
                 <div class="col-lg-3">
 
                     <label>Job No</label>
-                    <asp:TextBox ID="txtSearchJobNo" runat="server" Text="JB" class="input__control robotomd"></asp:TextBox>
+                    <asp:TextBox ID="txtSearchJobNo" runat="server"  class="input__control robotomd"></asp:TextBox>
 
 
                     <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
