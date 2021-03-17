@@ -145,10 +145,12 @@ namespace Evo
             }
             decimal tray = 0;
             foreach (GridViewRow row in GV5.Rows)
-            {                
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTrays") as Label).Text);               
+            {
+                Label lblTray = row.FindControl("lblTrays") as Label;
+                if (lblTray != null)
+                    tray = tray + Convert.ToDecimal(lblTray.Text);
             }
-            
+
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             lblTotalTrays.Text = tray.ToString();

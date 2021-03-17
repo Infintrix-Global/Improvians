@@ -284,7 +284,7 @@
                                                         <asp:DropDownList ID="ddlBenchLocation" DataTextField="GreenHouseId" DataValueField="GreenHouseId" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                                     </EditItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="15%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblTrays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                                     </ItemTemplate>
