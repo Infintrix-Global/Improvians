@@ -11,7 +11,7 @@ namespace Evo.Admin
 {
 
 
-    public partial class FertilizerMaster
+    public partial class TaskTypeMaster
     {
 
         /// <summary>
@@ -123,12 +123,12 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.Label count;
 
         /// <summary>
-        /// gvFertilizer control.
+        /// gvChemical control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvFertilizer;
+        protected global::System.Web.UI.WebControls.GridView gvChemical;
     }
 }
