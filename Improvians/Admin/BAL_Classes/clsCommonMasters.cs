@@ -317,7 +317,7 @@ namespace Evo.Admin
             return _isInserted;
         }
 
-        public int InsertFertilzerMaster(FertilizerMaster obj)
+        public int InsertFertilzerMaster(FertilizerMasters obj)
         {
             int _isInserted = -1;
             try
@@ -372,6 +372,25 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@Designation", objEmployee.Designation);
                 objGeneral.AddParameterWithValueToSQLCommand("@Department", objEmployee.Department);
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_UpdateEmployee");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public int UpdateFertilizer(FertilizerMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
+                objGeneral.AddParameterWithValueToSQLCommand("@fertilizerName", obj.FertilizerName);
+               
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateFertilizer");
             }
             catch (Exception ex)
             {
@@ -547,6 +566,21 @@ namespace Evo.Admin
             return _isDeleted;
         }
 
+        public int RemoveFertilizer(int employeeID)
+        {
+            int _isDeleted = -1;
+            try
+            {
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", employeeID);
+                _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("DeleteFertilizer");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isDeleted;
+        }
         public int AddEmployeeFacility(int employeeID, string FacilityID)
         {
             int _isInserted = -1;
@@ -594,7 +628,7 @@ public class ProfilePlanner
     public int dateshift { get; set; }
 }
 
-public class FertilizerMaster
+public class FertilizerMasters
 {
     public int id { get; set; }
     public string FertilizerName { get; set; }

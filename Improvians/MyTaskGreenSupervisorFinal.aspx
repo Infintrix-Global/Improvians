@@ -116,6 +116,9 @@
                         <img src="./images/dashboard_dump-request.png" width="137" height="136" alt="Dump Request" />
                     </div>
                     <div class="dashboard__box-desc">
+                         <div class="dashboard__box-count dash_blue_txt robotobold">
+                                <asp:Label ID="lblDumpCount" runat="server" Text="0"></asp:Label>
+                        </div>
                         <h3 class="dashboard__box-title robotomd">Dump</h3>
                         <p>Review and Assign Dump Tasks</p>
                     </div>
@@ -125,6 +128,9 @@
                         <img src="./images/dashboard_general-task.png" width="137" height="124" alt="General Task" />
                     </div>
                     <div class="dashboard__box-desc">
+                         <div class="dashboard__box-count dash_blue_txt robotobold">
+                                <asp:Label ID="lblGeneralTaskCount" runat="server" Text="0"></asp:Label>
+                        </div>
                         <h3 class="dashboard__box-title robotomd">General Task</h3>
                         <p>Review and Assign Tasks</p>
                     </div>

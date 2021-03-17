@@ -42,15 +42,6 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.DropDownList ddlCrop;
 
         /// <summary>
-        /// ddlActivityCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlActivityCode;
-
-        /// <summary>
         /// ddlTrayCode control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace Evo.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTrayCode;
+
+        /// <summary>
+        /// ddlActivityCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlActivityCode;
 
         /// <summary>
         /// btnSearch control.
