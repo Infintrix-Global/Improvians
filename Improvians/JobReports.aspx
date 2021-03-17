@@ -278,7 +278,7 @@
                                                     </ItemTemplate>
 
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                         <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -290,7 +290,7 @@
                                                         <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" DataTextField="GreenHouseId" DataValueField="GreenHouseId" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                                     </EditItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
 
                                                         <asp:Label ID="lblTrays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
@@ -300,7 +300,7 @@
                                                         <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Trays") %>'></asp:TextBox>
                                                     </EditItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Button ID="btn_Edit" runat="server" Text="Edit" CssClass="bttn bttn-primary bttn-action" CommandName="Edit" />
                                                     </ItemTemplate>
