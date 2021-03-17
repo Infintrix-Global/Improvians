@@ -43,20 +43,20 @@
                             <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
             <asp:Panel ID="PanelView" Visible="false" runat="server">
-                 <br />
-                    <div class="row" id="divJobNo" runat="server">
-                        <div class="col-lg-3">
-                            <h2>
-                                <label>Job No: </label>
-                                <asp:Label ID="lblJobNo" runat="server"></asp:Label>
-                            </h2>
+                <br />
+                <div class="row" id="divJobNo" runat="server">
+                    <div class="col-lg-3">
+                        <h2>
+                            <label>Job No: </label>
+                            <asp:Label ID="lblJobNo" runat="server"></asp:Label>
+                        </h2>
 
-                        </div>
                     </div>
+                </div>
                 <br />
                 <div class="row">
                     <div class="col m12">
@@ -264,37 +264,28 @@
 
                                 <asp:Panel ID="Panel4" runat="server">
                                     <div class="data__table data__table-height">
-                                        <asp:GridView ID="GV5" runat="server"  AutoGenerateColumns="False"
-                                            class="striped" AllowSorting="true" 
+                                        <asp:GridView ID="GV5" runat="server" AutoGenerateColumns="False"
+                                            class="striped" AllowSorting="true"
                                             GridLines="None" PageSize="10" OnRowDataBound="GV5_RowDataBound"
                                             ShowHeaderWhenEmpty="True" Width="50%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
                                             <Columns>
 
                                                 <asp:TemplateField HeaderText="House/Section" Visible="false" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                        <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                         <asp:Label ID="lblgrowerId" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>'></asp:Label>
-
                                                     </ItemTemplate>
-
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
-                                                        <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                                    <ItemTemplate>                                                    
                                                         <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
-
                                                     </ItemTemplate>
                                                     <EditItemTemplate>
-
-
                                                         <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" DataTextField="GreenHouseId" DataValueField="GreenHouseId" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                                     </EditItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-
                                                         <asp:Label ID="lblTrays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
-
                                                     </ItemTemplate>
                                                     <EditItemTemplate>
                                                         <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Trays") %>'></asp:TextBox>
@@ -328,7 +319,7 @@
 
                             <div class="portlet-body">
 
-                                <asp:Panel ID="Panel7" runat="server" >
+                                <asp:Panel ID="Panel7" runat="server">
                                     <div class="data__table data__table-height">
                                         <asp:GridView ID="GV6" runat="server" AutoGenerateColumns="False"
                                             class="striped"
