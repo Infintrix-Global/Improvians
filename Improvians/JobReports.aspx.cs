@@ -759,6 +759,7 @@ namespace Evo
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@ChId", "0");
                     nv.Add("@Comments", txtPlantComments.Text.Trim());
+                    nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
 
 
@@ -984,6 +985,7 @@ namespace Evo
                     nv.Add("@ChId", "0");
                     nv.Add("@Comments", txtCommentsDump.Text.Trim());
                     nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
+                    nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
 
 
