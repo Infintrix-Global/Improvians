@@ -348,15 +348,12 @@ namespace Evo
             DataTable dt = objFer.GetSelectBench(YourString);
 
             lblBench1.Text = dt.Rows[0]["PositionCode"].ToString();
-
         }
 
 
 
         public void SelectBenchLocation()
         {
-
-
             // ENC2 - SHADE - 2 - A
             //string input = Bench;
             //string[] array = input.Split('-');
@@ -427,12 +424,11 @@ namespace Evo
             ddlCustomer.SelectedIndex = 0;
             ddlJobNo.SelectedIndex = 0;
 
+            gvFer.DataSource = null;
+            gvFer.DataBind();
+
             dtTrays.Clear();
         }
-
-
-
-
 
         protected void chckchanged(object sender, EventArgs e)
         {
@@ -777,7 +773,7 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
                 // nv.Add("@OperatorID", Session["LoginID"].ToString());
                 //nv.Add("@wo", wo);
-                nv.Add("@Comments", txtgeneralCommnet.Text.Trim());
+                nv.Add("@Comments", txtgeneralComment.Text.Trim());
                 nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text.Trim());
@@ -1225,6 +1221,51 @@ namespace Evo
                 }
             }
 
+        }
+
+        protected void btnGeneraltask_Click(object sender, EventArgs e)
+        {
+            long result16 = 0;
+
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@Customer", "");
+                    nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    
+                    nv.Add("@SupervisorID", ddlAssignments.SelectedValue);
+                    nv.Add("@TaskType", ddlTaskType.SelectedValue);
+                    nv.Add("@MoveFrom", txtFrom.Text);
+                    nv.Add("@MoveTo", txtTo.Text);
+
+                    nv.Add("@LoginId", Session["LoginID"].ToString());
+                    nv.Add("@Comments", txtgeneralComment.Text);
+
+                    result16 = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequesMenualDetailsCreateTask", nv);
+                }
+
+            }
+
+            if (result16 > 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                Clear();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+            }
         }
     }
 }
