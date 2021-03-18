@@ -935,6 +935,18 @@
                                                                     SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
                                                             </span>
                                                         </div>--%>
+                                                                
+                                                                <div class="col-lg-4">
+                                                                    <label>Assignment</label>
+
+                                                                    <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                                                    <span class="error_message">
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                                    </span>
+                                                                </div>
+
+
                                                                 <div class="col-lg-4">
                                                                     <label>Task Type</label>
 
@@ -950,16 +962,6 @@
                                                                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
                                                                     </span>
                                                                 </div>
-                                                                <div class="col-lg-4">
-                                                                    <label>Assignment</label>
-
-                                                                    <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
-                                                                    <span class="error_message">
-                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
-                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                                    </span>
-                                                                </div>
-
                                                               <%--  <div class="col-lg-4">
                                                                     <label>Comments</label>
                                                                     <asp:TextBox ID="txtgeneralCommnet" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
