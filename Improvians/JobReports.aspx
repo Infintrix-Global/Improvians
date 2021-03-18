@@ -57,7 +57,7 @@
 
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col m12">
                         <div class="portlet light ">
@@ -267,7 +267,7 @@
                                         <asp:GridView ID="GV5" runat="server" AutoGenerateColumns="False"
                                             class="striped" AllowSorting="true"
                                             GridLines="None" PageSize="10" OnRowDataBound="GV5_RowDataBound"
-                                            ShowHeaderWhenEmpty="True" Width="50%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
+                                            ShowHeaderWhenEmpty="True" Width="60%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
                                             <Columns>
 
                                                 <asp:TemplateField HeaderText="House/Section" Visible="false" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -292,7 +292,7 @@
                                                         <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Trays") %>'></asp:TextBox>
                                                     </EditItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="Action" HeaderStyle-Width="25%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Button ID="btn_Edit" runat="server" Text="Edit" CssClass="bttn bttn-primary bttn-action" CommandName="Edit" />
                                                     </ItemTemplate>
@@ -361,30 +361,28 @@
 
                                 <asp:Panel ID="Panel3" runat="server">
                                     <div class="data__table data__table-height">
-                                        <asp:GridView ID="GV4" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                        <asp:GridView ID="GV4" runat="server" AutoGenerateColumns="False"
                                             class="striped"
                                             GridLines="None"
-                                            ShowHeaderWhenEmpty="True" Width="50%">
+                                            ShowHeaderWhenEmpty="True" Width="60%">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Description" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblD" runat="server" Text='<%# Eval("activitycode")  %>'></asp:Label>
+                                                        <asp:Label ID="lblD" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Assigned Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
-
-                                                        <%-- <asp:Label ID="lblSD" runat="server" Text='<%# Eval("StartingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>--%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                             
                                                 <asp:TemplateField HeaderText="Assigned By" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
+
+                                                        <asp:Label ID="lblAssignedby" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Assigned To" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
+                                                        <asp:Label ID="lblAssignedTo" runat="server" Text='<%# Eval("AssignedTo")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--   <asp:TemplateField HeaderText="Operation No" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -399,10 +397,15 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
 
+                                                   <asp:TemplateField HeaderText="Assigned Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                    <ItemTemplate>
 
+                                                        <asp:Label ID="lblSD" runat="server" Text='<%# Eval("StartingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Completion Date " ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                        <%--                                                   <asp:Label ID="lblED" runat="server" Text='<%# Eval("EndingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>--%>
+                                                        <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("EndingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%-- <asp:TemplateField HeaderText="Germ" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -424,12 +427,12 @@
                 <div class="task_request_assignments" id="task_request-group">
 
                     <div class="task_request-buttons">
-                        <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#germination_count">
-                            <span class="">
+                        <asp:LinkButton runat="server" ID="btngermination" class="request__block-head collapsed" OnClick="btngermination_Click1">
+                              <span class="">
                                 <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                                 Germination Count
-                            </span>
-                        </button>
+                             </span>
+                        </asp:LinkButton>
 
                         <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#fertilization_count">
                             <span class="">

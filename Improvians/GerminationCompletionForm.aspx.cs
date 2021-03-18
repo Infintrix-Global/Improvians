@@ -56,7 +56,7 @@ namespace Evo
 
         }
 
-              public void BindGridGerm()
+        public void BindGridGerm()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
