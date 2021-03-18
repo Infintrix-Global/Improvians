@@ -267,7 +267,7 @@ namespace Evo
                             nv.Add("@TraySize", lblTraySize.Text);
                             nv.Add("@wo", HiddenFieldwo.Value);
                             nv.Add("@GenusCode", HiddenFieldGenusCode.Value);
-                            
+                            nv.Add("@CreateBy", Session["LoginID"].ToString());
                             nv.Add("@mode", "1");
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
 

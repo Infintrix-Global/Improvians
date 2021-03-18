@@ -26,8 +26,9 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
             // nv.Add("@Mode", "2");
-            dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTask", nv);
+            dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTasknew", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
