@@ -757,7 +757,7 @@
 
                                                             <div class="col-lg-4" id="divFrom" style="display: none;" runat="server">
                                                                 <label>From</label>
-                                                                <asp:TextBox ID="txtFrom" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                                                <asp:TextBox ID="txtFrom"  runat="server" CssClass="input__control"></asp:TextBox>
 
                                                                 <span class="error_message">
                                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
@@ -766,7 +766,7 @@
                                                             </div>
                                                             <div class="col-lg-4" id="divTo" style="display: none;" runat="server">
                                                                 <label>To</label>
-                                                                <asp:TextBox ID="txtTo" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                                                <asp:TextBox ID="txtTo"  runat="server" CssClass="input__control"></asp:TextBox>
 
                                                                 <span class="error_message">
                                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
@@ -777,7 +777,7 @@
                                                             <div class="col-lg-4">
                                                                 <div style="margin-top: 9%;">
                                                                     <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
-                                                                    <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
+                                                                    <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
                                                                 </div>
                                                             </div>
                                                         </div>

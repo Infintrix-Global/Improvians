@@ -842,11 +842,27 @@ namespace Evo
 
         protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlAssignments.SelectedItem.Value != "7" && ddlAssignments.SelectedItem.Value != "9")
-            {
-                btngeneraltasksave.Visible = true;
+            //if (ddlAssignments.SelectedItem.Value != "7" && ddlAssignments.SelectedItem.Value != "9")
+            //{
+            //    btngeneraltasksave.Visible = true;
 
+            //}
+            List<int> toBeSubmitted = new List<int>()
+            {
+               2, 3 , 6, 11, 15
+            };
+            var val = Convert.ToInt32(ddlAssignments.SelectedValue);
+            if (!toBeSubmitted.Contains(val))
+            {
+                btnSendMail.Visible = true;
+                btngeneraltasksave.Visible = false;
             }
+            else
+            {
+                btnSendMail.Visible = false;
+                btngeneraltasksave.Visible = true;
+            }
+
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Uid", ddlAssignments.SelectedValue);
             DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
@@ -1268,6 +1284,7 @@ namespace Evo
                 nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
                 nv.Add("@InspectionDueDate", txtGerDate.Text);
                 nv.Add("@TraysInspected", txtTGerTrays.Text);
+                nv.Add("@Comments", txtcomments.Text);
                 nv.Add("@Chid", Chid);
                 nv.Add("@LoginId", Session["LoginID"].ToString());
 
