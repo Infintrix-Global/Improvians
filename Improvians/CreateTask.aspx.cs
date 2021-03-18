@@ -484,7 +484,7 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq("", ddlJobNo.SelectedValue);
+            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'", ddlJobNo.SelectedValue);
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -667,7 +667,7 @@ namespace Evo
             objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -735,7 +735,7 @@ namespace Evo
 
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
+                string url = "CreateTask.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -889,7 +889,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -930,6 +930,7 @@ namespace Evo
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@ChId", "0");
+                    nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@Comments", txtPlantComments.Text.Trim());
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
                 }
@@ -939,7 +940,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -1063,7 +1064,7 @@ namespace Evo
             objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -1143,7 +1144,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -1176,6 +1177,7 @@ namespace Evo
                     nv.Add("@ChId", "0");
                     nv.Add("@Comments", txtCommentsDump.Text.Trim());
                     nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
+                    nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
 
                 }
@@ -1184,7 +1186,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+            string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";

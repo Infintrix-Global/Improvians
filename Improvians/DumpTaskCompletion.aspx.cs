@@ -175,12 +175,12 @@ namespace Evo
             clear();
             if (Session["Role"].ToString() == "3")
             {
-                Response.Redirect("~/PlantReadyCompletionForm.aspx");
+              //  Response.Redirect("~/PlantReadyCompletionForm.aspx");
             }
 
             if (Session["Role"].ToString() == "2")
             {
-                Response.Redirect("~/PlantReadyAssignmentForm.aspx");
+               // Response.Redirect("~/PlantReadyAssignmentForm.aspx");
             }
         }
     }
