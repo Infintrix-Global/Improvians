@@ -53,6 +53,15 @@ namespace Evo
                 txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+
+
+                if (Request.QueryString["jobCode"] != null)
+                {
+                    txtSearchJobNo.Text = Request.QueryString["jobCode"].ToString();
+                    BindGridFerReq("", txtSearchJobNo.Text);
+                }
+
+
             }
         }
 
@@ -219,7 +228,7 @@ namespace Evo
         protected void ListBoxBenchesInHouse_SelectedIndexChanged(object sender, EventArgs e)
         {
             int c = 0;
-            string x = "'" + Bench1 + "'"+",";
+            string x = "'" + Bench1 + "'" + ",";
             string chkSelected = "";
             foreach (ListItem item in ListBoxBenchesInHouse.Items)
             {

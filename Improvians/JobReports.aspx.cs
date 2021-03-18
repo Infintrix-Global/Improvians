@@ -76,6 +76,7 @@ namespace Evo
         public void BindGridOne()
         {
             FillDGHeader01();
+            BindGridJobHistory();
             string chkSelected = "";
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
@@ -114,8 +115,8 @@ namespace Evo
                 dthistory.AcceptChanges();
             }
             GV6.DataSource = dthistory;
-            GV4.DataSource = dthistory;
-            GV4.DataBind();
+        //    GV4.DataSource = dthistory;
+          //  GV4.DataBind();
             GV5.DataBind();
             GV6.DataBind();
 
@@ -156,6 +157,29 @@ namespace Evo
             lblTotalTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
         }
+
+
+
+        public void BindGridJobHistory()
+        {
+           
+            DataTable dt6 = new DataTable();
+           
+            ///NameValueCollection nv = new NameValueCollection();
+           // nv.Add("@JobID", JobCode);
+          //  dt6 = objCommon.GetDataTable("GetJobTracibilityReportJobHistory", nv);
+
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@JobID", JobCode);
+            DataSet ds = objCommon.GetDataSet("GetJobTracibilityReportJobHistory", nv);
+            dt6 = ds.Tables[0];
+            GV4.DataSource = dt6;
+            GV4.DataBind();
+        
+
+          
+        }
+
 
         public void FillDGHeader01()
         {
@@ -1012,6 +1036,14 @@ namespace Evo
         protected void btnDumpReset_Click(object sender, EventArgs e)
         {
 
+        }
+
+      
+     
+
+        protected void btngermination_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Germination"));
         }
     }
 }
