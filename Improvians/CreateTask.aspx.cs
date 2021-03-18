@@ -767,13 +767,7 @@ namespace Evo
 
         }
 
-        //protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    NameValueCollection nv = new NameValueCollection();
-        //    nv.Add("@Uid", ddlAssignments.SelectedValue);
-        //    DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
-        //    ReceiverEmail = dt.Rows[0]["Email"].ToString();
-        //}
+        
         protected void btnSendMail_Click(object sender, EventArgs e)
         {
             try
@@ -830,12 +824,28 @@ namespace Evo
 
         protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
         {
+            List<int> toBeSubmitted = new List<int>()
+            {
+               2, 3 , 6, 11, 15
+            };
+            var val = Convert.ToInt32(ddlAssignments.SelectedValue);
+            // if (ddlAssignments.SelectedValue == "13" || ddlAssignments.SelectedValue == "11" || ddlAssignments.SelectedValue == "16")
+            if (!toBeSubmitted.Contains(val))
+            {
+                btnSendMail.Visible = true;
+                btnGeneraltask.Visible = false;
+            }
+            else
+            {
+                btnSendMail.Visible = false;
+                btnGeneraltask.Visible = true;
+            }
+
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Uid", ddlAssignments.SelectedValue);
             DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
             ReceiverEmail = dt.Rows[0]["Email"].ToString();
         }
-
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
         {
 

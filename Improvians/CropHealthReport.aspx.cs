@@ -338,10 +338,6 @@ namespace Evo
             script += url;
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
-
-
-
             //  Clear();
         }
 
@@ -350,7 +346,6 @@ namespace Evo
 
         public void Clear()
         {
-
             ddlpr.SelectedValue = "0";
             DropDownListCause.SelectedValue = "0";
             DropDownListSv.SelectedValue = "0";
@@ -842,11 +837,27 @@ namespace Evo
 
         protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlAssignments.SelectedItem.Value != "7" && ddlAssignments.SelectedItem.Value != "9")
-            {
-                btngeneraltasksave.Visible = true;
+            //if (ddlAssignments.SelectedItem.Value != "7" && ddlAssignments.SelectedItem.Value != "9")
+            //{
+            //    btngeneraltasksave.Visible = true;
 
+            //}
+            List<int> toBeSubmitted = new List<int>()
+            {
+               2, 3 , 6, 11, 15
+            };
+            var val = Convert.ToInt32(ddlAssignments.SelectedValue);
+            if (!toBeSubmitted.Contains(val))
+            {
+                btnSendMail.Visible = true;
+                btngeneraltasksave.Visible = false;
             }
+            else
+            {
+                btnSendMail.Visible = false;
+                btngeneraltasksave.Visible = true;
+            }
+
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Uid", ddlAssignments.SelectedValue);
             DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
@@ -1213,8 +1224,6 @@ namespace Evo
                     }
                 }
 
-
-
                 foreach (GridViewRow row in gvFer.Rows)
                 {
                     CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -1237,7 +1246,6 @@ namespace Evo
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
-
                 }
 
                 if (result > 0)
@@ -1265,13 +1273,17 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
-                nv.Add("@InspectionDueDate", txtGerDate.Text);
-                nv.Add("@TraysInspected", txtTGerTrays.Text);
+                nv.Add("@SupervisorID", ddlAssignments.SelectedValue);
+
+                nv.Add("@TaskType", ddlTaskType.SelectedValue);
+                nv.Add("@MoveFrom", txtFrom.Text);
+                nv.Add("@MoveTo", txtTo.Text);
+
+                nv.Add("@Comments", txtcomments.Text);
                 nv.Add("@Chid", Chid);
                 nv.Add("@LoginId", Session["LoginID"].ToString());
 
-                result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
+                result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGeneralTaskRequest", nv);
             }
 
             if (result16 > 0)
@@ -1280,18 +1292,19 @@ namespace Evo
                 NameValueCollection nv11 = new NameValueCollection();
                 nv11.Add("@Chid", Chid);
                 result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
-                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                //string message = "Assignment Successful";
+                //string url = "MyTaskGrower.aspx";
+                //string script = "window.onload = function(){ alert('";
+                //script += message;
+                //script += "');";
+                //script += "window.location = '";
+                //script += url;
+                //script += "'; }";
+                //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 // lblmsg.Text = "Assignment Successful";
-                //  clear();
+                Clear();
+                //Response.Redirect("MyTaskGrower.aspx");
             }
             else
             {
