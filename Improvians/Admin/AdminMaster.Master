@@ -97,7 +97,7 @@
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
-                        <%--    <li>
+                            <li>
                                 <a class="current" href="#" title="View Employee">
                                     <i class="side-icon far fa-user"></i>
                                     <span class="side-title">Form's Dropdowns</span>
@@ -124,7 +124,14 @@
                                     <span class="side-title">TaskType Master</span>
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
-                            </li>--%>
+                            </li>
+                            <li>
+                                <a class="current" href="CropHealthMaster.aspx" title="Master">
+                                    <i class="side-icon far fa-user"></i>
+                                    <span class="side-title">Crop Health Master</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </aside>
