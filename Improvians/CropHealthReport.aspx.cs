@@ -1306,7 +1306,7 @@ namespace Evo
                 //Clear();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
 
-                Response.Redirect("MyTaskGrower.aspx");
+                //Response.Redirect("MyTaskGrower.aspx");
             }
             else
             {
