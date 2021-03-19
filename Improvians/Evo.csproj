@@ -103,6 +103,7 @@
   <ItemGroup>
     <Content Include="Admin\AddEmployee.aspx" />
     <Content Include="Admin\AdminDashBoard.aspx" />
+    <Content Include="Admin\CropHealthMaster.aspx" />
     <Content Include="Admin\TaskTypeMaster.aspx" />
     <Content Include="Admin\css\all.min.css" />
     <Content Include="Admin\css\aos.css" />
@@ -372,6 +373,13 @@
     <Compile Include="Admin\BAL_Classes\BAL_Task.cs" />
     <Compile Include="Admin\BAL_Classes\clsCommonMasters.cs" />
     <Compile Include="Admin\BAL_Classes\General.cs" />
+    <Compile Include="Admin\CropHealthMaster.cs">
+      <DependentUpon>CropHealthMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CropHealthMaster.aspx.designer.cs">
+      <DependentUpon>CropHealthMaster.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\TaskTypeMaster.aspx.cs">
       <DependentUpon>TaskTypeMaster.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -105,14 +105,14 @@
                                         </Columns>
                                     </asp:GridView>--%>
                                     </div>
-                                    <div class="data__table">
+                                    <div >
                                         <asp:GridView ID="GV2" runat="server" AutoGenerateColumns="False"
-                                            class="striped" AllowSorting="true"
+                                            class="data__table break__table mb-3" AllowSorting="true" OnRowDataBound="GV2_RowDataBound"
                                             GridLines="None"
                                             ShowHeaderWhenEmpty="True" Width="100%">
                                             <Columns>
 
-                                                <asp:TemplateField HeaderText="Cust. Name">
+                                                <asp:TemplateField HeaderText="Cust. Name" >
                                                     <ItemTemplate>
 
                                                         <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
@@ -122,7 +122,7 @@
                                                 <asp:TemplateField HeaderText="SO No">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblsono" runat="server" Text='<%# Eval("sono")  %>'></asp:Label>
+                                                        <asp:Label ID="lblsono" data-head="SO No" runat="server" Text='<%# Eval("sono")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -130,7 +130,7 @@
                                                 <asp:TemplateField HeaderText="SO Line">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblsoline" runat="server" Text='<%# Eval("soline")  %>'></asp:Label>
+                                                        <asp:Label ID="lblsoline" data-head="SO Line" runat="server" Text='<%# Eval("soline")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -138,35 +138,35 @@
                                                 <asp:TemplateField HeaderText="Item">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblitem" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                                                        <asp:Label ID="lblitem" data-head="Item" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Description">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                                        <asp:Label ID="lblitemdesc" data-head="Description" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Size">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("ts")  %>'></asp:Label>
+                                                        <asp:Label ID="lblTraySize"  data-head="Size" runat="server" Text='<%# Eval("ts")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Total Trays">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("trays","{0:####}")  %>'></asp:Label>
+                                                        <asp:Label ID="lblTotTray" data-head="Total Trays" runat="server" Text='<%# Eval("trays","{0:####}")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Seed Date">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("seeddt","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                        <asp:Label ID="lblSeededDate" data-head="Seed Date" runat="server" Text='<%# Eval("seeddt","{0:MM/dd/yyyy}")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -182,7 +182,7 @@
                                             </Columns>
                                         </asp:GridView>
                                         <br />
-                                        <asp:GridView ID="DGHead02" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%">
+                                        <asp:GridView ID="DGHead02" CssClass="data__table" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Organic" DataField="org" />
                                                 <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />

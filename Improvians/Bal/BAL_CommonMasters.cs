@@ -60,7 +60,7 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select w.[Activity Code] activitycode, w.Date plan_date from [GTI$IA Job Activity Scheme Line] w where w.[Job No_] = '" + JobCode + "' and w.Type = 2 and w.[Activity Code] in('PUTAWAY INSIDE','SEEDING')";
+                strQuery = "select w.[Activity Code] activitycode, w.Date plan_date from [GTI$IA Job Activity Scheme Line] w where w.[Job No_] = '" + JobCode + "' and w.Type = 2 and w.[Activity Code] in('PUTAWAY INSIDE')";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)

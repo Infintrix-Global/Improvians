@@ -813,6 +813,7 @@ namespace Evo
 
                 mail.From = new MailAddress(FromMail);
                 mail.To.Add(new MailAddress(ReceiverEmail));
+                
                 //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
                 //   mail.Attachments.Add(atc);
                 smtpClient.Send(mail);
@@ -837,31 +838,15 @@ namespace Evo
 
         protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (ddlAssignments.SelectedItem.Value != "7" && ddlAssignments.SelectedItem.Value != "9")
-            //{
-            //    btngeneraltasksave.Visible = true;
-
-            //}
-            List<int> toBeSubmitted = new List<int>()
-            {
-               2, 3 , 6, 11, 15
-            };
-            var val = Convert.ToInt32(ddlAssignments.SelectedValue);
-            if (!toBeSubmitted.Contains(val))
-            {
-                btnSendMail.Visible = true;
-                btngeneraltasksave.Visible = false;
-            }
-            else
-            {
-                btnSendMail.Visible = false;
-                btngeneraltasksave.Visible = true;
-            }
 
             NameValueCollection nv = new NameValueCollection();
+            Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
             nv.Add("@Uid", ddlAssignments.SelectedValue);
             DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
             ReceiverEmail = dt.Rows[0]["Email"].ToString();
+            divcomments.Focus();
+            //general_task_request.Focus();
+
         }
         //----------------------------------------------------------------------irrigatio
 
@@ -1164,6 +1149,7 @@ namespace Evo
 
         protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
         {
+           // general_task_request.Focus();
             if (ddlTaskType.SelectedItem.Value == "3")
             {
                 divFrom.Style["display"] = "block";
@@ -1273,13 +1259,14 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                nv.Add("@SupervisorID", ddlAssignments.SelectedValue);
+                nv.Add("@SupervisorID", Session["SelectedAssignment"].ToString());
 
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text);
                 nv.Add("@MoveTo", txtTo.Text);
+                nv.Add("@date", txtgeneralDate.Text);
 
-                nv.Add("@Comments", txtcomments.Text);
+                nv.Add("@Comments", txtgeneralComment.Text);
                 nv.Add("@Chid", Chid);
                 nv.Add("@LoginId", Session["LoginID"].ToString());
 
@@ -1292,25 +1279,42 @@ namespace Evo
                 NameValueCollection nv11 = new NameValueCollection();
                 nv11.Add("@Chid", Chid);
                 result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+                string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
+                smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
+                // smtpClient.U'seDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                string CCEmail = "";
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+                MailMessage mail = new MailMessage();
+                mail.Subject = "Crop Health Report";
+                mail.Body = "Crop Health Report Comments:" + txtcomments.Text;
+                //Setting From , To and CC
+
+                mail.From = new MailAddress(FromMail);
+                mail.To.Add(new MailAddress(ReceiverEmail));
+                NameValueCollection nv = new NameValueCollection();
+                Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
+                nv.Add("@Uid",Session["Role"].ToString());
+                DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
+                CCEmail = dt.Rows[0]["Email"].ToString();
+                mail.CC.Add(new MailAddress(CCEmail));
+                //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
+                //   mail.Attachments.Add(atc);
+                smtpClient.Send(mail);
+                //Clear();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                //string message = "Assignment Successful";
-                //string url = "MyTaskGrower.aspx";
-                //string script = "window.onload = function(){ alert('";
-                //script += message;
-                //script += "');";
-                //script += "window.location = '";
-                //script += url;
-                //script += "'; }";
-                //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                // lblmsg.Text = "Assignment Successful";
-                Clear();
-                //Response.Redirect("MyTaskGrower.aspx");
+
+                Response.Redirect("MyTaskGrower.aspx");
             }
             else
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
+
+
         }
 
         protected void btnChemicalSubmit_Click(object sender, EventArgs e)
@@ -1648,5 +1652,7 @@ namespace Evo
                 }
             }
         }
+
+       
     }
 }

@@ -759,7 +759,7 @@
 
                                                             <div class="col-lg-4">
                                                                 <label>Comments</label>
-                                                                <asp:TextBox ID="txtgeneralCommnet" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                                                <asp:TextBox ID="txtgeneralComment" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
                                                                 <span class="error_message">
                                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
@@ -789,7 +789,7 @@
                                                             <div class="col-lg-4">
                                                                 <div style="margin-top: 9%;">
                                                                     <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
-                                                                    <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
+                                                                    <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server"  Visible="false" />
                                                                 </div>
                                                             </div>
                                                         </div>

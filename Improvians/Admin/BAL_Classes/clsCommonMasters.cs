@@ -76,8 +76,8 @@ namespace Evo.Admin
             {
                 // Gmail Address from where you send the mail
                 var fromAddress = "igportalmail@gmail.com";//"infintrix.world@gmail.com";
-                                                       // any address where the email will be sending
-                                                       // var toAddress = "mehulrana1901@gmail.com,urvi.gandhi@infintrixglobal.com,nidhi.mehta@infintrixglobal.com,bhavin.gandhi@infintrixglobal.com,mehul.rana@infintrixglobal.com,naimisha.rohit@infintrixglobal.com";
+                                                           // any address where the email will be sending
+                                                           // var toAddress = "mehulrana1901@gmail.com,urvi.gandhi@infintrixglobal.com,nidhi.mehta@infintrixglobal.com,bhavin.gandhi@infintrixglobal.com,mehul.rana@infintrixglobal.com,naimisha.rohit@infintrixglobal.com";
 
                 var toAddress = Email;
 
@@ -113,7 +113,7 @@ namespace Evo.Admin
             }
         }
 
-        internal long GetDataInsertORUpdate(string v, NameValueCollection nv1)
+        public long GetDataInsertORUpdate(string v, NameValueCollection nv1)
         {
             throw new NotImplementedException();
         }
@@ -373,6 +373,26 @@ namespace Evo.Admin
             }
             return _isInserted;
         }
+        public int InsertCropHealthMaster(CropHealthMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@ProblemType", obj.TypeOfProblem);
+                objGeneral.AddParameterWithValueToSQLCommand("@ProblemCause", obj.CauseOfProblem);
+                objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddCropHealthMaster");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
 
         public int UpdateDateShift(ProfilePlanner obj)
         {
@@ -474,6 +494,25 @@ namespace Evo.Admin
             }
             return _isInserted;
         }
+        public int UpdateCropHealth(CropHealthMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
+                objGeneral.AddParameterWithValueToSQLCommand("@ProblemType", obj.TypeOfProblem);
+                objGeneral.AddParameterWithValueToSQLCommand("@ProblemCause", obj.CauseOfProblem);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateCropHealth");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
 
         public DataTable GetAllEmployeeList()
         {
@@ -520,6 +559,8 @@ namespace Evo.Admin
             return ds.Tables[0];
         }
 
+        
+
         public DataTable GetAllTaskTypeList()
         {
             try
@@ -527,6 +568,20 @@ namespace Evo.Admin
 
                 General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 22);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+
+        public DataTable GetAllCropHealthList()
+        {
+            try
+            {
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 23);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
             catch (Exception ex)
@@ -703,6 +758,22 @@ namespace Evo.Admin
             }
             return _isDeleted;
         }
+
+        public int RemoveCropHealth(int eid)
+        {
+            int _isDeleted = -1;
+            try
+            {
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", eid);
+                _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("DeleteCropHealth");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isDeleted;
+        }
         public int AddEmployeeFacility(int employeeID, string FacilityID)
         {
             int _isInserted = -1;
@@ -720,23 +791,18 @@ namespace Evo.Admin
             return _isInserted;
         }
     }
-
 }
+
 [Serializable]
-
-
 public class Employee
 {
     public int EmployeeID { get; set; }
     public string EmployeeCode { get; set; }
-
     public string Designation { get; set; }
     public string Mobile { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }
- 
     public string Password { get; set; }
-
     public string Department { get; set; }
   
     public string Photo { get; set; }
@@ -746,7 +812,6 @@ public class Employee
 public class ProfilePlanner
 {
     public int pid { get; set; }
-
     public int dateshift { get; set; }
 }
 
@@ -774,4 +839,10 @@ public class TaskTypeMasters
 
 }
 
-
+public class CropHealthMasters
+{
+    public int id { get; set; }
+    public string TypeOfProblem { get; set; }
+    public string CauseOfProblem { get; set; }
+    public bool IsActive { get; set; }
+}
