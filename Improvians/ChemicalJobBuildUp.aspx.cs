@@ -459,9 +459,11 @@ namespace Evo
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
-                //  }
+                
 
             }
+
+
 
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
@@ -508,6 +510,7 @@ namespace Evo
                 //  }
 
             }
+
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text,txtTrays.Text, txtSQFT.Text);
             objTask.AddChemicalRequestDetails(dtTrays,ddlFertilizer.SelectedValue, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
 

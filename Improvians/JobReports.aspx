@@ -31,6 +31,7 @@
                             <br />
                             <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
                             <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+
                         </div>
                     </div>
                     <div class="row" id="divFilter1" runat="server" visible="false">
@@ -56,6 +57,16 @@
                         </h2>
 
                     </div>
+                    <div class="col-lg-3">
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
+                    <div class="col-lg-3">
+                        <asp:Button ID="backButton" runat="server" Text="Back"  CssClass="bttn bttn-primary bttn-action"
+                            OnClientClick="JavaScript:window.history.back(1);return false;"></asp:Button>
+                    </div>
+
+
                 </div>
 
                 <div class="row">
@@ -373,7 +384,15 @@
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                             
+                                                <asp:TemplateField HeaderText="Seedline Facility" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                    <ItemTemplate>
+
+                                                        <asp:Label ID="lblSeedlineFacility" runat="server" Text='<%# Eval("SeedlineFacility")  %>'></asp:Label>
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
                                                 <asp:TemplateField HeaderText="Assigned By" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
 
@@ -397,17 +416,23 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
 
-                                                   <asp:TemplateField HeaderText="Assigned Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="Assigned Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
 
                                                         <asp:Label ID="lblSD" runat="server" Text='<%# Eval("StartingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Completion Date " ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                  <asp:TemplateField HeaderText=" Work Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("WorkDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Completion Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("EndingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                              
                                                 <%-- <asp:TemplateField HeaderText="Germ" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>                                                    
                                                     <asp:Label ID="lblG" runat="server" Text='<%# Eval("Germ")  %>'></asp:Label>
@@ -770,7 +795,10 @@
                                         <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
                                     </div>
-
+                                    <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                        <label class="d-block">Plant Ready Date</label>
+                                        <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
 
                                     <div class="mb-3 mb-md-0 col-12 col-md-auto">
                                         <label>Comments </label>
@@ -876,6 +904,10 @@
                                         <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                                         <asp:DropDownList ID="ddlDumptAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
+                                    </div>
+                                    <div class="mb-3 col-12 col-md-auto">
+                                        <label class="d-block">Dump Date</label>
+                                        <asp:TextBox ID="txtDumpDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
                                     <div class="mb-3 col-12 col-md-auto">
 

@@ -62,20 +62,20 @@
                                         <asp:TemplateField HeaderText="Tray">
                                             <ItemTemplate>
 
-                                                <asp:Label ID="lblTray" runat="server" Text='<%#Bind("Tray") %>'></asp:Label>
+                                                <asp:Label ID="lblTray" runat="server" Text='<%#Bind("totalTrays") %>'></asp:Label>
 
 
                                             </ItemTemplate>
 
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="SQFT of Bench">
+                                       <%-- <asp:TemplateField HeaderText="SQFT of Bench">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblSQFT" runat="server" Text='<%#Bind("SQFT") %>'></asp:Label>
 
                                             </ItemTemplate>
 
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                          
 
                                         <asp:TemplateField HeaderText=""  HeaderStyle-Width="21%">
