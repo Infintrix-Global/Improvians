@@ -1062,7 +1062,7 @@ namespace Evo
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                 if (chckrw.Checked == true)
                 {
-
+                    dtCTrays.Clear();
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
                     NameValueCollection nv5 = new NameValueCollection();
@@ -1072,7 +1072,6 @@ namespace Evo
 
                     if (dt != null && dt.Rows.Count > 0)
                     {
-
                         ChemicalCode = Convert.ToInt32(dt.Rows[0]["ChemicalCode"]);
                     }
                     else
@@ -1086,8 +1085,10 @@ namespace Evo
 
 
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                        objTask.AddChemicalRequestDetails(dtCTrays, Batchlocation, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+                        objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+                       // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
+                       // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
                     }
 
 
