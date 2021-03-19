@@ -522,7 +522,7 @@ namespace Evo
 
                 foreach (GridViewRow row in GV2.Rows)
                 {
-                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+                    Batchlocation = (row1.FindControl("lblGHD") as Label).Text;
 
                     NameValueCollection nv5 = new NameValueCollection();
                     nv5.Add("@Mode", "1");
@@ -615,7 +615,7 @@ namespace Evo
                     nv.Add("@jobcode", JobCode);
                     nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
                     nv.Add("@Facility", Session["Facility"].ToString());
-                    nv.Add("@GreenHouseID", "");
+                    nv.Add("@GreenHouseID", (row1.FindControl("lblGHD") as Label).Text);
                     nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
@@ -759,7 +759,7 @@ namespace Evo
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
                     nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
                     nv.Add("@Facility", Session["Facility"].ToString());
-                    nv.Add("@GreenHouseID", "");
+                    nv.Add("@GreenHouseID", (row1.FindControl("lblGHD") as Label).Text);
                     nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
@@ -881,7 +881,7 @@ namespace Evo
 
                 foreach (GridViewRow row in GV2.Rows)
                 {
-                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+                    Batchlocation = (row1.FindControl("lblGHD") as Label).Text;
 
                     NameValueCollection nv5 = new NameValueCollection();
                     nv5.Add("@Mode", "2");
@@ -904,7 +904,7 @@ namespace Evo
 
 
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                        objTask.AddChemicalRequestDetails(dtCTrays, Batchlocation, ChemicalCode, (row1.FindControl("lblGHD") as Label).Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+                        objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
                     }
 
