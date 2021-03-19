@@ -1000,6 +1000,14 @@ textarea.input__control {
  
 .floating__qrcode:active, .floating__qrcode:focus { outline: none; }
 
+/*Break Table*/
+.break__table tr td { justify-content: space-between; }
+.break__table tr td::before {
+    display: none;
+    content: attr(data-head);
+    font-family: 'roboto-bold', sans-serif;
+    padding-right: 15px;
+}
 
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
@@ -1106,6 +1114,22 @@ textarea.input__control {
     .data__table th, .data__table td { line-height: 20px; }
     .login__container form label { margin-bottom: 20px; }
     .dashboard__matrixdetail h3 { font-size: 30px; }
+
+    /*Break Table*/
+    .break__table-xl tr td { display: flex; }
+    .break__table-xl tr td::before {
+        display: block;
+        width: 50%;
+        flex: 1 0 50%;
+    }
+    .break__table-xl {
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .break__table-xl tr:nth-child(even) > td { background: #f6f6f6; }
+    .break__table-xl tr:nth-child(even) > td:nth-child(odd) { background: #ffffff; }
+    .break__table-xl tr th { display: none; }
 }
 
 @media only screen and (max-width: 1199px) {
@@ -1128,6 +1152,22 @@ textarea.input__control {
     .assign__task .filter__bttn + .filter__bttn { margin-left: 30px; }
 
     .dashboard__box-title { margin-top: 6px; }
+
+    /*Break Table*/
+    .break__table-lg tr td { display: flex; }
+    .break__table-lg tr td::before {
+        display: block;
+        width: 50%;
+        flex: 1 0 50%;
+    }
+    .break__table-lg {
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .break__table-lg tr:nth-child(even) > td { background: #f6f6f6; }
+    .break__table-lg tr:nth-child(even) > td:nth-child(odd) { background: #ffffff; }
+    .break__table-lg tr th { display: none; }
 }
 
 @media only screen and (max-width: 1023px) {
@@ -1162,7 +1202,7 @@ textarea.input__control {
     .floating__footer { left: 15px; right: 15px; width: calc(100% - 30px); }
     .floating__footer a { padding: 10px 15px; }
     .floating__footer ul li:not(:first-child) { margin-left: 15px; }
-    .has__footer { padding-bottom: 94px; }
+    .has__footer { padding-bottom: 112px; }
     .dashboard__paging { margin-bottom: 10px; }
     .dashboard__block--asign { margin-bottom: 30px; }
 
@@ -1170,6 +1210,22 @@ textarea.input__control {
         flex: 1 0 calc(50% - 30px);
         max-width: calc(50% - 30px);
     }
+
+    /*Break Table*/
+    .break__table:not(.break__table-sm) tr td { display: flex; }
+    .break__table:not(.break__table-sm) tr td::before {
+        display: block;
+        width: 50%;
+        flex: 1 0 50%;
+    }
+    .break__table:not(.break__table-sm) {
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .break__table:not(.break__table-sm) tr:nth-child(even) > td { background: #f6f6f6; }
+    .break__table:not(.break__table-sm) tr:nth-child(even) > td:nth-child(odd) { background: #ffffff; }
+    .break__table:not(.break__table-sm) tr th { display: none; }
 }
 
 @media only screen and (max-width: 767px) {
@@ -1200,6 +1256,22 @@ textarea.input__control {
     .dashboard__box-desc { padding-left: 0; width: 100%; }
 
     .floating__qrcode { top: auto; right: 15px; bottom: 120px; }
+
+    /*Break Table*/
+    .break__table-sm tr td { display: flex; }
+    .break__table-sm tr td::before {
+        display: block;
+        width: 50%;
+        flex: 1 0 50%;
+    }
+    .break__table-sm {
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .break__table-sm tr:nth-child(even) > td { background: #f6f6f6; }
+    .break__table-sm tr:nth-child(even) > td:nth-child(odd) { background: #ffffff; }
+    .break__table-sm tr th { display: none; }
 }
 
 @media only screen and (max-width: 639px) {

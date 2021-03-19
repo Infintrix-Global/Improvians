@@ -110,7 +110,7 @@ namespace Evo
             DataTable dtProfile = new DataTable();
             dtProfile.Columns.Add("activitycode", typeof(String));
             dtProfile.Columns.Add("plan_date", typeof(DateTime));
-          
+
             if (GV2.Rows.Count > 0)
             {
                 DataRow dr = dtProfile.NewRow();
@@ -1060,6 +1060,18 @@ namespace Evo
         protected void btngermination_Click1(object sender, EventArgs e)
         {
             Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Germination"));
+        }
+
+        protected void GV2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                for (int i = 0; i < GV2.Columns.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("data-head", GV2.Columns[i].HeaderText);
+                }
+
+            }
         }
     }
 }
