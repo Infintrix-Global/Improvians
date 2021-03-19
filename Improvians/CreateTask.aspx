@@ -138,15 +138,15 @@
                                     GridLines="None" OnRowCommand="gvFer_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
-                                         <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
-                                                <HeaderTemplate>
-                                                    <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
-                                                </HeaderTemplate>
-                                                <ItemTemplate>
+                                        <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                            <HeaderTemplate>
+                                                <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
 
-                                                    <asp:CheckBox runat="server" Checked="true" ID="chkSelect"></asp:CheckBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                                <asp:CheckBox runat="server" Checked="true" ID="chkSelect"></asp:CheckBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -566,7 +566,10 @@
                                     <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
                                 </div>
-
+                                <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                    <label class="d-block">Plant Ready Date</label>
+                                    <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
 
                                 <div class="mb-3 mb-md-0 col-12 col-md-auto">
                                     <label>Comments </label>
@@ -673,12 +676,19 @@
                                     <asp:DropDownList ID="ddlDumptAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
                                 </div>
+
+                                <div class="mb-3 col-12 col-md-auto">
+                                    <label class="d-block">Dump Date</label>
+                                    <asp:TextBox ID="txtDumpDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+
                                 <div class="mb-3 col-12 col-md-auto">
 
                                     <label>Quantity of Tray </label>
                                     <asp:TextBox ID="txtQuantityofTray" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                 </div>
+
                                 <div class="mb-3 col-12 col-md-auto">
 
                                     <label>Comments </label>
@@ -720,7 +730,7 @@
                                                                     SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Facility Location" ForeColor="Red"></asp:RequiredFieldValidator>
                                                             </span>
                                                         </div>--%>
-                                                            
+
                                                             <div class="col-lg-4">
                                                                 <label>Assignment</label>
 
@@ -768,7 +778,7 @@
 
                                                             <div class="col-lg-4" id="divFrom" style="display: none;" runat="server">
                                                                 <label>From</label>
-                                                                <asp:TextBox ID="txtFrom"  runat="server" CssClass="input__control"></asp:TextBox>
+                                                                <asp:TextBox ID="txtFrom" runat="server" CssClass="input__control"></asp:TextBox>
 
                                                                 <span class="error_message">
                                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
@@ -777,7 +787,7 @@
                                                             </div>
                                                             <div class="col-lg-4" id="divTo" style="display: none;" runat="server">
                                                                 <label>To</label>
-                                                                <asp:TextBox ID="txtTo"  runat="server" CssClass="input__control"></asp:TextBox>
+                                                                <asp:TextBox ID="txtTo" runat="server" CssClass="input__control"></asp:TextBox>
 
                                                                 <span class="error_message">
                                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"

@@ -591,6 +591,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlplant_readySupervisor;
 
         /// <summary>
+        /// txtPlantDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPlantDate;
+
+        /// <summary>
         /// txtPlantComments control.
         /// </summary>
         /// <remarks>
@@ -733,6 +742,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDumptAssignment;
+
+        /// <summary>
+        /// txtDumpDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDumpDate;
 
         /// <summary>
         /// txtQuantityofTray control.

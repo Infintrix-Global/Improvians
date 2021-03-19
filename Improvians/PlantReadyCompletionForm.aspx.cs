@@ -115,9 +115,8 @@ namespace Evo
 
             if (e.CommandName == "Select")
             {
-
-
                 string PRAID = e.CommandArgument.ToString();
+
                 Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
             }
         }

@@ -204,6 +204,7 @@
     <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
     <Content Include="DumpAssignmentForm.aspx" />
+    <Content Include="DumpCompletionForm.aspx" />
     <Content Include="DumpTaskAssignment.aspx" />
     <Content Include="DumpTaskCompletion.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
@@ -516,6 +517,13 @@
     </Compile>
     <Compile Include="DumpAssignmentForm.aspx.designer.cs">
       <DependentUpon>DumpAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DumpCompletionForm.aspx.cs">
+      <DependentUpon>DumpCompletionForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DumpCompletionForm.aspx.designer.cs">
+      <DependentUpon>DumpCompletionForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="DumpTaskAssignment.aspx.cs">
       <DependentUpon>DumpTaskAssignment.aspx</DependentUpon>
