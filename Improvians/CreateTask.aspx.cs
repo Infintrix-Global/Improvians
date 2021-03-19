@@ -820,22 +820,22 @@ namespace Evo
 
         protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<int> toBeSubmitted = new List<int>()
-            {
-               2, 3 , 6, 11, 15
-            };
-            var val = Convert.ToInt32(ddlAssignments.SelectedValue);
-            // if (ddlAssignments.SelectedValue == "13" || ddlAssignments.SelectedValue == "11" || ddlAssignments.SelectedValue == "16")
-            if (!toBeSubmitted.Contains(val))
-            {
-                btnSendMail.Visible = true;
-                btnGeneraltask.Visible = false;
-            }
-            else
-            {
-                btnSendMail.Visible = false;
-                btnGeneraltask.Visible = true;
-            }
+            //List<int> toBeSubmitted = new List<int>()
+            //{
+            //   2, 3 , 6, 11, 15
+            //};
+            //var val = Convert.ToInt32(ddlAssignments.SelectedValue);
+            //// if (ddlAssignments.SelectedValue == "13" || ddlAssignments.SelectedValue == "11" || ddlAssignments.SelectedValue == "16")
+            //if (!toBeSubmitted.Contains(val))
+            //{
+            //    btnSendMail.Visible = true;
+            //    btnGeneraltask.Visible = false;
+            //}
+            //else
+            //{
+            //    btnSendMail.Visible = false;
+            //    btnGeneraltask.Visible = true;
+            //}
 
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Uid", ddlAssignments.SelectedValue);
@@ -1248,6 +1248,7 @@ namespace Evo
                     nv.Add("@TaskType", ddlTaskType.SelectedValue);
                     nv.Add("@MoveFrom", txtFrom.Text);
                     nv.Add("@MoveTo", txtTo.Text);
+                    nv.Add("@date", txtgeneralDate.Text);
 
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtgeneralComment.Text);
@@ -1260,6 +1261,33 @@ namespace Evo
             if (result16 > 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                string CCEmail = "";
+
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+                string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
+                smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
+                // smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+                MailMessage mail = new MailMessage();
+                mail.Subject = "Crop Health Report";
+                mail.Body = "Crop Health Report Comments:" + "";
+                //Setting From , To and CC
+
+                mail.From = new MailAddress(FromMail);
+                mail.To.Add(new MailAddress(ReceiverEmail));
+
+                NameValueCollection nv = new NameValueCollection();
+                //Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
+                nv.Add("@Uid", Session["Role"].ToString());
+                DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
+                CCEmail = dt.Rows[0]["Email"].ToString();
+                mail.CC.Add(new MailAddress(CCEmail));
+                //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
+                //   mail.Attachments.Add(atc);
+                smtpClient.Send(mail);
+
                 Clear();
             }
             else

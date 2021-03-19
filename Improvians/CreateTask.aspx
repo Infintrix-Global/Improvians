@@ -708,8 +708,8 @@
                                     <div class="portlet light ">
 
                                         <div class="portlet-body">
-                                            <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
-                                                <ContentTemplate>
+                                          <%--  <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
+                                                <ContentTemplate>--%>
                                                     <asp:Panel ID="Panel1" runat="server">
                                                         <div class="row" style="margin-left: 15px;">
                                                             <%-- <div class="col-lg-4">
@@ -748,6 +748,15 @@
                                                             </div>
 
                                                             <div class="col-lg-4">
+                                                                    <label>General Task Date</label>
+                                        <asp:TextBox ID="txtgeneralDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                                                                     <span class="error_message">
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtgeneralDate" ValidationGroup="x"
+                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                                    </span>
+                                                                </div>
+
+                                                            <div class="col-lg-4">
                                                                 <label>Comments</label>
                                                                 <asp:TextBox ID="txtgeneralComment" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
@@ -778,14 +787,14 @@
 
                                                             <div class="col-lg-4">
                                                                 <div style="margin-top: 9%;">
-                                                                    <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
-                                                                    <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnGeneraltask_Click" Visible="false" />
+                                                                    <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" Visible="false" />
+                                                                    <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnGeneraltask_Click"  />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </asp:Panel>
-                                                </ContentTemplate>
-                                            </asp:UpdatePanel>
+                                               <%-- </ContentTemplate>
+                                            </asp:UpdatePanel>--%>
                                         </div>
                                     </div>
                                 </div>
