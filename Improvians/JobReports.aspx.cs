@@ -107,15 +107,32 @@ namespace Evo
             //gv1.DataBind();
             //  GV2.DataBind();
             //Gv3.DataBind();
+            DataTable dtProfile = new DataTable();
+            dtProfile.Columns.Add("activitycode", typeof(String));
+            dtProfile.Columns.Add("plan_date", typeof(DateTime));
+          
+            if (GV2.Rows.Count > 0)
+            {
+                DataRow dr = dtProfile.NewRow();
+                dr[0] = "SEEDING";
+                DateTime seeddate = DateTime.Parse((GV2.Rows[0].FindControl("lblSeededDate") as Label).Text);
+                dr[1] = seeddate;
+                dtProfile.Rows.Add(dr);
+            }
             DataTable dthistory = objBAL.GetJobHistoryDateFromNavision(JobCode);
+            if (dthistory != null && dthistory.Rows.Count > 0)
+            {
+                dtProfile.Merge(dthistory);
+                dtProfile.AcceptChanges();
+            }
             if (dt6.Rows.Count > 0 && dt6 != null)
             {
-                dthistory.Merge(dt6);
-                dthistory.AcceptChanges();
+                dtProfile.Merge(dt6);
+                dtProfile.AcceptChanges();
             }
-            GV6.DataSource = dthistory;
-        //    GV4.DataSource = dthistory;
-          //  GV4.DataBind();
+            GV6.DataSource = dtProfile;
+            //    GV4.DataSource = dthistory;
+            //  GV4.DataBind();
             GV5.DataBind();
             GV6.DataBind();
 
@@ -161,12 +178,12 @@ namespace Evo
 
         public void BindGridJobHistory()
         {
-           
+
             DataTable dt6 = new DataTable();
-           
+
             ///NameValueCollection nv = new NameValueCollection();
-           // nv.Add("@JobID", JobCode);
-          //  dt6 = objCommon.GetDataTable("GetJobTracibilityReportJobHistory", nv);
+            // nv.Add("@JobID", JobCode);
+            //  dt6 = objCommon.GetDataTable("GetJobTracibilityReportJobHistory", nv);
 
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
@@ -174,9 +191,9 @@ namespace Evo
             dt6 = ds.Tables[0];
             GV4.DataSource = dt6;
             GV4.DataBind();
-        
 
-          
+
+
         }
 
 
@@ -1037,8 +1054,8 @@ namespace Evo
 
         }
 
-      
-     
+
+
 
         protected void btngermination_Click1(object sender, EventArgs e)
         {
