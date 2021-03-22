@@ -122,7 +122,7 @@
                                                 <asp:TemplateField HeaderText="SO No">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblsono" data-head="SO No" runat="server" Text='<%# Eval("sono")  %>'></asp:Label>
+                                                        <asp:Label ID="lblsono" data-head="SO No" runat="server" Text='<%# Eval("so")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -130,7 +130,7 @@
                                                 <asp:TemplateField HeaderText="SO Line">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblsoline" data-head="SO Line" runat="server" Text='<%# Eval("soline")  %>'></asp:Label>
+                                                        <asp:Label ID="lblsoline" data-head="SO Line" runat="server" Text='<%# Eval("solines")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -186,7 +186,7 @@
                                             <Columns>
                                                 <asp:BoundField HeaderText="Organic" DataField="org" />
                                                 <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />
-                                                <asp:BoundField HeaderText="Germ %" DataField="germpct" />
+                                                <asp:BoundField HeaderText="Germ %" DataField="germct" />
                                                 <asp:BoundField HeaderText="Overage" DataField="overage" />
                                             </Columns>
                                         </asp:GridView>
