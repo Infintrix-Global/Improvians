@@ -1,6 +1,10 @@
 ﻿using Evo.Admin.BAL_Classes;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI.WebControls;
 
 namespace Evo.Admin
@@ -18,17 +22,21 @@ namespace Evo.Admin
                 BindCrop();
                 ddlActivityCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
                 ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
+                ddlActivity.DataSource = objCommon.GETActivityCode();
+                ddlActivity.DataTextField = "ActivityCode";
+                ddlActivity.DataValueField = "ActivityCode";
+                ddlActivity.DataBind();
             }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            
-                DataTable dt = new DataTable();
-                dt = objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
-                gvProductionProfile.DataSource = dt;
-                gvProductionProfile.DataBind();
-           
+
+            DataTable dt = new DataTable();
+            dt = objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
+            gvProductionProfile.DataSource = dt;
+            gvProductionProfile.DataBind();
+
         }
         public void BindCrop()
         {
@@ -38,8 +46,8 @@ namespace Evo.Admin
             ddlCrop.DataBind();
             ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
-       
-       
+
+
         protected void btnClear_Click(object sender, EventArgs e)
         {
             ddlCrop.SelectedIndex = 0;
@@ -119,5 +127,109 @@ namespace Evo.Admin
             gvProductionProfile.DataSource = dt;
             gvProductionProfile.DataBind();
         }
+        protected void btnAddProfile_Click(object sender, EventArgs e)
+        {
+            pnlAdd.Visible = true;
+            pnlList.Visible = false;
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            pnlAdd.Visible = false;
+            pnlList.Visible = true;
+        }
+        protected void btAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int _isInserted = -1;
+                ProfilePlanner obj = new ProfilePlanner
+                {
+                    code = txtCode.Text,
+                    crop = txtCrop.Text,
+                    dateshift = Convert.ToInt32(txtName.Text),
+                    activitycode = ddlActivity.SelectedValue,
+                    traycode = Convert.ToInt32(txtTray.Text)
+                };
+
+                _isInserted = objCommon.InsertPlantProductionProfile(obj);
+                if (_isInserted == -1)
+                {
+                    lblmsg.Text = "Failed to Add Profile";
+                    lblmsg.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lblmsg.Text = "";
+                    pnlList.Visible = true;
+                    pnlAdd.Visible = false;
+                    DataTable dt = new DataTable();
+                    dt = objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
+                    gvProductionProfile.DataSource = dt;
+                    gvProductionProfile.DataBind();                   
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCode(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+
+                    cmd.CommandText = " select distinct code from [gti_jobs_prodprofile] where  code like '%" + prefixText + "%'  order by code";
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["code"].ToString());
+                        }
+                    }
+                    conn.Close();
+                    return customers;
+                }
+            }
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCrop(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+
+                    cmd.CommandText = " select distinct crop from [gti_jobs_prodprofile] where  crop like '%" + prefixText + "%'  order by crop";
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["crop"].ToString());
+                        }
+                    }
+                    conn.Close();
+                    return customers;
+                }
+            }
+        }
     }
+
 }
