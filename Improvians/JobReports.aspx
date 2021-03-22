@@ -182,7 +182,7 @@
                                             </Columns>
                                         </asp:GridView>
                                         <br />
-                                        <asp:GridView ID="DGHead02" CssClass="data__table" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%">
+                                        <asp:GridView ID="DGHead02" CssClass="data__table break__table mb-3" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%" OnRowDataBound="DGHead02_RowDataBound" >
                                             <Columns>
                                                 <asp:BoundField HeaderText="Organic" DataField="org" />
                                                 <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />

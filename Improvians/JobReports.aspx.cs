@@ -1138,7 +1138,7 @@ namespace Evo
 
             }
         }
-
+       
         protected void btnFertilization_Click(object sender, EventArgs e)
         {
             Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Fertilization"));
@@ -1173,6 +1173,18 @@ namespace Evo
         protected void btnGeneralTask_Click(object sender, EventArgs e)
         {
             Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "GeneralTask"));
+        }
+
+        protected void DGHead02_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                for (int i = 0; i < DGHead02.Columns.Count; i++)
+                {
+                    e.Row.Cells[i].Attributes.Add("data-head", DGHead02.Columns[i].HeaderText);
+                }
+
+            }
         }
     }
 }
