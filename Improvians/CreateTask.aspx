@@ -222,7 +222,7 @@
 
             <div class="task_request_assignments" id="task_request-group">
 
-                <div class="task_request-buttons">
+                <%--<div class="task_request-buttons">
                     <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#germination_count">
                         <span class="">
                             <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
@@ -280,10 +280,69 @@
                         </span>
                     </button>
 
-                </div>
+                </div>--%>
+
+                   <div class="task_request-buttons">
+                         <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click1">
+                              <span class="">
+                                <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
+                                Germination Count
+                             </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnFertilization" ForeColor="Black" class="request__block-head collapsed" OnClick="btnFertilization_Click">
+                            <span class="">
+                                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization">
+                                Fertilization
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnChemical" ForeColor="Black" class="request__block-head collapsed" OnClick="btnChemical_Click">
+                            <span class="">
+                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical">
+                                Chemical
+                            </span>
+                        </asp:LinkButton>
+
+
+                        <asp:LinkButton runat="server" ID="btnIrrigation" ForeColor="Black" class="request__block-head collapsed" OnClick="btnIrrigation_Click">
+                            <span class="">
+                                <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
+                                Irrigation
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnPlantReady" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
+                            <span class="">
+                                <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
+                                Plant Ready
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnMoveRequest" ForeColor="Black" class="request__block-head collapsed" OnClick="btnMoveRequest_Click">
+                            <span class="">
+                                <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
+                                Move Request
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnDump" ForeColor="Black" class="request__block-head collapsed" OnClick="btnDump_Click">
+                            <span class="">
+                                <img src="./images/dashboard_dump-request.png" width="137" height="136" alt="Dump" />
+                                Dump
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="LinkButton1" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneralTask_Click">
+                            <span class="">
+                                <img src="./images/dashboard_general-task.png" width="137" height="134" alt="General Task" />
+                                General Task
+                            </span>
+                        </asp:LinkButton>
+                       </div>
 
                 <div class="request__block">
-                    <div id="germination_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="germination_count" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
                             <h2 class="text-left">Germination Count</h2>
@@ -319,7 +378,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="fertilization_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="fertilization_count" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
                             <h2 class="text-left">Fertilization</h2>
@@ -397,7 +456,7 @@
                     </div>
 
 
-                    <div id="Chemical_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="Chemical_count" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
                             <h2 class="text-left">Chemical</h2>
@@ -494,7 +553,7 @@
 
 
 
-                    <div id="irrigation_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="irrigation_count" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
                             <h2 class="text-left">Irrigation</h2>
@@ -550,7 +609,7 @@
                         </div>
                     </div>
 
-                    <div id="plant_ready_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="plant_ready_count" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
                             <h2 class="text-left">Plant Ready</h2>
@@ -588,7 +647,7 @@
                         </div>
                     </div>
 
-                    <div id="move_request" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="move_request" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
 
                             <br />
@@ -663,7 +722,7 @@
                         </div>
                     </div>
 
-                    <div id="dump_request" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="dump_request" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
                             <h2 class="text-left">Dump</h2>
@@ -707,7 +766,7 @@
                         </div>
                     </div>
 
-                    <div id="general_task_request" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="general_task_request" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
                             <h2 class="text-left">General Task</h2>

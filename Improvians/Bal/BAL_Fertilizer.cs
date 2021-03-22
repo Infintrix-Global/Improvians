@@ -79,7 +79,8 @@ namespace Evo.Bal
             try
             {
                 strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno " +
-                            " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize,t.[Posting Date] as SeededDate from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
+                            " (select  t.[Posting Date] from [GTI$IA Job Tracking Entry] t where t.[Job No_] = '" + JobCode + "' and t.[Posting Type] = 2 and t.[Production Phase] = 'SEEDING') as SeededDate " +
+                            " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize   from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
                
                 
                 if (!string.IsNullOrEmpty(FacilityLocation))
@@ -94,7 +95,7 @@ namespace Evo.Bal
                 {
                     strQuery += " and t.[Job No_] ='" + JobCode + "'";
                 }
-                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date] HAVING sum(t.Quantity) > 0";
+                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code]  HAVING sum(t.Quantity) > 0";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)
@@ -113,7 +114,9 @@ namespace Evo.Bal
             try
             {
                 strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno " +
-                            " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize ,t.[Posting Date] as SeededDate from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
+                            " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize ,"+
+                            " (select  t.[Posting Date] from [GTI$IA Job Tracking Entry] t where t.[Job No_] = '"+ JobCode +"' and t.[Posting Type] = 2 and t.[Production Phase] = 'SEEDING') as SeededDate "+
+                            " from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
                 if (!string.IsNullOrEmpty(FacilityLocation))
                 {
                     strQuery += " and t.[Location Code] ='" + FacilityLocation + "'";
@@ -126,7 +129,7 @@ namespace Evo.Bal
                 {
                     strQuery += " and t.[Job No_] ='" + JobCode + "'";
                 }
-                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date] HAVING sum(t.Quantity) > 0  order by t.[Position Code] ASC";
+                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code]  HAVING sum(t.Quantity) > 0  order by t.[Position Code] ASC";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)
@@ -144,7 +147,9 @@ namespace Evo.Bal
             try
             {
                 strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno " +
-                            " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize,t.[Posting Date] as SeededDate from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ,and t.[Activity Code] = 'PUTAWAY INSIDE' ";
+                            " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize," +
+                             " (select  t.[Posting Date] from [GTI$IA Job Tracking Entry] t where t.[Job No_] = '" + JobCode + "' and t.[Posting Type] = 2 and t.[Production Phase] = 'SEEDING') as SeededDate " +
+                            "  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ,and t.[Activity Code] = 'PUTAWAY INSIDE' ";
 
 
                 if (!string.IsNullOrEmpty(FacilityLocation))
@@ -159,7 +164,7 @@ namespace Evo.Bal
                 {
                     strQuery += " and t.[Job No_] ='" + JobCode + "'";
                 }
-                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date] HAVING sum(t.Quantity) > 0";
+                strQuery += " group by t.[Job No_], j.[Bill-to Name], j.[Item Description], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code]  HAVING sum(t.Quantity) > 0";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)

@@ -53,12 +53,54 @@ namespace Evo
                 txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtDumpDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
 
                 if (Request.QueryString["jobCode"] != null)
                 {
                     txtSearchJobNo.Text = Request.QueryString["jobCode"].ToString();
                     BindGridFerReq("", txtSearchJobNo.Text);
+                    string ViewD = Request.QueryString["View"].ToString();
+
+                    if (ViewD == "Germination")
+                    {
+                        germination_count.Attributes.Add("class", "request__block-collapse collapse show");
+                    }
+                    else if (ViewD == "Fertilization")
+                    {
+                        fertilization_count.Attributes.Add("class", "request__block-collapse collapse show");
+                    }
+                    else if (ViewD == "Chemical")
+                    {
+                        Chemical_count.Attributes.Add("class", "request__block-collapse collapse show");
+                    }
+                    else if (ViewD == "Irrigation")
+                    {
+                        irrigation_count.Attributes.Add("class", "request__block-collapse collapse show");
+                    }
+                    else if (ViewD == "PlantReady")
+                    {
+                        plant_ready_count.Attributes.Add("class", "request__block-collapse collapse show");
+                    }
+                    else if (ViewD == "Move")
+                    {
+                        move_request.Attributes.Add("class", "request__block-collapse collapse show");
+                    }
+                    else if (ViewD == "Dump")
+                    {
+                        dump_request.Attributes.Add("class", "request__block-collapse collapse show");
+                    }
+                    else if (ViewD == "GeneralTask")
+                    {
+                        general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
+                    }
+                    else
+                    {
+
+                    }
+                   
                 }
 
 
@@ -909,7 +951,7 @@ namespace Evo
                     //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@Nots", txtIrrComments.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
+                    result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
                 }
             }
@@ -1342,6 +1384,161 @@ namespace Evo
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
             }
+        }
+
+        protected void btngermination_Click1(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse show");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse");
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
+            ddlgerminationSupervisor.Focus();
+        }
+
+        protected void btnFertilization_Click(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse show");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse");
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
+            ddlFertilizationSupervisor.Focus();
+        }
+
+        protected void btnChemical_Click(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse show");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse ");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse ");
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
+            ddlChemical_supervisor.Focus();
+        }
+
+        protected void btnIrrigation_Click(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse show");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse ");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse ");
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
+            ddlirrigationSupervisor.Focus();
+        }
+
+        protected void btnPlantReady_Click(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse show");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse ");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse ");
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
+
+            ddlplant_readySupervisor.Focus();
+        }
+
+
+        protected void btnMoveRequest_Click(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse show");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse ");
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
+            ddlLogisticManager.Focus();
+        }
+
+        protected void btnDump_Click(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse ");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse show");
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
+            ddlDumptAssignment.Focus();
+        }
+
+        protected void btnGeneralTask_Click(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse");
+
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
+            ddlAssignments.Focus();
         }
     }
 }

@@ -81,6 +81,7 @@ namespace Evo
             //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             //nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
             //nv.Add("@Mode", "6");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTask", nv);

@@ -249,6 +249,69 @@ namespace Evo
         protected global::System.Web.UI.WebControls.LinkButton btngermination;
 
         /// <summary>
+        /// btnFertilization control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFertilization;
+
+        /// <summary>
+        /// btnChemical control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnChemical;
+
+        /// <summary>
+        /// btnIrrigation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnIrrigation;
+
+        /// <summary>
+        /// btnPlantReady control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnPlantReady;
+
+        /// <summary>
+        /// btnMoveRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnMoveRequest;
+
+        /// <summary>
+        /// btnDump control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnDump;
+
+        /// <summary>
+        /// btnGeneralTask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnGeneralTask;
+
+        /// <summary>
         /// ddlgerminationSupervisor control.
         /// </summary>
         /// <remarks>
@@ -969,12 +1032,12 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnSendMail;
 
         /// <summary>
-        /// btnGeneraltask control.
+        /// btnGeneraltask1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGeneraltask;
+        protected global::System.Web.UI.WebControls.Button btnGeneraltask1;
     }
 }

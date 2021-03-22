@@ -22,7 +22,7 @@
                             <ItemTemplate>
                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                 <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                             </ItemTemplate>
@@ -35,11 +35,11 @@
                         </asp:TemplateField>
 
 
-                        <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
+                    <%--    <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label8" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
 
                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -53,23 +53,24 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <%-- <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                       
 
                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="Planned Ship Date" HeaderStyle-CssClass="autostyle2">
+                         <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                         
+                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                      <%--  <asp:TemplateField HeaderText="Planned Ship Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
 
                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -156,12 +157,12 @@
 
                         </div>
                     </div>
-                     <div class="row">
+                    <div class="row">
 
-                            <div class="col-lg-12">
-                                <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
-                            </div>
+                        <div class="col-lg-12">
+                            <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
                         </div>
+                    </div>
                 </asp:Panel>
                 <br />
                 <form class="web__form pt-2">

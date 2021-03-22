@@ -143,7 +143,9 @@ namespace Evo
                     btnSelect.Visible = true;
                     btnAssign.Visible = false;
                 }
-
+                Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
+                HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
+                lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text + "&GermNo=" + lblGermNo.Text;
             }
         }
     }

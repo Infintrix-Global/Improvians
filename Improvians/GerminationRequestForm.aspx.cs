@@ -356,12 +356,14 @@ namespace Evo
             {
 
                 Label lblsource = (Label)e.Row.FindControl("lblsource");
+                Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
                 if (lblsource.Text == "Manual")
                 {
                     lblsource.Text = "Navision";
                 }
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
-                lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text;
+                lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text+ "&GermNo=" + lblGermNo.Text;
+              //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
             }
         }
 

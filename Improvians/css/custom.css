@@ -1001,12 +1001,13 @@ textarea.input__control {
 .floating__qrcode:active, .floating__qrcode:focus { outline: none; }
 
 /*Break Table*/
-.break__table tr td { justify-content: space-between; }
+.break__table tr td { text-align: left; }
 .break__table tr td::before {
     display: none;
     content: attr(data-head);
     font-family: 'roboto-bold', sans-serif;
     padding-right: 15px;
+    text-align: left;
 }
 
 /*Media Queries*/
@@ -1119,8 +1120,12 @@ textarea.input__control {
     .break__table-xl tr td { display: flex; }
     .break__table-xl tr td::before {
         display: block;
-        width: 50%;
-        flex: 1 0 50%;
+        width: 48%;
+        max-width: 48%;
+        min-width: 48%;
+        flex: 1 0 48%;
+        border-right: 2px solid #d0d0d0;
+        margin-right: 10px;
     }
     .break__table-xl {
         max-width: 450px;
@@ -1157,8 +1162,12 @@ textarea.input__control {
     .break__table-lg tr td { display: flex; }
     .break__table-lg tr td::before {
         display: block;
-        width: 50%;
-        flex: 1 0 50%;
+        width: 48%;
+        max-width: 48%;
+        min-width: 48%;
+        flex: 1 0 48%;
+        border-right: 2px solid #d0d0d0;
+        margin-right: 10px;
     }
     .break__table-lg {
         max-width: 450px;
@@ -1215,8 +1224,12 @@ textarea.input__control {
     .break__table:not(.break__table-sm) tr td { display: flex; }
     .break__table:not(.break__table-sm) tr td::before {
         display: block;
-        width: 50%;
-        flex: 1 0 50%;
+        width: 48%;
+        max-width: 48%;
+        min-width: 48%;
+        flex: 1 0 48%;
+        border-right: 2px solid #d0d0d0;
+        margin-right: 10px;
     }
     .break__table:not(.break__table-sm) {
         max-width: 450px;
@@ -1261,8 +1274,12 @@ textarea.input__control {
     .break__table-sm tr td { display: flex; }
     .break__table-sm tr td::before {
         display: block;
-        width: 50%;
-        flex: 1 0 50%;
+        width: 48%;
+        max-width: 48%;
+        min-width: 48%;
+        flex: 1 0 48%;
+        border-right: 2px solid #d0d0d0;
+        margin-right: 10px;
     }
     .break__table-sm {
         max-width: 450px;

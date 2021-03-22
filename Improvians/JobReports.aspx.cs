@@ -112,12 +112,16 @@ namespace Evo
             dtProfile.Columns.Add("plan_date", typeof(DateTime));
 
             if (GV2.Rows.Count > 0)
-            {
-                DataRow dr = dtProfile.NewRow();
-                dr[0] = "SEEDING";
-                DateTime seeddate = DateTime.Parse((GV2.Rows[0].FindControl("lblSeededDate") as Label).Text);
-                dr[1] = seeddate;
-                dtProfile.Rows.Add(dr);
+            {               
+                string seeddt = (GV2.Rows[0].FindControl("lblSeededDate") as Label).Text;
+                if (!string.IsNullOrEmpty(seeddt))
+                {
+                    DataRow dr = dtProfile.NewRow();
+                    dr[0] = "SEEDING";
+                    DateTime seeddate = DateTime.Parse(seeddt);
+                    dr[1] = seeddate;
+                    dtProfile.Rows.Add(dr);
+                }
             }
             DataTable dthistory = objBAL.GetJobHistoryDateFromNavision(JobCode);
             if (dthistory != null && dthistory.Rows.Count > 0)
@@ -180,13 +184,23 @@ namespace Evo
         {
 
             DataTable dt6 = new DataTable();
+            String GermNo = "";
 
+            if (Request.QueryString["GermNo"] != null)
+            {
+                GermNo = Request.QueryString["GermNo"].ToString();
+            }
+            else
+            {
+                GermNo = "";
+            }
             ///NameValueCollection nv = new NameValueCollection();
             // nv.Add("@JobID", JobCode);
             //  dt6 = objCommon.GetDataTable("GetJobTracibilityReportJobHistory", nv);
 
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
+            nv.Add("@GermNo", GermNo);
             DataSet ds = objCommon.GetDataSet("GetJobTracibilityReportJobHistory", nv);
             dt6 = ds.Tables[0];
             GV4.DataSource = dt6;
@@ -200,11 +214,20 @@ namespace Evo
         public void FillDGHeader01()
         {
 
-            string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germpct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp, " + "sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " + "j.[Source No_] + '-' + convert(nvarchar,j.[Source Line No_]/1000) solines, j.[Variant Code] ts, j.[Source No_] sono," +
-                " j.[Source Line No_] soline, " + "j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, " + "CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt, DATEDIFF(day, CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END,GETDATE()) as NoOfDay, " + "CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " + "from [GTI$IA Job Tracking Entry] t," +
-                " [GTI$Job] j " + "LEFT OUTER JOIN [GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING','RETURNS') " + "where j.No_ = t.[Job No_] And j.No_ = '" + JobCode + "' " + "group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " + "j.[Delivery Date], m.[Closed at Date]," +
-                " m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " + "j.[Shortcut Property 10 Value]";
-
+            string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp," +
+                            " sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, j.[Original Production Qty_] / j.[Variant Code] origtrays," +
+                            " j.[Source No_] + '-' + convert(nvarchar, j.[Source Line No_] / 1000) solines, j.[Variant Code] ts, j.[Source No_] so,j.[Source Line No_] / 1000 soline, " +
+                            " j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, j.[Delivery Date] duedate, j.[Original Start Date] plandate," +
+                            " CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt ," +
+                            " DATEDIFF(day, CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END,GETDATE()) as NoOfDay," +
+                            " CASE WHEN j.[Shortcut Property 2 Value] = 'Yes' THEN 'Yes' ELSE 'NO' END org " +
+                            " from[GTI$Job] j" +
+                            " LEFT OUTER JOIN[GTI$IA Job Tracking Entry] t ON j.No_ = t.[Job No_] " +
+                            " LEFT OUTER JOIN[GTI$IA Job Mutation Entry] m ON j.No_ = m.[Job No_] and m.[Production Phase] in ('SEEDING', 'RETURNS') " +
+                            " where j.No_ = '" + JobCode + "'" +
+                            " group by j.No_, j.[Shortcut Property 2 Value], j.[Shortcut Property 1 Value], j.[Bill-to Name], j.[Item No_], j.[Item Description], " +
+                            " j.[Delivery Date], m.[Closed at Date], m.[Production Phase], m.[Posting Date], j.[Source No_], j.[Source Line No_], j.[Variant Code], j.[Genus Code], " +
+                            " j.[Shortcut Property 10 Value], j.[Delivery Date], j.[Original Start Date], j.[Original Production Qty_]";
             DataTable ds = objGeneral.GetDatasetByCommand(sql);
             GV2.DataSource = ds;
             GV2.DataBind();
@@ -518,11 +541,11 @@ namespace Evo
                 dtTrays.Clear();
                 string Batchlocation = "";
                 int FertilizationCode = 0;
-               
+
 
                 foreach (GridViewRow row in GV2.Rows)
                 {
-                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+                    Batchlocation = (row1.FindControl("lblGHD") as Label).Text;
 
                     NameValueCollection nv5 = new NameValueCollection();
                     nv5.Add("@Mode", "1");
@@ -615,7 +638,7 @@ namespace Evo
                     nv.Add("@jobcode", JobCode);
                     nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
                     nv.Add("@Facility", Session["Facility"].ToString());
-                    nv.Add("@GreenHouseID", "");
+                    nv.Add("@GreenHouseID", (row1.FindControl("lblGHD") as Label).Text);
                     nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
@@ -759,7 +782,7 @@ namespace Evo
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
                     nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
                     nv.Add("@Facility", Session["Facility"].ToString());
-                    nv.Add("@GreenHouseID", "");
+                    nv.Add("@GreenHouseID", (row1.FindControl("lblGHD") as Label).Text);
                     nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
@@ -881,7 +904,7 @@ namespace Evo
 
                 foreach (GridViewRow row in GV2.Rows)
                 {
-                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+                    Batchlocation = (row1.FindControl("lblGHD") as Label).Text;
 
                     NameValueCollection nv5 = new NameValueCollection();
                     nv5.Add("@Mode", "2");
@@ -904,7 +927,7 @@ namespace Evo
 
 
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                        objTask.AddChemicalRequestDetails(dtCTrays, Batchlocation, ChemicalCode, (row1.FindControl("lblGHD") as Label).Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+                        objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
                     }
 
@@ -931,9 +954,9 @@ namespace Evo
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
                 }
 
-             //   dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-              //  objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, (row1.FindControl("lblGHD") as Label).Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
-         
+                //   dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
+                //  objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, (row1.FindControl("lblGHD") as Label).Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+
             }
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -1114,6 +1137,42 @@ namespace Evo
                 }
 
             }
+        }
+
+        protected void btnFertilization_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Fertilization"));
+        }
+
+        protected void btnChemical_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Chemical"));
+        }
+
+        protected void btnIrrigation_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Irrigation"));
+        }
+
+        protected void btnPlantReady_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "PlantReady"));
+        }
+
+
+        protected void btnMoveRequest_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Move"));
+        }
+
+        protected void btnDump_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Dump"));
+        }
+
+        protected void btnGeneralTask_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "GeneralTask"));
         }
     }
 }

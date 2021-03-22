@@ -213,6 +213,87 @@ namespace Evo
         protected global::System.Web.UI.WebControls.GridView gvFer;
 
         /// <summary>
+        /// btngermination control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btngermination;
+
+        /// <summary>
+        /// btnFertilization control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnFertilization;
+
+        /// <summary>
+        /// btnChemical control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnChemical;
+
+        /// <summary>
+        /// btnIrrigation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnIrrigation;
+
+        /// <summary>
+        /// btnPlantReady control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnPlantReady;
+
+        /// <summary>
+        /// btnMoveRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnMoveRequest;
+
+        /// <summary>
+        /// btnDump control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnDump;
+
+        /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+
+        /// <summary>
+        /// germination_count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl germination_count;
+
+        /// <summary>
         /// ddlgerminationSupervisor control.
         /// </summary>
         /// <remarks>
@@ -265,6 +346,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btngerminationReset;
+
+        /// <summary>
+        /// fertilization_count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fertilization_count;
 
         /// <summary>
         /// ddlFertilizationSupervisor control.
@@ -382,6 +472,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFReset;
+
+        /// <summary>
+        /// Chemical_count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Chemical_count;
 
         /// <summary>
         /// pnlint control.
@@ -519,6 +618,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnChemicalReset;
 
         /// <summary>
+        /// irrigation_count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl irrigation_count;
+
+        /// <summary>
         /// ddlirrigationSupervisor control.
         /// </summary>
         /// <remarks>
@@ -582,6 +690,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnirrigationReset;
 
         /// <summary>
+        /// plant_ready_count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl plant_ready_count;
+
+        /// <summary>
         /// ddlplant_readySupervisor control.
         /// </summary>
         /// <remarks>
@@ -625,6 +742,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnplant_readyReset;
+
+        /// <summary>
+        /// move_request control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl move_request;
 
         /// <summary>
         /// Panel3 control.
@@ -735,6 +861,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button MoveReset;
 
         /// <summary>
+        /// dump_request control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dump_request;
+
+        /// <summary>
         /// ddlDumptAssignment control.
         /// </summary>
         /// <remarks>
@@ -787,6 +922,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDumpReset;
+
+        /// <summary>
+        /// general_task_request control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl general_task_request;
 
         /// <summary>
         /// divcomments control.

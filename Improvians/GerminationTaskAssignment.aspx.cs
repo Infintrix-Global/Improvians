@@ -137,5 +137,19 @@ namespace Evo
             gvGerm.PageIndex = e.NewPageIndex;
             BindGridGerm();
         }
+
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                
+                Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
+              
+                HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
+                lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text + "&GermNo=" + lblGermNo.Text;
+                //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
+            }
+        }
     }
 }
