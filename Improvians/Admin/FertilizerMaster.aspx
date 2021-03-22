@@ -85,8 +85,8 @@
                         <asp:Label runat="server" Text="" ID="count"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table data__table-height">
-                                <asp:GridView ID="gvFertilizer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" OnRowCommand="GridEmployee_RowCommand" AllowSorting="true" OnPageIndexChanging="GridEmployee_PageIndexChanging"
+                                <asp:GridView ID="gvFertilizer" runat="server" AutoGenerateColumns="False"
+                                    class="striped" OnRowCommand="GridEmployee_RowCommand" AllowSorting="true"
                                     GridLines="None" OnSorting="GridEmployee_Sorting"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>

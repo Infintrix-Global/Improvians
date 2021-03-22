@@ -160,11 +160,11 @@ namespace Evo.Admin
             }
         }
 
-        protected void GridEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvFertilizer.PageIndex = e.NewPageIndex;
-            GetEmployeeList();
-        }
+        //protected void GridEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    gvFertilizer.PageIndex = e.NewPageIndex;
+        //    GetEmployeeList();
+        //}
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
