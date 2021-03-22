@@ -951,7 +951,7 @@ namespace Evo
                     //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@Nots", txtIrrComments.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
+                    result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
                 }
             }
