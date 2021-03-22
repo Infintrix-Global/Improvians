@@ -180,13 +180,23 @@ namespace Evo
         {
 
             DataTable dt6 = new DataTable();
+            String GermNo = "";
 
-            ///NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@JobID", JobCode);
-            //  dt6 = objCommon.GetDataTable("GetJobTracibilityReportJobHistory", nv);
+            if (Request.QueryString["GermNo"] != null)
+            {
+                GermNo = Request.QueryString["GermNo"].ToString();
+            }
+            else
+            {
+                GermNo = "";
+            }
+                ///NameValueCollection nv = new NameValueCollection();
+                // nv.Add("@JobID", JobCode);
+                //  dt6 = objCommon.GetDataTable("GetJobTracibilityReportJobHistory", nv);
 
-            NameValueCollection nv = new NameValueCollection();
+                NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
+            nv.Add("@GermNo",GermNo);
             DataSet ds = objCommon.GetDataSet("GetJobTracibilityReportJobHistory", nv);
             dt6 = ds.Tables[0];
             GV4.DataSource = dt6;
