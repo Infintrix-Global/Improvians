@@ -34,10 +34,11 @@ namespace Evo.Admin
                 if (dt1.Tables[0].Rows.Count > 0)
                 {
                     txtName.Text = dt1.Tables[0].Rows[0]["FertilizerName"].ToString();
-                    
-                   
+                    txtCode.Text = dt1.Tables[0].Rows[0]["FertilizerCode"].ToString();
+
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -68,6 +69,7 @@ namespace Evo.Admin
 
                         FertilizerName = txtName.Text,
                         IsActive = true,
+                        FertilizerCode =txtCode.Text
                       
                     };
                 if (Session["FertilizerId"] != null)
@@ -158,11 +160,11 @@ namespace Evo.Admin
             }
         }
 
-        protected void GridEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvFertilizer.PageIndex = e.NewPageIndex;
-            GetEmployeeList();
-        }
+        //protected void GridEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    gvFertilizer.PageIndex = e.NewPageIndex;
+        //    GetEmployeeList();
+        //}
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {

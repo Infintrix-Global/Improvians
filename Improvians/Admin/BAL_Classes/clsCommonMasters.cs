@@ -124,8 +124,8 @@ namespace Evo.Admin
             {
                 // Gmail Address from where you send the mail
                 var fromAddress = "igportalmail@gmail.com";//"infintrix.world@gmail.com";
-                                                       // any address where the email will be sending
-                                                       // var toAddress = "mehulrana1901@gmail.com,urvi.gandhi@infintrixglobal.com,nidhi.mehta@infintrixglobal.com,bhavin.gandhi@infintrixglobal.com,mehul.rana@infintrixglobal.com,naimisha.rohit@infintrixglobal.com";
+                                                           // any address where the email will be sending
+                                                           // var toAddress = "mehulrana1901@gmail.com,urvi.gandhi@infintrixglobal.com,nidhi.mehta@infintrixglobal.com,bhavin.gandhi@infintrixglobal.com,mehul.rana@infintrixglobal.com,naimisha.rohit@infintrixglobal.com";
 
                 var toAddress = Email;
 
@@ -149,7 +149,7 @@ namespace Evo.Admin
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
-                    
+
                     smtp.UseDefaultCredentials = false;
                     smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
                     smtp.Credentials = new NetworkCredential(fromAddress, fromPassword);
@@ -165,7 +165,7 @@ namespace Evo.Admin
             }
         }
 
-      
+
         private string GenerateRandomOTP(int iOTPLength, string[] saAllowedCharacters)
 
         {
@@ -299,7 +299,7 @@ namespace Evo.Admin
             try
             {
                 General objGeneral = new General();
-             
+
                 objGeneral.AddParameterWithValueToSQLCommand("@Photo", objEmployee.Photo);
                 objGeneral.AddParameterWithValueToSQLCommand("@Mobile", objEmployee.Mobile);
                 objGeneral.AddParameterWithValueToSQLCommand("@Name", objEmployee.Name);
@@ -328,6 +328,27 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
                 
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddFertilzerMaster");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+        public int InsertPlantProductionProfile(ProfilePlanner obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@Code", obj.code);
+                objGeneral.AddParameterWithValueToSQLCommand("@Crop", obj.crop);
+                objGeneral.AddParameterWithValueToSQLCommand("@traycode", obj.traycode.ToString());
+                objGeneral.AddParameterWithValueToSQLCommand("@activitycode", obj.activitycode);
+                objGeneral.AddParameterWithValueToSQLCommand("@dateshift", obj.dateshift);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddPlantProductionProfile");
             }
             catch (Exception ex)
             {
@@ -403,7 +424,7 @@ namespace Evo.Admin
 
                 objGeneral.AddParameterWithValueToSQLCommand("@pid", obj.pid);
                 objGeneral.AddParameterWithValueToSQLCommand("@dateshift", obj.dateshift);
-               
+
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateDateShift");
             }
             catch (Exception ex)
@@ -559,7 +580,7 @@ namespace Evo.Admin
             return ds.Tables[0];
         }
 
-        
+
 
         public DataTable GetAllTaskTypeList()
         {
@@ -590,16 +611,16 @@ namespace Evo.Admin
             return ds.Tables[0];
         }
 
-        public DataTable GetPlanProductionProfile(string code,string activitycode,string traycode)
+        public DataTable GetPlanProductionProfile(string code, string activitycode, string traycode)
         {
             DataTable dt = new DataTable();
             try
             {
-                
+
                 General objGeneral = new General();
                 string strQuery = string.Empty;
                 strQuery = "SELECT pid,code, traycode, crop, activitycode, dateshift FROM gti_jobs_prodprofile WHERE";
-                if(code != "0")
+                if (code != "0")
                 {
                     strQuery += " [crop]= " + "'" + code + "'";
                 }
@@ -645,6 +666,20 @@ namespace Evo.Admin
 
                 General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 17);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+        public DataTable GETActivityCode()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 18);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
             catch (Exception ex)
@@ -804,14 +839,18 @@ public class Employee
     public string Email { get; set; }
     public string Password { get; set; }
     public string Department { get; set; }
-  
+
     public string Photo { get; set; }
- 
+
 }
 
 public class ProfilePlanner
 {
     public int pid { get; set; }
+    public string code { get; set; }
+    public string crop { get; set; }
+    public string activitycode { get; set; }
+    public int traycode { get; set; }
     public int dateshift { get; set; }
 }
 
@@ -819,6 +858,7 @@ public class FertilizerMasters
 {
     public int id { get; set; }
     public string FertilizerName { get; set; }
+    public string FertilizerCode { get; set; }
     public bool IsActive { get; set; }
 
 }

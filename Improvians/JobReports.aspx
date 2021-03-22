@@ -182,7 +182,7 @@
                                             </Columns>
                                         </asp:GridView>
                                         <br />
-                                        <asp:GridView ID="DGHead02" CssClass="data__table" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%">
+                                        <asp:GridView ID="DGHead02" CssClass="data__table break__table mb-3" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%" OnRowDataBound="DGHead02_RowDataBound" >
                                             <Columns>
                                                 <asp:BoundField HeaderText="Organic" DataField="org" />
                                                 <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />
@@ -278,7 +278,7 @@
                                         <asp:GridView ID="GV5" runat="server" AutoGenerateColumns="False"
                                             class="striped" AllowSorting="true"
                                             GridLines="None" PageSize="10" OnRowDataBound="GV5_RowDataBound"
-                                            ShowHeaderWhenEmpty="True" Width="60%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
+                                            ShowHeaderWhenEmpty="True" Width="50%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
                                             <Columns>
 
                                                 <asp:TemplateField HeaderText="House/Section" Visible="false" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -287,7 +287,7 @@
                                                         <asp:Label ID="lbljid" runat="server" Text='<%# Eval("jid")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="40%" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                                     </ItemTemplate>
@@ -303,7 +303,7 @@
                                                         <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Trays") %>'></asp:TextBox>
                                                     </EditItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Action" HeaderStyle-Width="25%" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText="Action" HeaderStyle-Width="35%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Button ID="btn_Edit" runat="server" Text="Edit" CssClass="bttn bttn-primary bttn-action" CommandName="Edit" />
                                                     </ItemTemplate>
@@ -335,7 +335,7 @@
                                     <div class="data__table data__table-height">
                                         <asp:GridView ID="GV6" runat="server" AutoGenerateColumns="False"
                                             class="striped"
-                                            GridLines="None" ShowHeaderWhenEmpty="True" Width="50%">
+                                            GridLines="None" ShowHeaderWhenEmpty="True" Width="35%">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Activity Type" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
