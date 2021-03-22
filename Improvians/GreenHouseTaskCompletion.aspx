@@ -14,7 +14,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true"
+                                    class="striped" AllowSorting="true" OnRowDataBound="gvGerm_RowDataBound"
                                     GridLines="None" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
                                     ShowHeaderWhenEmpty="True" Width="100%">
 
@@ -34,7 +34,9 @@
                                                 <asp:Label ID="lblGTAID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="Label1" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                                <%--  <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />--%>
+
+                                                <asp:HyperLink ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:HyperLink>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -90,7 +92,7 @@
 
                                         <asp:TemplateField HeaderText="Germination Count Type" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label3" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
+                                                <asp:Label ID="lblGermNo" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -145,9 +147,9 @@
             </div>
 
             <div class="dashboard__block dashboard__block--asign">
-               
-                    <h3>Task Completion</h3>
-                 <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
+
+                <h3>Task Completion</h3>
+                <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
                     <br />
                     <h2 class="text-left">Crop Health Report </h2>
                     <br />
@@ -210,7 +212,7 @@
                         <br />
 
                         <div class="row">
-                             <label>Commment:</label>
+                            <label>Commment:</label>
                             <div class="col-lg-12">
                                 <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
                             </div>

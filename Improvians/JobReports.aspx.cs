@@ -1125,5 +1125,41 @@ namespace Evo
 
             }
         }
+
+        protected void btnFertilization_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Fertilization"));
+        }
+
+        protected void btnChemical_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Chemical"));
+        }
+
+        protected void btnIrrigation_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Irrigation"));
+        }
+
+        protected void btnPlantReady_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "PlantReady"));
+        }
+
+     
+        protected void btnMoveRequest_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Move"));
+        }
+
+        protected void btnDump_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Dump"));
+        }
+
+        protected void btnGeneralTask_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "GeneralTask"));
+        }
     }
 }

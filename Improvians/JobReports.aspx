@@ -62,7 +62,7 @@
                     <div class="col-lg-3">
                     </div>
                     <div class="col-lg-3">
-                        <asp:Button ID="backButton" runat="server" Text="Back"  CssClass="bttn bttn-primary bttn-action"
+                        <asp:Button ID="backButton" runat="server" Text="Back" CssClass="bttn bttn-primary bttn-action"
                             OnClientClick="JavaScript:window.history.back(1);return false;"></asp:Button>
                     </div>
 
@@ -105,14 +105,14 @@
                                         </Columns>
                                     </asp:GridView>--%>
                                     </div>
-                                    <div >
+                                    <div>
                                         <asp:GridView ID="GV2" runat="server" AutoGenerateColumns="False"
                                             class="data__table break__table mb-3" AllowSorting="true" OnRowDataBound="GV2_RowDataBound"
                                             GridLines="None"
                                             ShowHeaderWhenEmpty="True" Width="100%">
                                             <Columns>
 
-                                                <asp:TemplateField HeaderText="Cust. Name" >
+                                                <asp:TemplateField HeaderText="Cust. Name">
                                                     <ItemTemplate>
 
                                                         <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
@@ -152,7 +152,7 @@
                                                 <asp:TemplateField HeaderText="Size">
                                                     <ItemTemplate>
 
-                                                        <asp:Label ID="lblTraySize"  data-head="Size" runat="server" Text='<%# Eval("ts")  %>'></asp:Label>
+                                                        <asp:Label ID="lblTraySize" data-head="Size" runat="server" Text='<%# Eval("ts")  %>'></asp:Label>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -422,7 +422,7 @@
                                                         <asp:Label ID="lblSD" runat="server" Text='<%# Eval("StartingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                  <asp:TemplateField HeaderText=" Work Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <asp:TemplateField HeaderText=" Work Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("WorkDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                     </ItemTemplate>
@@ -432,7 +432,7 @@
                                                         <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("EndingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                              
+
                                                 <%-- <asp:TemplateField HeaderText="Germ" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>                                                    
                                                     <asp:Label ID="lblG" runat="server" Text='<%# Eval("Germ")  %>'></asp:Label>
@@ -452,7 +452,7 @@
                 <div class="task_request_assignments" id="task_request-group">
 
                     <div class="task_request-buttons">
-                        <asp:LinkButton runat="server" ID="btngermination" class="request__block-head collapsed" OnClick="btngermination_Click1">
+                        <%--  <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click1">
                               <span class="">
                                 <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                                 Germination Count
@@ -507,7 +507,66 @@
                                 <img src="./images/dashboard_general-task.png" width="137" height="134" alt="General Task" />
                                 General Task
                             </span>
-                        </button>
+                        </button>--%>
+
+
+                        <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click1">
+                              <span class="">
+                                <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
+                                Germination Count
+                             </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnFertilization" ForeColor="Black" class="request__block-head collapsed" OnClick="btnFertilization_Click">
+                            <span class="">
+                                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization">
+                                Fertilization
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnChemical" ForeColor="Black" class="request__block-head collapsed" OnClick="btnChemical_Click">
+                            <span class="">
+                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical">
+                                Chemical
+                            </span>
+                        </asp:LinkButton>
+
+
+                        <asp:LinkButton runat="server" ID="btnIrrigation" ForeColor="Black" class="request__block-head collapsed" OnClick="btnIrrigation_Click">
+                            <span class="">
+                                <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
+                                Irrigation
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnPlantReady" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
+                            <span class="">
+                                <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
+                                Plant Ready
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnMoveRequest" ForeColor="Black" class="request__block-head collapsed" OnClick="btnMoveRequest_Click">
+                            <span class="">
+                                <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
+                                Move Request
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnDump" ForeColor="Black" class="request__block-head collapsed" OnClick="btnDump_Click">
+                            <span class="">
+                                <img src="./images/dashboard_dump-request.png" width="137" height="136" alt="Dump" />
+                                Dump
+                            </span>
+                        </asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="btnGeneralTask" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneralTask_Click">
+                            <span class="">
+                                <img src="./images/dashboard_general-task.png" width="137" height="134" alt="General Task" />
+                                General Task
+                            </span>
+                        </asp:LinkButton>
+
 
                     </div>
 
@@ -1011,9 +1070,9 @@
                                                                 </div>
 
                                                                 <div class="col-lg-4">
-                                                                    <div style="margin-top: 9%;">
+                                                                    <div style="margin-top:9%;">
                                                                         <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
-                                                                        <asp:Button Text="Save" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
+                                                                        <asp:Button Text="Save" ID="btnGeneraltask1" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
                                                                     </div>
                                                                 </div>
                                                             </div>

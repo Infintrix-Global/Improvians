@@ -58,9 +58,9 @@
 
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-
+                                                 <asp:HyperLink ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:HyperLink>
                                                  
-                                                     <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                                 <%--    <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode,GermNo","~/JobReports.aspx?JobCode={0}&GermNo={1}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />--%>
 
                                                        <asp:Label ID="lblChid" Visible="false"  runat="server" Text='<%# Eval("CropHealth")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -117,7 +117,7 @@
 
                                         <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label16" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
+                                                <asp:Label ID="lblGermNo" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
