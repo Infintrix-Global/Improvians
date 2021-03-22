@@ -82,7 +82,7 @@ namespace Evo
             nv.Add("@Facility", ddlFacility.SelectedValue);
             //  nv.Add("@Mode", "9");
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTask", nv);
+            dt = objCommon.GetDataTable("SP_GetOperatorDumpTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -119,7 +119,9 @@ namespace Evo
 
 
                 string PRAID = e.CommandArgument.ToString();
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
+              //  Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
+                Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}", PRAID, 0));
+
             }
         }
 

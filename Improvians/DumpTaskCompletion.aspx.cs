@@ -88,8 +88,8 @@ namespace Evo
             //nv.Add("@CustomerName", "");
             //nv.Add("@Facility", "");
             //nv.Add("@Mode", "11");
-            nv.Add("@DId", Did);
-            dt = objCommon.GetDataTable("SP_GetSupervisorDumpAssignTask", nv);
+            nv.Add("@DumpTaskAssignmentId", Did);
+            dt = objCommon.GetDataTable("SP_GetOperatorDumpTaskDetails", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
          

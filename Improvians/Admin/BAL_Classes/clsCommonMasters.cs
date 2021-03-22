@@ -326,7 +326,7 @@ namespace Evo.Admin
 
                 objGeneral.AddParameterWithValueToSQLCommand("@Name", obj.FertilizerName);
                 objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
-
+                
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddFertilzerMaster");
             }
             catch (Exception ex)
@@ -468,7 +468,7 @@ namespace Evo.Admin
 
                 objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
                 objGeneral.AddParameterWithValueToSQLCommand("@fertilizerName", obj.FertilizerName);
-
+               
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateFertilizer");
             }
             catch (Exception ex)
@@ -858,6 +858,7 @@ public class FertilizerMasters
 {
     public int id { get; set; }
     public string FertilizerName { get; set; }
+    public string FertilizerCode { get; set; }
     public bool IsActive { get; set; }
 
 }

@@ -8,7 +8,6 @@
 
 
 
-            <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>
             <div class="data__table">
                 <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                 <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
