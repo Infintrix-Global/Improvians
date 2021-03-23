@@ -85,92 +85,53 @@
 
                             <li>
                                 <a class="current" href="ViewEmployee.aspx" title="View Employee">
-                                    <i class="side-icon far fa-user"></i>
+                                    <i class="side-icon fas fa-eye"></i>
                                     <span class="side-title">View Employee</span>
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
                             <li>
                                 <a class="current" href="ViewPlantProductionProfile.aspx" title="View Employee">
-                                    <i class="side-icon far fa-user"></i>
+                                    <i class="side-icon fas fa-seedling"></i>
                                     <span class="side-title">Plant Production Profile</span>
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
-                           
 
-
-
-                            <li>
-                                <a class="current" href="#" title="View Employee">
-                                    <i class="side-icon far fa-user"></i>
-                                    <span class="side-title">Form's Dropdowns</span>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
+                                    <i class="side-icon fas fa-file-invoice"></i>
+                                    <span class="side-title">Form's Dropdown</span>
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
-                            </li>
-                            <li>
-                                <a class="current" href="FertilizerMaster.aspx" title="Master">
-                                    <i class="side-icon far fa-user"></i>
-                                    <span class="side-title">Fertilizer Master</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="current" href="ChemicalMaster.aspx" title="Master">
-                                    <i class="side-icon far fa-user"></i>
-                                    <span class="side-title">Chemical Master</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="current" href="TaskTypeMaster.aspx" title="Master">
-                                    <i class="side-icon far fa-user"></i>
-                                    <span class="side-title">TaskType Master</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="current" href="CropHealthMaster.aspx" title="Master">
-                                    <i class="side-icon far fa-user"></i>
-                                    <span class="side-title">Crop Health Master</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
-                            </li>
-
-                             <li class="has__dropdown"> <!-- Add this class which has dropdown -->
-                            <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
-                                <i class="side-icon fas fa-file-invoice"></i>
-                                <span class="side-title">Form's Dropdown</span>
-                                <i class="side-control fas fa-angle-right"></i>
-                            </a>
 
 
-                            <ul class="list-unstyled dropdown__list"> <!-- Here need "dropdown__list" class -->
-                                <li>
-                                    <a class="" href="index.html" title="Fertilizer Master">
-                                        <i class="side-icon fas fa-spa"></i>
-                                        <span class="side-title">Fertilizer Master</span>
-                                        <i class="side-control fas fa-angle-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="" href="production-plant-profile.html" title="Chemical Master">
-                                        <i class="side-icon fas fa-flask"></i>
-                                        <span class="side-title">Chemical Master</span>
-                                        <i class="side-control fas fa-angle-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="" href="production-plant-profile.html" title="TaskType Master">
-                                        <i class="side-icon far fa-file-alt"></i>
-                                        <span class="side-title">TaskType Master</span>
-                                        <i class="side-control fas fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                <ul class="list-unstyled dropdown__list">
+                                    <!-- Here need "dropdown__list" class -->
+                                    <li>
+                                        <a class="" href="ChemicalMaster.aspx" title="Chemical Master">
+                                            <i class="side-icon fas fa-flask"></i>
+                                            <span class="side-title">Chemical Method Master</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="TaskTypeMaster.aspx" title="TaskType Master">
+                                            <i class="side-icon far fa-file-alt"></i>
+                                            <span class="side-title">TaskType Master</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="CropHealthMaster.aspx" title="Master">
+                                            <i class="side-icon far fa-user"></i>
+                                            <span class="side-title">Crop Health Master</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
                         </ul>
                     </div>
