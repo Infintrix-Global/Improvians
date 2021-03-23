@@ -105,9 +105,9 @@
                                         </Columns>
                                     </asp:GridView>--%>
                                     </div>
-                                    <div>
+                                    <div class="data__table break__table mb-3">
                                         <asp:GridView ID="GV2" runat="server" AutoGenerateColumns="False"
-                                            class="data__table break__table mb-3" AllowSorting="true" OnRowDataBound="GV2_RowDataBound"
+                                            class="striped" AllowSorting="true" OnRowDataBound="GV2_RowDataBound"
                                             GridLines="None"
                                             ShowHeaderWhenEmpty="True" Width="100%">
                                             <Columns>
@@ -182,7 +182,7 @@
                                             </Columns>
                                         </asp:GridView>
                                         <br />
-                                        <asp:GridView ID="DGHead02" CssClass="data__table break__table mb-3" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%" OnRowDataBound="DGHead02_RowDataBound">
+                                        <asp:GridView ID="DGHead02" CssClass="striped" runat="server" GridLines="None" AutoGenerateColumns="false" Width="50%" DataKeyNames="seeddt" OnRowDataBound="DGHead02_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Organic" DataField="org" />
                                                 <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />

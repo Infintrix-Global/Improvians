@@ -111,6 +111,11 @@
                                 <asp:DropDownList ID="ddlActivityCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Date Shift" HeaderStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:TextBox ID="txtDateShift" class="custom__dropdown robotomd" runat="server"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="#">
                             <ItemTemplate>
                                 <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
