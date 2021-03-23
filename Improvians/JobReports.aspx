@@ -182,7 +182,7 @@
                                             </Columns>
                                         </asp:GridView>
                                         <br />
-                                        <asp:GridView ID="DGHead02" CssClass="data__table break__table mb-3" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%" OnRowDataBound="DGHead02_RowDataBound" >
+                                        <asp:GridView ID="DGHead02" CssClass="data__table break__table mb-3" runat="server" AutoGenerateColumns="false" DataKeyNames="seeddt" Width="50%" OnRowDataBound="DGHead02_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Organic" DataField="org" />
                                                 <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />
@@ -335,7 +335,7 @@
                                     <div class="data__table data__table-height d-inline-block w-50">
                                         <asp:GridView ID="GV6" runat="server" AutoGenerateColumns="False"
                                             class="striped"
-                                            GridLines="None" ShowHeaderWhenEmpty="True" >
+                                            GridLines="None" ShowHeaderWhenEmpty="True">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Activity Type" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
@@ -711,13 +711,7 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="d-block">Method</label>
-
-                                            <asp:DropDownList ID="ddlMethod" Width="250px" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal">
-                                                <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
-                                                <asp:ListItem Text="Hand" Value="Hand"></asp:ListItem>
-                                                <asp:ListItem Text="Avion" Value="Avion"></asp:ListItem>
-                                                <asp:ListItem Text="Drench" Value="Drench"></asp:ListItem>
-                                            </asp:DropDownList>
+                                            <asp:DropDownList ID="ddlMethod" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal" />
                                         </div>
                                         <div class="col-lg-3">
                                             <label>Chemical Spray Date </label>
@@ -1070,7 +1064,7 @@
                                                                 </div>
 
                                                                 <div class="col-lg-4">
-                                                                    <div style="margin-top:9%;">
+                                                                    <div style="margin-top: 9%;">
                                                                         <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" />
                                                                         <asp:Button Text="Save" ID="btnGeneraltask1" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" Visible="false" />
                                                                     </div>

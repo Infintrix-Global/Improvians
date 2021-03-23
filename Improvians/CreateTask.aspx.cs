@@ -30,6 +30,7 @@ namespace Evo
         CommonControl objCommon = new CommonControl();
         BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
+        clsCommonMasters objCom = new clsCommonMasters();
         static string ReceiverEmail = "";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -657,6 +658,13 @@ namespace Evo
             ddlChemical.DataValueField = "No_";
             ddlChemical.DataBind();
             ddlChemical.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+            ddlMethod.DataSource = objCom.GetAllChemicalList();
+            ddlMethod.DataTextField = "ChemicalName";
+            ddlMethod.DataValueField = "ChemicalName";
+            ddlMethod.DataBind();
+            ddlMethod.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            
         }
 
         public void BindFertilizer()

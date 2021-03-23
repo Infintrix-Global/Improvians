@@ -515,6 +515,12 @@ namespace Evo
             ddlChemical.DataValueField = "No_";
             ddlChemical.DataBind();
             ddlChemical.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+            ddlMethod.DataSource = objMaster.GetAllChemicalList();
+            ddlMethod.DataTextField = "ChemicalName";
+            ddlMethod.DataValueField = "ChemicalName";
+            ddlMethod.DataBind();
+            ddlMethod.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         public void BindFertilizer()

@@ -195,13 +195,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <label class="d-block">Method</label>
-
-                                <asp:DropDownList ID="ddlMethod" Width="250px" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="Hand" Value="Hand"></asp:ListItem>
-                                    <asp:ListItem Text="Avion" Value="Avion"></asp:ListItem>
-                                    <asp:ListItem Text="Drench" Value="Drench"></asp:ListItem>
-                                </asp:DropDownList>
+                                <asp:DropDownList ID="ddlMethod" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal" />
                             </div>
                             <div class="col-lg-3">
                                 <label>Chemical Spray Date </label>
