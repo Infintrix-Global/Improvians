@@ -79,7 +79,7 @@ namespace Evo.Bal
             try
             {
                 strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno, " +
-                            " (select  t.[Posting Date] from [GTI$IA Job Tracking Entry] t where t.[Job No_] = '" + JobCode + "' and t.[Posting Type] = 2 and t.[Production Phase] = 'SEEDING') as SeededDate " +
+                            "  (select top 1 t1.[Posting Date] from [GTI$IA Job Tracking Entry] t1 where t1.[Job No_] = t.[Job No_] and t1.[Posting Type] = 2 and t1.[Production Phase] = 'SEEDING' order by t1.[Posting Date] desc) as SeededDate " +
                             " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize   from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
                
                 
@@ -115,7 +115,7 @@ namespace Evo.Bal
             {
                 strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno " +
                             " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize ,"+
-                            " (select  t.[Posting Date] from [GTI$IA Job Tracking Entry] t where t.[Job No_] = '"+ JobCode +"' and t.[Posting Type] = 2 and t.[Production Phase] = 'SEEDING') as SeededDate "+
+                            " (select top 1 t1.[Posting Date] from [GTI$IA Job Tracking Entry] t1 where t1.[Job No_] = t.[Job No_] and t1.[Posting Type] = 2 and t1.[Production Phase] = 'SEEDING' order by t1.[Posting Date] desc) as SeededDate " +
                             " from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
                 if (!string.IsNullOrEmpty(FacilityLocation))
                 {
