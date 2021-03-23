@@ -107,8 +107,7 @@ namespace Improvians
                
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string Did = gvTask.DataKeys[rowIndex].Values[0].ToString();
-                ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
-
+                // ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
                 if (ChId == "")
                 {
                     ChId = "0";
@@ -127,7 +126,7 @@ namespace Improvians
 
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string Did = gvTask.DataKeys[rowIndex].Values[0].ToString();
-                ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
+                //ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
 
                 if (ChId == "")
                 {

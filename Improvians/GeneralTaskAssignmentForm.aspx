@@ -34,7 +34,7 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID"
                                     class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvTask_PageIndexChanging"
                                     GridLines="None" OnRowCommand="gvTask_RowCommand" OnRowDataBound="gvTask_RowDataBound"
                                     ShowHeaderWhenEmpty="True" Width="100%">
