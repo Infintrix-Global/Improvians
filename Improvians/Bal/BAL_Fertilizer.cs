@@ -78,7 +78,7 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno " +
+                strQuery = "select distinct t.[Job No_]  as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno, " +
                             " (select  t.[Posting Date] from [GTI$IA Job Tracking Entry] t where t.[Job No_] = '" + JobCode + "' and t.[Posting Type] = 2 and t.[Production Phase] = 'SEEDING') as SeededDate " +
                             " ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int)  as Trays,j.[Variant Code] as TraySize   from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2 ";
                
