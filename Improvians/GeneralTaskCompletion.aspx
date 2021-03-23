@@ -49,12 +49,12 @@
                                                 <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Seed Date" HeaderStyle-CssClass="autostyle2">
+                        <%--<asp:TemplateField HeaderText="Seed Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                          
                                  <asp:Label ID="Label20" runat="server" Text='<%# Eval("SeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
