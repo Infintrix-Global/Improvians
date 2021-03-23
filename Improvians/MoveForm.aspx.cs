@@ -22,6 +22,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 BindGridMoveReq();
+                BindFacility();
                 BindLogisticList();
             }
         }
@@ -41,6 +42,17 @@ namespace Evo
             {
                 ViewState["wo"] = value;
             }
+        }
+
+        public void BindFacility()
+        {
+            ddlToFacility.DataSource = objCOm.GetMainLocation();
+            ddlToFacility.DataTextField = "l1";
+            ddlToFacility.DataValueField = "l1";
+            ddlToFacility.DataBind();
+            ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlToFacility.SelectedValue = Session["Facility"].ToString();
+          
         }
 
         public void BindLogisticList()

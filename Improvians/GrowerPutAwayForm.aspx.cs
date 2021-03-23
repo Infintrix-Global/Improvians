@@ -103,6 +103,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Mode", "1");
             nv.Add("@wo", "");
+            nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -132,6 +133,7 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@Mode", "2");
                 nv.Add("@wo", wo_No);
+                nv.Add("@Facility", Session["Facility"].ToString());
                 dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
 
                 if (dt != null && dt.Rows.Count > 0)

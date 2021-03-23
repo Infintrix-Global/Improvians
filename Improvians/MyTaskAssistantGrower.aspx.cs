@@ -38,47 +38,21 @@ namespace Evo
         {
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
-           
-            dt = objCommonControl.GetDataSet("SP_GetAssistantGrowerEachTaskCount", nv);
-            lnkPutAway.Text = dt.Tables[0].Rows.Count.ToString();
-            lnkGerm.Text = dt.Tables[1].Rows.Count.ToString();
-            lnkFer.Text = dt.Tables[2].Rows.Count.ToString();
-            lnkIrr.Text = dt.Tables[3].Rows.Count.ToString();
-            lnkpr.Text = dt.Tables[4].Rows.Count.ToString();
-            lnkMove.Text = dt.Tables[5].Rows.Count.ToString();
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommonControl.GetDataSet("SP_GetAssistantGrowerEachTaskCountNew", nv);
+
+
+            lblPutAway.Text = dt.Tables[0].Rows.Count.ToString();
+            lblGerm.Text = dt.Tables[1].Rows.Count.ToString();
+            lblFer.Text = dt.Tables[2].Rows.Count.ToString();
+            lblIrr.Text = dt.Tables[3].Rows.Count.ToString();
+            lblpr.Text = dt.Tables[4].Rows.Count.ToString();
+            lblCropHealthReport.Text = dt.Tables[6].Rows.Count.ToString();
+
+            lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
+
+
         }
 
-        protected void ddlTaskRequest_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(ddlTaskRequest.SelectedValue=="4")
-            {
-                Response.Redirect("~/GerminationRequestForm.aspx");
-            }
-            if (ddlTaskRequest.SelectedValue == "5")
-            {
-                Response.Redirect("~/MoveForm.aspx");
-            }
-            if (ddlTaskRequest.SelectedValue == "6")
-            {
-                // Response.Redirect("~/PutAwayTaskCompletion.aspx");
-                Response.Redirect("~/GrowerPutAwayForm.aspx");
-            }
-            if (ddlTaskRequest.SelectedValue == "7")
-            {
-                Response.Redirect("~/PlantReadyRequestForm.aspx");
-            }
-            if (ddlTaskRequest.SelectedValue == "8")
-            {
-                Response.Redirect("~/FertilizerTaskReq.aspx");
-            }
-            if (ddlTaskRequest.SelectedValue == "2")
-            {
-                Response.Redirect("~/SeedingPlanForm.aspx");
-            }
-            if (ddlTaskRequest.SelectedValue == "9")
-            {
-                Response.Redirect("~/IrrigationRequestForm.aspx");
-            }
-        }
     }
 }

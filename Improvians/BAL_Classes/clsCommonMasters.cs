@@ -305,7 +305,20 @@ namespace Evo
             return ds.Tables[0];
         }
 
- 
+        public DataTable GetAllChemicalList()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 21);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
 
     }
 
