@@ -95,11 +95,12 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-          
+
             nv.Add("@DId", DId);
             dt = objCommon.GetDataTable("SP_GetSupervisorGeneralAssignTask", nv);
             gvTask.DataSource = dt;
             gvTask.DataBind();
+           
         }
 
 
@@ -107,7 +108,7 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-          
+
 
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
@@ -153,6 +154,12 @@ namespace Evo
         }
 
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTask.PageIndex = e.NewPageIndex;
+            BindTask();
+        }
+
+        protected void gvTask_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTask.PageIndex = e.NewPageIndex;
             BindTask();

@@ -48,6 +48,8 @@ namespace Evo
             lblDumpCount.Text = dt.Tables[6].Rows.Count.ToString();
 
             lblMove.Text = dt.Tables[7].Rows.Count.ToString();
+
+            lblGeneralCount.Text = dt.Tables[8].Rows.Count.ToString();
         }
     }
 }

@@ -35,13 +35,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-
-                                        <%-- <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label8" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
-
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -54,18 +47,46 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+
+
                                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                     <%--   <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("TaskType")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+
+
+                          <asp:TemplateField HeaderText="Move From" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label21" runat="server" Text='<%# Eval("MoveFrom")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                          <asp:TemplateField HeaderText="Move To" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label22" runat="server" Text='<%# Eval("MoveTo")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                         <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label23" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
-                                                <asp:Label ID="Label22" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -168,6 +189,7 @@
                 <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
+
                             <div class="col">
                                 <label>Operator </label>
                                 <asp:DropDownList ID="ddlOperator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>

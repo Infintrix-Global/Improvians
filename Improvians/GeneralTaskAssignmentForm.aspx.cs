@@ -102,40 +102,30 @@ namespace Improvians
             string JobID = "";
             string ChId = "";
             string TaskID = "";
+
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            string Did = gvTask.DataKeys[rowIndex].Values[0].ToString();
+            //ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
+
+            if (ChId == "")
+            {
+                ChId = "0";
+            }
+            else
+            {
+                ChId = ChId;
+            }
+
             if (e.CommandName == "Assign")
             {
-               
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                string Did = gvTask.DataKeys[rowIndex].Values[0].ToString();
-                // ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
-                if (ChId == "")
-                {
-                    ChId = "0";
-                }
-                else
-                {
-                    ChId = ChId;
-                }
                 Response.Redirect(String.Format("~/GeneralTaskAssignment.aspx?Did={0}&Chid={1}", Did, ChId));
-
             }
 
 
             if (e.CommandName == "Start")
             {
 
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
-                string Did = gvTask.DataKeys[rowIndex].Values[0].ToString();
-                //ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
 
-                if (ChId == "")
-                {
-                    ChId = "0";
-                }
-                else
-                {
-                    ChId = ChId;
-                }
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Comments", "");

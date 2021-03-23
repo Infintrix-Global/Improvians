@@ -55,9 +55,29 @@
                                  <asp:Label ID="Label20" runat="server" Text='<%# Eval("SeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
+                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("TaskType")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+
+
+                          <asp:TemplateField HeaderText="Move From" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label21" runat="server" Text='<%# Eval("MoveFrom")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                          <asp:TemplateField HeaderText="Move To" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label22" runat="server" Text='<%# Eval("MoveTo")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                         <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label23" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -71,7 +91,7 @@
 
                         <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label22" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
+                                <asp:Label ID="Label13" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
