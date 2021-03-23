@@ -143,7 +143,7 @@ namespace Improvians
                 nv.Add("@GeneralId", Did);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@QuantityOfTray", "");
-                nv.Add("@DumpDate", "");
+                nv.Add("@GeneralTaskDate", "");
                 long result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskAssignment", nv);
                 if (result > 0)
                 {

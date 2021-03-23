@@ -203,6 +203,8 @@
     <Content Include="css\custom.css" />
     <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="GeneralTaskAssignment.aspx" />
+    <Content Include="GeneralTaskCompletion.aspx" />
     <Content Include="DumpAssignmentForm.aspx" />
     <Content Include="DumpCompletionForm.aspx" />
     <Content Include="DumpTaskAssignment.aspx" />
@@ -510,6 +512,20 @@
     </Compile>
     <Compile Include="DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralTaskAssignment.aspx.cs">
+      <DependentUpon>GeneralTaskAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GeneralTaskAssignment.aspx.designer.cs">
+      <DependentUpon>GeneralTaskAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralTaskCompletion.aspx.cs">
+      <DependentUpon>GeneralTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GeneralTaskCompletion.aspx.designer.cs">
+      <DependentUpon>GeneralTaskCompletion.aspx</DependentUpon>
     </Compile>
     <Compile Include="DumpAssignmentForm.aspx.cs">
       <DependentUpon>DumpAssignmentForm.aspx</DependentUpon>
