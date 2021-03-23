@@ -39,7 +39,7 @@ namespace Evo
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Facility", Session["Facility"].ToString());
-            dt = objCommonControl.GetDataSet("SP_GetGrowerEachTaskCount", nv);
+            dt = objCommonControl.GetDataSet("SP_GetAssistantGrowerEachTaskCountNew", nv);
 
 
             lblPutAway.Text = dt.Tables[0].Rows.Count.ToString();

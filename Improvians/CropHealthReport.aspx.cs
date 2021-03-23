@@ -72,6 +72,8 @@ namespace Evo
                 txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+
             }
 
 
@@ -843,18 +845,16 @@ namespace Evo
             ddlAssignments.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
-        protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-            NameValueCollection nv = new NameValueCollection();
-            Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
-            nv.Add("@Uid", ddlAssignments.SelectedValue);
-            DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
-            ReceiverEmail = dt.Rows[0]["Email"].ToString();
-            divcomments.Focus();
-            //general_task_request.Focus();
-
-        }
+        //    NameValueCollection nv = new NameValueCollection();
+        //    Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
+        //    nv.Add("@Uid", ddlAssignments.SelectedValue);
+        //    DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
+        //    ReceiverEmail = dt.Rows[0]["Email"].ToString();
+        //    divcomments.Focus();
+        //}
         //----------------------------------------------------------------------irrigatio
 
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
@@ -1266,7 +1266,7 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                nv.Add("@SupervisorID", Session["SelectedAssignment"].ToString());
+                nv.Add("@SupervisorID", ddlAssignments.SelectedValue.ToString());
 
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text);
@@ -1300,11 +1300,16 @@ namespace Evo
                 //Setting From , To and CC
 
                 mail.From = new MailAddress(FromMail);
-                mail.To.Add(new MailAddress(ReceiverEmail));
                 NameValueCollection nv = new NameValueCollection();
-                Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
-                nv.Add("@Uid",Session["Role"].ToString());
+
+                nv.Add("@Uid", ddlAssignments.SelectedValue);
                 DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
+                ReceiverEmail = dt.Rows[0]["Email"].ToString();
+
+                mail.To.Add(new MailAddress(ReceiverEmail));
+
+                nv.Add("@Uid",Session["Role"].ToString());
+                dt = objCommon.GetDataTable("getReceiverEmail", nv);
                 CCEmail = dt.Rows[0]["Email"].ToString();
                 mail.CC.Add(new MailAddress(CCEmail));
                 //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
