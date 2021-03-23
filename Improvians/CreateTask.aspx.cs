@@ -67,34 +67,41 @@ namespace Evo
                     if (ViewD == "Germination")
                     {
                         germination_count.Attributes.Add("class", "request__block-collapse collapse show");
+                        btngermination.Attributes.Add("class", "request__block-head");
                     }
                     else if (ViewD == "Fertilization")
                     {
                         fertilization_count.Attributes.Add("class", "request__block-collapse collapse show");
+                        btnFertilization.Attributes.Add("class", "request__block-head");
                     }
                     else if (ViewD == "Chemical")
                     {
                         Chemical_count.Attributes.Add("class", "request__block-collapse collapse show");
+                        btnChemical.Attributes.Add("class", "request__block-head");
                     }
                     else if (ViewD == "Irrigation")
                     {
                         irrigation_count.Attributes.Add("class", "request__block-collapse collapse show");
+                        btnIrrigation.Attributes.Add("class", "request__block-head");
                     }
                     else if (ViewD == "PlantReady")
                     {
                         plant_ready_count.Attributes.Add("class", "request__block-collapse collapse show");
+                        btnPlantReady.Attributes.Add("class", "request__block-head");
                     }
                     else if (ViewD == "Move")
                     {
-                        move_request.Attributes.Add("class", "request__block-collapse collapse show");
+                        btnMoveRequest.Attributes.Add("class", "request__block-collapse collapse show");
                     }
                     else if (ViewD == "Dump")
                     {
                         dump_request.Attributes.Add("class", "request__block-collapse collapse show");
+                        btnDump.Attributes.Add("class", "request__block-head");
                     }
                     else if (ViewD == "GeneralTask")
                     {
                         general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
+                        btnGeneral_Task.Attributes.Add("class", "request__block-head");
                     }
                     else
                     {
@@ -795,6 +802,7 @@ namespace Evo
                     nv.Add("@Comments", txtGcomments.Text);
 
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
+
                 }
 
             }

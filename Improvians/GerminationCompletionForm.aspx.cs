@@ -64,14 +64,8 @@ namespace Evo
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
-            if (Session["Role"].ToString() == "1")
-            {
-
-            }
-            else
-            {
-                dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTask", nv);
-            }
+         
+            dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 

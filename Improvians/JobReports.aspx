@@ -274,11 +274,11 @@
                             <div class="portlet-body">
 
                                 <asp:Panel ID="Panel4" runat="server">
-                                    <div class="data__table data__table-height">
+                                    <div class="data__table data__table-height d-inline-block w-50">
                                         <asp:GridView ID="GV5" runat="server" AutoGenerateColumns="False"
                                             class="striped" AllowSorting="true"
                                             GridLines="None" PageSize="10" OnRowDataBound="GV5_RowDataBound"
-                                            ShowHeaderWhenEmpty="True" Width="50%" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
+                                            ShowHeaderWhenEmpty="True" OnRowEditing="GV5_RowEditing" OnRowUpdating="GV5_RowUpdating" OnRowCancelingEdit="GV5_RowCancelingEdit">
                                             <Columns>
 
                                                 <asp:TemplateField HeaderText="House/Section" Visible="false" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -332,10 +332,10 @@
                             <div class="portlet-body">
 
                                 <asp:Panel ID="Panel7" runat="server">
-                                    <div class="data__table data__table-height">
+                                    <div class="data__table data__table-height d-inline-block w-50">
                                         <asp:GridView ID="GV6" runat="server" AutoGenerateColumns="False"
                                             class="striped"
-                                            GridLines="None" ShowHeaderWhenEmpty="True" Width="35%">
+                                            GridLines="None" ShowHeaderWhenEmpty="True" >
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Activity Type" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>

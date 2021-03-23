@@ -333,7 +333,7 @@
                             </span>
                         </asp:LinkButton>
 
-                        <asp:LinkButton runat="server" ID="LinkButton1" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneralTask_Click">
+                        <asp:LinkButton runat="server" ID="btnGeneral_Task" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneralTask_Click">
                             <span class="">
                                 <img src="./images/dashboard_general-task.png" width="137" height="134" alt="General Task" />
                                 General Task
