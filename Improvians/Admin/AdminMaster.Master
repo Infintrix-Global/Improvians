@@ -122,6 +122,7 @@
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
+
                             <li>
                                 <a class="current" href="TaskTypeMaster.aspx" title="Master">
                                     <i class="side-icon far fa-user"></i>
@@ -129,6 +130,7 @@
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
+
                             <li>
                                 <a class="current" href="CropHealthMaster.aspx" title="Master">
                                     <i class="side-icon far fa-user"></i>
@@ -143,6 +145,7 @@
                                 <span class="side-title">Form's Dropdown</span>
                                 <i class="side-control fas fa-angle-right"></i>
                             </a>
+
 
                             <ul class="list-unstyled dropdown__list"> <!-- Here need "dropdown__list" class -->
                                 <li>
