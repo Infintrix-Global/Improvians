@@ -1419,7 +1419,10 @@ namespace Evo
 
             dump_request.Attributes.Add("class", "request__block-collapse collapse");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
+            btngermination.Attributes.Add("class", "request__block-head");
             ddlgerminationSupervisor.Focus();
+            txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+           
         }
 
         protected void btnFertilization_Click(object sender, EventArgs e)
@@ -1437,8 +1440,15 @@ namespace Evo
             move_request.Attributes.Add("class", "request__block-collapse collapse");
 
             dump_request.Attributes.Add("class", "request__block-collapse collapse");
+
+            btnFertilization.Attributes.Add("class", "request__block-head");
+
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
             ddlFertilizationSupervisor.Focus();
+
+            txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+
+
         }
 
         protected void btnChemical_Click(object sender, EventArgs e)
@@ -1458,6 +1468,8 @@ namespace Evo
             dump_request.Attributes.Add("class", "request__block-collapse collapse ");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
             ddlChemical_supervisor.Focus();
+            txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+           
         }
 
         protected void btnIrrigation_Click(object sender, EventArgs e)
@@ -1477,6 +1489,9 @@ namespace Evo
             dump_request.Attributes.Add("class", "request__block-collapse collapse ");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
             ddlirrigationSupervisor.Focus();
+           
+            txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+           
         }
 
         protected void btnPlantReady_Click(object sender, EventArgs e)
@@ -1495,8 +1510,14 @@ namespace Evo
 
             dump_request.Attributes.Add("class", "request__block-collapse collapse ");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
-
+            btnPlantReady.Attributes.Add("class", "request__block-head");
             ddlplant_readySupervisor.Focus();
+           
+            txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+          
+
+            btnMoveRequest.Attributes.Add("class", "request__block-head");
+
         }
 
 
@@ -1517,6 +1538,9 @@ namespace Evo
             dump_request.Attributes.Add("class", "request__block-collapse collapse ");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
             ddlLogisticManager.Focus();
+          
+            txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+          
         }
 
         protected void btnDump_Click(object sender, EventArgs e)
@@ -1536,6 +1560,10 @@ namespace Evo
             dump_request.Attributes.Add("class", "request__block-collapse collapse show");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
             ddlDumptAssignment.Focus();
+          
+            txtDumpDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+           
+            btnDump.Attributes.Add("class", "request__block-head");
         }
 
         protected void btnGeneralTask_Click(object sender, EventArgs e)
@@ -1556,6 +1584,10 @@ namespace Evo
 
             general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
             ddlAssignments.Focus();
+          
+            txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+
+            btnGeneral_Task.Attributes.Add("class", "request__block-head");
         }
     }
 }
