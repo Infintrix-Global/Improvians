@@ -53,11 +53,4 @@ jQuery(document).ready(function($){
     $(".custom-file-input").change(function() {
         readURL(this);
     });
-
-    /*Aside Dropdown*/
-    $(".has__dropdown > a").on("click", function(e){
-        e.preventDefault();
-        $(this).next(".dropdown__list").slideToggle();
-        $(this).parents(".has__dropdown").toggleClass('active');
-    });
 });

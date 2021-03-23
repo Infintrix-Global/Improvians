@@ -104,11 +104,14 @@
     <Content Include="Admin\AddEmployee.aspx" />
     <Content Include="Admin\AdminDashBoard.aspx" />
     <Content Include="Admin\CropHealthMaster.aspx" />
+    <Content Include="Admin\css\custom.css" />
+    <Content Include="Admin\index.html" />
+    <Content Include="Admin\js\custom.js" />
     <Content Include="Admin\TaskTypeMaster.aspx" />
     <Content Include="Admin\css\all.min.css" />
     <Content Include="Admin\css\aos.css" />
     <Content Include="Admin\css\bootstrap.min.css" />
-    <Content Include="Admin\css\custom.css" />
+    <Content Include="Admin\css\custom1.css" />
     <Content Include="Admin\EditProfile.aspx" />
     <Content Include="Admin\EmployeeProfile\data-privacy-and-security-features-you-should-know.jpg" />
     <Content Include="Admin\EmployeeProfile\Screenshot %289%29.png" />
@@ -179,7 +182,7 @@
     <Content Include="Admin\images\view.png" />
     <Content Include="Admin\js\aos.js" />
     <Content Include="Admin\js\bootstrap.min.js" />
-    <Content Include="Admin\js\custom.js" />
+    <Content Include="Admin\js\custom1.js" />
     <Content Include="Admin\js\jquery.min.js" />
     <Content Include="Admin\js\popper.min.js" />
     <Content Include="Admin\js\slick.min.js" />

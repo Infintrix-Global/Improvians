@@ -15,75 +15,66 @@ namespace Evo
     {
 
         /// <summary>
-        /// ddlDept control.
+        /// lblPutAway control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDept;
+        protected global::System.Web.UI.WebControls.Label lblPutAway;
 
         /// <summary>
-        /// lnkPutAway control.
+        /// lblGerm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPutAway;
+        protected global::System.Web.UI.WebControls.Label lblGerm;
 
         /// <summary>
-        /// lnkGerm control.
+        /// lblFer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkGerm;
+        protected global::System.Web.UI.WebControls.Label lblFer;
 
         /// <summary>
-        /// lnkFer control.
+        /// lblChemical control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFer;
+        protected global::System.Web.UI.WebControls.Label lblChemical;
 
         /// <summary>
-        /// lnkIrr control.
+        /// lblIrr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkIrr;
+        protected global::System.Web.UI.WebControls.Label lblIrr;
 
         /// <summary>
-        /// lnkpr control.
+        /// lblCropHealthReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkpr;
+        protected global::System.Web.UI.WebControls.Label lblCropHealthReport;
 
         /// <summary>
-        /// lnkMove control.
+        /// lblpr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkMove;
-
-        /// <summary>
-        /// ddlTaskRequest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTaskRequest;
+        protected global::System.Web.UI.WebControls.Label lblpr;
     }
 }

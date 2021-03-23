@@ -33,7 +33,7 @@ namespace Evo
             //nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-            //nv.Add("@FertilizationCode","0");
+            nv.Add("@FacilityID", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetSupervisorMoveDetails", nv);
             gvFer.DataSource = dt;
             gvFer.DataBind();
