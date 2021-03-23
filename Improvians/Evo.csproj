@@ -183,9 +183,6 @@
     <Content Include="Admin\js\jquery.min.js" />
     <Content Include="Admin\js\popper.min.js" />
     <Content Include="Admin\js\slick.min.js" />
-    <Content Include="Admin\Login.aspx" />
-    <Content Include="Admin\login.html" />
-    <Content Include="Admin\sw.js" />
     <Content Include="Admin\ViewPlantProductionProfile.aspx" />
     <Content Include="Admin\ViewEmployee.aspx" />
     <Content Include="ChemicalJobBuildUp.aspx" />
@@ -389,7 +386,6 @@
     <Compile Include="Admin\TaskTypeMaster.aspx.designer.cs">
       <DependentUpon>TaskTypeMaster.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\CommonControl.cs" />
     <Compile Include="Admin\EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -411,13 +407,6 @@
     <Compile Include="Admin\FertilizerMaster.aspx.designer.cs">
       <DependentUpon>FertilizerMaster.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\ViewPlantProductionProfile.aspx.cs">
       <DependentUpon>ViewPlantProductionProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -434,8 +423,9 @@
     </Compile>
     <Compile Include="Bal\BAL_CommonMasters.cs" />
     <Compile Include="Bal\BAL_Fertilizer.cs" />
+    <Compile Include="Bal\BAL_PlantProductionProfile.cs" />
     <Compile Include="Bal\Bal_SeedingPlan.cs" />
-    <Compile Include="Bal\Improvians_General.cs" />
+    <Compile Include="Bal\Evo_General.cs" />
     <Compile Include="BAL_Classes\BAL_Login.cs" />
     <Compile Include="BAL_Classes\BAL_Task.cs" />
     <Compile Include="BAL_Classes\clsCommonMasters.cs" />
@@ -1015,13 +1005,6 @@
     <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.ttf" />
     <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.woff" />
     <None Include="Admin\packages.config" />
-    <Content Include="Admin\Web.config" />
-    <None Include="Admin\Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Admin\Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
     <Content Include="Upload.ashx" />

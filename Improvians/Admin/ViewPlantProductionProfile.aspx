@@ -13,8 +13,9 @@
             <!-- BEGIN FORM-->
             <asp:Label ID="lblmsg" runat="server"></asp:Label>
             <asp:Panel ID="pnlAdd" runat="server" Visible="false">
+
                 <%--<div class="filter__row d-flex">--%>
-                <div class="row">
+               <%-- <div class="row">
                     <div class="col m3">
                         <label>
                             Code
@@ -24,12 +25,12 @@
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCode" ValidationGroup="e"
                                 SetFocusOnError="true" ErrorMessage="Please Enter Code" ForeColor="Red"></asp:RequiredFieldValidator>
                         </span>
-                          <cc1:AutoCompleteExtender ServiceMethod="SearchCode"
-                                MinimumPrefixLength="1"
-                                CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                                TargetControlID="txtCode"
-                                ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
-                            </cc1:AutoCompleteExtender>
+                        <cc1:AutoCompleteExtender ServiceMethod="SearchCode"
+                            MinimumPrefixLength="1"
+                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                            TargetControlID="txtCode"
+                            ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                        </cc1:AutoCompleteExtender>
                     </div>
                     <div class="col m3">
                         <label>
@@ -40,12 +41,12 @@
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCrop" ValidationGroup="e"
                                 SetFocusOnError="true" ErrorMessage="Please Enter Crop" ForeColor="Red"></asp:RequiredFieldValidator>
                         </span>
-                          <cc1:AutoCompleteExtender ServiceMethod="SearchCrop"
-                                MinimumPrefixLength="1"
-                                CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                                TargetControlID="txtCrop"
-                                ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
-                            </cc1:AutoCompleteExtender>
+                        <cc1:AutoCompleteExtender ServiceMethod="SearchCrop"
+                            MinimumPrefixLength="1"
+                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                            TargetControlID="txtCrop"
+                            ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
+                        </cc1:AutoCompleteExtender>
                     </div>
 
                     <div class="col m3">
@@ -83,8 +84,48 @@
                         <asp:Button ID="btnCancel" runat="server" Text="Cancel" TabIndex="10" class="submit-bttn bttn bttn-primary" ClientIDMode="Static" OnClick="btnCancel_Click" />
                     </div>
 
-                </div>
+                </div>--%>
                 <%--</div>--%>
+
+                <asp:GridView ID="GridProfile" runat="server" ShowFooter="true" Width="80%" OnRowDeleting="GridProfile_RowDeleting"
+                    AutoGenerateColumns="false" OnRowDataBound="GridProfile_RowDataBound">
+                    <Columns>
+                        <asp:BoundField DataField="RowNumber" HeaderText="NO." />
+                        <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:DropDownList ID="ddlCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Crop">
+                            <ItemTemplate>
+                                <asp:DropDownList ID="ddlCrop" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Tray Size">
+                            <ItemTemplate>
+                                <asp:DropDownList ID="ddlTraySize" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:DropDownList ID="ddlActivityCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="#">
+                            <ItemTemplate>
+                                <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
+
+                            </ItemTemplate>
+                            <FooterStyle HorizontalAlign="Right" />
+                            <FooterTemplate>
+                                <asp:Button ID="ButtonAdd" OnClick="btAdd_Click" runat="server"  CausesValidation="false"
+                                    Text="Add Plant Production Profile" CssClass="bttn bttn-primary bttn-action" />
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+
+
+                </asp:GridView>
             </asp:Panel>
 
             <asp:Panel ID="pnlList" runat="server" Visible="true">
