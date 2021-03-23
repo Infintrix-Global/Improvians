@@ -937,7 +937,8 @@
                                                                 <div class="col-lg-4">
                                                                     <label>Assignment</label>
 
-                                                                    <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                                                    <%--<asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>--%>
+                                                                    <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"  ></asp:DropDownList>
                                                                     <span class="error_message">
                                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
                                                                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>

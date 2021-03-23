@@ -88,6 +88,9 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetOperatorGeneralTaskDetails", nv);
             gvTask.DataSource = dt;
             gvTask.DataBind();
+            DateTime dNow = new DateTime();
+            dNow = Convert.ToDateTime(dt.AsEnumerable().Select(r => r.Field<DateTime>("GeneralTaskDate")).FirstOrDefault().ToString("yyyy/MM/dd"));
+            txtGeneralDate.Text = (dNow.ToString("yyyy-MM-dd"));
 
         }
 
