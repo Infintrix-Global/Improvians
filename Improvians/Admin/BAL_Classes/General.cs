@@ -16,7 +16,7 @@ namespace Evo.Admin.BAL_Classes
         private string mstr_ConnectionString;
         private SqlConnection mobj_SqlConnection;
         private SqlCommand mobj_SqlCommand;
-        private int mint_CommandTimeout = 2000;
+        private int mint_CommandTimeout = 30000;
 
         public enum ExpectedType
         {

@@ -1,4 +1,5 @@
 ﻿using Evo.Admin.BAL_Classes;
+using Evo.Bal;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,18 +15,14 @@ namespace Evo.Admin
         General objGeneral = new General();
         clsCommonMasters objCommon = new clsCommonMasters();
         BAL_Task objTask = new BAL_Task();
+        BAL_PlantProductionProfile objPlant = new BAL_PlantProductionProfile();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // BindDepartment();
                 BindCrop();
                 ddlActivityCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
-                ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
-                ddlActivity.DataSource = objCommon.GETActivityCode();
-                ddlActivity.DataTextField = "ActivityCode";
-                ddlActivity.DataValueField = "ActivityCode";
-                ddlActivity.DataBind();
+                ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));                
             }
         }
 
@@ -84,19 +81,6 @@ namespace Evo.Admin
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
-
-        protected void gvProductionProfile_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            //foreach (GridViewRow row in gvProductionProfile.Rows)
-            //{
-            //    if (!string.IsNullOrEmpty(((TextBox)row.FindControl("txtdateshift")).Text))
-            //    {
-            //        string s = ((TextBox)row.FindControl("txtdateshift")).Text;
-            //        string id = ((Label)row.FindControl("lblID")).Text;
-            //    }
-            //}
-        }
-
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlActivityCode.DataSource = objCommon.GETActivityCode(ddlCrop.SelectedValue);
@@ -111,8 +95,11 @@ namespace Evo.Admin
             ddlTrayCode.DataBind();
             ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
+        protected void gvProductionProfile_RowCommand(object sender, GridViewCommandEventArgs e)
+        { 
+        }
 
-        protected void ddlActivityCode_SelectedIndexChanged(object sender, EventArgs e)
+            protected void ddlActivityCode_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
             dt = objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
@@ -130,7 +117,7 @@ namespace Evo.Admin
         protected void btnAddProfile_Click(object sender, EventArgs e)
         {
             pnlAdd.Visible = true;
-            pnlList.Visible = false;
+            pnlList.Visible = false;           
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -145,11 +132,11 @@ namespace Evo.Admin
                 int _isInserted = -1;
                 ProfilePlanner obj = new ProfilePlanner
                 {
-                    code = txtCode.Text,
-                    crop = txtCrop.Text,
-                    dateshift = Convert.ToInt32(txtName.Text),
-                    activitycode = ddlActivity.SelectedValue,
-                    traycode = Convert.ToInt32(txtTray.Text)
+                    //code = txtCode.Text,
+                    //crop = txtCrop.Text,
+                    //dateshift = Convert.ToInt32(txtName.Text),
+                    //activitycode = ddlActivity.SelectedValue,
+                    //traycode = Convert.ToInt32(txtTray.Text)
                 };
 
                 _isInserted = objCommon.InsertPlantProductionProfile(obj);
@@ -174,61 +161,45 @@ namespace Evo.Admin
 
             }
         }
-
-        [System.Web.Script.Services.ScriptMethod()]
-        [System.Web.Services.WebMethod]
-        public static List<string> SearchCode(string prefixText, int count)
+        protected void GridProfile_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection())
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
-                using (SqlCommand cmd = new SqlCommand())
-                {
+                DropDownList ddlActivity = (DropDownList)e.Row.FindControl("ddlActivityCode");
+                DropDownList ddlCode = (DropDownList)e.Row.FindControl("ddlCode");
+                DropDownList ddlCrop = (DropDownList)e.Row.FindControl("ddlCrop");
+                DropDownList ddlTraySize = (DropDownList)e.Row.FindControl("ddlTraySize");
 
-                    cmd.CommandText = " select distinct code from [gti_jobs_prodprofile] where  code like '%" + prefixText + "%'  order by code";
-                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
-                    cmd.Connection = conn;
-                    conn.Open();
-                    List<string> customers = new List<string>();
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        while (sdr.Read())
-                        {
-                            customers.Add(sdr["code"].ToString());
-                        }
-                    }
-                    conn.Close();
-                    return customers;
-                }
+
+                ddlActivity.DataSource = objPlant.GetActivityCodeList();
+                ddlActivity.DataTextField = "ActivityCode";
+                ddlActivity.DataValueField = "ActivityCode";
+                ddlActivity.DataBind();
+
+                ddlCrop.DataSource = objPlant.GetCropList();
+                ddlCrop.DataTextField = "Crop";
+                ddlCrop.DataValueField = "Crop";
+                ddlCrop.DataBind();
+
+                ddlCode.DataSource = objPlant.GetCodeList();
+                ddlCode.DataTextField = "Code";
+                ddlCode.DataValueField = "Code";
+                ddlCode.DataBind();
+
+                ddlTraySize.DataSource = objPlant.GetTraysizeList();
+                ddlTraySize.DataTextField = "traysize";
+                ddlTraySize.DataValueField = "traysize";
+                ddlTraySize.DataBind();
+
             }
         }
 
-        [System.Web.Script.Services.ScriptMethod()]
-        [System.Web.Services.WebMethod]
-        public static List<string> SearchCrop(string prefixText, int count)
+        protected void GridProfile_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection())
-            {
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
-                using (SqlCommand cmd = new SqlCommand())
-                {
-
-                    cmd.CommandText = " select distinct crop from [gti_jobs_prodprofile] where  crop like '%" + prefixText + "%'  order by crop";
-                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
-                    cmd.Connection = conn;
-                    conn.Open();
-                    List<string> customers = new List<string>();
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        while (sdr.Read())
-                        {
-                            customers.Add(sdr["crop"].ToString());
-                        }
-                    }
-                    conn.Close();
-                    return customers;
-                }
-            }
+            //List<GrowerputDetils> objinvoice = ViewState["ojbpro"] as List<GrowerputDetils>;
+            //objinvoice.RemoveAt(e.RowIndex);
+            //GridSplitJob.DataSource = objinvoice;
+            //GridSplitJob.DataBind();
         }
     }
 
