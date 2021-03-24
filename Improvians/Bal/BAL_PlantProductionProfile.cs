@@ -24,13 +24,13 @@ namespace Evo.Bal
             return dt;
         }
 
-        public DataTable GetCropList()
+        public DataTable GetCropList(string Code)
         {
             Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
-                string strQuery = "select distinct h.[Genus Code] Crop from [GTI$IA Activity Scheme] h order by [Genus Code]";
+                string strQuery = "select distinct h.[Genus Code] Crop from [GTI$IA Activity Scheme] h where h.Code ='"+ Code +"' order by [Genus Code]";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)
@@ -40,13 +40,13 @@ namespace Evo.Bal
             return dt;
         }
 
-        public DataTable GetTraysizeList()
+        public DataTable GetTraysizeList(string Code)
         {
             Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
-                string strQuery = "select distinct h.[Container Code] traysize from [GTI$IA Activity Scheme] h order by [Container Code] ";
+                string strQuery = "select distinct h.[Container Code] traysize from [GTI$IA Activity Scheme] h where h.Code ='" + Code + "' order by [Container Code] ";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)

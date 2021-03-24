@@ -32,8 +32,7 @@ namespace Evo.Admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-
-            DataTable dt =   objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
+            DataTable dt = objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
             gvProductionProfile.DataSource = dt;
             gvProductionProfile.DataBind();
 
@@ -105,6 +104,14 @@ namespace Evo.Admin
         }
         protected void gvProductionProfile_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "DeleteProfile")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+                objCommon.DeletePlantProductionProfile(id);
+                DataTable dt = objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
+                gvProductionProfile.DataSource = dt;
+                gvProductionProfile.DataBind();
+            }
         }
 
         protected void ddlActivityCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -215,28 +222,19 @@ namespace Evo.Admin
                 DropDownList ddlTraySize = (DropDownList)e.Row.FindControl("ddlTraySize");
                 TextBox txtDateShift = (TextBox)e.Row.FindControl("txtDateShift");
 
-                ddlActivity.DataSource = objPlant.GetActivityCodeList();
-                ddlActivity.DataTextField = "ActivityCode";
-                ddlActivity.DataValueField = "ActivityCode";
-                ddlActivity.DataBind();
-                ddlActivity.Items.Insert(0, new ListItem("--- Select ---", "0"));
-
-                ddlCrop.DataSource = objPlant.GetCropList();
-                ddlCrop.DataTextField = "Crop";
-                ddlCrop.DataValueField = "Crop";
-                ddlCrop.DataBind();
-                ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
-
                 ddlCode.DataSource = objPlant.GetCodeList();
                 ddlCode.DataTextField = "Code";
                 ddlCode.DataValueField = "Code";
                 ddlCode.DataBind();
                 ddlCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
-                ddlTraySize.DataSource = objPlant.GetTraysizeList();
-                ddlTraySize.DataTextField = "traysize";
-                ddlTraySize.DataValueField = "traysize";
-                ddlTraySize.DataBind();
+                ddlActivity.DataSource = objPlant.GetActivityCodeList();
+                ddlActivity.DataTextField = "ActivityCode";
+                ddlActivity.DataValueField = "ActivityCode";
+                ddlActivity.DataBind();
+                ddlActivity.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+                ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
                 ddlTraySize.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
                 HiddenField hdnActivity = (HiddenField)e.Row.FindControl("hdnActivityCode");
@@ -246,11 +244,44 @@ namespace Evo.Admin
                 HiddenField hdnDateShift = (HiddenField)e.Row.FindControl("hdnDateShift");
 
                 ddlCode.SelectedValue = hdnCode.Value;
+                BindCodeCascadingDropdowns(e.Row, Code);
                 ddlCrop.SelectedValue = hdnCrop.Value;
                 ddlActivity.SelectedValue = hdnActivity.Value;
                 ddlTraySize.SelectedValue = hdnTraySize.Value;
                 txtDateShift.Text = hdnDateShift.Value;
             }
+        }
+
+        protected void ddlCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList ddlCode = (DropDownList)sender;
+            GridViewRow row = (GridViewRow)ddlCode.NamingContainer;
+            if (row != null)
+            {
+                BindCodeCascadingDropdowns(row, ddlCode.SelectedValue);
+            }
+        }
+
+        private void BindCodeCascadingDropdowns(GridViewRow row, string Code)
+        {
+            DropDownList ddlCrop = (DropDownList)row.FindControl("ddlCrop");
+            ddlCrop.DataSource = objPlant.GetCropList(Code);
+            ddlCrop.DataTextField = "Crop";
+            ddlCrop.DataValueField = "Crop";
+            ddlCrop.DataBind();
+            ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+            DropDownList ddlTraySize = (DropDownList)row.FindControl("ddlTraySize");
+            ddlTraySize.DataSource = objPlant.GetTraysizeList(Code);
+            ddlTraySize.DataTextField = "traysize";
+            ddlTraySize.DataValueField = "traysize";
+            ddlTraySize.DataBind();
+            ddlTraySize.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+            //HiddenField hdnCrop = (HiddenField)row.FindControl("hdnCrop");
+            //HiddenField hdnTraySize = (HiddenField)row.FindControl("hdnTraySize");
+            //ddlCrop.SelectedValue = hdnCrop.Value;
+            //ddlTraySize.SelectedValue = hdnTraySize.Value;
         }
 
         private List<PlantProductionProfileDetils> PlantProductionProfileData
@@ -327,6 +358,8 @@ namespace Evo.Admin
             PlantProductionProfileData = objProfile;
             GridProfileBind();
         }
+
+      
     }
 
 }

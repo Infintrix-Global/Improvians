@@ -434,6 +434,24 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+        public int DeletePlantProductionProfile(int id)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@pid", id);          
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("DeletePlantProductionProfile");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
         public int UpdateEmployee(Employee objEmployee)
         {
             int _isInserted = -1;
