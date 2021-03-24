@@ -143,7 +143,15 @@ namespace Evo
             //{
             //    nv.Add("@BenchLocation", "0");
             //}
-            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+          
+            if (Session["Role"].ToString() == "12")
+            {
+                dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
+            }
+            else
+            {
+                dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+            }
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
         }

@@ -125,9 +125,11 @@
                                     </li>
                                     <li>
                                         <a class="" href="CropHealthMaster.aspx" title="Master">
-                                            <i class="side-icon far fa-user"></i>
+                                            <i class="side-icon fas fa-file-medical-alt"></i>
                                             <span class="side-title">Crop Health Master</span>
                                             <i class="side-control fas fa-angle-right"></i>
+
+                                          
                                         </a>
                                     </li>
                                 </ul>

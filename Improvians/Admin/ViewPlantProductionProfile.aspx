@@ -14,78 +14,6 @@
             <asp:Label ID="lblmsg" runat="server"></asp:Label>
             <asp:Panel ID="pnlAdd" runat="server" Visible="false">
 
-                <%--<div class="filter__row d-flex">--%>
-                <%-- <div class="row">
-                    <div class="col m3">
-                        <label>
-                            Code
-                                    <label style="color: red">*</label></label>
-                        <asp:TextBox ID="txtCode" class="input__control" placeholder="Enter code" runat="server"></asp:TextBox>
-                        <span class="error_message">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCode" ValidationGroup="e"
-                                SetFocusOnError="true" ErrorMessage="Please Enter Code" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>
-                        <cc1:AutoCompleteExtender ServiceMethod="SearchCode"
-                            MinimumPrefixLength="1"
-                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                            TargetControlID="txtCode"
-                            ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
-                        </cc1:AutoCompleteExtender>
-                    </div>
-                    <div class="col m3">
-                        <label>
-                            Crop
-                                    <label style="color: red">*</label></label>
-                        <asp:TextBox ID="txtCrop" class="input__control" placeholder="Enter crop" runat="server"></asp:TextBox>
-                        <span class="error_message">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCrop" ValidationGroup="e"
-                                SetFocusOnError="true" ErrorMessage="Please Enter Crop" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>
-                        <cc1:AutoCompleteExtender ServiceMethod="SearchCrop"
-                            MinimumPrefixLength="1"
-                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                            TargetControlID="txtCrop"
-                            ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
-                        </cc1:AutoCompleteExtender>
-                    </div>
-
-                    <div class="col m3">
-                        <label>
-                            Tray Code
-                                    <label style="color: red">*</label></label>
-                        <asp:TextBox ID="txtTray" class="input__control" TextMode="Number" placeholder="Enter tray code" runat="server"></asp:TextBox>
-                        <span class="error_message">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTray" ValidationGroup="e"
-                                SetFocusOnError="true" ErrorMessage="Please Enter Tray Code" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col m3">
-                        <label>
-                            Activity Code
-                                    <label style="color: red">*</label></label>
-                        <asp:DropDownList ID="ddlActivity" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
-                    <div class="col m3">
-                        <label>Date Shift<label style="color: red">*</label></label>
-                        <asp:TextBox ID="txtName" class="input__control" TextMode="Number" placeholder="Enter date shift" runat="server"></asp:TextBox>
-                        <span class="error_message">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtName" ValidationGroup="e"
-                                SetFocusOnError="true" ErrorMessage="Please Enter Date Shift" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>
-                    </div>
-
-                    <div class="col-auto">
-                        <br />
-                        <asp:Button ID="btAdd" runat="server" Text="Submit" TabIndex="10" class="submit-bttn bttn bttn-primary" OnClick="btAdd_Click" ValidationGroup="e" />
-
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" TabIndex="10" class="submit-bttn bttn bttn-primary" ClientIDMode="Static" OnClick="btnCancel_Click" />
-                    </div>
-
-                </div>--%>
-                <%--</div>--%>
                 <div class="portlet-body">
                     <div class="data__table data__table-height">
                         <asp:GridView ID="GridProfile" runat="server" ShowFooter="true" Width="100%" OnRowDeleting="GridProfile_RowDeleting"
@@ -94,7 +22,7 @@
                                 <asp:BoundField DataField="RowNumber" HeaderText="NO." />
                                 <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:DropDownList ID="ddlCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlCode" class="custom__dropdown robotomd" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCode_SelectedIndexChanged"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCode" ValidationGroup="e"
                                             InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Code" ForeColor="Red"></asp:RequiredFieldValidator>
                                         <asp:HiddenField ID="hdnCode" runat="server" Value='<%# Eval("Code")%>' />
@@ -103,7 +31,7 @@
                                 <asp:TemplateField HeaderText="Crop">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="ddlCrop" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlCrop" ValidationGroup="e"
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlCrop" ValidationGroup="e"
                                             InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Crop" ForeColor="Red"></asp:RequiredFieldValidator>
                                         <asp:HiddenField ID="hdnCrop" runat="server" Value='<%# Eval("Crop")%>' />
                                     </ItemTemplate>
@@ -119,7 +47,7 @@
                                 <asp:TemplateField HeaderText="Activity Code" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="ddlActivityCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlActivityCode" ValidationGroup="e"
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlActivityCode" ValidationGroup="e"
                                             InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Activity Code" ForeColor="Red"></asp:RequiredFieldValidator>
                                         <asp:HiddenField ID="hdnActivityCode" runat="server" Value='<%# Eval("ActivityCode")%>' />
                                     </ItemTemplate>
@@ -199,10 +127,10 @@
                         <div class="portlet light ">
                             <asp:Label runat="server" Text="" ID="count"></asp:Label>
                             <div class="portlet-body">
-                                <div class="data__table">
+                                <div class="data__table data__table-height">
 
                                     <asp:GridView ID="gvProductionProfile" runat="server" AutoGenerateColumns="False"
-                                        class="striped" OnRowCommand="gvProductionProfile_RowCommand"
+                                        class="striped" OnRowCommand="gvProductionProfile_RowCommand"  
                                         GridLines="None"
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
@@ -216,12 +144,12 @@
 
 
 
-                                            <asp:TemplateField HeaderText="Crop" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
+                                            <asp:TemplateField HeaderText="Crop" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label11" runat="server" Text='<%# Eval("crop")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Tray Code" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
+                                            <asp:TemplateField HeaderText="Tray Code" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label7" runat="server" Text='<%# Eval("traycode")  %>'></asp:Label>
                                                 </ItemTemplate>
@@ -232,7 +160,7 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Date Shift" ItemStyle-Width="50%" HeaderStyle-CssClass="autostyle2" SortExpression="RoleName">
+                                            <asp:TemplateField HeaderText="Date Shift" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <%--<asp:Label ID="Label10" runat="server" Text='<%# Eval("dateshift")  %>'></asp:Label>--%>
                                                     <asp:TextBox ID="txtdateshift" runat="server" Width="50%" Text='<%# Eval("dateshift")  %>'></asp:TextBox>
@@ -240,11 +168,12 @@
                                             </asp:TemplateField>
 
 
-
-
-
+                                            <asp:TemplateField HeaderText="#" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="DeleteProfile" CommandArgument='<%# Eval("pid")  %>' ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
-
 
                                         <EmptyDataTemplate>
                                             No Record Available
