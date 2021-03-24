@@ -96,7 +96,7 @@
                                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>

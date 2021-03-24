@@ -45,7 +45,7 @@ namespace Evo
                 BindSupervisor();
 
                 BindFacility();
-                //BindSupervisorList();
+                BindSupervisorList();
                 BindFertilizer();
                 BindJobCode("");
                 BindChemical();
@@ -650,11 +650,7 @@ namespace Evo
             ddlDumptAssignment.DataBind();
             ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
 
-            ddlAssignments.DataSource = dt;
-            ddlAssignments.DataTextField = "EmployeeName";
-            ddlAssignments.DataValueField = "ID";
-            ddlAssignments.DataBind();
-            ddlAssignments.Items.Insert(0, new ListItem("--Select--", "0"));
+          
 
         }
         public void BindChemical()
@@ -901,7 +897,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
 
             ddlAssignments.DataSource = objCommon.GetDataTable("SP_GetSeedsRoles", nv);
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            
             ddlAssignments.DataTextField = "EmployeeName";
             ddlAssignments.DataValueField = "ID";
             ddlAssignments.DataBind();
@@ -1060,6 +1056,7 @@ namespace Evo
 
         protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
             if (ddlTaskType.SelectedItem.Value == "3")
             {
                 divFrom.Style["display"] = "block";
@@ -1401,6 +1398,7 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
 
                 var getToMail = Session["SelectedAssignment"].ToString();
+               // var getToMail = ddlAssignments.SelectedValue;
                 nv.Add("@Uid", getToMail);
                 DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
                 ReceiverEmail = dt.Rows[0]["Email"].ToString();

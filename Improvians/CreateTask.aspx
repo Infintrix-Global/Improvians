@@ -797,7 +797,7 @@
                                             <%--  <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
                                                 <ContentTemplate>--%>
                                             <asp:Panel ID="Panel1" runat="server">
-                                                <div class="row" style="margin-left: 15px;">
+                                                <div class="row">
                                                     <%-- <div class="col-lg-4">
                                                             <label>Comments</label>
                                                             <asp:TextBox TextMode="MultiLine" runat="server" ID="txtComment" CssClass="input__control"></asp:TextBox>
@@ -807,18 +807,18 @@
                                                             </span>
                                                         </div>--%>
 
-                                                    <div class="col-lg-4">
+                                                    <div class="col-xl-3">
                                                         <label>Assignment</label>
-<%--                <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                                                        <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
-                                                        <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+<%--                                                        <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>--%>
                                                         <span class="error_message">
                                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
                                                                 SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
                                                         </span>
                                                     </div>
 
-                                                    <div class="col-lg-4">
+                                                   <div class="col-xl-3">
                                                         <label>Task Type</label>
 
                                                         <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
@@ -834,7 +834,7 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="col-lg-4">
+                                                    <div class="col-xl-3">
                                                         <label>General Task Date</label>
                                                         <asp:TextBox ID="txtgeneralDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                                                         <span class="error_message">
@@ -843,7 +843,7 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="col-lg-4">
+                                                    <div class="col-xl-3">
                                                         <label>Comments</label>
                                                         <asp:TextBox ID="txtgeneralComment" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
@@ -853,7 +853,7 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="col-lg-4" id="divFrom" style="display: none;" runat="server">
+                                                    <div class="col-xl-3" id="divFrom" style="display: none;" runat="server">
                                                         <label>From</label>
                                                         <asp:TextBox ID="txtFrom" runat="server" CssClass="input__control"></asp:TextBox>
 
@@ -862,7 +862,7 @@
                                                                 SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
                                                         </span>
                                                     </div>
-                                                    <div class="col-lg-4" id="divTo" style="display: none;" runat="server">
+                                                    <div class="col-xl-3" id="divTo" style="display: none;" runat="server">
                                                         <label>To</label>
                                                         <asp:TextBox ID="txtTo" runat="server" CssClass="input__control"></asp:TextBox>
 
@@ -872,7 +872,7 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3">
                                                         <div style="margin-top: 9%;">
                                                             <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" Visible="false" />
                                                             <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnGeneraltask_Click" />
