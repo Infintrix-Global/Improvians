@@ -19,10 +19,10 @@
                         <asp:GridView ID="GridProfile" runat="server" ShowFooter="true" Width="100%" OnRowDeleting="GridProfile_RowDeleting"
                             AutoGenerateColumns="false" OnRowDataBound="GridProfile_RowDataBound">
                             <Columns>
-                                <asp:BoundField DataField="RowNumber" HeaderText="NO." />
+                                <asp:BoundField DataField="RowNumber" HeaderText="No." />
                                 <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:DropDownList ID="ddlCode" class="custom__dropdown robotomd" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCode_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlCode" class="custom__dropdown robotomd" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlGridCode_SelectedIndexChanged"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCode" ValidationGroup="e"
                                             InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Code" ForeColor="Red"></asp:RequiredFieldValidator>
                                         <asp:HiddenField ID="hdnCode" runat="server" Value='<%# Eval("Code")%>' />
@@ -58,7 +58,7 @@
                                         <asp:HiddenField ID="hdnDateShift" runat="server" Value='<%# Eval("DateShift")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="#">
+                                <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
                                         <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
 
@@ -91,7 +91,12 @@
                 <div class="filter__row d-flex">
                     <div class="row">
                         <div class="col m3">
-                            <label>Filter Crop </label>
+                            <label>Code </label>
+
+                            <asp:DropDownList ID="ddlCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        </div>
+                        <div class="col m3">
+                            <label>Crop </label>
 
                             <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
@@ -106,14 +111,14 @@
                             <asp:DropDownList ID="ddlActivityCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlActivityCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
 
-                        <div class="col-auto align-self-end">
+<%--                        <div class="col-auto align-self-end">
                             <asp:Button ID="btnSearch" Text="Search" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSearch_Click" />
-                        </div>
+                        </div>--%>
                         <div class="col-auto align-self-end">
                             <asp:Button ID="btnSave" Text="Save" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSave_Click" />
                         </div>
                         <div class="col-auto align-self-end">
-                            <asp:Button ID="btnClear" Text="Clear" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnClear_Click" />
+                            <asp:Button ID="btnClear" Text="Reset" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnClear_Click" />
                         </div>
                         <div class="col-auto align-self-end">
                             <asp:Button ID="btnAddProfile" Text="Add" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnAddProfile_Click" />
@@ -163,12 +168,12 @@
                                             <asp:TemplateField HeaderText="Date Shift" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <%--<asp:Label ID="Label10" runat="server" Text='<%# Eval("dateshift")  %>'></asp:Label>--%>
-                                                    <asp:TextBox ID="txtdateshift" runat="server" Width="70%" Text='<%# Eval("dateshift")  %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtdateshift" runat="server" Width="80%" Text='<%# Eval("dateshift")  %>'></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="#" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="DeleteProfile" CommandArgument='<%# Eval("pid")  %>' ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
                                                 </ItemTemplate>
