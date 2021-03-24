@@ -2,6 +2,14 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#btngermination", function () {
+            alert("Button was clicked.");
+        });
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -284,12 +292,12 @@
                     </button>
 
                 </div>--%>
-                
-        <%-- 
+
+                <%-- 
                 <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional"
                     runat="server">
                     <ContentTemplate>--%>
-
+            
 
                         <div class="task_request-buttons">
 
@@ -300,7 +308,7 @@
                                 Germination Count
                              </span>
                             </asp:LinkButton>
-                         
+
                             <asp:LinkButton runat="server" ID="btnFertilization" ForeColor="Black" class="request__block-head collapsed" OnClick="btnFertilization_Click">
                             <span class="">
                                 <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization">
@@ -352,7 +360,8 @@
                             </asp:LinkButton>
 
                         </div>
-             <%--       </ContentTemplate>
+
+                <%--       </ContentTemplate>
                 </asp:UpdatePanel>--%>
 
                 <div class="request__block">
