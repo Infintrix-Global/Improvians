@@ -15,7 +15,7 @@
             <asp:Panel ID="pnlAdd" runat="server" Visible="false">
 
                 <%--<div class="filter__row d-flex">--%>
-               <%-- <div class="row">
+                <%-- <div class="row">
                     <div class="col m3">
                         <label>
                             Code
@@ -86,51 +86,64 @@
 
                 </div>--%>
                 <%--</div>--%>
+                <div class="portlet-body">
+                    <div class="data__table data__table-height">
+                        <asp:GridView ID="GridProfile" runat="server" ShowFooter="true" Width="100%" OnRowDeleting="GridProfile_RowDeleting"
+                            AutoGenerateColumns="false" OnRowDataBound="GridProfile_RowDataBound">
+                            <Columns>
+                                <asp:BoundField DataField="RowNumber" HeaderText="NO." />
+                                <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:DropDownList ID="ddlCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Crop">
+                                    <ItemTemplate>
+                                        <asp:DropDownList ID="ddlCrop" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Tray Size">
+                                    <ItemTemplate>
+                                        <asp:DropDownList ID="ddlTraySize" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:DropDownList ID="ddlActivityCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Date Shift" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtDateShift" class="custom__dropdown robotomd" runat="server"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="#">
+                                    <ItemTemplate>
+                                        <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
 
-                <asp:GridView ID="GridProfile" runat="server" ShowFooter="true" Width="80%" OnRowDeleting="GridProfile_RowDeleting"
-                    AutoGenerateColumns="false" OnRowDataBound="GridProfile_RowDataBound">
-                    <Columns>
-                        <asp:BoundField DataField="RowNumber" HeaderText="NO." />
-                        <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
-                            <ItemTemplate>
-                                <asp:DropDownList ID="ddlCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Crop">
-                            <ItemTemplate>
-                                <asp:DropDownList ID="ddlCrop" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Tray Size">
-                            <ItemTemplate>
-                                <asp:DropDownList ID="ddlTraySize" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
-                            <ItemTemplate>
-                                <asp:DropDownList ID="ddlActivityCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Date Shift" HeaderStyle-HorizontalAlign="Center">
-                            <ItemTemplate>
-                                <asp:TextBox ID="txtDateShift" class="custom__dropdown robotomd" runat="server"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="#">
-                            <ItemTemplate>
-                                <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
-
-                            </ItemTemplate>
-                            <FooterStyle HorizontalAlign="Right" />
-                            <FooterTemplate>
-                                <asp:Button ID="ButtonAdd" OnClick="btAdd_Click" runat="server"  CausesValidation="false"
-                                    Text="Add Plant Production Profile" CssClass="bttn bttn-primary bttn-action" />
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                    </Columns>
+                                    </ItemTemplate>
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <FooterTemplate>
+                                        <asp:Button ID="ButtonAdd" OnClick="btAdd_Click" runat="server" CausesValidation="false"
+                                            Text="Add Row" CssClass="bttn bttn-primary bttn-action" />
+                                    </FooterTemplate>
+                                </asp:TemplateField>
+                            </Columns>
 
 
-                </asp:GridView>
+                        </asp:GridView>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <br />
+                        <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" OnClick="btnSubmit_Click" runat="server" />
+                    </div>
+                    <div class="col-auto">
+                        <br />
+                        <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" runat="server" />
+                    </div>
+                </div>
             </asp:Panel>
 
             <asp:Panel ID="pnlList" runat="server" Visible="true">

@@ -9,17 +9,20 @@ namespace Evo
 {
     public partial class EvoMaster : System.Web.UI.MasterPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             if (Session["LoginID"] == null)
             {
                 Response.Redirect("~/Login.aspx");
             }
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
             if (!IsPostBack)
             {
 
                 lblEmpName.Text = Session["EmployeeName"].ToString();
-                if (!string.IsNullOrEmpty(Session["Photo"].ToString() ))
+                if (!string.IsNullOrEmpty(Session["Photo"].ToString()))
                 {
                     imgprofilepic.ImageUrl = @"~\Admin\EmployeeProfile\" + Session["Photo"].ToString();
                 }
@@ -88,7 +91,7 @@ namespace Evo
             if (Session["Role"].ToString() == "12")
             {
                 Response.Redirect("MyTaskAssistantGrower.aspx");
-               
+
             }
 
         }

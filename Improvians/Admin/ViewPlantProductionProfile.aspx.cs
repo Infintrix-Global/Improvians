@@ -22,7 +22,7 @@ namespace Evo.Admin
             {
                 BindCrop();
                 ddlActivityCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
-                ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));                
+                ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
             }
         }
 
@@ -96,10 +96,10 @@ namespace Evo.Admin
             ddlTrayCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
         protected void gvProductionProfile_RowCommand(object sender, GridViewCommandEventArgs e)
-        { 
+        {
         }
 
-            protected void ddlActivityCode_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlActivityCode_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
             dt = objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
@@ -117,7 +117,8 @@ namespace Evo.Admin
         protected void btnAddProfile_Click(object sender, EventArgs e)
         {
             pnlAdd.Visible = true;
-            pnlList.Visible = false;           
+            pnlList.Visible = false;
+            AddNewRow(true);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -127,19 +128,50 @@ namespace Evo.Admin
         }
         protected void btAdd_Click(object sender, EventArgs e)
         {
+            AddNewRow(true);
+
+        }
+        public void Clear()
+        {
+            GridProfile.DataSource = null;
+            GridProfile.DataBind();
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Clear();
+            AddNewRow(true);
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
             try
             {
                 int _isInserted = -1;
-                ProfilePlanner obj = new ProfilePlanner
+                foreach (GridViewRow item in GridProfile.Rows)
                 {
-                    //code = txtCode.Text,
-                    //crop = txtCrop.Text,
-                    //dateshift = Convert.ToInt32(txtName.Text),
-                    //activitycode = ddlActivity.SelectedValue,
-                    //traycode = Convert.ToInt32(txtTray.Text)
-                };
 
-                _isInserted = objCommon.InsertPlantProductionProfile(obj);
+                    if (item.RowType == DataControlRowType.DataRow)
+                    {
+
+                        DropDownList ddlActivity = (DropDownList)item.Cells[0].FindControl("ddlActivityCode");
+                        DropDownList ddlCode = (DropDownList)item.Cells[0].FindControl("ddlCode");
+                        DropDownList ddlCrop = (DropDownList)item.Cells[0].FindControl("ddlCrop");
+                        DropDownList ddlTraySize = (DropDownList)item.Cells[0].FindControl("ddlTraySize");
+                        TextBox txtDateShift = (item.Cells[0].FindControl("txtDateShift") as TextBox);
+
+                        ProfilePlanner obj = new ProfilePlanner
+                        {
+                            code = ddlCode.SelectedValue,
+                            crop = ddlCrop.SelectedValue,
+                            dateshift = Convert.ToInt32(txtDateShift.Text),
+                            activitycode = ddlActivity.SelectedValue,
+                            traycode = ddlTraySize.SelectedValue
+                        };
+
+                        _isInserted = objCommon.InsertPlantProductionProfile(obj);
+                    }
+                }
                 if (_isInserted == -1)
                 {
                     lblmsg.Text = "Failed to Add Profile";
@@ -153,7 +185,7 @@ namespace Evo.Admin
                     DataTable dt = new DataTable();
                     dt = objCommon.GetPlanProductionProfile(ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
                     gvProductionProfile.DataSource = dt;
-                    gvProductionProfile.DataBind();                   
+                    gvProductionProfile.DataBind();
                 }
             }
             catch (Exception ex)
@@ -194,13 +226,92 @@ namespace Evo.Admin
             }
         }
 
+        private List<PlantProductionProfileDetils> PlantProductionProfileData
+        {
+            get
+            {
+                if (ViewState["PlantProductionProfileData"] != null)
+                {
+                    return (List<PlantProductionProfileDetils>)ViewState["PlantProductionProfileData"];
+                }
+                return new List<PlantProductionProfileDetils>();
+            }
+            set
+            {
+                ViewState["PlantProductionProfileData"] = value;
+            }
+        }
+
+        private void AddNewRow(bool AddBlankRow)
+        {
+            try
+            {
+                List<PlantProductionProfileDetils> objProfile = PlantProductionProfileData;
+
+                //foreach (GridViewRow item in GridProfile.Rows)
+                //{
+
+                //    string Code = ((DropDownList)item.FindControl("ddlCode")).SelectedValue;
+                //    string Crop = ((DropDownList)item.FindControl("ddlCrop")).SelectedValue;
+                //    string TraySize = ((DropDownList)item.FindControl("ddlTraySize")).SelectedValue;
+                //    string ActivityCode = ((DropDownList)item.FindControl("ddlActivityCode")).SelectedValue;
+                //    TextBox txtDateShift = (TextBox)item.FindControl("txtDateShift");
+
+                //    AddProfileDetail(ref objProfile, Code, Crop, TraySize, ActivityCode, Convert.ToInt16(txtDateShift.Text));
+
+                //}
+                if (AddBlankRow)
+                    AddProfileDetail(ref objProfile, "", "", "", "", 0);
+
+                PlantProductionProfileData = objProfile;
+                GridProfileBind();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        public void GridProfileBind()
+        {
+            GridProfile.DataSource = PlantProductionProfileData;
+            GridProfile.DataBind();
+
+        }
+
+        private void AddProfileDetail(ref List<PlantProductionProfileDetils> objPD, string Code, string Crop, string ActivityCode, string TraySize, int DateShift)
+        {
+            PlantProductionProfileDetils objProfile = new PlantProductionProfileDetils();
+
+            objProfile.RowNumber = objPD.Count + 1;
+            objProfile.Code = Code;
+            objProfile.Crop = Crop;
+            objProfile.ActivityCode = ActivityCode;
+            objProfile.TraySize = TraySize;
+            objProfile.DateShift = DateShift;
+
+            objPD.Add(objProfile);
+            ViewState["objPD"] = objPD;
+        }
+
         protected void GridProfile_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            //List<GrowerputDetils> objinvoice = ViewState["ojbpro"] as List<GrowerputDetils>;
-            //objinvoice.RemoveAt(e.RowIndex);
-            //GridSplitJob.DataSource = objinvoice;
-            //GridSplitJob.DataBind();
+            List<PlantProductionProfileDetils> objProfile = PlantProductionProfileData;
+            objProfile.RemoveAt(e.RowIndex);
+            PlantProductionProfileData = objProfile;
+            GridProfileBind();
         }
     }
 
+}
+[Serializable]
+public class PlantProductionProfileDetils
+{
+    public int RowNumber { get; set; }
+    public string Code { get; set; }
+    public string Crop { get; set; }
+    public string ActivityCode { get; set; }
+    public string TraySize { get; set; }
+    public int DateShift { get; set; }
 }
