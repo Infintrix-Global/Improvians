@@ -135,7 +135,7 @@
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
 
-                                            <asp:TemplateField HeaderText="Code" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Code" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label4" runat="server" Text='<%# Eval("code")  %>'></asp:Label>
                                                     <asp:Label ID="lblID" runat="server" Text='<%# Eval("pid")  %>' Visible="false"></asp:Label>
@@ -163,7 +163,7 @@
                                             <asp:TemplateField HeaderText="Date Shift" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <%--<asp:Label ID="Label10" runat="server" Text='<%# Eval("dateshift")  %>'></asp:Label>--%>
-                                                    <asp:TextBox ID="txtdateshift" runat="server" Width="50%" Text='<%# Eval("dateshift")  %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtdateshift" runat="server" Width="70%" Text='<%# Eval("dateshift")  %>'></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
