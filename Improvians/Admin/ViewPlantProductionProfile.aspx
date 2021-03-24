@@ -95,26 +95,39 @@
                                 <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="ddlCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCode" ValidationGroup="e"
+                                            InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Code" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:HiddenField ID="hdnCode" runat="server" Value='<%# Eval("Code")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Crop">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="ddlCrop" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlCrop" ValidationGroup="e"
+                                            InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Crop" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:HiddenField ID="hdnCrop" runat="server" Value='<%# Eval("Crop")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Tray Size">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="ddlTraySize" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlTraySize" ValidationGroup="e"
+                                            InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Tray Size" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:HiddenField ID="hdnTraySize" runat="server" Value='<%# Eval("TraySize")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Code" HeaderStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="Activity Code" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="ddlActivityCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlActivityCode" ValidationGroup="e"
+                                            InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Activity Code" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:HiddenField ID="hdnActivityCode" runat="server" Value='<%# Eval("ActivityCode")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Date Shift" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtDateShift" class="custom__dropdown robotomd" runat="server"></asp:TextBox>
+                                        <asp:HiddenField ID="hdnDateShift" runat="server" Value='<%# Eval("DateShift")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="#">
@@ -124,7 +137,7 @@
                                     </ItemTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <FooterTemplate>
-                                        <asp:Button ID="ButtonAdd" OnClick="btAdd_Click" runat="server" CausesValidation="false"
+                                        <asp:Button ID="ButtonAdd" OnClick="btAdd_Click" runat="server" CausesValidation="true" ValidationGroup="e"
                                             Text="Add Row" CssClass="bttn bttn-primary bttn-action" />
                                     </FooterTemplate>
                                 </asp:TemplateField>
@@ -137,7 +150,7 @@
                 <div class="row">
                     <div class="col-auto">
                         <br />
-                        <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" OnClick="btnSubmit_Click" runat="server" />
+                        <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" CausesValidation="true" ValidationGroup="e" OnClick="btnSubmit_Click" runat="server" />
                     </div>
                     <div class="col-auto">
                         <br />
