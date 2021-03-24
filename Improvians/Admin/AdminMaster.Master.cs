@@ -9,12 +9,15 @@ namespace Evo
 {
     public partial class AdminMaster : System.Web.UI.MasterPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
-            if (Session["LoginID"] == null  || Session["Role"].ToString() !="4")
+            if (Session["LoginID"] == null)
             {
-                Response.Redirect("~/Admin/Login.aspx");
+                Response.Redirect("~/Login.aspx");
             }
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {            
             if (!IsPostBack)
             {
 
