@@ -57,12 +57,9 @@ namespace Evo
 
             if (Session["Role"].ToString() == "12")
             {
-                dt = objCommon.GetDataTable("SP_GetPlantReadyRequestAssistantGrower", nv);
+                dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
             }
-            else
-            {
-                dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
-            }
+           
 
 
             gvPlantReady.DataSource = dt;
@@ -82,21 +79,21 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             if (Session["Role"].ToString() == "1")
             {
-                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
                 //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                ddlDumptAssignment.DataTextField = "EmployeeName";
+                ddlDumptAssignment.DataValueField = "ID";
+                ddlDumptAssignment.DataBind();
+                ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
             }
             if (Session["Role"].ToString() == "12")
             {
-                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+                ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
                 //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                ddlDumptAssignment.DataTextField = "EmployeeName";
+                ddlDumptAssignment.DataValueField = "ID";
+                ddlDumptAssignment.DataBind();
+                ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
             }
         }
         public void Bindcname()
@@ -192,9 +189,11 @@ namespace Evo
 
                 userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
-                lblGrowerID.Text = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
-                ddlSupervisor.Focus();
+                HiddenFieldDid.Value = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+                HiddenFieldJid.Value = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
+
+                //ddlSupervisor.Focus();
+
 
             }
         }
@@ -205,16 +204,27 @@ namespace Evo
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
+            //  nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+            //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
             // nv.Add("@WO",wo);
+        
+            nv.Add("@SupervisorID",ddlDumptAssignment.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequest", nv);
+            nv.Add("@Did", HiddenFieldDid.Value);
+            nv.Add("@Comments",txtCommentsDump.Text);
+            nv.Add("@wo", "0");
+            nv.Add("@ManualID", HiddenFieldJid.Value);
+            nv.Add("@DumpDate",txtDumpDate.Text);
+            nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
+
+            result = objCommon.GetDataInsertORUpdate("SP_AddDumpRequestManua", nv);
+
+
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
+                string url = "MyTaskAssistantGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -235,14 +245,14 @@ namespace Evo
         public void clear()
         {
 
-            ddlSupervisor.SelectedIndex = 0;
+          //  ddlSupervisor.SelectedIndex = 0;
 
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-            Response.Redirect("~/MyTaskGrower.aspx");
+            Response.Redirect("~/MyTaskAssistantGrower.aspx");
         }
 
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -251,10 +261,7 @@ namespace Evo
             BindGridPlantReady();
         }
 
-        protected void btnManual_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/PlantReadyReqManual.aspx");
-        }
+      
     }
 
 }

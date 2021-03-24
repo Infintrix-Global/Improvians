@@ -5,8 +5,8 @@
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
-                <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready">
-                Plant Ready </h2>
+                <img src="./images/dashboard_dump-request.png" width="137" height="132" alt="Plant Ready">
+               Dump </h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
@@ -22,7 +22,7 @@
                       <div class="col-auto">
                          <br />
                                 <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
-                              <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                            
                     </div>
 
                     <%-- <div class="col m3">
@@ -37,7 +37,7 @@
             <div class="data__table">
                 <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                     class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
-                    GridLines="None" OnRowCommand="gvPlantReady_RowCommand"  DataKeyNames="wo,jobcode,GrowerPutAwayId"
+                    GridLines="None" OnRowCommand="gvPlantReady_RowCommand"  DataKeyNames="wo,DumpId,jid"
                     ShowHeaderWhenEmpty="True" Width="100%">
                     <Columns>
 
@@ -128,28 +128,44 @@
 
                 <div id="userinput" runat="server" visible="false" class="row justify-content-center">
                     <div class="col-12">
-                        <h3>User Inputs:</h3>
+                      
                         <div class="row">
+                                <div class="mb-3 col-12 col-md-auto">
+                                    <label>Assignment </label>
+                                    <asp:HiddenField ID="HiddenFieldJid" runat="server" />
+                                    <asp:HiddenField ID="HiddenFieldDid" runat="server" />
+                                    <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                    <asp:DropDownList ID="ddlDumptAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
-                            <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                <label>Job No.</label><br />
-                                <h3 class="robotobold">
-                                    <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
-                                   <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
-                            </div>
-                            <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                <label class="d-block">Assignment</label>
-
-                                <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                          
                                 </div>
 
-                            <div class="col-12 my-3">
+                                <div class="mb-3 col-12 col-md-auto">
+                                    <label class="d-block">Dump Date</label>
+                                    <asp:TextBox ID="txtDumpDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
 
-                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
-                                <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
+                                <div class="mb-3 col-12 col-md-auto">
+
+                                    <label>Quantity of Tray </label>
+                                    <asp:TextBox ID="txtQuantityofTray" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                </div>
+
+                                <div class="mb-3 col-12 col-md-auto">
+
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtCommentsDump" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+
+                                </div>
+                                <div class="mb-3 col-12 col-md-auto align-self-end">
+                                    <asp:Button Text="Submit" ID="btnDumpSumbit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
+
+                                    <asp:Button Text="Reset" ID="btnDumpReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
+
+                                </div>
                             </div>
-                        </div>
 
                     </div>
                 </div>
