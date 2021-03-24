@@ -182,7 +182,8 @@
                                             </Columns>
                                         </asp:GridView>
                                         <br />
-                                        <asp:GridView ID="DGHead02" CssClass="striped" runat="server" GridLines="None" AutoGenerateColumns="false" Width="50%" DataKeyNames="seeddt" OnRowDataBound="DGHead02_RowDataBound">
+                                        <div class="col-lg-6 p-0">
+                                        <asp:GridView ID="DGHead02" CssClass="striped" runat="server" GridLines="None" AutoGenerateColumns="false"  DataKeyNames="seeddt" OnRowDataBound="DGHead02_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Organic" DataField="org" />
                                                 <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />
@@ -190,6 +191,7 @@
                                                 <asp:BoundField HeaderText="Overage" DataField="overage" />
                                             </Columns>
                                         </asp:GridView>
+                                        </div>
                                     </div>
 
 

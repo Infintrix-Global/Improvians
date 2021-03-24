@@ -52,7 +52,17 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
            // nv.Add("@Mode", "7");
            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
+           
+
+
+            if (Session["Role"].ToString() == "12")
+            {
+                dt = objCommon.GetDataTable("SP_GetPlantReadyRequestAssistantGrower", nv);
+            }
+            else
+            {
+                dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
+            }
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 

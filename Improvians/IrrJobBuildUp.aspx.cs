@@ -356,7 +356,16 @@ namespace Evo
             nv.Add("@RequestType", "0");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
-            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+           // dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+
+            if (Session["Role"].ToString() == "12")
+            {
+                dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
+            }
+            else
+            {
+                dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+            }
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
             int tray = 0;
