@@ -63,7 +63,7 @@ namespace Evo
                 BindSupervisor();
 
                 BindFacility();
-                BindSupervisorList();
+                //BindSupervisorList();
                 BindFertilizer();
                 BindJobCode("");
                 BindChemical();
@@ -477,6 +477,12 @@ namespace Evo
             ddlLogisticManager.DataBind();
             ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
 
+            ddlAssignments.DataSource = dt;
+            ddlAssignments.DataTextField = "EmployeeName";
+            ddlAssignments.DataValueField = "ID";
+            ddlAssignments.DataBind();
+            ddlAssignments.Items.Insert(0, new ListItem("--Select--", "0"));
+
 
 
 
@@ -783,13 +789,6 @@ namespace Evo
 
         }
 
-        //protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    NameValueCollection nv = new NameValueCollection();
-        //    nv.Add("@Uid", ddlAssignments.SelectedValue);
-        //    DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
-        //    ReceiverEmail = dt.Rows[0]["Email"].ToString();
-        //}
         protected void btnSendMail_Click(object sender, EventArgs e)
         {
             try
@@ -800,7 +799,7 @@ namespace Evo
                 // nv.Add("@OperatorID", Session["LoginID"].ToString());
                 //nv.Add("@wo", wo);
                 nv.Add("@Comments", txtcomments.Text.Trim());
-                nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
+                nv.Add("@AsssigneeID", Session["SelectedAssignment"].ToString());
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text.Trim());
                 nv.Add("@MoveTo", txtTo.Text.Trim());
@@ -845,16 +844,16 @@ namespace Evo
             ddlAssignments.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
-        //protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
-        //{
+        protected void ddlAssignments_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        //    NameValueCollection nv = new NameValueCollection();
-        //    Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
-        //    nv.Add("@Uid", ddlAssignments.SelectedValue);
-        //    DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
-        //    ReceiverEmail = dt.Rows[0]["Email"].ToString();
-        //    divcomments.Focus();
-        //}
+            Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@Uid", ddlAssignments.SelectedValue);
+            //DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
+            //ReceiverEmail = dt.Rows[0]["Email"].ToString();
+            divcomments.Focus();
+        }
         //----------------------------------------------------------------------irrigatio
 
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
@@ -1266,7 +1265,7 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                nv.Add("@SupervisorID", ddlAssignments.SelectedValue.ToString());
+                nv.Add("@SupervisorID", Session["SelectedAssignment"].ToString());
 
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text);
@@ -1302,13 +1301,16 @@ namespace Evo
                 mail.From = new MailAddress(FromMail);
                 NameValueCollection nv = new NameValueCollection();
 
-                nv.Add("@Uid", ddlAssignments.SelectedValue);
+                var getToMail = Session["SelectedAssignment"].ToString();
+                nv.Add("@Uid", getToMail);
                 DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
                 ReceiverEmail = dt.Rows[0]["Email"].ToString();
 
                 mail.To.Add(new MailAddress(ReceiverEmail));
 
-                nv.Add("@Uid",Session["Role"].ToString());
+                nv.Clear();
+                var getCCMail = Session["Role"].ToString();
+                nv.Add("@Uid", getCCMail);
                 dt = objCommon.GetDataTable("getReceiverEmail", nv);
                 CCEmail = dt.Rows[0]["Email"].ToString();
                 mail.CC.Add(new MailAddress(CCEmail));
