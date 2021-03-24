@@ -738,13 +738,14 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
-        public DataTable GETTrayCode(string crop)
+        public DataTable GETTrayCode(string code,string crop)
         {
             try
             {
 
                 General objGeneral = new General();
-                objGeneral.AddParameterWithValueToSQLCommand("@crop", crop);
+                objGeneral.AddParameterWithValueToSQLCommand("@crop", crop); 
+                objGeneral.AddParameterWithValueToSQLCommand("@code", code);
                 ds = objGeneral.GetDatasetByCommand_SP("GetTrayCodeByActivityCode");
             }
             catch (Exception ex)

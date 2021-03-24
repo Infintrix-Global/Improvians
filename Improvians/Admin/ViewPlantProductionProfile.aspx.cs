@@ -93,7 +93,7 @@ namespace Evo.Admin
         }
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlTrayCode.DataSource = objCommon.GETTrayCode(ddlCrop.SelectedValue);
+            ddlTrayCode.DataSource = objCommon.GETTrayCode(ddlCode.SelectedValue, ddlCrop.SelectedValue);
             ddlTrayCode.DataTextField = "TrayCode";
             ddlTrayCode.DataValueField = "TrayCode";
             ddlTrayCode.DataBind();
