@@ -629,7 +629,7 @@ namespace Evo.Admin
             return ds.Tables[0];
         }
 
-        public DataTable GetPlanProductionProfile(string code, string activitycode, string traycode)
+        public DataTable GetPlanProductionProfile(string code, string crop, string activitycode, string traycode)
         {
             DataTable dt = new DataTable();
             try
@@ -640,7 +640,11 @@ namespace Evo.Admin
                 strQuery = "SELECT pid,code, traycode, crop, activitycode, dateshift FROM gti_jobs_prodprofile WHERE";
                 if (code != "0")
                 {
-                    strQuery += " [crop]= " + "'" + code + "'";
+                    strQuery += " [code]= " + "'" + code + "'";
+                }
+                if (crop != "0")
+                {
+                    strQuery += " And [crop]= " + "'" + crop + "'";
                 }
                 if (activitycode != "0")
                 {
@@ -677,13 +681,28 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
-        public DataTable GETCrop()
+        public DataTable GETCrop(string Code)
         {
             try
             {
 
                 General objGeneral = new General();
-                objGeneral.AddParameterWithValueToSQLCommand("@mode", 17);
+                objGeneral.AddParameterWithValueToSQLCommand("@code", Code);
+                ds = objGeneral.GetDatasetByCommand_SP("GetCropByCode");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+
+        public DataTable GETCode()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 18);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
             catch (Exception ex)
@@ -719,13 +738,14 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
-        public DataTable GETTrayCode(string code)
+        public DataTable GETTrayCode(string code,string crop)
         {
             try
             {
 
                 General objGeneral = new General();
-                objGeneral.AddParameterWithValueToSQLCommand("@crop", code);
+                objGeneral.AddParameterWithValueToSQLCommand("@crop", crop); 
+                objGeneral.AddParameterWithValueToSQLCommand("@code", code);
                 ds = objGeneral.GetDatasetByCommand_SP("GetTrayCodeByActivityCode");
             }
             catch (Exception ex)

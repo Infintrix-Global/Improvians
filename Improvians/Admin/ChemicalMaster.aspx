@@ -6,7 +6,7 @@
     <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
     <div class="admin__content">
         <div class="container-fluid">
-            <h1 class="text-center text-sm-left">Chemical Method Master</h1>
+            <h1 class="text-center text-sm-left">Chemical</h1>
 
             <hr />
 
@@ -17,8 +17,8 @@
              <div class="row">
                     <div class="col m3">
                         
-                            <label>Chemical Method Name<span style="color: red">*</span></label>
-                            <asp:TextBox ID="txtName" class="input__control" placeholder="Enter Chemical name" runat="server"></asp:TextBox>
+                            <label>Chemical<span style="color: red">*</span></label>
+                            <asp:TextBox ID="txtName" class="input__control" placeholder="Enter Method name" runat="server"></asp:TextBox>
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtName" ValidationGroup="e"
                                     SetFocusOnError="true" ErrorMessage="Please Enter Name" ForeColor="Red"></asp:RequiredFieldValidator>
