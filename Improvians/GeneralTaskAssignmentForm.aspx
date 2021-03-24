@@ -142,11 +142,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-              <%--                           <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
+                                         <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGeneralDate" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
