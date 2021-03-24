@@ -809,6 +809,7 @@
 
                                                     <div class="col-lg-4">
                                                         <label>Assignment</label>
+<%--                <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
 
                                                         <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                                                         <span class="error_message">

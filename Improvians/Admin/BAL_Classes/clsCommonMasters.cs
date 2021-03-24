@@ -850,7 +850,7 @@ public class ProfilePlanner
     public string code { get; set; }
     public string crop { get; set; }
     public string activitycode { get; set; }
-    public int traycode { get; set; }
+    public string traycode { get; set; }
     public int dateshift { get; set; }
 }
 
