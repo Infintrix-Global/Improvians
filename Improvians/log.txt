@@ -727,3 +727,32 @@
    at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
    at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
    at Evo.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Invalid object name 'Evo.SeedLineTaskCompletion'. at 3/22/2021 11:38:38 PM
+*****Error message=****@Customer: at 3/24/2021 2:21:36 AM
+*****Error message=****@jobcode:JB034395 at 3/24/2021 2:21:36 AM
+*****Error message=****@Item:TMC-4885 at 3/24/2021 2:21:36 AM
+*****Error message=****@Facility:ENC1 at 3/24/2021 2:21:36 AM
+*****Error message=****@GreenHouseID:ENC1-H01-1-A at 3/24/2021 2:21:36 AM
+*****Error message=****@TotalTray:1574 at 3/24/2021 2:21:36 AM
+*****Error message=****@TraySize:392 at 3/24/2021 2:21:36 AM
+*****Error message=****@Seeddate:03/15/2021 at 3/24/2021 2:21:36 AM
+*****Error message=****@Itemdesc:TOMATO-CANNING-4885 - 392 at 3/24/2021 2:21:36 AM
+*****Error message=****@SupervisorID:17 at 3/24/2021 2:21:36 AM
+*****Error message=****@InspectionDueDate:2021-03-24 at 3/24/2021 2:21:36 AM
+*****Error message=****@TraysInspected:10 at 3/24/2021 2:21:36 AM
+*****Error message=****@LoginId:1 at 3/24/2021 2:21:36 AM
+*****Error message=****@Comments:test at 3/24/2021 2:21:36 AM
+*****Error message=****@Customer: at 3/24/2021 2:34:20 AM
+*****Error message=****@jobcode:JB034540 at 3/24/2021 2:34:20 AM
+*****Error message=****@Item:TMC-N6459 at 3/24/2021 2:34:20 AM
+*****Error message=****@Facility:ENC1 at 3/24/2021 2:34:20 AM
+*****Error message=****@GreenHouseID:ENC1-H01-1-B at 3/24/2021 2:34:20 AM
+*****Error message=****@TotalTray:1598 at 3/24/2021 2:34:20 AM
+*****Error message=****@TraySize:392 at 3/24/2021 2:34:20 AM
+*****Error message=****@Seeddate:03/18/2021 at 3/24/2021 2:34:20 AM
+*****Error message=****@Itemdesc:TOMATO-CANNING-N6459 - 392 at 3/24/2021 2:34:20 AM
+*****Error message=****@SupervisorID:17 at 3/24/2021 2:34:20 AM
+*****Error message=****@InspectionDueDate:2021-03-24 at 3/24/2021 2:34:20 AM
+*****Error message=****@TraysInspected:10 at 3/24/2021 2:34:20 AM
+*****Error message=****@LoginId:1 at 3/24/2021 2:34:20 AM
+*****Error message=****@Comments:test at 3/24/2021 2:34:20 AM
+*****Error message=****Sql Error is=Column names in each table must be unique. Column name 'IsAssistant' in table 'Germination_Task' is specified more than once. at 3/24/2021 2:34:22 AM

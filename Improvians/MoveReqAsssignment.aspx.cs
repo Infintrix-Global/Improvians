@@ -103,7 +103,13 @@ namespace Evo
                 lblMoveID.Text = MoveID;
 
                 txtNotes.Focus();
-
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+              
+                nv.Add("@MID", MoveID);
+                dt = objCommon.GetDataTable("SP_GetSupervisorMoveViewDetails", nv);
+                GridMoveDetails.DataSource = dt;
+                GridMoveDetails.DataBind();
             }
         }
     }

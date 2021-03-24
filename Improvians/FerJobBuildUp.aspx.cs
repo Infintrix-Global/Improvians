@@ -372,7 +372,17 @@ namespace Evo
             nv.Add("@FromDate", "");
             nv.Add("@ToDate","");
      
-            dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+          //  dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+
+            if (Session["Role"].ToString() == "12")
+            {
+                dt = objCommon.GetDataTable("SP_GetFertilizerRequestAAssistantGrower", nv);
+            }
+            else
+            {
+                dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+            }
+
             gvFer.DataSource = dt;
             gvFer.DataBind();
 

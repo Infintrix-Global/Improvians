@@ -115,7 +115,16 @@ namespace Evo
             nv.Add("@GermNo", RadioButtonListGno.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
-            dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
+         //   dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
+
+            if (Session["Role"].ToString() == "12")
+            {
+                dt = objCommon.GetDataTable("SP_GetGerminationRequestAssistantGrower", nv);
+            }
+            else
+            {
+                dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
+            }
 
             gvGerm.DataSource = dt;
             gvGerm.DataBind();

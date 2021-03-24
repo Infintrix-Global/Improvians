@@ -751,7 +751,7 @@ namespace Evo
                     nv4.Add("@LoginID", Session["LoginID"].ToString());
                     nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv4.Add("@FertilizationDate", txtFDate.Text);
-                    result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
+                    result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
                  
                   
                 }
@@ -1181,7 +1181,7 @@ namespace Evo
                     nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
                     nv.Add("@Comments", txtCComments.Text);
                     nv.Add("@Method", ddlMethod.SelectedValue);
-                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
+                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
                 }
             }
 
@@ -1249,7 +1249,7 @@ namespace Evo
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@FromFacility", (row.FindControl("lblFacility") as Label).Text);
                     nv.Add("@ToFacility", ddlToFacility.SelectedValue);
-                    nv.Add("@ToGreenHouse", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@ToGreenHouse", ddlBenchLocation.SelectedValue);
                     nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
                     nv.Add("@MoveDate", txtMoveDate.Text);
 
