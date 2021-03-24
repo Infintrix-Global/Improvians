@@ -128,8 +128,15 @@ namespace Evo
             //{
             //    nv.Add("@BenchLocation", "0");
             //}
-
-            dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
+            if (Session["Role"].ToString() == "12")
+            {
+                dt = objCommon.GetDataTable("SP_GetChemicalRequestAssistantGrower", nv);
+            }
+            else
+            {
+                dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
+            }
+           
             gvFer.DataSource = dt;
             gvFer.DataBind();
         }

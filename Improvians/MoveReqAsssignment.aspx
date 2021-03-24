@@ -159,7 +159,62 @@
 
                     <asp:Panel ID="pnlint" runat="server">
 
+                        <div class="portlet-body">
+                            <div class="data__table">
+                                <asp:GridView ID="GridMoveDetails" runat="server" AutoGenerateColumns="False"
+                                    
+                                    GridLines="None"
+                                    ShowHeaderWhenEmpty="True" Width="100%">
+                                    <Columns>
+                                          
 
+                                     
+
+                                        <asp:TemplateField HeaderText="Facility From" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("FacilityFrom")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Facility To" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFacilityTo" runat="server" Text='<%# Eval("FacilityTo")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblGrenHouseToRequest" runat="server" Text='<%# Eval("GrenHouseToRequest")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Trays" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTraysRequest" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Move Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblMoveDate" runat="server" Text='<%# Eval("MoveDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                    </Columns>
+
+                                    <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                    <PagerSettings Mode="NumericFirstLast" />
+                                    <EmptyDataTemplate>
+                                        No Record Available
+                                    </EmptyDataTemplate>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                        <br />
 
                         <div class="row">
 
