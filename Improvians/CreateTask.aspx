@@ -2,6 +2,14 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#btngermination", function () {
+            alert("Button was clicked.");
+        });
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -136,7 +144,7 @@
                                 <asp:GridView ID="gvFer" runat="server" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true"
                                     GridLines="None" OnRowCommand="gvFer_RowCommand"
-                                    ShowHeaderWhenEmpty="True" Width="100%">
+                                    ShowHeaderWhenEmpty="True" Width="70%">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                             <HeaderTemplate>
@@ -165,8 +173,13 @@
                                                 <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
+                                        <%--  <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblitem" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -175,10 +188,12 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
+                                                <asp:Label ID="lblitem" Visible="false" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                                                <asp:Label ID="lblFacility" Visible="false" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                                 <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("Trays","{0:####}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -196,11 +211,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+
 
                                     </Columns>
 
@@ -282,64 +293,76 @@
 
                 </div>--%>
 
-                <div class="task_request-buttons">
-                    <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click1">
+                <%-- 
+                <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional"
+                    runat="server">
+                    <ContentTemplate>--%>
+            
+
+                        <div class="task_request-buttons">
+
+
+                            <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click1">
                               <span class="">
                                 <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                                 Germination Count
                              </span>
-                    </asp:LinkButton>
+                            </asp:LinkButton>
 
-                    <asp:LinkButton runat="server" ID="btnFertilization" ForeColor="Black" class="request__block-head collapsed" OnClick="btnFertilization_Click">
+                            <asp:LinkButton runat="server" ID="btnFertilization" ForeColor="Black" class="request__block-head collapsed" OnClick="btnFertilization_Click">
                             <span class="">
                                 <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization">
                                 Fertilization
                             </span>
-                    </asp:LinkButton>
+                            </asp:LinkButton>
 
-                    <asp:LinkButton runat="server" ID="btnChemical" ForeColor="Black" class="request__block-head collapsed" OnClick="btnChemical_Click">
+                            <asp:LinkButton runat="server" ID="btnChemical" ForeColor="Black" class="request__block-head collapsed" OnClick="btnChemical_Click">
                             <span class="">
                                 <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical">
                                 Chemical
                             </span>
-                    </asp:LinkButton>
+                            </asp:LinkButton>
 
 
-                    <asp:LinkButton runat="server" ID="btnIrrigation" ForeColor="Black" class="request__block-head collapsed" OnClick="btnIrrigation_Click">
+                            <asp:LinkButton runat="server" ID="btnIrrigation" ForeColor="Black" class="request__block-head collapsed" OnClick="btnIrrigation_Click">
                             <span class="">
                                 <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
                                 Irrigation
                             </span>
-                    </asp:LinkButton>
+                            </asp:LinkButton>
 
-                    <asp:LinkButton runat="server" ID="btnPlantReady" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
+                            <asp:LinkButton runat="server" ID="btnPlantReady" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
                             <span class="">
                                 <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
                                 Plant Ready
                             </span>
-                    </asp:LinkButton>
+                            </asp:LinkButton>
 
-                    <asp:LinkButton runat="server" ID="btnMoveRequest" ForeColor="Black" class="request__block-head collapsed" OnClick="btnMoveRequest_Click">
+                            <asp:LinkButton runat="server" ID="btnMoveRequest" ForeColor="Black" class="request__block-head collapsed" OnClick="btnMoveRequest_Click">
                             <span class="">
                                 <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
                                 Move Request
                             </span>
-                    </asp:LinkButton>
+                            </asp:LinkButton>
 
-                    <asp:LinkButton runat="server" ID="btnDump" ForeColor="Black" class="request__block-head collapsed" OnClick="btnDump_Click">
+                            <asp:LinkButton runat="server" ID="btnDump" ForeColor="Black" class="request__block-head collapsed" OnClick="btnDump_Click">
                             <span class="">
                                 <img src="./images/dashboard_dump-request.png" width="137" height="136" alt="Dump" />
                                 Dump
                             </span>
-                    </asp:LinkButton>
+                            </asp:LinkButton>
 
-                    <asp:LinkButton runat="server" ID="btnGeneral_Task" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneralTask_Click">
+                            <asp:LinkButton runat="server" ID="btnGeneral_Task" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneralTask_Click">
                             <span class="">
                                 <img src="./images/dashboard_general-task.png" width="137" height="134" alt="General Task" />
                                 General Task
                             </span>
-                    </asp:LinkButton>
-                </div>
+                            </asp:LinkButton>
+
+                        </div>
+
+                <%--       </ContentTemplate>
+                </asp:UpdatePanel>--%>
 
                 <div class="request__block">
                     <div id="germination_count" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
