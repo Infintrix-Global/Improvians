@@ -7,155 +7,128 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Evo.Admin
+namespace Evo
 {
 
 
-    public partial class ViewPlantProductionProfile
+    public partial class DumpRequestForm
     {
 
         /// <summary>
-        /// SrciptManager1 control.
+        /// ddlCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager SrciptManager1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
 
         /// <summary>
-        /// lblmsg control.
+        /// ddlJobNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
 
         /// <summary>
-        /// pnlAdd control.
+        /// btnResetSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAdd;
+        protected global::System.Web.UI.WebControls.Button btnResetSearch;
 
         /// <summary>
-        /// GridProfile control.
+        /// gvPlantReady control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridProfile;
+        protected global::System.Web.UI.WebControls.GridView gvPlantReady;
 
         /// <summary>
-        /// btnSubmit control.
+        /// userinput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
 
         /// <summary>
-        /// btnReset control.
+        /// HiddenFieldJid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldJid;
 
         /// <summary>
-        /// pnlList control.
+        /// HiddenFieldDid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlList;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldDid;
 
         /// <summary>
-        /// ddlCode control.
+        /// ddlDumptAssignment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCode;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDumptAssignment;
 
         /// <summary>
-        /// ddlCrop control.
+        /// txtDumpDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCrop;
+        protected global::System.Web.UI.WebControls.TextBox txtDumpDate;
 
         /// <summary>
-        /// ddlTrayCode control.
+        /// txtQuantityofTray control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrayCode;
+        protected global::System.Web.UI.WebControls.TextBox txtQuantityofTray;
 
         /// <summary>
-        /// ddlActivityCode control.
+        /// txtCommentsDump control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlActivityCode;
+        protected global::System.Web.UI.WebControls.TextBox txtCommentsDump;
 
         /// <summary>
-        /// btnSave control.
+        /// btnDumpSumbit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button btnDumpSumbit;
 
         /// <summary>
-        /// btnClear control.
+        /// btnDumpReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
-
-        /// <summary>
-        /// btnAddProfile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddProfile;
-
-        /// <summary>
-        /// count control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label count;
-
-        /// <summary>
-        /// gvProductionProfile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProductionProfile;
+        protected global::System.Web.UI.WebControls.Button btnDumpReset;
     }
 }

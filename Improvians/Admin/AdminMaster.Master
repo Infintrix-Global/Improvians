@@ -112,21 +112,21 @@
                                     <li>
                                         <a class="" href="ChemicalMaster.aspx" title="Chemical Master">
                                             <i class="side-icon fas fa-flask"></i>
-                                            <span class="side-title">Chemical Method Master</span>
+                                            <span class="side-title">Chemical</span>
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="" href="TaskTypeMaster.aspx" title="TaskType Master">
                                             <i class="side-icon far fa-file-alt"></i>
-                                            <span class="side-title">TaskType Master</span>
+                                            <span class="side-title">General Task</span>
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="" href="CropHealthMaster.aspx" title="Master">
                                             <i class="side-icon fas fa-file-medical-alt"></i>
-                                            <span class="side-title">Crop Health Master</span>
+                                            <span class="side-title">Crop Health Report</span>
                                             <i class="side-control fas fa-angle-right"></i>
 
                                           

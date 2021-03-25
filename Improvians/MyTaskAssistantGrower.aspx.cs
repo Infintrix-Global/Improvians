@@ -50,7 +50,7 @@ namespace Evo
             lblCropHealthReport.Text = dt.Tables[6].Rows.Count.ToString();
 
             lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
-
+            lblDumpTotal.Text = dt.Tables[8].Rows.Count.ToString();
 
         }
 
