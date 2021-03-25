@@ -344,7 +344,7 @@
 
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
+                                                        <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                                             </ItemTemplate>
