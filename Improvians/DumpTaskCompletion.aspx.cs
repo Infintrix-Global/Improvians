@@ -26,7 +26,7 @@ namespace Evo
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
                 BindPlantReady();
-                BindViewDumpDetilas();
+                BindViewDumpDetilas(Convert.ToInt32(Request.QueryString["DrId"]));
 
             }
         }
@@ -78,12 +78,12 @@ namespace Evo
                 ViewState["Did"] = value;
             }
         }
-        public void BindViewDumpDetilas()
+        public void BindViewDumpDetilas(int  RDid)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
            
-            nv.Add("@DumpId", Did);
+            nv.Add("@DumpId", RDid.ToString());
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenttView", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
