@@ -39,6 +39,8 @@ namespace Evo
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+         
             dt = objCommonControl.GetDataSet("SP_GetAssistantGrowerEachTaskCountNew", nv);
 
 

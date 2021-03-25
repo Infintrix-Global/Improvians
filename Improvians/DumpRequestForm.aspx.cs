@@ -50,6 +50,8 @@ namespace Evo
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            
             // nv.Add("@Mode", "7");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
@@ -170,13 +172,7 @@ namespace Evo
         {
             if (e.CommandName == "Select")
             {
-                //userinput.Visible = true;
-                //string rowIndex = e.CommandArgument.ToString();
-
-                //wo = rowIndex;
-
-
-                //lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
+                
 
 
                 userinput.Visible = true;
@@ -191,7 +187,7 @@ namespace Evo
 
                 dt = objCommon.GetDataTable("SP_GetDumpRequestView", nv);
 
-                if(dt!=null & dt.Rows.Count>0)
+                if (dt != null & dt.Rows.Count > 0)
                 {
                     txtCommentsDump.Text = dt.Rows[0]["Comments"].ToString();
                     txtQuantityofTray.Text = dt.Rows[0]["QuantityOfTray"].ToString();
@@ -201,8 +197,42 @@ namespace Evo
 
 
             }
-        }
 
+            if (e.CommandName == "StartDump")
+            {
+                string ChId = "";
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string Did = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+              //  ChId = gvDump.DataKeys[rowIndex].Values[1].ToString();
+
+                if (ChId == "")
+                {
+                    ChId = "0";
+                }
+                else
+                {
+                    ChId = ChId;
+                }
+
+
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
+                nv.Add("@Comments", "");
+                nv.Add("@DumpId", Did);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@QuantityOfTray", "");
+                nv.Add("@DumpDate", "");
+
+                long result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskAssignment", nv);
+
+
+                if (result > 0)
+                {
+                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}", result, ChId));
+                }
+            }
+
+        }
 
 
         protected void btnSubmit_Click(object sender, EventArgs e)
