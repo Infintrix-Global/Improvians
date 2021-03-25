@@ -175,14 +175,6 @@ namespace Evo
 
                 //wo = rowIndex;
 
-                //DataTable dt = new DataTable();
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@wo", wo);
-                //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-                //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-                //nv.Add("@Facility", ddlFacility.SelectedValue);
-                //nv.Add("@Mode", "2");
-                //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
                 //lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
 
@@ -192,6 +184,19 @@ namespace Evo
                 HiddenFieldDid.Value = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
                 HiddenFieldJid.Value = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
 
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@DumpId", HiddenFieldDid.Value);
+
+                dt = objCommon.GetDataTable("SP_GetDumpRequestView", nv);
+
+                if(dt!=null & dt.Rows.Count>0)
+                {
+                    txtCommentsDump.Text = dt.Rows[0]["Comments"].ToString();
+                    txtQuantityofTray.Text = dt.Rows[0]["QuantityOfTray"].ToString();
+                    txtDumpDate.Text = Convert.ToDateTime(dt.Rows[0]["DumpDateR"]).ToString("yyyy-MM-dd");
+                }
                 //ddlSupervisor.Focus();
 
 
@@ -207,7 +212,14 @@ namespace Evo
             //  nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
             // nv.Add("@WO",wo);
-        
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Aid",ddlDumptAssignment.SelectedValue);
+            dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
+
+
+
             nv.Add("@SupervisorID",ddlDumptAssignment.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Did", HiddenFieldDid.Value);
@@ -216,6 +228,7 @@ namespace Evo
             nv.Add("@ManualID", HiddenFieldJid.Value);
             nv.Add("@DumpDate",txtDumpDate.Text);
             nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
+            nv.Add("@RoleId",dt.Rows[0]["RoleID"].ToString());
 
             result = objCommon.GetDataInsertORUpdate("SP_AddDumpRequestManua", nv);
 

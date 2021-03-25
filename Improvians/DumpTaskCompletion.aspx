@@ -170,7 +170,46 @@
                 <form class="web__form pt-2">
                     <div class="row justify-content-center">
                         <div class="col-12">
-                           
+                           <div class="portlet-body">
+                        <div class="data__table">
+                            <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
+                                class="striped" AllowSorting="true"
+                                GridLines="None" 
+                                ShowHeaderWhenEmpty="True" Width="100%">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Tray" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                   
+                                    <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("DumpDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                   
+
+
+                                </Columns>
+
+                                <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                <PagerSettings Mode="NumericFirstLast" />
+                                <EmptyDataTemplate>
+                                    No Record Available
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+
+                        </div>
+                    </div>
+                            <br />
                             <div class="row">
 
 
