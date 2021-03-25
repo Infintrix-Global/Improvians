@@ -149,14 +149,14 @@
                                         </asp:GridView>
                                         <br />
                                         <div class="col-lg-6 p-0">
-                                        <asp:GridView ID="DGHead02" CssClass="striped" runat="server" GridLines="None" AutoGenerateColumns="false"  DataKeyNames="seeddt" OnRowDataBound="DGHead02_RowDataBound">
-                                            <Columns>
-                                                <asp:BoundField HeaderText="Organic" DataField="org" />
-                                                <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />
-                                                <asp:BoundField HeaderText="Germ %" DataField="germct" />
-                                                <asp:BoundField HeaderText="Overage" DataField="overage" />
-                                            </Columns>
-                                        </asp:GridView>
+                                            <asp:GridView ID="DGHead02" CssClass="striped" runat="server" GridLines="None" AutoGenerateColumns="false" DataKeyNames="seeddt" OnRowDataBound="DGHead02_RowDataBound">
+                                                <Columns>
+                                                    <asp:BoundField HeaderText="Organic" DataField="org" />
+                                                    <asp:BoundField HeaderText="Plant Age" DataField="NoOfDay" />
+                                                    <asp:BoundField HeaderText="Germ %" DataField="germct" />
+                                                    <asp:BoundField HeaderText="Overage" DataField="overage" />
+                                                </Columns>
+                                            </asp:GridView>
                                         </div>
                                     </div>
                                 </asp:Panel>
@@ -164,7 +164,6 @@
                         </div>
                     </div>
                 </div>
-                <br />
                 <hr class="my-4">
 
                 <div class="row">
@@ -175,7 +174,7 @@
                         <div class="portlet light ">
                             <div class="portlet-body">
                                 <asp:Panel ID="Panel2" runat="server">
-                                    <div class="data__table">                                        
+                                    <div class="data__table">
                                         <asp:GridView ID="DGSeeds" runat="server" AutoGenerateColumns="false" DataKeyNames="" Width="50%">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Seed Code" DataField="seed" />
@@ -255,6 +254,8 @@
                         <div class="mb-2">
                             <h3>Plant Production Schedule</h3>
                         </div>
+
+
                         <div class="portlet light ">
 
                             <div class="portlet-body">
@@ -287,6 +288,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <hr class="my-4">
                 <div class="row">
@@ -294,45 +296,71 @@
                         <div class="mb-2">
                             <h3>Job History</h3>
                         </div>
-                        <div class="portlet light ">
+                        <div class="d-flex">
+                            <div class="row">
+                                <div class="col m3">
+                                    <label>Description </label>
+                                    <asp:DropDownList ID="ddlDescription" DataTextField="Description" DataValueField="Description" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div class="col m3">
+                                    <label>Bench Location</label>
+                                    <asp:DropDownList ID="ddlBench" runat="server" DataTextField="GreenhouseID" DataValueField="GreenhouseID" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div class="col m3">
+                                    <label>Assigned By</label>
+                                    <asp:DropDownList ID="ddlAssignedBy" runat="server" DataTextField="AssignedBy" DataValueField="AssignedBy" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div class="col m3">
+                                    <label>Assigned To</label>
+                                    <asp:DropDownList ID="ddlAssignedTo" runat="server" DataTextField="AssignedTo" DataValueField="AssignedTo" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class=" col m12">
+                                <div class="portlet light ">
 
-                            <div class="portlet-body">
+                                    <div class="portlet-body">
 
-                                <asp:Panel ID="Panel3" runat="server">
-                                    <div class="data__table data__table-height">
-                                        <asp:GridView ID="GV4" runat="server" AutoGenerateColumns="False"
-                                            class="striped"
-                                            GridLines="None"
-                                            ShowHeaderWhenEmpty="True" Width="60%">
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Description" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
+                                        <asp:Panel ID="Panel3" runat="server">
+                                            <div class="data__table data__table-height">
+                                                <asp:GridView ID="GV4" runat="server" AutoGenerateColumns="False"
+                                                    class="striped"
+                                                    GridLines="None"
+                                                    ShowHeaderWhenEmpty="True" Width="60%">
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderText="Description" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                            <ItemTemplate>
 
-                                                        <asp:Label ID="lblD" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
+                                                                <asp:Label ID="lblD" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
 
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Seedline Facility" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Seedline Facility" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                            <ItemTemplate>
 
-                                                        <asp:Label ID="lblSeedlineFacility" runat="server" Text='<%# Eval("SeedlineFacility")  %>'></asp:Label>
+                                                                <asp:Label ID="lblSeedlineFacility" runat="server" Text='<%# Eval("SeedlineFacility")  %>'></asp:Label>
 
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="House/Section" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblGHD" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Assigned By" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                            <ItemTemplate>
 
-
-                                                <asp:TemplateField HeaderText="Assigned By" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
-
-                                                        <asp:Label ID="lblAssignedby" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Assigned To" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblAssignedTo" runat="server" Text='<%# Eval("AssignedTo")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <%--   <asp:TemplateField HeaderText="Operation No" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                                <asp:Label ID="lblAssignedby" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Assigned To" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblAssignedTo" runat="server" Text='<%# Eval("AssignedTo")  %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <%--   <asp:TemplateField HeaderText="Operation No" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate> 
                                                     <asp:Label ID="lblON" runat="server" Text='<%# Eval("OperationNo")  %>'></asp:Label>
                                                 </ItemTemplate>
@@ -344,32 +372,34 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
 
-                                                <asp:TemplateField HeaderText="Assigned Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
+                                                        <asp:TemplateField HeaderText="Assigned Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                            <ItemTemplate>
 
-                                                        <asp:Label ID="lblSD" runat="server" Text='<%# Eval("StartingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText=" Work Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("WorkDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Completion Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("EndingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                                <asp:Label ID="lblSD" runat="server" Text='<%# Eval("StartingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText=" Work Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("WorkDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Completion Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblCompletionDate" runat="server" Text='<%# Eval("EndingDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
 
-                                                <%-- <asp:TemplateField HeaderText="Germ" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                        <%-- <asp:TemplateField HeaderText="Germ" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>                                                    
                                                     <asp:Label ID="lblG" runat="server" Text='<%# Eval("Germ")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
-                                            </Columns>
-                                        </asp:GridView>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </div>
+                                        </asp:Panel>
                                     </div>
-                                </asp:Panel>
+                                </div>
                             </div>
                         </div>
                     </div>
