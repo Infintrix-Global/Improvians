@@ -55,7 +55,6 @@
                             <label>Job No: </label>
                             <asp:Label ID="lblJobNo" runat="server"></asp:Label>
                         </h2>
-
                     </div>
                     <div class="col-lg-3">
                     </div>
@@ -65,46 +64,13 @@
                         <asp:Button ID="backButton" runat="server" Text="Back" CssClass="bttn bttn-primary bttn-action"
                             OnClientClick="JavaScript:window.history.back(1);return false;"></asp:Button>
                     </div>
-
-
                 </div>
 
                 <div class="row">
                     <div class="col m12">
                         <div class="portlet light ">
-
                             <div class="portlet-body">
-
                                 <asp:Panel ID="Panel1" runat="server">
-                                    <div class="data__table mb-2">
-                                        <%--  <asp:GridView ID="gv1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                        class="striped" AllowSorting="true"
-                                        GridLines="None" PageSize="10"
-                                        ShowHeaderWhenEmpty="True" Width="100%">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Prod No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-
-                                                    <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("wo")  %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-
-
-                                        </Columns>
-                                    </asp:GridView>--%>
-                                        <%--  <asp:GridView ID="DGHead01" runat="server" AutoGenerateColumns="false" DataKeyNames="">
-                                        <Columns>
-                                            <asp:BoundField HeaderText="Cust Name" DataField="cname" />
-                                            <asp:BoundField HeaderText="SO No" DataField="sono" />
-                                            <asp:BoundField HeaderText="SO Line" DataField="soline" />
-                                            <asp:BoundField HeaderText="Item" DataField="itemno" />
-                                            <asp:BoundField HeaderText="Description" DataField="itemdescp" />
-                                            <asp:BoundField HeaderText="Total Trays" DataField="trays" />
-                                            <asp:BoundField HeaderText="Tray Size" DataField="ts" />
-                                            <asp:BoundField HeaderText="Seed Date" DataField="seeddt" />
-                                        </Columns>
-                                    </asp:GridView>--%>
-                                    </div>
                                     <div class="data__table break__table mb-3">
                                         <asp:GridView ID="GV2" runat="server" AutoGenerateColumns="False"
                                             class="striped" AllowSorting="true" OnRowDataBound="GV2_RowDataBound"
@@ -193,8 +159,6 @@
                                         </asp:GridView>
                                         </div>
                                     </div>
-
-
                                 </asp:Panel>
                             </div>
                         </div>
@@ -209,47 +173,9 @@
                             <h3>Lot Details</h3>
                         </div>
                         <div class="portlet light ">
-
                             <div class="portlet-body">
-
                                 <asp:Panel ID="Panel2" runat="server">
-                                    <div class="data__table">
-                                        <%-- <asp:GridView ID="Gv3" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                        class="striped" AllowSorting="true"
-                                        GridLines="None" PageSize="10"
-                                        ShowHeaderWhenEmpty="True" Width="100%">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Posting Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-
-                                                    <asp:Label ID="lblSD" runat="server" Text='<%# Eval("SeededDate")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Planning Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-
-                                                    <asp:Label ID="lblCD" runat="server" Text='<%# Eval("CreatedOn")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Lot ID" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-
-                                                    <asp:Label ID="lblLOTID" runat="server" Text='<%# Eval("LotID")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Number of seeds" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-
-                                                    <asp:Label ID="lblNS" runat="server" Text='<%# Eval("NumberOfSeed")  %>'></asp:Label>
-
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-
-                                        </Columns>
-                                    </asp:GridView>--%>
+                                    <div class="data__table">                                        
                                         <asp:GridView ID="DGSeeds" runat="server" AutoGenerateColumns="false" DataKeyNames="" Width="50%">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Seed Code" DataField="seed" />
