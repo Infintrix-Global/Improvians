@@ -1276,6 +1276,12 @@ namespace Evo
 
         protected void btnDumpSumbit_Click(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Aid", ddlDumptAssignment.SelectedValue);
+            dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
+
+
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -1299,6 +1305,7 @@ namespace Evo
                     nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
                     nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@DumpDate",txtDumpDate.Text);
+                    nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
                     result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
 
                 }

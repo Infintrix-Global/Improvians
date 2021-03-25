@@ -146,8 +146,6 @@ namespace Evo
                 nv.Add("@QuantityOfTray", "");
                 nv.Add("@DumpDate","");
 
-
-
            
                 long result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskAssignment", nv);
 

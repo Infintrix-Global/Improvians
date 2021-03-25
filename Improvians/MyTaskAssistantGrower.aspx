@@ -2,12 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">   
-      <div class="main">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="main">
         <div class="site__container">
             <h2>My Tasks</h2>
 
-            <p class="pt-3"> The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. Most of these tasks are auto-generated based on the plant's production profile schedule after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose. </p>
+            <p class="pt-3">The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. Most of these tasks are auto-generated based on the plant's production profile schedule after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose. </p>
 
             <div class="dashboard__grid">
                 <a href="GrowerPutAwayForm.aspx" class="dashboard__box">
@@ -95,12 +95,13 @@
                         <p>Review and assign Plant Health Reporting tasks to Greenhouse Supervisor</p>
                     </div>
                 </a>
-                <a href="MoveForm.aspx" class="dashboard__box">
+                <a href="MoveReqAsssignment.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
                     </div>
                     <div class="dashboard__box-desc">
                         <div class="dashboard__box-count dash_blue_txt robotobold">
+                            <asp:Label ID="lblMove" runat="server" Text="0"></asp:Label>
                         </div>
                         <h3 class="dashboard__box-title robotomd">Move Request</h3>
                         <p>Review and assign move tasks</p>
@@ -111,7 +112,7 @@
                         <img src="./images/dashboard_dump-request.png" width="137" height="136" alt="Dump Request" />
                     </div>
                     <div class="dashboard__box-desc">
-                          <div class="dashboard__box-count dash_green_txt robotobold">
+                        <div class="dashboard__box-count dash_green_txt robotobold">
                             <asp:Label ID="lblDumpTotal" runat="server" Text="0"></asp:Label>
                         </div>
                         <h3 class="dashboard__box-title robotomd">Dump</h3>

@@ -26,6 +26,7 @@ namespace Evo
                 }
 
                 BindGridGerm();
+                BindDumpView();
                 BindOperatorList();
             }
         }
@@ -104,6 +105,23 @@ namespace Evo
 
         }
 
+        public void BindDumpView()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@DumpId",DId);
+
+            dt = objCommon.GetDataTable("SP_GetDumpRequestView", nv);
+
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                txtNotes.Text = dt.Rows[0]["Comments"].ToString();
+                txtQuantityofTray.Text = dt.Rows[0]["QuantityOfTray"].ToString();
+                txtDumpDate.Text = Convert.ToDateTime(dt.Rows[0]["DumpDateR"]).ToString("yyyy-MM-dd");
+            }
+
+
+        }
 
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -116,8 +134,8 @@ namespace Evo
             nv.Add("@Comments", txtNotes.Text);
             nv.Add("@DumpId", DId);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@QuantityOfTray", "");
-            nv.Add("@DumpDate", "");
+            nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
+            nv.Add("@DumpDate", txtDumpDate.Text);
 
 
             result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskAssignment", nv);

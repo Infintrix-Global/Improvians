@@ -75,24 +75,25 @@ namespace Evo
         public void BindGridOne()
         {
             FillDGHeader01();
+            BindJobHistoryDropdown();
             BindGridJobHistory();
-            string chkSelected = "";            
+            string chkSelected = "";
             DataTable dt5 = new DataTable();
             DataTable dt6 = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
-            DataSet ds = objCommon.GetDataSet("GetJobTracibilityReport", nv);           
+            DataSet ds = objCommon.GetDataSet("GetJobTracibilityReport", nv);
             dt5 = ds.Tables[0];
-            dt6 = ds.Tables[1];            
+            dt6 = ds.Tables[1];
 
             GV5.DataSource = dt5;
-         
+
             DataTable dtProfile = new DataTable();
             dtProfile.Columns.Add("activitycode", typeof(String));
             dtProfile.Columns.Add("plan_date", typeof(DateTime));
 
             if (GV2.Rows.Count > 0)
-            {               
+            {
                 string seeddt = (GV2.Rows[0].FindControl("lblSeededDate") as Label).Text;
                 if (!string.IsNullOrEmpty(seeddt))
                 {
@@ -114,7 +115,7 @@ namespace Evo
                 dtProfile.Merge(dt6);
                 dtProfile.AcceptChanges();
             }
-            GV6.DataSource = dtProfile;           
+            GV6.DataSource = dtProfile;
             GV5.DataBind();
             GV6.DataBind();
 
@@ -153,15 +154,60 @@ namespace Evo
             txtChemicalTrays.Text = tray.ToString();
         }
 
-
+        public void BindJobHistoryDropdown()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@JobID", JobCode);
+            DataSet ds = objCommon.GetDataSet("GetJobTracibilityReportJobHistory", nv);
+            DataTable dt = ds.Tables[0];
+            ddlDescription.DataSource = SelectDistinct(dt, "Description");
+            ddlDescription.DataBind();
+            ddlDescription.Items.Insert(0, new ListItem("--- Select ---", ""));
+            ddlBench.DataSource = SelectDistinct(dt, "GreenhouseID");
+            ddlBench.DataBind();
+            ddlBench.Items.Insert(0, new ListItem("--- Select ---", ""));
+            ddlAssignedBy.DataSource = SelectDistinct(dt, "AssignedBy");
+            ddlAssignedBy.DataBind();
+            ddlAssignedBy.Items.Insert(0, new ListItem("--- Select ---", ""));
+            ddlAssignedTo.DataSource = SelectDistinct(dt, "AssignedTo");
+            ddlAssignedTo.DataBind();
+            ddlAssignedTo.Items.Insert(0, new ListItem("--- Select ---", ""));
+        }
 
         public void BindGridJobHistory()
         {
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
             DataSet ds = objCommon.GetDataSet("GetJobTracibilityReportJobHistory", nv);
-            GV4.DataSource = ds.Tables[0];
+            DataTable dt = ds.Tables[0];
+
+            DataView dataView = dt.DefaultView;
+            string filter = string.Empty;
+            if (ddlDescription.SelectedIndex > 0)
+            {
+                filter = " AND Description = '" + ddlDescription.SelectedValue + "'";
+            }
+            if (ddlBench.SelectedIndex > 0)
+            {
+                filter += " AND GreenhouseID = '" + ddlBench.SelectedValue + "'";
+            }
+            if (ddlAssignedBy.SelectedIndex > 0)
+            {
+                filter += " AND AssignedBy = '" + ddlAssignedBy.SelectedValue + "'";
+            }
+            if (ddlAssignedTo.SelectedIndex > 0)
+            {
+                filter += " AND AssignedTo = '" + ddlAssignedTo.SelectedValue + "'";
+            }
+            if (filter != string.Empty)
+                dataView.RowFilter = filter.Substring(4);
+            GV4.DataSource = dataView;
             GV4.DataBind();
+        }
+
+        protected void ddlDescription_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridJobHistory();
         }
 
         public void FillDGHeader01()
@@ -307,6 +353,7 @@ namespace Evo
                 }
             }
         }
+
         protected void GV5_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GV5.EditIndex = e.NewEditIndex;
@@ -1010,23 +1057,6 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
 
-        //protected void GV6_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    GV6.PageIndex = e.NewPageIndex;
-        //    BindGridOne();
-        //}
-
-        //protected void GV4_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    GV4.PageIndex = e.NewPageIndex;
-        //    BindGridOne();
-        //}
-
-        //protected void GV5_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    GV5.PageIndex = e.NewPageIndex;
-        //    BindGridOne();
-        //}
 
         protected void btnDumpSumbit_Click(object sender, EventArgs e)
         {
@@ -1097,7 +1127,7 @@ namespace Evo
 
             }
         }
-       
+
         protected void btnFertilization_Click(object sender, EventArgs e)
         {
             Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Fertilization"));
@@ -1145,5 +1175,35 @@ namespace Evo
 
             }
         }
+        #region DATASET HELPER  
+        private bool ColumnEqual(object A, object B)
+        {
+            // Compares two values to see if they are equal. Also compares DBNULL.Value.             
+            if (A == DBNull.Value && B == DBNull.Value) //  both are DBNull.Value  
+                return true;
+            if (A == DBNull.Value || B == DBNull.Value) //  only one is BNull.Value  
+                return false;
+            return (A.Equals(B)); // value type standard comparison  
+        }
+        public DataTable SelectDistinct(DataTable SourceTable, string FieldName)
+        {
+            // Create a Datatable – datatype same as FieldName  
+            DataTable dt = new DataTable(SourceTable.TableName);
+            dt.Columns.Add(FieldName, SourceTable.Columns[FieldName].DataType);
+            // Loop each row & compare each value with one another  
+            // Add it to datatable if the values are mismatch  
+            object LastValue = null;
+            foreach (DataRow dr in SourceTable.Select("", FieldName))
+            {
+                if (LastValue == null || !(ColumnEqual(LastValue, dr[FieldName])))
+                {
+                    LastValue = dr[FieldName];
+                    dt.Rows.Add(new object[] { LastValue });
+                }
+            }
+            return dt;
+        }
+        #endregion
+
     }
 }
