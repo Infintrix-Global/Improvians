@@ -207,7 +207,14 @@ namespace Evo
             //  nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
             // nv.Add("@WO",wo);
-        
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Aid",ddlDumptAssignment.SelectedValue);
+            dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
+
+
+
             nv.Add("@SupervisorID",ddlDumptAssignment.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Did", HiddenFieldDid.Value);
@@ -216,6 +223,7 @@ namespace Evo
             nv.Add("@ManualID", HiddenFieldJid.Value);
             nv.Add("@DumpDate",txtDumpDate.Text);
             nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
+            nv.Add("@RoleId",dt.Rows[0]["RoleID"].ToString());
 
             result = objCommon.GetDataInsertORUpdate("SP_AddDumpRequestManua", nv);
 
