@@ -76,37 +76,17 @@ namespace Evo
         {
             FillDGHeader01();
             BindGridJobHistory();
-            string chkSelected = "";
-            DataTable dt = new DataTable();
-            DataTable dt2 = new DataTable();
-            DataTable dt3 = new DataTable();
-            DataTable dt4 = new DataTable();
+            string chkSelected = "";            
             DataTable dt5 = new DataTable();
             DataTable dt6 = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
-            DataSet ds = objCommon.GetDataSet("GetJobTracibilityReport", nv);
-            dt = ds.Tables[0];
-            dt2 = ds.Tables[1];
-            dt3 = ds.Tables[2];
-            dt4 = ds.Tables[3];
-            dt5 = ds.Tables[4];
-            dt6 = ds.Tables[5];
-
-            //gv1.DataSource = dt;
-            //  GV2.DataSource = dt2;
-            DataTable dtTrays = objBAL.GetSeedLotWithDate(JobCode);
-            if (dt3.Rows.Count == 0 && dtTrays != null)
-            {
-                dt3.Merge(dtTrays);
-                dt3.AcceptChanges();
-            }
-            //Gv3.DataSource = dt3;
+            DataSet ds = objCommon.GetDataSet("GetJobTracibilityReport", nv);           
+            dt5 = ds.Tables[0];
+            dt6 = ds.Tables[1];            
 
             GV5.DataSource = dt5;
-            //gv1.DataBind();
-            //  GV2.DataBind();
-            //Gv3.DataBind();
+         
             DataTable dtProfile = new DataTable();
             dtProfile.Columns.Add("activitycode", typeof(String));
             dtProfile.Columns.Add("plan_date", typeof(DateTime));
@@ -134,9 +114,7 @@ namespace Evo
                 dtProfile.Merge(dt6);
                 dtProfile.AcceptChanges();
             }
-            GV6.DataSource = dtProfile;
-            //    GV4.DataSource = dthistory;
-            //  GV4.DataBind();
+            GV6.DataSource = dtProfile;           
             GV5.DataBind();
             GV6.DataBind();
 
@@ -147,8 +125,6 @@ namespace Evo
                 DataColumn col = dt5.Columns["GreenHouseID"];
                 foreach (DataRow row in dt5.Rows)
                 {
-                    //strJsonData = row[col].ToString();
-
                     P = 1;
                     Q += "'" + row[col].ToString() + "',";
                 }
@@ -158,7 +134,6 @@ namespace Evo
             {
                 chkSelected = Q.Remove(Q.Length - 1, 1);
                 BindSQFTofBench(chkSelected);
-
             }
             else
             {
@@ -182,34 +157,12 @@ namespace Evo
 
         public void BindGridJobHistory()
         {
-
-            DataTable dt6 = new DataTable();
-            String GermNo = "";
-
-            if (Request.QueryString["GermNo"] != null)
-            {
-                GermNo = Request.QueryString["GermNo"].ToString();
-            }
-            else
-            {
-                GermNo = "";
-            }
-            ///NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@JobID", JobCode);
-            //  dt6 = objCommon.GetDataTable("GetJobTracibilityReportJobHistory", nv);
-
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
-            nv.Add("@GermNo", GermNo);
             DataSet ds = objCommon.GetDataSet("GetJobTracibilityReportJobHistory", nv);
-            dt6 = ds.Tables[0];
-            GV4.DataSource = dt6;
+            GV4.DataSource = ds.Tables[0];
             GV4.DataBind();
-
-
-
         }
-
 
         public void FillDGHeader01()
         {
