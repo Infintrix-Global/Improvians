@@ -186,7 +186,7 @@
                                    
                                     <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("DumpDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                            <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">

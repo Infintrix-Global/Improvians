@@ -440,18 +440,44 @@ namespace Evo
 
             decimal tray = 0;
             string BatchLocd = string.Empty;
+            string x = "'" + Bench1 + "'" + ",";
+            string chkSelected = "";
+            int c = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
                 //}
-                // BatchLocd = (row.FindControl("lblGreenHouse1") as Label).Text;
+                BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
+
+              
+                    c = 1;
+                    x += "'" + BatchLocd + "',";
+
+                
             }
+
+
+           
+           
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
+
+            }
+            else
+            {
+
+            }
+
+
+
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
 
+            BindSQFTofBench(chkSelected);
         }
 
 
@@ -557,7 +583,7 @@ namespace Evo
                 Panel_Bench.Visible = true;
                 Bench1 = ddlBenchLocation.SelectedItem.Text;
                 BindGridFerReq("'" + Bench1 + "'", "");
-                BindSQFTofBench("'" + Bench1 + "'");
+              
             }
 
         }

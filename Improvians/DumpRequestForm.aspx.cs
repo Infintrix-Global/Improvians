@@ -228,7 +228,7 @@ namespace Evo
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}", result, ChId));
+                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
                 }
             }
 
