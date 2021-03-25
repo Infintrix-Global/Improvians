@@ -38,7 +38,11 @@ namespace Evo
         {
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@Facility", Session["Facility"].ToString());
+            var data = Session["Facility"].ToString();
+            var loginUser = Session["LoginID"].ToString();
+            nv.Add("@LoginId", loginUser);
+            nv.Add("@Facility", data);
+
             dt = objCommonControl.GetDataSet("SP_GetAssistantGrowerEachTaskCountNew", nv);
 
 
@@ -51,6 +55,7 @@ namespace Evo
 
             lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
             lblDumpTotal.Text = dt.Tables[8].Rows.Count.ToString();
+            lblGeneralTotal.Text = dt.Tables[9].Rows.Count.ToString();
 
         }
 

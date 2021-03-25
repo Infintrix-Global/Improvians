@@ -11,88 +11,115 @@ namespace Evo
 {
 
 
-    public partial class MyTaskAssistantGrower
+    public partial class GeneralRequestForm
     {
 
         /// <summary>
-        /// lblPutAway control.
+        /// ddlCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPutAway;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
 
         /// <summary>
-        /// lblGerm control.
+        /// ddlJobNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGerm;
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
 
         /// <summary>
-        /// lblFer control.
+        /// btnResetSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFer;
+        protected global::System.Web.UI.WebControls.Button btnResetSearch;
 
         /// <summary>
-        /// lblChemical control.
+        /// gvTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblChemical;
+        protected global::System.Web.UI.WebControls.GridView gvTask;
 
         /// <summary>
-        /// lblIrr control.
+        /// userinput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIrr;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
 
         /// <summary>
-        /// lblCropHealthReport control.
+        /// HiddenFieldJid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCropHealthReport;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldJid;
 
         /// <summary>
-        /// lblpr control.
+        /// HiddenFieldDid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpr;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldDid;
 
         /// <summary>
-        /// lblDumpTotal control.
+        /// ddlGeneralAssignment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDumpTotal;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGeneralAssignment;
 
         /// <summary>
-        /// lblGeneralTotal control.
+        /// txtGeneralDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGeneralTotal;
+        protected global::System.Web.UI.WebControls.TextBox txtGeneralDate;
+
+        /// <summary>
+        /// txtCommentsGeneral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCommentsGeneral;
+
+        /// <summary>
+        /// btnGeneralSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGeneralSubmit;
+
+        /// <summary>
+        /// btnGeneralReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGeneralReset;
     }
 }
