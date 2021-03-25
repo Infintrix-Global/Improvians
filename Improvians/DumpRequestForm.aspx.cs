@@ -175,14 +175,6 @@ namespace Evo
 
                 //wo = rowIndex;
 
-                //DataTable dt = new DataTable();
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@wo", wo);
-                //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-                //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-                //nv.Add("@Facility", ddlFacility.SelectedValue);
-                //nv.Add("@Mode", "2");
-                //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
                 //lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
 
@@ -192,6 +184,19 @@ namespace Evo
                 HiddenFieldDid.Value = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
                 HiddenFieldJid.Value = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
 
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@DumpId", HiddenFieldDid.Value);
+
+                dt = objCommon.GetDataTable("SP_GetDumpRequestView", nv);
+
+                if(dt!=null & dt.Rows.Count>0)
+                {
+                    txtCommentsDump.Text = dt.Rows[0]["Comments"].ToString();
+                    txtQuantityofTray.Text = dt.Rows[0]["QuantityOfTray"].ToString();
+                    txtDumpDate.Text = Convert.ToDateTime(dt.Rows[0]["DumpDateR"]).ToString("yyyy-MM-dd");
+                }
                 //ddlSupervisor.Focus();
 
 

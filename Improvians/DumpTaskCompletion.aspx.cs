@@ -26,6 +26,7 @@ namespace Evo
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
                 BindPlantReady();
+                BindViewDumpDetilas();
 
             }
         }
@@ -77,7 +78,17 @@ namespace Evo
                 ViewState["Did"] = value;
             }
         }
+        public void BindViewDumpDetilas()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+           
+            nv.Add("@DumpId", Did);
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenttView", nv);
+            GridViewDumpView.DataSource = dt;
+            GridViewDumpView.DataBind();
 
+        }
 
         public void BindPlantReady()
         {
@@ -127,7 +138,7 @@ namespace Evo
                 clear();
                 string message = "Completion Successful";
                 string url;
-                if (Session["Role"].ToString() == "3")
+                if (Session["Role"].ToString() == "2")
                 {
                     url = "DumpAssignmentForm.aspx";
                     string script = "window.onload = function(){ alert('";
@@ -138,9 +149,20 @@ namespace Evo
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
-                if (Session["Role"].ToString() == "2")
+                if (Session["Role"].ToString() == "12")
                 {
-                    url = "DumpAssignmentForm.aspx";
+                    url = "DumpRequestForm.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
+                else
+                {
+                    url = "DumpCompletionForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";
