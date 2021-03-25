@@ -117,7 +117,14 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
 
             nv.Add("@QuantityOfTray", "");
-            nv.Add("@GeneralTaskDate", "");
+
+            //gvTask.DataKeys[0].Values[1].ToString()
+            
+            GridViewRow row = gvTask.Rows[0];
+
+           var txtGeneralDate = Convert.ToDateTime((row.FindControl("lblGeneralDates") as Label).Text).ToString("yyyy-MM-dd");
+
+            nv.Add("@GeneralTaskDate", txtGeneralDate);
 
 
             result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskAssignment", nv);

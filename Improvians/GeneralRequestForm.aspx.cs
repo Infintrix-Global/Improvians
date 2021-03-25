@@ -230,8 +230,6 @@ namespace Evo
 
         }
 
-
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
@@ -252,7 +250,6 @@ namespace Evo
             nv.Add("@RoleId",dt.Rows[0]["RoleID"].ToString());
 
             result = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequestManual", nv);
-
 
             if (result > 0)
             {

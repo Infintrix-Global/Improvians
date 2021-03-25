@@ -83,11 +83,34 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
+                         <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblTaskType" runat="server" Text='<%# Eval("TaskType")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                          <asp:TemplateField HeaderText="Move From" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblMoveF" runat="server" Text='<%# Eval("MoveFrom")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Move To" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblMoveT" runat="server" Text='<%# Eval("MoveTo")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="lblComs" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
 
                         <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="lblGDate" runat="server" Text='<%# Eval("GeneralTaskDate")  %>'></asp:Label>
+                                <asp:Label ID="lblGDate" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
