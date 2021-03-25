@@ -222,6 +222,42 @@ namespace Evo
         protected global::System.Web.UI.WebControls.GridView GV6;
 
         /// <summary>
+        /// ddlDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDescription;
+
+        /// <summary>
+        /// ddlBench control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlBench;
+
+        /// <summary>
+        /// ddlAssignedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAssignedBy;
+
+        /// <summary>
+        /// ddlAssignedTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAssignedTo;
+
+        /// <summary>
         /// Panel3 control.
         /// </summary>
         /// <remarks>
