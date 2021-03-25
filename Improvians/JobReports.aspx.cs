@@ -180,31 +180,34 @@ namespace Evo
             nv.Add("@JobID", JobCode);
             DataSet ds = objCommon.GetDataSet("GetJobTracibilityReportJobHistory", nv);
             DataTable dt = ds.Tables[0];
-          
+
             DataView dataView = dt.DefaultView;
+            string filter = string.Empty;
             if (ddlDescription.SelectedIndex > 0)
             {
-                dataView.RowFilter = " Description = '" + ddlDescription.SelectedValue + "'";
+                filter = " AND Description = '" + ddlDescription.SelectedValue + "'";
             }
             if (ddlBench.SelectedIndex > 0)
             {
-                dataView.RowFilter = " GreenhouseID = '" + ddlBench.SelectedValue + "'";
+                filter += " AND GreenhouseID = '" + ddlBench.SelectedValue + "'";
             }
             if (ddlAssignedBy.SelectedIndex > 0)
             {
-                dataView.RowFilter = " AssignedBy = '" + ddlAssignedBy.SelectedValue + "'";
+                filter += " AND AssignedBy = '" + ddlAssignedBy.SelectedValue + "'";
             }
             if (ddlAssignedTo.SelectedIndex > 0)
             {
-                dataView.RowFilter = " AssignedTo = '" + ddlAssignedTo.SelectedValue + "'";
+                filter += " AND AssignedTo = '" + ddlAssignedTo.SelectedValue + "'";
             }
+            if (filter != string.Empty)
+                dataView.RowFilter = filter.Substring(4);
             GV4.DataSource = dataView;
             GV4.DataBind();
         }
 
         protected void ddlDescription_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridJobHistory();            
+            BindGridJobHistory();
         }
 
         public void FillDGHeader01()
@@ -350,7 +353,7 @@ namespace Evo
                 }
             }
         }
-        
+
         protected void GV5_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GV5.EditIndex = e.NewEditIndex;
