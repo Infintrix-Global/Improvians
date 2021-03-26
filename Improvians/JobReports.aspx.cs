@@ -189,7 +189,7 @@ namespace Evo
             }
             if (ddlBench.SelectedIndex > 0)
             {
-                filter += " AND GreenhouseID = '" + ddlBench.SelectedValue + "'";
+                filter += " AND ( GreenhouseID = '" + ddlBench.SelectedValue + "' OR GreenhouseID = '')";
             }
             if (ddlAssignedBy.SelectedIndex > 0)
             {
