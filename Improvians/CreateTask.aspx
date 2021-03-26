@@ -823,8 +823,8 @@
 
                                                         <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                                                             <asp:ListItem Text="--Select--" Value="0" />
-                                                            <asp:ListItem Text="Add Bird Neeting" Value="1" />
-                                                            <asp:ListItem Text="Remove Bird Neeting" Value="2" />
+                                                            <asp:ListItem Text="Add Bird Netting" Value="1" />
+                                                            <asp:ListItem Text="Remove Bird Netting" Value="2" />
                                                             <asp:ListItem Text="Move" Value="3" />
                                                             <asp:ListItem Text="Other" Value="4" />
                                                         </asp:DropDownList>
