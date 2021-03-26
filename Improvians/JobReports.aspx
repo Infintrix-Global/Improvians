@@ -251,8 +251,9 @@
 
                 <div class="row">
                     <div class=" col m12">
-                        <div class="mb-2">
-                            <h3 class="collapsed" data-toggle="collapse" data-target="#plant_production_schedule">Plant Production Schedule</h3>
+                        <div class="mb-2 d-flex flex-wrap align-items-center">
+                            <h3 class="mb-0 " >Plant Production Schedule</h3>
+                            <span class="collapsed bttn bttn-primary ml-3" data-toggle="collapse" data-target="#plant_production_schedule">View</span>
                         </div>
 
 
