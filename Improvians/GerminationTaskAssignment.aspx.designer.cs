@@ -87,6 +87,24 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlOperator;
 
         /// <summary>
+        /// txtDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDate;
+
+        /// <summary>
+        /// txtTrays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTrays;
+
+        /// <summary>
         /// txtNotes control.
         /// </summary>
         /// <remarks>
