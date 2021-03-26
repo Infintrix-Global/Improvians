@@ -271,13 +271,30 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            nv.Add("@InspectionDueDate", txtDate.Text);
-            nv.Add("@#TraysInspected", txtTrays.Text);
-            nv.Add("@ID", lblID.Text);
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignmentNew", nv);
+
+            if (Session["Role"].ToString() == "2")
+            {
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+                nv.Add("@InspectionDueDate", txtDate.Text);
+                nv.Add("@#TraysInspected", txtTrays.Text);
+                nv.Add("@ID", lblID.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+
+                result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
+            }
+            else
+            {
+
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@OperatorID", ddlSupervisor.SelectedValue);
+                nv.Add("@Notes","");
+                nv.Add("@WorkOrderID", "");
+                nv.Add("@GTRID", lblID.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew1", nv);
+            }
+
             if (result > 0)
             {
                 
