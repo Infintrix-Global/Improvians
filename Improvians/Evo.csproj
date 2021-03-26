@@ -226,6 +226,7 @@
     <Content Include="JobReports.aspx" />
     <Content Include="js\jquery.uploadify.js" />
     <Content Include="MoveReqAsssignment.aspx" />
+    <Content Include="MoveRequestForm.aspx" />
     <Content Include="MovesReqManual.aspx" />
     <Content Include="FertilizerReqManual.aspx" />
     <Content Include="FertilizerTaskReq.aspx" />
@@ -613,6 +614,13 @@
     </Compile>
     <Compile Include="MoveReqAsssignment.aspx.designer.cs">
       <DependentUpon>MoveReqAsssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoveRequestForm.aspx.cs">
+      <DependentUpon>MoveRequestForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoveRequestForm.aspx.designer.cs">
+      <DependentUpon>MoveRequestForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="MovesReqManual.aspx.cs">
       <DependentUpon>MovesReqManual.aspx</DependentUpon>
