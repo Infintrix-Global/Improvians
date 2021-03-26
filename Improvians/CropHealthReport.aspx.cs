@@ -1263,7 +1263,7 @@ namespace Evo
                 nv.Add("@MoveFrom", txtFrom.Text);
                 nv.Add("@MoveTo", txtTo.Text);
                 nv.Add("@date", txtgeneralDate.Text);
-
+                nv.Add("@RoleId",Session["Role"].ToString());
                 nv.Add("@Comments", txtgeneralComment.Text);
                 nv.Add("@Chid", Chid);
                 nv.Add("@LoginId", Session["LoginID"].ToString());

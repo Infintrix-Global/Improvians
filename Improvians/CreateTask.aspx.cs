@@ -1375,7 +1375,10 @@ namespace Evo
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
             long result16 = 0;
-
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Aid", Session["SelectedAssignment"].ToString());
+            dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
             foreach (GridViewRow row in gvFer.Rows)
             {
 
@@ -1399,6 +1402,7 @@ namespace Evo
                     nv.Add("@MoveFrom", txtFrom.Text);
                     nv.Add("@MoveTo", txtTo.Text);
                     nv.Add("@date", txtgeneralDate.Text);
+                    nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
 
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtgeneralComment.Text);
@@ -1433,8 +1437,8 @@ namespace Evo
                 var getToMail = Session["SelectedAssignment"].ToString();
                // var getToMail = ddlAssignments.SelectedValue;
                 nv.Add("@Uid", getToMail);
-                DataTable dt = objCommon.GetDataTable("getReceiverEmail", nv);
-                ReceiverEmail = dt.Rows[0]["Email"].ToString();
+                DataTable dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
+                ReceiverEmail = dt1.Rows[0]["Email"].ToString();
 
                 mail.To.Add(new MailAddress(ReceiverEmail));
 
@@ -1442,8 +1446,8 @@ namespace Evo
                 var getCCMail = Session["Role"].ToString();
                 nv.Add("@Uid", getCCMail);
 
-                dt = objCommon.GetDataTable("getReceiverEmail", nv);
-                CCEmail = dt.Rows[0]["Email"].ToString();
+                dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
+                CCEmail = dt1.Rows[0]["Email"].ToString();
                 mail.CC.Add(new MailAddress(CCEmail));
                
                 smtpClient.Send(mail);
