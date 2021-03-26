@@ -79,24 +79,24 @@ namespace Evo
             //ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
             NameValueCollection nv = new NameValueCollection();
-            if (Session["Role"].ToString() == "1")
-            {
+            //if (Session["Role"].ToString() == "1")
+            //{
                 ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
                 //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
                 ddlDumptAssignment.DataTextField = "EmployeeName";
                 ddlDumptAssignment.DataValueField = "ID";
                 ddlDumptAssignment.DataBind();
                 ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
-            if (Session["Role"].ToString() == "12")
-            {
-                ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlDumptAssignment.DataTextField = "EmployeeName";
-                ddlDumptAssignment.DataValueField = "ID";
-                ddlDumptAssignment.DataBind();
-                ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
+            //}
+            //if (Session["Role"].ToString() == "12")
+            //{
+            //    ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+            //    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            //    ddlDumptAssignment.DataTextField = "EmployeeName";
+            //    ddlDumptAssignment.DataValueField = "ID";
+            //    ddlDumptAssignment.DataBind();
+            //    ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
+            //}
         }
         public void Bindcname()
         {
