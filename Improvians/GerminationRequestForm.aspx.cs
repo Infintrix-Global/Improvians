@@ -277,9 +277,10 @@ namespace Evo
             nv.Add("@#TraysInspected", txtTrays.Text);
             nv.Add("@ID", lblID.Text);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
+            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationAssignmentNew", nv);
             if (result > 0)
             {
+                
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
                 string url = "MyTaskGrower.aspx";
