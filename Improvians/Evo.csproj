@@ -317,6 +317,7 @@
     <Content Include="MoveCompletionForm.aspx" />
     <Content Include="MoveForm.aspx" />
     <Content Include="MoveTaskAssignment.aspx" />
+    <Content Include="MoveTaskCompletion.aspx" />
     <Content Include="MyTaskGreenOperator.aspx" />
     <Content Include="MyTaskGreenOperatorFinal.aspx" />
     <Content Include="MyTaskGreenSupervisor.aspx" />
@@ -775,6 +776,13 @@
     </Compile>
     <Compile Include="MoveTaskAssignment.aspx.designer.cs">
       <DependentUpon>MoveTaskAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoveTaskCompletion.aspx.cs">
+      <DependentUpon>MoveTaskCompletion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoveTaskCompletion.aspx.designer.cs">
+      <DependentUpon>MoveTaskCompletion.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskGreenOperator.aspx.cs">
       <DependentUpon>MyTaskGreenOperator.aspx</DependentUpon>

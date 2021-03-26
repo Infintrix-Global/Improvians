@@ -207,6 +207,15 @@
                                 <label>Assignment</label>
                                 <asp:DropDownList ID="ddlOperator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
+                               <div class="col">
+                                <label>Germination Count Date</label>
+                                <asp:TextBox ID="txtDate" TextMode="Date"  runat="server" CssClass="input__control"></asp:TextBox>
+                            </div>
+                            <div class="col">
+                                <label>Number Of Trays To Inspect</label>
+                                <asp:TextBox ID="txtTrays"  runat="server" CssClass="input__control"></asp:TextBox>
+                            </div>
+
                             <div class="col">
                                 <label>Notes</label>
                                 <asp:TextBox ID="txtNotes" TextMode="Multiline" runat="server" CssClass="input__control"></asp:TextBox>

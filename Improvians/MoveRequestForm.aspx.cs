@@ -55,12 +55,10 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
 
-         
 
-            if (Session["Role"].ToString() == "12")
-            {
-                dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
-            }
+
+
+            dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
 
 
 
@@ -71,27 +69,40 @@ namespace Evo
         }
         public void BindSupervisorList()
         {
-         
+
 
             NameValueCollection nv = new NameValueCollection();
-            if (Session["Role"].ToString() == "1")
-            {
-                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlLogisticManager.DataTextField = "EmployeeName";
-                ddlLogisticManager.DataValueField = "ID";
-                ddlLogisticManager.DataBind();
-                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
+            DataTable dt = new DataTable();
+
             if (Session["Role"].ToString() == "12")
             {
-                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlLogisticManager.DataTextField = "EmployeeName";
-                ddlLogisticManager.DataValueField = "ID";
-                ddlLogisticManager.DataBind();
-                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+
+                dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
             }
+            else if (Session["Role"].ToString() == "2")
+            {
+                dt = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
+            }
+            else
+            {
+
+            }
+            ddlLogisticManager.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlLogisticManager.DataTextField = "EmployeeName";
+            ddlLogisticManager.DataValueField = "ID";
+            ddlLogisticManager.DataBind();
+            ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+            //}
+            //if (Session["Role"].ToString() == "12")
+            //{
+            //    ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+            //    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            //    ddlLogisticManager.DataTextField = "EmployeeName";
+            //    ddlLogisticManager.DataValueField = "ID";
+            //    ddlLogisticManager.DataBind();
+            //    ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+            //  }
         }
         public void Bindcname()
         {
@@ -126,7 +137,7 @@ namespace Evo
 
         }
 
-       
+
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridPlantReady();
@@ -233,10 +244,10 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@MoveDate", Session["LoginID"].ToString());
                 nv.Add("@Comments", "");
-                nv.Add("@QuantityOfTray", Did);
+                nv.Add("@QuantityOfTray", "");
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@MoveID", "");
-             
+                nv.Add("@MoveID", Did);
+
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
 
 
@@ -246,7 +257,7 @@ namespace Evo
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
+                    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
                 }
             }
 
@@ -270,19 +281,19 @@ namespace Evo
 
             nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
             nv.Add("@MoveNumberOfTrays", txtMoveNumberOfTrays.Text);
-           
+
             nv.Add("@FromFacility", Session["LoginID"].ToString());
             nv.Add("@GrowerPutAwayID", "0");
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@ToFacility", ddlToFacility.SelectedValue);
             nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
 
-            nv.Add("@MoveDate",txtMoveDate.Text);
+            nv.Add("@MoveDate", txtMoveDate.Text);
             nv.Add("@Comments", txtMoveComments.Text);
             nv.Add("@mvoeId", HiddenFieldDid.Value);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
             nv.Add("@ManualID", HiddenFieldJid.Value);
-            
+
 
 
 

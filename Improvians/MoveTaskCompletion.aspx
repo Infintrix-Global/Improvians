@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="DumpTaskCompletion.aspx.cs" Inherits="Evo.DumpTaskCompletion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MoveTaskCompletion.aspx.cs" Inherits="Evo.MoveTaskCompletion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main main__header">
         <div class="site__container">
-            <h2>Dump Completion</h2>
+            <h2>Move Completion</h2>
 
 
 
@@ -56,12 +56,13 @@
                                                 <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-                        <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Move Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                          
-                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("MoveDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
@@ -177,23 +178,40 @@
                                 GridLines="None" 
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Tray" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
 
-                                   
-                                    <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Facility From" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("FacilityFrom")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Facility To" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFacilityTo" runat="server" Text='<%# Eval("FacilityTo")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblGrenHouseToRequest" runat="server" Text='<%# Eval("GrenHouseToRequest")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Trays" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTraysRequest" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Move Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblMoveDate" runat="server" Text='<%# Eval("MoveDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                    
 
@@ -215,7 +233,7 @@
 
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label class="d-block">Move Date</label>
+                                    <label class="d-block">Dump Date</label>
 
                                     <asp:TextBox ID="txtDumpDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                                 </div>

@@ -96,20 +96,50 @@ namespace Evo
             {
                 //   int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string MoveID = e.CommandArgument.ToString(); // gvFer.DataKeys[rowIndex].Values[0].ToString();
-              
-                userinput.Visible = true;
+
+                // userinput.Visible = true;
+                //Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}", MoveID, 0));
+
+                //lblMoveID.Text = MoveID;
+
+                //txtNotes.Focus();
+                //DataTable dt = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+
+                ////nv.Add("@MID", MoveID);
+                ////dt = objCommon.GetDataTable("SP_GetSupervisorMoveViewDetails", nv);
+                ////GridMoveDetails.DataSource = dt;
+                ////GridMoveDetails.DataBind();
+                ///
+                string ChId = "";
+                if (ChId == "")
+                {
+                    ChId = "0";
+                }
+                else
+                {
+                    ChId = ChId;
+                }
 
 
-                lblMoveID.Text = MoveID;
-
-                txtNotes.Focus();
-                DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
-              
-                nv.Add("@MID", MoveID);
-                dt = objCommon.GetDataTable("SP_GetSupervisorMoveViewDetails", nv);
-                GridMoveDetails.DataSource = dt;
-                GridMoveDetails.DataBind();
+                nv.Add("@MoveDate", Session["LoginID"].ToString());
+                nv.Add("@Comments", "");
+                nv.Add("@QuantityOfTray", "");
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@MoveID", MoveID);
+
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
+
+
+
+                long result = objCommon.GetDataExecuteScaler("SP_AddMoveTaskAssignment", nv);
+
+
+                if (result > 0)
+                {
+                    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, MoveID));
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ namespace Evo
 {
 
 
-    public partial class GerminationTaskAssignment
+    public partial class MoveTaskCompletion
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// gvGerm control.
+        /// gvPlantReady control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGerm;
+        protected global::System.Web.UI.WebControls.GridView gvPlantReady;
 
         /// <summary>
         /// PanelCropHealth control.
@@ -60,58 +60,40 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Label lblCommment;
 
         /// <summary>
-        /// userinput control.
+        /// GridViewDumpView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
+        protected global::System.Web.UI.WebControls.GridView GridViewDumpView;
 
         /// <summary>
-        /// pnlint control.
+        /// txtDumpDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlint;
+        protected global::System.Web.UI.WebControls.TextBox txtDumpDate;
 
         /// <summary>
-        /// ddlOperator control.
+        /// txtQuantityOfTray control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlOperator;
+        protected global::System.Web.UI.WebControls.TextBox txtQuantityOfTray;
 
         /// <summary>
-        /// txtDate control.
+        /// txtComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
-
-        /// <summary>
-        /// txtTrays control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTrays;
-
-        /// <summary>
-        /// txtNotes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNotes;
+        protected global::System.Web.UI.WebControls.TextBox txtComment;
 
         /// <summary>
         /// btnSubmit control.
