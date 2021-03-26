@@ -51,7 +51,7 @@ namespace Evo
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
-            
+
             // nv.Add("@Mode", "7");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
@@ -61,7 +61,7 @@ namespace Evo
             {
                 dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
             }
-           
+
 
 
             gvPlantReady.DataSource = dt;
@@ -81,12 +81,29 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             //if (Session["Role"].ToString() == "1")
             //{
-                ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlDumptAssignment.DataTextField = "EmployeeName";
-                ddlDumptAssignment.DataValueField = "ID";
-                ddlDumptAssignment.DataBind();
-                ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
+
+            DataTable dt = new DataTable();
+
+            if (Session["Role"].ToString() == "12")
+            {
+
+                dt= objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+            }
+            else if(Session["Role"].ToString() == "2")
+            {
+                dt=objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
+            }
+            else
+            {
+
+            }
+
+            ddlDumptAssignment.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlDumptAssignment.DataTextField = "EmployeeName";
+            ddlDumptAssignment.DataValueField = "ID";
+            ddlDumptAssignment.DataBind();
+            ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
             //}
             //if (Session["Role"].ToString() == "12")
             //{
@@ -172,7 +189,7 @@ namespace Evo
         {
             if (e.CommandName == "Select")
             {
-                
+
 
 
                 userinput.Visible = true;
@@ -203,7 +220,7 @@ namespace Evo
                 string ChId = "";
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string Did = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
-              //  ChId = gvDump.DataKeys[rowIndex].Values[1].ToString();
+                //  ChId = gvDump.DataKeys[rowIndex].Values[1].ToString();
 
                 if (ChId == "")
                 {
@@ -245,20 +262,20 @@ namespace Evo
 
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Aid",ddlDumptAssignment.SelectedValue);
+            nv1.Add("@Aid", ddlDumptAssignment.SelectedValue);
             dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
 
 
 
-            nv.Add("@SupervisorID",ddlDumptAssignment.SelectedValue);
+            nv.Add("@SupervisorID", ddlDumptAssignment.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Did", HiddenFieldDid.Value);
-            nv.Add("@Comments",txtCommentsDump.Text);
+            nv.Add("@Comments", txtCommentsDump.Text);
             nv.Add("@wo", "0");
             nv.Add("@ManualID", HiddenFieldJid.Value);
-            nv.Add("@DumpDate",txtDumpDate.Text);
-            nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
-            nv.Add("@RoleId",dt.Rows[0]["RoleID"].ToString());
+            nv.Add("@DumpDate", txtDumpDate.Text);
+            nv.Add("@QuantityOfTray", txtQuantityofTray.Text);
+            nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
 
             result = objCommon.GetDataInsertORUpdate("SP_AddDumpRequestManua", nv);
 
@@ -288,7 +305,7 @@ namespace Evo
         public void clear()
         {
 
-          //  ddlSupervisor.SelectedIndex = 0;
+            //  ddlSupervisor.SelectedIndex = 0;
 
         }
 
@@ -304,7 +321,7 @@ namespace Evo
             BindGridPlantReady();
         }
 
-      
+
     }
 
 }

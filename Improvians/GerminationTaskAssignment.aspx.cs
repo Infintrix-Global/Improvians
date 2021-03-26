@@ -98,7 +98,7 @@ namespace Evo
             nv.Add("@WorkOrderID", wo);
             nv.Add("@GTRID", gtrID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignment", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew", nv);
             if (result > 0)
             {
                 //lblmsg.Text = "Assignment Successful";
