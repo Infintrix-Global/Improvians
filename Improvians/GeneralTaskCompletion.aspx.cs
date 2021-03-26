@@ -114,20 +114,16 @@ namespace Evo
             nv.Add("@QuantityOfTray", txtQuantityOfTray.Text);
             nv.Add("@GeneralTaskDate", txtGeneralDate.Text);
 
-
-
             result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskCompletion", nv);
-
-
 
             if (result > 0)
             {
                 // lblmsg.Text = "Completion Successful";
-                clear();
+                
                 string message = "Completion Successful";
                 string url;
-                if (Session["Role"].ToString() == "3")
-                {
+               // if (Session["Role"].ToString() == "3")
+                //{
                     url = "GeneralTaskAssignmentForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
@@ -136,18 +132,19 @@ namespace Evo
                     script += url;
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                }
-                if (Session["Role"].ToString() == "2")
-                {
-                    url = "GeneralTaskAssignmentForm.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                }
+                clear();
+                //}
+                //if (Session["Role"].ToString() == "2")
+                //{
+                //    url = "GeneralTaskAssignmentForm.aspx";
+                //    string script = "window.onload = function(){ alert('";
+                //    script += message;
+                //    script += "');";
+                //    script += "window.location = '";
+                //    script += url;
+                //    script += "'; }";
+                //    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                //}
 
 
             }
