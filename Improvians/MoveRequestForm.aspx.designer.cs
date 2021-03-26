@@ -11,53 +11,44 @@ namespace Evo
 {
 
 
-    public partial class GreenHouseTaskCompletion
+    public partial class MoveRequestForm
     {
 
         /// <summary>
-        /// lblmsg control.
+        /// ddlCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
 
         /// <summary>
-        /// gvGerm control.
+        /// ddlJobNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvGerm;
+        protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
 
         /// <summary>
-        /// PanelCropHealth control.
+        /// btnResetSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelCropHealth;
+        protected global::System.Web.UI.WebControls.Button btnResetSearch;
 
         /// <summary>
-        /// gvCropHealth control.
+        /// gvMoveReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCropHealth;
-
-        /// <summary>
-        /// lblCommment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCommment;
+        protected global::System.Web.UI.WebControls.GridView gvMoveReq;
 
         /// <summary>
         /// userinput control.
@@ -69,165 +60,129 @@ namespace Evo
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
 
         /// <summary>
-        /// pnlint control.
+        /// Panel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlint;
+        protected global::System.Web.UI.WebControls.Panel Panel3;
 
         /// <summary>
-        /// txtInspectionDate control.
+        /// HiddenFieldJid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInspectionDate;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldJid;
 
         /// <summary>
-        /// txtTrays control.
+        /// HiddenFieldDid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTrays;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldDid;
 
         /// <summary>
-        /// Range1 control.
+        /// ddlLogisticManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator Range1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLogisticManager;
 
         /// <summary>
-        /// lblSeedlot control.
+        /// RequiredFieldValidator18 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSeedlot;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator18;
 
         /// <summary>
-        /// PanelViewDetails control.
+        /// ddlToFacility control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelViewDetails;
+        protected global::System.Web.UI.WebControls.DropDownList ddlToFacility;
 
         /// <summary>
-        /// GridSplitJob control.
+        /// RequiredFieldValidator14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridSplitJob;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator14;
 
         /// <summary>
-        /// sbtTray control.
+        /// ddlToGreenHouse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button sbtTray;
+        protected global::System.Web.UI.WebControls.DropDownList ddlToGreenHouse;
 
         /// <summary>
-        /// pnlUpdated control.
+        /// RequiredFieldValidator15 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlUpdated;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator15;
 
         /// <summary>
-        /// tblupdate control.
+        /// txtMoveNumberOfTrays control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblupdate;
+        protected global::System.Web.UI.WebControls.TextBox txtMoveNumberOfTrays;
 
         /// <summary>
-        /// lblJobid control.
+        /// txtMoveDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblJobid;
+        protected global::System.Web.UI.WebControls.TextBox txtMoveDate;
 
         /// <summary>
-        /// lblwoid control.
+        /// txtMoveComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblwoid;
+        protected global::System.Web.UI.WebControls.TextBox txtMoveComments;
 
         /// <summary>
-        /// lblnotrays control.
+        /// btnMoveSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnotrays;
+        protected global::System.Web.UI.WebControls.Button btnMoveSubmit;
 
         /// <summary>
-        /// lblGerm control.
+        /// MoveReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGerm;
-
-        /// <summary>
-        /// lblbadplants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblbadplants;
-
-        /// <summary>
-        /// lblgermvigor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblgermvigor;
-
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-
-        /// <summary>
-        /// btnReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
+        protected global::System.Web.UI.WebControls.Button MoveReset;
     }
 }

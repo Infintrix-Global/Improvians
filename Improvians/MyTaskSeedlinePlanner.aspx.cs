@@ -31,7 +31,7 @@ namespace Evo
 
         public void getSeedLineCount()
         {
-            AllData = objSP.GetDataSeedingPlan("", "", "", "", "1", "");
+            AllData = objSP.GetDataSeedingPlanNew();
 
             if (AllData != null && AllData.Rows.Count > 0)
             {

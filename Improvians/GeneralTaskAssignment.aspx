@@ -57,7 +57,7 @@
 
                                         <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label11" runat="server" Text='<%# Eval("TaskType")  %>'></asp:Label>
+                                <asp:Label ID="lblTaskType" runat="server" Text='<%# Eval("TaskType")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
