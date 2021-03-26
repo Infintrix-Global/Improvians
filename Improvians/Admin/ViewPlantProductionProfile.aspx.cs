@@ -31,13 +31,7 @@ namespace Evo.Admin
             }
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            DataTable dt = objCommon.GetPlanProductionProfile(ddlCode.SelectedValue, ddlCrop.SelectedValue, ddlActivityCode.SelectedValue, ddlTrayCode.SelectedValue);
-            gvProductionProfile.DataSource = dt;
-            gvProductionProfile.DataBind();
-
-        }
+      
         public void BindCrop()
         {
             ddlCode.DataSource = objCommon.GETCode();
@@ -46,15 +40,22 @@ namespace Evo.Admin
             ddlCode.DataBind();
             ddlCode.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
+            ddlCrop.DataSource = objCommon.GETCrop();
+            ddlCrop.DataTextField = "Crop";
+            ddlCrop.DataValueField = "Crop";
+            ddlCrop.DataBind();
+            ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
+            BindCrop();
             ddlCode.SelectedIndex = 0;
             ddlCrop.SelectedIndex = 0;
             ddlActivityCode.SelectedIndex = 0;
             ddlTrayCode.SelectedIndex = 0;
+            
             gvProductionProfile.DataSource = null;
             gvProductionProfile.DataBind();
         }
