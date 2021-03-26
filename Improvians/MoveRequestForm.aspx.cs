@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evo.Bal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -8,11 +9,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Evo
 {
-    public partial class DumpRequestForm : System.Web.UI.Page
+    public partial class MoveRequestForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objBAL = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,52 +54,42 @@ namespace Evo
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
+
+         
+
             
-            // nv.Add("@Mode", "7");
-            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+                dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
+          
 
 
-
-            if (Session["Role"].ToString() == "12")
-            {
-                dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
-            }
-           
-
-
-            gvPlantReady.DataSource = dt;
-            gvPlantReady.DataBind();
+            gvMoveReq.DataSource = dt;
+            gvMoveReq.DataBind();
 
 
         }
         public void BindSupervisorList()
         {
-            //NameValueCollection nv = new NameValueCollection();
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            //ddlSupervisor.DataTextField = "EmployeeName";
-            //ddlSupervisor.DataValueField = "ID";
-            //ddlSupervisor.DataBind();
-            //ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+         
 
             NameValueCollection nv = new NameValueCollection();
             //if (Session["Role"].ToString() == "1")
             //{
-                ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
                 //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlDumptAssignment.DataTextField = "EmployeeName";
-                ddlDumptAssignment.DataValueField = "ID";
-                ddlDumptAssignment.DataBind();
-                ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
+                ddlLogisticManager.DataTextField = "EmployeeName";
+                ddlLogisticManager.DataValueField = "ID";
+                ddlLogisticManager.DataBind();
+                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
             //}
             //if (Session["Role"].ToString() == "12")
             //{
-            //    ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+            //    ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
             //    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            //    ddlDumptAssignment.DataTextField = "EmployeeName";
-            //    ddlDumptAssignment.DataValueField = "ID";
-            //    ddlDumptAssignment.DataBind();
-            //    ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            //}
+            //    ddlLogisticManager.DataTextField = "EmployeeName";
+            //    ddlLogisticManager.DataValueField = "ID";
+            //    ddlLogisticManager.DataBind();
+            //    ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+          //  }
         }
         public void Bindcname()
         {
@@ -131,21 +124,7 @@ namespace Evo
 
         }
 
-        //public void BindFacility()
-        //{
-
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-
-        //    nv.Add("@Mode", "9");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlFacility.DataSource = dt;
-        //    ddlFacility.DataTextField = "loc_seedline";
-        //    ddlFacility.DataValueField = "loc_seedline";
-        //    ddlFacility.DataBind();
-        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        //}
+       
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridPlantReady();
@@ -165,36 +144,70 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-
+            BindFacility();
             BindGridPlantReady();
         }
-        protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
+
+        public void BindFacility()
+        {
+            ddlToFacility.DataSource = objBAL.GetMainLocation();
+            ddlToFacility.DataTextField = "l1";
+            ddlToFacility.DataValueField = "l1";
+            ddlToFacility.DataBind();
+            ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlToFacility.SelectedValue = Session["Facility"].ToString();
+            BindBench_Location();
+        }
+
+        public void BindBench_Location()
+        {
+            //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
+            ddlToGreenHouse.DataSource = objBAL.GetLocation(ddlToFacility.SelectedValue);
+            ddlToGreenHouse.DataTextField = "p2";
+            ddlToGreenHouse.DataValueField = "p2";
+            ddlToGreenHouse.DataBind();
+            ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+
+        }
+
+
+
+        protected void ddlToFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindBench_Location();
+        }
+
+
+        protected void gvMoveReq_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
             {
-                
 
+                BindFacility();
 
                 userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                HiddenFieldDid.Value = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
-                HiddenFieldJid.Value = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
+                HiddenFieldDid.Value = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
+                HiddenFieldJid.Value = gvMoveReq.DataKeys[rowIndex].Values[2].ToString();
 
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@DumpId", HiddenFieldDid.Value);
+                nv.Add("@MoveId", HiddenFieldDid.Value);
 
-                dt = objCommon.GetDataTable("SP_GetDumpRequestView", nv);
+                dt = objCommon.GetDataTable("SP_GetMOVERequestView", nv);
 
                 if (dt != null & dt.Rows.Count > 0)
                 {
-                    txtCommentsDump.Text = dt.Rows[0]["Comments"].ToString();
-                    txtQuantityofTray.Text = dt.Rows[0]["QuantityOfTray"].ToString();
-                    txtDumpDate.Text = Convert.ToDateTime(dt.Rows[0]["DumpDateR"]).ToString("yyyy-MM-dd");
+                    BindFacility();
+                    txtMoveComments.Text = dt.Rows[0]["Comments"].ToString();
+                    txtMoveNumberOfTrays.Text = dt.Rows[0]["TraysRequest"].ToString();
+                    txtMoveDate.Text = Convert.ToDateTime(dt.Rows[0]["MoveDate"]).ToString("yyyy-MM-dd");
+                    ddlToFacility.SelectedValue = dt.Rows[0]["FacilityTo"].ToString();
+                    ddlToGreenHouse.SelectedValue = dt.Rows[0]["GrenHouseToRequest"].ToString();
                 }
                 //ddlSupervisor.Focus();
-
 
             }
 
@@ -202,8 +215,8 @@ namespace Evo
             {
                 string ChId = "";
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                string Did = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
-              //  ChId = gvDump.DataKeys[rowIndex].Values[1].ToString();
+                string Did = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
+                //  ChId = gvDump.DataKeys[rowIndex].Values[1].ToString();
 
                 if (ChId == "")
                 {
@@ -216,26 +229,29 @@ namespace Evo
 
 
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@OperatorID", Session["LoginID"].ToString());
+                nv.Add("@MoveDate", Session["LoginID"].ToString());
                 nv.Add("@Comments", "");
-                nv.Add("@DumpId", Did);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@QuantityOfTray", "");
-                nv.Add("@DumpDate", "");
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@MoveID", Did);
+             
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
 
-                long result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskAssignment", nv);
+
+
+                long result = objCommon.GetDataExecuteScaler("SP_AddMoveTaskAssignment", nv);
 
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
+                    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
                 }
             }
 
         }
 
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
@@ -245,22 +261,32 @@ namespace Evo
 
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Aid",ddlDumptAssignment.SelectedValue);
+            nv1.Add("@Aid", ddlLogisticManager.SelectedValue);
             dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
 
 
 
-            nv.Add("@SupervisorID",ddlDumptAssignment.SelectedValue);
+            nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
+            nv.Add("@MoveNumberOfTrays", txtMoveNumberOfTrays.Text);
+           
+            nv.Add("@FromFacility", Session["LoginID"].ToString());
+            nv.Add("@GrowerPutAwayID", "0");
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@Did", HiddenFieldDid.Value);
-            nv.Add("@Comments",txtCommentsDump.Text);
-            nv.Add("@wo", "0");
-            nv.Add("@ManualID", HiddenFieldJid.Value);
-            nv.Add("@DumpDate",txtDumpDate.Text);
-            nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
-            nv.Add("@RoleId",dt.Rows[0]["RoleID"].ToString());
+            nv.Add("@ToFacility", ddlToFacility.SelectedValue);
+            nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddDumpRequestManua", nv);
+            nv.Add("@MoveDate",txtMoveDate.Text);
+            nv.Add("@Comments", txtMoveComments.Text);
+            nv.Add("@mvoeId", HiddenFieldDid.Value);
+            nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+            nv.Add("@ManualID", HiddenFieldJid.Value);
+            
+
+
+
+
+
+            result = objCommon.GetDataInsertORUpdate("SP_AddMoveRequestASManua", nv);
 
 
             if (result > 0)
@@ -288,23 +314,23 @@ namespace Evo
         public void clear()
         {
 
-          //  ddlSupervisor.SelectedIndex = 0;
+            //  ddlSupervisor.SelectedIndex = 0;
 
         }
 
-        protected void btnReset_Click(object sender, EventArgs e)
+        protected void MoveReset_Click(object sender, EventArgs e)
         {
             clear();
             Response.Redirect("~/MyTaskAssistantGrower.aspx");
         }
 
-        protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvMoveReq_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvPlantReady.PageIndex = e.NewPageIndex;
+            gvMoveReq.PageIndex = e.NewPageIndex;
             BindGridPlantReady();
         }
 
-      
+
     }
 
 }

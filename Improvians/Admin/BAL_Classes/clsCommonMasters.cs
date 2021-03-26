@@ -637,10 +637,10 @@ namespace Evo.Admin
 
                 General objGeneral = new General();
                 string strQuery = string.Empty;
-                strQuery = "SELECT pid,code, traycode, crop, activitycode, dateshift FROM gti_jobs_prodprofile WHERE";
+                strQuery = "SELECT pid,code, traycode, crop, activitycode, dateshift FROM gti_jobs_prodprofile WHERE 1=1 ";
                 if (code != "0")
                 {
-                    strQuery += " [code]= " + "'" + code + "'";
+                    strQuery += " AND [code]= " + "'" + code + "'";
                 }
                 if (crop != "0")
                 {
@@ -696,13 +696,13 @@ namespace Evo.Admin
             return ds.Tables[0];
         }
 
-        public DataTable GETCode()
+        public DataTable GETCrop()
         {
             try
             {
 
                 General objGeneral = new General();
-                objGeneral.AddParameterWithValueToSQLCommand("@mode", 18);
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 17);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
             catch (Exception ex)
@@ -710,7 +710,7 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
-        public DataTable GETActivityCode()
+        public DataTable GETCode()
         {
             try
             {

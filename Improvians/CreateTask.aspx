@@ -64,10 +64,10 @@
                     <label>Bench Location </label>
                     <span style="color: red">*</span>
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    <span class="error_message">
+                    <%--<span class="error_message">
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                    </span>
+                    </span>--%>
                 </div>
                 <div class="col-lg-3">
                     <label>Job No </label>

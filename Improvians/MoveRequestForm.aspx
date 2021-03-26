@@ -1,12 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="DumpRequestForm.aspx.cs" Inherits="Evo.DumpRequestForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MoveRequestForm.aspx.cs" Inherits="Evo.MoveRequestForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
-                <img src="./images/dashboard_dump-request.png" width="137" height="132" alt="Plant Ready">
-               Dump </h2>
+                <img src="./images/dashboard_move-request.png" width="137" height="132" alt="Plant Ready">
+               Move </h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
@@ -35,9 +36,9 @@
             <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
 
             <div class="data__table">
-                <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                    class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
-                    GridLines="None" OnRowCommand="gvPlantReady_RowCommand"  DataKeyNames="wo,DumpId,jid"
+                <asp:GridView ID="gvMoveReq" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                    class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvMoveReq_PageIndexChanging"
+                    GridLines="None" OnRowCommand="gvMoveReq_RowCommand"  DataKeyNames="wo,MoveId,jid"
                     ShowHeaderWhenEmpty="True" Width="100%">
                     <Columns>
 
@@ -129,43 +130,72 @@
                 <div id="userinput" runat="server" visible="false" class="row justify-content-center">
                     <div class="col-12">
                       
-                        <div class="row">
-                                <div class="mb-3 col-12 col-md-auto">
-                                    <label>Assignment </label>
-                                    <asp:HiddenField ID="HiddenFieldJid" runat="server" />
+                         <asp:Panel ID="Panel3" runat="server">
+                               <asp:HiddenField ID="HiddenFieldJid" runat="server" />
                                     <asp:HiddenField ID="HiddenFieldDid" runat="server" />
-                                    <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
-                                    <asp:DropDownList ID="ddlDumptAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label>Assignment </label>
+
+                                        <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                        <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                        <span class="error_message">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
+                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </span>
+                                    </div>
+                                    <div class="col m3">
+                                        <label>To Facility Location </label>
+                                        <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
+                                        <span class="error_message">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
+                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </span>
+                                    </div>
+                                    <div class="col m3">
+                                        <label>Bench Location </label>
+                                        <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                        <span class="error_message">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
+                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </span>
+                                    </div>
+
+                                    <div class="col m3">
+                                        <label>Number Of Trays </label>
+
+                                        <asp:TextBox ID="txtMoveNumberOfTrays" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <span class="error_message"></span>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label>Date </label>
+
+                                        <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <span class="error_message"></span>
+                                    </div>
+
 
                                 </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label>Comments </label>
 
-                                <div class="mb-3 col-12 col-md-auto">
-                                    <label class="d-block">Dump Date</label>
-                                    <asp:TextBox ID="txtDumpDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <asp:TextBox ID="txtMoveComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-auto">
 
-                                <div class="mb-3 col-12 col-md-auto">
+                                        <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
+                                    </div>
+                                    <div class="col-auto">
 
-                                    <label>Quantity of Tray </label>
-                                    <asp:TextBox ID="txtQuantityofTray" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
+                                        <asp:Button Text="Reset" ID="MoveReset" runat="server" OnClick="MoveReset_Click" CssClass="bttn bttn-primary bttn-action" />
+                                    </div>
                                 </div>
-
-                                <div class="mb-3 col-12 col-md-auto">
-
-                                    <label>Comments </label>
-
-                                    <asp:TextBox ID="txtCommentsDump" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-
-
-                                </div>
-                                <div class="mb-3 col-12 col-md-auto align-self-end">
-                                    <asp:Button Text="Submit" ID="btnDumpSumbit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
-
-                                    <asp:Button Text="Reset" ID="btnDumpReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
-
-                                </div>
-                            </div>
+                            </asp:Panel>
 
                     </div>
                 </div>

@@ -26,7 +26,7 @@ namespace Evo
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
-                txtInspectionDate.Text= Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtInspectionDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindGridGerm();
 
             }
@@ -122,7 +122,7 @@ namespace Evo
             // nv.Add("@GermHealth", lblcrophealth.Text);
             // nv.Add("@JobID", Session["JobID"].ToString());
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@Jid",Jid);
+            nv.Add("@Jid", Jid);
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationCompletion", nv);
             if (result > 0)
             {
@@ -162,145 +162,36 @@ namespace Evo
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-            if (Session["Role"].ToString() == "3")
-            {
-                Response.Redirect("~/MyTaskGreenOperatorFinal.aspx");
-            }
+            
 
-            else if (Session["Role"].ToString() == "2")
-            {
-                Response.Redirect("~/MyTaskGreenSupervisorFinal.aspx");
-            }
-
+            GridSplitJob.DataSource = null;
+            GridSplitJob.DataBind();
+            PanelViewDetails.Visible = false;
         }
 
         public void clear()
         {
             txtTrays.Text = "";
-            txtInspectionDate.Text = "";
-
+            //  txtInspectionDate.Text = "";
+            lblbadplants.Text = "";
+            lblGerm.Text = "";
+            lblgermvigor.Text = "";
         }
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txtTrays.Text) <= 20)
+            PanelViewDetails.Visible = true;
+            GridSplitJob.DataSource = null;
+            GridSplitJob.DataBind();
+            for (int P = 1; P <= Convert.ToInt32(txtTrays.Text); P++)
             {
-                sbtTray.Visible = true;
-                // Current row count.
-                int rowCtr;
-                // Total number of cells per row (columns).
-                int cellCtr;
-                // Current cell counter
-                int cellCnt = Convert.ToInt32(txtTrays.Text);
-                TableRow tRow;
-                for (rowCtr = 0; rowCtr < 2; rowCtr++)
-                {
-                    // Create new row and add it to the table.
-                    tRow = new TableRow();
-                    tbltray.Rows.Add(tRow);
-                    for (cellCtr = 0; cellCtr <= cellCnt; cellCtr++)
-                    {
-                        if (cellCtr == 0 && rowCtr == 0)
-                        {
-                            TableCell tCell1 = new TableCell();
-                            tCell1.Text = "Tray #";
-                            tRow.Cells.Add(tCell1);
-                        }
 
-                        else if (cellCtr == 0 && rowCtr == 1)
-                        {
-                            TableCell tCell1 = new TableCell();
-                            tCell1.Text = "Bad Plants #";
-                            tRow.Cells.Add(tCell1);
-                        }
-                        else if (cellCtr != 0 && rowCtr == 0)
-                        {
+                AddGrowerPutRow(true);
 
-                            // Create a new cell and add it to the row.
-                            TableCell tCell = new TableCell();
-
-                            tCell.Text = cellCtr.ToString();
-                            tRow.Cells.Add(tCell);
-                        }
-                        else
-                        {
-
-                            // Create a new cell and add it to the row.
-                            TableCell tCell = new TableCell();
-                            TextBox tb = new TextBox();
-                            tb.Width = 50;
-                            // Set a unique ID for each TextBox added
-                            tb.ID = "TextBoxRow_" + rowCtr + "Col_" + cellCtr;
-                            // Add the control to the TableCell
-                            tCell.Controls.Add(tb);
-                            tRow.Cells.Add(tCell);
-                        }
-                    }
-                }
             }
         }
 
-        public void Bindtxttray(int trays)
-        {
-            sbtTray.Visible = true;
-            // Current row count.
-            int rowCtr;
-            // Total number of cells per row (columns).
-            int cellCtr;
-            int cellCnt = 0;
-            // Current cell counter
-            if (txtTrays.Text != "")
-            {
-                cellCnt = Convert.ToInt32(txtTrays.Text);
-            }
-           
-            TableRow tRow;
-            for (rowCtr = 0; rowCtr < 2; rowCtr++)
-            {
-                // Create new row and add it to the table.
-                tRow = new TableRow();
-                tbltray.Rows.Add(tRow);
-                for (cellCtr = 0; cellCtr <= cellCnt; cellCtr++)
-                {
-                    if (cellCtr == 0 && rowCtr == 0)
-                    {
-                        TableCell tCell1 = new TableCell();
-                        tCell1.Text = "Tray #";
-                        tRow.Cells.Add(tCell1);
-                    }
-
-                    else if (cellCtr == 0 && rowCtr == 1)
-                    {
-                        TableCell tCell1 = new TableCell();
-                        tCell1.Text = "Bad Plants #";
-                        tRow.Cells.Add(tCell1);
-                    }
-                    else if (cellCtr != 0 && rowCtr == 0)
-                    {
-
-                        // Create a new cell and add it to the row.
-                        TableCell tCell = new TableCell();
-
-                        tCell.Text = cellCtr.ToString();
-                        tRow.Cells.Add(tCell);
-                    }
-                    else
-                    {
-
-                        // Create a new cell and add it to the row.
-                        TableCell tCell = new TableCell();
-                        TextBox tb = new TextBox();
-                        tb.Width = 50;
-                        // Set a unique ID for each TextBox added
-                        tb.ID = "TextBoxRow_" + rowCtr + "Col_" + cellCtr;
-                        // Add the control to the TableCell
-                        tCell.Controls.Add(tb);
-                        tRow.Cells.Add(tCell);
-                    }
-                }
-            }
-
-        }
+    
 
         protected void sbtTray_Click(object sender, EventArgs e)
         {
@@ -309,17 +200,18 @@ namespace Evo
 
             Table table = (Table)Page.FindControl("tbltray");
             int count = 0;
-            for (int j = 1; j < int.Parse(txtTrays.Text) + 1; j++)
+          
+
+            foreach (GridViewRow item in GridSplitJob.Rows)
             {
-                //Print the values entered
 
-                if (!string.IsNullOrEmpty(Request.Form["ctl00$ContentPlaceHolder1$TextBoxRow_1" + "Col_" + j]))
+                if (item.RowType == DataControlRowType.DataRow)
                 {
-                    count += int.Parse(Request.Form["ctl00$ContentPlaceHolder1$TextBoxRow_1" + "Col_" + j]);
-                    //Response.Write(Request.Form["TextBoxRow_" + i + "Col_" + j] + "<BR/>");
+                    TextBox txtTrays = (item.Cells[0].FindControl("txtTrays") as TextBox);
+                    count += int.Parse(txtTrays.Text);
                 }
-
             }
+
             lblbadplants.Text = count.ToString();
             Decimal germ = Convert.ToDecimal(count) / (Convert.ToDecimal(lblSeedlot.Text) * Convert.ToDecimal(txtTrays.Text));
             lblGerm.Text = ((1 - germ) * 100).ToString("0.00");
@@ -338,13 +230,113 @@ namespace Evo
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-             
+
                 Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
-              
+
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
                 lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text + "&GermNo=" + lblGermNo.Text;
                 //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
             }
         }
+
+
+        //-/----------------------------------------------------------------
+
+        //private List<GrowerputDetils> GrowerPutData
+        //{
+        //    get
+        //    {
+        //        if (ViewState["GrowerPutData"] != null)
+        //        {
+        //            return (List<GrowerputDetilsNew>)ViewState["GrowerPutData"];
+        //        }
+        //        return new List<GrowerputDetilsNew>();
+        //    }
+        //    set
+        //    {
+        //        ViewState["GrowerPutData"] = value;
+        //    }
+        //}
+
+        private void AddGrowerput(ref List<GrowerputDetilsNew> objGP, string Trays)
+
+        {
+            GrowerputDetilsNew objInv = new GrowerputDetilsNew();
+
+            objInv.RowNumber = objGP.Count + 1;
+
+            objInv.Trays = Trays;
+
+            objGP.Add(objInv);
+            ViewState["ojbpro"] = objGP;
+        }
+
+
+        private void AddGrowerPutRow(bool AddBlankRow)
+        {
+            try
+            {
+                string unit = "", ddlTAX1 = "", ddlStatusVal = "", hdnWOEmployeeIDVal = "";
+                string MainId = "", LocationId = "";
+
+
+                List<GrowerputDetilsNew> objinvoice = new List<GrowerputDetilsNew>();
+
+                foreach (GridViewRow item in GridSplitJob.Rows)
+                {
+
+                    TextBox txtTrays = (TextBox)item.FindControl("txtTrays");
+
+                    AddGrowerput(ref objinvoice, txtTrays.Text);
+
+                }
+                if (AddBlankRow)
+                    AddGrowerput(ref objinvoice, "");
+
+                //  GrowerPutData = objinvoice;
+                GridSplitJob.DataSource = objinvoice;
+                GridSplitJob.DataBind();
+                ViewState["Data"] = objinvoice;
+
+
+            }
+            catch (Exception ex)
+            {
+                //  divMessage.Visible = true;
+                //  divMessageSub.Attributes.Remove("class");
+                // divMessageSub.Attributes.Add("class", "errormsg");
+                //  lblMsg.Text = "Unable to process request. Please verify the details.<br />" + ex;
+            }
+
+        }
+
+        public void GridSplitjob()
+        {
+            GridSplitJob.DataSource = ViewState["Data"];
+            GridSplitJob.DataBind();
+
+        }
+
+        private void AddGrowerput(ref List<GrowerputDetilsNew> objGP, int ID, string Trays)
+        {
+            GrowerputDetilsNew objInv = new GrowerputDetilsNew();
+
+            objInv.RowNumber = objGP.Count + 1;
+
+            objInv.Trays = Trays;
+
+            objGP.Add(objInv);
+            ViewState["ojbpro"] = objGP;
+        }
     }
+}
+
+
+[Serializable]
+public class GrowerputDetilsNew
+{
+    public int ID { get; set; }
+    public int RowNumber { get; set; }
+
+    public string Trays { get; set; }
 }

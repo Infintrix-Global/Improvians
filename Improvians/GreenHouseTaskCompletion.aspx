@@ -236,85 +236,110 @@
                             </div>
 
                         </div>
-                        <div class="row py-3">
-                            <div class="col-12">
-                                <asp:Table ID="tbltray" runat="server" class="data__table">
-                                </asp:Table>
+
+                        <asp:Panel ID="PanelViewDetails" Visible="false" runat="server">
+
+                            <div class="data__table">
+
+
+                                <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" Width="30%"
+                                    AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:BoundField DataField="RowNumber" HeaderStyle-Width="10%" HeaderText="Tray #" />
+
+
+                                        <asp:TemplateField  HeaderStyle-Width="20%" HeaderText="Bad Plants #">
+                                            <ItemTemplate>
+
+                                                <asp:TextBox ID="txtTrays" CssClass="input__control" runat="server"></asp:TextBox>
+
+
+                                            </ItemTemplate>
+
+
+
+                                        </asp:TemplateField>
+                                    </Columns>
+
+
+                                </asp:GridView>
                             </div>
-                        </div>
+                            <br />
+                            <div class="col align-self-end">
+                                <asp:Button ID="sbtTray" runat="server" Text="Calculate" CssClass="bttn bttn-primary bttn-action" OnClick="sbtTray_Click" />
+                            </div>
+                            <br />
 
-                        <div class="col align-self-end">
-                            <asp:Button ID="sbtTray" runat="server" Text="Calculate" CssClass="bttn bttn-primary bttn-action" OnClick="sbtTray_Click" Visible="false" />
-                        </div>
-                        <br />
-                        <asp:Panel ID="pnlUpdated" runat="server">
-                            <asp:Table ID="tblupdate" runat="server" class="data__table">
-                                <asp:TableHeaderRow>
-                                    <asp:TableHeaderCell>
+
+                            <asp:Panel ID="pnlUpdated" runat="server">
+                                <asp:Table ID="tblupdate" runat="server" class="data__table">
+                                    <asp:TableHeaderRow>
+                                        <asp:TableHeaderCell>
                                             <label>JobID</label>
-                                    </asp:TableHeaderCell>
+                                        </asp:TableHeaderCell>
 
-                                    <asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>
                                             <label>#Trays</label>
-                                    </asp:TableHeaderCell>
+                                        </asp:TableHeaderCell>
 
-                                    <asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>
                                             <label>Germination %</label>
-                                    </asp:TableHeaderCell>
+                                        </asp:TableHeaderCell>
 
-                                    <asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>
                                             <label>#Bad Plants</label>
-                                    </asp:TableHeaderCell>
+                                        </asp:TableHeaderCell>
 
-                                    <asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>
                                             <label>Germ Vigor</label>
-                                    </asp:TableHeaderCell>
+                                        </asp:TableHeaderCell>
 
-                                    <%-- <asp:TableHeaderCell>
+                                        <%-- <asp:TableHeaderCell>
                                             <label>Bad Health</label>
                                     </asp:TableHeaderCell>--%>
-                                </asp:TableHeaderRow>
-                                <asp:TableRow>
+                                    </asp:TableHeaderRow>
+                                    <asp:TableRow>
 
-                                    <asp:TableCell>
-                                        <asp:Label ID="lblJobid" runat="server"></asp:Label>
-                                        <asp:Label ID="lblwoid" runat="server" Visible="false"></asp:Label>
-                                    </asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblJobid" runat="server"></asp:Label>
+                                            <asp:Label ID="lblwoid" runat="server" Visible="false"></asp:Label>
+                                        </asp:TableCell>
 
-                                    <asp:TableCell>
-                                        <asp:Label ID="lblnotrays" runat="server"></asp:Label>
-                                    </asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblnotrays" runat="server"></asp:Label>
+                                        </asp:TableCell>
 
-                                    <asp:TableCell>
-                                        <asp:Label ID="lblGerm" runat="server"></asp:Label>
-                                    </asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblGerm" runat="server"></asp:Label>
+                                        </asp:TableCell>
 
-                                    <asp:TableCell>
-                                        <asp:Label ID="lblbadplants" runat="server"></asp:Label>
-                                    </asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblbadplants" runat="server"></asp:Label>
+                                        </asp:TableCell>
 
-                                    <asp:TableCell>
-                                        <asp:Label ID="lblgermvigor" runat="server"></asp:Label>
-                                    </asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblgermvigor" runat="server"></asp:Label>
+                                        </asp:TableCell>
 
-                                    <%--<asp:TableCell>
+                                        <%--<asp:TableCell>
                                         <asp:Label ID="lblcrophealth" runat="server"></asp:Label>
                                     </asp:TableCell>--%>
-                                </asp:TableRow>
-                            </asp:Table>
+                                    </asp:TableRow>
+                                </asp:Table>
 
 
+                            </asp:Panel>
+                            <div class="clearfix"></div>
+                            <br />
+                            <div class="row">
+                                <div class="col-auto">
+                                    <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
+                                </div>
+                                <div class="col-auto">
+                                    <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
+                                </div>
+                            </div>
                         </asp:Panel>
-                        <div class="clearfix"></div>
-                        <br />
-                        <div class="row">
-                            <div class="col-auto">
-                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
-                            </div>
-                            <div class="col-auto">
-                                <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
-                            </div>
-                        </div>
                     </asp:Panel>
                 </div>
             </div>
