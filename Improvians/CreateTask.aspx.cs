@@ -837,7 +837,7 @@ namespace Evo
 
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtGcomments.Text);
-
+                    nv.Add("@Role",ddlAssignments.SelectedValue);
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
 
                 }

@@ -27,6 +27,7 @@ namespace Evo
                 txtToDate.Text = TDate;
                 Bindcname();
                 BindBenchLocation(Session["Facility"].ToString());
+                BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridGerm();
                 BindSupervisorList();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -52,15 +53,15 @@ namespace Evo
 
         public void BindJobCode(string ddlBench)
         {
-
+          //  ddlJobNo.Items[0].Selected = false;
+            ddlJobNo.ClearSelection();
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
 
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-            ddlJobNo.Items[0].Selected = false;
-            ddlJobNo.ClearSelection();
+            
         }
 
         public void BindBenchLocation(string ddlMain)
@@ -170,6 +171,8 @@ namespace Evo
                 lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
                 lblID.Text = (row.FindControl("lblID") as Label).Text;
 
+                lblAGD.Text = (row.FindControl("lblIsAG") as Label).Text;
+                
                 string Datwc = (row.FindControl("lblGermDate") as Label).Text;
 
                 txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
@@ -272,28 +275,27 @@ namespace Evo
         {
             long result = 0;
 
-            if (Session["Role"].ToString() == "2")
-            {
+            
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
                 nv.Add("@InspectionDueDate", txtDate.Text);
                 nv.Add("@#TraysInspected", txtTrays.Text);
                 nv.Add("@ID", lblID.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@Role", Session["LoginID"].ToString());
+                nv.Add("@ISAG", lblAGD.Text);
 
                 result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
-            }
-            else
-            {
+           
 
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@OperatorID", ddlSupervisor.SelectedValue);
-                nv.Add("@Notes","");
-                nv.Add("@WorkOrderID", "");
-                nv.Add("@GTRID", lblID.Text);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew1", nv);
-            }
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@OperatorID", ddlSupervisor.SelectedValue);
+                //nv.Add("@Notes","");
+                //nv.Add("@WorkOrderID", "");
+                //nv.Add("@GTRID", lblID.Text);
+                //nv.Add("@LoginID", Session["LoginID"].ToString());
+                //result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew1", nv);
+            
 
             if (result > 0)
             {

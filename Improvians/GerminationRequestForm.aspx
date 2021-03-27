@@ -128,6 +128,8 @@
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
+                                                 <asp:Label ID="lblIsAG" runat="server" Text='<%# Eval("IsAG")  %>' Visible="false"></asp:Label>
+
                                                 <asp:Label ID="lblGrowerID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>' Visible="false"></asp:Label>
@@ -234,6 +236,7 @@
                                 <h3 class="robotobold">
                                     <asp:Label ID="lblJobID" runat="server"></asp:Label>
                                     <asp:Label ID="lblID" runat="server" Visible="false"></asp:Label>
+                                        <asp:Label ID="lblAGD" runat="server" Visible="false"></asp:Label>
                                 </h3>
                             </div>
                             <div class="col-lg-3">
