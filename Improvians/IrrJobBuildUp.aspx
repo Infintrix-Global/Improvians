@@ -56,6 +56,10 @@
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                                   <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                                   <asp:Label ID="lblIsAssistant" runat="server" Text='<%# Eval("IsAssistant")  %>' Visible="false"></asp:Label>
+                                                  <asp:Label ID="lblIrrigationCode" runat="server" Text='<%# Eval("IrrigationCode")  %>' Visible="false"></asp:Label>
+
+                                                
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -281,19 +285,7 @@
                 <div id="userinput" runat="server" class="row justify-content-center">
                     <div class="col-12">
 
-                        <div class="row">
-
-                            <%--  <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                <label>Job No.</label><br />
-
-
-                                <h3 class="robotobold">
-                                    <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
-                                <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
-
-
-                            </div>--%>
-                        </div>
+                      
                         <div class="row">
 
                             <div class="col-lg-3">
@@ -308,15 +300,7 @@
 
                                 <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                             </div>
-                            <div class="col-lg-3">
-                            </div>
-                            <div class="col-lg-3">
-                            </div>
-                        </div>
-                          <br />
-                        <div class="row">
-
-                            <div class="col-lg-3">
+                              <div class="col-lg-3">
                                   <label class="d-block">Spray Date</label>
 
                                 <asp:TextBox ID="txtSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
@@ -329,6 +313,11 @@
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                             </div>
+                        </div>
+                          <br />
+                        <div class="row">
+
+                          
                             <div class="col-lg-3">
                                 <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
                             </div>

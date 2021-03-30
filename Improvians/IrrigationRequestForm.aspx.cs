@@ -235,7 +235,8 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string BatchLocation = GridIrrigation.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
-                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}&jobCode={1}", BatchLocation, jobCode));
+                string IrrigationCode = GridIrrigation.DataKeys[rowIndex].Values[3].ToString();
+                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}&jobCode={1}&ICode={2}", BatchLocation, jobCode, IrrigationCode));
             }
         }
 

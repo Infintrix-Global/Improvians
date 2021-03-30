@@ -24,7 +24,7 @@ namespace Evo
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindenchLocation();
                 BindgvIrrigation();
-
+                BindGridIrrDetailsViewReq();
             }
         }
 
@@ -37,6 +37,7 @@ namespace Evo
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@IrrigationCode", IrrigationCode);
             dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
+
            // lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
 
         }
@@ -77,6 +78,17 @@ namespace Evo
             }
         }
 
+        public void BindGridIrrDetailsViewReq()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@ICode", IrrigationCode);
+            dt = objCommon.GetDataTable("SP_GetIrrigationTasCompletionView", nv);
+
+            GridViewViewDetails.DataSource = dt;
+            GridViewViewDetails.DataBind();
+
+        }
         public void BindgvIrrigation()
         {
             string ChId = "";
