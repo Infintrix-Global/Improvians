@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Evo.Admin.BAL_Classes;
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,6 +12,8 @@ namespace Evo
 {
     public partial class EvoMaster : System.Web.UI.MasterPage
     {
+        General objGeneral = new General();
+        CommonControl objCommon = new CommonControl();
         protected void Page_Init(object sender, EventArgs e)
         {
             if (Session["LoginID"] == null)
@@ -39,7 +44,20 @@ namespace Evo
                 dashlink.Attributes.Remove("class");
                 lnkmytask.Attributes.Add("class", "active");
             }
+            checkNotification();
 
+        }
+
+        protected void checkNotification()
+        {
+            DataTable dtSearch1;
+            string sqr = "Select * FROM NotificationMaster WHERE UserID = '" + Session["LoginID"]+"'";
+
+            dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
+           
+            lblNotificationCount.Text = dtSearch1.Rows.Count.ToString();
+            r1.DataSource = dtSearch1;
+            r1.DataBind();
         }
 
         protected void lnkmytask_Click(object sender, EventArgs e)
@@ -100,6 +118,22 @@ namespace Evo
             Response.Redirect("Dashboard.aspx");
         }
 
+        protected void updateNotification(string id)
+        {
+            NameValueCollection nv = new NameValueCollection();
+            
+            nv.Add("@Nid", id);
+          
+            var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
+        }
 
+        protected void linkBtn_Click(object sender, EventArgs e)
+        {
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Nid", "1");
+
+            var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
+        }
     }
 }
