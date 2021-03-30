@@ -607,7 +607,7 @@ namespace Evo
                         nv.Add("@SeedDate", lblSeedDate.Text);
                         nv.Add("@CreateBy", Session["LoginID"].ToString());
                         nv.Add("@Supervisor", ddlSupervisor.SelectedValue);
-                        nv.Add("@IrrigateSeedDate", IrrigateSeedDate);
+                        nv.Add("@IrrigateSeedDate", IrrigateDate);
                         nv.Add("@FertilizeSeedDate", FertilizationDate);
                         nv.Add("@ChemicalSeedDate", ChemicalDate);
                         nv.Add("@IrrigateNoCount", IrrigateNoCount);

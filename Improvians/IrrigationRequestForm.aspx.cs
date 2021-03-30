@@ -235,7 +235,8 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string BatchLocation = GridIrrigation.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
-                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}&jobCode={1}", BatchLocation, jobCode));
+                string IrrigationCode = GridIrrigation.DataKeys[rowIndex].Values[3].ToString();
+                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}&jobCode={1}&ICode={2}", BatchLocation, jobCode, IrrigationCode));
             }
         }
 
@@ -249,6 +250,8 @@ namespace Evo
             nv1.Add("@Mode", "13");
             dt = objCommon.GetDataTable("GET_Common", nv1);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+
+
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
                 if ((row.FindControl("chkSelect") as CheckBox).Checked)

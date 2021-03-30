@@ -25,6 +25,7 @@ namespace Evo
 
                 BindGridGerm();
                 BindOperatorList();
+                BindGridIrrDetailsViewReq();
             }
         }
 
@@ -59,7 +60,22 @@ namespace Evo
                 ViewState["IrrigationCode"] = value;
             }
         }
+        public void BindGridIrrDetailsViewReq()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@ICode", IrrigationCode);
+            dt = objCommon.GetDataTable("SP_GetIrrigationTaskAssignmentView", nv);
 
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                txtNotes.Text = dt.Rows[0]["Nots"].ToString();
+                txtResetSprayTaskForDays.Text = dt.Rows[0]["IrrigatedNoTrays"].ToString();
+                txtSprayDate.Text = Convert.ToDateTime(dt.Rows[0]["SprayDate"]).ToString("yyyy-MM-dd");
+                txtWaterRequired.Text = dt.Rows[0]["WaterRequired"].ToString();
+            }
+
+        }
 
         public void BindOperatorList()
         {
@@ -125,12 +141,13 @@ namespace Evo
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
             nv.Add("@IrrigationCode", IrrigationCode);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            //nv.Add("@wo", wo);
-            //  nv.Add("@SprayDate","");
-            // nv.Add("@TraysSprayed", "");
-            // nv.Add("@SprayDuration", "");
-            //nv.Add("@mode", "2");
+            nv.Add("@SprayDate", txtSprayDate.Text);
 
+            nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
+            nv.Add("@Comments",txtNotes.Text);
+            nv.Add("@WaterRequired",txtWaterRequired.Text);
+           
+           
             result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
             if (result > 0)
             {

@@ -28,11 +28,33 @@ namespace Evo
                 {
                     JobCode = Request.QueryString["jobCode"].ToString();
                 }
+                if (Request.QueryString["ICode"] != null)
+                {
+                    ICode = Request.QueryString["ICode"].ToString();
+                }
+
+                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindGridIrrigation();
                 BindSupervisorList();
                 BindGridIrrDetails("'" + Bench + "'");
+                BindGridIrrDetailsViewReq();
                 lblbench.Text = Bench;
-                txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+              
+            }
+        }
+        private string ICode
+        {
+            get
+            {
+                if (ViewState["ICode"] != null)
+                {
+                    return (string)ViewState["ICode"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["ICode"] = value;
             }
         }
 
@@ -194,7 +216,7 @@ namespace Evo
             {
 
             }
-           
+
 
         }
 
@@ -349,14 +371,14 @@ namespace Evo
             //   nv.Add("@Facility",ddlFacility.SelectedValue);
             //  nv.Add("@Mode", "1");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            nv.Add("@JobCode",JobCode);
+            nv.Add("@JobCode", JobCode);
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", "0");
             nv.Add("@BenchLocation", Bench);
             nv.Add("@RequestType", "0");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
-           // dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+            // dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
 
             if (Session["Role"].ToString() == "12")
             {
@@ -408,6 +430,24 @@ namespace Evo
             }
         }
 
+        public void BindGridIrrDetailsViewReq()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@ICode", ICode);
+            dt = objCommon.GetDataTable("SP_GetIrrigationTaskAssignmentView", nv);
+          
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                txtNotes.Text = dt.Rows[0]["Nots"].ToString();
+                txtResetSprayTaskForDays.Text = dt.Rows[0]["IrrigatedNoTrays"].ToString();
+                txtSprayDate.Text = Convert.ToDateTime(dt.Rows[0]["SprayDate"]).ToString("yyyy-MM-dd");
+                txtWaterRequired.Text = dt.Rows[0]["WaterRequired"].ToString();
+            }
+            
+        }
+
+
         public void BindGridIrrDetails(string BenchLoc)
         {
             DataTable dt = new DataTable();
@@ -428,16 +468,40 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             int IrrigationCode = 0;
-            DataTable dt = new DataTable();
-            NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Mode", "13");
-            dt = objCommon.GetDataTable("GET_Common", nv1);
-            IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+           
+            foreach (GridViewRow row1 in GridIrrigation.Rows)
+            {
+                string IrrigationCode1 = (row1.FindControl("lblIrrigationCode") as Label).Text;
+                if (IrrigationCode1 != "")
+                {
+                    IrrigationCode = Convert.ToInt32(IrrigationCode1);
+                    if (IrrigationCode == 0)
+                    {
+                        DataTable dt = new DataTable();
+                        NameValueCollection nv1 = new NameValueCollection();
+                        nv1.Add("@Mode", "13");
+                        dt = objCommon.GetDataTable("GET_Common", nv1);
+                        IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+                    }
+                    else
+                    {
+                        IrrigationCode = IrrigationCode;
+                    }
+                }
+                else
+                {
+                    DataTable dt = new DataTable();
+                    NameValueCollection nv1 = new NameValueCollection();
+                    nv1.Add("@Mode", "13");
+                    dt = objCommon.GetDataTable("GET_Common", nv1);
+                    IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+                }
+            }
+
+
+
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
-
 
                 long result = 0;
                 long Mresult = 0;
@@ -457,10 +521,15 @@ namespace Evo
                 nv.Add("@IrrigationCode", IrrigationCode.ToString());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@NoOfPasses", "");
-                nv.Add("@ResetSprayTaskForDays",txtResetSprayTaskForDays.Text);
+                nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
 
-                
-                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
+                nv.Add("@Role", ddlSupervisor.SelectedValue);
+                nv.Add("@ISAG", (row.FindControl("lblIsAssistant") as Label).Text);
+                nv.Add("@jid", Jid);
+
+
+
+                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestMenualUpdate", nv123);
@@ -471,16 +540,20 @@ namespace Evo
                 }
                 else
                 {
+
                     //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                     //  lblmsg.Text = "Assignment Not Successful";
+
+
+
                 }
 
                 //}
             }
+
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
+
                 if ((row.FindControl("lblGrowerputawayID") as Label).Text == "0")
                 {
                     long result = 0;
@@ -505,7 +578,11 @@ namespace Evo
                     //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@Nots", txtNotes.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
+                    nv.Add("@Role", ddlSupervisor.SelectedValue);
+                    nv.Add("@ISAG", "0");
+                    nv.Add("@jid", Jid);
+
+                    result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualNew", nv);
                 }
                 else
                 {
@@ -531,6 +608,8 @@ namespace Evo
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
                 }
             }
+
+
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
@@ -562,7 +641,7 @@ namespace Evo
             Response.Redirect("~/MyTaskGrower.aspx");
         }
 
-     
+
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
