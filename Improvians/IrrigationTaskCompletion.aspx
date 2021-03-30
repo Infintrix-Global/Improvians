@@ -152,6 +152,26 @@
                 <br />
                 <div class="row justify-content-center">
                     <div class="col-12">
+                        
+                        <div class="row">
+
+
+
+                            <div class="col-lg-6">
+                                <h3 class="robotobold">
+                                    <label>Bench Location</label><br />
+                                    <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
+                                </h3>
+                            </div>
+
+                            <div class="col-lg-6">
+                            </div>
+
+
+
+                        </div>
+
+                        <br />
                         <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewViewDetails" runat="server" AutoGenerateColumns="False"
@@ -198,24 +218,6 @@
                             </div>
                         </div>
                     </div>
-                        <div class="row">
-
-
-
-                            <div class="col-lg-6">
-                                <h3 class="robotobold">
-                                    <label>Bench Location</label><br />
-                                    <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
-                                </h3>
-                            </div>
-
-                            <div class="col-lg-6">
-                            </div>
-
-
-
-                        </div>
-
                         <br />
                         <div class="row">
 

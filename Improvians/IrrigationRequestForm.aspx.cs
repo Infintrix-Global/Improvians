@@ -250,6 +250,8 @@ namespace Evo
             nv1.Add("@Mode", "13");
             dt = objCommon.GetDataTable("GET_Common", nv1);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+
+
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
                 if ((row.FindControl("chkSelect") as CheckBox).Checked)
