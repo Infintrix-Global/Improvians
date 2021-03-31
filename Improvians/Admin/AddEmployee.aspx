@@ -104,12 +104,6 @@
                         <label>
                             <h3>Role</h3>
                             <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>
-                           <%-- <asp:Repeater ID="repDesignation" runat="server">
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chkRole" Text='<%#Bind("RoleName")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
-                                    <asp:HiddenField runat="server" ID="hdnRoleValue" Value='<%#Bind("RoleID")%>' />
-                                </ItemTemplate>
-                            </asp:Repeater>--%>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Designation" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>
@@ -119,27 +113,21 @@
                         <label class="mb-0">
                             <h3>Facility</h3>
                         </label>
-                        <%--<asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" TabIndex="6"></asp:DropDownList>--%>
                         <div>
-                            <asp:Repeater ID="repFacility" runat="server"   >
+                            <asp:Repeater ID="repFacility" runat="server">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkFacility" Text='<%#Bind("FacilityName")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
                                     <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("FacilityID")%>' />
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
-
-                        <%-- <span class="error_message d-block">
-                            <asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one facility."
-                                ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" ValidationGroup="e" />
-                        </span>--%>
                     </div>
 
 
                     <div class="clearfix"></div>
 
                     <div class="col-12 text-center order-md-1">
-                        <asp:Button ID="btAdd" runat="server" Text="Add" TabIndex="10" class="submit-bttn bttn bttn-primary" ClientIDMode="Static" OnClick="btAdd_Click"   ValidationGroup="e" />
+                        <asp:Button ID="btAdd" runat="server" Text="Add" TabIndex="10" class="submit-bttn bttn bttn-primary" ClientIDMode="Static" OnClick="btAdd_Click" ValidationGroup="e" />
                     </div>
 
                     <div class="clearfix"></div>
