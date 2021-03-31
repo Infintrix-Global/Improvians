@@ -5,6 +5,8 @@ using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -50,12 +52,21 @@ namespace Evo
 
         protected void checkNotification()
         {
-            DataTable dtSearch1;
-            string sqr = "Select * FROM NotificationMaster WHERE UserID = '" + Session["LoginID"]+"'";
+            var totalCount = "";
+            DataTable dtSearch1 = new DataTable();
+            string sqr = "Select * FROM NotificationMaster WHERE IsViewed=0 AND UserID = '" + Session["LoginID"] + "'";
 
             dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
-           
-            lblNotificationCount.Text = dtSearch1.Rows.Count.ToString();
+            if (dtSearch1 != null)
+            {
+                totalCount = dtSearch1.Rows.Count.ToString();
+            }
+            if (string.IsNullOrEmpty(totalCount))
+            {
+                totalCount = "0";
+            }
+            lblNotificationCount.Text = totalCount;
+
             r1.DataSource = dtSearch1;
             r1.DataBind();
         }
@@ -118,22 +129,32 @@ namespace Evo
             Response.Redirect("Dashboard.aspx");
         }
 
-        protected void updateNotification(string id)
+        protected void link_Click(object sender, EventArgs e)
         {
             NameValueCollection nv = new NameValueCollection();
-            
+
+            LinkButton link = (LinkButton)sender;
+            RepeaterItem row = (RepeaterItem)link.NamingContainer;
+            string id =((Label) row.FindControl("lblID")).Text;
             nv.Add("@Nid", id);
-          
-            var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
-        }
-
-        protected void linkBtn_Click(object sender, EventArgs e)
-        {
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Nid", "1");
+            string TaskName = ((Label)row.FindControl("lblTaskName")).Text;
 
             var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
+
+            if (TaskName!= null)
+            {
+                Response.Redirect(TaskName+"AssignmentForm.aspx");
+            }
         }
+
+        //[WebMethod]
+        //public static void updateNotification(int id)
+        //{
+        //    NameValueCollection nv = new NameValueCollection();
+
+        //    nv.Add("@Nid", id.ToString());
+
+        //    var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
+        //}
     }
 }
