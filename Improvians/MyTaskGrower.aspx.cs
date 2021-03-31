@@ -117,7 +117,7 @@ namespace Evo
 
                         string TodatDate;
                         string ReSetSprayDate = "";
-                        string DateCountNo="0";
+                        string DateCountNo = "0";
 
                         DateCountNo = Fcount.ToString();
                         TodatDate = System.DateTime.Now.ToShortDateString();
@@ -154,8 +154,8 @@ namespace Evo
                                 nv11.Add("@ID", "");
                                 nv11.Add("@GenusCode", GenusCode);
                                 nv11.Add("@DateCountNo", DateCountNo);
-                                 
- 
+
+
 
                                 _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv11);
 
@@ -338,6 +338,63 @@ namespace Evo
 
                     }
                 }
+
+
+                string PlanDate = string.Empty;
+
+                DataTable dt11 = new DataTable();
+                NameValueCollection nv111 = new NameValueCollection();
+                nv111.Add("@TraySize", TraySize);
+                nv111.Add("@GCode", GenusCode);
+
+
+                dt11 = objCommon.GetDataTable("spGetDateDhift", nv111);
+
+
+                if (dt11 != null && dt11.Rows.Count > 0)
+                {
+
+                    int Irrcount = 0;
+
+                    int DF = Convert.ToInt32(dt11.Rows[0]["dateshift"]);
+                    if (DF > 0)
+                    {
+                        PlanDate = (Convert.ToDateTime(seeddate).AddDays(DF)).ToString();
+
+                    }
+                    else
+                    {
+                        PlanDate = seeddate;
+                    }
+
+                    NameValueCollection nv11 = new NameValueCollection();
+
+                    nv11.Add("@GrowerPutAwayPlantReadyId", "");
+                    nv11.Add("@wo", "");
+                    nv11.Add("@Jid", _isInserted.ToString());
+                    nv11.Add("@jobcode", jobcode);
+                    nv11.Add("@FacilityID", FacilityID);
+                    nv11.Add("@GreenHouseID", GreenHouseID);
+                    nv11.Add("@Trays", Trays);
+
+                    nv11.Add("@SeedDate", seeddate);
+                    nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                    nv11.Add("@Supervisor", "0");
+                    nv11.Add("@PlantReadySeedDate", PlanDate);
+
+                    nv11.Add("@ID", "");
+                    nv11.Add("@GenusCode", GenusCode);
+                    nv11.Add("@DateCountNo", "0");
+
+                    _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsPlantReadyMenual", nv11);
+                    break;
+
+
+                }
+
+
+
+
 
 
                 // _isInserted = 1;

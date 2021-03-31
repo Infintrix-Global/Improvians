@@ -35,7 +35,7 @@
                         </asp:TemplateField>
 
 
-                    <%--    <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
+                        <%--    <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label8" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                             </ItemTemplate>
@@ -53,20 +53,20 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                       
+
 
                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                         
-                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+
+                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                      <%--  <asp:TemplateField HeaderText="Planned Ship Date" HeaderStyle-CssClass="autostyle2">
+                        <%--  <asp:TemplateField HeaderText="Planned Ship Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
@@ -168,10 +168,45 @@
                 <form class="web__form pt-2">
                     <div class="row justify-content-center">
                         <div class="col-12">
-                            <h3>User Inputs:</h3>
+                          
+                            <div class="portlet-body">
+                                    <div class="data__table">
+                                        <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
+                                            class="striped" AllowSorting="true"
+                                            GridLines="None"
+                                            ShowHeaderWhenEmpty="True" Width="100%">
+                                            <Columns>
+                                             
+
+
+                                                <asp:TemplateField HeaderText="Plant Ready Due Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Comments" >
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+                                            </Columns>
+
+                                            <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                            <PagerSettings Mode="NumericFirstLast" />
+                                            <EmptyDataTemplate>
+                                                No Record Available
+                                            </EmptyDataTemplate>
+                                        </asp:GridView>
+
+                                    </div>
+                                </div>
+                            <br />
                             <div class="row">
 
-
+                                
+                              
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <label class="d-block">Actual Plant Ready Date</label>

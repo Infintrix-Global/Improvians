@@ -720,10 +720,6 @@ namespace Evo
         {
             string Batchlocation = "";
             int FertilizationCode = 0;
-          
-
-
-
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -756,9 +752,6 @@ namespace Evo
 
                         objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
                     }
-
-
-
 
                     long result2 = 0;
                     NameValueCollection nv4 = new NameValueCollection();
@@ -840,7 +833,7 @@ namespace Evo
 
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtGcomments.Text);
-                    nv.Add("@Role",ddlAssignments.SelectedValue);
+                    nv.Add("@Role", Session["Role"].ToString());
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
 
                 }
@@ -1005,7 +998,7 @@ namespace Evo
                     //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@Nots", txtIrrComments.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@Role", ddlAssignments.SelectedValue);
+                    nv.Add("@Role", Session["Role"].ToString());
                     result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
                 }
@@ -1050,6 +1043,37 @@ namespace Evo
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                 if (chckrw.Checked == true)
                 {
+                    string PlanDate = string.Empty;
+
+
+                    DataTable dt1 = new DataTable();
+                    NameValueCollection nv1 = new NameValueCollection();
+
+                    string TraySize = (row.FindControl("lblTraySize") as Label).Text;
+                    string GCode = (row.FindControl("lblGenusCode") as Label).Text;
+                    nv1.Add("@TraySize", TraySize);
+                    nv1.Add("@GCode",GCode);
+
+
+                    dt1 = objCommon.GetDataTable("spGetDateDhift", nv1);
+                    if (dt1 != null && dt1.Rows.Count > 0)
+                    {
+                        int DF = Convert.ToInt32(dt1.Rows[0]["dateshift"]);
+                        if (DF > 0)
+                        {
+                            PlanDate = (Convert.ToDateTime((row.FindControl("lblSeededDate") as Label).Text).AddDays(DF)).ToString();
+                            txtPlantDate.Text = PlanDate;
+                        }
+                        else
+                        {
+                            txtPlantDate.Text = (row.FindControl("lblSeededDate") as Label).Text;
+                        }
+                    }
+                    else
+                    {
+                        txtPlantDate.Text = (row.FindControl("lblSeededDate") as Label).Text;
+                    }
+
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlplant_readySupervisor.SelectedValue);
@@ -1067,6 +1091,10 @@ namespace Evo
                     nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@Comments", txtPlantComments.Text.Trim());
                     nv.Add("@PlantDate", txtPlantDate.Text);
+                    nv.Add("@Role", Session["Role"].ToString());
+                    nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                    
+
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
                 }
 
@@ -1111,7 +1139,9 @@ namespace Evo
 
         protected void btnSearchDet_Click(object sender, EventArgs e)
         {
-            BindGridFerReq("", txtSearchJobNo.Text);
+            Bench1 = txtBatchLocation.Text;
+            BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
+          
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -1121,38 +1151,7 @@ namespace Evo
             BindGridFerReq("", txtSearchJobNo.Text);
         }
 
-        [System.Web.Script.Services.ScriptMethod()]
-        [System.Web.Services.WebMethod]
-        public static List<string> SearchCustomers(string prefixText, int count)
-        {
-            using (SqlConnection conn = new SqlConnection())
-            {
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
-                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
-                    //" AND t.[Job No_] like '" + prefixText + "%'";
-                    string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
-                        "";
-
-                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
-                    cmd.Connection = conn;
-                    conn.Open();
-                    List<string> customers = new List<string>();
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        while (sdr.Read())
-                        {
-                            customers.Add(sdr["jobcode"].ToString());
-                        }
-                    }
-                    conn.Close();
-                    return customers;
-                }
-            }
-        }
+      
 
         protected void btnChemicalReset_Click(object sender, EventArgs e)
         {
@@ -1717,6 +1716,74 @@ namespace Evo
             btnMoveRequest.Attributes.Add("class", "request__block-head collapsed");
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head ");
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+                    return customers;
+                }
+            }
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchBenchLocation(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EvoNavision"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    //cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                    //    "";
+                    cmd.CommandText = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Position Code]  like '%" + prefixText + "%' and s.[Location Code]='"+ Facility + "' ";
+
+                   cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> BenchLocation = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            BenchLocation.Add(sdr["p2"].ToString());
+                        }
+                    }
+                    conn.Close();
+                    return BenchLocation;
+                }
+            }
         }
     }
 }

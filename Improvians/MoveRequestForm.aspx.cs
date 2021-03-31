@@ -242,14 +242,13 @@ namespace Evo
 
 
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@MoveDate", Session["LoginID"].ToString());
+                nv.Add("@MoveDate", "");
                 nv.Add("@Comments", "");
                 nv.Add("@QuantityOfTray", "");
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@MoveID", Did);
 
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-
 
 
                 long result = objCommon.GetDataExecuteScaler("SP_AddMoveTaskAssignment", nv);

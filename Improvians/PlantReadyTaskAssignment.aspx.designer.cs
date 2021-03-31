@@ -87,13 +87,22 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlOperator;
 
         /// <summary>
-        /// txtNotes control.
+        /// txtPlantDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNotes;
+        protected global::System.Web.UI.WebControls.TextBox txtPlantDate;
+
+        /// <summary>
+        /// txtPlantComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPlantComments;
 
         /// <summary>
         /// btnSubmit control.
