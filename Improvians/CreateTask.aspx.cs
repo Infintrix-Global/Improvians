@@ -477,7 +477,10 @@ namespace Evo
             txtFTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
 
-            BindSQFTofBench(chkSelected);
+            if (chkSelected != "")
+            {
+                BindSQFTofBench(chkSelected);
+            }
         }
 
 
@@ -1002,11 +1005,21 @@ namespace Evo
                     //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@Nots", txtIrrComments.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@Role", ddlAssignments.SelectedValue);
                     result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
                 }
             }
 
+            //if(RadioBench.SelectedValue != "")
+            //{
+            //    NameValueCollection nv1 = new NameValueCollection();
+               
+            //    nv1.Add("@BatchHouseType", RadioBench.SelectedValue);
+            //    nv1.Add("@TypeOfTask", "Irrigation");
+            //    nv1.Add("@TypeOfCode", IrrigationCode.ToString());
+            //    objCommon.GetDataInsertORUpdate("SP_AddBatchLocationType", nv1);
+            //}
 
 
             string message = "Assignment Successful";

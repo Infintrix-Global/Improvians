@@ -23,7 +23,7 @@
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                                <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
                                                 <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblirID" runat="server" Text='<%# Eval("IrrigationId")  %>' Visible="false"></asp:Label>
@@ -108,7 +108,7 @@
                 <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
                     <br />
                     <h2 class="text-left">Crop Health Report </h2>
-                  
+
                     <br />
                     <div class="portlet-body">
                         <div class="data__table">
@@ -175,15 +175,49 @@
                 <br />
                 <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
+
                         <div class="row">
-                            <div class="col">
+
+                            <div class="col-lg-3">
                                 <label>Assignment</label>
                                 <asp:DropDownList ID="ddlOperator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
-                            <%--  <div class="col">
-                                <label>Notes</label>
-                                <asp:TextBox ID="txtNotes" TextMode="Multiline" runat="server" CssClass="input__control"></asp:TextBox>
-                            </div>--%>
+
+
+
+                            <div class="col-lg-3">
+                                <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
+
+                                <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="d-block">Spray Date</label>
+
+                                <asp:TextBox ID="txtSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
+                            </div>
+
+
+
+                            <div class="col-lg-3">
+                                <label>Minimum Days Until Next Irrigationn</label>
+                                <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+
+
+                            <div class="col-lg-3">
+                                <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
 
 
 

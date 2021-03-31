@@ -138,7 +138,7 @@ namespace Evo
             {
                 dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIrrigationCode", nv);
             }
-            else if (Session["Role"].ToString() == "3" || Session["Role"].ToString() == "11")
+            else
             {
                 dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
             }

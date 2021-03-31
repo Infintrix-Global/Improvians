@@ -76,7 +76,9 @@
                     <div class="dropdown alert__dropdown ml-auto">
                         <div class="dropdown-toggle" data-display="static" id="alert__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-bell"></i>
-                            <span class="alert__badge">2</span>
+                           <%-- <span class="alert__badge">--%>
+                                <asp:Label ID="lblNotificationCount" class="alert__badge" runat="server" Visible="true"></asp:Label>
+                           <%-- </span>--%>
                         </div>
 
                         <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="alert__dropdown">
@@ -85,16 +87,31 @@
                             </div>
 
                             <div class="dropdown__body">
-                                <div class="alert__bar alert__bar--unread">
-                                    <i class="fas fa-tasks"></i>
-                                    <div class="alert__info">
-                                        You have assigned new task. <strong>Job: #JB025437</strong>
-                                    </div>
-                                    <div class="alert__stamp">
-                                        <span>16 Jan 2021 - 10:05 AM</span>
-                                    </div>
-                                </div>
-                                <div class="alert__bar alert__bar--unread">
+                                <asp:Repeater ID="r1" runat="server">
+                                    <ItemTemplate>
+                                        <div class="alert__bar 
+                                          <%# (Eval("IsViewed").ToString() == "False" ?"alert__bar--unread" : "alert__bar--read" )  
+                                           %> >
+
+                                            <i class="fas fa-tasks"></i>
+                                            <asp:LinkButton ID="linkBtn" class="alert__info" OnClick="linkBtn_Click" CommandName="<%# Eval("Task")  %>" CommandArgument="<%# Eval("ID")  %>"   <%--target="_blank" href="<%# Eval("Task") + "AssignmentForm.aspx" %>"--%> >
+                                                <span>New task. <%--<%# (bool)Eval("IsViewed")     %>--%></span><br/>
+                                               <strong>Job:
+                                                    <asp:Label ID="lblJobId" runat="server" Text='<%# Eval("JobID")  %>' Visible="true"></asp:Label></strong>
+                                                <br/><strong>Bench Location:
+                                                    <asp:Label ID="lblBenchLoc" runat="server" Text='<%# Eval("BenchLocation") %>' Visible="true"></asp:Label></strong>
+                                                <br/><strong>Task :
+                                                    <asp:Label ID="lblTaskName" runat="server" Text='<%# Eval("Task") %>' Visible="true"></asp:Label></strong>
+                                            </asp:LinkButton>
+                                            <div class="alert__stamp">
+                                                <span>
+                                                    <asp:Label ID="lblNotificationTime" runat="server" Text='<%# Eval("NotificationDate") %>' Visible="true"></asp:Label></span>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+
+                                </asp:Repeater>
+                                <%--<div class="alert__bar alert__bar--unread">
                                     <i class="fas fa-tasks"></i>
                                     <div class="alert__info">
                                         You have assigned new task. <strong>Job: #JB025437</strong>
@@ -111,7 +128,7 @@
                                     <div class="alert__stamp">
                                         <span>16 Jan 2021 - 10:05 AM</span>
                                     </div>
-                                </div>
+                                </div>--%>
                             </div>
 
                             <div class="dropdown__foo text-center">
@@ -122,8 +139,8 @@
 
                     <div class="dropdown account__dropdown ml-3">
                         <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <asp:Image  ImageUrl="images/user-profile.jpg" alt="John Smith" width="128"   runat="server" ID="imgprofilepic" />
-                          <%--  <img  src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />--%>
+                            <asp:Image ImageUrl="images/user-profile.jpg" alt="John Smith" Width="128" runat="server" ID="imgprofilepic" />
+                            <%--  <img  src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />--%>
                             <span class="account__user robotomd">
                                 <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
                         </div>
@@ -195,12 +212,12 @@
                 </li>
             </ul>
         </footer>
-       
+
         <script src="js/jquery.min.js"></script>
         <script defer="defer" src="js/popper.min.js"></script>
         <script defer="defer" src="js/bootstrap.min.js"></script>
         <script defer="defer" src="js/custom.js"></script>
-      
+
     </form>
 </body>
 </html>

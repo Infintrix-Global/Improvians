@@ -152,6 +152,7 @@
                 <br />
                 <div class="row justify-content-center">
                     <div class="col-12">
+                        
                         <div class="row">
 
 
@@ -170,6 +171,53 @@
 
                         </div>
 
+                        <br />
+                        <div class="portlet-body">
+                        <div class="data__table">
+                            <asp:GridView ID="GridViewViewDetails" runat="server" AutoGenerateColumns="False"
+                                class="striped" AllowSorting="true"
+                                GridLines="None" 
+                                ShowHeaderWhenEmpty="True" Width="100%">
+                                <Columns>
+
+                                    <asp:TemplateField HeaderText="Water Required" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                 
+
+                                    <asp:TemplateField HeaderText="New Estimated Ship Date" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                       <asp:TemplateField HeaderText="Comments" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                   
+                                </Columns>
+
+                                <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                <PagerSettings Mode="NumericFirstLast" />
+                                <EmptyDataTemplate>
+                                    No Record Available
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                    </div>
                         <br />
                         <div class="row">
 
