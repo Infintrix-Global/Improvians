@@ -42,19 +42,7 @@
                     </cc1:AutoCompleteExtender>
                 </div>
 
-                 <div class="col-lg-3">
 
-                   <label>Bench Location </label>
-                    <asp:TextBox ID="txtBatchLocation" runat="server" class="input__control robotomd"></asp:TextBox>
-
-
-                    <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
-                        MinimumPrefixLength="2"
-                        CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                        TargetControlID="txtBatchLocation"
-                        ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
-                    </cc1:AutoCompleteExtender>
-                </div>
 
                 <div class="col-lg-3">
                     <br />
@@ -66,16 +54,40 @@
 
                 <div class="col-lg-3">
                 </div>
-
-                <div class="col-lg-3">
+                  <div class="col-lg-3">
                 </div>
 
+
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-lg-3">
+
+                    <label>Bench Location </label>
+                    <asp:TextBox ID="txtBatchLocation" runat="server" class="input__control robotomd"></asp:TextBox>
+
+
+                    <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
+                        MinimumPrefixLength="2"
+                        CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                        TargetControlID="txtBatchLocation"
+                        ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
+                    </cc1:AutoCompleteExtender>
+                </div>
+                <div class="col-lg-3">
+                     <br />
+                    <asp:Button Text="Search" ID="btlSearchBenchLocation" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btlSearchBenchLocation_Click" />
+
+                    <asp:Button Text="Reset" ID="btnResetBenchLocation" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetBenchLocation_Click" />
+
+                </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-lg-3">
                     <label>Bench Location </label>
-                 
+
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     <%--<span class="error_message">
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
@@ -179,10 +191,10 @@
                                                 <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                                 <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
-                                                  <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        
+
                                         <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
@@ -312,69 +324,69 @@
                 <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional"
                     runat="server">
                     <ContentTemplate>--%>
-            
-
-                        <div class="task_request-buttons">
 
 
-                            <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click1">
+                <div class="task_request-buttons">
+
+
+                    <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click1">
                               <span class="">
                                 <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                                 Germination Count
                              </span>
-                            </asp:LinkButton>
+                    </asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="btnFertilization" ForeColor="Black" class="request__block-head collapsed" OnClick="btnFertilization_Click">
+                    <asp:LinkButton runat="server" ID="btnFertilization" ForeColor="Black" class="request__block-head collapsed" OnClick="btnFertilization_Click">
                             <span class="">
                                 <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization">
                                 Fertilization
                             </span>
-                            </asp:LinkButton>
+                    </asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="btnChemical" ForeColor="Black" class="request__block-head collapsed" OnClick="btnChemical_Click">
+                    <asp:LinkButton runat="server" ID="btnChemical" ForeColor="Black" class="request__block-head collapsed" OnClick="btnChemical_Click">
                             <span class="">
                                 <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical">
                                 Chemical
                             </span>
-                            </asp:LinkButton>
+                    </asp:LinkButton>
 
 
-                            <asp:LinkButton runat="server" ID="btnIrrigation" ForeColor="Black" class="request__block-head collapsed" OnClick="btnIrrigation_Click">
+                    <asp:LinkButton runat="server" ID="btnIrrigation" ForeColor="Black" class="request__block-head collapsed" OnClick="btnIrrigation_Click">
                             <span class="">
                                 <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
                                 Irrigation
                             </span>
-                            </asp:LinkButton>
+                    </asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="btnPlantReady" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
+                    <asp:LinkButton runat="server" ID="btnPlantReady" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
                             <span class="">
                                 <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
                                 Plant Ready
                             </span>
-                            </asp:LinkButton>
+                    </asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="btnMoveRequest" ForeColor="Black" class="request__block-head collapsed" OnClick="btnMoveRequest_Click">
+                    <asp:LinkButton runat="server" ID="btnMoveRequest" ForeColor="Black" class="request__block-head collapsed" OnClick="btnMoveRequest_Click">
                             <span class="">
                                 <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
                                 Move Request
                             </span>
-                            </asp:LinkButton>
+                    </asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="btnDump" ForeColor="Black" class="request__block-head collapsed" OnClick="btnDump_Click">
+                    <asp:LinkButton runat="server" ID="btnDump" ForeColor="Black" class="request__block-head collapsed" OnClick="btnDump_Click">
                             <span class="">
                                 <img src="./images/dashboard_dump-request.png" width="137" height="136" alt="Dump" />
                                 Dump
                             </span>
-                            </asp:LinkButton>
+                    </asp:LinkButton>
 
-                            <asp:LinkButton runat="server" ID="btnGeneral_Task" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneralTask_Click">
+                    <asp:LinkButton runat="server" ID="btnGeneral_Task" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneralTask_Click">
                             <span class="">
                                 <img src="./images/dashboard_general-task.png" width="137" height="134" alt="General Task" />
                                 General Task
                             </span>
-                            </asp:LinkButton>
+                    </asp:LinkButton>
 
-                        </div>
+                </div>
 
                 <%--       </ContentTemplate>
                 </asp:UpdatePanel>--%>
@@ -829,14 +841,14 @@
                                                         <label>Assignment</label>
                                                         <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
-<%--                                                        <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                                                        <%--                                                        <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>--%>
                                                         <span class="error_message">
                                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
                                                                 SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
                                                         </span>
                                                     </div>
 
-                                                   <div class="col-xl-3">
+                                                    <div class="col-xl-3">
                                                         <label>Task Type</label>
 
                                                         <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">

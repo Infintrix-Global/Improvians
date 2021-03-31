@@ -1139,10 +1139,25 @@ namespace Evo
 
         protected void btnSearchDet_Click(object sender, EventArgs e)
         {
-            Bench1 = txtBatchLocation.Text;
-            BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
+           
+            BindGridFerReq("", txtSearchJobNo.Text);
           
         }
+
+        protected void btnResetBenchLocation_Click(object sender, EventArgs e)
+        {
+            txtBatchLocation.Text = "";
+            Bench1 = txtBatchLocation.Text;
+        }
+
+        protected void btlSearchBenchLocation_Click(object sender, EventArgs e)
+        {
+         
+            Bench1 = txtBatchLocation.Text;
+            BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
+            // BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
+        }
+
 
         protected void Button4_Click(object sender, EventArgs e)
         {
@@ -1785,5 +1800,7 @@ namespace Evo
                 }
             }
         }
+
+        
     }
 }
