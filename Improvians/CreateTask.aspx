@@ -33,7 +33,7 @@
                     </cc1:AutoCompleteExtender>
                 </div>
 
-                 <div class="col-lg-3">
+                 <div class="col-auto col-lg-3 mb-3">
 
                    <label>Bench Location </label>
                     <asp:TextBox ID="txtBatchLocation" runat="server" class="input__control robotomd"></asp:TextBox>
