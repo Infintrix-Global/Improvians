@@ -387,7 +387,7 @@ namespace Evo
                     nv11.Add("@DateCountNo", "0");
 
                     _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsPlantReadyMenual", nv11);
-                    break;
+                    
 
 
                 }
