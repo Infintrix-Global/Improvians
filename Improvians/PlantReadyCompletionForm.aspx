@@ -41,7 +41,7 @@
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvGerm_PageIndexChanging"
-                                    GridLines="None" OnRowCommand="gvGerm_RowCommand"
+                                    GridLines="None" OnRowCommand="gvGerm_RowCommand"  DataKeyNames="PlantReadyId,PlantReadyTaskAssignmentId"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                         <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -56,7 +56,7 @@
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-
+                                                
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                                  <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
@@ -115,7 +115,7 @@
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
-                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("PlantReadyTaskAssignmentId")  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select"  CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>

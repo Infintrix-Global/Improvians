@@ -33,6 +33,19 @@
                     </cc1:AutoCompleteExtender>
                 </div>
 
+                 <div class="col-lg-3">
+
+                   <label>Bench Location </label>
+                    <asp:TextBox ID="txtBatchLocation" runat="server" class="input__control robotomd"></asp:TextBox>
+
+
+                    <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
+                        MinimumPrefixLength="2"
+                        CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                        TargetControlID="txtBatchLocation"
+                        ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
+                    </cc1:AutoCompleteExtender>
+                </div>
 
                 <div class="col-auto col-lg-3 mb-3">
                     <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
@@ -45,7 +58,7 @@
             <div class="row align-items-end mt-3 mt-md-0">
                 <div class="col-12 col-md-6 col-lg mb-3">
                     <label>Bench Location </label>
-                    <span style="color: red">*</span>
+                 
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     <%--<span class="error_message">
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
@@ -129,8 +142,10 @@
                                                 <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                                 <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
+                                                  <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        
                                         <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
@@ -556,8 +571,8 @@
 
                                     <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
-                                <div class="mb-3 col-12 col-sm-6 col-md-4">
-                                    <label class="d-block">Plant Ready Date</label>
+                                <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                    <label class="d-block">Plant Ready Due Date</label>
                                     <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
                                 <div class="d-none d-sm-block w-100"></div>
@@ -620,6 +635,7 @@
 
                                         <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                         <span class="error_message"></span>
+
                                     </div>
                                 </div>
                                 <div class="row">

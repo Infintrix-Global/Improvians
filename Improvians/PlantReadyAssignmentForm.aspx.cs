@@ -149,16 +149,18 @@ namespace Evo
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-                nv.Add("@Notes", "");
+                nv.Add("@Notes","");
                 nv.Add("@PRID", PRID);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                long result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignment", nv);
+                nv.Add("@PlantExpirationDate","");
+                
+                long result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignmentNew", nv);
 
                 //  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}", result, ChId));
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}&PRID={2}", result, ChId, PRID));
                 }
             }
         }

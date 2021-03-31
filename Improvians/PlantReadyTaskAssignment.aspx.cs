@@ -107,6 +107,18 @@ namespace Evo
             gvPlantReady.DataBind();
 
 
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@PlantReadyId", PRID);
+
+            dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytView", nv1);
+
+            if (dt1 != null & dt1.Rows.Count > 0)
+            {
+                txtPlantComments.Text = dt1.Rows[0]["Comments"].ToString();
+                txtPlantDate.Text = Convert.ToDateTime(dt1.Rows[0]["PlanDate"]).ToString("yyyy-MM-dd");
+                // txtDumpDate.Text = Convert.ToDateTime(dt.Rows[0]["DumpDateR"]).ToString("yyyy-MM-dd");
+            }
         }
 
 
@@ -129,7 +141,7 @@ namespace Evo
             //nv.Add("@mode", "3");
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
-            nv.Add("@Notes", txtNotes.Text);
+            nv.Add("@Notes", txtPlantComments.Text);
             nv.Add("@PRID", PRID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignment", nv);
@@ -156,7 +168,7 @@ namespace Evo
         public void clear()
         {
             ddlOperator.SelectedIndex = 0;
-            txtNotes.Text = "";
+            txtPlantComments.Text = "";
 
 
         }

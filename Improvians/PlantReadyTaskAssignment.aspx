@@ -37,11 +37,11 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
+                                 <%--       <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label8" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -180,24 +180,30 @@
                 <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                            <div class="col">
+                            <div class="mb-3 mb-md-0 col-12 col-md-auto">
                                 <label>Plant Ready Operator </label>
                                 <asp:DropDownList ID="ddlOperator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
-                            <div class="col">
-                                <label>Notes</label>
-                                <asp:TextBox ID="txtNotes" TextMode="Multiline" runat="server" CssClass="input__control"></asp:TextBox>
-                            </div>
+                           <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                    <label class="d-block">Plant Ready Due Date</label>
+                                    <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
 
-                            <div class="col-auto">
-                                <br />
-                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
-                            </div>
-                            <div class="col-auto">
-                                <br />
-                                <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
-                            </div>
+                                <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtPlantComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                </div>
+
+                           
+                         
                         </div>
+                         <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
+                              
+                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
+                                    <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
+                            </div>
                     </asp:Panel>
                 </div>
             </div>

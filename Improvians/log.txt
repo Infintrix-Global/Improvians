@@ -1547,3 +1547,137 @@
    at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
    at Evo.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Could not find stored procedure 'SP_GetChemicalCheckResetSprayTas'. at 3/30/2021 6:24:54 AM
 *****Error message=****@WorkOrder:WO114745 at 3/30/2021 6:26:31 AM
+*****Error message=****@Customer: at 3/30/2021 7:06:11 AM
+*****Error message=****@jobcode:JB033484 at 3/30/2021 7:06:11 AM
+*****Error message=****@Item:TMC-8011 at 3/30/2021 7:06:11 AM
+*****Error message=****@Facility:ENC1 at 3/30/2021 7:06:11 AM
+*****Error message=****@GreenHouseID:ENC1-H01-6-B at 3/30/2021 7:06:11 AM
+*****Error message=****@TotalTray:528 at 3/30/2021 7:06:11 AM
+*****Error message=****@TraySize:339 at 3/30/2021 7:06:11 AM
+*****Error message=****@Seeddate:02/16/2021 at 3/30/2021 7:06:11 AM
+*****Error message=****@Itemdesc:TOMATO-CANNING-8011 - 339 at 3/30/2021 7:06:11 AM
+*****Error message=****@SupervisorID:17 at 3/30/2021 7:06:11 AM
+*****Error message=****@InspectionDueDate:2021-03-30 at 3/30/2021 7:06:11 AM
+*****Error message=****@TraysInspected:10 at 3/30/2021 7:06:11 AM
+*****Error message=****@LoginId:1 at 3/30/2021 7:06:11 AM
+*****Error message=****@Comments:test at 3/30/2021 7:06:11 AM
+*****Error message=****@Role:0 at 3/30/2021 7:06:11 AM
+*****Error message=****@SupervisorID:2 at 3/30/2021 7:07:26 AM
+*****Error message=****@InspectionDueDate:2021-03-30 at 3/30/2021 7:07:26 AM
+*****Error message=****@#TraysInspected: at 3/30/2021 7:07:26 AM
+*****Error message=****@ID:789 at 3/30/2021 7:07:26 AM
+*****Error message=****@LoginID:17 at 3/30/2021 7:07:26 AM
+*****Error message=****@Role:17 at 3/30/2021 7:07:26 AM
+*****Error message=****@ISAG:1 at 3/30/2021 7:07:26 AM
+*****Error message=****@SupervisorID:2 at 3/30/2021 7:08:51 AM
+*****Error message=****@InspectionDueDate:2021-03-30 at 3/30/2021 7:08:51 AM
+*****Error message=****@#TraysInspected:2 at 3/30/2021 7:08:51 AM
+*****Error message=****@ID:29 at 3/30/2021 7:08:51 AM
+*****Error message=****@LoginID:17 at 3/30/2021 7:08:51 AM
+*****Error message=****@Role:17 at 3/30/2021 7:08:51 AM
+*****Error message=****@ISAG:0 at 3/30/2021 7:08:51 AM
+*****Error message=****@Customer: at 3/30/2021 7:15:26 AM
+*****Error message=****@jobcode:JB032644 at 3/30/2021 7:15:26 AM
+*****Error message=****@Item:CE-SSC-1 at 3/30/2021 7:15:26 AM
+*****Error message=****@Facility:ENC1 at 3/30/2021 7:15:26 AM
+*****Error message=****@GreenHouseID:ENC1-H03-4-B at 3/30/2021 7:15:26 AM
+*****Error message=****@TotalTray:1127 at 3/30/2021 7:15:26 AM
+*****Error message=****@TraySize:256 at 3/30/2021 7:15:26 AM
+*****Error message=****@Seeddate:03/11/2021 at 3/30/2021 7:15:26 AM
+*****Error message=****@Itemdesc:CELERY-SSC-1 - 256 at 3/30/2021 7:15:26 AM
+*****Error message=****@SupervisorID:17 at 3/30/2021 7:15:26 AM
+*****Error message=****@InspectionDueDate:2021-03-30 at 3/30/2021 7:15:26 AM
+*****Error message=****@TraysInspected:10 at 3/30/2021 7:15:26 AM
+*****Error message=****@LoginId:1 at 3/30/2021 7:15:26 AM
+*****Error message=****@Comments:test at 3/30/2021 7:15:26 AM
+*****Error message=****@Role:0 at 3/30/2021 7:15:26 AM
+*****Error message=****@SupervisorID:2 at 3/30/2021 7:20:51 AM
+*****Error message=****@InspectionDueDate:2021-03-30 at 3/30/2021 7:20:51 AM
+*****Error message=****@#TraysInspected:2 at 3/30/2021 7:20:51 AM
+*****Error message=****@ID:790 at 3/30/2021 7:20:51 AM
+*****Error message=****@LoginID:17 at 3/30/2021 7:20:51 AM
+*****Error message=****@Role:17 at 3/30/2021 7:20:51 AM
+*****Error message=****@ISAG:1 at 3/30/2021 7:20:51 AM
+*****Error message=****@SupervisorID:2 at 3/30/2021 7:28:46 AM
+*****Error message=****@MoveNumberOfTrays:1155 at 3/30/2021 7:28:46 AM
+*****Error message=****@FromFacility:17 at 3/30/2021 7:28:46 AM
+*****Error message=****@GrowerPutAwayID:0 at 3/30/2021 7:28:46 AM
+*****Error message=****@LoginID:17 at 3/30/2021 7:28:47 AM
+*****Error message=****@ToFacility:ENC1 at 3/30/2021 7:28:47 AM
+*****Error message=****@ToGreenHouse:ENC1-H01-5-A at 3/30/2021 7:28:47 AM
+*****Error message=****@MoveDate:2021-03-30 at 3/30/2021 7:28:47 AM
+*****Error message=****@Comments:Test at 3/30/2021 7:28:47 AM
+*****Error message=****@mvoeId:3 at 3/30/2021 7:28:47 AM
+*****Error message=****@RoleId:2 at 3/30/2021 7:28:47 AM
+*****Error message=****@ManualID:1512 at 3/30/2021 7:28:47 AM
+*****Error message=****@SupervisorID:2 at 3/31/2021 1:54:12 AM
+*****Error message=****@ManualID:JB031886 at 3/31/2021 1:54:12 AM
+*****Error message=****@Comments:test at 3/31/2021 1:54:12 AM
+*****Error message=****@PRid:1 at 3/31/2021 1:54:12 AM
+*****Error message=****@PlantDate:2021-01-15 at 3/31/2021 1:54:12 AM
+*****Error message=****@LoginID:17 at 3/31/2021 1:54:12 AM
+*****Error message=****@RoleId:12 at 3/31/2021 1:54:12 AM
+*****Error message=****@SupervisorID:2 at 3/31/2021 2:09:44 AM
+*****Error message=****@ManualID:1498 at 3/31/2021 2:09:44 AM
+*****Error message=****@Comments:test at 3/31/2021 2:09:44 AM
+*****Error message=****@PRid:1 at 3/31/2021 2:09:44 AM
+*****Error message=****@PlantDate:2021-01-15 at 3/31/2021 2:09:44 AM
+*****Error message=****@LoginID:17 at 3/31/2021 2:09:44 AM
+*****Error message=****@RoleId:12 at 3/31/2021 2:09:44 AM
+*****Error message=****   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   at Evo.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\CommonControl.cs:line 237Procedure or function 'SP_GetTaskAssignmenPlantReadytView' expects parameter '@PlantReadyId', which was not supplied. at 3/31/2021 2:15:33 AM
+*****Error message=****@SupervisorID:6 at 3/31/2021 3:04:47 AM
+*****Error message=****@ManualID:1499 at 3/31/2021 3:04:47 AM
+*****Error message=****@Comments:Test Mehul Rana at 3/31/2021 3:04:47 AM
+*****Error message=****@PRid:4 at 3/31/2021 3:04:47 AM
+*****Error message=****@PlantDate:2021-02-15 at 3/31/2021 3:04:47 AM
+*****Error message=****@LoginID:17 at 3/31/2021 3:04:47 AM
+*****Error message=****@RoleId:12 at 3/31/2021 3:04:47 AM
+*****Error message=****@SupervisorID:6 at 3/31/2021 3:09:22 AM
+*****Error message=****@ManualID:1500 at 3/31/2021 3:09:22 AM
+*****Error message=****@Comments:test at 3/31/2021 3:09:22 AM
+*****Error message=****@PRid:6 at 3/31/2021 3:09:22 AM
+*****Error message=****@PlantDate:2020-12-27 at 3/31/2021 3:09:22 AM
+*****Error message=****@LoginID:17 at 3/31/2021 3:09:22 AM
+*****Error message=****@RoleId:12 at 3/31/2021 3:09:22 AM
+*****Error message=****@SupervisorID:6 at 3/31/2021 3:12:16 AM
+*****Error message=****@ManualID:1501 at 3/31/2021 3:12:16 AM
+*****Error message=****@Comments:Test Mehul at 3/31/2021 3:12:16 AM
+*****Error message=****@PRid:8 at 3/31/2021 3:12:16 AM
+*****Error message=****@PlantDate:2021-02-25 at 3/31/2021 3:12:16 AM
+*****Error message=****@LoginID:17 at 3/31/2021 3:12:16 AM
+*****Error message=****@RoleId:12 at 3/31/2021 3:12:16 AM
+*****Error message=****@SupervisorID:6 at 3/31/2021 3:20:24 AM
+*****Error message=****@ManualID:1502 at 3/31/2021 3:20:24 AM
+*****Error message=****@Comments:test Mehul at 3/31/2021 3:20:24 AM
+*****Error message=****@PRid:9 at 3/31/2021 3:20:24 AM
+*****Error message=****@PlantDate:2021-03-18 at 3/31/2021 3:20:24 AM
+*****Error message=****@LoginID:17 at 3/31/2021 3:20:24 AM
+*****Error message=****@RoleId:12 at 3/31/2021 3:20:24 AM
+*****Error message=****@SupervisorID:2 at 3/31/2021 4:24:18 AM
+*****Error message=****@MoveNumberOfTrays:952 at 3/31/2021 4:24:18 AM
+*****Error message=****@FromFacility:17 at 3/31/2021 4:24:18 AM
+*****Error message=****@GrowerPutAwayID:0 at 3/31/2021 4:24:18 AM
+*****Error message=****@LoginID:17 at 3/31/2021 4:24:18 AM
+*****Error message=****@ToFacility:ENC1 at 3/31/2021 4:24:18 AM
+*****Error message=****@ToGreenHouse:ENC1-H01-3-A at 3/31/2021 4:24:18 AM
+*****Error message=****@MoveDate:2021-03-31 at 3/31/2021 4:24:18 AM
+*****Error message=****@Comments:Test Mehul at 3/31/2021 4:24:18 AM
+*****Error message=****@mvoeId:1 at 3/31/2021 4:24:18 AM
+*****Error message=****@RoleId:2 at 3/31/2021 4:24:18 AM
+*****Error message=****@ManualID:1506 at 3/31/2021 4:24:18 AM

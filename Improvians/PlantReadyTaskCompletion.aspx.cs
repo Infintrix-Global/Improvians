@@ -26,10 +26,22 @@ namespace Evo
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
                 BindPlantReady();
-
+                BindViewDetilas(Convert.ToInt32(Request.QueryString["PRID"]));
             }
         }
 
+        public void BindViewDetilas(int PRid)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@PlantReadyId", PRid.ToString());
+
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytView", nv);
+            GridViewDumpView.DataSource = dt;
+            GridViewDumpView.DataBind();
+
+        }
         public void BindGridCropHealth(int Chid)
         {
             DataTable dt1 = new DataTable();
