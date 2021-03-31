@@ -12,7 +12,6 @@
                     <div class="mb-2">
                         <h2>Job Information Page</h2>
                     </div>
-                    <br />
 
                     <div class="row align-items-end" id="divFilter" runat="server" visible="false">
 

@@ -201,6 +201,7 @@ namespace Evo
             }
             if (filter != string.Empty)
                 dataView.RowFilter = filter.Substring(4);
+           // dataView.Sort = " EndingDate  ASC ";
             GV4.DataSource = dataView;
             GV4.DataBind();
         }

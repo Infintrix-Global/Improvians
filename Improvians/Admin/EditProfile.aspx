@@ -6,7 +6,7 @@
     <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
     <div class="admin__content">
         <div class="container-fluid">
-            <h1 class="text-center text-sm-left">Add Employee</h1>
+            <h1 class="text-center text-sm-left">Edit Employee</h1>
 
             <hr />
             <!-- BEGIN FORM-->
@@ -50,19 +50,7 @@
 
                     <div class="col-md-6 col-xl-5">
                         <label>
-                            <h3>Mobile Number</h3>
-
-                            <asp:TextBox ID="txtMobile" runat="server" class="input__control input__control-icon phone" placeholder="Enter your Mobile No. here" TabIndex="2"></asp:TextBox>
-
-                            <span class="error_message">
-                                <asp:RequiredFieldValidator ID="RequiredMobile" runat="server" ControlToValidate="txtMobile" ErrorMessage="Please Enter Mobile Number" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="RegularExpressionValidatorMobile" runat="server" ControlToValidate="txtMobile" Display="Dynamic" ErrorMessage="Please enter valid Mobile Number" ForeColor="Red" SetFocusOnError="True" ValidationExpression="[0-9]{10}" ValidationGroup="e"></asp:RegularExpressionValidator>
-                            </span>
-                        </label>
-
-
-                        <label>
-                            <h3>Employee Name</h3>
+                            <h3>Employee Name<span style="color: red">*</span></h3>
                             <asp:TextBox ID="txtName" class="input__control input__control-icon username" placeholder="Enter your user name" TabIndex="3" runat="server"></asp:TextBox>
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtName" ValidationGroup="e"
@@ -75,7 +63,7 @@
                         </label>
 
                         <label>
-                            <h3>Email ID</h3>
+                            <h3>Email ID<span style="color: red">*</span></h3>
                             <asp:TextBox ID="txtEmail" class="input__control input__control-icon email" placeholder="Enter your email here" TabIndex="4" runat="server"></asp:TextBox>
                             <asp:Label ID="lblStatus" runat="server" ForeColor="red"></asp:Label>
                             <span class="error_message">
@@ -87,10 +75,20 @@
                                 </asp:RegularExpressionValidator>
                             </span>
                         </label>
+                        <label>
+                            <h3>Mobile Number</h3>
+
+                            <asp:TextBox ID="txtMobile" runat="server" class="input__control input__control-icon phone" placeholder="Enter your Mobile No. here" TabIndex="2"></asp:TextBox>
+
+                            <span class="error_message">
+                                <%--  <asp:RequiredFieldValidator ID="RequiredMobile" runat="server" ControlToValidate="txtMobile" ErrorMessage="Please Enter Mobile Number" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>--%>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidatorMobile" runat="server" ControlToValidate="txtMobile" Display="Dynamic" ErrorMessage="Please enter valid Mobile Number" ForeColor="Red" SetFocusOnError="True" ValidationExpression="[0-9]{10}" ValidationGroup="e"></asp:RegularExpressionValidator>
+                            </span>
+                        </label>
                     </div>
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
-                            <h3>User Name</h3>
+                            <h3>User Name<span style="color: red">*</span></h3>
                             <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
 
                             <span class="error_message">
@@ -103,7 +101,7 @@
 
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
-                            <h3>Password</h3>
+                            <h3>Password<span style="color: red">*</span></h3>
                             <asp:TextBox ID="txtPassword" class="input__control input__control-icon " placeholder="Enter your passord here" TabIndex="6" runat="server"></asp:TextBox>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
@@ -111,22 +109,20 @@
                         </label>
                     </div>
 
-                    <div class="col-md-6 col-xl-5 order-md-1">
+                      <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>Role</h3>
-                            <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd" TabIndex="8"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Designation" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>
                         </label>
                     </div>
-
-                    <div class="col-md-10 col-12 order-md-1">
+                    <div class="col-md-6 col-xl-5 order-md-1">
                         <label class="mb-0">
                             <h3>Facility</h3>
                         </label>
-                        <%--<asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd" TabIndex="6"></asp:DropDownList>--%>
-                        <div class="control__box">
+                        <div>
                             <asp:Repeater ID="repFacility" runat="server">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkFacility" Text='<%#Bind("FacilityName")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
@@ -134,11 +130,6 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
-
-                        <%-- <span class="error_message d-block">
-                            <asp:CustomValidator ID="CustomValidator1" ErrorMessage="Please select at least one facility."
-                                ForeColor="Red" ClientValidationFunction="ValidateCheckBoxList" runat="server" ValidationGroup="e" />
-                        </span>--%>
                     </div>
 
 
