@@ -259,13 +259,16 @@ namespace Evo
             //  nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
             // nv.Add("@WO",wo);
+           
+            GridViewRow row = gvPlantReady.Rows[0];
+
+            var txtJobNo = (row.FindControl("lbljobID") as Label).Text;
+            var txtBenchLocation = (row.FindControl("lblBenchLoc") as Label).Text;
 
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@Aid", ddlDumptAssignment.SelectedValue);
             dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
-
-
 
             nv.Add("@SupervisorID", ddlDumptAssignment.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
@@ -276,6 +279,11 @@ namespace Evo
             nv.Add("@DumpDate", txtDumpDate.Text);
             nv.Add("@QuantityOfTray", txtQuantityofTray.Text);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+
+            nv.Add("@jobcode", txtJobNo);
+            nv.Add("@GreenHouseID", txtBenchLocation);
+
+
 
             result = objCommon.GetDataInsertORUpdate("SP_AddDumpRequestManua", nv);
 
