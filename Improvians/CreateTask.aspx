@@ -69,9 +69,9 @@
 
                 <div class="col-lg-3">
                     <br />
-                    <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
+                    <asp:Button Text="Search" ID="btlSearchBenchLocation" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btlSearchBenchLocation_Click" />
 
-                    <asp:Button Text="Reset" ID="Button4" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="Button4_Click" />
+                    <asp:Button Text="Reset" ID="btnResetBenchLocation" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetBenchLocation_Click" />
 
                 </div>
 

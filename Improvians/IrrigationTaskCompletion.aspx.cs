@@ -83,7 +83,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@ICode", IrrigationCode);
-            dt = objCommon.GetDataTable("SP_GetIrrigationTasCompletionView", nv);
+            dt = objCommon.GetDataTable("SP_GetIrrigationTaskAssignmentView", nv);
 
             GridViewViewDetails.DataSource = dt;
             GridViewViewDetails.DataBind();
@@ -106,8 +106,8 @@ namespace Evo
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();
 
-            txtNoofPasses.Text = dt.Rows[0]["WaterRequired"].ToString();
-            lblBenchLocation.Text = dt.Rows[0]["GreenHouseID"].ToString();
+           // txtNoofPasses.Text = dt.Rows[0]["WaterRequired"].ToString();
+          //  lblBenchLocation.Text = dt.Rows[0]["GreenHouseID"].ToString();
 
             ChId = dt.Rows[0]["CropHealth"].ToString();
             if (ChId == "")
@@ -177,9 +177,9 @@ namespace Evo
                 clear();
                 string message = "Completion Successful";
                 string url;
-                if (Session["Role"].ToString() == "3")
+                if (Session["Role"].ToString() == "12")
                 {
-                    url = "IrrigationCompletionForm.aspx";
+                    url = "IrrigationRequestForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";
@@ -191,6 +191,17 @@ namespace Evo
                 if (Session["Role"].ToString() == "2")
                 {
                     url = "IrrigationAssignmentForm.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
+                else
+                {
+                    url = "IrrigationCompletionForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";

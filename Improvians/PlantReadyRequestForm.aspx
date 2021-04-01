@@ -121,7 +121,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Plant Ready Due Date" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="Plant Ready Work Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>
@@ -177,7 +177,7 @@
 
 
                             <div class="mb-3 mb-md-0 col-12 col-md-auto">
-                                <label class="d-block">Plant Ready Due Date</label>
+                                <label class="d-block">Plant Ready Work Date</label>
                                 <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
 

@@ -41,7 +41,7 @@
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvGerm_PageIndexChanging"
-                                    GridLines="None" OnRowCommand="gvGerm_RowCommand"
+                                    GridLines="None" OnRowCommand="gvGerm_RowCommand"  DataKeyNames="DumpTaskAssignmentId,DumpId"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                         <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -113,7 +113,7 @@
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
-                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# Eval("DumpTaskAssignmentId")  %>'></asp:Button>
+                                                <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>

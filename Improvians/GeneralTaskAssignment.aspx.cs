@@ -124,7 +124,13 @@ namespace Evo
 
            var txtGeneralDate = Convert.ToDateTime((row.FindControl("lblGeneralDates") as Label).Text).ToString("yyyy-MM-dd");
 
+              var txtJobNo = (row.FindControl("lblID") as Label).Text;
+            var txtBenchLocation = (row.FindControl("lblBenchLocation") as Label).Text;
+
+
             nv.Add("@GeneralTaskDate", txtGeneralDate);
+            nv.Add("@JobNo", txtJobNo);
+            nv.Add("@BenchLocation", txtBenchLocation);
 
 
             result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskAssignment", nv);
