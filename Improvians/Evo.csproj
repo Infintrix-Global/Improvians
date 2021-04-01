@@ -227,6 +227,10 @@
     <Content Include="images\dashboard_fertilizer.png" />
     <Content Include="images\dashboard_general-task.png" />
     <Content Include="images\dashboard_seedline-planning.png" />
+    <Content Include="images\icons\icon-checkbox.svg" />
+    <Content Include="images\icons\icon-dropdown.svg" />
+    <Content Include="images\icons\icon-radio.svg" />
+    <Content Include="images\icons\icon-search.svg" />
     <Content Include="IrrigationTaskViewDetails.aspx" />
     <Content Include="JobReport.aspx" />
     <Content Include="JobReports.aspx" />

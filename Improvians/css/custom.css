@@ -122,6 +122,7 @@ a, span, label { display: inline-block; }
 button { outline: none; border:0; }
 select:focus, button:focus { outline: none; }
 b, strong { font-family: 'roboto-bold', sans-serif; }
+span:empty { display: none; }
 
 /*Utilities*/
 .dark__bg { background: #2a2a2a; }
@@ -968,7 +969,7 @@ textarea.input__control {
 
 .request__block-head > span { display: flex; align-items: center; }
 .request__block-head img { max-width: 35px; height: auto; margin-right: 15px; }
-.request__block-collapse { padding: 10px 15px 10px; }
+.request__block-collapse { padding: 10px 15px 10px; background: #ffffff; }
 .request__body { padding: 10px 0; }
 
 
