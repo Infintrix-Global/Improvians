@@ -17,9 +17,9 @@
         <div class="site__container">
             <h2 class="head__title-icon mb-4"> <%--img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">--%> Create Task </h2>
 
-            <div class="row align-items-end mb-3 col-lg-0">
+            <div class="row align-items-end">
 
-                <div class="col-auto col-lg-3 mb-3">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
 
                     <label>Job No</label>
                     <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
@@ -48,17 +48,9 @@
                   <div class="col-lg-3">
                 </div>--%>
 
-
-            </div>
-            <br />
-
-            <div class="row">
-                <div class="col-lg-3">
-
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
                     <label>Bench Location </label>
                     <asp:TextBox ID="txtBatchLocation" runat="server" class="input__control robotomd"></asp:TextBox>
-
-
                     <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
                         MinimumPrefixLength="2"
                         CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
@@ -67,24 +59,13 @@
                     </cc1:AutoCompleteExtender>
                 </div>
 
-                <div class="col-lg-3">
-                    <br />
+                <div class="col-12 col-md-4 col-lg-3 mb-3">
                     <asp:Button Text="Search" ID="btlSearchBenchLocation" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btlSearchBenchLocation_Click" />
-
-                    <asp:Button Text="Reset" ID="btnResetBenchLocation" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetBenchLocation_Click" />
-
+                    <asp:Button Text="Reset" ID="btnResetBenchLocation" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnResetBenchLocation_Click" />
                 </div>
-
-                <div class="col-lg-3">
-                </div>
-
-                <div class="col-lg-3">
-                </div>
-
             </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-3">
+            <div class="row align-items-end mt-3">
+                <div class="col-12 col-md-4 col-lg mb-3">
                     <label>Bench Location </label>
 
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -93,11 +74,11 @@
                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
                     </span>--%>
                 </div>
-                <div class="col-12 col-md-6 col-lg mb-3">
+                <div class="col-12 col-md-4 col-lg mb-3">
                     <label>Job No </label>
                     <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-                <div class="col-12 col-md-6 col-lg mb-3">
+                <div class="col-12 col-md-4 col-lg mb-3">
                     <label>Customer </label>
                     <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
@@ -105,11 +86,10 @@
                     <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" Visible="false" ValidationGroup="x" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                 </div>
-
             </div>
 
             <asp:Panel ID="Panel_Bench" Visible="false" runat="server">
-                <div class="row mt-3 align-items-center">
+                <div class="row pt-3 align-items-center">
                     <div class="col-auto col-sm-auto">
                         <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" ValidationGroup="x" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
                             <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-3"></asp:ListItem>
@@ -139,7 +119,7 @@
                 </div>
             </asp:Panel>
 
-            <div class="row">
+            <div class="row pt-3">
                 <div class="col">
                     <div class="portlet light ">
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
@@ -553,16 +533,12 @@
                                     <asp:DropDownList ID="ddlirrigationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <span class="mr-3 mb-2 mb-sm-0"># of passes </span>
-                                        <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
-                                    </div>
+                                    <label class="d-block"># of passes </label>
+                                    <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <span class="mr-3 mb-2 mb-sm-0">Spray Date: </span>
-                                        <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
-                                    </div>
+                                    <label class="d-block">Spray Date: </label>
+                                    <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
                                     <label class="d-block">Minimum Days Until Next Irrigation</label>
@@ -746,7 +722,7 @@
                                                         </span>
                                                     </div>
 
-                                                   <div class="col-xl-3">
+                                                   <div class="col-12 col-md-4 col-lg-3 mb-3">
                                                         <label>Task Type</label>
 
                                                     <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
