@@ -1299,7 +1299,7 @@ namespace Evo
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@FromFacility", (row.FindControl("lblFacility") as Label).Text);
                     nv.Add("@ToFacility", ddlToFacility.SelectedValue);
-                    nv.Add("@ToGreenHouse", ddlBenchLocation.SelectedValue);
+                    nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
                     nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
                     nv.Add("@MoveDate", txtMoveDate.Text);
 
