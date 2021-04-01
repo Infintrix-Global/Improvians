@@ -42,6 +42,24 @@ namespace Evo
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
 
         /// <summary>
+        /// btnSearchDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchDet;
+
+        /// <summary>
+        /// Button4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button4;
+
+        /// <summary>
         /// txtBatchLocation control.
         /// </summary>
         /// <remarks>
@@ -60,22 +78,22 @@ namespace Evo
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
 
         /// <summary>
-        /// btnSearchDet control.
+        /// btlSearchBenchLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchDet;
+        protected global::System.Web.UI.WebControls.Button btlSearchBenchLocation;
 
         /// <summary>
-        /// Button4 control.
+        /// btnResetBenchLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button btnResetBenchLocation;
 
         /// <summary>
         /// ddlBenchLocation control.

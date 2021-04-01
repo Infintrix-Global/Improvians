@@ -144,9 +144,9 @@ namespace Evo
                 clear();
                 string message = "Completion Successful";
                 string url;
-                if (Session["Role"].ToString() == "3")
+                if (Session["Role"].ToString() == "12")
                 {
-                    url = "PlantReadyCompletionForm.aspx";
+                    url = "PlantReadyRequestForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";
@@ -155,9 +155,20 @@ namespace Evo
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
-                if (Session["Role"].ToString() == "2")
+              else if (Session["Role"].ToString() == "2")
                 {
                     url = "PlantReadyAssignmentForm.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
+                else
+                {
+                    url = "PlantReadyCompletionForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
                     script += "');";
