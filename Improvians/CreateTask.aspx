@@ -35,18 +35,18 @@
 
 
 
-<%--                <div class="col-lg-3">
+                <div class="col-lg-3">
                     <br />
-                    <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
+                    <asp:Button Text="Search" ID="btlSearchBenchLocation1" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btlSearchBenchLocation_Click" />
 
-                    <asp:Button Text="Reset" ID="Button4" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="Button4_Click" />
+                    <asp:Button Text="Reset" ID="BtnResetBenchLocation" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetBenchLocation_Click" />
 
                 </div>
 
                 <div class="col-lg-3">
                 </div>
                   <div class="col-lg-3">
-                </div>--%>
+                </div>
 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
                     <label>Bench Location </label>
