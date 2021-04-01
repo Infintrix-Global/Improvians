@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="dropdown__foo text-center">
-                                <button>CLEAR ALL</button>
+                                <asp:Button ID="clearNotification" runat="server" Width="100%" OnClick="clearNotification_Click" Text="CLEAR ALL"></asp:Button>
                             </div>
                         </div>
                     </div>
