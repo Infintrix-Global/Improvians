@@ -83,7 +83,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@ICode", IrrigationCode);
-            dt = objCommon.GetDataTable("SP_GetIrrigationTasCompletionView", nv);
+            dt = objCommon.GetDataTable("SP_GetIrrigationTaskAssignmentView", nv);
 
             GridViewViewDetails.DataSource = dt;
             GridViewViewDetails.DataBind();

@@ -196,7 +196,7 @@
 
                                        <asp:TemplateField HeaderText="Comments" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                            <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("Nots")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
