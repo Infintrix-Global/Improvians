@@ -117,10 +117,12 @@ namespace Evo
             if (e.CommandName == "Select")
             {
 
-
-                string PRAID = e.CommandArgument.ToString();
-              //  Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
-                Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}", PRAID, 0));
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string PRAID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                string DRID = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+                // string PRAID = e.CommandArgument.ToString();
+                //  Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
+                Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", PRAID, 0, DRID));
 
             }
         }

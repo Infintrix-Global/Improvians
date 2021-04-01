@@ -147,7 +147,7 @@ namespace Evo
                 nv.Add("@DumpDate","");
 
            
-                long result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskAssignment", nv);
+                long result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskStart", nv);
 
              
                 if (result > 0)

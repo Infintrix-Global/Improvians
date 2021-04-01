@@ -180,7 +180,7 @@
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
 
-                                    <asp:TemplateField HeaderText="Water Required" HeaderStyle-CssClass="autostyle2">
+                                    <asp:TemplateField HeaderText="No of Passes" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
                                         </ItemTemplate>

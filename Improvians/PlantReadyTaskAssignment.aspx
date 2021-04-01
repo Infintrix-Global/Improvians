@@ -185,7 +185,7 @@
                                 <asp:DropDownList ID="ddlOperator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
                            <div class="mb-3 mb-md-0 col-12 col-md-auto">
-                                    <label class="d-block">Plant Ready Due Date</label>
+                                    <label class="d-block">Plant Ready Work Date</label>
                                     <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
 

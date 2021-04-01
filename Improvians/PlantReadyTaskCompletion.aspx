@@ -179,7 +179,7 @@
                                              
 
 
-                                                <asp:TemplateField HeaderText="Plant Ready Due Date">
+                                                <asp:TemplateField HeaderText="Plant Ready Work Date">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                                     </ItemTemplate>
