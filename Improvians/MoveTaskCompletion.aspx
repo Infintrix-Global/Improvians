@@ -233,7 +233,7 @@
 
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label class="d-block">Dump Date</label>
+                                    <label class="d-block">Move Date</label>
 
                                     <asp:TextBox ID="txtDumpDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                                 </div>

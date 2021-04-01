@@ -102,14 +102,16 @@ namespace Evo
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@IrrigationCode", IrrigationCode);
             dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
-            
-            gvIrrigation.DataSource = dt;
-            gvIrrigation.DataBind();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                gvIrrigation.DataSource = dt;
+                gvIrrigation.DataBind();
 
-           // txtNoofPasses.Text = dt.Rows[0]["WaterRequired"].ToString();
-          //  lblBenchLocation.Text = dt.Rows[0]["GreenHouseID"].ToString();
+                // txtNoofPasses.Text = dt.Rows[0]["WaterRequired"].ToString();
+                //  lblBenchLocation.Text = dt.Rows[0]["GreenHouseID"].ToString();
 
-            ChId = dt.Rows[0]["CropHealth"].ToString();
+                ChId = dt.Rows[0]["CropHealth"].ToString();
+            }
             if (ChId == "")
             {
                 ChId = "0";

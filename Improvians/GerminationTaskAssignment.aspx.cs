@@ -25,10 +25,30 @@ namespace Evo
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
+                BindGTRView(gtrID);
                 BindGridGerm();
                 BindOperatorList();
             }
         }
+
+
+        public void BindGTRView(string GTRID)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@GTRId", GTRID);
+            dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskView", nv1);
+
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                txtDate.Text =Convert.ToDateTime (dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
+                txtNotes.Text = dt1.Rows[0]["Comments"].ToString();
+                txtTrays.Text = dt1.Rows[0]["#TraysInspected"].ToString();
+            }
+
+
+        }
+
 
         public void BindGridCropHealth(int Chid)
         {

@@ -35,7 +35,7 @@
 
 
 
-                <div class="col-lg-3">
+<%--                <div class="col-lg-3">
                     <br />
                     <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
 
@@ -46,7 +46,7 @@
                 <div class="col-lg-3">
                 </div>
                   <div class="col-lg-3">
-                </div>
+                </div>--%>
 
 
             </div>
