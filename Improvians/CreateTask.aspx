@@ -594,13 +594,13 @@
                                         <label class="d-block">Job No.</label>
                                         <input type="readonly" value="JB033372" size="10" class="input__control w-100 input__control-auto" />
                                     </div>--%>
-                                <div class="mb-3 col-12 col-sm-6 col-md-4">
+                                <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label class="d-block">Assignment</label>
 
                                     <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
                                 <div class="mb-3 mb-md-0 col-12 col-md-auto">
-                                    <label class="d-block">Plant Ready Due Date</label>
+                                    <label class="d-block">Plant Ready Work Date</label>
                                     <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
                                 <div class="d-none d-sm-block w-100"></div>
