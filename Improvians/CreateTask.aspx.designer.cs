@@ -42,22 +42,22 @@ namespace Evo
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
 
         /// <summary>
-        /// btlSearchBenchLocation1 control.
+        /// btnSearchDet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btlSearchBenchLocation1;
+        protected global::System.Web.UI.WebControls.Button btnSearchDet;
 
         /// <summary>
-        /// BtnResetBenchLocation control.
+        /// Button4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnResetBenchLocation;
+        protected global::System.Web.UI.WebControls.Button Button4;
 
         /// <summary>
         /// txtBatchLocation control.
