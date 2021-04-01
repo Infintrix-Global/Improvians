@@ -440,7 +440,7 @@ namespace Evo
             if (dt != null && dt.Rows.Count > 0)
             {
                 txtNotes.Text = dt.Rows[0]["Nots"].ToString();
-                txtResetSprayTaskForDays.Text = dt.Rows[0]["IrrigatedNoTrays"].ToString();
+                txtResetSprayTaskForDays.Text = dt.Rows[0]["ResetSprayTaskForDays"].ToString();
                 txtSprayDate.Text = Convert.ToDateTime(dt.Rows[0]["SprayDate"]).ToString("yyyy-MM-dd");
                 txtWaterRequired.Text = dt.Rows[0]["WaterRequired"].ToString();
             }
