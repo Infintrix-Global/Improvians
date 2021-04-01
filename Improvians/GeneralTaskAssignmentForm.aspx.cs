@@ -105,6 +105,8 @@ namespace Improvians
 
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             string Did = gvTask.DataKeys[rowIndex].Values[0].ToString();
+            string GeneralDate = gvTask.DataKeys[rowIndex].Values[1].ToString();
+
             //ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
 
             if (ChId == "")
@@ -124,16 +126,14 @@ namespace Improvians
 
             if (e.CommandName == "Start")
             {
-
-
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Comments", "");
                 nv.Add("@GeneralId", Did);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@QuantityOfTray", "");
-                nv.Add("@GeneralTaskDate", "");
-                long result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskAssignment", nv);
+                nv.Add("@GeneralTaskDate", GeneralDate);
+                long result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskStart", nv);
                 if (result > 0)
                 {
                     Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}", result, ChId));

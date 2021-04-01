@@ -127,7 +127,11 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-          
+
+            GridViewRow row = gvPlantReady.Rows[0];
+
+            var txtJobNo = (row.FindControl("lblID") as Label).Text;
+            var txtBenchLocation = (row.FindControl("lblBenchLoc") as Label).Text;
 
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
@@ -137,7 +141,8 @@ namespace Evo
             nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
             nv.Add("@DumpDate", txtDumpDate.Text);
 
-
+            nv.Add("@jobcode", txtJobNo);
+            nv.Add("@GreenHouseID", txtBenchLocation);
             result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskAssignment", nv);
             if (result > 0)
             {

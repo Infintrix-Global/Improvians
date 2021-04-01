@@ -9,7 +9,6 @@
 
 
 
-            <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>
             <div class="data__table">
                 <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                 <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -60,7 +59,7 @@
                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Plant Ready Work Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
 
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
@@ -209,7 +208,7 @@
                               
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label class="d-block">Actual Plant Ready Date</label>
+                                    <label class="d-block">Actual Plant Ready Work Date</label>
 
                                     <asp:TextBox ID="txtUpdatedReadyDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                                 </div>

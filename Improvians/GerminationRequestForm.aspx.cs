@@ -180,9 +180,26 @@ namespace Evo
                 lblBenchlocation.Text = (row.FindControl("lblBenchLocation") as Label).Text;
                 lblDescription.Text = (row.FindControl("lblDescription") as Label).Text;
                 lblTotalTrays.Text = (row.FindControl("lblTrays") as Label).Text;
+                //  txtTrays.Text = (row.FindControl("lblTrays") as Label).Text;
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
+
+                DataTable dt1 = new DataTable();
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("@GTRId", lblID.Text);
+                dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskView", nv1);
+
+                if (dt1 != null && dt1.Rows.Count > 0)
+                {
+                    txtDate.Text = Convert.ToDateTime(dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
+                  
+                    txtTrays.Text = dt1.Rows[0]["#TraysInspected"].ToString();
+                }
+
+
+
+
                 txtDate.Focus();
             }
 
