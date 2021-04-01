@@ -180,6 +180,7 @@ namespace Evo
                 lblBenchlocation.Text = (row.FindControl("lblBenchLocation") as Label).Text;
                 lblDescription.Text = (row.FindControl("lblDescription") as Label).Text;
                 lblTotalTrays.Text = (row.FindControl("lblTrays") as Label).Text;
+                txtTrays.Text = (row.FindControl("lblTrays") as Label).Text;
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
