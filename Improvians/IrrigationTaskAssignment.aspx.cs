@@ -100,21 +100,23 @@ namespace Evo
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@IrrigationCode", IrrigationCode);
             dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIrrigationCode", nv);
-            GridIrrigation.DataSource = dt;
-            GridIrrigation.DataBind();
-
-
-            ChId = dt.Rows[0]["CropHealth"].ToString();
-            if (ChId == "")
+            if (dt != null && dt.Rows.Count > 0)
             {
-                ChId = "0";
-            }
-            else
-            {
-                ChId = ChId;
-            }
-            BindGridCropHealth(Convert.ToInt32(ChId));
+                GridIrrigation.DataSource = dt;
+                GridIrrigation.DataBind();
 
+
+                ChId = dt.Rows[0]["CropHealth"].ToString();
+                if (ChId == "")
+                {
+                    ChId = "0";
+                }
+                else
+                {
+                    ChId = ChId;
+                }
+                BindGridCropHealth(Convert.ToInt32(ChId));
+            }
         }
 
         public void BindGridCropHealth(int Chid)
