@@ -136,6 +136,7 @@ namespace Evo
                 nv.Add("@Facility", Session["Facility"].ToString());
                 dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
 
+
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     lblJobID.Text = dt.Rows[0]["JobID"].ToString();
