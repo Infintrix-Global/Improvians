@@ -141,8 +141,9 @@ namespace Evo
             nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
             nv.Add("@DumpDate", txtDumpDate.Text);
 
-            nv.Add("@jobcode", txtJobNo);
-            nv.Add("@GreenHouseID", txtBenchLocation);
+            //nv.Add("@jobcode", txtJobNo);
+            //nv.Add("@GreenHouseID", txtBenchLocation);
+
             result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskAssignment", nv);
             if (result > 0)
             {
