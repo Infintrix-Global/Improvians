@@ -109,7 +109,7 @@ namespace Evo
                     {
 
                     }
-                   
+
                 }
 
 
@@ -426,17 +426,23 @@ namespace Evo
             DataTable dt = new DataTable();
             //NameValueCollection nv = new NameValueCollection();
             //nv.Add("@BenchLocation",BenchLoc);
-            //dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+           // dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
             dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
 
             DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
-            if (dtManual != null && dtManual.Rows.Count > 0)
+            if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
                 dt.AcceptChanges();
+                gvFer.DataSource = dt;
+                gvFer.DataBind();
             }
-            gvFer.DataSource = dt;
-            gvFer.DataBind();
+            else 
+            {
+                gvFer.DataSource = dtManual;
+                gvFer.DataBind();
+            }
+
 
 
             decimal tray = 0;
@@ -452,16 +458,16 @@ namespace Evo
                 //}
                 BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
 
-              
-                    c = 1;
-                    x += "'" + BatchLocd + "',";
 
-                
+                c = 1;
+                x += "'" + BatchLocd + "',";
+
+
             }
 
 
-           
-           
+
+
             if (c > 0)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
@@ -587,7 +593,7 @@ namespace Evo
                 Panel_Bench.Visible = true;
                 Bench1 = ddlBenchLocation.SelectedItem.Text;
                 BindGridFerReq("'" + Bench1 + "'", "");
-              
+
             }
 
         }
@@ -680,7 +686,7 @@ namespace Evo
             ddlDumptAssignment.DataBind();
             ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
 
-          
+
 
         }
         public void BindChemical()
@@ -697,7 +703,7 @@ namespace Evo
             ddlMethod.DataValueField = "ChemicalName";
             ddlMethod.DataBind();
             ddlMethod.Items.Insert(0, new ListItem("--- Select ---", "0"));
-            
+
         }
 
         public void BindFertilizer()
@@ -732,11 +738,11 @@ namespace Evo
                     NameValueCollection nv5 = new NameValueCollection();
                     nv5.Add("@Mode", "1");
                     nv5.Add("@Batchlocation", Batchlocation);
-                    DataTable  dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
+                    DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
 
-                    if(dt!=null && dt.Rows.Count >0)
+                    if (dt != null && dt.Rows.Count > 0)
                     {
-                       
+
                         FertilizationCode = Convert.ToInt32(dt.Rows[0]["FertilizationCode"]);
                     }
                     else
@@ -771,12 +777,12 @@ namespace Evo
                     nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv4.Add("@FertilizationDate", txtFDate.Text);
                     result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
-                 
-                  
+
+
                 }
             }
 
-           
+
             string message = "Assignment Successful";
             string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
@@ -870,7 +876,7 @@ namespace Evo
 
         }
 
-        
+
         protected void btnSendMail_Click(object sender, EventArgs e)
         {
             try
@@ -883,7 +889,7 @@ namespace Evo
                 nv.Add("@Comments", txtgeneralComment.Text.Trim());
                 nv.Add("@AsssigneeID", Session["SelectedAssignment"].ToString());
                 //nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
-                
+
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text.Trim());
                 nv.Add("@MoveTo", txtTo.Text.Trim());
@@ -920,7 +926,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
 
             ddlAssignments.DataSource = objCommon.GetDataTable("SP_GetSeedsRoles", nv);
-            
+
             ddlAssignments.DataTextField = "EmployeeName";
             ddlAssignments.DataValueField = "ID";
             ddlAssignments.DataBind();
@@ -953,7 +959,7 @@ namespace Evo
 
             Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
 
-           
+
         }
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
         {
@@ -1008,7 +1014,7 @@ namespace Evo
             //if(RadioBench.SelectedValue != "")
             //{
             //    NameValueCollection nv1 = new NameValueCollection();
-               
+
             //    nv1.Add("@BatchHouseType", RadioBench.SelectedValue);
             //    nv1.Add("@TypeOfTask", "Irrigation");
             //    nv1.Add("@TypeOfCode", IrrigationCode.ToString());
@@ -1053,7 +1059,7 @@ namespace Evo
                     string TraySize = (row.FindControl("lblTraySize") as Label).Text;
                     string GCode = (row.FindControl("lblGenusCode") as Label).Text;
                     nv1.Add("@TraySize", TraySize);
-                    nv1.Add("@GCode",GCode);
+                    nv1.Add("@GCode", GCode);
 
 
                     dt1 = objCommon.GetDataTable("spGetDateDhift", nv1);
@@ -1094,7 +1100,7 @@ namespace Evo
                     nv.Add("@PlantDate", txtPlantDate.Text);
                     nv.Add("@Role", Session["Role"].ToString());
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                    
+
 
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
                 }
@@ -1140,9 +1146,9 @@ namespace Evo
 
         protected void btnSearchDet_Click(object sender, EventArgs e)
         {
-           
+
             BindGridFerReq("", txtSearchJobNo.Text);
-          
+
         }
 
         protected void btnResetBenchLocation_Click(object sender, EventArgs e)
@@ -1153,7 +1159,7 @@ namespace Evo
 
         protected void btlSearchBenchLocation_Click(object sender, EventArgs e)
         {
-         
+
             Bench1 = txtBatchLocation.Text;
             BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
             // BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
@@ -1167,7 +1173,7 @@ namespace Evo
             BindGridFerReq("", txtSearchJobNo.Text);
         }
 
-      
+
 
         protected void btnChemicalReset_Click(object sender, EventArgs e)
         {
@@ -1208,9 +1214,9 @@ namespace Evo
 
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
                         objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
-                       // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
+                        // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-                       // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                        // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
                     }
 
 
@@ -1236,7 +1242,7 @@ namespace Evo
                 }
             }
 
-           
+
             string message = "Assignment Successful";
             string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
@@ -1305,7 +1311,7 @@ namespace Evo
                     nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
                     nv.Add("@MoveDate", txtMoveDate.Text);
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                    
+
                     nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
                     nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
@@ -1360,7 +1366,7 @@ namespace Evo
                     nv.Add("@Comments", txtCommentsDump.Text.Trim());
                     nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
                     nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
-                    nv.Add("@DumpDate",txtDumpDate.Text);
+                    nv.Add("@DumpDate", txtDumpDate.Text);
                     nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
                     result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
 
@@ -1425,7 +1431,7 @@ namespace Evo
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                    
+
                     nv.Add("@SupervisorID", Session["SelectedAssignment"].ToString());
                     //nv.Add("@SupervisorID", ddlAssignments.SelectedValue);
                     nv.Add("@TaskType", ddlTaskType.SelectedValue);
@@ -1465,7 +1471,7 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
 
                 var getToMail = Session["SelectedAssignment"].ToString();
-               // var getToMail = ddlAssignments.SelectedValue;
+                // var getToMail = ddlAssignments.SelectedValue;
                 nv.Add("@Uid", getToMail);
                 DataTable dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
                 ReceiverEmail = dt1.Rows[0]["Email"].ToString();
@@ -1479,7 +1485,7 @@ namespace Evo
                 dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
                 CCEmail = dt1.Rows[0]["Email"].ToString();
                 mail.CC.Add(new MailAddress(CCEmail));
-               
+
                 smtpClient.Send(mail);
 
                 Clear();
@@ -1516,7 +1522,7 @@ namespace Evo
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
             ddlgerminationSupervisor.Focus();
             txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-           
+
         }
 
         protected void btnFertilization_Click(object sender, EventArgs e)
@@ -1535,7 +1541,7 @@ namespace Evo
 
             dump_request.Attributes.Add("class", "request__block-collapse collapse");
 
-         
+
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
             ddlFertilizationSupervisor.Focus();
 
@@ -1579,7 +1585,7 @@ namespace Evo
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
             txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-           
+
         }
 
         protected void btnIrrigation_Click(object sender, EventArgs e)
@@ -1608,7 +1614,7 @@ namespace Evo
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
             txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-           
+
         }
 
         protected void btnPlantReady_Click(object sender, EventArgs e)
@@ -1627,9 +1633,9 @@ namespace Evo
 
             dump_request.Attributes.Add("class", "request__block-collapse collapse ");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
-           
+
             ddlplant_readySupervisor.Focus();
-           
+
             txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
 
@@ -1662,7 +1668,7 @@ namespace Evo
             dump_request.Attributes.Add("class", "request__block-collapse collapse ");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
             ddlLogisticManager.Focus();
-          
+
             txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             btngermination.Attributes.Add("class", "request__block-head collapsed");
             btnFertilization.Attributes.Add("class", "request__block-head collapsed");
@@ -1692,7 +1698,7 @@ namespace Evo
             dump_request.Attributes.Add("class", "request__block-collapse collapse show");
             general_task_request.Attributes.Add("class", "request__block-collapse collapse ");
             ddlDumptAssignment.Focus();
-          
+
             txtDumpDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
             btngermination.Attributes.Add("class", "request__block-head collapsed");
@@ -1723,7 +1729,7 @@ namespace Evo
 
             general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
             ddlAssignments.Focus();
-          
+
             txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
             btngermination.Attributes.Add("class", "request__block-head collapsed");
@@ -1785,9 +1791,9 @@ namespace Evo
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
                     //cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
                     //    "";
-                    cmd.CommandText = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Position Code]  like '%" + prefixText + "%' and s.[Location Code]='"+ Facility + "' ";
+                    cmd.CommandText = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Position Code]  like '%" + prefixText + "%' and s.[Location Code]='" + Facility + "' ";
 
-                   cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;
                     conn.Open();
                     List<string> BenchLocation = new List<string>();
@@ -1804,6 +1810,6 @@ namespace Evo
             }
         }
 
-        
+
     }
 }
