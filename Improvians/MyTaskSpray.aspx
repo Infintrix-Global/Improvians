@@ -3,11 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
-            <h2>My Tasks</h2>
+            <h2 class="head__title-icon">My Tasks</h2>
 
-            <p class="pt-3">The list of tasks below are items for you to complete.</p>
+            <p class="pt-3 mb-0">The list of tasks below are items for you to complete.</p>
 
             <div class="dashboard__grid">
                 <a href="MyTaskShippingCoordinator.aspx" class="dashboard__box">
