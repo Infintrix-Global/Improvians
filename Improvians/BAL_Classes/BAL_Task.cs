@@ -235,7 +235,7 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, GPD.Trays,GTS.TraySize " +
+                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, GPD.Trays,GTS.TraySize,STC.SeededDate as SeededDate" +
                             "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo " +
 
                             "where FacilityID ='"+ FacilityLocation + "' and GPD.GreenHouseID in  (" + BenchLocation + ")";
