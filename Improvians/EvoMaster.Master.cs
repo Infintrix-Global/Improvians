@@ -46,17 +46,28 @@ namespace Evo
                 dashlink.Attributes.Remove("class");
                 lnkmytask.Attributes.Add("class", "active");
             }
-            checkNotification();
+            checkNotification(1);
 
         }
 
-        protected void checkNotification()
+        protected void checkNotification(int n)
         {
             var totalCount = "";
+            NameValueCollection nv = new NameValueCollection();
             DataTable dtSearch1 = new DataTable();
-            string sqr = "Select * FROM NotificationMaster WHERE IsViewed=0 AND UserID = '" + Session["LoginID"] + "'";
-
-            dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
+            string sqr = "";
+            if (n == 2)
+            {
+                nv.Add("@uId", Session["LoginID"].ToString());
+               
+                var result = objCommon.GetDataExecuteScaler("SP_ClearAllNotification", nv);
+            }
+          
+            sqr = "Select * FROM NotificationMaster WHERE IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc" ;
+            if (!string.IsNullOrEmpty(sqr))
+            {
+                dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
+            }
             if (dtSearch1 != null)
             {
                 totalCount = dtSearch1.Rows.Count.ToString();
@@ -145,6 +156,11 @@ namespace Evo
             {
                 Response.Redirect(TaskName+"AssignmentForm.aspx");
             }
+        }
+
+        protected void clearNotification_Click(object sender, EventArgs e)
+        {
+            checkNotification(2);
         }
 
         //[WebMethod]

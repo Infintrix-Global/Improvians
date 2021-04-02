@@ -111,7 +111,7 @@ namespace Evo
             nv.Add("@Did", Did);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Comments", txtComment.Text);
-            nv.Add("@QuantityOfTray", txtQuantityOfTray.Text);
+            nv.Add("@QuantityOfTray", "");
             nv.Add("@GeneralTaskDate", txtGeneralDate.Text);
 
             result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskCompletion", nv);
@@ -160,7 +160,7 @@ namespace Evo
             txtComment.Text = "";
             //  txtPlantHeight.Text = "";
             txtGeneralDate.Text = "";
-            txtQuantityOfTray.Text = "";
+            //txtQuantityOfTray.Text = "";
 
 
         }
