@@ -165,8 +165,9 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string BatchLocation = gvFer.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
+                string CCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
 
-                Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1}", BatchLocation, jobCode));
+                Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1},&CCode={2}", BatchLocation, jobCode, CCode));
             }
         }
 

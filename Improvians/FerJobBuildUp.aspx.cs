@@ -42,6 +42,7 @@ namespace Evo
 
                 BindSupervisor();
                 BindFertilizer();
+                BindGridFerReqView(Request.QueryString["FCode"].ToString());
                 BindSQFTofBench("'" + Bench + "'");
             }
         }
@@ -358,7 +359,18 @@ namespace Evo
             ListBoxBenchesInHouse.DataBind();
 
         }
-
+        public void BindGridFerReqView(string Foce)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Foce", Foce);
+          
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmentFertilizationView", nv);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
+            }
+        }
 
         public void BindGridFerReq()
         {
@@ -388,8 +400,6 @@ namespace Evo
 
             Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
 
-           
-           
         }
 
         public void BindGridFerDetails(string BenchLoc)

@@ -645,7 +645,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-auto">
-                                        <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
+                                        <asp:Button Text="Submit" ValidationGroup="e"  ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
                                         <asp:Button Text="Reset" ID="MoveReset" runat="server" OnClick="MoveReset_Click" CssClass="ml-2 bttn bttn-primary bttn-action" />
                                     </div>
                                 </div>

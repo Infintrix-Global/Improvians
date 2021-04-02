@@ -63,7 +63,7 @@
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode" OnRowDataBound="gvFer_RowDataBound"
+                                class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode,ChemicalCode" OnRowDataBound="gvFer_RowDataBound"
                                 GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>

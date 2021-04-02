@@ -176,37 +176,41 @@ namespace Evo
         public void BindBenchLocation(string ddlMain)
         {
 
-            DataTable dt = new DataTable();
+            //DataTable dt = new DataTable();
 
-            NameValueCollection nv = new NameValueCollection();
+            //NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@FacilityID", ddlMain);
+            //nv.Add("@FacilityID", ddlMain);
 
-            dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
+            //dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
 
-            DataTable dtNV = objBAL.GetLocation(ddlMain);
-
-
+             DataTable dtNV = objBAL.GetLocation(ddlMain);
 
 
-            if (dt != null && dt.Rows.Count > 0 && dtNV != null && dtNV.Rows.Count > 0)
-            {
-                dt.Merge(dtNV);
-                dt.AcceptChanges();
-                ddlBenchLocation.DataSource = dt;
-                ddlBenchLocation.DataTextField = "p2";
-                ddlBenchLocation.DataValueField = "p2";
-                ddlBenchLocation.DataBind();
-                ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
-            }
-            else
-            {
-                ddlBenchLocation.DataSource = dtNV;
-                ddlBenchLocation.DataTextField = "p2";
-                ddlBenchLocation.DataValueField = "p2";
-                ddlBenchLocation.DataBind();
-                ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
-            }
+            ddlBenchLocation.DataSource = dtNV;
+            ddlBenchLocation.DataTextField = "p2";
+            ddlBenchLocation.DataValueField = "p2";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
+
+            //if (dt != null && dt.Rows.Count > 0 && dtNV != null && dtNV.Rows.Count > 0)
+            //{
+            //    dt.Merge(dtNV);
+            //    dt.AcceptChanges();
+            //    ddlBenchLocation.DataSource = dt;
+            //    ddlBenchLocation.DataTextField = "p2";
+            //    ddlBenchLocation.DataValueField = "p2";
+            //    ddlBenchLocation.DataBind();
+            //    ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
+            //}
+            //else
+            //{
+            //ddlBenchLocation.DataSource = dtNV;
+            //    ddlBenchLocation.DataTextField = "p2";
+            //    ddlBenchLocation.DataValueField = "p2";
+            //    ddlBenchLocation.DataBind();
+            //    ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
+           // }
 
 
 

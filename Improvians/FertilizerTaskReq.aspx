@@ -142,7 +142,7 @@
                             </EmptyDataTemplate>
                         </asp:GridView>--%>
                         <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                            class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode" OnRowDataBound="gvFer_RowDataBound"
+                            class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode,FertilizationCode" OnRowDataBound="gvFer_RowDataBound"
                             GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
@@ -169,6 +169,8 @@
 
                                         <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                         <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
+                                             
+                                        
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
@@ -302,6 +304,7 @@
                     </div>
                 </div>
             </div>
+            <asp:Panel ID="Panel1" Visible="false" runat="server">
             <div class="dashboard__block dashboard__block--asign">
                 <div id="userinput" runat="server" class="assign__task d-flex" visible="true">
                     <asp:Panel ID="pnlint" runat="server">
@@ -445,7 +448,7 @@
                 </div>
             </div>
 
-
+            </asp:Panel>
             <%--   </ContentTemplate>
             </asp:UpdatePanel>--%>
         </div>

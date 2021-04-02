@@ -40,9 +40,23 @@ namespace Evo
                 lblbench.Text = Bench;
                 BindGridFerReq();
                 BindGridFerDetails("'" + Bench + "'");
-
+                BindGridFerReqView(Request.QueryString["CCode"].ToString());
                 BindSupervisor();
                 BindSQFTofBench("'" + Bench + "'");
+            }
+        }
+
+
+        public void BindGridFerReqView(string Foce)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Ccode", Foce);
+
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmentChemicalView", nv);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
             }
         }
 
