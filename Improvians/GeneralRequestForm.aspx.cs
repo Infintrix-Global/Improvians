@@ -170,7 +170,8 @@ namespace Evo
                 GridViewRow row = gvTask.Rows[rowIndex];
 
                 txtGeneralDate.Text = Convert.ToDateTime((row.FindControl("lblGDate") as Label).Text).ToString("yyyy-MM-dd");
-              
+                txtCommentsGeneral.Text = (row.FindControl("lblComs") as Label).Text;
+
                 //ddlSupervisor.Focus();
             }
             //if (e.CommandName == "Select")
