@@ -33,8 +33,6 @@
                     </cc1:AutoCompleteExtender>
                 </div>
 
-
-
                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                    
                     <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
@@ -43,10 +41,7 @@
 
                 </div>
 
-                <div class="col-lg-3">
-                </div>
-                  <div class="col-lg-3">
-                </div>
+                <div class="w-100"></div>
 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
                     <label>Bench Location </label>
@@ -92,9 +87,9 @@
                 <div class="row pt-3 align-items-center">
                     <div class="col-auto col-sm-auto">
                         <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" ValidationGroup="x" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-3"></asp:ListItem>
-                            <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio mr-3"></asp:ListItem>
-                            <asp:ListItem Text="House" Value="3" class="custom-control custom-radio"></asp:ListItem>
+                            <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-3 mt-2"></asp:ListItem>
+                            <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio mr-3 mt-2"></asp:ListItem>
+                            <asp:ListItem Text="House" Value="3" class="custom-control custom-radio mt-2"></asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
 
@@ -103,7 +98,6 @@
                         <asp:Button Text="Reset" ID="btnResetSearch" ValidationGroup="x" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                     </div>
                 </div>
-                <br />
                 <div class="row">
                     <div class="col-auto">
                         <asp:Panel ID="PanelBench" Visible="false" runat="server">

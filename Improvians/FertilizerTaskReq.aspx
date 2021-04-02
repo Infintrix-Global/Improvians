@@ -12,16 +12,10 @@
             </h2>
             <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
-
-          
             <div class="row">
                 <div class="col-lg-3 col-md-4 mb-3">
                     <label>Bench Location </label>
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    <span class="error_message">
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
-                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                    </span>
                 </div>
                 <div class="col-lg-3 col-md-4 mb-3">
                     <label>Job No </label>
@@ -50,10 +44,10 @@
                     <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                 </div>
                 <div class="col-xl-4 col-12 mb-3">
-                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click1" />
-                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
+                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click1" />
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
                     <%--<asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />--%>
-                    <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                    <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="ml-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnManual_Click" />
                     <%-- <asp:Button ID="btnJob" runat="server" Text="JobBuildUp" CssClass="bttn bttn-primary bttn-action" OnClick="btnJob_Click" />--%>
                 </div>
             </div>
@@ -308,48 +302,37 @@
                     </div>
                 </div>
             </div>
-
             <div class="dashboard__block dashboard__block--asign">
-                <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
+                <div id="userinput" runat="server" class="assign__task d-flex" visible="true">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
-                            <%-- <div class="col-auto">
-                                <label>Job No.</label><br />
-                                <h3 class="robotobold">
-                                    <asp:Label ID="lblJobID" runat="server"></asp:Label>
-                                    <asp:Label ID="lblwo" Visible="false" runat="server"></asp:Label>
-                                </h3>
-                            </div>--%>
-
-                            <div class="col-auto">
+                            <div class="col-12 col-md-4 col-lg-3">
                                 <label class="d-block">Assignment </label>
-                                <asp:DropDownList ID="ddlsupervisor" runat="server" class="d-block custom__dropdown input__control-auto"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlsupervisor" runat="server" class="d-block custom__dropdown"></asp:DropDownList>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlsupervisor" ValidationGroup="e"
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Supervisor" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
 
-                            <div class="col-auto">
+                            <div class="col-12 col-md-4 col-lg-auto">
                                 <label>Type of Request</label>
 
                                 <asp:RadioButtonList ID="radtype" runat="server" OnSelectedIndexChanged="radtype_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
-                                    <asp:ListItem Text="Chemical" Value="Chemical" class="custom-control custom-radio mr-2"></asp:ListItem>
-                                    <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="Chemical" Value="Chemical" class="custom-control custom-radio mr-2 my-2"></asp:ListItem>
+                                    <asp:ListItem Text="Fertilizer" Value="Fertilizer" class="custom-control custom-radio my-2" Selected="True"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label>
-                                    <asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label><br />
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <label><asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label>
                                 <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlFertilizer" ValidationGroup="e"
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Fertilizer" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                            <div class="col">
+                            <div class="w-100"></div>
+                            <div class="col-12 col-sm-6 col-md-3">
                                 <label>Quantity</label>
                                 <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
@@ -357,7 +340,7 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                            <div class="col">
+                            <div class="col-12 col-sm-6 col-md-3">
                                 <label>Unit </label>
                                 <asp:DropDownList ID="ddlUnit" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 <span class="error_message">
@@ -365,8 +348,7 @@
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Unit" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-
-                            <div class="col">
+                            <div class="col-12 col-sm-6 col-md-3 mb-3">
                                 <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
                                 <asp:TextBox ID="txtTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
@@ -376,8 +358,7 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>--%>
                             </div>
-
-                            <div class="col">
+                            <div class="col-12 col-sm-6 col-md-3">
                                 <label>SQFT </label>
 
                                 <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
