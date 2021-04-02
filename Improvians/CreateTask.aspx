@@ -105,7 +105,7 @@
                         </asp:Panel>
                         <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
 
-                            <asp:ListBox class="mb-4" ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged"  Height="150px" runat="server"></asp:ListBox>
+                            <asp:ListBox class="my-2 p-2 pr-3" ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged"  Height="150px" runat="server"></asp:ListBox>
                         </asp:Panel>
                         <asp:Panel ID="PanelHouse" Visible="false" runat="server">
                         </asp:Panel>
