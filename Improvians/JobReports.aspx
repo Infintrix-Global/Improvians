@@ -46,15 +46,14 @@
                 </div>
             </div>
             <asp:Panel ID="PanelView" Visible="false" runat="server">
-                <br />
-                <div class="row mt-2 mb-3" id="divJobNo" runat="server">
-                    <div class="col-sm">
-                        <h2 class="text-sm-left">
-                            <label>Job No: </label>
+                <div class="row mt-2 align-items-center" id="divJobNo" runat="server">
+                    <div class="col-sm mb-3">
+                        <h3 class="text-sm-left mb-0">
+                            <label class="mb-0">Job No: </label>
                             <asp:Label ID="lblJobNo" runat="server"></asp:Label>
-                        </h2>
+                        </h3>
                     </div>
-                    <div class="col-sm-auto">
+                    <div class="col-sm-auto mb-3">
                         <asp:Button ID="backButton" runat="server" Text="Back" CssClass="bttn bttn-primary bttn-action"
                             OnClientClick="JavaScript:window.history.back(1);return false;"></asp:Button>
                     </div>
