@@ -57,6 +57,7 @@ namespace Evo
             if (dt != null && dt.Rows.Count > 0)
             {
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
+                ddlMethod.SelectedItem.Text = dt.Rows[0]["Method"].ToString();
             }
         }
 

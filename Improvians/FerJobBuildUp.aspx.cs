@@ -369,6 +369,8 @@ namespace Evo
             if (dt != null && dt.Rows.Count > 0)
             {
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
+            //    Quantity
+                  txtQty.Text= dt.Rows[0]["Quantity"].ToString();
             }
         }
 

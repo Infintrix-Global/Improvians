@@ -360,10 +360,10 @@
                                 <label>
                                     <asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label><br />
                                 <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                <span class="error_message">
+                               <%-- <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlFertilizer" ValidationGroup="e"
                                         SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Fertilizer" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>
+                                </span>--%>
                             </div>
                             <div class="col-lg-3">
                                 <label>Concentration [ppm]</label>
