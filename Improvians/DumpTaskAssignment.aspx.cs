@@ -140,7 +140,7 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
             nv.Add("@DumpDate", txtDumpDate.Text);
-
+          
             //nv.Add("@jobcode", txtJobNo);
             //nv.Add("@GreenHouseID", txtBenchLocation);
 

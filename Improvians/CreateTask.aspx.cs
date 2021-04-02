@@ -496,11 +496,20 @@ namespace Evo
                 dt.AcceptChanges();
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
+                return;
             }
-            else
+            else if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 gvFer.DataSource = dtManual;
                 gvFer.DataBind();
+                return;
+            }
+            else
+            {
+                gvFer.DataSource = dt;
+                gvFer.DataBind();
+                return;
+
             }
 
 
