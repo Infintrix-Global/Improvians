@@ -187,10 +187,10 @@
                                     <asp:TextBox ID="txtGeneralDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                              <%--  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <label class="d-block">Quantity Of Tray</label>
                                     <asp:TextBox ID="txtQuantityOfTray" TextMode="Number" class="input__control" runat="server"></asp:TextBox>
-                                </div>
+                                </div>--%>
 
                                 <div class="col-12 col-sm-6 col-lg-3">
                                    <label class="d-block">Comments</label>

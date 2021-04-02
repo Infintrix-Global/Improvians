@@ -188,7 +188,7 @@ namespace Evo
                 DataTable dt1 = new DataTable();
                 NameValueCollection nv1 = new NameValueCollection();
                 nv1.Add("@GTRId", lblID.Text);
-                dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskView", nv1);
+                dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskViewNew", nv1);
 
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {

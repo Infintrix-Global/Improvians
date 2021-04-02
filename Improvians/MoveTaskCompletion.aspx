@@ -39,7 +39,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>--%>
 
-                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="From Bench Location" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                             </ItemTemplate>
@@ -179,7 +179,7 @@
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
 
-                                    <asp:TemplateField HeaderText="Facility From" HeaderStyle-CssClass="autostyle2">
+                                    <%--<asp:TemplateField HeaderText="Facility From" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("FacilityFrom")  %>'></asp:Label>
                                             </ItemTemplate>
@@ -188,9 +188,9 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFacilityTo" runat="server" Text='<%# Eval("FacilityTo")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
-                                        <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="To Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGrenHouseToRequest" runat="server" Text='<%# Eval("GrenHouseToRequest")  %>'></asp:Label>
                                             </ItemTemplate>

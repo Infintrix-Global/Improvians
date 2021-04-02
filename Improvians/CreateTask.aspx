@@ -35,18 +35,18 @@
 
 
 
-<%--                <div class="col-lg-3">
-                    <br />
+                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                   
                     <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
 
-                    <asp:Button Text="Reset" ID="Button4" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="Button4_Click" />
+                    <asp:Button Text="Reset" ID="Button4" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="Button4_Click" />
 
                 </div>
 
                 <div class="col-lg-3">
                 </div>
                   <div class="col-lg-3">
-                </div>--%>
+                </div>
 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
                     <label>Bench Location </label>
@@ -671,7 +671,7 @@
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label class="d-block">Dump Date</label>
-                                    <asp:TextBox ID="txtDumpDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                    <asp:TextBox ID="txtDumpDate" TextMode="Date"  runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label>Quantity of Tray </label>
