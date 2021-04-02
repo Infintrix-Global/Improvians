@@ -299,7 +299,7 @@ namespace Evo
                 nv.Add("@#TraysInspected", txtTrays.Text);
                 nv.Add("@ID", lblID.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@Role", Session["Role"].ToString());
+                nv.Add("@Role", ddlSupervisor.SelectedValue);
                 nv.Add("@ISAG", lblAGD.Text);
 
                 result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);

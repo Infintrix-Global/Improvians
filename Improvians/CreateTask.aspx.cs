@@ -136,21 +136,81 @@ namespace Evo
 
         public void BindJobCode(string ddlBench)
         {
-            ddlJobNo.Items.Clear();
-            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
-            ddlJobNo.DataTextField = "Jobcode";
-            ddlJobNo.DataValueField = "Jobcode";
-            ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
+            DataTable dt = new DataTable();
+
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@BatchLocation", ddlBench);
+            nv.Add("@Mode", "1");
+            dt = objCommon.GetDataTable("SP_GeJobNo", nv);
+            DataTable dtNV = objBAL.GetJobsForBenchLocation(ddlBench);
+
+
+
+
+            if (dt != null && dt.Rows.Count > 0 && dtNV != null && dtNV.Rows.Count > 0)
+            {
+                dt.Merge(dtNV);
+                dt.AcceptChanges();
+                ddlJobNo.Items.Clear();
+                ddlJobNo.DataSource = dt;
+                ddlJobNo.DataTextField = "Jobcode";
+                ddlJobNo.DataValueField = "Jobcode";
+                ddlJobNo.DataBind();
+                ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
+            }
+            else
+            {
+                ddlJobNo.Items.Clear();
+                ddlJobNo.DataSource = dtNV;
+                ddlJobNo.DataTextField = "Jobcode";
+                ddlJobNo.DataValueField = "Jobcode";
+                ddlJobNo.DataBind();
+                ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
+            }
+
+
+
         }
 
         public void BindBenchLocation(string ddlMain)
         {
-            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
-            ddlBenchLocation.DataTextField = "p2";
-            ddlBenchLocation.DataValueField = "p2";
-            ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
+
+            DataTable dt = new DataTable();
+
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@FacilityID", ddlMain);
+
+            dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
+
+            DataTable dtNV = objBAL.GetLocation(ddlMain);
+
+
+
+
+            if (dt != null && dt.Rows.Count > 0 && dtNV != null && dtNV.Rows.Count > 0)
+            {
+                dt.Merge(dtNV);
+                dt.AcceptChanges();
+                ddlBenchLocation.DataSource = dt;
+                ddlBenchLocation.DataTextField = "p2";
+                ddlBenchLocation.DataValueField = "p2";
+                ddlBenchLocation.DataBind();
+                ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            else
+            {
+                ddlBenchLocation.DataSource = dtNV;
+                ddlBenchLocation.DataTextField = "p2";
+                ddlBenchLocation.DataValueField = "p2";
+                ddlBenchLocation.DataBind();
+                ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+
+
+
+
         }
 
 
@@ -426,7 +486,7 @@ namespace Evo
             DataTable dt = new DataTable();
             //NameValueCollection nv = new NameValueCollection();
             //nv.Add("@BenchLocation",BenchLoc);
-           // dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+            // dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
             dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
 
             DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
@@ -437,7 +497,7 @@ namespace Evo
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
             }
-            else 
+            else
             {
                 gvFer.DataSource = dtManual;
                 gvFer.DataBind();
@@ -1754,6 +1814,8 @@ namespace Evo
                     //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
                     //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
                     //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
                     cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
                         "";
@@ -1770,6 +1832,7 @@ namespace Evo
                         }
                     }
                     conn.Close();
+
                     return customers;
                 }
             }
@@ -1791,12 +1854,17 @@ namespace Evo
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
                     //cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
                     //    "";
+
                     cmd.CommandText = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Position Code]  like '%" + prefixText + "%' and s.[Location Code]='" + Facility + "' ";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;
                     conn.Open();
+
+
                     List<string> BenchLocation = new List<string>();
+
+
                     using (SqlDataReader sdr = cmd.ExecuteReader())
                     {
                         while (sdr.Read())
@@ -1805,6 +1873,13 @@ namespace Evo
                         }
                     }
                     conn.Close();
+
+
+
+
+
+
+
                     return BenchLocation;
                 }
             }

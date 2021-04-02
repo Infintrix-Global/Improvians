@@ -336,14 +336,6 @@ namespace Evo
 
 
 
-
-
-
-
-
-
-
-
                 //if (dtCem != null && dtCem.Rows.Count > 0)
                 //{
                 //    string IDay = dtCem.Rows[0]["DateShift"].ToString();
