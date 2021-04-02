@@ -195,7 +195,7 @@
                                                 <asp:Label ID="lblGrenHouseToRequest" runat="server" Text='<%# Eval("GrenHouseToRequest")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Trays" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Number Of Trays" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblTraysRequest" runat="server" Text='<%# Eval("TraysRequest")  %>'></asp:Label>
                                             </ItemTemplate>

@@ -1380,6 +1380,7 @@ namespace Evo
                     nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
                     nv.Add("@FormBanchlocation", (row.FindControl("lblGreenHouse") as Label).Text);
                     nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                     nv.Add("@RTrays", txtMoveNumberOfTrays.Text);
                     nv.Add("@MoveDate", txtMoveDate.Text);
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
 
