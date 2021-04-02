@@ -4,14 +4,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
-            <h2>My Tasks</h2>
+            <h2 class="head__title-icon">My Tasks</h2>
 
-            <p class="pt-3">
-                The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. These tasks have been assigned to you by Grower/Assistant Grower after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose.
-                       
-            </p>
+            <p class="pt-3">The list of tasks below are items for you to complete. For each task, you will either be completing the task or reviewing it and assigning it to someone else. These tasks have been assigned to you by Grower/Assistant Grower after it is seeded. You also have the ability to manually request or assign tasks as needed - just go into the form and choose</p>
 
             <div class="dashboard__grid">
                 <a href="MyTaskLogisticManager.aspx" class="dashboard__box">

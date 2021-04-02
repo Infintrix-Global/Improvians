@@ -5,12 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main main__header">
         <div class="site__container">
-            <h2 class="text-center">Seeding Lot Fulfillment Task Completion</h2>
+            <h2 class="head__title-icon mb-4">Seeding Lot Fulfillment Task Completion</h2>
 
-            <div class="filter__row row justify-content-center">
-                <div class="col-xl-auto col-12">
+            <div class="row mb-4">
+                <div class="col-12 col-md-4 col-lg-3 mb-3">
                     <label>Job No.</label>
-                    <select class="w-100 filter__control filter__select custom__dropdown">
+                    <select class="w-100 filter__control filter__select custom__dropdown mb-0">
                         <option>Job No.</option>
                         <option>Option 2</option>
                         <option>Option 3</option>
@@ -18,9 +18,9 @@
                     </select>
                 </div>
 
-                <div class="col-xl-auto col-12">
+                <div class="col-12 col-md-4 col-lg-3 mb-3">
                     <label>Customer Name</label>
-                    <select class="w-100 filter__control filter__select custom__dropdown">
+                    <select class="w-100 filter__control filter__select custom__dropdown mb-0">
                         <option>Customer Name</option>
                         <option>Option 2</option>
                         <option>Option 3</option>
@@ -28,9 +28,9 @@
                     </select>
                 </div>
 
-                <div class="col-xl-auto col-12">
+                <div class="col-12 col-md-4 col-lg-3 mb-3s">
                     <label>Facility Defaults</label>
-                    <select class="w-100 filter__control filter__select custom__dropdown">
+                    <select class="w-100 filter__control filter__select custom__dropdown mb-0">
                         <option>Facility Defaults</option>
                         <option>Option 2</option>
                         <option>Option 3</option>
@@ -39,14 +39,12 @@
                 </div>
             </div>
 
-            <div class="data__table">
+            <div class="data__table mb-4">
                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                     class="striped" AllowSorting="true" PageSize="10"
                     GridLines="None" OnRowCommand="gvGerm_RowCommand"
-                    ShowHeaderWhenEmpty="True" Width="100%">
+                    ShowHeaderWhenEmpty="True">
                     <Columns>
-
-
                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -60,13 +58,11 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-
                         <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label9" runat="server" Text='<%# Eval("#TraysSeeded")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-
 
                         <asp:TemplateField HeaderText="Seed Lot" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -79,7 +75,6 @@
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeedingDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-
 
                         <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -100,12 +95,7 @@
                         No Record Available
                     </EmptyDataTemplate>
                 </asp:GridView>
-
             </div>
-
-
-
         </div>
     </div>
-
 </asp:Content>
