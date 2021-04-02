@@ -6,46 +6,34 @@
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="main__header">
         <div class="site__container">
-            <h2 class="head__title-icon">
-
+            <h2 class="head__title-icon mb-3">
                 <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
                 Fertilization
-
-
             </h2>
-
-
-
-            <div class="filter__row d-flex">
-                <div class="row">                   
-                    <div class="col-lg-3">
-                        <label>Bench Location </label>
-                        <span style="color: red">*</span>
-                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        <span class="error_message">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
-                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>
-                    </div>
-                    <div class="col-lg-3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <div class="col-lg-3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                     <div class="col-lg-3">
-                         <br />
+            <div class="row mt-4">
+                <div class="col-lg-3">
+                    <label>Bench Location </label>
+                    <span style="color: red">*</span>
+                    <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    <span class="error_message">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
+                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </span>
+                </div>
+                <div class="col-lg-3">
+                    <label>Job No </label>
+                    <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col-lg-3">
+                    <label>Customer </label>
+                    <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col-lg-3">
                     <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" Visible="false" ValidationGroup="x" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />
-
-                </div>
                 </div>
             </div>
-
-            <br />
             <asp:Panel ID="Panel_Bench" Visible="false" runat="server">
                 <div class="row">
 
