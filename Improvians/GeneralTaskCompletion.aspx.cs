@@ -92,6 +92,7 @@ namespace Evo
             dNow = Convert.ToDateTime(dt.AsEnumerable().Select(r => r.Field<DateTime>("GeneralTaskDate")).FirstOrDefault().ToString("yyyy/MM/dd"));
             txtGeneralDate.Text = (dNow.ToString("yyyy-MM-dd"));
 
+            txtComment.Text = dt.AsEnumerable().Select(r => r.Field<string>("Comments")).FirstOrDefault();
         }
 
         protected void gvTask_PageIndexChanging(object sender, GridViewPageEventArgs e)

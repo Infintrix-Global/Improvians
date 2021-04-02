@@ -100,6 +100,12 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetSupervisorGeneralAssignTask", nv);
             gvTask.DataSource = dt;
             gvTask.DataBind();
+            if(dt != null)
+            {
+                GridViewRow row = gvTask.Rows[0];
+
+                txtNotes.Text = (row.FindControl("lblComments") as Label).Text;
+            }
            
         }
 

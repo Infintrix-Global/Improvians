@@ -77,7 +77,7 @@
 
                          <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
-                                <asp:Label ID="Label23" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
