@@ -306,7 +306,7 @@
             </div>
             <asp:Panel ID="Panel1" Visible="false" runat="server">
             <div class="dashboard__block dashboard__block--asign">
-                <div id="userinput" runat="server" class="assign__task d-flex" visible="true">
+                <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
                     <asp:Panel ID="pnlint" runat="server">
                         <div class="row">
                             <div class="col-12 col-md-4 col-lg-3">

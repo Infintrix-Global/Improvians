@@ -7,7 +7,7 @@
         <div class="site__container">
             <h2 class="mb-3">Germination Count Task </h2>
             <div class="row">                   
-                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <label>Bench Location </label>
                     <span style="color: red">*</span>
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -166,7 +166,7 @@
                 </div>
             </div>
             <div class="dashboard__block dashboard__block--asign">
-                <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
+                <div id="userinput" runat="server" class="assign__task" visible="false">
                     <asp:Panel ID="pnlint" runat="server">
                         <h3>Assign Task</h3>
                         <div class="row">
