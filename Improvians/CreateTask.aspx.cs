@@ -424,9 +424,10 @@ namespace Evo
         public void BindGridFerReq(string BenchLoc, string jobNo)
         {
             DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@BenchLocation", BenchLoc);
-            dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@BenchLocation",BenchLoc);
+            //dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+            dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc);
 
             DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
             if (dtManual != null && dtManual.Rows.Count > 0)

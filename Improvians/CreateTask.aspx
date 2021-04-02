@@ -671,7 +671,7 @@
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label class="d-block">Dump Date</label>
-                                    <asp:TextBox ID="txtDumpDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                    <asp:TextBox ID="txtDumpDate" TextMode="Date"  runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label>Quantity of Tray </label>
