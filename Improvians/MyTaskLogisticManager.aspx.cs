@@ -63,6 +63,7 @@ namespace Evo
                 nv1.Add("@CoordinatorId", Session["LoginID"].ToString());
                 nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
                 nv1.Add("@CreateBy", Session["LoginID"].ToString());
+
                 long result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv1);
                 //if (result > 0)
                 //{

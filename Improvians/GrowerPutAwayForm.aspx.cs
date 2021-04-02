@@ -613,7 +613,8 @@ namespace Evo
                         nv.Add("@IrrigateNoCount", IrrigateNoCount);
                         nv.Add("@FertilizeNoCount", FertilizeNoCount);
                         nv.Add("@ChemicalNoCount", ChemicalNoCount);
-
+                        nv.Add("@RolId", ddlSupervisor.SelectedValue);
+                        
 
                         if (txtTrays.Text != "")
                         {
@@ -633,8 +634,6 @@ namespace Evo
                         SelectedItems++;
 
                     }
-
-
 
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WorkOrder", wo);

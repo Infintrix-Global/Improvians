@@ -42,7 +42,7 @@ namespace Evo
             nv.Add("@LoginId", Session["LoginID"].ToString());
          
             dt = objCommonControl.GetDataSet("SP_GetAssistantGrowerEachTaskCountNew", nv);
-
+            
 
             lblPutAway.Text = dt.Tables[0].Rows.Count.ToString();
             lblGerm.Text = dt.Tables[1].Rows.Count.ToString();
