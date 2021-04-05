@@ -7,14 +7,13 @@
 
     <div class="main__header">
         <div class="site__container">
-            <h2 class="head__title-icon">
+            <h2 class="head__title-icon mb-3">
                 <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation">
-                Irrigation </h2>
-
+                Irrigation
+            </h2>
 
             <div class="row">
-
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-4">
                     <label>Bench Location </label>
 
                     <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -23,18 +22,18 @@
                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
                     </span>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-4 mb-3 mb-lg-0">
                     <label>Job No </label>
                     <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-4 mb-3 mb-lg-0">
                     <label>Customer </label>
                     <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-2">
+            <div class="row align-items-end">
+                <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
                     <label>Job Source </label>
                     <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                         <asp:ListItem Text="---Select---" Value="0"></asp:ListItem>
@@ -42,27 +41,20 @@
                         <asp:ListItem Text="App" Value="App"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                     <label>From Date</label>
                     <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                     <label>To Date </label>
                     <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                 </div>
-                <div class="col-lg-4">
-                    <br />
-                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
-
-                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
-
+                <div class="col-xl-4 col-12 mb-3">
+                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" />
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnResetSearch_Click" />
                     <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                 </div>
-
-
             </div>
-
-            <br />
 
             <div class="data__table">
                 <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="GridIrrigation_RowDataBound"
@@ -85,6 +77,7 @@
                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -156,6 +149,7 @@
                                 <asp:Label ID="lblsource" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Button ID="btnSelect" runat="server" Text="Job BuildUp" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
@@ -174,7 +168,6 @@
                         </asp:TemplateField>--%>
                     </Columns>
 
-
                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                     <PagerSettings Mode="NumericFirstLast" />
                     <EmptyDataTemplate>
@@ -186,21 +179,6 @@
             <div class="text-left dashboard__block my-4">
 
                 <div id="userinput" runat="server" visible="false" class="row justify-content-center">
-                    <div class="col-12">
-                        <div class="row">
-
-                            <%--  <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                                <label>Job No.</label><br />
-
-
-                                <h3 class="robotobold">
-                                    <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
-                                <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
-
-
-                            </div>--%>
-                        </div>
-
 
                         <div class="row">
 
@@ -263,11 +241,8 @@
                             </div>
                         </div>
 
-                    </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </asp:Content>

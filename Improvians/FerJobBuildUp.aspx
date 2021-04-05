@@ -7,7 +7,7 @@
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
-                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
+                <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization">
                 Fertilization
             </h2>
 
@@ -72,10 +72,7 @@
                                         <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
-
-
-
+                                
                                 <asp:TemplateField HeaderText="Total Tray" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblTotTray" runat="server" Text='<%# Eval("Trays","{0:####}")  %>'></asp:Label>
@@ -121,7 +118,7 @@
                     <h3 class="mt-3 mt-md-4 mb-3">Other Jobs</h3>
 
                     <div class="row mb-3">
-                        <div class="col-lg-4">
+                        <div class="col-auto col-lg-4">
                             <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
                                 <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-2 my-2"></asp:ListItem>
                                 <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio mr-2 my-2"></asp:ListItem>

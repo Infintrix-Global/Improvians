@@ -38,7 +38,7 @@
 
             <asp:Panel ID="Panel_Bench" Visible="false" runat="server">
                 <div class="row my-3">
-                    <div class="col-lg-4">
+                    <div class="col-auto col-lg-4">
                         <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" ValidationGroup="x" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
                             <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-2 my-2"></asp:ListItem>
                             <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio mr-2 my-2"></asp:ListItem>
@@ -203,14 +203,13 @@
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
                             <div class="w-100"></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                                 <label>Comments</label>
                                 <asp:TextBox ID="txtComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
 
                             <div class="col-12">
                                 <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
-
                                 <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                             </div>
                         </div>

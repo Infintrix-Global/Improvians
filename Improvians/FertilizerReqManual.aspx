@@ -36,7 +36,7 @@
             </div>
             <asp:Panel ID="Panel_Bench" Visible="false" runat="server">
                 <div class="row my-3">
-                    <div class="col-lg-4">
+                    <div class="col-auto col-lg-4">
                         <asp:RadioButtonList ID="RadioBench" Width="100%" runat="server" AutoPostBack="true" ValidationGroup="x" OnSelectedIndexChanged="RadioBench_SelectedIndexChanged" RepeatDirection="Horizontal">
                             <asp:ListItem Text="Bench (A/B)" Value="1" class="custom-control custom-radio mr-2 my-2"></asp:ListItem>
                             <asp:ListItem Text="Benches in house" Value="2" class="custom-control custom-radio mr-2 my-2"></asp:ListItem>
