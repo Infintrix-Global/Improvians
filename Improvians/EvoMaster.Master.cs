@@ -17,7 +17,6 @@ namespace Evo
         General objGeneral = new General();
         CommonControl objCommon = new CommonControl();
         List<int> Operators = new List<int> { 3, 5, 11 };
-        List<int> Growers = new List<int> { 1, 12};
         protected void Page_Init(object sender, EventArgs e)
         {
             if (Session["LoginID"] == null)
@@ -157,6 +156,14 @@ namespace Evo
             if (TaskName!= null)
             {
                 if (Session["Role"].ToString() == "12")
+                {
+                    Response.Redirect(TaskName + "RequestForm.aspx");
+                }
+                else if(Operators.Contains(Convert.ToInt32(Session["Role"])))
+                {
+                    Response.Redirect(TaskName + "CompletionForm.aspx");
+                }
+                else
                 {
                     Response.Redirect(TaskName + "AssignmentForm.aspx");
                 }
