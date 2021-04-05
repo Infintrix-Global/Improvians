@@ -141,7 +141,7 @@
             </div>
 
             <div class="dashboard__block dashboard__block--asign">
-                <div id="userinput" runat="server" class="assign__task d-flex" visible="true">
+                <div id="userinput" runat="server" class="assign__task d-flex" visible="false">
                     <asp:Panel ID="pnlint" runat="server">
                         <h3>Assign Task</h3>
                         <div class="row">
@@ -203,7 +203,7 @@
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
                             <div class="w-100"></div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <div class="col-sm-6 col-md-4 col-lg-3">
                                 <label>Comments</label>
                                 <asp:TextBox ID="txtComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
