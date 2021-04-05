@@ -357,6 +357,30 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+
+        public int InsertPlantProductionAddNewProfile(ProfilePlanner obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@Code", obj.code);
+                objGeneral.AddParameterWithValueToSQLCommand("@Crop", obj.crop);
+                objGeneral.AddParameterWithValueToSQLCommand("@traycode", obj.traycode.ToString());
+                objGeneral.AddParameterWithValueToSQLCommand("@dateshift", obj.dateshift);
+                objGeneral.AddParameterWithValueToSQLCommand("@Newdateshift", obj.dateshiftNew);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddPlantProductionProfileAddNewRows");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+
         public int InsertChemicalMaster(ChemicalMasters obj)
         {
             int _isInserted = -1;
@@ -667,6 +691,35 @@ namespace Evo.Admin
             return dt;
         }
 
+
+        public DataTable GetPlanProductionCrop(string crop)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+
+                General objGeneral = new General();
+                string strQuery = string.Empty;
+                strQuery = "SELECT code, traycode, crop FROM gti_jobs_prodprofile WHERE 1=1";
+             
+                if (crop != "0")
+                {
+                    strQuery += " And [crop]= " + "'" + crop + "'";
+                }
+
+                strQuery += " Group by code, traycode, crop";
+                
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+            }
+            return dt;
+        }
+
+
+
+
         public DataTable GetDepartmentMaster()
         {
             try
@@ -863,6 +916,23 @@ namespace Evo.Admin
             }
             return _isInserted;
         }
+
+        public DataTable GETPlantReadyShiftDate(string GCode)
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@GCode", GCode);
+              
+                ds = objGeneral.GetDatasetByCommand_SP("spGetDateAdminShift");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+
     }
 }
 
@@ -890,6 +960,8 @@ public class ProfilePlanner
     public string activitycode { get; set; }
     public string traycode { get; set; }
     public int dateshift { get; set; }
+
+    public int dateshiftNew { get; set; }
 }
 
 public class FertilizerMasters

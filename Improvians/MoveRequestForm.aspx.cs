@@ -203,8 +203,10 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 HiddenFieldDid.Value = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
                 HiddenFieldJid.Value = gvMoveReq.DataKeys[rowIndex].Values[2].ToString();
-
-
+                lblJobID.Text = gvMoveReq.DataKeys[rowIndex].Values[3].ToString();
+                lblBenchlocation.Text = gvMoveReq.DataKeys[rowIndex].Values[4].ToString();
+                lblTotalTrays.Text = gvMoveReq.DataKeys[rowIndex].Values[5].ToString();
+                lblDescription.Text = gvMoveReq.DataKeys[rowIndex].Values[6].ToString();
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@MoveId", HiddenFieldDid.Value);
@@ -220,7 +222,7 @@ namespace Evo
                     ddlToFacility.SelectedValue = dt.Rows[0]["FacilityTo"].ToString();
                     ddlToGreenHouse.SelectedValue = dt.Rows[0]["GrenHouseToRequest"].ToString();
                 }
-                //ddlSupervisor.Focus();
+                ddlLogisticManager.Focus();
 
             }
 

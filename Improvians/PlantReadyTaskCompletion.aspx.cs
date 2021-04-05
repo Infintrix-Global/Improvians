@@ -101,6 +101,7 @@ namespace Evo
             //nv.Add("@Facility", "");
             //nv.Add("@Mode", "11");
             nv.Add("@PRAID", PRAID);
+            nv.Add("@RoleId", Session["Role"].ToString());
             dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTaskByPRAID", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();

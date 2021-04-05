@@ -71,7 +71,7 @@
                     <div class="data__table">
                         <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                             class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
-                            GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant"
+                            GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,SeededDate,GreenHouseID,Trays,itemdescp"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
 
@@ -164,7 +164,32 @@
 
                 <div id="userinput" runat="server" visible="false" class="row justify-content-center">
                     <div class="col-12">
-
+                        <div class="row">
+                            <div class="col-6 col-sm-4 col-lg-3">
+                                <label>Job No.</label><br />
+                                <h4 class="robotobold">
+                                   <asp:Label ID="lblJobID"  runat="server"></asp:Label>
+                                </h4>
+                            </div>
+                            <div class="col-6 col-sm-4 col-lg-3">
+                                <label>Bench location</label><br />
+                                <h4 class="robotobold">
+                                    <asp:Label ID="lblBenchlocation" runat="server"></asp:Label>
+                                </h4>
+                            </div>
+                            <div class="col-6 col-sm-4 col-lg-3">
+                                <label>Total Trays</label><br />
+                                <h4 class="robotobold">
+                                    <asp:Label ID="lblTotalTrays" runat="server"></asp:Label>
+                                </h4>
+                            </div>
+                            <div class="col-auto col-lg-3">
+                                <label>Description </label>
+                                <h4 class="robotobold">
+                                    <asp:Label ID="lblDescription" runat="server"></asp:Label>
+                                </h4>
+                            </div>
+                        </div>
                         <div class="row">
 
 
@@ -190,7 +215,7 @@
                             <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
 
                                 <h3 class="robotobold">
-                                    <asp:Label ID="lblJobID" Visible="false" runat="server"></asp:Label></h3>
+                                   </h3>
                                 <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
                                 <asp:Label ID="lblPRRId" Visible="false" runat="server"></asp:Label>
                                 <asp:Label ID="lblJid" Visible="false" runat="server"></asp:Label>
