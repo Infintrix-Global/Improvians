@@ -56,13 +56,8 @@ namespace Evo
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
 
-
-            if (Session["Role"].ToString() == "12")
-            {
                 dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
-            }
-
-
+            
 
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();

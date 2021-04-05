@@ -30,6 +30,7 @@ namespace Evo
             DataSet dt = new DataSet();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
             dt = objCommonControl.GetDataSet("SP_GetGrowerEachTaskCount", nv);
             lblPutAway.Text = dt.Tables[0].Rows.Count.ToString();
             lblGerm.Text = dt.Tables[1].Rows.Count.ToString();
@@ -39,6 +40,8 @@ namespace Evo
             lblCropHealthReport.Text = dt.Tables[6].Rows.Count.ToString();
 
             lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
+            lblDumpTotal.Text = dt.Tables[8].Rows.Count.ToString();
+            lblMove.Text = dt.Tables[9].Rows.Count.ToString();
             //lnkMove.Text = dt.Tables[5].Rows.Count.ToString();
         }
 

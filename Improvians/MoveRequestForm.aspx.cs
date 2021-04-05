@@ -56,8 +56,6 @@ namespace Evo
             nv.Add("@LoginId", Session["LoginID"].ToString());
 
 
-
-
             dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
 
 
