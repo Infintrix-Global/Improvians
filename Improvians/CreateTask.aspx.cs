@@ -847,6 +847,7 @@ namespace Evo
                     nv4.Add("@LoginID", Session["LoginID"].ToString());
                     nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv4.Add("@FertilizationDate", txtFDate.Text);
+                    nv4.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
                     result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
 
 
@@ -1309,6 +1310,8 @@ namespace Evo
                     nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
                     nv.Add("@Comments", txtCComments.Text);
                     nv.Add("@Method", ddlMethod.SelectedValue);
+                    nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
+
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
                 }
             }

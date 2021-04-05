@@ -2,6 +2,7 @@
 using Evo.Bal;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -31,7 +32,7 @@ namespace Evo.Admin
             }
         }
 
-      
+
         public void BindCrop()
         {
             ddlCode.DataSource = objCommon.GETCode();
@@ -55,7 +56,7 @@ namespace Evo.Admin
             ddlCrop.SelectedIndex = 0;
             ddlActivityCode.SelectedIndex = 0;
             ddlTrayCode.SelectedIndex = 0;
-            
+
             gvProductionProfile.DataSource = null;
             gvProductionProfile.DataBind();
         }
@@ -114,9 +115,9 @@ namespace Evo.Admin
             ddlCrop.DataTextField = "Crop";
             ddlCrop.DataValueField = "Crop";
             ddlCrop.DataBind();
-            ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));    
+            ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
-          
+
         }
         protected void gvProductionProfile_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -374,7 +375,74 @@ namespace Evo.Admin
             GridProfileBind();
         }
 
+        protected void btnAddDateNo_Click(object sender, EventArgs e)
+        {
 
+            DataTable dt1 = new DataTable();
+            DataTable dtCrop = new DataTable();
+            DataTable dt = new DataTable();
+            //NameValueCollection nv1 = new NameValueCollection();
+            //string TraySize = (row.FindControl("lblTraySize") as Label).Text;
+            //string GCode = (row.FindControl("lblGenusCode") as Label).Text;
+            //nv1.Add("@TraySize", TraySize);
+            //nv1.Add("@GCode", GCode);
+
+
+            try
+            {
+                int _isInserted = -1;
+
+                dtCrop = objCommon.GETCrop();
+
+                dt1 = objCommon.GETPlantReadyShiftDate(ddlCrop.SelectedValue);
+
+             
+                for (int j = 0; j < dtCrop.Rows.Count; j++)
+                {
+                    dt1 = objCommon.GETPlantReadyShiftDate(dtCrop.Rows[j]["Crop"].ToString());
+
+                    dt = objCommon.GetPlanProductionCrop(dtCrop.Rows[j]["Crop"].ToString());
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+                        ProfilePlanner obj = new ProfilePlanner
+                        {
+                            code = dt.Rows[i]["code"].ToString(),
+                            crop = dt.Rows[i]["crop"].ToString(),
+                            dateshift = Convert.ToInt32(dt1.Rows[0]["dateshift"]),
+                            dateshiftNew = Convert.ToInt32(dt1.Rows[0]["dateshift"]) - 10,
+                            activitycode = "",
+                            traycode = dt.Rows[i]["traycode"].ToString()
+                        };
+
+                        _isInserted = objCommon.InsertPlantProductionAddNewProfile(obj);
+
+                    }
+                }
+                if (_isInserted == -1)
+                {
+                    lblmsg.Text = "Failed to Add Profile";
+                    lblmsg.ForeColor = System.Drawing.Color.Red;
+                    pnlAdd.Visible = true;
+                }
+                else
+                {
+                    //lblmsg.Text = "";
+                    //pnlList.Visible = true;
+                    //pnlAdd.Visible = false;
+                    //ddlCrop.SelectedValue = Crop;
+                    //BindDropdowns(Crop);
+                    //ddlActivityCode.SelectedValue = ActivityCode;
+                    //ddlTrayCode.SelectedValue = TraySize;
+                    //BindGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 
 }

@@ -66,11 +66,14 @@ namespace Evo.Admin
             bool isValidFile = false;
             for (int i = 0; i < validFileTypes.Length; i++)
             {
+
                 if (ext == "." + validFileTypes[i])
                 {
                     isValidFile = true;
                     break;
                 }
+
+
             }
             if (isValidFile == true)
             {

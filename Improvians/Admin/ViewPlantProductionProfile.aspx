@@ -123,6 +123,9 @@
                         <div class="col-auto align-self-end">
                             <asp:Button ID="btnAddProfile" Text="Add" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnAddProfile_Click" />
                         </div>
+                         <div class="col-auto align-self-end">
+                            <asp:Button ID="btnAddDateNo" Text="Add No" Visible="false" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnAddDateNo_Click" />
+                        </div>
                     </div>
                 </div>
             </asp:Panel>
@@ -142,7 +145,7 @@
 
                                             <asp:TemplateField HeaderText="Code" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="Label4" runat="server" Text='<%# Eval("code")  %>'></asp:Label>
+                                                    <asp:Label ID="lblcode" runat="server" Text='<%# Eval("code")  %>'></asp:Label>
                                                     <asp:Label ID="lblID" runat="server" Text='<%# Eval("pid")  %>' Visible="false"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -151,7 +154,7 @@
 
                                             <asp:TemplateField HeaderText="Crop" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="Label11" runat="server" Text='<%# Eval("crop")  %>'></asp:Label>
+                                                    <asp:Label ID="lblcrop" runat="server" Text='<%# Eval("crop")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Tray Code" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
