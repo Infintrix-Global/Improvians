@@ -160,42 +160,72 @@ namespace Evo
         }
         protected void gvTask_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvTask.Rows[rowIndex];
+
             if (e.CommandName == "Select")
             {
                 userinput.Visible = true;
-                int rowIndex = Convert.ToInt32(e.CommandArgument);
                 HiddenFieldDid.Value = gvTask.DataKeys[rowIndex].Values[1].ToString();
                 HiddenFieldJid.Value = gvTask.DataKeys[rowIndex].Values[2].ToString();
                
-                GridViewRow row = gvTask.Rows[rowIndex];
-
                 txtGeneralDate.Text = Convert.ToDateTime((row.FindControl("lblGDate") as Label).Text).ToString("yyyy-MM-dd");
                 txtCommentsGeneral.Text = (row.FindControl("lblComs") as Label).Text;
 
                 //ddlSupervisor.Focus();
             }
-            if (e.CommandName == "Select")
+            if (e.CommandName == "Start")
             {
-            //    userinput.Visible = true;
-            //    divReschedule.Visible = false;
-            //    int rowIndex = Convert.ToInt32(e.CommandArgument);
-            //    GridViewRow row = gvTask.Rows[rowIndex];
+
+                string ChId = "";
+                string Did = gvTask.DataKeys[rowIndex].Values[1].ToString();
+
+                if (ChId == "")
+                {
+                    ChId = "0";
+                }
+                else
+                {
+                    ChId = ChId;
+                }
 
 
-            //    DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
+                nv.Add("@Comments", "");
+                nv.Add("@GeneralId", Did);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@QuantityOfTray", "");
+                nv.Add("@GeneralTaskDate", "");
 
-            //    lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
-            //    lblID.Text = (row.FindControl("lblID") as Label).Text;
+                long result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskStart", nv);
 
-            //    string Datwc = (row.FindControl("lblGermDate") as Label).Text;
 
-            //    txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+                if (result > 0)
+                {
+                    Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
+                }
 
-            //    lblBenchlocation.Text = (row.FindControl("lblBenchLocation") as Label).Text;
-            //    lblDescription.Text = (row.FindControl("lblDescription") as Label).Text;
-            //    lblTotalTrays.Text = (row.FindControl("lblTrays") as Label).Text;
+                //    userinput.Visible = true;
+                //    divReschedule.Visible = false;
+                //    int rowIndex = Convert.ToInt32(e.CommandArgument);
+                //    GridViewRow row = gvTask.Rows[rowIndex];
 
-            //    txtDate.Focus();
+
+                //    DataTable dt = new DataTable();
+
+                //    lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
+                //    lblID.Text = (row.FindControl("lblID") as Label).Text;
+
+                //    string Datwc = (row.FindControl("lblGermDate") as Label).Text;
+
+                //    txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+
+                //    lblBenchlocation.Text = (row.FindControl("lblBenchLocation") as Label).Text;
+                //    lblDescription.Text = (row.FindControl("lblDescription") as Label).Text;
+                //    lblTotalTrays.Text = (row.FindControl("lblTrays") as Label).Text;
+
+                //    txtDate.Focus();
             }
 
             if (e.CommandName == "Dismiss")
