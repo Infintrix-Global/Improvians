@@ -136,6 +136,22 @@ namespace Evo
         //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
 
         //}
+
+        protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
+            if (ddlTaskType.SelectedItem.Value == "3")
+            {
+                divFrom.Style["display"] = "block";
+                divTo.Style["display"] = "block";
+            }
+            else
+            {
+                divFrom.Style["display"] = "none";
+                divTo.Style["display"] = "none";
+            }
+
+        }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindTaskGrid();
@@ -162,6 +178,7 @@ namespace Evo
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvTask.Rows[rowIndex];
+            
 
             if (e.CommandName == "Select")
             {
@@ -171,7 +188,10 @@ namespace Evo
                
                 txtGeneralDate.Text = Convert.ToDateTime((row.FindControl("lblGDate") as Label).Text).ToString("yyyy-MM-dd");
                 txtCommentsGeneral.Text = (row.FindControl("lblComs") as Label).Text;
-
+                ddlTaskType.SelectedItem.Text = (row.FindControl("lblTaskType") as Label).Text;
+                txtFrom.Text = (row.FindControl("lblMoveF") as Label).Text;
+                txtTo.Text = (row.FindControl("lblMoveT") as Label).Text;
+ 
                 //ddlSupervisor.Focus();
             }
             if (e.CommandName == "Start")
@@ -276,6 +296,11 @@ namespace Evo
             nv.Add("@Did", HiddenFieldDid.Value);
             nv.Add("@Comments",txtCommentsGeneral.Text);
             nv.Add("@wo", "0");
+
+            nv.Add("@TaskType", ddlTaskType.SelectedValue);
+            nv.Add("@MoveFrom", txtTo.Text);
+            nv.Add("@MoveTo", txtTo.Text);
+           
             nv.Add("@ManualID", HiddenFieldJid.Value);
             nv.Add("@GeneralDate",txtGeneralDate.Text);
             nv.Add("@RoleId",dt.Rows[0]["RoleID"].ToString());
