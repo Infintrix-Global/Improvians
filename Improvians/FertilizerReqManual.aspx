@@ -28,7 +28,7 @@
                     <label>Customer </label>
                     <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-                <div class="col-12 col-lg-4 m3 mb-3">
+                <div class="col-12 col-lg-4 mb-3">
                     <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" Visible="false" ValidationGroup="x" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-actio mr-2" OnClick="btnSearchRest_Click" />
                     <asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action" ValidationGroup="x" />
