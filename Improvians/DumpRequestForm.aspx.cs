@@ -189,9 +189,6 @@ namespace Evo
         {
             if (e.CommandName == "Select")
             {
-
-
-
                 userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 HiddenFieldDid.Value = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();

@@ -174,8 +174,8 @@ namespace Evo
 
                 //ddlSupervisor.Focus();
             }
-            //if (e.CommandName == "Select")
-            //{
+            if (e.CommandName == "Select")
+            {
             //    userinput.Visible = true;
             //    divReschedule.Visible = false;
             //    int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -196,7 +196,7 @@ namespace Evo
             //    lblTotalTrays.Text = (row.FindControl("lblTrays") as Label).Text;
 
             //    txtDate.Focus();
-            //}
+            }
 
             if (e.CommandName == "Dismiss")
             {
