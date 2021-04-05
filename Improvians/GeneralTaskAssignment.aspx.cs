@@ -100,7 +100,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetSupervisorGeneralAssignTask", nv);
             gvTask.DataSource = dt;
             gvTask.DataBind();
-            if(dt != null)
+            if(dt != null && gvTask.Rows.Count != 0)
             {
                 GridViewRow row = gvTask.Rows[0];
 
