@@ -185,12 +185,37 @@ namespace Evo
                 userinput.Visible = true;
                 HiddenFieldDid.Value = gvTask.DataKeys[rowIndex].Values[1].ToString();
                 HiddenFieldJid.Value = gvTask.DataKeys[rowIndex].Values[2].ToString();
-               
-                txtGeneralDate.Text = Convert.ToDateTime((row.FindControl("lblGDate") as Label).Text).ToString("yyyy-MM-dd");
-                txtCommentsGeneral.Text = (row.FindControl("lblComs") as Label).Text;
-                ddlTaskType.SelectedItem.Text = (row.FindControl("lblTaskType") as Label).Text;
-                txtFrom.Text = (row.FindControl("lblMoveF") as Label).Text;
-                txtTo.Text = (row.FindControl("lblMoveT") as Label).Text;
+
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@GeneralId", HiddenFieldDid.Value);
+
+                dt = objCommon.GetDataTable("SP_GetGeneralRequestView", nv);
+
+                if (dt != null & dt.Rows.Count > 0)
+                {                   
+
+                    txtGeneralDate.Text = Convert.ToDateTime(dt.Rows[0]["GeneralTaskDate"]).ToString("yyyy-MM-dd");
+                    txtCommentsGeneral.Text = dt.Rows[0]["Comments"].ToString();
+                    //txtGeneralDate.Text = Convert.ToDateTime((row.FindControl("lblGDate") as Label).Text).ToString("yyyy-MM-dd");
+                    //txtCommentsGeneral.Text = (row.FindControl("lblComs") as Label).Text;
+                    ddlTaskType.SelectedValue = dt.Rows[0]["id1"].ToString();
+                    txtFrom.Text = dt.Rows[0]["MoveFrom"].ToString();
+                    txtTo.Text = dt.Rows[0]["MoveTo"].ToString();
+
+                    if (ddlTaskType.SelectedItem.Value == "3")
+                    {
+                        divFrom.Style["display"] = "block";
+                        divTo.Style["display"] = "block";
+                    }
+                    else
+                    {
+                        divFrom.Style["display"] = "none";
+                        divTo.Style["display"] = "none";
+                    }
+                }
+
  
                 //ddlSupervisor.Focus();
             }
@@ -298,8 +323,8 @@ namespace Evo
             nv.Add("@wo", "0");
 
             nv.Add("@TaskType", ddlTaskType.SelectedValue);
-            nv.Add("@MoveFrom", txtTo.Text);
-            nv.Add("@MoveTo", txtTo.Text);
+            nv.Add("@MoveFrom", ddlTaskType.SelectedValue == "3" ? txtFrom.Text : "");
+            nv.Add("@MoveTo", ddlTaskType.SelectedValue == "3" ? txtTo.Text : "");
            
             nv.Add("@ManualID", HiddenFieldJid.Value);
             nv.Add("@GeneralDate",txtGeneralDate.Text);
