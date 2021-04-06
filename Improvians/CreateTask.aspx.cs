@@ -20,6 +20,7 @@ namespace Evo
 {
     public partial class CreateTask : System.Web.UI.Page
     {
+        public static string JobCode;
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
 
@@ -49,6 +50,7 @@ namespace Evo
                 BindFertilizer();
                 BindJobCode("");
                 BindChemical();
+
                 txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -57,8 +59,6 @@ namespace Evo
                 txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtDumpDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-
-
 
                 if (Request.QueryString["jobCode"] != null)
                 {
@@ -146,8 +146,6 @@ namespace Evo
             DataTable dtNV = objBAL.GetJobsForBenchLocation(ddlBench);
 
 
-
-
             if (dt != null && dt.Rows.Count > 0 && dtNV != null && dtNV.Rows.Count > 0)
             {
                 dt.Merge(dtNV);
@@ -211,7 +209,6 @@ namespace Evo
             //    ddlBenchLocation.DataBind();
             //    ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
            // }
-
 
 
 
@@ -1566,6 +1563,42 @@ namespace Evo
 
         }
 
+
+        protected void btnCropHealthReport_Click(object sender, EventArgs e)
+        {
+
+            string x = "'" + Bench1 + "'" + ",";
+            string chkSelected = "";
+            int c = 0;
+            string BatchLocd = "";
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
+
+                    c = 1;
+                    x += "'" + BatchLocd + "',";
+
+                }
+            }
+
+
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
+
+            }
+            else
+            {
+
+            }
+
+
+            Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}", chkSelected));
+        }
+
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
           
@@ -1985,6 +2018,6 @@ namespace Evo
             }
         }
 
-
+       
     }
 }

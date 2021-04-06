@@ -311,7 +311,7 @@
                             </span>
                     </asp:LinkButton>
 
-                    <asp:LinkButton runat="server" ID="btnCropHealthReport" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
+                    <asp:LinkButton runat="server" ID="btnCropHealthReport" ForeColor="Black" class="request__block-head collapsed" OnClick="btnCropHealthReport_Click">
                             <span class="">
                                 <img src="./images/dashboard_crop-health-report.png" width="137" height="132" alt="Plant Ready" />
                                Crop Health Report
@@ -738,11 +738,12 @@
 
                                                     <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                                                         <asp:ListItem Text="--Select--" Value="0" />
-                                                        <asp:ListItem Text="Add Bird Netting" Value="Add Bird Netting" />
-                                                        <asp:ListItem Text="Remove Bird Netting" Value="Remove Bird Netting" />
-                                                        <asp:ListItem Text="Move" Value="Move" />
-                                                        <asp:ListItem Text="Other" Value="Other" />
+                                                        <asp:ListItem Text="Add Bird Netting" Value="1" />
+                                                        <asp:ListItem Text="Remove Bird Netting" Value="2" />
+                                                        <asp:ListItem Text="Move" Value="3" />
+                                                        <asp:ListItem Text="Other" Value="4" />
                                                     </asp:DropDownList>
+
                                                     <span class="error_message">
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
                                                             SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>

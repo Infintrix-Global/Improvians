@@ -133,12 +133,12 @@
 
                     <div class="col-lg-3">
                         <label>Bench Location </label>
-                        <span style="color: red">*</span>
+                     
                         <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        <span class="error_message">
+                      <%--  <span class="error_message">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
                                 SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>
+                        </span>--%>
                     </div>
                     <div class="col-lg-3">
                         <label>Job No </label>
@@ -406,8 +406,8 @@
                                 <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:Label ID="Label3" runat="server" ForeColor="red"></asp:Label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtDate" ValidationGroup="e"
-                                        SetFocusOnError="true" ErrorMessage="Please Enter Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtDate" ValidationGroup="e"
+                                        SetFocusOnError="true" ErrorMessage="Please Enter Date" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                 </span>
 
                             </div>
@@ -685,8 +685,8 @@
                                             <asp:TextBox ID="txtChemicaSQFTofBench" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                             <span class="error_message">
                                                 <asp:Label ID="Label6" runat="server" ForeColor="red"></asp:Label>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
-                                                    SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
+                                               <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
+                                                    SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                             </span>
                                         </div>
 
@@ -819,10 +819,10 @@
 
                                             <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                                             <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                            <span class="error_message">
+                                           <%-- <span class="error_message">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
                                                     SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
+                                            </span>--%>
                                         </div>
                                         <div class="col m3">
                                             <label>To Facility Location </label>

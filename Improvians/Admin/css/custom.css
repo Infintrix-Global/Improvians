@@ -480,6 +480,10 @@ header {
     line-height: 24px;
 }
 
+.data__table.border-none th, .data__table.border-none td {
+    border: 0;
+}
+
 .data__table .bttn-action {
     border-radius: 5px;
     width: 113px;
@@ -665,6 +669,11 @@ header {
     width: auto;
     display: inline-block;
     max-width: calc(50% - 17px);
+    vertical-align: top;
+}
+
+.control__box.control__box-auto {
+    max-width: 100%;
 }
 
 .control__box .custom-checkbox label {
