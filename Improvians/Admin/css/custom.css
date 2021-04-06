@@ -668,6 +668,10 @@ header {
     vertical-align: top;
 }
 
+.control__box.control__box-auto {
+    max-width: 100%;
+}
+
 .control__box .custom-checkbox label {
     margin-bottom: 10px;
 }
