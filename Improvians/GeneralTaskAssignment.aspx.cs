@@ -105,20 +105,51 @@ namespace Evo
                 GridViewRow row = gvTask.Rows[0];
 
                 txtNotes.Text = (row.FindControl("lblComments") as Label).Text;
+                ddlTaskType.SelectedValue = dt.Rows[0]["id1"].ToString();
+                txtFrom.Text = dt.Rows[0]["MoveFrom"].ToString();
+                txtTo.Text = dt.Rows[0]["MoveTo"].ToString();
+
+                if (ddlTaskType.SelectedItem.Value == "3")
+                {
+                    divFrom.Style["display"] = "block";
+                    divTo.Style["display"] = "block";
+                }
+                else
+                {
+                    divFrom.Style["display"] = "none";
+                    divTo.Style["display"] = "none";
+                }
             }
-           
         }
 
+        protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
+            if (ddlTaskType.SelectedItem.Value == "3")
+            {
+                divFrom.Style["display"] = "block";
+                divTo.Style["display"] = "block";
+            }
+            else
+            {
+                divFrom.Style["display"] = "none";
+                divTo.Style["display"] = "none";
+            }
 
+        }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
 
-
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@OperatorID", ddlOperator.SelectedValue);
             nv.Add("@Comments", txtNotes.Text);
+
+            nv.Add("@TaskType", ddlTaskType.SelectedValue);
+            nv.Add("@MoveFrom", ddlTaskType.SelectedValue == "3" ? txtFrom.Text : "");
+            nv.Add("@MoveTo", ddlTaskType.SelectedValue == "3" ? txtTo.Text : "");
+
             nv.Add("@GeneralId", DId);
             nv.Add("@LoginID", Session["LoginID"].ToString());
 
