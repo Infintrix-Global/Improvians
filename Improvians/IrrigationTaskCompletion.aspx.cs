@@ -83,6 +83,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@ICode", IrrigationCode);
+       
             dt = objCommon.GetDataTable("SP_GetIrrigationTaskAssignmentView", nv);
 
             GridViewViewDetails.DataSource = dt;
@@ -101,6 +102,7 @@ namespace Evo
             //nv.Add("@Mode", "5");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@IrrigationCode", IrrigationCode);
+            nv.Add("@RoleId", Session["Role"].ToString());
             dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
             if (dt != null & dt.Rows.Count > 0)
             {

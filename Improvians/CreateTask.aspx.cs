@@ -707,7 +707,13 @@ namespace Evo
                 dt = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
             }
             else
-            { }
+            {
+
+              
+                nv.Add("@RoleID", "3");
+                dt = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+              
+            }
 
 
             ddlgerminationSupervisor.DataSource = dt;
@@ -800,6 +806,16 @@ namespace Evo
         {
             string Batchlocation = "";
             int FertilizationCode = 0;
+            string Assigned = "";
+
+            if(ddlFertilizationSupervisor.SelectedValue=="0")
+            {
+                Assigned = Session["LoginID"].ToString();
+            }
+            else
+            {
+                Assigned = ddlFertilizationSupervisor.SelectedValue;
+            }
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -835,7 +851,7 @@ namespace Evo
 
                     long result2 = 0;
                     NameValueCollection nv4 = new NameValueCollection();
-                    nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
+                    nv4.Add("@SupervisorID", Assigned);
                     nv4.Add("@Type", "Fertilizer");
                     nv4.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nv4.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
@@ -875,6 +891,16 @@ namespace Evo
 
 
             long result16 = 0;
+            string Assigned = "";
+
+            if (ddlgerminationSupervisor.SelectedValue == "0")
+            {
+                Assigned = Session["LoginID"].ToString();
+            }
+            else
+            {
+                Assigned = ddlgerminationSupervisor.SelectedValue;
+            }
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -908,7 +934,7 @@ namespace Evo
                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
                     nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                    nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
+                    nv.Add("@SupervisorID", Assigned);
                     nv.Add("@InspectionDueDate", txtGerDate.Text);
                     nv.Add("@TraysInspected", txtTGerTrays.Text);
 
@@ -1043,6 +1069,19 @@ namespace Evo
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
         {
             int IrrigationCode = 0;
+
+            string Assigned = "";
+
+            if (ddlirrigationSupervisor.SelectedValue == "0")
+            {
+                Assigned = Session["LoginID"].ToString();
+            }
+            else
+            {
+                Assigned = ddlirrigationSupervisor.SelectedValue;
+            }
+
+
             DataTable dt = new DataTable();
             NameValueCollection nv17 = new NameValueCollection();
             NameValueCollection nvimg = new NameValueCollection();
@@ -1059,7 +1098,7 @@ namespace Evo
                 {
                     long result16 = 0;
                     NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
+                    nv.Add("@SupervisorID", Assigned);
 
                     nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
@@ -1110,6 +1149,18 @@ namespace Evo
         protected void btnplant_readySubmit_Click(object sender, EventArgs e)
         {
             int IrrigationCode = 0;
+
+            string Assigned = "";
+
+            if (ddlplant_readySupervisor.SelectedValue == "0")
+            {
+                Assigned = Session["LoginID"].ToString();
+            }
+            else
+            {
+                Assigned = ddlplant_readySupervisor.SelectedValue;
+            }
+
             DataTable dt = new DataTable();
             NameValueCollection nv11 = new NameValueCollection();
             nv11.Add("@Mode", "13");
@@ -1157,7 +1208,7 @@ namespace Evo
 
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlplant_readySupervisor.SelectedValue);
+                    nv.Add("@SupervisorID", Assigned);
 
                     nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
@@ -1258,7 +1309,16 @@ namespace Evo
         {
             int ChemicalCode = 0;
             string Batchlocation = "";
+            string Assigned = "";
 
+            if (ddlChemical_supervisor.SelectedValue == "0")
+            {
+                Assigned = Session["LoginID"].ToString();
+            }
+            else
+            {
+                Assigned = ddlChemical_supervisor.SelectedValue;
+            }
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -1296,7 +1356,7 @@ namespace Evo
 
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
+                    nv.Add("@SupervisorID", Assigned);
                     nv.Add("@Type", "Chemical");
                     nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
@@ -1368,6 +1428,16 @@ namespace Evo
 
         protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
+            string Assigned = "";
+
+            if (ddlLogisticManager.SelectedValue == "0")
+            {
+                Assigned = Session["LoginID"].ToString();
+            }
+            else
+            {
+                Assigned = ddlLogisticManager.SelectedValue;
+            }
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -1375,7 +1445,7 @@ namespace Evo
                 {
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
+                    nv.Add("@SupervisorID", Assigned);
                     nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
@@ -1415,9 +1485,20 @@ namespace Evo
 
         protected void btnDumpSumbit_Click(object sender, EventArgs e)
         {
+            string Assigned = "";
+
+            if (ddlDumptAssignment.SelectedValue == "0")
+            {
+                Assigned = Session["LoginID"].ToString();
+            }
+            else
+            {
+                Assigned = ddlDumptAssignment.SelectedValue;
+            }
+
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Aid", ddlDumptAssignment.SelectedValue);
+            nv1.Add("@Aid", Assigned);
             dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
 
 
@@ -1428,7 +1509,7 @@ namespace Evo
                 {
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlDumptAssignment.SelectedValue);
+                    nv.Add("@SupervisorID", Assigned);
 
                     nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
@@ -1487,6 +1568,8 @@ namespace Evo
 
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
+          
+
             long result16 = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();

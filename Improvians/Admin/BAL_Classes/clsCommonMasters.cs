@@ -369,9 +369,29 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@Crop", obj.crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@traycode", obj.traycode.ToString());
                 objGeneral.AddParameterWithValueToSQLCommand("@dateshift", obj.dateshift);
-                objGeneral.AddParameterWithValueToSQLCommand("@Newdateshift", obj.dateshiftNew);
-
+             
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddPlantProductionProfileAddNewRows");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public int UpdatePlantProductionAddNewProfile(ProfilePlanner obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@Code", obj.code);
+                objGeneral.AddParameterWithValueToSQLCommand("@Crop", obj.crop);
+                objGeneral.AddParameterWithValueToSQLCommand("@traycode", obj.traycode.ToString());
+                objGeneral.AddParameterWithValueToSQLCommand("@dateshift", obj.dateshift);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_UpdatePlantProductionProfileAddNewRows");
             }
             catch (Exception ex)
             {
@@ -961,7 +981,7 @@ public class ProfilePlanner
     public string traycode { get; set; }
     public int dateshift { get; set; }
 
-    public int dateshiftNew { get; set; }
+  
 }
 
 public class FertilizerMasters
