@@ -118,6 +118,9 @@ namespace Evo
             nv.Add("@GermNo", RadioButtonListGno.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
+            nv.Add("@AssignedBy","");
+            
+
          //   dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
 
             if (Session["Role"].ToString() == "12")

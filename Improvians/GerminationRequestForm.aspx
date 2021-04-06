@@ -184,10 +184,10 @@
                                 </asp:TemplateField>
                                  <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblAssignedBy" runat="server" Text=""></asp:Label>
+                                        <asp:Label ID="lblAssignedBy" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
+                                
                                
 
                            <%--     <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
