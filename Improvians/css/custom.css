@@ -909,6 +909,14 @@ textarea.input__control {
     color: #505050;
 }
 
+.dashboard__box.dashboard__box-overdue, .data__table.overdue, .data__table table.overdue {
+    box-shadow: 0px 0px 4px 1px #e01c1c;
+}
+
+.data__table tr.overdue:nth-child(odd) > td, .data__table .overdue td {
+    background-color: #fff4f4;
+}
+
 .dashboard__box:hover { color: #505050; }
 
 .dashboard__box-img { max-width: 23.62%; flex: 1 0 auto; }
