@@ -111,7 +111,6 @@
     <Content Include="Admin\AdminDashBoard.aspx" />
     <Content Include="Admin\CropHealthMaster.aspx" />
     <Content Include="Admin\css\custom.css" />
-    <Content Include="Admin\index.html" />
     <Content Include="Admin\js\custom.js" />
     <Content Include="Admin\TaskTypeMaster.aspx" />
     <Content Include="Admin\css\all.min.css" />
