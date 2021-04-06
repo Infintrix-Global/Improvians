@@ -480,6 +480,10 @@ header {
     line-height: 24px;
 }
 
+.data__table.border-none th, .data__table.border-none td {
+    border: 0;
+}
+
 .data__table .bttn-action {
     border-radius: 5px;
     width: 113px;
