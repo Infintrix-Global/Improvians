@@ -72,11 +72,8 @@
                     <a href="Dashboard.aspx" title="Growers Transplanting Inc">
                         <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
                     </a>
-                    <div class="header__bottom">
-                        <div class="d-flex align-items-center justify-content-center">
-                            Facility:<%= Session["Facility"].ToString() %>
-                        </div>
-                    </div>
+
+
                     <div class="dropdown alert__dropdown ml-auto">
                         <div class="dropdown-toggle" data-display="static" id="alert__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-bell"></i>
@@ -181,7 +178,12 @@
             </div>
         </div>--%>
 
-
+        <div class="header__bottom">
+            <!-- Selected Facility -->
+            <h4 class="d-flex align-items-center justify-content-center py-2 mt-xl-2 header__facility mb-0">
+                <strong class="pr-2"><asp:Literal runat="server" id="lblFacility" /></strong>
+            </h4>
+        </div>
         <div class="main">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

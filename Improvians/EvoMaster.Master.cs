@@ -44,6 +44,7 @@ namespace Evo
             }
             else
             {
+                lblFacility.Text = Session["Facility"].ToString();
                 dashlink.Attributes.Remove("class");
                 lnkmytask.Attributes.Add("class", "active");
             }
@@ -60,11 +61,11 @@ namespace Evo
             if (n == 2)
             {
                 nv.Add("@uId", Session["LoginID"].ToString());
-               
+
                 var result = objCommon.GetDataExecuteScaler("SP_ClearAllNotification", nv);
             }
-          
-            sqr = "Select * FROM NotificationMaster WHERE IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc" ;
+
+            sqr = "Select * FROM NotificationMaster WHERE IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
             if (!string.IsNullOrEmpty(sqr))
             {
                 dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
@@ -147,19 +148,19 @@ namespace Evo
 
             LinkButton link = (LinkButton)sender;
             RepeaterItem row = (RepeaterItem)link.NamingContainer;
-            string id =((Label) row.FindControl("lblID")).Text;
+            string id = ((Label)row.FindControl("lblID")).Text;
             nv.Add("@Nid", id);
             string TaskName = ((Label)row.FindControl("lblTaskName")).Text;
 
             var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
 
-            if (TaskName!= null)
+            if (TaskName != null)
             {
                 if (Session["Role"].ToString() == "12")
                 {
                     Response.Redirect(TaskName + "RequestForm.aspx");
                 }
-                else if(Operators.Contains(Convert.ToInt32(Session["Role"])))
+                else if (Operators.Contains(Convert.ToInt32(Session["Role"])))
                 {
                     Response.Redirect(TaskName + "CompletionForm.aspx");
                 }
