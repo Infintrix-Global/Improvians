@@ -72,13 +72,17 @@
                     <a href="Dashboard.aspx" title="Growers Transplanting Inc">
                         <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
                     </a>
-
+                    <div class="header__bottom">
+                        <div class="d-flex align-items-center justify-content-center">
+                            Facility:<%= Session["Facility"].ToString() %>
+                        </div>
+                    </div>
                     <div class="dropdown alert__dropdown ml-auto">
                         <div class="dropdown-toggle" data-display="static" id="alert__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-bell"></i>
-                           <%-- <span class="alert__badge">--%>
-                                <asp:Label ID="lblNotificationCount" class="alert__badge" runat="server" Visible="true"></asp:Label>
-                           <%-- </span>--%>
+                            <%-- <span class="alert__badge">--%>
+                            <asp:Label ID="lblNotificationCount" class="alert__badge" runat="server" Visible="true"></asp:Label>
+                            <%-- </span>--%>
                         </div>
 
                         <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="alert__dropdown">
@@ -89,22 +93,24 @@
                             <div class="dropdown__body">
                                 <asp:Repeater ID="r1" runat="server">
                                     <ItemTemplate>
-                                        <div class="alert__bar  
-                                          <%# (Eval("IsViewed").ToString() == "False" ?"alert__bar--unread" : "alert__bar--read" )  
-                                           %> >
+                                        <div class='<%# (Eval("IsViewed").ToString() == "False" ?"alert__bar--unread" : "alert__bar--read" )  
+                                           %>'>
 
-                                            <asp:Label ID="lblID" Text='<%# Eval("ID") %>' runat="server" visible="false" /> 
-                                           <%--  OnClick='updateNotification(<%# Eval("ID") %>)'    target="_blank" href="<%# Eval("Task") + "AssignmentForm.aspx" %>"--%>
+                                            <asp:Label ID="lblID" Text='<%# Eval("ID") %>' runat="server" Visible="false" />
+                                            <%--  OnClick='updateNotification(<%# Eval("ID") %>)'    target="_blank" href="<%# Eval("Task") + "AssignmentForm.aspx" %>"--%>
                                             <i class="fas fa-tasks"></i>
-                                            <asp:LinkButton runat="server" class="alert__info" ID="link" OnClick="link_Click" > <%--onclick="getData(<%# Eval("ID") %> )"--%> 
-                                               
-                                               <strong>Job:
+                                            <asp:LinkButton runat="server" class="alert__info" ID="link" OnClick="link_Click">
+                                                <%--onclick="getData(<%# Eval("ID") %> )"--%>
+
+                                                <strong>Job:
                                                     <asp:Label ID="lblJobId" runat="server" Text='<%# Eval("JobID")  %>' Visible="true"></asp:Label></strong>
-                                                <br/><strong>Bench Location:
+                                                <br />
+                                                <strong>Bench Location:
                                                     <asp:Label ID="lblBenchLoc" runat="server" Text='<%# Eval("BenchLocation") %>' Visible="true"></asp:Label></strong>
-                                                <br/><strong>Task :
+                                                <br />
+                                                <strong>Task :
                                                     <asp:Label ID="lblTaskName" runat="server" Text='<%# Eval("Task") %>' Visible="true"></asp:Label></strong>
-                                           </asp:LinkButton>
+                                            </asp:LinkButton>
                                             <div class="alert__stamp">
                                                 <span>
                                                     <asp:Label ID="lblNotificationTime" runat="server" Text='<%# Eval("NotificationDate") %>' Visible="true"></asp:Label></span>
@@ -239,7 +245,6 @@
                 }
            // });
         </script>--%>
-
     </form>
 </body>
 </html>

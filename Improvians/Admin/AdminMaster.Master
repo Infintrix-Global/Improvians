@@ -97,6 +97,13 @@
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
+                            <li>
+                                <a class="current" href="GeneralConfiguration.aspx" title="View Employee">
+                                    <i class="side-icon fas fa-seedling"></i>
+                                    <span class="side-title">General Configuration</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
 
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
