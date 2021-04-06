@@ -175,6 +175,7 @@
                                 <label class="d-block">General Task Date</label>
                                 <asp:TextBox ID="txtGeneralDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
+                            
 
                             <div class="mb-3 col-12 col-md-auto">
                                 <label>Comments </label>

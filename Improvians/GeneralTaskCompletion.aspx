@@ -1,14 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="GeneralTaskCompletion.aspx.cs" Inherits="Evo.GeneralTaskCompletion" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
-                <img src="images/dashboard_general-task.png"  width="137" height="132" alt="General Task" />
+                <img src="images/dashboard_general-task.png" width="137" height="132" alt="General Task" />
                 General Task Completion</h2>
 
-           
+
             <div class="data__table">
                 <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                 <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -20,9 +21,9 @@
                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
-<%--                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>--%>
+                                <%--                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>--%>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -44,11 +45,11 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
+                            <ItemTemplate>
+                                <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <%--<asp:TemplateField HeaderText="Seed Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                          
@@ -63,31 +64,31 @@
 
 
 
-                          <asp:TemplateField HeaderText="Move From" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Move From" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label21" runat="server" Text='<%# Eval("MoveFrom")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                          <asp:TemplateField HeaderText="Move To" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Move To" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label22" runat="server" Text='<%# Eval("MoveTo")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                         <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                       <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
+                        <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                       
+
 
                         <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -168,18 +169,18 @@
 
                         </div>
                     </div>
-                     <div class="row">
+                    <div class="row">
 
-                            <div class="col-lg-12">
-                                <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
-                            </div>
+                        <div class="col-lg-12">
+                            <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
                         </div>
+                    </div>
                 </asp:Panel>
                 <br />
                 <form class="web__form pt-2">
                     <div class="row justify-content-center">
                         <div class="col-12">
-                           
+
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <label class="d-block">General Task Date</label>
@@ -187,21 +188,43 @@
                                     <asp:TextBox ID="txtGeneralDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                                 </div>
 
-                              <%--  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>Task Type</label>
+
+                                    <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                                        <asp:ListItem Text="--Select--" Value="0" />
+                                        <asp:ListItem Text="Add Bird Netting" Value="1" />
+                                        <asp:ListItem Text="Remove Bird Netting" Value="2" />
+                                        <asp:ListItem Text="Move" Value="3" />
+                                        <asp:ListItem Text="Other" Value="4" />
+                                    </asp:DropDownList>
+
+                                </div>
+
+                                <%--  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <label class="d-block">Quantity Of Tray</label>
                                     <asp:TextBox ID="txtQuantityOfTray" TextMode="Number" class="input__control" runat="server"></asp:TextBox>
                                 </div>--%>
 
                                 <div class="col-12 col-sm-6 col-lg-3">
-                                   <label class="d-block">Comments</label>
+                                    <label class="d-block">Comments</label>
                                     <asp:TextBox ID="txtComment" TextMode="MultiLine" class="input__control" runat="server"></asp:TextBox>
                                 </div>
 
-                             
+
+                                <div class="d-none d-sm-block w-100"></div>
+                                <div class="col-xl-3" id="divFrom" style="display: none;" runat="server">
+                                    <label>From</label>
+                                    <asp:TextBox ID="txtFrom" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+
+                                <div class="col-xl-3" id="divTo" style="display: none;" runat="server">
+                                    <label>To</label>
+                                    <asp:TextBox ID="txtTo" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+
 
                                 <div class="col-12 my-3">
-
-
 
                                     <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
                                     <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />

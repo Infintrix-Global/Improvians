@@ -93,6 +93,37 @@ namespace Evo
             txtGeneralDate.Text = (dNow.ToString("yyyy-MM-dd"));
 
             txtComment.Text = dt.AsEnumerable().Select(r => r.Field<string>("Comments")).FirstOrDefault();
+
+            ddlTaskType.SelectedValue = dt.Rows[0]["id1"].ToString();
+            txtFrom.Text = dt.Rows[0]["MoveFrom"].ToString();
+            txtTo.Text = dt.Rows[0]["MoveTo"].ToString();
+
+            if (ddlTaskType.SelectedItem.Value == "3")
+            {
+                divFrom.Style["display"] = "block";
+                divTo.Style["display"] = "block";
+            }
+            else
+            {
+                divFrom.Style["display"] = "none";
+                divTo.Style["display"] = "none";
+            }
+        }
+
+        protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
+            if (ddlTaskType.SelectedItem.Value == "3")
+            {
+                divFrom.Style["display"] = "block";
+                divTo.Style["display"] = "block";
+            }
+            else
+            {
+                divFrom.Style["display"] = "none";
+                divTo.Style["display"] = "none";
+            }
+
         }
 
         protected void gvTask_PageIndexChanging(object sender, GridViewPageEventArgs e)
