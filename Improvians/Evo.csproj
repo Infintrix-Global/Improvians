@@ -191,6 +191,7 @@
     <Content Include="Admin\js\jquery.min.js" />
     <Content Include="Admin\js\popper.min.js" />
     <Content Include="Admin\js\slick.min.js" />
+    <Content Include="Admin\GeneralConfiguration.aspx" />
     <Content Include="Admin\ViewPlantProductionProfile.aspx" />
     <Content Include="Admin\ViewEmployee.aspx" />
     <Content Include="ChemicalJobBuildUp.aspx" />
@@ -423,6 +424,13 @@
     </Compile>
     <Compile Include="Admin\FertilizerMaster.aspx.designer.cs">
       <DependentUpon>FertilizerMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GeneralConfiguration.aspx.cs">
+      <DependentUpon>GeneralConfiguration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GeneralConfiguration.aspx.designer.cs">
+      <DependentUpon>GeneralConfiguration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ViewPlantProductionProfile.aspx.cs">
       <DependentUpon>ViewPlantProductionProfile.aspx</DependentUpon>
