@@ -3083,3 +3083,16 @@ The statement has been terminated. at 4/5/2021 1:32:54 AM
 *****Error message=****@ManualID:1862 at 4/6/2021 5:49:00 AM
 *****Error message=****@GeneralDate:2021-04-06 at 4/6/2021 5:49:00 AM
 *****Error message=****@RoleId:2 at 4/6/2021 5:49:00 AM
+*****Error message=****@chid:1 at 4/6/2021 6:23:16 AM
+*****Error message=****@jobcode:JB033474 at 4/6/2021 6:23:16 AM
+*****Error message=****@itemno:TMC-6428 at 4/6/2021 6:23:16 AM
+*****Error message=****@itemdescp:TOMATO-CANNING-6428 - 339 at 4/6/2021 6:23:16 AM
+*****Error message=****@cname:DONALD BEEMAN - TM at 4/6/2021 6:23:16 AM
+*****Error message=****@loc_seedline:ENC1 at 4/6/2021 6:23:16 AM
+*****Error message=****@Trays:1598 at 4/6/2021 6:23:16 AM
+*****Error message=****@seedsreceived: at 4/6/2021 6:23:16 AM
+*****Error message=****@SeedDate:02/16/2021 at 4/6/2021 6:23:16 AM
+*****Error message=****@SoDate: at 4/6/2021 6:23:16 AM
+*****Error message=****@TraySize:339 at 4/6/2021 6:23:16 AM
+*****Error message=****@GenusCode: at 4/6/2021 6:23:16 AM
+*****Error message=****@GreenHouseID:ENC1-H01-8-A at 4/6/2021 6:23:16 AM

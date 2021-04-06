@@ -60,6 +60,10 @@ namespace Evo
                     dtTrays.Clear();
                 }
 
+                if(Request.QueryString["BatchLoc"] != null)
+                {
+                    BindGridFerReq(Request.QueryString["BatchLoc"].ToString(), "");
+                }
                 BindSupervisor();
 
                 BindFacility();
@@ -176,7 +180,7 @@ namespace Evo
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequest(Session["Facility"].ToString(), BenchLoc, JobNo);
+            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -246,7 +250,8 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq(ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+           // BindGridFerReq(ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
+            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'", ddlJobNo.SelectedValue);
         }
 
 
@@ -255,14 +260,14 @@ namespace Evo
             txtSearchJobNo.Text = "";
             BindJobCode(ddlBenchLocation.SelectedValue);
 
-            BindGridFerReq(ddlBenchLocation.SelectedValue, "");
-
+            //BindGridFerReq(ddlBenchLocation.SelectedValue, "");
+            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'","");
         }
 
         protected void btnSearchDet_Click(object sender, EventArgs e)
         {
 
-            BindGridFerReq(ddlBenchLocation.SelectedValue, txtSearchJobNo.Text.Trim());
+            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'", txtSearchJobNo.Text.Trim());
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
