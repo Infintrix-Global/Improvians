@@ -311,7 +311,7 @@
                             </span>
                     </asp:LinkButton>
 
-                    <asp:LinkButton runat="server" ID="btnCropHealthReport" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
+                    <asp:LinkButton runat="server" ID="btnCropHealthReport" ForeColor="Black" class="request__block-head collapsed" OnClick="btnCropHealthReport_Click">
                             <span class="">
                                 <img src="./images/dashboard_crop-health-report.png" width="137" height="132" alt="Plant Ready" />
                                Crop Health Report

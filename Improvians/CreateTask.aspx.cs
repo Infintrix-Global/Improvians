@@ -20,6 +20,7 @@ namespace Evo
 {
     public partial class CreateTask : System.Web.UI.Page
     {
+        public static string JobCode;
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
 
@@ -1566,6 +1567,12 @@ namespace Evo
 
         }
 
+
+        protected void btnCropHealthReport_Click(object sender, EventArgs e)
+        {
+           Response.Redirect(String.Format("~/CreateTask.aspx?jobCode={0}&View={1}", JobCode, "Dump"));
+        }
+
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
           
@@ -1985,6 +1992,6 @@ namespace Evo
             }
         }
 
-
+       
     }
 }
