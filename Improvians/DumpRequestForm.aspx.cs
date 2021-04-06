@@ -79,7 +79,7 @@ namespace Evo
 
             DataTable dt = new DataTable();
 
-            if (Session["Role"].ToString() == "12")
+            if (Session["Role"].ToString() == "12" || Session["Role"].ToString()=="1")
             {
 
                 dt= objCommon.GetDataTable("SP_GetRoleForGrower", nv);
@@ -90,7 +90,7 @@ namespace Evo
             }
             else
             {
-
+               // dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
             }
 
             ddlDumptAssignment.DataSource = dt;
