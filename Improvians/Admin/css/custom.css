@@ -665,6 +665,11 @@ header {
     width: auto;
     display: inline-block;
     max-width: calc(50% - 17px);
+    vertical-align: top;
+}
+
+.control__box.control__box-auto {
+    max-width: 100%;
 }
 
 .control__box .custom-checkbox label {
