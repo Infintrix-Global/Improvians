@@ -407,13 +407,21 @@ namespace Evo
 
                 Label lblsource = (Label)e.Row.FindControl("lblsource");
                 Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
+                Label lblGermDate = (Label)e.Row.FindControl("lblGermDate");
                 if (lblsource.Text == "Manual")
                 {
                     lblsource.Text = "Navision";
                 }
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
                 lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text+ "&GermNo=" + lblGermNo.Text;
-              //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
+                string SyDate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                string GDate = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy-MM-dd");
+
+                if(Convert.ToDateTime(System.DateTime.Now) > Convert.ToDateTime(lblGermDate.Text))
+                {
+                    e.Row.CssClass = "overdue";
+                }
+                //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
             }
         }
 

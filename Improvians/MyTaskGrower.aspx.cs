@@ -22,6 +22,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 CountTotal();
+                BindGridGerm();
             }
         }
 
@@ -409,5 +410,40 @@ namespace Evo
             CountTotal();
         }
 
+        public void BindGridGerm()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName","0");
+            nv.Add("@Facility", "0");
+            nv.Add("@BenchLocation", "");
+            nv.Add("@Week", "");
+            nv.Add("@Status", "");
+            nv.Add("@Jobsource","");
+            nv.Add("@GermNo", "");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "");
+
+
+
+            dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (Convert.ToDateTime(System.DateTime.Now) > Convert.ToDateTime(dt.Rows[i]["GermDate"]))
+                    {
+
+                        Ger.Attributes.Add("class", "dashboard__box dashboard__box-overdue");
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+        }
     }
 }

@@ -145,6 +145,11 @@ namespace Evo
                 TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
             }
 
+            if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
+            {
+                CreateTask.HRef = "CreateTask.aspx";
+
+            }
         }
 
     }

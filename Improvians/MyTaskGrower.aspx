@@ -26,7 +26,7 @@
                         <p>Assign a put away location for a job</p>
                     </div>
                 </a>
-                <a href="GerminationRequestForm.aspx" class="dashboard__box">
+                <a runat="server" id="Ger" href="GerminationRequestForm.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                     </div>
