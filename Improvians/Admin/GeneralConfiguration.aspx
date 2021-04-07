@@ -48,7 +48,7 @@
                     <div class="col-12 col-lg-7 col-xl-6">
                         <div class="card">
                             <div class="card-body">
-                                <div class="data__table  data__table-250">
+                                <div class="data__table  data__table-500">
                                     <asp:GridView ID="GridProfile" runat="server" ShowFooter="true" Width="100%" AutoGenerateColumns="false">
                                         <Columns>
                                             <asp:TemplateField HeaderText="Crop">
