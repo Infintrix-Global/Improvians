@@ -150,7 +150,7 @@
                     </div>
                 </div>
 
-
+                <br />
 
                 <div class="row">
                     <div class=" col m12">
@@ -485,7 +485,7 @@
 
                         <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#Chemical_count">
                             <span class="">
-                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical">
+                                <img src="./images/dashboard_chemical.png" width="137" height="136" alt="Chemical">
                                 Chemical
                             </span>
                         </button>
