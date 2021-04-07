@@ -790,10 +790,11 @@
 
                                                 <div class="col-12">
                                                     <asp:Button Text="Send Email" ID="btnSendMail" CssClass="submit-bttn bttn bttn-primary mr-2" runat="server" OnClick="btnSendMail_Click" Visible="false" />
-                                                      <asp:Button Text="Save for later" CausesValidation="true" ID="Button9" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSendMail_Click" />
 
                                                     
                                                     <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnGeneraltask_Click" />
+                                                                                                      <asp:Button Text="Save for later" CausesValidation="true" ID="Button9" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSendMail_Click" />
+
                                                 </div>
                                             </div>
                                         </asp:Panel>
