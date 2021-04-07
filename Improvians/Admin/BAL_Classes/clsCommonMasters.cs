@@ -804,7 +804,7 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
-        public int UpdatePlantProductionConfiguration(int Germination1, int Germination2, int Germination3)
+        public int UpdatePlantProductionConfiguration(int Germination1, int Germination2, int Germination3,int PlantReady)
         {
             int _isUpdated = -1;
             try
@@ -813,6 +813,7 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination1", Germination1);
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination2", Germination2);
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination3", Germination3);
+                objGeneral.AddParameterWithValueToSQLCommand("@PlantReady", PlantReady);
                 _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("UpdatePlantProductionConfiguration");
             }
             catch (Exception ex)
@@ -821,7 +822,7 @@ namespace Evo.Admin
             return _isUpdated;
 
         }
-        public int AddPlantProductionCrop(string Crop, int Germination1, int Germination2, int Germination3)
+        public int AddPlantProductionCrop(string Crop, int Germination1, int Germination2, int Germination3,int PlantReady)
         {
             int _isUpdated = -1;
             try
@@ -831,6 +832,7 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination1", Germination1);
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination2", Germination2);
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination3", Germination3);
+                objGeneral.AddParameterWithValueToSQLCommand("@PlantReady", PlantReady);
                 _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("AddPlantProductionCrop");
             }
             catch (Exception ex)

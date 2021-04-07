@@ -112,6 +112,7 @@
     <Content Include="Admin\CropHealthMaster.aspx" />
     <Content Include="Admin\css\custom.css" />
     <Content Include="Admin\js\custom.js" />
+    <Content Include="Admin\NotificationPreference.aspx" />
     <Content Include="Admin\TaskTypeMaster.aspx" />
     <Content Include="Admin\css\all.min.css" />
     <Content Include="Admin\css\aos.css" />
@@ -395,6 +396,13 @@
     </Compile>
     <Compile Include="Admin\CropHealthMaster.aspx.designer.cs">
       <DependentUpon>CropHealthMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NotificationPreference.aspx.cs">
+      <DependentUpon>NotificationPreference.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\NotificationPreference.aspx.designer.cs">
+      <DependentUpon>NotificationPreference.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\TaskTypeMaster.aspx.cs">
       <DependentUpon>TaskTypeMaster.aspx</DependentUpon>

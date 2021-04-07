@@ -107,18 +107,18 @@
                                     <li>
                                         <a class="" href="GeneralConfiguration.aspx" title="View Employee">
                                             <i class="side-icon fas fa-cogs"></i>
-                                            <span class="side-title">Germination Configuration</span>
-                                            <i class="side-control fas fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="" href="GeneralConfiguration.aspx" title="View Employee">
-                                            <i class="side-icon fas fa-cog"></i>
-                                            <span class="side-title">Plant Ready Configuration</span>
+                                            <span class="side-title">General Configuration</span>
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a class="current" href="NotificationPreference.aspx" title="Notification Preference">
+                                    <i class="side-icon fas fa-comment-dots"></i>
+                                    <span class="side-title">Notification Preference</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->

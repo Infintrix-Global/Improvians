@@ -38,10 +38,24 @@
                                     <span>days from seeding</span>
                                 </div>
 
-                                <asp:Button ID="btnUpdateConfig" runat="server" OnClick="ButtonUpdateConfig_Click" CausesValidation="true" ValidationGroup="e"
-                                    Text="Update" CssClass="bttn bttn-sm mt-3" />
+
 
                             </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h4 class="mb-0">Plant Ready Timeframe</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="mr-2 d-block robotomd">Plant Ready</label>
+                                    <asp:TextBox ID="txtPlantReady" class="input__control input__control-auto input__control-sm text-center mr-2" Text="8" Width="50px" runat="server"></asp:TextBox>
+                                    <span>days before plant due</span>
+                                </div>
+                                <asp:Button ID="btnUpdateConfig" runat="server" OnClick="ButtonUpdateConfig_Click" CausesValidation="true" ValidationGroup="e"
+                                    Text="Update" CssClass="bttn bttn-sm mt-3" />
+                            </div>
+
                         </div>
                     </div>
 
@@ -69,6 +83,11 @@
                                             <asp:TemplateField HeaderText="Germination 3" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtGerm3" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("Germination3")%>' Width="50px" runat="server"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Plant Ready" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtPlantReady" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("PlantDueDate")%>' Width="50px" runat="server"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>

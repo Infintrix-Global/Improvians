@@ -40,7 +40,8 @@ namespace Evo.Admin
             DataRow dr = dt.Rows[0];
             txtGerm1.Text = dr["Germination1"].ToString();
             txtGerm2.Text = dr["Germination2"].ToString();
-            txtGerm2.Text = dr["Germination2"].ToString();
+            txtGerm3.Text = dr["Germination3"].ToString();
+            txtPlantReady.Text = dr["PlantDueDate"].ToString();
 
             GridProfile.DataSource = objCommon.GetPlantProductionCrop();
             GridProfile.DataBind();
@@ -50,7 +51,7 @@ namespace Evo.Admin
 
         protected void ButtonUpdateConfig_Click(object sender, EventArgs e)
         {
-            long result = objCommon.UpdatePlantProductionConfiguration(Convert.ToInt32(txtGerm1.Text), Convert.ToInt32(txtGerm2.Text), Convert.ToInt32(txtGerm3.Text));
+            long result = objCommon.UpdatePlantProductionConfiguration(Convert.ToInt32(txtGerm1.Text), Convert.ToInt32(txtGerm2.Text), Convert.ToInt32(txtGerm3.Text), Convert.ToInt32(txtPlantReady.Text));
             if (result > 0)
             {
                 GridProfile.DataSource = objCommon.GetPlantProductionCrop();
@@ -66,7 +67,8 @@ namespace Evo.Admin
                 TextBox Germ1 = ((TextBox)row.FindControl("txtGerm1"));
                 TextBox Germ2 = ((TextBox)row.FindControl("txtGerm2"));
                 TextBox Germ3 = ((TextBox)row.FindControl("txtGerm3"));
-                long result = objCommon.AddPlantProductionCrop(Crop, Convert.ToInt32(Germ1.Text), Convert.ToInt32(Germ2.Text), Convert.ToInt32(Germ3.Text));
+                TextBox PlantReady = ((TextBox)row.FindControl("txtPlantReady"));
+                long result = objCommon.AddPlantProductionCrop(Crop, Convert.ToInt32(Germ1.Text), Convert.ToInt32(Germ2.Text), Convert.ToInt32(Germ3.Text), Convert.ToInt32(PlantReady.Text));
             }
         }
     }
