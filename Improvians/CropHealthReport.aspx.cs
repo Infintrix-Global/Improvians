@@ -635,7 +635,7 @@ namespace Evo
                 nv4.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
                 nv4.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                //nv.Add("@WorkOrder", lblwo.Text);
+                nv4.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv4.Add("@LoginID", Session["LoginID"].ToString());
                 nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                 nv4.Add("@FertilizationDate", txtFDate.Text);
@@ -754,7 +754,7 @@ namespace Evo
                 nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
                 nv.Add("@jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                nv.Add("@Facility", "");
+                nv.Add("@Facility", Session["Facility"].ToString());
                 nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
                 nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
@@ -991,6 +991,7 @@ namespace Evo
                 //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                 nv.Add("@Nots", txtcomments.Text.Trim());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
                 result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
 
 
@@ -1108,11 +1109,10 @@ namespace Evo
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlplant_readySupervisor.SelectedValue);
-
                 nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
                 nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                nv.Add("@Facility", "");
+                nv.Add("@Facility", Session["Facility"].ToString());
                 nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
                 nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
@@ -1120,6 +1120,11 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@ChId", Chid);
                 nv.Add("@Comments", txtcomments.Text.Trim());
+                nv.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+                nv.Add("@PlantDate", txtPlantDate.Text);
+                nv.Add("@Comments", txtcomments.Text);
+                nv.Add("@Role", "");
+                
                 result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
 
 
@@ -1450,6 +1455,8 @@ namespace Evo
                 nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
                 nv.Add("@Comments", txtcomments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
+                nv.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+
                 result3 = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
             }
@@ -1602,9 +1609,10 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@FromFacility", Session["Facility"].ToString());
                 nv.Add("@ToFacility", ddlToFacility.SelectedValue);
-                nv.Add("@ToGreenHouse", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
                 nv.Add("@Trays", (row.FindControl("lblTotTray1") as Label).Text);
                 nv.Add("@MoveDate", txtMoveDate.Text);
+
 
                 nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
@@ -1613,8 +1621,18 @@ namespace Evo
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
                 nv.Add("@ChId", Chid);
                 nv.Add("@Comments",txtcomments.Text.Trim());
+              
+                nv.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+
+                nv.Add("@FormBanchlocation", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@RTrays", txtMoveNumberOfTrays.Text);
+                
                 result16 = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
 
+
+
+	
+	
             }
 
             if (result16 > 0)
