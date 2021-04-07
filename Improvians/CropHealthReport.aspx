@@ -880,11 +880,11 @@
                                     <asp:TextBox ID="txtQuantityofTray" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
                                 <div class="d-none d-sm-block w-100"></div>
-                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                               <%-- <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label>Comments </label>
 
                                     <asp:TextBox ID="txtCommentsDump" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-                                </div>
+                                </div>--%>
                                 <div class="mb-3 col-12 align-self-end">
                                     <asp:Button Text="Submit" ID="btnDumpSumbit" CssClass="bttn bttn-primary bttn-action" runat="server"  />
                                      
