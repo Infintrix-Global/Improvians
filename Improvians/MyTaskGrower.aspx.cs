@@ -391,7 +391,7 @@ namespace Evo
                     nv11.Add("@DateCountNo", "0");
 
                     _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsPlantReadyMenual", nv11);
-                    
+
 
 
                 }
@@ -415,12 +415,12 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName","0");
+            nv.Add("@CustomerName", "0");
             nv.Add("@Facility", "0");
             nv.Add("@BenchLocation", "");
             nv.Add("@Week", "");
             nv.Add("@Status", "");
-            nv.Add("@Jobsource","");
+            nv.Add("@Jobsource", "");
             nv.Add("@GermNo", "");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
@@ -433,9 +433,15 @@ namespace Evo
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    if (Convert.ToDateTime(System.DateTime.Now) > Convert.ToDateTime(dt.Rows[i]["GermDate"]))
-                    {
 
+                    string dtimeString = Convert.ToDateTime(dt.Rows[i]["GermDate"]).ToString("yyyy/MM/dd");
+
+                    DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                    DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                    if (nowtime > dtime)
+                    {
                         Ger.Attributes.Add("class", "dashboard__box dashboard__box-overdue");
                     }
                     else

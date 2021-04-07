@@ -304,8 +304,20 @@ namespace Evo
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
+
+                string url = "";
+                if (Session["Role"].ToString() == "1")
+                {
+                    url = "MyTaskGrower.aspx";
+                }
+                else
+                {
+                    url = "MyTaskAssistantGrower.aspx";
+                }
+
                 string message = "Assignment Successful";
-                string url = "MyTaskAssistantGrower.aspx";
+             //   string url = "MyTaskAssistantGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";

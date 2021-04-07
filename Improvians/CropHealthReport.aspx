@@ -150,7 +150,7 @@
                     </div>
                 </div>
 
-
+                <br />
 
                 <div class="row">
                     <div class=" col m12">
@@ -485,7 +485,7 @@
 
                         <button class="request__block-head collapsed" type="button" data-toggle="collapse" data-target="#Chemical_count">
                             <span class="">
-                                <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical">
+                                <img src="./images/dashboard_chemical.png" width="137" height="136" alt="Chemical">
                                 Chemical
                             </span>
                         </button>
@@ -547,10 +547,10 @@
                                         <label class="d-block">Number Of Trays To Inspect</label>
                                         <asp:TextBox ID="txtTGerTrays" TextMode="Number" runat="server" class="input__control robotomd"></asp:TextBox>
                                     </div>
-                                    <div class="col-sm-auto col-xl-4 mb-3">
+                                   <%-- <div class="col-sm-auto col-xl-4 mb-3">
                                         <label>Comments </label>
                                         <asp:TextBox ID="txtGcomments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-                                    </div>
+                                    </div>--%>
                                 </div>
 
                                 <br />
@@ -618,148 +618,125 @@
                                         <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                     </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                   <%-- <div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label>Comments </label>
 
                                         <asp:TextBox ID="txtFComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
-                                    </div>
-                                    </div>
-
-                                    <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
-
-
-                                        <asp:Button Text="Submit" CausesValidation="true" ID="btnFSubmit" CssClass="mr-2 bttn bttn-primary" runat="server" OnClick="btnFSubmit_Click" />
-
-                                        <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary" OnClick="btnFReset_Click" />
-                                    </div>
-
+                                    </div>--%>
                                 </div>
+
+                                <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
+
+
+                                    <asp:Button Text="Submit" CausesValidation="true" ID="btnFSubmit" CssClass="mr-2 bttn bttn-primary" runat="server" OnClick="btnFSubmit_Click" />
+
+                                    <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary" OnClick="btnFReset_Click" />
+                                </div>
+
                             </div>
                         </div>
+                    </div>
 
 
-                        <div id="Chemical_count" class="collapse request__block-collapse" data-parent="#task_request-group">
-                            <div class="request__body">
-                                <br />
-                                <h2 class="text-left">Chemical</h2>
-                                <br />
-                                <%--   <div class="row align-items-end">--%>
-                                <asp:Panel ID="Panel2" runat="server">
-                                    <div class="row">
-
-                                        <div class="col-lg-3">
-                                            <label class="d-block">Assignment </label>
-                                            <asp:DropDownList ID="ddlChemical_supervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-
-                                        </div>
-
-
-                                        <div class="col-lg-3">
-
-                                            <label>
-                                                <asp:Label ID="lbltype" runat="server" Text="Chemical"></asp:Label></label><br />
-                                            <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <label class="d-block">Method</label>
-                                            <asp:DropDownList ID="ddlMethod" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal" />
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <label>Chemical Spray Date </label>
-
-                                            <asp:TextBox ID="txtChemicalSprayDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
-                                            <span class="error_message"></span>
-                                        </div>
-                                        <div class="col-lg-3">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-
-
-
-                                        <div class="col-lg-3">
-                                            <label>Trays</label>
-                                            <asp:Label ID="Label5" runat="server" Visible="false"></asp:Label>
-                                            <asp:TextBox ID="txtChemicalTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <label>SQFT of Bench </label>
-
-                                            <asp:TextBox ID="txtChemicaSQFTofBench" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
-                                            <span class="error_message">
-                                                <asp:Label ID="Label6" runat="server" ForeColor="red"></asp:Label>
-                                                <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
-                                                    SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>--%>
-                                            </span>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <label>Minimum Days Until Next Chemical</label>
-                                            <asp:TextBox ID="txtResetChemicalSprayTask" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                        </div>
-                                        <%--  <div class="col-lg-3">
-                                            <label>Comments</label>
-                                            <asp:TextBox ID="txtChemicalComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                        </div>--%>
-                                    </div>
-
-
-
-                                    <br />
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <asp:Button Text="Submit" CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnChemicalSubmit_Click" />
-
-                                            <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnChemicalReset_Click" />
-                                        </div>
-                                    </div>
-                                </asp:Panel>
-
-                                <%-- </div>--%>
-                            </div>
-                        </div>
-
-
-
-                        <div id="irrigation_count" class="collapse request__block-collapse" data-parent="#task_request-group">
-                            <div class="request__body">
-                                <br />
-                                <h2 class="text-left">Irrigation</h2>
-                                <br />
+                    <div id="Chemical_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                        <div class="request__body">
+                            <br />
+                            <h2 class="text-left">Chemical</h2>
+                            <br />
+                            <%--   <div class="row align-items-end">--%>
+                            <asp:Panel ID="Panel2" runat="server">
                                 <div class="row">
-                                    <div class="col-xl-3">
-                                        <label class="d-block">Assignment</label>
-                                        <asp:DropDownList ID="ddlirrigationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    <div class="col-lg-4 col-xl-3 mb-3">
+                                        <label class="d-block">Assignment </label>
+                                        <asp:DropDownList ID="ddlChemical_supervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                    <div class="col-xl-3">
-
-                                        <div class="d-flex flex-wrap align-items-center">
-                                            <span class="mr-3 mb-2 mb-sm-0"># of passes </span>
-                                            <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
-                                        </div>
+                                    <div class="col-lg-4 col-xl-3 mb-3">
+                                        <label>
+                                            <asp:Label ID="lbltype" runat="server" Text="Chemical"></asp:Label>
+                                        </label>
+                                        <br />
+                                        <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-
-                                    <div class="col-xl-3">
-
-                                        <div class="d-flex flex-wrap align-items-center">
-                                            <span class="mr-3 mb-2 mb-sm-0">Spray Date: </span>
-                                            <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
-                                        </div>
+                                    <div class="col-lg-4 col-xl-3 mb-3">
+                                        <label class="d-block">Method</label>
+                                        <asp:DropDownList ID="ddlMethod" class="custom__dropdown robotomd" runat="server" RepeatDirection="Horizontal" />
                                     </div>
-                                    <div class="col-xl-3">
-                                        <label class="d-block">Minimum Days Until Next Irrigation </label>
-                                        <asp:TextBox ID="txtirrigationResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                    <div class="col-lg-4 col-xl-3 mb-3">
+                                        <label>Chemical Spray Date </label>
 
+                                        <asp:TextBox ID="txtChemicalSprayDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <span class="error_message"></span>
+                                    </div>
+                                    <div class="col-lg-4 col-xl-3 mb-3">
+                                        <label>Trays</label>
+                                        <asp:Label ID="Label5" runat="server" Visible="false"></asp:Label>
+                                        <asp:TextBox ID="txtChemicalTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
+                                    <div class="col-lg-4 col-xl-3 mb-3">
+                                        <label>SQFT of Bench </label>
+
+                                        <asp:TextBox ID="txtChemicalSQFTofBench" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <span class="error_message">
+                                            <asp:Label ID="Label6" runat="server" ForeColor="red"></asp:Label>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
+                                                SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </span>
+                                    </div>
+                                    <div class="col-lg-4 col-xl-3 mb-3">
+                                        <label>Minimum Days Until Next Chemical</label>
+                                        <asp:TextBox ID="txtResetChemicalSprayTask" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
+                                    <div class="w-100"></div>
+                                   <%-- <div class="col-lg-4 col-xl-3 mb-3">
+                                        <label>Comments </label>
+
+                                        <asp:TextBox ID="txtCComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>--%>
+                                    <div class="w-100"></div>
+                                    <div class="col-auto">
+                                        <asp:Button Text="Submit" CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnChemicalSubmit_Click" />
+
+                                        <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnChemicalReset_Click" />
                                     </div>
                                 </div>
-                                <br />
-                                <%-- <div class="row">
+                            </asp:Panel>
+
+                            <%-- </div>--%>
+                        </div>
+                    </div>
+
+
+
+                    <div id="irrigation_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                        <div class="request__body">
+                            <h2 class="text-left mb-3">Irrigation</h2>
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
+                                    <label class="d-block">Assignment</label>
+                                    <asp:DropDownList ID="ddlirrigationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
+                                    <label class="d-block"># of passes </label>
+                                    <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
+                                    <label class="d-block">Spray Date: </label>
+                                    <asp:TextBox ID="txtirrigationSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-sm-6 mb-3">
+                                    <label class="d-block">Minimum Days Until Next Irrigation</label>
+                                    <asp:TextBox ID="txtirrigationResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+                            </div>
+                           <%-- <div class="row">
+                                <div class="col-xl-3 col-lg-4 mb-3">
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtIrrComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+                            </div>--%>
+                            <%-- <div class="row">
                                     <div class="col-xl-3">
 
                                         <label class="d-block">Comments:</label>
@@ -767,166 +744,172 @@
                                     </div>
 
                                 </div>--%>
-                                <div class="row">
+                            <div class="row">
 
-                                    <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
+                                <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
 
-                                        <asp:Button Text="Submit" ID="btnirrigationSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnirrigationSubmit_Click" />
+                                    <asp:Button Text="Submit" ID="btnirrigationSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnirrigationSubmit_Click" />
 
-                                        <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnirrigationReset_Click1" />
+                                    <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnirrigationReset_Click1" />
 
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                        <div id="plant_ready_count" class="collapse request__block-collapse" data-parent="#task_request-group">
-                            <div class="request__body">
-                                <br />
-                                <h2 class="text-left">Plant Ready</h2>
-                                <br />
-                                <div class="row">
-                                    <%--<div class="mb-3 mb-md-0 col-12 col-md-auto">
-                                        <label class="d-block">Job No.</label>
-                                        <input type="readonly" value="JB033372" size="10" class="input__control w-100 input__control-auto" />
-                                    </div>--%>
-                                    <div class="mb-3 mb-md-0 col-12 col-md-auto">
-                                        <label class="d-block">Assignment</label>
-
-                                        <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-
-                                    </div>
-
-                                    <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
-                                        <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
-
-                                        <asp:Button Text="Reset" ID="btnplant_readyReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnplant_readyReset_Click" />
-
-                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
+                    </div>
 
-                        <div id="move_request" class="collapse request__block-collapse" data-parent="#task_request-group">
-                            <div class="request__body">
+                    <div id="plant_ready_count" class="collapse request__block-collapse" data-parent="#task_request-group">
+                        <div class="request__body">
+                            <br />
+                            <h2 class="text-left">Plant Ready</h2>
+                            <br />
+                            <div class="row">
+                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label class="d-block">Assignment</label>
 
-                                <br />
-                                <h2 class="text-left">Move Request</h2>
-                                <br />
+                                    <asp:DropDownList ID="ddlplant_readySupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                    <label class="d-block">Plant Ready Work Date</label>
+                                    <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+                                <div class="d-none d-sm-block w-100"></div>
+                               <%-- <div class="mb-3 col-12 col-md-auto">
+                                    <label>Comments </label>
 
+                                    <asp:TextBox ID="txtPlantComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>--%>
+                                <div class="d-none d-sm-block w-100"></div>
+                                <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
+                                    <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
 
-                                <asp:Panel ID="Panel3" runat="server">
+                                    <asp:Button Text="Reset" ID="btnplant_readyReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnplant_readyReset_Click" />
 
-                                    <div class="row">
-
-                                        <div class="col-lg-3">
-                                            <label>Assignment </label>
-
-                                            <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
-                                            <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                            <%-- <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
-                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>--%>
-                                        </div>
-                                        <div class="col m3">
-                                            <label>To Facility Location </label>
-                                            <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
-                                            <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
-                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
-                                        </div>
-                                        <div class="col m3">
-                                            <label>Bench Location </label>
-                                            <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                            <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
-                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
-                                        </div>
-
-                                        <div class="col m3">
-                                            <label>Number Of Trays </label>
-
-                                            <asp:TextBox ID="txtMoveNumberOfTrays" runat="server" CssClass="input__control"></asp:TextBox>
-                                            <span class="error_message"></span>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <label>Date </label>
-
-                                            <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
-                                            <span class="error_message"></span>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-auto">
-
-                                            <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
-                                        </div>
-                                        <div class="col-auto">
-
-                                            <asp:Button Text="Reset" ID="MoveReset" OnClick="MoveReset_Click" runat="server" CssClass="bttn bttn-primary bttn-action" />
-                                        </div>
-                                    </div>
-                                </asp:Panel>
-
-                            </div>
-                        </div>
-
-                        <div id="dump_request" class="collapse request__block-collapse" data-parent="#task_request-group">
-                            <div class="request__body">
-                                <br />
-                                <h2 class="text-left">Dump</h2>
-                                <br />
-                                <div class="row">
-                                    <div class="mb-3 col-12 col-md-auto">
-                                        <label class="d-block">Job No.</label>
-                                        <input type="text" disabled="disabled" value="JB033372" class="input__control input__control-auto">
-                                    </div>
-                                    <div class="mb-3 col-12 col-md-auto">
-                                        <label class="d-block">Assignment</label>
-                                        <select class="custom__dropdown input__control-auto">
-                                            <option>--Select--</option>
-                                            <option>Assistant Grower</option>
-                                            <option>Supervisor</option>
-                                            <option>Irrigator</option>
-                                            <option>Crew Lead</option>
-                                            <option>Sprayer</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3 col-12 col-md-auto align-self-end">
-                                        <button type="button" class="bttn bttn-primary">
-                                            Submit
-                                        </button>
-                                        <button type="reset" class="ml-2 bttn bttn-primary">
-                                            Reset
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div id="general_task_request" class="collapse request__block-collapse" data-parent="#task_request-group">
-                            <div class="request__body">
-                                <br />
-                                <h2 class="text-left">General Task</h2>
-                                <br />
-                                <div id="divcomments" runat="server">
+                    <div id="move_request" class="collapse request__block-collapse" data-parent="#task_request-group">
+                        <div class="request__body">
 
-                                    <div class=" col m12">
-                                        <div class="portlet light ">
-
-                                            <div class="portlet-body">
+                            <h2 class="text-left mb-3">Move Request</h2>
 
 
-                                                <asp:Panel ID="Panel1" runat="server">
-                                                    <div class="row">
-                                                        <%-- <div class="col-lg-4">
+
+                            <asp:Panel ID="Panel3" runat="server">
+
+                                <div class="row">
+                                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                        <label>Assignment </label>
+
+                                        <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                        <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                        <span class="error_message">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
+                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                        <label>To Facility Location </label>
+                                        <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
+                                        <span class="error_message">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
+                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                        <label>Bench Location </label>
+                                        <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                        <span class="error_message">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
+                                                SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </span>
+                                    </div>
+                                    <div class="d-none d-sm-block w-100"></div>
+                                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                        <label>Number Of Trays </label>
+
+                                        <asp:TextBox ID="txtMoveNumberOfTrays" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <span class="error_message"></span>
+                                    </div>
+                                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                        <label>Date </label>
+
+                                        <asp:TextBox ID="txtMoveDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                        <span class="error_message"></span>
+
+                                    </div>
+                                </div>
+                               <%-- <div class="row">
+                                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                        <label>Comments </label>
+
+                                        <asp:TextBox ID="txtMoveComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                    </div>
+                                </div>--%>
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <asp:Button Text="Submit" ValidationGroup="e" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
+                                        
+                                        <asp:Button Text="Reset" ID="MoveReset" runat="server" OnClick="MoveReset_Click" CssClass="bttn bttn-primary bttn-action" />
+                                    </div>
+                                </div>
+                            </asp:Panel>
+
+                        </div>
+                    </div>
+
+                    <div id="dump_request" class="collapse request__block-collapse" data-parent="#task_request-group">
+                        <div class="request__body">
+                            <h2 class="text-left mb-3">Dump</h2>
+                            <div class="row">
+                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>Assignment </label>
+
+                                    <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
+                                    <asp:DropDownList ID="ddlDumptAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label class="d-block">Dump Date</label>
+                                    <asp:TextBox ID="txtDumpDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>Quantity of Tray </label>
+                                    <asp:TextBox ID="txtQuantityofTray" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+                                <div class="d-none d-sm-block w-100"></div>
+                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtCommentsDump" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+                                <div class="mb-3 col-12 align-self-end">
+                                    <asp:Button Text="Submit" ID="btnDumpSumbit" CssClass="bttn bttn-primary bttn-action" runat="server"  />
+                                     
+                                    <asp:Button Text="Reset" ID="btnDumpReset" runat="server" CssClass="bttn bttn-primary bttn-action"  />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="general_task_request" class="collapse request__block-collapse" data-parent="#task_request-group">
+                        <div class="request__body">
+                            <br />
+                            <h2 class="text-left">General Task</h2>
+                            <br />
+                            <div id="divcomments" runat="server">
+
+                                <div class=" col m12">
+                                    <div class="portlet light ">
+
+                                        <div class="portlet-body">
+
+
+                                            <asp:Panel ID="Panel1" runat="server">
+                                                <div class="row">
+                                                    <%-- <div class="col-lg-4">
                                                             <label>Comments</label>
                                                             <asp:TextBox TextMode="MultiLine" runat="server" ID="txtComment" CssClass="input__control"></asp:TextBox>
                                                             <span class="error_message">
@@ -935,73 +918,73 @@
                                                             </span>
                                                         </div>--%>
 
-                                                        <div class="col-xl-3">
-                                                            <label>Assignment</label>
-                                                            <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                                            <%--<asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>--%>
-                                                            <span class="error_message">
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
-                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                            </span>
-                                                        </div>
+                                                    <div class="col-xl-3">
+                                                        <label>Assignment</label>
+                                                        <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                                        <%--<asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>--%>
+                                                        <span class="error_message">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        </span>
+                                                    </div>
 
 
-                                                        <div class="col-xl-3">
-                                                            <label>Task Type</label>
+                                                    <div class="col-xl-3">
+                                                        <label>Task Type</label>
 
-                                                            <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
-                                                                <asp:ListItem Text="--Select--" Value="0" />
-                                                                <asp:ListItem Text="Add Bird Netting" Value="1" />
-                                                                <asp:ListItem Text="Remove Bird Netting" Value="2" />
-                                                                <asp:ListItem Text="Move" Value="3" />
-                                                                <asp:ListItem Text="Other" Value="4" />
-                                                            </asp:DropDownList>
-                                                            <span class="error_message">
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
-                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                            </span>
-                                                        </div>
-
-
-                                                        <div class="col-xl-3">
-                                                            <label>General Task Date</label>
-                                                            <asp:TextBox ID="txtgeneralDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
-                                                            <span class="error_message">
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtgeneralDate" ValidationGroup="x"
-                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Date" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                            </span>
-                                                        </div>
-
-                                                        <div class="col-xl-3">
-                                                            <label>Comments</label>
-                                                            <asp:TextBox ID="txtgeneralComment" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                                            <span class="error_message">
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtgeneralComment" ValidationGroup="x"
-                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Enter comments" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                            </span>
-                                                        </div>
+                                                        <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                                                            <asp:ListItem Text="--Select--" Value="0" />
+                                                            <asp:ListItem Text="Add Bird Netting" Value="1" />
+                                                            <asp:ListItem Text="Remove Bird Netting" Value="2" />
+                                                            <asp:ListItem Text="Move" Value="3" />
+                                                            <asp:ListItem Text="Other" Value="4" />
+                                                        </asp:DropDownList>
+                                                        <span class="error_message">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        </span>
+                                                    </div>
 
 
+                                                    <div class="col-xl-3">
+                                                        <label>General Task Date</label>
+                                                        <asp:TextBox ID="txtgeneralDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                                                        <span class="error_message">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtgeneralDate" ValidationGroup="x"
+                                                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        </span>
+                                                    </div>
 
-                                                        <div class="col-xl-3" id="divFrom" style="display: none;" runat="server">
-                                                            <label>From</label>
-                                                            <asp:TextBox ID="txtFrom" runat="server" CssClass="input__control"></asp:TextBox>
+                                                    <div class="col-xl-3">
+                                                        <label>Comments</label>
+                                                        <asp:TextBox ID="txtgeneralComment" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
 
-                                                            <span class="error_message">
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtFrom" ValidationGroup="x"
-                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Enter From" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                            </span>
-                                                        </div>
-                                                        <div class="col-xl-3" id="divTo" style="display: none;" runat="server">
-                                                            <label>To</label>
-                                                            <asp:TextBox ID="txtTo" runat="server" CssClass="input__control"></asp:TextBox>
+                                                        <span class="error_message">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtgeneralComment" ValidationGroup="x"
+                                                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Enter comments" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        </span>
+                                                    </div>
 
-                                                            <span class="error_message">
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtTo" ValidationGroup="x"
-                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Enter To" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                            </span>
-                                                        </div>
+
+
+                                                    <div class="col-xl-3" id="divFrom" style="display: none;" runat="server">
+                                                        <label>From</label>
+                                                        <asp:TextBox ID="txtFrom" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                                        <span class="error_message">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtFrom" ValidationGroup="x"
+                                                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Enter From" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-xl-3" id="divTo" style="display: none;" runat="server">
+                                                        <label>To</label>
+                                                        <asp:TextBox ID="txtTo" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                                        <span class="error_message">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtTo" ValidationGroup="x"
+                                                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Enter To" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                        </span>
+                                                    </div>
 
                                                         <div class="col-xl-3">
                                                             <div style="margin-top: 5%;">
@@ -1014,17 +997,17 @@
                                                     </div>
                                                 </asp:Panel>
 
-                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <%--  <div class="form__action mt-4">
+            <%--  <div class="form__action mt-4">
                     <button type="reset" class="mr-2 bttn bttn-primary mb-2">
                         Reset
                     </button>
@@ -1035,8 +1018,8 @@
                         Submit
                     </button>
                 </div>--%>
-            </div>
-
         </div>
+
+    </div>
     </div>
 </asp:Content>
