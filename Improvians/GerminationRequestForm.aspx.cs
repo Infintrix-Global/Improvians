@@ -321,10 +321,18 @@ namespace Evo
 
             if (result > 0)
             {
-                
+                string url = "";
+                if (Session["Role"].ToString()=="1")
+                {
+                     url = "MyTaskGrower.aspx";
+                }
+                else
+                {
+                    url = "MyTaskAssistantGrower.aspx";
+                }
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
+              //  string url = "MyTaskGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -414,13 +422,27 @@ namespace Evo
                 }
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
                 lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text+ "&GermNo=" + lblGermNo.Text;
-                string SyDate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-                string GDate = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy-MM-dd");
+              //  string SyDate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                //string GDate = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy-MM-dd");
 
-                if(Convert.ToDateTime(System.DateTime.Now) > Convert.ToDateTime(lblGermDate.Text))
+                //if(Convert.ToDateTime(System.DateTime.Now) > Convert.ToDateTime(lblGermDate.Text))
+                //{
+                //    e.Row.CssClass = "overdue";
+                //}
+
+
+                string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
+
+                DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                if (nowtime > dtime)
                 {
                     e.Row.CssClass = "overdue";
                 }
+
+
                 //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
             }
         }
