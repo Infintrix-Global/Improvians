@@ -2015,6 +2015,9 @@ namespace Evo
             }
         }
 
-
+        protected void btnGeneralReset_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }
