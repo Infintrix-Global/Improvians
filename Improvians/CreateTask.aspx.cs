@@ -805,7 +805,7 @@ namespace Evo
             int FertilizationCode = 0;
             string Assigned = "";
 
-            if (ddlFertilizationSupervisor.SelectedValue == "0")
+            if (btnSFLSubmit.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -890,7 +890,7 @@ namespace Evo
             long result16 = 0;
             string Assigned = "";
 
-            if (ddlgerminationSupervisor.SelectedValue == "0")
+            if (btnBSSubmit.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -1068,8 +1068,8 @@ namespace Evo
             int IrrigationCode = 0;
 
             string Assigned = "";
-
-            if (ddlirrigationSupervisor.SelectedValue == "0")
+            //  btnSaveirrigation
+            if (btnSaveirrigation.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -1151,8 +1151,8 @@ namespace Evo
             int IrrigationCode = 0;
 
             string Assigned = "";
-
-            if (ddlplant_readySupervisor.SelectedValue == "0")
+            // btnSavePlantReady
+            if (btnSavePlantReady.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -1311,7 +1311,7 @@ namespace Evo
             string Batchlocation = "";
             string Assigned = "";
 
-            if (ddlChemical_supervisor.SelectedValue == "0")
+            if (btnChemicalSFLSubmit.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -1429,8 +1429,8 @@ namespace Evo
         protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
             string Assigned = "";
-
-            if (ddlLogisticManager.SelectedValue == "0")
+            // btnSaveMove
+            if (btnSaveMove.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -1487,7 +1487,7 @@ namespace Evo
         {
             string Assigned = "";
 
-            if (ddlDumptAssignment.SelectedValue == "0")
+            if (btnSaveDump.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -1604,7 +1604,16 @@ namespace Evo
 
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
+            string Assigned = "";
 
+            if (btnSaveGeneral.Text == "Save for later")
+            {
+                Assigned = Session["LoginID"].ToString();
+            }
+            else
+            {
+                Assigned = Session["SelectedAssignment"].ToString();
+            }
 
             long result16 = 0;
             DataTable dt = new DataTable();
@@ -1628,7 +1637,7 @@ namespace Evo
                     nv.Add("@Seeddate", (row.FindControl("lblSeededDate") as Label).Text);
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
 
-                    nv.Add("@SupervisorID", Session["SelectedAssignment"].ToString());
+                    nv.Add("@SupervisorID", Assigned);
                     //nv.Add("@SupervisorID", ddlAssignments.SelectedValue);
                     nv.Add("@TaskType", ddlTaskType.SelectedValue);
                     nv.Add("@MoveFrom", txtFrom.Text);

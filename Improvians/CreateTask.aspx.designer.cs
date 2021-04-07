@@ -375,13 +375,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btngerminationSumit;
 
         /// <summary>
-        /// btnSubmit control.
+        /// btnBSSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Button btnBSSubmit;
 
         /// <summary>
         /// btngerminationReset control.
@@ -510,13 +510,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnFSubmit;
 
         /// <summary>
-        /// Button2 control.
+        /// btnSFLSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnSFLSubmit;
 
         /// <summary>
         /// btnFReset control.
@@ -663,13 +663,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnChemicalSubmit;
 
         /// <summary>
-        /// Button3 control.
+        /// btnChemicalSFLSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button btnChemicalSFLSubmit;
 
         /// <summary>
         /// btnChemicalReset control.
@@ -744,13 +744,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnirrigationSubmit;
 
         /// <summary>
-        /// Button5 control.
+        /// btnSaveirrigation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
+        protected global::System.Web.UI.WebControls.Button btnSaveirrigation;
 
         /// <summary>
         /// btnirrigationReset control.
@@ -807,13 +807,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnplant_readySubmit;
 
         /// <summary>
-        /// Button6 control.
+        /// btnSavePlantReady control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.Button btnSavePlantReady;
 
         /// <summary>
         /// btnplant_readyReset control.
@@ -933,13 +933,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnMoveSubmit;
 
         /// <summary>
-        /// Button7 control.
+        /// btnSaveMove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button7;
+        protected global::System.Web.UI.WebControls.Button btnSaveMove;
 
         /// <summary>
         /// MoveReset control.
@@ -1005,13 +1005,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnDumpSumbit;
 
         /// <summary>
-        /// btnSave control.
+        /// btnSaveDump control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button btnSaveDump;
 
         /// <summary>
         /// btnDumpReset control.
@@ -1194,13 +1194,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnGeneraltask;
 
         /// <summary>
-        /// Button9 control.
+        /// btnSaveGeneral control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button9;
+        protected global::System.Web.UI.WebControls.Button btnSaveGeneral;
 
         /// <summary>
         /// btnGeneralReset control.
