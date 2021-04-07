@@ -116,7 +116,6 @@
     <Content Include="Admin\css\all.min.css" />
     <Content Include="Admin\css\aos.css" />
     <Content Include="Admin\css\bootstrap.min.css" />
-    <Content Include="Admin\css\custom1.css" />
     <Content Include="Admin\EditProfile.aspx" />
     <Content Include="Admin\EmployeeProfile\data-privacy-and-security-features-you-should-know.jpg" />
     <Content Include="Admin\EmployeeProfile\Screenshot %289%29.png" />
