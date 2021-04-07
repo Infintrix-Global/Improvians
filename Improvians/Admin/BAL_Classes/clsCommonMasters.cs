@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Evo.Admin.BAL_Classes;
+using System;
 using System.Collections.Specialized;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
-
-using System.Web.Mail;
-using System.Web.UI.WebControls;
-using Evo.Admin.BAL_Classes;
-using MailMessage = System.Net.Mail.MailMessage;
 
 namespace Evo.Admin
 {
@@ -326,7 +318,7 @@ namespace Evo.Admin
 
                 objGeneral.AddParameterWithValueToSQLCommand("@Name", obj.FertilizerName);
                 objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
-                
+
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddFertilzerMaster");
             }
             catch (Exception ex)
@@ -369,7 +361,7 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@Crop", obj.crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@traycode", obj.traycode.ToString());
                 objGeneral.AddParameterWithValueToSQLCommand("@dateshift", obj.dateshift);
-             
+
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddPlantProductionProfileAddNewRows");
             }
             catch (Exception ex)
@@ -485,7 +477,7 @@ namespace Evo.Admin
             {
                 General objGeneral = new General();
 
-                objGeneral.AddParameterWithValueToSQLCommand("@pid", id);          
+                objGeneral.AddParameterWithValueToSQLCommand("@pid", id);
 
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("DeletePlantProductionProfile");
             }
@@ -530,7 +522,7 @@ namespace Evo.Admin
 
                 objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
                 objGeneral.AddParameterWithValueToSQLCommand("@fertilizerName", obj.FertilizerName);
-               
+
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateFertilizer");
             }
             catch (Exception ex)
@@ -721,14 +713,14 @@ namespace Evo.Admin
                 General objGeneral = new General();
                 string strQuery = string.Empty;
                 strQuery = "SELECT code, traycode, crop FROM gti_jobs_prodprofile WHERE 1=1";
-             
+
                 if (crop != "0")
                 {
                     strQuery += " And [crop]= " + "'" + crop + "'";
                 }
 
                 strQuery += " Group by code, traycode, crop";
-                
+
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
             catch (Exception ex)
@@ -783,6 +775,70 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
+
+        public DataTable GetPlantProductionConfiguration()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 1);
+                ds = objGeneral.GetDatasetByCommand_SP("GetPlantProductionConfiguration");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+        public DataTable GetPlantProductionCrop()
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 0);
+                ds = objGeneral.GetDatasetByCommand_SP("GetPlantProductionConfiguration");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+        public int UpdatePlantProductionConfiguration(int Germination1, int Germination2, int Germination3)
+        {
+            int _isUpdated = -1;
+            try
+            {
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@Germination1", Germination1);
+                objGeneral.AddParameterWithValueToSQLCommand("@Germination2", Germination2);
+                objGeneral.AddParameterWithValueToSQLCommand("@Germination3", Germination3);
+                _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("UpdatePlantProductionConfiguration");
+            }
+            catch (Exception ex)
+            {
+            }
+            return _isUpdated;
+
+        }
+        public int AddPlantProductionCrop(string Crop, int Germination1, int Germination2, int Germination3)
+        {
+            int _isUpdated = -1;
+            try
+            {
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@Crop", Crop);
+                objGeneral.AddParameterWithValueToSQLCommand("@Germination1", Germination1);
+                objGeneral.AddParameterWithValueToSQLCommand("@Germination2", Germination2);
+                objGeneral.AddParameterWithValueToSQLCommand("@Germination3", Germination3);
+                _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("AddPlantProductionCrop");
+            }
+            catch (Exception ex)
+            {
+            }
+            return _isUpdated;
+
+        }
         public DataTable GETCode()
         {
             try
@@ -811,13 +867,13 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
-        public DataTable GETTrayCode(string code,string crop)
+        public DataTable GETTrayCode(string code, string crop)
         {
             try
             {
 
                 General objGeneral = new General();
-                objGeneral.AddParameterWithValueToSQLCommand("@crop", crop); 
+                objGeneral.AddParameterWithValueToSQLCommand("@crop", crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@code", code);
                 ds = objGeneral.GetDatasetByCommand_SP("GetTrayCodeByActivityCode");
             }
@@ -944,7 +1000,7 @@ namespace Evo.Admin
 
                 General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@GCode", GCode);
-              
+
                 ds = objGeneral.GetDatasetByCommand_SP("spGetDateAdminShift");
             }
             catch (Exception ex)
@@ -981,7 +1037,7 @@ public class ProfilePlanner
     public string traycode { get; set; }
     public int dateshift { get; set; }
 
-  
+
 }
 
 public class FertilizerMasters
