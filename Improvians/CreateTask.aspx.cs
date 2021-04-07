@@ -182,7 +182,7 @@ namespace Evo
 
             //dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
 
-             DataTable dtNV = objBAL.GetLocation(ddlMain);
+            DataTable dtNV = objBAL.GetLocation(ddlMain);
 
 
             ddlBenchLocation.DataSource = dtNV;
@@ -208,7 +208,7 @@ namespace Evo
             //    ddlBenchLocation.DataValueField = "p2";
             //    ddlBenchLocation.DataBind();
             //    ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
-           // }
+            // }
 
 
 
@@ -497,19 +497,19 @@ namespace Evo
                 dt.AcceptChanges();
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
-             
+
             }
             else if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 gvFer.DataSource = dtManual;
                 gvFer.DataBind();
-            
+
             }
             else
             {
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
-               
+
 
             }
 
@@ -695,9 +695,9 @@ namespace Evo
             DataTable dt = new DataTable();
             if (Session["Role"].ToString() == "1")
             {
-                  dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-             //   dt = objCommon.GetDataTable("SP_GetRoleForGrowerNew", nv);
-             
+                dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                //   dt = objCommon.GetDataTable("SP_GetRoleForGrowerNew", nv);
+
             }
             else if (Session["Role"].ToString() == "12")
             {
@@ -706,10 +706,10 @@ namespace Evo
             else
             {
 
-              
+
                 nv.Add("@RoleID", "3");
                 dt = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
-              
+
             }
 
 
@@ -805,7 +805,7 @@ namespace Evo
             int FertilizationCode = 0;
             string Assigned = "";
 
-            if(ddlFertilizationSupervisor.SelectedValue=="0")
+            if (ddlFertilizationSupervisor.SelectedValue == "0")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -1455,7 +1455,7 @@ namespace Evo
                     nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
                     nv.Add("@FormBanchlocation", (row.FindControl("lblGreenHouse") as Label).Text);
                     nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
-                     nv.Add("@RTrays", txtMoveNumberOfTrays.Text);
+                    nv.Add("@RTrays", txtMoveNumberOfTrays.Text);
                     nv.Add("@MoveDate", txtMoveDate.Text);
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
 
@@ -1604,7 +1604,7 @@ namespace Evo
 
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
-          
+
 
             long result16 = 0;
             DataTable dt = new DataTable();
@@ -2010,17 +2010,11 @@ namespace Evo
                     }
                     conn.Close();
 
-
-
-
-
-
-
                     return BenchLocation;
                 }
             }
         }
 
-       
+
     }
 }
