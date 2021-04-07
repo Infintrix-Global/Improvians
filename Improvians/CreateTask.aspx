@@ -403,8 +403,7 @@
                                     </label>
                                     <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
-                                <div class="mb-3 col-xl-3 col-md-6 col-12 d-xl-block d-none">
-                                </div>
+                               
                                 <div class="mb-3 col-xl-2 col-md-6 col-12">
                                     <label class="d-block">Concentration [ppm]</label>
                                     <asp:TextBox ID="txtQty" TextMode="Number" Text="150" runat="server" CssClass="input__control"></asp:TextBox>
@@ -425,8 +424,7 @@
                                     <asp:TextBox ID="txtSprayCoverageperminutes" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                 </div>
-                                <div class="mb-3 col-xl-3 col-md-6 col-12 d-xl-block d-none">
-                                </div>
+                                
                                 <div class="mb-3 col-xl-3 col-md-6 col-12">
                                     <label>Comments </label>
 
@@ -437,6 +435,7 @@
                                     <label>Bench Irrigation Flow Rate [Gallons/min]</label>
                                    
                                 </div>
+                                <div class="mb-3 col-xl-3 col-md-6 col-12">
                                 <div class="mb-3 col-xl-3 col-md-6 col-12">
                                     <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
                                  

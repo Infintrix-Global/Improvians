@@ -133,9 +133,9 @@
 
                     <div class="col-lg-3">
                         <label>Bench Location </label>
-                     
+
                         <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                      <%--  <span class="error_message">
+                        <%--  <span class="error_message">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
                                 SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
                         </span>--%>
@@ -406,7 +406,7 @@
                                 <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 <span class="error_message">
                                     <asp:Label ID="Label3" runat="server" ForeColor="red"></asp:Label>
-                                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtDate" ValidationGroup="e"
+                                    <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtDate" ValidationGroup="e"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Date" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                 </span>
 
@@ -535,19 +535,21 @@
                                 <h2 class="text-left">Germination Count</h2>
                                 <br />
                                 <div class="row">
-                                    <div class="col-xl-3">
+                                    <div class="col-md-4 col-xl-3 mb-3">
                                         <label class="d-block">Assignment</label>
                                         <asp:DropDownList ID="ddlgerminationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                    <div class="col-xl-3">
+                                    <div class="col-md-4 col-xl-3 mb-3">
                                         <label class="d-block">Germination Count Date</label>
                                         <asp:TextBox ID="txtGerDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                                     </div>
-                                    <div class="col-xl-3">
+                                    <div class="col-md-4 col-xl-3 mb-3">
                                         <label class="d-block">Number Of Trays To Inspect</label>
                                         <asp:TextBox ID="txtTGerTrays" TextMode="Number" runat="server" class="input__control robotomd"></asp:TextBox>
                                     </div>
-                                    <div class="col-xl-3">
+                                    <div class="col-sm-auto col-xl-4 mb-3">
+                                        <label>Comments </label>
+                                        <asp:TextBox ID="txtGcomments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -583,8 +585,7 @@
                                         </label>
                                         <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                     </div>
-                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                    </div>
+
                                     <div class="mb-3 col-xl-2 col-md-6 col-12">
                                         <label class="d-block">Concentration [ppm]</label>
                                         <asp:TextBox ID="txtQty" TextMode="Number" Text="150" runat="server" CssClass="input__control"></asp:TextBox>
@@ -617,7 +618,13 @@
                                         <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
                                     </div>
+                                    <div class="mb-3 col-xl-3 col-md-6 col-12">
+                                        <label>Comments </label>
 
+                                        <asp:TextBox ID="txtFComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                    </div>
+                                    </div>
 
                                     <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
 
@@ -685,7 +692,7 @@
                                             <asp:TextBox ID="txtChemicaSQFTofBench" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                             <span class="error_message">
                                                 <asp:Label ID="Label6" runat="server" ForeColor="red"></asp:Label>
-                                               <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
+                                                <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSQFT" ValidationGroup="e"
                                                     SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                             </span>
                                         </div>
@@ -819,7 +826,7 @@
 
                                             <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                                             <asp:DropDownList ID="ddlLogisticManager" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                           <%-- <span class="error_message">
+                                            <%-- <span class="error_message">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlLogisticManager" ValidationGroup="e"
                                                     SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </span>--%>
@@ -930,16 +937,16 @@
 
                                                         <div class="col-xl-3">
                                                             <label>Assignment</label>
-                                                            <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" ></asp:DropDownList>
-                                                                    <%--<asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>--%>
-                                                                    <span class="error_message">
-                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
-                                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                                    </span>
-                                                                </div>
+                                                            <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                                            <%--<asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>--%>
+                                                            <span class="error_message">
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                            </span>
+                                                        </div>
 
 
-                                                      <div class="col-xl-3">
+                                                        <div class="col-xl-3">
                                                             <label>Task Type</label>
 
                                                             <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
@@ -956,7 +963,7 @@
                                                         </div>
 
 
-                                                       <div class="col-xl-3">
+                                                        <div class="col-xl-3">
                                                             <label>General Task Date</label>
                                                             <asp:TextBox ID="txtgeneralDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                                                             <span class="error_message">

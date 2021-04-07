@@ -1113,6 +1113,9 @@ namespace Evo
                     nv.Add("@IrrigationDuration", "");
                     nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
                     //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                    nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+
+                    
                     nv.Add("@Nots", txtIrrComments.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@Role", Session["Role"].ToString());

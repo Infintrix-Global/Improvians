@@ -134,6 +134,8 @@ namespace Evo
             //nv.Add("@Mode", "5");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@IrrigationCode", IrrigationCode);
+            nv.Add("@RoleId", Session["Role"].ToString());
+           
             if (Session["Role"].ToString() == "2")
             {
                 dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIrrigationCode", nv);

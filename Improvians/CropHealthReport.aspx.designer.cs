@@ -393,6 +393,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtTGerTrays;
 
         /// <summary>
+        /// txtGcomments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGcomments;
+
+        /// <summary>
         /// btngerminationSumit control.
         /// </summary>
         /// <remarks>
@@ -472,6 +481,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtResetSprayTaskForDays;
+
+        /// <summary>
+        /// txtFComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFComments;
 
         /// <summary>
         /// btnFSubmit control.
