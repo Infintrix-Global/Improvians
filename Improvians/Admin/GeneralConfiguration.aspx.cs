@@ -22,7 +22,8 @@ namespace Evo.Admin
         {
             if (!IsPostBack)
             {
-                BindCrop();
+             //   BindCrop();
+                GetConfiguration();
             }
         }
 
@@ -33,43 +34,40 @@ namespace Evo.Admin
             GridProfile.DataBind();
         }
 
-
-        protected void btnClear_Click(object sender, EventArgs e)
+        public void GetConfiguration()
         {
-            BindCrop();
+            DataTable dt = objCommon.GetPlantProductionConfiguration();
+            DataRow dr = dt.Rows[0];
+            txtGerm1.Text = dr["Germination1"].ToString();
+            txtGerm2.Text = dr["Germination2"].ToString();
+            txtGerm2.Text = dr["Germination2"].ToString();
 
+            GridProfile.DataSource = objCommon.GetPlantProductionCrop();
+            GridProfile.DataBind();
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            long result1 = 0;
-            //foreach (GridViewRow row in gvProductionProfile.Rows)
-            //{
-            //    if (!string.IsNullOrEmpty(((TextBox)row.FindControl("txtdateshift")).Text))
-            //    {
-            //        string s = ((TextBox)row.FindControl("txtdateshift")).Text;
-            //        string id = ((Label)row.FindControl("lblID")).Text;
-            //        ProfilePlanner obj = new ProfilePlanner()
-            //        {
-            //            pid = Convert.ToInt32(id),
-            //            dateshift = Convert.ToInt32(s)
-            //        };
-            //        result1 = objCommon.UpdateDateShift(obj);
-            //    }
-            //}
-            string message = "Record updated Successful";
-            string url = "ViewPlantProductionProfile.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-        }
 
-        protected void GridProfile_RowDataBound(object sender, GridViewRowEventArgs e)
+
+        protected void ButtonUpdateConfig_Click(object sender, EventArgs e)
         {
+            long result = objCommon.UpdatePlantProductionConfiguration(Convert.ToInt32(txtGerm1.Text), Convert.ToInt32(txtGerm2.Text), Convert.ToInt32(txtGerm3.Text));
+            if (result > 0)
+            {
+                GridProfile.DataSource = objCommon.GetPlantProductionCrop();
+                GridProfile.DataBind();
+            }
+
+        }
+        protected void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in GridProfile.Rows)
+            {
+                string Crop = ((Label)row.FindControl("lblCrop")).Text;
+                TextBox Germ1 = ((TextBox)row.FindControl("txtGerm1"));
+                TextBox Germ2 = ((TextBox)row.FindControl("txtGerm2"));
+                TextBox Germ3 = ((TextBox)row.FindControl("txtGerm3"));
+                long result = objCommon.AddPlantProductionCrop(Crop, Convert.ToInt32(Germ1.Text), Convert.ToInt32(Germ2.Text), Convert.ToInt32(Germ3.Text));
+            }
         }
     }
 

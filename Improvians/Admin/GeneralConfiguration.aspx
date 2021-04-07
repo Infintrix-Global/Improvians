@@ -38,7 +38,8 @@
                                     <span>days from seeding</span>
                                 </div>
 
-                                <button class="bttn bttn-sm mt-2">Update</button>
+                                <asp:Button ID="btnUpdateConfig" runat="server" OnClick="ButtonUpdateConfig_Click" CausesValidation="true" ValidationGroup="e"
+                                    Text="Update" CssClass="bttn bttn-sm mt-3" />
 
                             </div>
                         </div>
@@ -48,8 +49,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="data__table  data__table-250">
-                                    <asp:GridView ID="GridProfile" runat="server" ShowFooter="true" Width="100%"
-                                        AutoGenerateColumns="false" OnRowDataBound="GridProfile_RowDataBound">
+                                    <asp:GridView ID="GridProfile" runat="server" ShowFooter="true" Width="100%" AutoGenerateColumns="false">
                                         <Columns>
                                             <asp:TemplateField HeaderText="Crop">
                                                 <ItemTemplate>
@@ -58,17 +58,17 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Germination 1" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtGerm1" class="input__control input__control-auto input__control-sm text-center" Text="8"  Width="50px" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtGerm1" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("Germination1")%>' Width="50px" runat="server"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Germination 2" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtGerm2" class="input__control input__control-auto input__control-sm text-center" Text="15"  Width="50px" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtGerm2" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("Germination2")%>' Width="50px" runat="server"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Germination 3" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtGerm3" class="input__control input__control-auto input__control-sm text-center" Text="0"  Width="50px" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="txtGerm3" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("Germination3")%>' Width="50px" runat="server"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -77,7 +77,7 @@
                                     </asp:GridView>
 
                                 </div>
-                                <asp:Button ID="ButtonUpdate" runat="server" CausesValidation="true" ValidationGroup="e"
+                                <asp:Button ID="ButtonUpdate" runat="server" OnClick="ButtonUpdate_Click" CausesValidation="true" ValidationGroup="e"
                                     Text="Update" CssClass="bttn bttn-sm mt-3" />
                             </div>
                         </div>
