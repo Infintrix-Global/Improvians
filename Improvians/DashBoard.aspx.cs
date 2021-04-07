@@ -150,6 +150,12 @@ namespace Evo
                 CreateTask.HRef = "CreateTask.aspx";
 
             }
+            else
+            {
+                lblCreate.Text = "";
+                lblManageTask.Text = "";
+
+            }
         }
 
     }

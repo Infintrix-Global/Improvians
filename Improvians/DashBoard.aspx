@@ -84,11 +84,12 @@
                                     </a>
                                     <a href="#" runat="server" id="CreateTask"  class="dashboard__task">
                                         <img src="images/link-site-tasks.svg" width="184" height="184" alt="Site Tasks" />
-                                        <span>Create Task</span>
+                                        <span>
+                                            <asp:Label ID="lblCreate" runat="server" Text="Create Task"></asp:Label> </span>
                                     </a>
                                     <a runat="server" href="#" id="TrackTasks" class="dashboard__task">
                                         <img src="images/link-assign-task.svg" width="184" height="184" alt="Assign a Task" />
-                                           <span>Manage Task</span>
+                                           <span><asp:Label ID="lblManageTask" runat="server" Text="Manage Task"></asp:Label>  </span>
                                     </a>
                                     <a runat="server" href="JobReports.aspx" id="JobReports"  class="dashboard__task">
                                         <img src="images/link-track-tasks.svg" width="184" height="184" alt="Track Tasks" />

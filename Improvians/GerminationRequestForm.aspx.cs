@@ -456,11 +456,15 @@ namespace Evo
 
         protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             BindGridGerm(txtSearchJobNo.Text);
         }
 
         protected void txtBatchLocation_TextChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             BindJobCode(txtBatchLocation.Text);
             BindGridGerm(ddlJobNo.SelectedValue);
         }
