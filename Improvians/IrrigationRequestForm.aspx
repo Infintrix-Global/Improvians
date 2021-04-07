@@ -52,7 +52,7 @@
                 <div class="col-xl-4 col-12 mb-3">
                     <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnResetSearch_Click" />
-                    <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                    <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                 </div>
             </div>
 

@@ -1185,6 +1185,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnSendMail;
 
         /// <summary>
+        /// btnGeneraltask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGeneraltask;
+
+        /// <summary>
         /// Button9 control.
         /// </summary>
         /// <remarks>
@@ -1194,12 +1203,12 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button Button9;
 
         /// <summary>
-        /// btnGeneraltask control.
+        /// btnGeneralReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGeneraltask;
+        protected global::System.Web.UI.WebControls.Button btnGeneralReset;
     }
 }

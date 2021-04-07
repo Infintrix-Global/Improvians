@@ -608,10 +608,18 @@ namespace Evo
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
                 }
             }
-
+            string url = "";
+            if (Session["Role"].ToString() == "1")
+            {
+                url = "MyTaskGrower.aspx";
+            }
+            else
+            {
+                url = "MyTaskAssistantGrower.aspx";
+            }
 
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+           // string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";

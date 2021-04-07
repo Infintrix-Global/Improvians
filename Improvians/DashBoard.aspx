@@ -82,17 +82,18 @@
                                         <img src="images/link-my-task.svg" width="184" height="184" alt="My Tasks" />
                                         <span>My Task</span>
                                     </a>
-                                    <a href="CreateTask.aspx" class="dashboard__task">
+                                    <a href="#" runat="server" id="CreateTask"  class="dashboard__task">
                                         <img src="images/link-site-tasks.svg" width="184" height="184" alt="Site Tasks" />
                                         <span>Create Task</span>
                                     </a>
-                                    <a href="JobReports.aspx" class="dashboard__task">
+                                    <a runat="server" href="#" id="TrackTasks" class="dashboard__task">
                                         <img src="images/link-assign-task.svg" width="184" height="184" alt="Assign a Task" />
-                                        <span>Reports</span>
+                                           <span>Manage Task</span>
                                     </a>
-                                    <a runat="server" id="TrackTasks" href="#" class="dashboard__task">
+                                    <a runat="server" href="JobReports.aspx" id="JobReports"  class="dashboard__task">
                                         <img src="images/link-track-tasks.svg" width="184" height="184" alt="Track Tasks" />
-                                        <span>Manage Task</span>
+                                    
+                                        <span>Reports</span>
                                     </a>
                                 </div>
                             </div>

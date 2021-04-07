@@ -522,8 +522,17 @@ namespace Evo
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
             objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text,"", "", "", txtResetSprayTaskForDays.Text);
 
+            string url = "";
+            if (Session["Role"].ToString() == "1")
+            {
+                url = "MyTaskGrower.aspx";
+            }
+            else
+            {
+                url = "MyTaskAssistantGrower.aspx";
+            }
             string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
+         //   string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";

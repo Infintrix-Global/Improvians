@@ -64,6 +64,7 @@ namespace Evo
             // nv.Add("@Facility", ddlFacility.SelectedValue);
             //nv.Add("@Mode", "8");
             nv.Add("@LoginID", Session["LoginID"].ToString());
+           
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             dt = objCommon.GetDataTable("SP_GetSupervisorPlantReadyTask", nv);
             gvGerm.DataSource = dt;

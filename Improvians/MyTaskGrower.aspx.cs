@@ -22,6 +22,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 CountTotal();
+                BindGridGerm();
             }
         }
 
@@ -390,7 +391,7 @@ namespace Evo
                     nv11.Add("@DateCountNo", "0");
 
                     _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsPlantReadyMenual", nv11);
-                    
+
 
 
                 }
@@ -409,5 +410,46 @@ namespace Evo
             CountTotal();
         }
 
+        public void BindGridGerm()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", "0");
+            nv.Add("@BenchLocation", "");
+            nv.Add("@Week", "");
+            nv.Add("@Status", "");
+            nv.Add("@Jobsource", "");
+            nv.Add("@GermNo", "");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "");
+
+
+
+            dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    string dtimeString = Convert.ToDateTime(dt.Rows[i]["GermDate"]).ToString("yyyy/MM/dd");
+
+                    DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                    DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                    if (nowtime > dtime)
+                    {
+                        Ger.Attributes.Add("class", "dashboard__box dashboard__box-overdue");
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+        }
     }
 }

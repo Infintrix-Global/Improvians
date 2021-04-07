@@ -118,6 +118,9 @@ namespace Evo
             nv.Add("@GermNo", RadioButtonListGno.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
+            nv.Add("@AssignedBy","");
+            
+
          //   dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
 
             if (Session["Role"].ToString() == "12")
@@ -318,10 +321,18 @@ namespace Evo
 
             if (result > 0)
             {
-                
+                string url = "";
+                if (Session["Role"].ToString()=="1")
+                {
+                     url = "MyTaskGrower.aspx";
+                }
+                else
+                {
+                    url = "MyTaskAssistantGrower.aspx";
+                }
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
+              //  string url = "MyTaskGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -404,13 +415,35 @@ namespace Evo
 
                 Label lblsource = (Label)e.Row.FindControl("lblsource");
                 Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
+                Label lblGermDate = (Label)e.Row.FindControl("lblGermDate");
                 if (lblsource.Text == "Manual")
                 {
                     lblsource.Text = "Navision";
                 }
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
                 lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text+ "&GermNo=" + lblGermNo.Text;
-              //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
+              //  string SyDate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                //string GDate = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy-MM-dd");
+
+                //if(Convert.ToDateTime(System.DateTime.Now) > Convert.ToDateTime(lblGermDate.Text))
+                //{
+                //    e.Row.CssClass = "overdue";
+                //}
+
+
+                string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
+
+                DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                if (nowtime > dtime)
+                {
+                    e.Row.CssClass = "overdue";
+                }
+
+
+                //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));
             }
         }
 

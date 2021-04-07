@@ -416,7 +416,7 @@ namespace Evo
                 if (dtSQFT != null && dtSQFT.Rows.Count > 0)
                 {
                     txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
-                    txtChemicaSQFTofBench.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
+                    txtChemicalSQFTofBench.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
                 }
             }
         }
@@ -430,13 +430,21 @@ namespace Evo
             if (Session["Role"].ToString() == "1")
             {
                 dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                //   dt = objCommon.GetDataTable("SP_GetRoleForGrowerNew", nv);
+
             }
             else if (Session["Role"].ToString() == "12")
             {
                 dt = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
             }
             else
-            { }
+            {
+
+
+                nv.Add("@RoleID", "3");
+                dt = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+
+            }
 
 
             ddlgerminationSupervisor.DataSource = dt;
@@ -481,6 +489,14 @@ namespace Evo
             ddlLogisticManager.DataValueField = "ID";
             ddlLogisticManager.DataBind();
             ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+
+            ddlDumptAssignment.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlDumptAssignment.DataTextField = "EmployeeName";
+            ddlDumptAssignment.DataValueField = "ID";
+            ddlDumptAssignment.DataBind();
+            ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
+
 
         }
         public void BindChemical()
@@ -1665,6 +1681,9 @@ namespace Evo
             }
         }
 
-       
+        protected void btnGeneralReset_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
     }
 }

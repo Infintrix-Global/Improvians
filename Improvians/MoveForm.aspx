@@ -28,7 +28,7 @@
                             </div>
                             <div class="col m3">
                                 <label></label>
-                                <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
+                                <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                             </div>
                         </div>
                     </div>
