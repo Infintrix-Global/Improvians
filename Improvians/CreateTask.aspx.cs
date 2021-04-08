@@ -1615,8 +1615,8 @@ namespace Evo
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
             string Assigned = "";
-
-            if (btnSaveGeneral.Text == "Save for later")
+            Button btn = (Button)sender;
+            if (btn.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
