@@ -75,7 +75,7 @@ namespace Evo
                 var result = objCommon.GetDataExecuteScaler("SP_ClearAllNotification", nv);
             }
 
-            sqr = "Select * FROM NotificationMaster WHERE IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
+            sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 And IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
             if (!string.IsNullOrEmpty(sqr))
             {
                 dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
@@ -89,6 +89,12 @@ namespace Evo
                 totalCount = "0";
             }
             lblNotificationCount.Text = totalCount;
+
+            sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
+            if (!string.IsNullOrEmpty(sqr))
+            {
+                dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
+            }
 
             r1.DataSource = dtSearch1;
             r1.DataBind();
@@ -176,10 +182,7 @@ namespace Evo
                 }
                 else
                 {
-
-                    Response.Redirect(TaskName + "AssignmentForm.aspx");
-
-
+                   Response.Redirect(TaskName + "AssignmentForm.aspx");
                 }
 
             }
@@ -188,6 +191,22 @@ namespace Evo
         protected void clearNotification_Click(object sender, EventArgs e)
         {
             checkNotification(2);
+        }
+
+        protected void remoteNotificationLink_Click(object sender, EventArgs e)
+        {
+            NameValueCollection nv = new NameValueCollection();
+
+            LinkButton link = (LinkButton)sender;
+            RepeaterItem row = (RepeaterItem)link.NamingContainer;
+            string id = ((Label)row.FindControl("lblID")).Text;
+            nv.Add("@Nid", id);
+           
+
+            var result = objCommon.GetDataExecuteScaler("SP_ClearNotificationById", nv);
+            checkNotification(1);
+
+            //DataTable dtSearch1 = new DataTable();
         }
 
         //[WebMethod]
