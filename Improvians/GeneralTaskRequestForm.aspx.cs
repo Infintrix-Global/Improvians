@@ -55,10 +55,10 @@ namespace Evo
             // nv.Add("@Mode", "7");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
-            if (Session["Role"].ToString() == "12")
-            {
+            //if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "12")
+            //{
                 dt = objCommon.GetDataTable("SP_GetGeneralRequestAssistantGrower", nv);
-            }
+            //}
            
             gvTask.DataSource = dt;
             gvTask.DataBind();
