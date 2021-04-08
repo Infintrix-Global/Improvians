@@ -15,23 +15,7 @@
             </h2>
 
 
-            <div class="row">
-
-                <div class="col-lg-3">
-                </div>
-
-                <div class="col-lg-3">
-                </div>
-
-                <div class="col-lg-3">
-                </div>
-
-                <div class="col-lg-3">
-
-                  <asp:Button ID="btnManual" runat="server" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
-                </div>
-
-            </div>
+          
 
             <div class="row">
                 <div class=" col m12">

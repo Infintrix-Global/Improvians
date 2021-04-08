@@ -54,9 +54,9 @@ namespace Evo
                     PanelList.Visible = true;
                     //    BindUnit();
                     //  BindJobCode(ddlBenchLocation.SelectedValue);
-                    Bindcname();
+                  
                     Facility = Session["Facility"].ToString();
-                    BindBenchLocation(Session["Facility"].ToString());
+                 
                     dtTrays.Clear();
                 }
 
@@ -69,7 +69,7 @@ namespace Evo
                 BindFacility();
                 BindSupervisorList();
                 BindFertilizer();
-                BindJobCode("");
+              
                 BindChemical();
                 txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -208,67 +208,12 @@ namespace Evo
         }
 
 
-        public void Bindcname()
+        protected void btnReset_Click(object sender, EventArgs e)
         {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "8");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlCustomer.DataSource = dt;
-            ddlCustomer.DataTextField = "cname";
-            ddlCustomer.DataValueField = "cname";
-            ddlCustomer.DataBind();
-            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
 
-        public void BindJobCode(string ddlBench)
-        {
-            ddlJobNo.Items.Clear();
-            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation1(ddlBench, Session["Facility"].ToString());
-            ddlJobNo.DataTextField = "Jobcode";
-            ddlJobNo.DataValueField = "Jobcode";
-            ddlJobNo.DataBind();
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
-        }
 
-        public void BindBenchLocation(string ddlMain)
-        {
-            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
-            ddlBenchLocation.DataTextField = "p2";
-            ddlBenchLocation.DataValueField = "p2";
-            ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
-
-        }
-        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridFerReq("", "");
-        }
-
-        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           // BindGridFerReq(ddlBenchLocation.SelectedValue, ddlJobNo.SelectedValue);
-            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'", ddlJobNo.SelectedValue);
-        }
-
-
-        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtSearchJobNo.Text = "";
-            BindJobCode(ddlBenchLocation.SelectedValue);
-
-            //BindGridFerReq(ddlBenchLocation.SelectedValue, "");
-            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'","");
-        }
-
-        protected void btnSearchDet_Click(object sender, EventArgs e)
-        {
-
-            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'", txtSearchJobNo.Text.Trim());
-        }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -361,8 +306,7 @@ namespace Evo
             txtDate.Text = "";
             percentageDamage.Text = "";
             dtTrays.Clear();
-            ddlBenchLocation.SelectedIndex = 0;
-            ddlCustomer.SelectedIndex = 0;
+           
             //ddlJobNo.SelectedIndex = 0;
             //BindGridFerReq();
             gvFer.DataSource = null;
@@ -387,22 +331,9 @@ namespace Evo
 
         }
 
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            Clear();
-        }
+       
 
-        protected void btnSearchRest_Click(object sender, EventArgs e)
-        {
-            ddlBenchLocation.SelectedIndex = 0;
-            ddlCustomer.SelectedIndex = 0;
-            // ddlJobNo.SelectedIndex = 0;
-            //BindGridFerReq();
-            txtSearchJobNo.Text = "";
-            txtSearchJobNo.Text = "JB";
-            gvFer.DataSource = null;
-            gvFer.DataBind();
-        }
+       
 
 
 
@@ -1666,42 +1597,12 @@ namespace Evo
            
         }
 
-        [System.Web.Script.Services.ScriptMethod()]
-        [System.Web.Services.WebMethod]
-        public static List<string> SearchCustomers(string prefixText, int count)
-        {
-            using (SqlConnection conn = new SqlConnection())
-            {
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
-                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
-                    //" AND t.[Job No_] like '" + prefixText + "%'";
-                    string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
-                        "";
-
-                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
-                    cmd.Connection = conn;
-                    conn.Open();
-                    List<string> customers = new List<string>();
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        while (sdr.Read())
-                        {
-                            customers.Add(sdr["jobcode"].ToString());
-                        }
-                    }
-                    conn.Close();
-                    return customers;
-                }
-            }
-        }
-
+      
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
             Clear();
         }
+
+       
     }
 }

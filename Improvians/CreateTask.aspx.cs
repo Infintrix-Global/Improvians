@@ -762,7 +762,12 @@ namespace Evo
             ddlDumptAssignment.DataBind();
             ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
 
-
+            ddlCropHealthAssignment.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlCropHealthAssignment.DataTextField = "EmployeeName";
+            ddlCropHealthAssignment.DataValueField = "ID";
+            ddlCropHealthAssignment.DataBind();
+            ddlCropHealthAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
         public void BindChemical()
@@ -1556,10 +1561,18 @@ namespace Evo
 
         }
 
-
-        protected void btnCropHealthReport_Click(object sender, EventArgs e)
+        protected void btnCropHealthSubmit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnCropHealthSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCropHealthStart_Click(object sender, EventArgs e)
+        {
             string x = "'" + Bench1 + "'" + ",";
             string chkSelected = "";
             int c = 0;
@@ -1591,6 +1604,13 @@ namespace Evo
 
             Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}", chkSelected));
         }
+
+        protected void btnCropReset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+      
 
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
@@ -1717,7 +1737,8 @@ namespace Evo
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
             ddlgerminationSupervisor.Focus();
             txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
 
         protected void btnFertilization_Click(object sender, EventArgs e)
@@ -1750,7 +1771,8 @@ namespace Evo
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
 
             txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
 
         }
 
@@ -1780,7 +1802,8 @@ namespace Evo
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
             txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
 
         protected void btnIrrigation_Click(object sender, EventArgs e)
@@ -1809,7 +1832,8 @@ namespace Evo
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
             txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
 
         protected void btnPlantReady_Click(object sender, EventArgs e)
@@ -1842,7 +1866,8 @@ namespace Evo
             btnMoveRequest.Attributes.Add("class", "request__block-head collapsed");
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
-
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
 
 
@@ -1873,7 +1898,8 @@ namespace Evo
             btnMoveRequest.Attributes.Add("class", "request__block-head ");
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
-
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
 
         protected void btnDump_Click(object sender, EventArgs e)
@@ -1904,6 +1930,8 @@ namespace Evo
             btnMoveRequest.Attributes.Add("class", "request__block-head collapsed");
             btnDump.Attributes.Add("class", "request__block-head ");
             btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
 
         protected void btnGeneralTask_Click(object sender, EventArgs e)
@@ -1923,6 +1951,8 @@ namespace Evo
             dump_request.Attributes.Add("class", "request__block-collapse collapse");
 
             general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
             ddlAssignments.Focus();
 
             txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -1936,6 +1966,44 @@ namespace Evo
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head ");
         }
+
+        protected void btnCropHealthReport_Click(object sender, EventArgs e)
+        {
+            germination_count.Attributes.Add("class", "request__block-collapse collapse ");
+
+            fertilization_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse");
+
+            move_request.Attributes.Add("class", "request__block-collapse collapse");
+
+            dump_request.Attributes.Add("class", "request__block-collapse collapse");
+
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse");
+
+            CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse show");
+
+            ddlAssignments.Focus();
+
+            txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+
+            btngermination.Attributes.Add("class", "request__block-head collapsed");
+            btnFertilization.Attributes.Add("class", "request__block-head collapsed");
+            btnChemical.Attributes.Add("class", "request__block-head collapsed");
+            btnIrrigation.Attributes.Add("class", "request__block-head collapsed");
+            btnPlantReady.Attributes.Add("class", "request__block-head collapsed");
+            btnMoveRequest.Attributes.Add("class", "request__block-head collapsed");
+            btnDump.Attributes.Add("class", "request__block-head collapsed");
+            btnGeneral_Task.Attributes.Add("class", "request__block-head collapsed");
+            btnCropHealthReport.Attributes.Add("class", "request__block-head ");
+
+        }
+
+
 
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
@@ -2025,5 +2093,7 @@ namespace Evo
             txtFrom.Text = "";
             txtTo.Text = "";
         }
+
+      
     }
 }

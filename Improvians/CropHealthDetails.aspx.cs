@@ -39,11 +39,6 @@ namespace Evo
         }
 
 
-        protected void btnManual_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/CropHealthReport.aspx");
-        }
-
         protected void gvCropHealth_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvCropHealth.PageIndex = e.NewPageIndex;
