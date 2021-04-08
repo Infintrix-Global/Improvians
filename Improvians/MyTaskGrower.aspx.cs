@@ -43,6 +43,7 @@ namespace Evo
             lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
             lblDumpTotal.Text = dt.Tables[8].Rows.Count.ToString();
             lblMove.Text = dt.Tables[9].Rows.Count.ToString();
+            lblGeneralTotal.Text = dt.Tables[10].Rows.Count.ToString();
             //lnkMove.Text = dt.Tables[5].Rows.Count.ToString();
         }
 

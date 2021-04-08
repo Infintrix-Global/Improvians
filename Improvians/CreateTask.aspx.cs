@@ -1056,10 +1056,10 @@ namespace Evo
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
         {
             int IrrigationCode = 0;
-
+            Button btn = (Button)sender;
             string Assigned = "";
             //  btnSaveirrigation
-            if (btnSaveirrigation.Text == "Save for later")
+            if (btn.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
@@ -2017,6 +2017,13 @@ namespace Evo
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
             Clear();
+
+            ddlAssignments.SelectedValue = "0";
+            ddlTaskType.SelectedValue = "0";
+            txtgeneralDate.Text = DateTime.Now.ToString("yyyy/mm/dd");
+            txtgeneralComment.Text = "";
+            txtFrom.Text = "";
+            txtTo.Text = "";
         }
     }
 }
