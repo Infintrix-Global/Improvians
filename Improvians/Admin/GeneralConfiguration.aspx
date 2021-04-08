@@ -7,7 +7,7 @@
     <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
     <div class="admin__content">
         <div class="container-fluid">
-            <h1 class="text-center text-sm-left">General Configuration</h1>
+            <h1 class="text-center text-sm-left">Germination Configuration</h1>
 
             <hr />
             <!-- BEGIN FORM-->
@@ -37,26 +37,12 @@
                                     <asp:TextBox ID="txtGerm3" class="input__control input__control-auto input__control-sm text-center mr-2" Text="0" Width="50px" runat="server"></asp:TextBox>
                                     <span>days from seeding</span>
                                 </div>
-
-
-
-                            </div>
-                        </div>
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h4 class="mb-0">Plant Ready Timeframe</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label class="mr-2 d-block robotomd">Plant Ready</label>
-                                    <asp:TextBox ID="txtPlantReady" class="input__control input__control-auto input__control-sm text-center mr-2" Text="8" Width="50px" runat="server"></asp:TextBox>
-                                    <span>days before plant due</span>
-                                </div>
-                                <asp:Button ID="btnUpdateConfig" runat="server" OnClick="ButtonUpdateConfig_Click" CausesValidation="true" ValidationGroup="e"
+                                 <asp:Button ID="btnUpdateConfig" runat="server" OnClick="ButtonUpdateConfig_Click" CausesValidation="true" ValidationGroup="e"
                                     Text="Update" CssClass="bttn bttn-sm mt-3" />
-                            </div>
 
-                        </div>
+
+                            </div>
+                        </div>                       
                     </div>
 
                     <div class="col-12 col-lg-7 col-xl-6">
@@ -84,17 +70,9 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtGerm3" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("Germination3")%>' Width="50px" runat="server"></asp:TextBox>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Plant Ready" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtPlantReady" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("PlantDueDate")%>' Width="50px" runat="server"></asp:TextBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>                                          
                                         </Columns>
-
-
                                     </asp:GridView>
-
                                 </div>
                                 <asp:Button ID="ButtonUpdate" runat="server" OnClick="ButtonUpdate_Click" CausesValidation="true" ValidationGroup="e"
                                     Text="Update" CssClass="bttn bttn-sm mt-3" />
