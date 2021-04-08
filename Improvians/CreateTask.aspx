@@ -317,6 +317,7 @@
                                Crop Health Report
                             </span>
                     </asp:LinkButton>
+
                     <asp:LinkButton runat="server" ID="btnPlantReady" ForeColor="Black" class="request__block-head collapsed" OnClick="btnPlantReady_Click">
                             <span class="">
                                 <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
@@ -801,6 +802,39 @@
                                         <%-- </ContentTemplate>
                                         </asp:UpdatePanel>--%>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="CropHealthReportID" runat="server" class="collapse dashboard__block request__block-collapse mb-4" data-parent="#task_request-group">
+                        <div class="request__body">
+                            <h2 class="text-left mb-3"> Crop Health Report</h2>
+                            <div class="row">
+                             
+                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label class="d-block">Assignment</label>
+
+                                    <asp:DropDownList ID="ddlCropHealthAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                                    <label class="d-block">Crop Health Date</label>
+                                    <asp:TextBox ID="txtCropHealthDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+                                <div class="d-none d-sm-block w-100"></div>
+                                <div class="mb-3 col-12 col-md-auto">
+                                    <label>Comments </label>
+
+                                    <asp:TextBox ID="txtCropHealthComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                                </div>
+                                <div class="d-none d-sm-block w-100"></div>
+                                <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
+                                    <asp:Button Text="Submit" ID="btnCropHealthSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnCropHealthSubmit_Click" />
+                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnCropHealthSave" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthSave_Click" />
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnCropHealthStart" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthStart_Click" />
+
+                                    <asp:Button Text="Reset" ID="btnCropReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnCropReset_Click" />
                                 </div>
                             </div>
                         </div>

@@ -96,61 +96,7 @@
             <asp:Panel ID="PanelList" runat="server">
 
 
-                <div class="row">
-
-                    <div class="col-lg-3">
-
-                        <label>Job No</label>
-                        <asp:TextBox ID="txtSearchJobNo" runat="server" Text="JB" class="input__control robotomd"></asp:TextBox>
-
-
-                        <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
-                            MinimumPrefixLength="2"
-                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                            TargetControlID="txtSearchJobNo"
-                            ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
-                        </cc1:AutoCompleteExtender>
-                    </div>
-
-
-                    <div class="col-lg-3">
-                        <br />
-                        <asp:Button Text="Search" ID="btnSearchDet" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchDet_Click" />
-
-                        <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
-
-                    </div>
-
-                    <div class="col-lg-3">
-                    </div>
-
-                    <div class="col-lg-3">
-                    </div>
-
-                </div>
-                <br />
-                <div class="row">
-
-                    <div class="col-lg-3">
-                        <label>Bench Location </label>
-
-                        <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                        <%--  <span class="error_message">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
-                                SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                        </span>--%>
-                    </div>
-                    <div class="col-lg-3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <div class="col-lg-3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                </div>
-
-                <br />
+              
 
                 <div class="row">
                     <div class=" col m12">

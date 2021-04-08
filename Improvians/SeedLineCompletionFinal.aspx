@@ -71,12 +71,7 @@
                                                         <asp:Label ID="lblNoofTray" runat="server" Text='<%# Eval("trays_plan")  %>'></asp:Label></td>
 
                                                 </tr>
-                                                <tr>
-                                                    <td>No. Of Plants</td>
-                                                    <td>
-                                                        <asp:Label ID="lblNoOfPlants" runat="server" Text=""></asp:Label></td>
-
-                                                </tr>
+                                               
 
 
 
@@ -86,7 +81,12 @@
                                                         <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label></td>
 
                                                 </tr>
+                                                 <tr>
+                                                    <td>Number Of Plants</td>
+                                                    <td>
+                                                        <asp:Label ID="lblNoOfPlants" runat="server" Text=""></asp:Label></td>
 
+                                                </tr>
                                                 <tr>
                                                     <td>Seeded Due Date</td>
                                                     <td>
