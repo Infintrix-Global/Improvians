@@ -375,13 +375,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btngerminationSumit;
 
         /// <summary>
-        /// btnBSSubmit control.
+        /// btnBSaveSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBSSubmit;
+        protected global::System.Web.UI.WebControls.Button btnBSaveSubmit;
 
         /// <summary>
         /// btngerminationReset control.
@@ -510,13 +510,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnFSubmit;
 
         /// <summary>
-        /// btnSFLSubmit control.
+        /// btnSaveFLSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSFLSubmit;
+        protected global::System.Web.UI.WebControls.Button btnSaveFLSubmit;
 
         /// <summary>
         /// btnFReset control.

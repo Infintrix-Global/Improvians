@@ -111,6 +111,7 @@
     <Content Include="Admin\AdminDashBoard.aspx" />
     <Content Include="Admin\CropHealthMaster.aspx" />
     <Content Include="Admin\css\custom.css" />
+    <Content Include="Admin\PlantReadyConfiguration.aspx" />
     <Content Include="Admin\js\custom.js" />
     <Content Include="Admin\NotificationPreference.aspx" />
     <Content Include="Admin\TaskTypeMaster.aspx" />
@@ -396,6 +397,13 @@
     </Compile>
     <Compile Include="Admin\CropHealthMaster.aspx.designer.cs">
       <DependentUpon>CropHealthMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PlantReadyConfiguration.aspx.cs">
+      <DependentUpon>PlantReadyConfiguration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PlantReadyConfiguration.aspx.designer.cs">
+      <DependentUpon>PlantReadyConfiguration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NotificationPreference.aspx.cs">
       <DependentUpon>NotificationPreference.aspx</DependentUpon>
