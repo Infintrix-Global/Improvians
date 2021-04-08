@@ -1066,10 +1066,10 @@ namespace Evo
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
         {
             int IrrigationCode = 0;
-
+            Button btn = (Button)sender;
             string Assigned = "";
             //  btnSaveirrigation
-            if (btnSaveirrigation.Text == "Save for later")
+            if (btn.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
             }
