@@ -494,8 +494,8 @@ namespace Evo
                 Label lblNoOfPlants = (Label)e.Row.FindControl("lblNoOfPlants");
                 Label lblTraySize = (Label)e.Row.FindControl("lblTraySize");
 
-
-                lblNoOfPlants.Text = (Convert.ToInt32(lblNoofTray.Text) * Convert.ToInt32(lblTraySize.Text)).ToString();
+                decimal PlantsNo = Convert.ToDecimal(lblNoofTray.Text) * Convert.ToDecimal(lblTraySize.Text);
+                lblNoOfPlants.Text = PlantsNo.ToString("N");
             }
         }
 
