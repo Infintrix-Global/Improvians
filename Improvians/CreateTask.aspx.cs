@@ -2095,7 +2095,7 @@ namespace Evo
 
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
-            Clear();
+           // Clear();
 
             ddlAssignments.SelectedValue = "0";
             ddlTaskType.SelectedValue = "0";
