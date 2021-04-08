@@ -804,20 +804,12 @@ namespace Evo
 
         }
 
-        protected void btnFSubmit_Click(object sender, EventArgs e)
+
+        public void FertilizationSubmit(string Assigned)
         {
             string Batchlocation = "";
             int FertilizationCode = 0;
-            string Assigned = "";
 
-            if (btnSFLSubmit.Text == "Save for later")
-            {
-                Assigned = Session["LoginID"].ToString();
-            }
-            else
-            {
-                Assigned = ddlFertilizationSupervisor.SelectedValue;
-            }
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -887,18 +879,20 @@ namespace Evo
 
         }
 
-        protected void btngerminationSumit_Click(object sender, EventArgs e)
+        protected void btnFSubmit_Click(object sender, EventArgs e)
+        {
+            FertilizationSubmit(ddlFertilizationSupervisor.SelectedValue);
+        }
+
+        protected void btnSaveFLSubmit_Click(object sender, EventArgs e)
+        {
+            FertilizationSubmit(Session["LoginID"].ToString());
+        }
+
+        public void GerminationSubmit(string Assigned)
         {
             long result16 = 0;
-            string Assigned = "";
-            if (btnBSSubmit.Text == "Save for later")
-            {
-                Assigned = Session["LoginID"].ToString();
-            }
-            else
-            {
-                Assigned = ddlgerminationSupervisor.SelectedValue;
-            }
+
             foreach (GridViewRow row in gvFer.Rows)
             {
                 //NameValueCollection nv = new NameValueCollection();
@@ -963,6 +957,14 @@ namespace Evo
             }
         }
 
+        protected void btngerminationSumit_Click(object sender, EventArgs e)
+        {
+            GerminationSubmit(ddlgerminationSupervisor.SelectedValue);
+        }
+        protected void btnBSaveSubmit_Click(object sender, EventArgs e)
+        {
+            GerminationSubmit(Session["LoginID"].ToString());
+        }
         protected void btngerminationReset_Click(object sender, EventArgs e)
         {
 
@@ -1058,20 +1060,11 @@ namespace Evo
 
         }
 
-        protected void btnirrigationSubmit_Click(object sender, EventArgs e)
+        public void irrigationSubmit(string Assigned)
         {
             int IrrigationCode = 0;
-            Button btn = (Button)sender;
-            string Assigned = "";
-            //  btnSaveirrigation
-            if (btn.Text == "Save for later")
-            {
-                Assigned = Session["LoginID"].ToString();
-            }
-            else
-            {
-                Assigned = ddlirrigationSupervisor.SelectedValue;
-            }
+
+
 
 
             DataTable dt = new DataTable();
@@ -1110,7 +1103,7 @@ namespace Evo
                     //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
 
-                    
+
                     nv.Add("@Nots", txtIrrComments.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@Role", Session["Role"].ToString());
@@ -1140,21 +1133,19 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
+        protected void btnirrigationSubmit_Click(object sender, EventArgs e)
+        {
+            irrigationSubmit(ddlirrigationSupervisor.SelectedValue);
+        }
 
-        protected void btnplant_readySubmit_Click(object sender, EventArgs e)
+        protected void btnSaveirrigation_Click(object sender, EventArgs e)
+        {
+            irrigationSubmit(Session["LoginID"].ToString());
+        }
+
+        public void PlantReadySubmit(string Assigned)
         {
             int IrrigationCode = 0;
-
-            string Assigned = "";
-            // btnSavePlantReady
-            if (btnSavePlantReady.Text == "Save for later")
-            {
-                Assigned = Session["LoginID"].ToString();
-            }
-            else
-            {
-                Assigned = ddlplant_readySupervisor.SelectedValue;
-            }
 
             DataTable dt = new DataTable();
             NameValueCollection nv11 = new NameValueCollection();
@@ -1239,6 +1230,18 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
+        protected void btnSavePlantReady_Click(object sender, EventArgs e)
+        {
+            PlantReadySubmit(Session["LoginID"].ToString());
+        }
+
+
+        protected void btnplant_readySubmit_Click(object sender, EventArgs e)
+        {
+            PlantReadySubmit(ddlplant_readySupervisor.SelectedValue);
+        }
+
+
 
         protected void btnplant_readyReset_Click(object sender, EventArgs e)
         {
@@ -1302,18 +1305,21 @@ namespace Evo
 
         protected void btnChemicalSubmit_Click(object sender, EventArgs e)
         {
+
+            SubmitChemical(ddlChemical_supervisor.SelectedValue);
+        }
+
+
+        protected void btnChemicalSFLSubmit_Click(object sender, EventArgs e)
+        {
+            SubmitChemical(Session["LoginID"].ToString());
+        }
+        public void SubmitChemical(string Assigned)
+        {
             int ChemicalCode = 0;
             string Batchlocation = "";
-            string Assigned = "";
+            // string Assigned = "";
 
-            if (btnChemicalSFLSubmit.Text == "Save for later")
-            {
-                Assigned = Session["LoginID"].ToString();
-            }
-            else
-            {
-                Assigned = ddlChemical_supervisor.SelectedValue;
-            }
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -1383,8 +1389,8 @@ namespace Evo
             script += url;
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-        }
 
+        }
 
         public void BindFacility()
         {
@@ -1420,19 +1426,9 @@ namespace Evo
         {
 
         }
-
-        protected void btnMoveSubmit_Click(object sender, EventArgs e)
+        public void MoveSubmit(string Assigned)
         {
-            string Assigned = "";
-            // btnSaveMove
-            if (btnSaveMove.Text == "Save for later")
-            {
-                Assigned = Session["LoginID"].ToString();
-            }
-            else
-            {
-                Assigned = ddlLogisticManager.SelectedValue;
-            }
+           
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -1477,19 +1473,19 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
-
-        protected void btnDumpSumbit_Click(object sender, EventArgs e)
+        protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
-            string Assigned = "";
+            MoveSubmit(ddlLogisticManager.SelectedValue);
+        }
 
-            if (btnSaveDump.Text == "Save for later")
-            {
-                Assigned = Session["LoginID"].ToString();
-            }
-            else
-            {
-                Assigned = ddlDumptAssignment.SelectedValue;
-            }
+        protected void btnSaveMove_Click(object sender, EventArgs e)
+        {
+            MoveSubmit(Session["LoginID"].ToString());
+        }
+
+        public void DumpSubmit(string Assigned)
+        {
+          
 
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
@@ -1538,93 +1534,23 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
+        protected void btnSaveDump_Click(object sender, EventArgs e)
+        {
+            DumpSubmit(Session["LoginID"].ToString());
+        }
+        protected void btnDumpSumbit_Click(object sender, EventArgs e)
+        {
+            DumpSubmit(ddlDumptAssignment.SelectedValue);
+        }
 
         protected void btnDumpReset_Click(object sender, EventArgs e)
         {
 
         }
-        protected void chckchanged1(object sender, EventArgs e)
+
+        public void GeneraltaskSubmit(string Assigned)
         {
-            CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                if (chckheader.Checked == true)
-                {
-                    chckrw.Checked = true;
-                }
-                else
-                {
-                    chckrw.Checked = false;
-                }
-            }
-
-        }
-
-        protected void btnCropHealthSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnCropHealthSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnCropHealthStart_Click(object sender, EventArgs e)
-        {
-            string x = "'" + Bench1 + "'" + ",";
-            string chkSelected = "";
-            int c = 0;
-            string BatchLocd = "";
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                if (chckrw.Checked == true)
-                {
-                    BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
-
-                    c = 1;
-                    x += "'" + BatchLocd + "',";
-
-                }
-            }
-
-
-            if (c > 0)
-            {
-                chkSelected = x.Remove(x.Length - 1, 1);
-
-            }
-            else
-            {
-
-            }
-
-
-            Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}", chkSelected));
-        }
-
-        protected void btnCropReset_Click(object sender, EventArgs e)
-        {
-
-        }
-
-      
-
-        protected void btnGeneraltask_Click(object sender, EventArgs e)
-        {
-            string Assigned = "";
-            Button btn = (Button)sender;
-            if (btn.Text == "Save for later")
-            {
-                Assigned = Session["LoginID"].ToString();
-            }
-            else
-            {
-                Assigned = Session["SelectedAssignment"].ToString();
-            }
-
+           
             long result16 = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
@@ -1710,7 +1636,84 @@ namespace Evo
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
             }
         }
+        protected void btnSaveGeneral_Click(object sender, EventArgs e)
+        {
+            GeneraltaskSubmit(Session["LoginID"].ToString());
+        }
+        protected void btnGeneraltask_Click(object sender, EventArgs e)
+        {
+            GeneraltaskSubmit(Session["SelectedAssignment"].ToString());
+        }
 
+        protected void chckchanged1(object sender, EventArgs e)
+        {
+            CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckheader.Checked == true)
+                {
+                    chckrw.Checked = true;
+                }
+                else
+                {
+                    chckrw.Checked = false;
+                }
+            }
+
+        }
+
+        protected void btnCropHealthSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCropHealthSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCropHealthStart_Click(object sender, EventArgs e)
+        {
+            string x = "'" + Bench1 + "'" + ",";
+            string chkSelected = "";
+            int c = 0;
+            string BatchLocd = "";
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
+
+                    c = 1;
+                    x += "'" + BatchLocd + "',";
+
+                }
+            }
+
+
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
+
+            }
+            else
+            {
+
+            }
+
+
+            Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}", chkSelected));
+        }
+
+        protected void btnCropReset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+     
         protected void btngermination_Click1(object sender, EventArgs e)
         {
             germination_count.Attributes.Add("class", "request__block-collapse collapse show");
@@ -1870,7 +1873,7 @@ namespace Evo
             btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
 
-
+      
         protected void btnMoveRequest_Click(object sender, EventArgs e)
         {
             germination_count.Attributes.Add("class", "request__block-collapse collapse ");
@@ -1901,6 +1904,8 @@ namespace Evo
             CropHealthReportID.Attributes.Add("class", "request__block-collapse collapse");
             btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
+      
+
 
         protected void btnDump_Click(object sender, EventArgs e)
         {
@@ -1934,6 +1939,10 @@ namespace Evo
             btnCropHealthReport.Attributes.Add("class", "request__block-head collapsed");
         }
 
+
+
+
+
         protected void btnGeneralTask_Click(object sender, EventArgs e)
         {
             germination_count.Attributes.Add("class", "request__block-collapse collapse ");
@@ -1966,7 +1975,7 @@ namespace Evo
             btnDump.Attributes.Add("class", "request__block-head collapsed");
             btnGeneral_Task.Attributes.Add("class", "request__block-head ");
         }
-
+     
         protected void btnCropHealthReport_Click(object sender, EventArgs e)
         {
             germination_count.Attributes.Add("class", "request__block-collapse collapse ");
@@ -2094,6 +2103,6 @@ namespace Evo
             txtTo.Text = "";
         }
 
-      
+       
     }
 }
