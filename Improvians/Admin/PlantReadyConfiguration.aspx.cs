@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Evo.Admin
 {
-    public partial class GeneralConfiguration : System.Web.UI.Page
+    public partial class PlantReadyConfiguration : System.Web.UI.Page
     {
         General objGeneral = new General();
         clsCommonMasters objCommon = new clsCommonMasters();
@@ -26,13 +26,18 @@ namespace Evo.Admin
             }
         }
 
+
+        public void BindCrop()
+        {
+            GridProfile.DataSource = objCommon.GETCrop();
+            GridProfile.DataBind();
+        }
+
         public void GetConfiguration()
         {
             DataTable dt = objCommon.GetPlantProductionConfiguration();
             DataRow dr = dt.Rows[0];
-            txtGerm1.Text = dr["Germination1"].ToString();
-            txtGerm2.Text = dr["Germination2"].ToString();
-            txtGerm3.Text = dr["Germination3"].ToString();           
+            txtPlantReady.Text = dr["PlantDueDate"].ToString();
 
             GridProfile.DataSource = objCommon.GetPlantProductionCrop();
             GridProfile.DataBind();
@@ -42,7 +47,7 @@ namespace Evo.Admin
 
         protected void ButtonUpdateConfig_Click(object sender, EventArgs e)
         {
-            long result = objCommon.UpdatePlantProductionConfiguration(Convert.ToInt32(txtGerm1.Text), Convert.ToInt32(txtGerm2.Text), Convert.ToInt32(txtGerm3.Text));
+            long result = objCommon.UpdatePlantProductionPlantReadyConfiguration(Convert.ToInt32(txtPlantReady.Text));
             if (result > 0)
             {
                 GridProfile.DataSource = objCommon.GetPlantProductionCrop();
@@ -55,12 +60,10 @@ namespace Evo.Admin
             foreach (GridViewRow row in GridProfile.Rows)
             {
                 string Crop = ((Label)row.FindControl("lblCrop")).Text;
-                TextBox Germ1 = ((TextBox)row.FindControl("txtGerm1"));
-                TextBox Germ2 = ((TextBox)row.FindControl("txtGerm2"));
-                TextBox Germ3 = ((TextBox)row.FindControl("txtGerm3"));
-                if (Germ1.Text != txtGerm1.Text || Germ2.Text != txtGerm2.Text|| Germ3.Text != txtGerm3.Text)
+                TextBox PlantReady = ((TextBox)row.FindControl("txtPlantReady"));
+                if (PlantReady.Text != txtPlantReady.Text)
                 {
-                    long result = objCommon.AddPlantProductionCrop(Crop, Convert.ToInt32(Germ1.Text), Convert.ToInt32(Germ2.Text), Convert.ToInt32(Germ3.Text));
+                    long result = objCommon.AddPlantProductionCropPlantReady(Crop, Convert.ToInt32(PlantReady.Text));
                 }
             }
         }

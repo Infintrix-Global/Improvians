@@ -11,7 +11,7 @@ namespace Evo.Admin
 {
 
 
-    public partial class GeneralConfiguration
+    public partial class PlantReadyConfiguration
     {
 
         /// <summary>
@@ -33,31 +33,13 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// txtGerm1 control.
+        /// txtPlantReady control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGerm1;
-
-        /// <summary>
-        /// txtGerm2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGerm2;
-
-        /// <summary>
-        /// txtGerm3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGerm3;
+        protected global::System.Web.UI.WebControls.TextBox txtPlantReady;
 
         /// <summary>
         /// btnUpdateConfig control.
