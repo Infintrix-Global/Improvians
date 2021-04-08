@@ -884,12 +884,8 @@ namespace Evo
 
         protected void btngerminationSumit_Click(object sender, EventArgs e)
         {
-
-
-
             long result16 = 0;
             string Assigned = "";
-
             if (btnBSSubmit.Text == "Save for later")
             {
                 Assigned = Session["LoginID"].ToString();
@@ -898,7 +894,6 @@ namespace Evo
             {
                 Assigned = ddlgerminationSupervisor.SelectedValue;
             }
-
             foreach (GridViewRow row in gvFer.Rows)
             {
                 //NameValueCollection nv = new NameValueCollection();
@@ -934,20 +929,15 @@ namespace Evo
                     nv.Add("@SupervisorID", Assigned);
                     nv.Add("@InspectionDueDate", txtGerDate.Text);
                     nv.Add("@TraysInspected", txtTGerTrays.Text);
-
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtGcomments.Text);
                     nv.Add("@Role", Session["Role"].ToString());
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
-
                 }
-
             }
 
             if (result16 > 0)
             {
-
-
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
                 string url = "CreateTask.aspx";

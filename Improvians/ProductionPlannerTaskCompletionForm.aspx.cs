@@ -146,7 +146,7 @@ namespace Evo
                             string Type = (row.Cells[3].FindControl("lbltype") as Label).Text;
                             string Partial = (row.Cells[4].FindControl("lblPartial") as Label).Text;
 
-                            objTask.AddPTCSeedAllocation(result.ToString(), ID,ActualTray,SeedNo,Type,Partial,"","");
+                            objTask.AddPTCSeedAllocation(result.ToString(), ID,ActualTray,SeedNo,Type,Partial,"","","");
 
                     }
                 }

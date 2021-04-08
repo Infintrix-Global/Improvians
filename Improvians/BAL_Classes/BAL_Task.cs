@@ -144,7 +144,7 @@ namespace Evo.BAL_Classes
         }
 
 
-        public int AddPTCSeedAllocation(string STCID, string LotID, string ActualSeed, string SeedNo, string Type, string Partial,string InitialSeedLotWeight, string FinalSeedLotWeight)
+        public int AddPTCSeedAllocation(string STCID, string LotID, string ActualSeed, string SeedNo, string Type, string Partial,string InitialSeedLotWeight, string FinalSeedLotWeight,string LotComments)
         {
             int _isInserted = -1;
             try
@@ -158,10 +158,11 @@ namespace Evo.BAL_Classes
                 objGeneral.AddParameterWithValueToSQLCommand("@Partial", Partial);
                 objGeneral.AddParameterWithValueToSQLCommand("@InitialSeedLotWeight", InitialSeedLotWeight);
                 objGeneral.AddParameterWithValueToSQLCommand("@FinalSeedLotWeight", FinalSeedLotWeight);
-
-
-
+                objGeneral.AddParameterWithValueToSQLCommand("@LotComments", LotComments);
                 
+
+
+
                 _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddPTCLotMap");
                 
             }

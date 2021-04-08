@@ -70,6 +70,7 @@ namespace Evo
             {
                 //amytask.HRef = "SeedingPlanForm.aspx";
                 amytask.HRef = "MyTaskSeedlinePlanner.aspx";
+                ddlFacility.Visible = false;
             }
             if (Session["Role"].ToString() == "8")
             {
@@ -82,6 +83,7 @@ namespace Evo
             if (Session["Role"].ToString() == "10")
             {
                 amytask.HRef = "MyTaskProductionPlanner.aspx";
+                ddlFacility.Visible = false;
             }
             if (Session["Role"].ToString() == "11")
             {
@@ -140,7 +142,7 @@ namespace Evo
         public void SetLinkTrackTasks()
         {
 
-            if (Session["Role"].ToString() == "7")
+            if (Session["Role"].ToString() == "7" || Session["Role"].ToString() =="10")
             {
                 TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
             }
@@ -152,8 +154,7 @@ namespace Evo
             }
             else
             {
-                lblCreate.Text = "";
-                lblManageTask.Text = "";
+               
 
             }
         }

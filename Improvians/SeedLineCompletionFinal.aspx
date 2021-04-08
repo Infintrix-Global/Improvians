@@ -2,8 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
-        function checkTray()
-        {
+        function checkTray() {
             var txt1 = document.getElementById('<%= txtActualTraysNo.ClientID %>').value;
          <%--   var value = document.getElementById('<%=txtActualTraysNo.ClientID%>').value;--%>
             var txt2 = document.getElementById('<%= txtRequestedTrays.ClientID %>').value;
@@ -43,7 +42,7 @@
                         <div class="portlet-body">
 
                             <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" class="data__table" AutoGenerateColumns="False"
-                                AllowSorting="true" PageSize="10"
+                                AllowSorting="true" PageSize="10" OnRowDataBound="gvGerm_RowDataBound"
                                 GridLines="None"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
@@ -54,7 +53,7 @@
                                                     <td>Job No.</td>
                                                     <td>
                                                         <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")%>'></asp:Label>
-                                                     <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                                        <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -69,21 +68,29 @@
                                                 <tr>
                                                     <td>No. Of Tray</td>
                                                     <td>
-                                                        <asp:Label ID="Label9" runat="server" Text='<%# Eval("trays_plan")  %>'></asp:Label></td>
+                                                        <asp:Label ID="lblNoofTray" runat="server" Text='<%# Eval("trays_plan")  %>'></asp:Label></td>
 
                                                 </tr>
+                                                <tr>
+                                                    <td>No. Of Plants</td>
+                                                    <td>
+                                                        <asp:Label ID="lblNoOfPlants" runat="server" Text=""></asp:Label></td>
+
+                                                </tr>
+
+
 
                                                 <tr>
                                                     <td>Tray Size</td>
                                                     <td>
-                                                        <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label></td>
+                                                        <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label></td>
 
                                                 </tr>
 
                                                 <tr>
                                                     <td>Seeded Due Date</td>
                                                     <td>
-                                                        <asp:Label ID="Label12" runat="server" Text='<%# Eval("SoDate","{0:dd MMM yyyy}")  %>'></asp:Label></td>
+                                                        <asp:Label ID="Label12" runat="server" Text='<%# Eval("SoDate","{0:MM/dd/yyyy}")  %>'></asp:Label></td>
 
                                                 </tr>
                                                 <tr>
@@ -249,22 +256,8 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <%--                                            <asp:TemplateField HeaderText="Used/Unused">
-                                                <ItemTemplate>
-                                                    <asp:DropDownList ID="ddlType" runat="server" class="custom__dropdown robotomd">
-                                                        <asp:ListItem Text="Unused" Value="Unused"></asp:ListItem>
-                                                        <asp:ListItem Text="Used" Value="Used"></asp:ListItem>
-                                                        <asp:ListItem Text="Partial" Value="Partial"></asp:ListItem>
-                                                    </asp:DropDownList>
 
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
 
-                                            <%--                                            <asp:TemplateField HeaderText="Leftover seeds">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtPartial" class="input__control robotomd" runat="server" Text=""></asp:TextBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
 
                                             <asp:TemplateField HeaderText="Initial Seed Lot Weight(lb)">
                                                 <ItemTemplate>
@@ -276,13 +269,25 @@
                                                     <asp:TextBox ID="txtFinalSeedLotWeight" class="input__control robotomd" runat="server" Text=""></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Lot Comments">
+                                                <ItemTemplate>
+                                                    <asp:DropDownList ID="ddlLotComments" runat="server" class="custom__dropdown robotomd">
+                                                        <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
+                                                        <asp:ListItem Text="Doubles" Value="Doubles"></asp:ListItem>
+                                                        <asp:ListItem Text="Misses" Value="Misses"></asp:ListItem>
+                                                        <asp:ListItem Text="Bad Quality Seed " Value="Bad Quality Seed "></asp:ListItem>
+                                                    </asp:DropDownList>
 
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="#">
                                                 <ItemTemplate>
                                                     <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+
+
                                         </Columns>
                                         <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                                         <PagerSettings Mode="NumericFirstLast" />
@@ -334,27 +339,43 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 mt-4 mt-md-0">
+                            <div class="col-md-4">
 
-                                <div>
-                                    <span class="custom-control custom-radio ml-4 mr-2">
-                                        <asp:RadioButtonList ID="radJobCompletion" runat="server" Width="300px" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="radJobCompletion_SelectedIndexChanged">
-                                            <asp:ListItem Text="Full" Value="Full" Selected="True"></asp:ListItem>
-                                            <asp:ListItem Text="Partial" Value="Partial"></asp:ListItem>
-                                        </asp:RadioButtonList>
-                                    </span>
 
-                                    <span>
-                                        <asp:TextBox ID="txtCompletedTrays" runat="server" TextMode="Number" placeholder="Enter # Completed" Visible="false"></asp:TextBox>
-                                    </span>
-                                </div>
+                                <span class="custom-control custom-radio ml-4 mr-2">
+                                    <asp:RadioButtonList ID="radJobCompletion" runat="server" Width="300px" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="radJobCompletion_SelectedIndexChanged">
+                                        <asp:ListItem Text="Full" Value="Full" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="Partial" Value="Partial"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </span>
+
+
+                            </div>
+
+                            <div class="col-md-3">
+
+                                <asp:TextBox ID="txtCompletedTrays" runat="server" TextMode="Number" class="input__control robotomd" placeholder="Enter # Completed" Visible="false"></asp:TextBox>
                             </div>
 
                         </div>
                         <%--  </ContentTemplate>
                             </asp:UpdatePanel>--%>
 
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Job Comments</label>
 
+                                <asp:DropDownList ID="ddlJobComments" runat="server" class="custom__dropdown robotomd">
+                                    <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="Too Wet" Value="Too Wet"></asp:ListItem>
+                                    <asp:ListItem Text="Too Dry" Value="Too Dry"></asp:ListItem>
+                                    <asp:ListItem Text="Heavy Soil" Value="Heavy Soil"></asp:ListItem>
+                                    <asp:ListItem Text="Too much Perlite" Value="Too much Perlite"></asp:ListItem>
+                                    <asp:ListItem Text="Extra fine Perlite" Value="Extra fine Perlite"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <br />
                         <div class="col-12">
                             <%-- <span class="custom-control custom-checkbox mx-2">--%>
                             <span>

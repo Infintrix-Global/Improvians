@@ -156,7 +156,7 @@ namespace Evo
             nv.Add("@JobID", lblJobID.Text);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@WorkOrder", wo.ToString());
-
+            nv.Add("@JobComments", ddlJobComments.SelectedValue);
             result = objCommon.GetDataExecuteScaler("SP_AddSeedLineTaskCompletion", nv);
             if (result > 0)
             {
@@ -173,9 +173,9 @@ namespace Evo
                         //  string Partial = (row.Cells[5].FindControl("txtPartial") as TextBox).Text;
                         string InitialSeedLotWeight = (row.Cells[5].FindControl("txtInitialSeedLotWeight") as TextBox).Text;
                         string FinalSeedLotWeight = (row.Cells[5].FindControl("txtFinalSeedLotWeight") as TextBox).Text;
+                        string LotComments = (row.FindControl("ddlLotComments") as DropDownList).SelectedValue;
 
-
-                        objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, "", "", InitialSeedLotWeight, FinalSeedLotWeight);
+                        objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, "", "", InitialSeedLotWeight, FinalSeedLotWeight, LotComments);
                        
                     }
                 }
@@ -479,6 +479,23 @@ namespace Evo
             {
                 txtTrayChange.Visible = false;
                 txtTrayChange.Text = "";
+            }
+        }
+
+       
+
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblNoofTray = (Label)e.Row.FindControl("lblNoofTray");
+
+                Label lblNoOfPlants = (Label)e.Row.FindControl("lblNoOfPlants");
+                Label lblTraySize = (Label)e.Row.FindControl("lblTraySize");
+
+
+                lblNoOfPlants.Text = (Convert.ToInt32(lblNoofTray.Text) * Convert.ToInt32(lblTraySize.Text)).ToString();
             }
         }
 

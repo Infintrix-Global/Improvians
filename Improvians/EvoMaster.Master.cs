@@ -44,10 +44,20 @@ namespace Evo
             }
             else
             {
-                lblFacility.Text = Session["Facility"].ToString();
-                dashlink.Attributes.Remove("class");
-                lnkmytask.Attributes.Add("class", "active");
+                if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
+                {
+                    lblFacility.Text = "";
+                    
+                }
+                else
+                {
+                    lblFacility.Text = Session["Facility"].ToString();
+                    dashlink.Attributes.Remove("class");
+                    lnkmytask.Attributes.Add("class", "active");
+                }
             }
+
+
             checkNotification(1);
 
         }
