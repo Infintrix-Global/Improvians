@@ -489,8 +489,10 @@ namespace Evo
             //nv.Add("@BenchLocation",BenchLoc);
             // dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
             dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
+            //  DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
+            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
+
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -2103,6 +2105,41 @@ namespace Evo
             txtTo.Text = "";
         }
 
-       
+        protected void gvFer_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+                Label lblGenusCode = (Label)e.Row.FindControl("lblGenusCode");
+
+                Label lblTraySize = (Label)e.Row.FindControl("lblTraySize");
+                Label lblSeededDate = (Label)e.Row.FindControl("lblSeededDate");
+                Label lblPlantReadyDate = (Label)e.Row.FindControl("lblPlantReadyDate");
+                Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@Tray_Size", lblTraySize.Text);
+                nv.Add("@GCode", lblGenusCode.Text);
+                dt = objCommon.GetDataTable("spGetDateDhiftCreateTaskPlantNo", nv);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    int PlantPDate = 0;
+                    int PlanrDDate = 0;
+                    //for (int i = 0; i < dt.Rows.Count; i++)
+                    //{
+                    //    PlantPDate =
+                    //}
+                    PlanrDDate = Convert.ToInt32(dt.Rows[0]["dateshift"]);
+                    PlantPDate = Convert.ToInt32(dt.Rows[1]["dateshift"]);
+                    lblPlantReadyDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlantPDate).ToString("yyyy-MM-dd");
+                    lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("yyyy-MM-dd");
+
+                }
+
+
+            }
+        }
     }
 }

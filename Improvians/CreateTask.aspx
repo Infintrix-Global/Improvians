@@ -117,10 +117,10 @@
                 <div class="col">
                     <div class="portlet light ">
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
-                        <div class="portlet-body col-lg-8 p-0">
+                        <div class="portlet-body col-lg-12 p-0">
                             <div class="data__table data__table-height">
                                 <asp:GridView ID="gvFer" runat="server" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true"
+                                    class="striped" AllowSorting="true" OnRowDataBound="gvFer_RowDataBound"
                                     GridLines="None" OnRowCommand="gvFer_RowCommand"
                                     ShowHeaderWhenEmpty="True">
                                     <Columns>
@@ -192,6 +192,16 @@
                                         </asp:TemplateField>
 
 
+                                        <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPlantReadyDate" runat="server" Text=""></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPlantDueDate" runat="server" Text=""></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                     </Columns>
 
@@ -810,9 +820,9 @@
 
                     <div id="CropHealthReportID" runat="server" class="collapse dashboard__block request__block-collapse mb-4" data-parent="#task_request-group">
                         <div class="request__body">
-                            <h2 class="text-left mb-3"> Crop Health Report</h2>
+                            <h2 class="text-left mb-3">Crop Health Report</h2>
                             <div class="row">
-                             
+
                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label class="d-block">Assignment</label>
 
