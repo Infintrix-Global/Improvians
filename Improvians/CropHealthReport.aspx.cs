@@ -178,9 +178,14 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", BenchLoc);
-            dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+           // dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
+         //   DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
+
+            dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
+          
+            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
+
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -276,8 +281,10 @@ namespace Evo
                     nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                     nv1.Add("@SoDate", "");
                     nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv1.Add("@GenusCode", "");
+                   
                     nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                     result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                 }
             }
@@ -531,8 +538,10 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@GenusCode", "");
+                      
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
 
@@ -556,6 +565,25 @@ namespace Evo
 
                 long result2 = 0;
                 NameValueCollection nv4 = new NameValueCollection();
+                //nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
+                //nv4.Add("@Type", "Fertilizer");
+                //nv4.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                //nv4.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                //nv4.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                //nv4.Add("@Facility", Session["Facility"].ToString());
+                //nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                //nv4.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                //nv4.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                //nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                //nv4.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+                //nv4.Add("@LoginID", Session["LoginID"].ToString());
+                //nv4.Add("@FertilizationCode", FertilizationCode.ToString());
+                //nv4.Add("@FertilizationDate", txtFDate.Text);
+                //result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
+                Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
+
+
+              //  NameValueCollection nv4 = new NameValueCollection();
                 nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
                 nv4.Add("@Type", "Fertilizer");
                 nv4.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
@@ -565,13 +593,15 @@ namespace Evo
                 nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
                 nv4.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
                 nv4.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
-                nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                nv4.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+                nv4.Add("@Itemdesc", (row.FindControl("lblSeededDate1") as Label).Text);
+                //nv.Add("@WorkOrder", lblwo.Text);
                 nv4.Add("@LoginID", Session["LoginID"].ToString());
                 nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                 nv4.Add("@FertilizationDate", txtFDate.Text);
-                result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
-                Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
+                nv4.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+                nv4.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
+
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
@@ -659,8 +689,10 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@GenusCode", "");
+                        
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
 
@@ -875,7 +907,8 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -1014,7 +1047,8 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -1183,7 +1217,8 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -1343,7 +1378,8 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -1456,15 +1492,6 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
 
 
-                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                //{
-                //    folderPath = Server.MapPath("~/images/");
-                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                //}
-                //else
-                //{
-                //    folderPath = "";
-                //}
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -1510,7 +1537,8 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@GenusCode", "");
+                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -1557,13 +1585,9 @@ namespace Evo
 
                 nv.Add("@FormBanchlocation", (row.FindControl("lblGreenHouse1") as Label).Text);
                 nv.Add("@RTrays", txtMoveNumberOfTrays.Text);
-                
+                nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                 result16 = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
 
-
-
-	
-	
             }
 
             if (result16 > 0)

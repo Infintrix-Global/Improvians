@@ -131,7 +131,8 @@
 
                                                     <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                     <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
-                                                </ItemTemplate>
+                                                   <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
+                                                    </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
@@ -214,7 +215,9 @@
                                             <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblID1" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
-
+                                                     <asp:Label ID="lblJid" runat="server" Visible="false" Text='<%# Eval("jid")  %>'></asp:Label>
+                                                      <asp:Label ID="lblGenusCode1" runat="server" Visible="false" Text='<%# Eval("jid")  %>'></asp:Label>
+                                                    
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">

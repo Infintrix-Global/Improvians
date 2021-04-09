@@ -95,6 +95,22 @@ namespace Evo
             }
         }
 
+        private string Pid
+        {
+            get
+            {
+                if (ViewState["Pid"] != null)
+                {
+                    return (string)ViewState["Pid"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Pid"] = value;
+            }
+        }
+
         private string Bench
         {
             get
@@ -400,18 +416,24 @@ namespace Evo
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
-            Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
-
+            Jid = dt.Rows[0]["Jid"].ToString();
+            Pid =  dt.Rows[0]["GrowerPutAwayId"].ToString();
         }
 
         public void BindGridFerDetails(string BenchLoc)
         {
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
+             DataTable dt = new DataTable();
+             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect("", BenchLoc, "");
+          //  DataTable dtManual = objFer.GetManualFertilizerRequestSelect("", BenchLoc, "");
+
+
+          //  dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
+
+            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
+
 
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
@@ -466,7 +488,7 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@FertilizationCode", FertilizationCode.ToString());
                 nv.Add("@FertilizationDate", txtDate.Text);
-
+                nv.Add("@Jid",Jid);
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
@@ -513,7 +535,7 @@ namespace Evo
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv.Add("@FertilizationDate", txtDate.Text);
-
+                    nv.Add("@Jid", Jid);
                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
                 }
                 //  }

@@ -399,7 +399,8 @@ namespace Evo
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
-            Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
+         //   Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
+            Jid = dt.Rows[0]["Jid"].ToString();
 
             decimal tray = 0;
             foreach (GridViewRow row in gvFer.Rows)
@@ -479,7 +480,7 @@ namespace Evo
                 nv.Add("@ChemicalDate", txtDate.Text);
                 nv.Add("@Comments", txtComments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
-
+                nv.Add("@Jid", Jid);
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
@@ -529,7 +530,7 @@ namespace Evo
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@ChemicalCode", ChemicalCode.ToString());
                     nv.Add("@ChemicalDate", txtDate.Text);
-
+                    nv.Add("@Jid", Jid);
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
                 }
                 //  }

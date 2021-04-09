@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,6 +14,7 @@ namespace Evo
     public partial class PlantReadyTaskCompletion : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        static string ReceiverEmail = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -212,6 +215,173 @@ namespace Evo
             {
                 Response.Redirect("~/PlantReadyAssignmentForm.aspx");
             }
+        }
+        protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
+            //  Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
+            txtgeneralComment.Focus();
+            if (ddlTaskType.SelectedItem.Value == "3")
+            {
+                divFrom.Style["display"] = "block";
+                divTo.Style["display"] = "block";
+            }
+            else
+            {
+                divFrom.Style["display"] = "none";
+                divTo.Style["display"] = "none";
+            }
+
+        }
+        public void GeneraltaskSubmit(string Assigned)
+        {
+
+            long result16 = 0;
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Aid", Session["SelectedAssignment"].ToString());
+            dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
+            foreach (GridViewRow row in gvPlantReady.Rows)
+            {
+
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@Customer", "");
+                    nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Seeddate", "");
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+
+                    nv.Add("@SupervisorID", Assigned);
+                    //nv.Add("@SupervisorID", ddlAssignments.SelectedValue);
+                    nv.Add("@TaskType", ddlTaskType.SelectedValue);
+                    nv.Add("@MoveFrom", txtFrom.Text);
+                    nv.Add("@MoveTo", txtTo.Text);
+                    nv.Add("@date", txtgeneralDate.Text);
+                    nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+
+                    nv.Add("@LoginId", Session["LoginID"].ToString());
+                    nv.Add("@Comments", txtgeneralComment.Text);
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    result16 = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequesMenualDetailsCreateTask", nv);
+                }
+
+
+            }
+
+            if (result16 > 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                string CCEmail = "";
+
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+                string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
+                smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
+                // smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+                MailMessage mail = new MailMessage();
+                mail.Subject = "Crop Health Report";
+                mail.Body = "Crop Health Report Comments:" + "";
+                //Setting From , To and CC
+
+                mail.From = new MailAddress(FromMail);
+
+                NameValueCollection nv = new NameValueCollection();
+
+                var getToMail = Session["SelectedAssignment"].ToString();
+                // var getToMail = ddlAssignments.SelectedValue;
+                nv.Add("@Uid", getToMail);
+                DataTable dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
+                ReceiverEmail = dt1.Rows[0]["Email"].ToString();
+
+                mail.To.Add(new MailAddress(ReceiverEmail));
+
+                nv.Clear();
+                var getCCMail = Session["Role"].ToString();
+                nv.Add("@Uid", getCCMail);
+
+                dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
+                CCEmail = dt1.Rows[0]["Email"].ToString();
+                mail.CC.Add(new MailAddress(CCEmail));
+
+                smtpClient.Send(mail);
+
+              
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+            }
+        }
+        protected void btnSendMail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long result = 0;
+
+                NameValueCollection nv = new NameValueCollection();
+                // nv.Add("@OperatorID", Session["LoginID"].ToString());
+                //nv.Add("@wo", wo);
+                nv.Add("@Comments", txtgeneralComment.Text.Trim());
+                nv.Add("@AsssigneeID", Session["SelectedAssignment"].ToString());
+                //nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
+
+                nv.Add("@TaskType", ddlTaskType.SelectedValue);
+                nv.Add("@MoveFrom", txtFrom.Text.Trim());
+                nv.Add("@MoveTo", txtTo.Text.Trim());
+                nv.Add("@IsActive", "1");
+
+
+                result = objCommon.GetDataInsertORUpdate("InsertGeneralTask", nv);
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+                string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
+                smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
+                // smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+                MailMessage mail = new MailMessage();
+                mail.Subject = "Crop Health Report";
+                mail.Body = "Crop Health Report Comments:" + "";
+                //Setting From , To and CC
+
+                mail.From = new MailAddress(FromMail);
+                mail.To.Add(new MailAddress(ReceiverEmail));
+                //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
+                //   mail.Attachments.Add(atc);
+                smtpClient.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        protected void btnGeneraltask_Click(object sender, EventArgs e)
+        {
+            GeneraltaskSubmit(Session["LoginID"].ToString());
+        }
+        protected void btnGeneralReset_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        protected void btnGeneral_Task1_Click(object sender, EventArgs e)
+        {
+          
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
+            
+            
+            btnGeneral_Task1.Attributes.Add("class", "request__block-head collapsed");
+           
         }
     }
 }
