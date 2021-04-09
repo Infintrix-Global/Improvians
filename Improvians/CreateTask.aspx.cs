@@ -862,6 +862,7 @@ namespace Evo
                     nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv4.Add("@FertilizationDate", txtFDate.Text);
                     nv4.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                    nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
 
 
@@ -933,6 +934,7 @@ namespace Evo
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtGcomments.Text);
                     nv.Add("@Role", Session["Role"].ToString());
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
                 }
             }
@@ -1109,6 +1111,7 @@ namespace Evo
                     nv.Add("@Nots", txtIrrComments.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@Role", Session["Role"].ToString());
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
                 }
@@ -1213,7 +1216,7 @@ namespace Evo
                     nv.Add("@PlantDate", txtPlantDate.Text);
                     nv.Add("@Role", Session["Role"].ToString());
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
                 }
@@ -1376,7 +1379,7 @@ namespace Evo
                     nv.Add("@Comments", txtCComments.Text);
                     nv.Add("@Method", ddlMethod.SelectedValue);
                     nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
                 }
             }
@@ -1459,6 +1462,7 @@ namespace Evo
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     nv.Add("@ChId", "0");
                     nv.Add("@Comments", txtMoveComments.Text.Trim());
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
                 }
             }
@@ -1519,6 +1523,7 @@ namespace Evo
                     nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@DumpDate", txtDumpDate.Text);
                     nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
 
                 }
@@ -1585,7 +1590,7 @@ namespace Evo
 
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtgeneralComment.Text);
-
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequesMenualDetailsCreateTask", nv);
                 }
 

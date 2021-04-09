@@ -286,5 +286,22 @@ namespace Evo.Bal
             }
             return dt;
         }
+
+        public DataTable GetSeedDateDateShift(string ActivityCode, string GenusCode, string ContainerCode)
+        {
+            Evo_General objGeneral = new Evo_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "  Select * from [gti_jobs_prodprofile] where crop='"+ GenusCode + "' and activitycode='"+ ActivityCode + "' and traycode ='"+ ContainerCode + "'	 ";
+              
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
     }
 }
