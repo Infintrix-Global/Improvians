@@ -28,6 +28,26 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
+
         private string wo
         {
             get
@@ -63,6 +83,14 @@ namespace Evo
             gvMoveReq.DataSource = dt;
             gvMoveReq.DataBind();
 
+            foreach (GridViewRow row in gvMoveReq.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
 
         }
         public void BindSupervisorList()
@@ -317,7 +345,7 @@ namespace Evo
                 }
 
                 string message = "Assignment Successful";
-             //   string url = "MyTaskAssistantGrower.aspx";
+                //   string url = "MyTaskAssistantGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -337,9 +365,7 @@ namespace Evo
 
         public void clear()
         {
-
             //  ddlSupervisor.SelectedIndex = 0;
-
         }
 
         protected void MoveReset_Click(object sender, EventArgs e)
@@ -353,11 +379,6 @@ namespace Evo
             gvMoveReq.PageIndex = e.NewPageIndex;
             BindGridPlantReady();
         }
-
-
     }
 
 }
-
-
-

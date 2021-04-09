@@ -165,6 +165,8 @@ namespace Evo
             LinkButton link = (LinkButton)sender;
             RepeaterItem row = (RepeaterItem)link.NamingContainer;
             string id = ((Label)row.FindControl("lblID")).Text;
+            string job = ((Label)row.FindControl("lblJobId")).Text;
+
             nv.Add("@Nid", id);
             string TaskName = ((Label)row.FindControl("lblTaskName")).Text;
 
@@ -174,23 +176,23 @@ namespace Evo
             {
                 if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")   // for grower and assistant grower
                 {
-                    Response.Redirect(TaskName + "RequestForm.aspx");
+                    Response.Redirect(TaskName + "RequestForm.aspx?jobId="+ job);
                 }
                 else if (Operators.Contains(Convert.ToInt32(Session["Role"])))
                 {
                     switch (TaskName)
                     {
                         case "Chemical":
-                            Response.Redirect("ChemicalTaskRequest.aspx");
+                            Response.Redirect("ChemicalTaskRequest.aspx?jobId=" + job);
                             break;
                         case "Move":
-                            Response.Redirect("MoveReqAsssignment.aspx");
+                            Response.Redirect("MoveReqAsssignment.aspx?jobId=" + job);
                             break;
                         case "Fertilizer":
-                            Response.Redirect("SprayTaskRequest.aspx");
+                            Response.Redirect("SprayTaskRequest.aspx?jobId=" + job);
                             break;
                         default:
-                            Response.Redirect(TaskName + "CompletionForm.aspx");
+                            Response.Redirect(TaskName + "CompletionForm.aspx?jobId=" + job);
                             break;
                     }
 
@@ -200,16 +202,16 @@ namespace Evo
                     switch (TaskName)
                     {
                         case "Chemical":
-                            Response.Redirect("ChemicalTaskRequest.aspx");
+                            Response.Redirect("ChemicalTaskRequest.aspx?jobId=" + job);
                             break;
                         case "Move":
-                            Response.Redirect("MoveRequestForm.aspx");
+                            Response.Redirect("MoveRequestForm.aspx?jobId=" + job);
                             break;
                         case "Fertilizer":
-                            Response.Redirect("SprayTaskRequest.aspx");
+                            Response.Redirect("SprayTaskRequest.aspx?jobId=" + job);
                             break;
                         default:
-                            Response.Redirect(TaskName + "AssignmentForm.aspx");
+                            Response.Redirect(TaskName + "AssignmentForm.aspx?jobId=" + job);
                             break;
                     }
                     

@@ -40,6 +40,22 @@ namespace Evo
                 dtTrays.Clear();
             }
         }
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
 
 
         public void Bindcname()
@@ -139,6 +155,15 @@ namespace Evo
           
             gvFer.DataSource = dt;
             gvFer.DataBind();
+
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                var checkJob = (row.FindControl("lblID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
         }
 
         public void BindGridFerDetails()
