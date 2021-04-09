@@ -421,7 +421,7 @@ namespace Evo
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect("", BenchLoc, "");
+            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
 
             if (dtManual != null && dtManual.Rows.Count > 0)
             {
