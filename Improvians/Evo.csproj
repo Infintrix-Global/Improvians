@@ -362,6 +362,7 @@
     <Content Include="SprayTaskReq.aspx" />
     <Content Include="SprayTaskRequest.aspx" />
     <Content Include="SprayTaskViewDetails.aspx" />
+    <Content Include="sw.js" />
     <Content Include="TrackTaskSeedlinePlanner.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
