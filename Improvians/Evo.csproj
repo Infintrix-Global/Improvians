@@ -198,7 +198,7 @@
     <Content Include="ChemicalJobBuildUp.aspx" />
     <Content Include="ChemicalReqManual.aspx" />
     <Content Include="ChemicalTaskCompletion.aspx" />
-    <Content Include="ChemicalTaskReq.aspx" />
+    <Content Include="ChemicalRequestForm.aspx" />
     <Content Include="ChemicalTaskRequest.aspx" />
     <Content Include="ChemicalTaskViewDetails.aspx" />
     <Content Include="CreateTask.aspx" />
@@ -492,12 +492,12 @@
     <Compile Include="ChemicalTaskCompletion.aspx.designer.cs">
       <DependentUpon>ChemicalTaskCompletion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ChemicalTaskReq.aspx.cs">
-      <DependentUpon>ChemicalTaskReq.aspx</DependentUpon>
+    <Compile Include="ChemicalRequestForm.aspx.cs">
+      <DependentUpon>ChemicalRequestForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ChemicalTaskReq.aspx.designer.cs">
-      <DependentUpon>ChemicalTaskReq.aspx</DependentUpon>
+    <Compile Include="ChemicalRequestForm.aspx.designer.cs">
+      <DependentUpon>ChemicalRequestForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="ChemicalTaskRequest.aspx.cs">
       <DependentUpon>ChemicalTaskRequest.aspx</DependentUpon>
