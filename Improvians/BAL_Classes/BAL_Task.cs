@@ -271,7 +271,7 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select GJSPM.jobcode,'0' as wo,'0' as GrowerPutAwayId,GJSPM.cname,GJSPM.itemdescp,GJSPM.itemno,  " +
+                strQuery = "Select GJSPM.jobcode,'0' as wo,GJSPM.jid as GrowerPutAwayId,GJSPM.cname,GJSPM.itemdescp,GJSPM.itemno,  " +
                             " GJSPM.loc_seedline as FacilityID,GJSPM.GreenHouseID, GJSPM.Trays,GJSPM.TraySize,GJSPM.SeedDate as SeededDate,GJSPM.GenusCode from [gti_jobs_seeds_plan_Manual] GJSPM where 1=1 ";
 
                 if (!string.IsNullOrEmpty(FacilityLocation))

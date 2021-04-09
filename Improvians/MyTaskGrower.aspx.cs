@@ -115,6 +115,7 @@ namespace Evo
                     foreach (DataRow row in dtFez.Rows)
                     {
                         Fcount++;
+
                         string AD = row[col].ToString().Replace("\u0002", "");
 
                         FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(AD))).ToString();
@@ -133,6 +134,7 @@ namespace Evo
                         {
                             ReSetSprayDate = Convert.ToDateTime(ChFdt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChFdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
                         }
+
 
                         if (DateTime.Parse(FertilizationDate) >= DateTime.Parse(TodatDate))
                         {
@@ -159,8 +161,6 @@ namespace Evo
                                 nv11.Add("@ID", "");
                                 nv11.Add("@GenusCode", GenusCode);
                                 nv11.Add("@DateCountNo", DateCountNo);
-
-
 
                                 _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv11);
 

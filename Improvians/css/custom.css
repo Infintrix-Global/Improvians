@@ -735,8 +735,7 @@ textarea.input__control {
 }
 
 .data__table tr.highlighted > td {
-    background-color: #488949;
-    color: #fff;
+    background-color: rgb(222 246 225);
 }
 
 .dashboard__paging {
