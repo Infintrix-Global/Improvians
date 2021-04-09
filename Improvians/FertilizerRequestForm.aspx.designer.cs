@@ -11,7 +11,7 @@ namespace Evo
 {
 
 
-    public partial class FertilizerTaskReq
+    public partial class FertilizerRequestForm
     {
 
         /// <summary>

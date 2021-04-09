@@ -47,7 +47,7 @@ namespace Evo
                 if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
                 {
                     lblFacility.Text = "";
-                    
+
                 }
                 else
                 {
@@ -172,17 +172,47 @@ namespace Evo
 
             if (TaskName != null)
             {
-                if (Session["Role"].ToString() == "12")
+                if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")   // for grower and assistant grower
                 {
                     Response.Redirect(TaskName + "RequestForm.aspx");
                 }
                 else if (Operators.Contains(Convert.ToInt32(Session["Role"])))
                 {
-                    Response.Redirect(TaskName + "CompletionForm.aspx");
+                    switch (TaskName)
+                    {
+                        case "Chemical":
+                            Response.Redirect("ChemicalTaskRequest.aspx");
+                            break;
+                        case "Move":
+                            Response.Redirect("MoveReqAsssignment.aspx");
+                            break;
+                        case "Fertilizer":
+                            Response.Redirect("SprayTaskRequest.aspx");
+                            break;
+                        default:
+                            Response.Redirect(TaskName + "CompletionForm.aspx");
+                            break;
+                    }
+
                 }
                 else
                 {
-                   Response.Redirect(TaskName + "AssignmentForm.aspx");
+                    switch (TaskName)
+                    {
+                        case "Chemical":
+                            Response.Redirect("ChemicalTaskRequest.aspx");
+                            break;
+                        case "Move":
+                            Response.Redirect("MoveRequestForm.aspx");
+                            break;
+                        case "Fertilizer":
+                            Response.Redirect("SprayTaskRequest.aspx");
+                            break;
+                        default:
+                            Response.Redirect(TaskName + "AssignmentForm.aspx");
+                            break;
+                    }
+                    
                 }
 
             }
@@ -201,7 +231,7 @@ namespace Evo
             RepeaterItem row = (RepeaterItem)link.NamingContainer;
             string id = ((Label)row.FindControl("lblID")).Text;
             nv.Add("@Nid", id);
-           
+
 
             var result = objCommon.GetDataExecuteScaler("SP_ClearNotificationById", nv);
             checkNotification(1);

@@ -11,7 +11,7 @@ using Evo.Bal;
 
 namespace Evo
 {
-    public partial class FertilizerTaskReq : System.Web.UI.Page
+    public partial class FertilizerRequestForm : System.Web.UI.Page
     {
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
