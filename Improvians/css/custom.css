@@ -1,4 +1,4 @@
-@charset 'utf-8';
+@charset "UTF-8";
 
 /*Fonts*/
 @font-face {
@@ -291,6 +291,16 @@ header {
     flex-wrap: wrap;
     font-size: 14px;
     padding: 10px;
+    color: #505050;
+}
+
+.alert__bar a, .alert__bar:hover {
+    color: #505050;
+}
+
+.alert__bar:hover {
+    background: #fbfbfb;
+    color: #505050;
 }
 
 .alert__bar--unread {
@@ -304,26 +314,58 @@ header {
 }
 
 .alert__info {
-    max-width: calc(100% - 50px);
+    max-width: calc(100% - 40px);
+    margin-left: 10px;
     line-height: 20px;
-    margin-left: auto;
+}
+
+.alert__info > span {
+    padding: 2px 0;
 }
 
 .alert__bar i {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 100%;
     background: #e7f1f5;
     color: #10739e;
     text-align: center;
-    line-height: 40px;
-    font-size: 16px;
+    line-height: 30px;
+    font-size: 12px;
 }
 
 .alert__stamp {
     color: #808080;
-    margin-left: 50px;
+    margin-left: 40px;
     font-size: 12px;
+}
+
+.alert__assigned {
+    color: #505050;
+    margin-left: 40px;
+    font-size: 12px;
+}
+
+.bttn.alert__bar--clear {
+    padding: 0 8px;
+    display: block;
+    border-radius: 4px;
+    margin-left: 40px;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #488949;
+    color: #ffffff;
+}
+
+.bttn.alert__bar--clear:hover {
+    background: #366a37;
+}
+
+.bttn.alert__bar--clear:disabled { background: #e1e1e1; color: #c3c3c3; }
+
+.bttn.alert__bar--clear:disabled:hover {
+    background: #e1e1e1;
 }
 
 .header__tabs { position: relative; }
@@ -690,6 +732,10 @@ textarea.input__control {
 
 .data__table tr:nth-child(odd) > td, .data__table tr:nth-child(odd) > th {
     background-color: #ffffff;
+}
+
+.data__table tr.highlighted > td {
+    background-color: rgb(222 246 225);
 }
 
 .dashboard__paging {
@@ -1163,7 +1209,7 @@ textarea.input__control {
 }
 
 @media only screen and (max-width: 1199px) {
-    h2 { text-align: center; }
+    /*h2 { text-align: center; }*/
     .login__wrapper { padding-left: 15px; padding-right: 15px; }
     .login__container label h3 { margin-bottom: 12px; }
     .site__container { padding-left: 15px; padding-right: 15px; }

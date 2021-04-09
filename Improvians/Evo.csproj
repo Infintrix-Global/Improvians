@@ -1080,6 +1080,7 @@
     <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.ttf" />
     <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.woff" />
     <None Include="Admin\packages.config" />
+    <Content Include="manifest.json" />
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
     <Content Include="Upload.ashx" />
