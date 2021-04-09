@@ -240,7 +240,7 @@
     <Content Include="MoveRequestForm.aspx" />
     <Content Include="MovesReqManual.aspx" />
     <Content Include="FertilizerReqManual.aspx" />
-    <Content Include="FertilizerRequestForm.aspx" />
+    <Content Include="FertilizerTaskReq.aspx" />
     <Content Include="fonts\icons\rxicons.svg" />
     <Content Include="GerminationAssignmentForm.aspx" />
     <Content Include="GerminationCompletionForm.aspx" />
@@ -669,12 +669,12 @@
     <Compile Include="FertilizerReqManual.aspx.designer.cs">
       <DependentUpon>FertilizerReqManual.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FertilizerRequestForm.aspx.cs">
-      <DependentUpon>FertilizerRequestForm.aspx</DependentUpon>
+    <Compile Include="FertilizerTaskReq.aspx.cs">
+      <DependentUpon>FertilizerTaskReq.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FertilizerRequestForm.aspx.designer.cs">
-      <DependentUpon>FertilizerRequestForm.aspx</DependentUpon>
+    <Compile Include="FertilizerTaskReq.aspx.designer.cs">
+      <DependentUpon>FertilizerTaskReq.aspx</DependentUpon>
     </Compile>
     <Compile Include="GerminationAssignmentForm.aspx.cs">
       <DependentUpon>GerminationAssignmentForm.aspx</DependentUpon>
