@@ -90,7 +90,7 @@
                             <div class="dropdown__body">
                                 <asp:Repeater ID="r1" runat="server">
                                     <ItemTemplate>
-                                        <div class='<%# (Eval("IsViewed").ToString() == "False" ?"alert__bar--unread" : "alert__bar--read" )  
+                                        <div class='alert__bar <%# (Eval("IsViewed").ToString() == "False" ?"alert__bar--unread" : "alert__bar--read" )  
                                            %>'>
                                              <i class="fas fa-tasks"></i>
                                             <asp:Label ID="lblID" Text='<%# Eval("ID") %>' runat="server" Visible="false" />
@@ -102,29 +102,36 @@
                                             <asp:LinkButton runat="server" class="alert__info" ID="link" OnClick="link_Click">
                                                 <%--onclick="getData(<%# Eval("ID") %> )"--%>
 
-                                                <strong>Job:
-                                                    <asp:Label ID="lblJobId" runat="server" Text='<%# Eval("JobID")  %>' Visible="true"></asp:Label></strong>
-                                                <br />
-                                                <strong>Bench Location:
-                                                    <asp:Label ID="lblBenchLoc" runat="server" Text='<%# Eval("BenchLocation") %>' Visible="true"></asp:Label></strong>
-                                                <br />
-                                                <strong>Task :
-                                                    <asp:Label ID="lblTaskName" runat="server" Text='<%# Eval("Task") %>' Visible="true"></asp:Label></strong>
-                                                <br />
-                                                <strong>Assigned By:
-                                                    <asp:Label ID="lblAssigned" runat="server" Text='<%# Eval("AssignedBy")  %>' Visible="true"></asp:Label></strong>
+                                                <span class="d-block">
+                                                    <strong>Job:</strong>
+                                                    <asp:Label ID="lblJobId" runat="server" Text='<%# Eval("JobID")  %>' Visible="true"></asp:Label>
+                                                </span>
 
+                                                <span class="d-block">
+                                                    <strong>Bench Location:</strong>
+                                                    <asp:Label ID="lblBenchLoc" runat="server" Text='<%# Eval("BenchLocation") %>' Visible="true"></asp:Label>
+                                                </span>
+
+                                                <span class="d-block">
+                                                    <strong>Task:</strong>
+                                                    <asp:Label ID="lblTaskName" runat="server" Text='<%# Eval("Task") %>' Visible="true"></asp:Label></strong>
+                                                </span>
+
+                                                <span class="d-block">
+                                                    <strong>Assigned By:</strong>
+                                                    <asp:Label ID="lblAssigned" runat="server" Text='<%# Eval("AssignedBy")  %>' Visible="true"></asp:Label>
+                                                </span>
                                             </asp:LinkButton>
                                             <%-- </div>--%>
 
-                                            <div class="alert__stamp">
-                                                <span>
-                                                    <asp:Label ID="lblNotificationTime" runat="server" Text='<%# Eval("NotificationDate") %>' Visible="true"></asp:Label></span>
-                                            </div>
+                                            <span class="d-block alert__stamp">
+                                                <asp:Label ID="lblNotificationTime" runat="server" Text='<%# Eval("NotificationDate") %>' Visible="true"></asp:Label>
+                                            </span>
 
-                                            <asp:LinkButton runat="server" ID="remoteNotificationLink" style="width:fit-content" Text="Clear" class="alert__bar--clear bttn" OnClick="remoteNotificationLink_Click">
-                                            </asp:LinkButton>
-
+                                            <span class="w-100">
+                                                <asp:LinkButton runat="server" ID="remoteNotificationLink" style="width:fit-content" Text="Clear" class="alert__bar--clear bttn" OnClick="remoteNotificationLink_Click">
+                                                </asp:LinkButton>
+                                            </span>
                                         </div>
                                     </ItemTemplate>
 
