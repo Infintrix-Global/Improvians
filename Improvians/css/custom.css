@@ -354,13 +354,15 @@ header {
     font-size: 12px;
     margin-top: 5px;
     margin-bottom: 5px;
+    background: #488949;
+    color: #ffffff;
 }
 
 .bttn.alert__bar--clear:hover {
-    background: rgb(218, 13, 13);
+    background: #366a37;
 }
 
-.bttn.alert__bar--clear:disabled { color: #c3c3c3; }
+.bttn.alert__bar--clear:disabled { background: #e1e1e1; color: #c3c3c3; }
 
 .bttn.alert__bar--clear:disabled:hover {
     background: #e1e1e1;
