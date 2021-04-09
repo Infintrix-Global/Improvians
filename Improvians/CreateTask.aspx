@@ -841,9 +841,10 @@
                                 <div class="d-none d-sm-block w-100"></div>
                                 <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                                     <asp:Button Text="Submit" ID="btnCropHealthSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnCropHealthSubmit_Click" />
-                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnCropHealthSave" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthSave_Click" />
-                                    <asp:Button Text="Start" CausesValidation="true" ID="btnCropHealthStart" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthStart_Click" />
+                                  <asp:Button Text="Start" CausesValidation="true" ID="btnCropHealthStart" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthStart_Click" />
 
+                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnCropHealthSave" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthSave_Click" />
+                                   
                                     <asp:Button Text="Reset" ID="btnCropReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnCropReset_Click" />
                                 </div>
                             </div>
