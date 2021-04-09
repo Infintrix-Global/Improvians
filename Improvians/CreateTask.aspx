@@ -404,7 +404,7 @@
                                 </div>
 
                                 <div class="mb-3 col-xl-3 col-md-6 col-12">
-                                    <label class="d-block">Spray Date</label>
+                                    <label class="d-block">Fertilizer Spray Date</label>
                                     <asp:TextBox ID="txtFDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
 
@@ -829,7 +829,7 @@
                                     <asp:DropDownList ID="ddlCropHealthAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
                                 <div class="mb-3 mb-md-0 col-12 col-md-auto">
-                                    <label class="d-block">Crop Health Date</label>
+                                    <label class="d-block">Crop Health Work  Date</label>
                                     <asp:TextBox ID="txtCropHealthDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
                                 <div class="d-none d-sm-block w-100"></div>

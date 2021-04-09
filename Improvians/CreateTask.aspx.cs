@@ -2137,8 +2137,8 @@ namespace Evo
                     //}
                     PlanrDDate = Convert.ToInt32(dt.Rows[0]["dateshift"]);
                     PlantPDate = Convert.ToInt32(dt.Rows[1]["dateshift"]);
-                    lblPlantReadyDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlantPDate).ToString("yyyy-MM-dd");
-                    lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("yyyy-MM-dd");
+                    lblPlantReadyDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlantPDate).ToString("yyyy/MM/dd");
+                    lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("yyyy/MM/dd");
 
                 }
 

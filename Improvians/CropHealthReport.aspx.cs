@@ -186,13 +186,38 @@ namespace Evo
           
             DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
 
-            if (dtManual != null && dtManual.Rows.Count > 0)
+            //if (dtManual != null && dtManual.Rows.Count > 0)
+            //{
+            //    dt.Merge(dtManual);
+            //    dt.AcceptChanges();
+            //}
+
+            if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
                 dt.AcceptChanges();
+                gvFer.DataSource = dt;
+                gvFer.DataBind();
+
             }
-            gvFer.DataSource = dt;
-            gvFer.DataBind();
+            else if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                gvFer.DataSource = dtManual;
+                gvFer.DataBind();
+
+            }
+            else
+            {
+                gvFer.DataSource = dt;
+                gvFer.DataBind();
+
+
+            }
+
+            //gvFer.DataSource = dt;
+            //gvFer.DataBind();
+
+
 
             decimal tray = 0;
             string BatchLocd = string.Empty;
