@@ -2064,18 +2064,18 @@ namespace Evo
             using (SqlConnection conn = new SqlConnection())
             {
 
-                conn.ConnectionString = ConfigurationManager.ConnectionStrings["EvoNavision"].ConnectionString;
+                //conn.ConnectionString = ConfigurationManager.ConnectionStrings["EvoNavision"].ConnectionString;
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
-                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
-                    //" AND t.[Job No_] like '" + prefixText + "%'";
+                 
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    //cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
-                    //    "";
+                    
+                    //cmd.CommandText = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Position Code]  like '%" + prefixText + "%' and s.[Location Code]='" + Facility + "' ";
+                    cmd.CommandText = "Select* from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "' and GreenHouseId  like '%" + prefixText + "%'";
 
-                    cmd.CommandText = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Position Code]  like '%" + prefixText + "%' and s.[Location Code]='" + Facility + "' ";
-
+                   // Select* from gti_jobs_seeds_plan_Manual where loc_seedline = 'ENC2' and GreenHouseId = 'ENC2-H02-05-B'
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;
                     conn.Open();
@@ -2083,12 +2083,11 @@ namespace Evo
 
                     List<string> BenchLocation = new List<string>();
 
-
                     using (SqlDataReader sdr = cmd.ExecuteReader())
                     {
                         while (sdr.Read())
                         {
-                            BenchLocation.Add(sdr["p2"].ToString());
+                            BenchLocation.Add(sdr["GreenHouseId"].ToString());
                         }
                     }
                     conn.Close();
