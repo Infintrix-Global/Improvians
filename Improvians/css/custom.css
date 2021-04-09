@@ -234,7 +234,7 @@ header {
     border-top: 1px solid #e5e5e5;
 }
 
-.dropdown__foo button {
+.dropdown__foo button, .dropdown__foo input {
     background: transparent;
     cursor: pointer;
     outline: none;
