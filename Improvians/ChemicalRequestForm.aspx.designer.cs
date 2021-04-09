@@ -11,7 +11,7 @@ namespace Evo
 {
 
 
-    public partial class ChemicalTaskReq
+    public partial class ChemicalRequestForm
     {
 
         /// <summary>

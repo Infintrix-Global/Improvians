@@ -35,7 +35,7 @@
                         <p>Review and assign these tasks to the Greenhouse Supervisor</p>
                     </div>
                 </a>
-                <a href="FertilizerTaskReq.aspx" class="dashboard__box">
+                <a href="FertilizerRequestForm.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization" />
                     </div>
@@ -47,7 +47,7 @@
                         <p>Review and assign these tasks to the Sprayer</p>
                     </div>
                 </a>
-                <a href="ChemicalTaskReq.aspx" class="dashboard__box">
+                <a href="ChemicalRequestForm.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_chemical.png" width="137" height="136" alt="Chemical" />
                     </div>

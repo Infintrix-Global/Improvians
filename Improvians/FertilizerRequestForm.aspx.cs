@@ -11,7 +11,7 @@ using Evo.Bal;
 
 namespace Evo
 {
-    public partial class FertilizerTaskReq : System.Web.UI.Page
+    public partial class FertilizerRequestForm : System.Web.UI.Page
     {
         public static DataTable dtTrays = new DataTable()
         { Columns = { "Fertilizer", "Quantity", "Unit", "Tray", "SQFT" } };
@@ -38,6 +38,22 @@ namespace Evo
                 BindJobCode(ddlBenchLocation.SelectedValue);
                 BindGridFerReq();
                 dtTrays.Clear();
+            }
+        }
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
             }
         }
 
@@ -139,6 +155,15 @@ namespace Evo
           
             gvFer.DataSource = dt;
             gvFer.DataBind();
+
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                var checkJob = (row.FindControl("lblID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
         }
 
         public void BindGridFerDetails()
