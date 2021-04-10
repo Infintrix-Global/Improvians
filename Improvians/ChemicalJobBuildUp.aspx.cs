@@ -485,7 +485,15 @@ namespace Evo
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
-                
+
+                NameValueCollection nvn = new NameValueCollection();
+                nvn.Add("@LoginID", Session["LoginID"].ToString());
+                nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                nvn.Add("@TaskName", "Chemical");
+                nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
 
             }
 

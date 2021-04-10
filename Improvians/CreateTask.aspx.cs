@@ -1381,6 +1381,15 @@ namespace Evo
                     nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
                     nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
+
+                    NameValueCollection nvn = new NameValueCollection();
+                    nvn.Add("@LoginID", Session["LoginID"].ToString());
+                    nvn.Add("@SupervisorID", Assigned);
+                    nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nvn.Add("@TaskName", "Chemical");
+                    nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
                 }
             }
 
