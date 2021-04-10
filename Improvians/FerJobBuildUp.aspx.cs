@@ -495,6 +495,13 @@ namespace Evo
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
                 //  }
 
+                NameValueCollection nvn = new NameValueCollection();
+                nvn.Add("@LoginID", Session["LoginID"].ToString());
+                nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                nvn.Add("@TaskName", "Fertilizer");
+                nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
             }
 
