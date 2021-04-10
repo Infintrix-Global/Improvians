@@ -26,18 +26,46 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
 
-       
+
+
+
+
         public void BindGridSprayReq()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-           
+
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetChemical_RequestDetailsNew", nv);
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
+
+            //foreach (GridViewRow row in gvSpray.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
 
         }
 
@@ -53,7 +81,7 @@ namespace Evo
                 //userinput.Visible = true;
 
 
-               
+
             }
 
             if (e.CommandName == "ViewDetails")
@@ -61,7 +89,7 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string ChemicalCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
                 Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}", ChemicalCode));
-              
+
 
             }
         }
@@ -71,11 +99,5 @@ namespace Evo
             gvSpray.PageIndex = e.NewPageIndex;
             BindGridSprayReq();
         }
-
-
-       
-       
-
-        
     }
 }

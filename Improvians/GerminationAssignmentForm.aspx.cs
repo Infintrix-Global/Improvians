@@ -24,6 +24,26 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
+
         public void Bindcname()
         {
 
@@ -70,6 +90,15 @@ namespace Evo
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
+
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -92,7 +121,7 @@ namespace Evo
                 Wo = (row.FindControl("lblWo") as Label).Text;
                 GTRID = (row.FindControl("lblID") as Label).Text;
                 ChId = (row.FindControl("lblChid") as Label).Text;
-                if(ChId =="")
+                if (ChId == "")
                 {
                     ChId = "0";
                 }
@@ -100,7 +129,7 @@ namespace Evo
                 {
                     ChId = ChId;
                 }
-                                                                    
+
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Notes", "");
@@ -138,7 +167,7 @@ namespace Evo
                 Button btnSelect = (Button)e.Row.FindControl("btnSelect");
 
                 int RoleId = Convert.ToInt32(Session["Role"]);
-                if (RoleId == 11 || RoleId ==3 || RoleId==5)
+                if (RoleId == 11 || RoleId == 3 || RoleId == 5)
                 {
                     btnSelect.Visible = true;
                     btnAssign.Visible = false;

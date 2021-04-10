@@ -34,6 +34,25 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
 
         //public void Bindcname()
         //{
@@ -112,6 +131,15 @@ namespace Evo
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
 
+            //foreach (GridViewRow row in gvSpray.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+
         }
 
 
@@ -124,8 +152,8 @@ namespace Evo
                 string FertilizationCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
                 Response.Redirect(String.Format("~/SprayTaskReq.aspx?FertilizationCode={0}", FertilizationCode));
                 //userinput.Visible = true;
-               
-              
+
+
                 //lblGrowerID.Text = gvSpray.DataKeys[rowIndex].Values[0].ToString();
 
                 //txtNotes.Focus();

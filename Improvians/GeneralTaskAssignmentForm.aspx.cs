@@ -22,8 +22,27 @@ namespace Improvians
                 BindTask();
             }
         }
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
 
-        public void Bindcname()
+
+
+
+public void Bindcname()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -69,7 +88,16 @@ namespace Improvians
         
             dt = objCommon.GetDataTable("SP_GetSupervisorGeneralTask", nv);
             gvTask.DataSource = dt;
-            gvTask.DataBind();            
+            gvTask.DataBind();
+
+            foreach (GridViewRow row in gvTask.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
 
         }
 

@@ -22,6 +22,26 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
+
         public void Bindcname()
         {
 
@@ -70,6 +90,16 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetSupervisorDumpTask", nv);
             gvDump.DataSource = dt;
             gvDump.DataBind();
+
+            foreach (GridViewRow row in gvDump.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
+
 
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
@@ -136,7 +166,7 @@ namespace Evo
                 {
                     ChId = ChId;
                 }
-              
+
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
@@ -144,12 +174,12 @@ namespace Evo
                 nv.Add("@DumpId", Did);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@QuantityOfTray", "");
-                nv.Add("@DumpDate","");
+                nv.Add("@DumpDate", "");
 
-           
+
                 long result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskStart", nv);
 
-             
+
                 if (result > 0)
                 {
                     Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));

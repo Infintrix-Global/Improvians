@@ -23,7 +23,27 @@ namespace Evo
             }
         }
 
-        private string wo
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
+
+private string wo
         {
             get
             {
@@ -48,6 +68,15 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
+            //foreach (GridViewRow row in gvGerm.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
         }
 
 

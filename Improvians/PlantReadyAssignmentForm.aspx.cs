@@ -21,6 +21,24 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
         public void Bindcname()
         {
 
@@ -64,11 +82,21 @@ namespace Evo
             // nv.Add("@Facility", ddlFacility.SelectedValue);
             //nv.Add("@Mode", "8");
             nv.Add("@LoginID", Session["LoginID"].ToString());
-           
+
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             dt = objCommon.GetDataTable("SP_GetSupervisorPlantReadyTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
+
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
 
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
@@ -150,11 +178,11 @@ namespace Evo
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-                nv.Add("@Notes","");
+                nv.Add("@Notes", "");
                 nv.Add("@PRID", PRID);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@PlantExpirationDate","");
-                
+                nv.Add("@PlantExpirationDate", "");
+
                 long result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignmentNew", nv);
 
                 //  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
