@@ -321,12 +321,16 @@ namespace Evo
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
             nv.Add("@ManualID", HiddenFieldJid.Value);
 
-
-
-
-
-
             result = objCommon.GetDataInsertORUpdate("SP_AddMoveRequestASManua", nv);
+
+            NameValueCollection nvn = new NameValueCollection();
+            nvn.Add("@LoginID", Session["LoginID"].ToString());
+            nvn.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
+            nvn.Add("@Jobcode", lblJobID.Text);
+            nvn.Add("@TaskName", "Move");
+            nvn.Add("@GreenHouseID", ddlToGreenHouse.SelectedValue);
+            var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
 
 
             if (result > 0)

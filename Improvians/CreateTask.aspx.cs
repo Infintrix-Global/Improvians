@@ -1464,6 +1464,16 @@ namespace Evo
                     nv.Add("@Comments", txtMoveComments.Text.Trim());
                     nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
+
+                    NameValueCollection nvn = new NameValueCollection();
+                    nvn.Add("@LoginID", Session["LoginID"].ToString());
+                    nvn.Add("@SupervisorID", Assigned);
+                    nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nvn.Add("@TaskName", "Move");
+                    nvn.Add("@GreenHouseID", ddlToGreenHouse.SelectedValue);
+                    var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
+
                 }
             }
 
