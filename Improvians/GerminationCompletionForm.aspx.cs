@@ -23,6 +23,26 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
+
         public void Bindcname()
         {
 
@@ -64,10 +84,19 @@ namespace Evo
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
-         
+
             dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
 
         }
 
@@ -96,7 +125,7 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-              
+
                 Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
                 lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text + "&GermNo=" + lblGermNo.Text;

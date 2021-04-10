@@ -24,6 +24,26 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
+
         public void Bindcname()
         {
 
@@ -85,6 +105,15 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetOperatorDumpTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
 
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)

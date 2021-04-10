@@ -176,7 +176,16 @@ namespace Evo
             {
                 if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")   // for grower and assistant grower
                 {
-                    Response.Redirect(TaskName + "RequestForm.aspx?jobId="+ job);
+                    if(TaskName == "Fertilizer")
+                    {
+                        Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job);
+                    }
+                    else
+                    {
+                        Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job);
+                    }
+                    
+
                 }
                 else if (Operators.Contains(Convert.ToInt32(Session["Role"])))
                 {

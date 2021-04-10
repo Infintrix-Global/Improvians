@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -16,12 +16,31 @@ namespace Evo
             if (!IsPostBack)
             {
                 //Bindcname();
-              //  BindJobCode();
-              //  BindFacility();
+                //  BindJobCode();
+                //  BindFacility();
                 BindGridGerm();
 
             }
         }
+
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
 
         //public void Bindcname()
         //{
@@ -88,6 +107,16 @@ namespace Evo
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
+
+            //foreach (GridViewRow row in gvGerm.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -106,9 +135,9 @@ namespace Evo
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
-           // Bindcname();
-           // BindJobCode();
-          //  BindFacility();
+            // Bindcname();
+            // BindJobCode();
+            //  BindFacility();
             BindGridGerm();
         }
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -132,7 +161,7 @@ namespace Evo
                 //nv.Add("@mode", "1");
                 //result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
                 //Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
-               Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
+                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
             }
 
             if (e.CommandName == "ViewDetails")

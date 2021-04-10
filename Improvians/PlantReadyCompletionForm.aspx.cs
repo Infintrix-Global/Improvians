@@ -23,6 +23,26 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
+
         public void Bindcname()
         {
 
@@ -75,7 +95,7 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-          //  nv.Add("@wo", "");
+            //  nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
@@ -84,6 +104,15 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
 
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,14 +140,14 @@ namespace Evo
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string JobID = "";
-           
+
 
             if (e.CommandName == "Select")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string PRID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 string PRAID = gvGerm.DataKeys[rowIndex].Values[1].ToString();
-               // string PRAID = e.CommandArgument.ToString();
+                // string PRAID = e.CommandArgument.ToString();
 
                 Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", PRAID, PRID));
             }
@@ -130,6 +159,6 @@ namespace Evo
             BindGridGerm();
         }
 
-     
+
     }
 }

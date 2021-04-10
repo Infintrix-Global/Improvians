@@ -24,6 +24,25 @@ namespace Evo
             }
         }
 
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+
         public void Bindcname()
         {
 
@@ -86,6 +105,16 @@ namespace Evo
             gvTask.DataSource = dt;
             gvTask.DataBind();
 
+
+            foreach (GridViewRow row in gvTask.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                if (checkJob == JobCode)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
+
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -114,7 +143,7 @@ namespace Evo
             if (e.CommandName == "Start")
             {
                 string PRAID = e.CommandArgument.ToString();
-              //  Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
+                //  Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
                 Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}", PRAID, 0));
 
             }
