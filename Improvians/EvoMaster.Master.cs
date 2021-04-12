@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Evo
@@ -64,7 +65,7 @@ namespace Evo
 
         protected void checkNotification(int n)
         {
-            var totalCount = "";
+            var totalCount = 0;
             NameValueCollection nv = new NameValueCollection();
             DataTable dtSearch1 = new DataTable();
             string sqr = "";
@@ -75,29 +76,76 @@ namespace Evo
                 var result = objCommon.GetDataExecuteScaler("SP_ClearAllNotification", nv);
             }
 
-            sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 And IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
-            if (!string.IsNullOrEmpty(sqr))
-            {
-                dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
-            }
+            //sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 And IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
+            nv.Clear();
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@facility", lblFacility.Text == "" ? Session["Facility"].ToString() : lblFacility.Text);
+
+            dtSearch1 = objCommon.GetDataTable("SP_GetAllNotifications", nv);
+           
             if (dtSearch1 != null)
             {
-                totalCount = dtSearch1.Rows.Count.ToString();
+                foreach(DataRow dr in dtSearch1.Rows)
+                {
+                    if((bool)dr["IsViewed"] == false)
+                    {
+                        totalCount += 1;
+                    }
+                }
+               
             }
-            if (string.IsNullOrEmpty(totalCount))
-            {
-                totalCount = "0";
-            }
-            lblNotificationCount.Text = totalCount;
+          
+            lblNotificationCount.Text = totalCount.ToString();
 
-            sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
-            if (!string.IsNullOrEmpty(sqr))
-            {
-                dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
-            }
+            //sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
+            //if (!string.IsNullOrEmpty(sqr))
+            //{
+            //    dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
+            //}
 
             r1.DataSource = dtSearch1;
             r1.DataBind();
+
+            foreach(RepeaterItem item in r1.Items)
+            {
+                Label control = item.FindControl("lblLogo") as Label;
+                
+                string Task = (item.FindControl("lblTaskName") as Label).Text;
+                switch (Task)
+                {
+                    case "Chemical":
+                        control.Attributes["class"] = "imgicon-chemical";
+                        break;
+                    case "Move":
+                        control.Attributes["class"] = "imgicon-moverequest";
+                        break;
+                    case "Fertilizer":
+                        control.Attributes["class"] = "imgicon-fertilization";
+                        break;
+
+                    case "GeneralTask":
+                        control.Attributes["class"] = "imgicon-generaltask";
+                        break;
+                    case "Dump":
+                        control.Attributes["class"] = "imgicon-dumprequest";
+                        break;
+                    case "Germination":
+                        control.Attributes["class"] = "imgicon-germination";
+                        break;
+
+                    case "PlantReady":
+                        control.Attributes["class"] = "imgicon-plantready";
+                        break;
+                    case "Irrigation":
+                        control.Attributes["class"] = "imgicon-irrigation";
+                        break;
+                    default :
+                        control.Attributes["class"] = "imgicon-putaway";
+                        break;
+
+                }
+            }
+           
         }
 
         protected void lnkmytask_Click(object sender, EventArgs e)

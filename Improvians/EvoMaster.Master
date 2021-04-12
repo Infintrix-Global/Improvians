@@ -92,7 +92,8 @@
                                     <ItemTemplate>
                                         <div class='alert__bar <%# (Eval("IsViewed").ToString() == "False" ?"alert__bar--unread" : "alert__bar--read" )  
                                            %>'>
-                                             <i class="fas fa-tasks"></i>
+                                             <%--<i id="lblLogo" class="fas fa-tasks"></i>--%>
+                                            <asp:Label ID="lblLogo" runat="server" Visible="true"></asp:Label>
                                             <asp:Label ID="lblID" Text='<%# Eval("ID") %>' runat="server" Visible="false" />
                                             <%--  OnClick='updateNotification(<%# Eval("ID") %>)'    target="_blank" href="<%# Eval("Task") + "AssignmentForm.aspx" %>"--%>
                                            
