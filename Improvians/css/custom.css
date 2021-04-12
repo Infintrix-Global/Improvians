@@ -370,6 +370,97 @@ header {
     background: #e1e1e1;
 }
 
+/*Notification Icons*/
+.alert__bar [class^="imgicon"] {
+    background-color: transparent;
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    color: transparent;
+    border-radius: 0;
+}
+
+.alert__bar .imgicon-putaway {
+    background-image: url('../images/dashboard_put-away.png');
+}
+
+.alert__bar .imgicon-germination {
+    background-image: url('../images/dashboard_germination-count.png');
+}
+
+.alert__bar .imgicon-fertilization {
+    background-image: url('../images/dashboard_fertilization.png');
+}
+
+.alert__bar .imgicon-chemical {
+    background-image: url('../images/dashboard_chemical.png');
+}
+
+.alert__bar .imgicon-irrigation {
+    background-image: url('../images/dashboard_irrigation.png');
+}
+
+.alert__bar .imgicon-crophealth {
+    background-image: url('../images/dashboard_crop-health-report.png');
+}
+
+.alert__bar .imgicon-plantready {
+    background-image: url('../images/dashboard_plant-ready.png');
+}
+
+.alert__bar .imgicon-moverequest {
+    background-image: url('../images/dashboard_move-request.png');
+}
+
+.alert__bar .imgicon-dumprequest {
+    background-image: url('../images/dashboard_dump-request.png');
+}
+
+.alert__bar .imgicon-generaltask {
+    background-image: url('../images/dashboard_general-task.png');
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 0;
+    list-style: none;
+    border-radius: .25rem;
+    background: #f0f1f5;
+}
+
+.mb-3 + .breadcrumb {
+    margin-bottom: 16px;
+}
+
+h2:not(.mb-2) + .breadcrumb,
+h2:not(.mb-3) + .breadcrumb {
+    margin-top: 20px;
+}
+
+.breadcrumb-item a {
+    color: #438644;
+}
+
+.breadcrumb-item + .breadcrumb-item {
+    padding-left: .5rem;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/";
+    float: left;
+    padding-right: .5rem;
+    color: #6c757d;
+}
+
 .header__tabs { position: relative; }
 
 /*
@@ -695,6 +786,7 @@ textarea.input__control {
 
 /*Filter Row*/
 .filter__row { margin-top: 34px; }
+.breadcrumb + .filter__row { margin-top: 15px; }
 .filter__row .filter__control { width: auto; }
 .filter__row > .filter__control:not(.bttn) { flex: 0 0 300px; }
 .filter__control + * { margin-left: 20px; }
