@@ -421,16 +421,25 @@ header {
 }
 
 /* Breadcrumbs */
+.site__breadcrumb {
+    background: #f8f8f8;
+    position: absolute;
+    top: 95px;
+    left: 0;
+    right: 0;
+}
+
 .breadcrumb {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding: .75rem 1rem;
+    padding: 10px 1rem;
+    padding-left: 0;
     margin-bottom: 0;
     list-style: none;
     border-radius: .25rem;
-    background: #f0f1f5;
+    background: transparent;
 }
 
 .mb-3 + .breadcrumb {
@@ -443,7 +452,7 @@ h2:not(.mb-3) + .breadcrumb {
 }
 
 .breadcrumb-item a {
-    color: #438644;
+    color: #505050;
 }
 
 .breadcrumb-item + .breadcrumb-item {
@@ -451,7 +460,7 @@ h2:not(.mb-3) + .breadcrumb {
 }
 
 .breadcrumb-item.active {
-    color: #6c757d;
+    color: #808080;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -460,6 +469,8 @@ h2:not(.mb-3) + .breadcrumb {
     padding-right: .5rem;
     color: #6c757d;
 }
+
+.site__breadcrumb ~ .main__header { margin-top: 110px; }
 
 .header__tabs { position: relative; }
 
@@ -1257,8 +1268,9 @@ textarea.input__control {
     .logo-link--vertical img { max-width: 150px; height: auto; }
     .login__container h1 { font-size: 30px; }
     .floating__footer i { font-size: 22px; }
-    .header__bottom { margin-top: 30px; }
+    .header__bottom { margin-top: 70px; }
     .header__bottom + .main { margin-top: 30px; }
+    .site__breadcrumb ~ .main__header { margin-top: 0; }
     .filter__row { flex-wrap: wrap; }
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 auto; }
     .floating__footer a { padding: 12px 25px; }
