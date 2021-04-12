@@ -2195,7 +2195,7 @@ namespace Evo
                     CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                     if (chckrw.Checked == true)
                     {
-                        long result = 0;
+                     
                         NameValueCollection nv = new NameValueCollection();
                         nv.Add("@SupervisorID", Session["LoginID"].ToString());
 
