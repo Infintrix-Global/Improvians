@@ -388,6 +388,7 @@
                                 <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
                                     <asp:Button Text="Submit" ID="btngerminationSumit" CssClass="bttn bttn-primary bttn-action" OnClick="btngerminationSumit_Click" runat="server" />
                                     <asp:Button Text="Save for later" CausesValidation="true" ID="btnBSaveSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnBSaveSubmit_Click" />
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartGermination" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnStartGermination_Click" />
 
                                     <asp:Button Text="Reset" ID="btngerminationReset" runat="server" OnClick="btngerminationReset_Click" CssClass="bttn bttn-primary bttn-action" />
                                 </div>
@@ -461,6 +462,7 @@
 
                                     <asp:Button Text="Submit" CausesValidation="true" ID="btnFSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnFSubmit_Click" />
                                     <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveFLSubmit" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveFLSubmit_Click" />
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartFertilization" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnStartFertilization_Click" />
 
                                     <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnFReset_Click" />
                                 </div>
@@ -527,6 +529,7 @@
                                     <div class="col-auto">
                                         <asp:Button Text="Submit" CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnChemicalSubmit_Click" />
                                         <asp:Button Text="Save for later" CausesValidation="true" ID="btnChemicalSFLSubmit" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnChemicalSFLSubmit_Click" />
+                                        <asp:Button Text="Start" CausesValidation="true" ID="btnStartChemical" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnStartChemical_Click" />
 
                                         <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnChemicalReset_Click" />
                                     </div>
@@ -571,6 +574,7 @@
                                 <div class="mb-xl-3 col-12 col-lg-4 col-xl-6 align-self-end">
                                     <asp:Button Text="Submit" ID="btnirrigationSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnirrigationSubmit_Click" />
                                     <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveirrigation" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveirrigation_Click" />
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartirrigation" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnStartirrigation_Click" />
 
                                     <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnirrigationReset_Click1" />
                                 </div>
@@ -605,6 +609,7 @@
                                 <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                                     <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnplant_readySubmit_Click" />
                                     <asp:Button Text="Save for later" CausesValidation="true" ID="btnSavePlantReady" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSavePlantReady_Click" />
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartPlantReady" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnStartPlantReady_Click" />
 
                                     <asp:Button Text="Reset" ID="btnplant_readyReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnplant_readyReset_Click" />
                                 </div>
@@ -670,6 +675,7 @@
                                     <div class="col-auto">
                                         <asp:Button Text="Submit" ValidationGroup="e" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
                                         <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveMove" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveMove_Click" />
+                                        <asp:Button Text="Start" CausesValidation="true" ID="btnStartMove" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnStartMove_Click" />
 
                                         <asp:Button Text="Reset" ID="MoveReset" runat="server" OnClick="MoveReset_Click" CssClass="bttn bttn-primary bttn-action" />
                                     </div>
@@ -705,6 +711,7 @@
                                 <div class="mb-3 col-12 align-self-end">
                                     <asp:Button Text="Submit" ID="btnDumpSumbit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnDumpSumbit_Click" />
                                     <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveDump" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveDump_Click" />
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartDumpDetails" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnStartDumpDetails_Click" />
 
                                     <asp:Button Text="Reset" ID="btnDumpReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnDumpReset_Click" />
                                 </div>
@@ -804,6 +811,8 @@
 
                                                     <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnGeneraltask_Click" />
                                                     <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveGeneral" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSaveGeneral_Click" />
+                                                    <asp:Button Text="Start" CausesValidation="true" ID="btnGeneralStart" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnGeneralStart_Click" />
+
                                                     <asp:Button Text="Reset" ID="btnGeneralReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralReset_Click" />
 
                                                 </div>
@@ -841,10 +850,10 @@
                                 <div class="d-none d-sm-block w-100"></div>
                                 <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                                     <asp:Button Text="Submit" ID="btnCropHealthSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnCropHealthSubmit_Click" />
-                                  <asp:Button Text="Start" CausesValidation="true" ID="btnCropHealthStart" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthStart_Click" />
 
                                     <asp:Button Text="Save for later" CausesValidation="true" ID="btnCropHealthSave" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthSave_Click" />
-                                   
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnCropHealthStart" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnCropHealthStart_Click" />
+
                                     <asp:Button Text="Reset" ID="btnCropReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnCropReset_Click" />
                                 </div>
                             </div>

@@ -239,7 +239,7 @@
                                 </div>
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <label class="d-block">Quantity Of Tray</label>
+                                    <label class="d-block">Number Of Tray</label>
                                     <asp:TextBox ID="txtQuantityOfTray" TextMode="Number" class="input__control" runat="server"></asp:TextBox>
                                 </div>
 

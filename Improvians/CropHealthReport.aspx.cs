@@ -60,9 +60,9 @@ namespace Evo
                     dtTrays.Clear();
                 }
 
-                if(Request.QueryString["BatchLoc"] != null)
+                if(Request.QueryString["BatchLoc"] != null && Request.QueryString["JobCode"] != null)
                 {
-                    BindGridFerReq(Request.QueryString["BatchLoc"].ToString(), "");
+                    BindGridFerReq(Request.QueryString["BatchLoc"].ToString(), Request.QueryString["JobCode"].ToString());
                 }
                 BindSupervisor();
 
@@ -182,9 +182,9 @@ namespace Evo
 
          //   DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
 
-            dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
+            dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
           
-            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
+            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
 
             //if (dtManual != null && dtManual.Rows.Count > 0)
             //{
