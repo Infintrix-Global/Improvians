@@ -82,19 +82,19 @@ namespace Evo
             nv.Add("@facility", lblFacility.Text == "" ? Session["Facility"].ToString() : lblFacility.Text);
 
             dtSearch1 = objCommon.GetDataTable("SP_GetAllNotifications", nv);
-           
+
             if (dtSearch1 != null)
             {
-                foreach(DataRow dr in dtSearch1.Rows)
+                foreach (DataRow dr in dtSearch1.Rows)
                 {
-                    if((bool)dr["IsViewed"] == false)
+                    if ((bool)dr["IsViewed"] == false)
                     {
                         totalCount += 1;
                     }
                 }
-               
+
             }
-          
+
             lblNotificationCount.Text = totalCount.ToString();
 
             //sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
@@ -106,46 +106,10 @@ namespace Evo
             r1.DataSource = dtSearch1;
             r1.DataBind();
 
-            foreach(RepeaterItem item in r1.Items)
-            {
-                Label control = item.FindControl("lblLogo") as Label;
-                
-                string Task = (item.FindControl("lblTaskName") as Label).Text;
-                switch (Task)
-                {
-                    case "Chemical":
-                        control.Attributes["class"] = "imgicon-chemical";
-                        break;
-                    case "Move":
-                        control.Attributes["class"] = "imgicon-moverequest";
-                        break;
-                    case "Fertilizer":
-                        control.Attributes["class"] = "imgicon-fertilization";
-                        break;
 
-                    case "GeneralTask":
-                        control.Attributes["class"] = "imgicon-generaltask";
-                        break;
-                    case "Dump":
-                        control.Attributes["class"] = "imgicon-dumprequest";
-                        break;
-                    case "Germination":
-                        control.Attributes["class"] = "imgicon-germination";
-                        break;
 
-                    case "PlantReady":
-                        control.Attributes["class"] = "imgicon-plantready";
-                        break;
-                    case "Irrigation":
-                        control.Attributes["class"] = "imgicon-irrigation";
-                        break;
-                    default :
-                        control.Attributes["class"] = "imgicon-putaway";
-                        break;
 
-                }
-            }
-           
+
         }
 
         protected void lnkmytask_Click(object sender, EventArgs e)
@@ -224,7 +188,7 @@ namespace Evo
             {
                 if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")   // for grower and assistant grower
                 {
-                    if(TaskName == "Fertilizer")
+                    if (TaskName == "Fertilizer")
                     {
                         Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job);
                     }
@@ -232,7 +196,7 @@ namespace Evo
                     {
                         Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job);
                     }
-                    
+
 
                 }
                 else if (Operators.Contains(Convert.ToInt32(Session["Role"])))
@@ -271,7 +235,7 @@ namespace Evo
                             Response.Redirect(TaskName + "AssignmentForm.aspx?jobId=" + job);
                             break;
                     }
-                    
+
                 }
 
             }
@@ -298,14 +262,54 @@ namespace Evo
             //DataTable dtSearch1 = new DataTable();
         }
 
-        //[WebMethod]
-        //public static void updateNotification(int id)
-        //{
-        //    NameValueCollection nv = new NameValueCollection();
+        protected void r1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            HtmlControl control = e.Item.FindControl("lblLogo") as HtmlControl;
 
-        //    nv.Add("@Nid", id.ToString());
+            string Task = (e.Item.FindControl("lblTaskName") as Label).Text;
+            switch (Task)
+            {
+                case "Chemical":
+                    control.Attributes["class"] = "imgicon-chemical";
+                    break;
+                case "Move":
+                    control.Attributes["class"] = "imgicon-moverequest";
+                    break;
+                case "Fertilizer":
+                    control.Attributes["class"] = "imgicon-fertilization";
+                    break;
 
-        //    var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
-        //}
+                case "GeneralTask":
+                    control.Attributes["class"] = "imgicon-generaltask";
+                    break;
+                case "Dump":
+                    control.Attributes["class"] = "imgicon-dumprequest";
+                    break;
+                case "Germination":
+                    control.Attributes["class"] = "imgicon-germination";
+                    break;
+
+                case "PlantReady":
+                    control.Attributes["class"] = "imgicon-plantready";
+                    break;
+                case "Irrigation":
+                    control.Attributes["class"] = "imgicon-irrigation";
+                    break;
+                default:
+                    control.Attributes["class"] = "imgicon-putaway";
+                    break;
+
+            }
+        }
     }
+
+    //[WebMethod]
+    //public static void updateNotification(int id)
+    //{
+    //    NameValueCollection nv = new NameValueCollection();
+
+    //    nv.Add("@Nid", id.ToString());
+
+    //    var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
+    //}
 }
