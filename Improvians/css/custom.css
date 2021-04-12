@@ -420,6 +420,42 @@ header {
     background-image: url('../images/dashboard_general-task.png');
 }
 
+/* Breadcrumbs */
+.breadcrumb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 0;
+    list-style: none;
+    border-radius: .25rem;
+    background: #f0f1f5;
+}
+
+.mb-3 + .breadcrumb {
+    margin-bottom: 16px;
+}
+
+.breadcrumb-item a {
+    color: #438644;
+}
+
+.breadcrumb-item + .breadcrumb-item {
+    padding-left: .5rem;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/";
+    float: left;
+    padding-right: .5rem;
+    color: #6c757d;
+}
+
 .header__tabs { position: relative; }
 
 /*
@@ -745,6 +781,7 @@ textarea.input__control {
 
 /*Filter Row*/
 .filter__row { margin-top: 34px; }
+.breadcrumb + .filter__row { margin-top: 15px; }
 .filter__row .filter__control { width: auto; }
 .filter__row > .filter__control:not(.bttn) { flex: 0 0 300px; }
 .filter__control + * { margin-left: 20px; }
