@@ -434,7 +434,7 @@ header {
 }
 
 .mb-3 + .breadcrumb {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .breadcrumb-item a {
