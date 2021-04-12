@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Evo
@@ -64,7 +65,7 @@ namespace Evo
 
         protected void checkNotification(int n)
         {
-            var totalCount = "";
+            var totalCount = 0;
             NameValueCollection nv = new NameValueCollection();
             DataTable dtSearch1 = new DataTable();
             string sqr = "";
@@ -75,29 +76,40 @@ namespace Evo
                 var result = objCommon.GetDataExecuteScaler("SP_ClearAllNotification", nv);
             }
 
-            sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 And IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
-            if (!string.IsNullOrEmpty(sqr))
-            {
-                dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
-            }
+            //sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 And IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
+            nv.Clear();
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@facility", lblFacility.Text == "" ? Session["Facility"].ToString() : lblFacility.Text);
+
+            dtSearch1 = objCommon.GetDataTable("SP_GetAllNotifications", nv);
+
             if (dtSearch1 != null)
             {
-                totalCount = dtSearch1.Rows.Count.ToString();
-            }
-            if (string.IsNullOrEmpty(totalCount))
-            {
-                totalCount = "0";
-            }
-            lblNotificationCount.Text = totalCount;
+                foreach (DataRow dr in dtSearch1.Rows)
+                {
+                    if ((bool)dr["IsViewed"] == false)
+                    {
+                        totalCount += 1;
+                    }
+                }
 
-            sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
-            if (!string.IsNullOrEmpty(sqr))
-            {
-                dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
             }
+
+            lblNotificationCount.Text = totalCount.ToString();
+
+            //sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
+            //if (!string.IsNullOrEmpty(sqr))
+            //{
+            //    dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
+            //}
 
             r1.DataSource = dtSearch1;
             r1.DataBind();
+
+
+
+
+
         }
 
         protected void lnkmytask_Click(object sender, EventArgs e)
@@ -176,7 +188,7 @@ namespace Evo
             {
                 if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")   // for grower and assistant grower
                 {
-                    if(TaskName == "Fertilizer")
+                    if (TaskName == "Fertilizer")
                     {
                         Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job);
                     }
@@ -184,7 +196,7 @@ namespace Evo
                     {
                         Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job);
                     }
-                    
+
 
                 }
                 else if (Operators.Contains(Convert.ToInt32(Session["Role"])))
@@ -223,7 +235,7 @@ namespace Evo
                             Response.Redirect(TaskName + "AssignmentForm.aspx?jobId=" + job);
                             break;
                     }
-                    
+
                 }
 
             }
@@ -250,14 +262,54 @@ namespace Evo
             //DataTable dtSearch1 = new DataTable();
         }
 
-        //[WebMethod]
-        //public static void updateNotification(int id)
-        //{
-        //    NameValueCollection nv = new NameValueCollection();
+        protected void r1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            HtmlControl control = e.Item.FindControl("lblLogo") as HtmlControl;
 
-        //    nv.Add("@Nid", id.ToString());
+            string Task = (e.Item.FindControl("lblTaskName") as Label).Text;
+            switch (Task)
+            {
+                case "Chemical":
+                    control.Attributes["class"] = "imgicon-chemical";
+                    break;
+                case "Move":
+                    control.Attributes["class"] = "imgicon-moverequest";
+                    break;
+                case "Fertilizer":
+                    control.Attributes["class"] = "imgicon-fertilization";
+                    break;
 
-        //    var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
-        //}
+                case "GeneralTask":
+                    control.Attributes["class"] = "imgicon-generaltask";
+                    break;
+                case "Dump":
+                    control.Attributes["class"] = "imgicon-dumprequest";
+                    break;
+                case "Germination":
+                    control.Attributes["class"] = "imgicon-germination";
+                    break;
+
+                case "PlantReady":
+                    control.Attributes["class"] = "imgicon-plantready";
+                    break;
+                case "Irrigation":
+                    control.Attributes["class"] = "imgicon-irrigation";
+                    break;
+                default:
+                    control.Attributes["class"] = "imgicon-putaway";
+                    break;
+
+            }
+        }
     }
+
+    //[WebMethod]
+    //public static void updateNotification(int id)
+    //{
+    //    NameValueCollection nv = new NameValueCollection();
+
+    //    nv.Add("@Nid", id.ToString());
+
+    //    var result = objCommon.GetDataExecuteScaler("SP_UpdateNotification", nv);
+    //}
 }
