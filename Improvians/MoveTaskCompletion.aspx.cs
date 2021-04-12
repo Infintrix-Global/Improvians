@@ -101,6 +101,8 @@ namespace Evo
             //nv.Add("@Facility", "");
             //nv.Add("@Mode", "11");
             nv.Add("@MoveTaskAssignmentId", Did);
+            nv.Add("@RoleId", Session["Role"].ToString());
+            
             dt = objCommon.GetDataTable("SP_GetOperatorMoveTaskDetails", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
