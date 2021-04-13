@@ -113,12 +113,7 @@
                             GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
-                                <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-
-                                        <asp:Label ID="lblStatus" runat="server"></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
+                               
                                    <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblBenchLocation" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -188,22 +183,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 
-                               
-
-                           <%--     <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
-
-                            
-                                <%--<asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
-
-
+                              
                                 
                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -316,6 +296,8 @@
                     </asp:Panel>
                 </div>
             </div>
+
+
         </div>
     </div>
 </asp:Content>
