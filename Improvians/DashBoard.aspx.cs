@@ -117,6 +117,36 @@ namespace Evo
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["Facility"] = ddlFacility.SelectedValue;
+            var res = (Master.FindControl("r1") as Repeater);
+            var totalCount = 0;
+            NameValueCollection nv = new NameValueCollection();
+            DataTable dtSearch1 = new DataTable();
+
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@facility", Session["Facility"].ToString());
+
+            dtSearch1 = objCommon.GetDataTable("SP_GetAllNotifications", nv);
+
+            if (dtSearch1 != null)
+            {
+                foreach (DataRow dr in dtSearch1.Rows)
+                {
+                    if ((bool)dr["IsViewed"] == false)
+                    {
+                        totalCount += 1;
+                    }
+                }
+
+            }
+
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+
+            lblCount.Text = totalCount.ToString();
+
+            res.DataSource = dtSearch1;
+            res.DataBind();
+
+
         }
 
         public void BindPlantReadyAVG()
