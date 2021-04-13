@@ -5,17 +5,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
     <div class="admin__content">
-                    <div class="container-fluid">
-                        <h1 class="text-center text-sm-left">Notification Preference</h1>
+        <div class="container-fluid">
+            <h1 class="text-center text-sm-left">Notification Preference</h1>
 
-                        <hr />
+            <hr />
 
-                        <form class="admin__form" name="add-employee" action="#" method="POST">
-                            <div class="row">
-                                <div class="col-md-auto col-md-4 col-xl-3">
+            <div class="admin__form">
+                <div class="row">
+                                <div class="col-lg-6 col-12">
                                     <label>
                                         <h3>Task Type</h3>
-                                        <select class="custom__dropdown robotomd">
+                                        <select class="custom__dropdown input__control-auto robotomd">
                                             <option disabled selected>Select Task Type</option>
                                             <option>Germination Count</option>
                                             <option>Fertilization</option>
@@ -28,63 +28,106 @@
                                         </select>
                                     </label>
 
+                                    
                                     <label class="mb-0">
                                         <h3>Send Notification to:</h3>
                                     </label>
-                                    <div class="control__box control__box-auto pr-3 mb-4 w-100">
-                                        <div class="custom-control custom-checkbox mr-3">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">Assistant Grower</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                            <label class="custom-control-label" for="customCheck2">Miguel Ramos - Sup</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mr-3">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                            <label class="custom-control-label" for="customCheck3">Sylvia Reyes - Sup</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                            <label class="custom-control-label" for="customCheck4">Supervisor</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mr-3">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                            <label class="custom-control-label" for="customCheck5">Irrigator</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck6">
-                                            <label class="custom-control-label" for="customCheck6">Crew Lead</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                            <label class="custom-control-label" for="customCheck8">Sprayer</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                            <label class="custom-control-label" for="customCheck8">Alex</label>
-                                        </div>
-                                    </div>
 
-                                    <label class="mb-0">
-                                        <h3>Send Notification Via:</h3>
-                                    </label>
-
-                                    <div class="custom-control custom-checkbox mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckApp">
-                                        <label class="custom-control-label mb-2" for="customCheckApp">App</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckMail">
-                                        <label class="custom-control-label" for="customCheckMail">Mail</label>
+                                    <div class="data__table">
+                                        <table>
+                                            <tr>
+                                                <th>User</th>
+                                                <th colspan="2" class="text-center">Send Notification Via</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                        <label class="custom-control-label" for="customCheck1">Assistant Grower</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="app1">
+                                                        <label class="custom-control-label" for="app1">App</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="email1">
+                                                        <label class="custom-control-label" for="email1">Email</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                        <label class="custom-control-label" for="customCheck2">Miguel Ramos - Sup</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="app2">
+                                                        <label class="custom-control-label" for="app2">App</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="email2">
+                                                        <label class="custom-control-label" for="email2">Email</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                                        <label class="custom-control-label" for="customCheck3">Sylvia Reyes - Sup</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="app3">
+                                                        <label class="custom-control-label" for="app3">App</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="email3">
+                                                        <label class="custom-control-label" for="email3">Email</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck4">
+                                                        <label class="custom-control-label" for="customCheck4">Supervisor</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="app4">
+                                                        <label class="custom-control-label" for="app4">App</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="custom-control custom-checkbox mr-3">
+                                                        <input type="checkbox" class="custom-control-input" id="email4">
+                                                        <label class="custom-control-label" for="email4">Email</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
 
                                     <button type="submit" class="submit-bttn bttn bttn-primary w-auto">
                                         Update Preferences
-                                    </button>
+                                    </button>   
                                 </div>
 
-                                <div class="col-md-auto col-md-8 col-xl-9 mt-4 mt-md-0">
+                                <div class="col-lg-6 col-12 mt-0 mt-lg-0">
                                     <h3>Assigned Notifications</h3>
                                     <div class="data__table">
                                         <table>
@@ -92,32 +135,56 @@
                                                 <th>Task Type</th>
                                                 <th>Send To</th>
                                                 <th>Send Via</th>
+                                                <th>Actions</th>
                                             </tr>
                                             <tr>
                                                 <td>Fertilization</td>
                                                 <td>
                                                     <div class="mb-2">Assistant Grower</div>
-                                                    <div class="mb-2">Miguel Ramos - Sup</div>
-                                                    <div class="mb-2">Sprayer</div>
                                                 </td>
                                                 <td>App</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="bttn bttn__icons bttn__icons--edit mr-2">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" class="bttn bttn__icons bttn__icons--delete">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td>Fertilization</td>
+                                                <td>Irrigation</td>
                                                 <td>
-                                                    <div class="mb-2">Assistant Grower</div>
-                                                    <div class="mb-2">Miguel Ramos - Sup</div>
                                                     <div class="mb-2">Sprayer</div>
                                                 </td>
                                                 <td>App, Email</td>
+                                                <td class="text-center">
+                                                    <button type="button" class="bttn bttn__icons bttn__icons--edit mr-2">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" class="bttn bttn__icons bttn__icons--delete">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>
+                                    <!--
+                                    <div class="assignment__filter my-2">
+                                        Actions: 
+                                        <button>
+                                            <i class="fa fa-edit"></i> Edit All
+                                        </button>
+                                        <button>
+                                            <i class="fa fa-trash"></i> Delete All
+                                        </button>
+                                    </div>
+                                    -->
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
 
 
 </asp:Content>

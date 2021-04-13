@@ -269,6 +269,9 @@ namespace Evo
                 txtNewDate.Focus();
                 BindGridGerm("0");
             }
+           
+
+
         }
 
 
