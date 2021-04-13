@@ -42,6 +42,7 @@ namespace Evo
             {
                 dashlink.Attributes.Add("class", "active");
                 lnkmytask.Attributes.Remove("class");
+                divFacility.Visible = false;
             }
             else
             {
