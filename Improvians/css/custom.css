@@ -41,7 +41,6 @@
 [class^="rxicon-"], [class*=" rxicon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'rxicons' !important;
-  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -380,45 +379,16 @@ header {
     border-radius: 0;
 }
 
-.alert__bar .imgicon-putaway {
-    background-image: url('../images/dashboard_put-away.png');
-}
-
-.alert__bar .imgicon-germination {
-    background-image: url('../images/dashboard_germination-count.png');
-}
-
-.alert__bar .imgicon-fertilization {
-    background-image: url('../images/dashboard_fertilization.png');
-}
-
-.alert__bar .imgicon-chemical {
-    background-image: url('../images/dashboard_chemical.png');
-}
-
-.alert__bar .imgicon-irrigation {
-    background-image: url('../images/dashboard_irrigation.png');
-}
-
-.alert__bar .imgicon-crophealth {
-    background-image: url('../images/dashboard_crop-health-report.png');
-}
-
-.alert__bar .imgicon-plantready {
-    background-image: url('../images/dashboard_plant-ready.png');
-}
-
-.alert__bar .imgicon-moverequest {
-    background-image: url('../images/dashboard_move-request.png');
-}
-
-.alert__bar .imgicon-dumprequest {
-    background-image: url('../images/dashboard_dump-request.png');
-}
-
-.alert__bar .imgicon-generaltask {
-    background-image: url('../images/dashboard_general-task.png');
-}
+.alert__bar .imgicon-putaway { background-image: url('../images/dashboard_put-away.png'); }
+.alert__bar .imgicon-germination { background-image: url('../images/dashboard_germination-count.png'); }
+.alert__bar .imgicon-fertilization { background-image: url('../images/dashboard_fertilization.png'); }
+.alert__bar .imgicon-chemical { background-image: url('../images/dashboard_chemical.png'); }
+.alert__bar .imgicon-irrigation { background-image: url('../images/dashboard_irrigation.png'); }
+.alert__bar .imgicon-crophealth { background-image: url('../images/dashboard_crop-health-report.png'); }
+.alert__bar .imgicon-plantready { background-image: url('../images/dashboard_plant-ready.png'); }
+.alert__bar .imgicon-moverequest { background-image: url('../images/dashboard_move-request.png'); }
+.alert__bar .imgicon-dumprequest { background-image: url('../images/dashboard_dump-request.png'); }
+.alert__bar .imgicon-generaltask { background-image: url('../images/dashboard_general-task.png'); }
 
 /* Breadcrumbs */
 .site__breadcrumb {
@@ -1271,6 +1241,8 @@ textarea.input__control {
     .logo-link--vertical img { max-width: 150px; height: auto; }
     .login__container h1 { font-size: 30px; }
     .floating__footer i { font-size: 22px; }
+    .header__bottom { margin-top: 30px; }
+    .header__bottom + .main { margin-top: 30px; }
     .filter__row { flex-wrap: wrap; }
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 auto; }
     .floating__footer a { padding: 12px 25px; }
@@ -1315,7 +1287,7 @@ textarea.input__control {
 }
 
 @media only screen and (max-width: 1199px) {
-    /*h2 { text-align: center; }*/
+    /* h2 { text-align: center; } */
     .login__wrapper { padding-left: 15px; padding-right: 15px; }
     .login__container label h3 { margin-bottom: 12px; }
     .site__container { padding-left: 15px; padding-right: 15px; }
