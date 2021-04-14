@@ -198,7 +198,7 @@
             </div>
         </div>--%>
 
-        <div class="header__bottom">
+        <div class="header__bottom" runat="server" id="divFacility">
             <!-- Selected Facility -->
             <h4 class="d-flex align-items-center justify-content-center py-2 mt-xl-2 header__facility mb-0">
                 <strong class="pr-2">
