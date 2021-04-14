@@ -31,6 +31,11 @@ namespace Evo
                     Bench = Request.QueryString["Bench"].ToString();
                 }
 
+                if (Request.QueryString["Start"] != null)
+                {
+                    StartButton = Request.QueryString["Start"].ToString();
+                }
+
                 if (Request.QueryString["jobCode"] != null)
                 {
                     JobCode = Request.QueryString["jobCode"].ToString();
@@ -44,6 +49,22 @@ namespace Evo
                 BindFertilizer();
                 BindGridFerReqView(Request.QueryString["FCode"].ToString());
                 BindSQFTofBench("'" + Bench + "'");
+            }
+        }
+
+        private string StartButton
+        {
+            get
+            {
+                if (ViewState["StartButton"] != null)
+                {
+                    return (string)ViewState["StartButton"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["StartButton"] = value;
             }
         }
 
@@ -480,7 +501,7 @@ namespace Evo
                 long result = 0;
                 long Mresult = 0;
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+             //   nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                 nv.Add("@Type", "Fertilizer");
                 nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
                 nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
@@ -489,7 +510,19 @@ namespace Evo
                 nv.Add("@FertilizationCode", FertilizationCode.ToString());
                 nv.Add("@FertilizationDate", txtDate.Text);
                 nv.Add("@Jid",Jid);
-                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+            
+                if (StartButton == "start")
+                {
+                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                    result = objCommon.GetDataExecuteScaler("SP_AdFertilizerRequestManualCreateTaskStart", nv);
+                }
+                else
+                {
+                    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+
+                }
+
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
@@ -534,7 +567,7 @@ namespace Evo
                 {
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                   // nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                     nv.Add("@Type", "Fertilizer");
                     nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
@@ -543,7 +576,20 @@ namespace Evo
                     nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv.Add("@FertilizationDate", txtDate.Text);
                     nv.Add("@Jid", Jid);
-                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+                //    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+
+
+                    if (StartButton == "start")
+                    {
+                        nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                        result = objCommon.GetDataExecuteScaler("SP_AdFertilizerRequestManualCreateTaskStart", nv);
+                    }
+                    else
+                    {
+                        nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                        result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+
+                    }
                 }
                 //  }
 
