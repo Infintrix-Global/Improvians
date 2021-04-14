@@ -59,7 +59,7 @@
 
                         
                         <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                            class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode,FertilizationCode" OnRowDataBound="gvFer_RowDataBound"
+                            class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode,FertilizationCode,jid" OnRowDataBound="gvFer_RowDataBound"
                             GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
@@ -136,6 +136,7 @@
                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Button ID="btnSelect" runat="server" Text="Job Build Up" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                         <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
                                     </ItemTemplate>
                                 </asp:TemplateField>
