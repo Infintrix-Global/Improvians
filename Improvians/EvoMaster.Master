@@ -146,24 +146,6 @@
                                     </ItemTemplate>
 
                                 </asp:Repeater>
-                                <%--<div class="alert__bar alert__bar--unread">
-                                    <i class="fas fa-tasks"></i>
-                                    <div class="alert__info">
-                                        You have assigned new task. <strong>Job: #JB025437</strong>
-                                    </div>
-                                    <div class="alert__stamp">
-                                        <span>16 Jan 2021 - 10:05 AM</span>
-                                    </div>
-                                </div>
-                                <div class="alert__bar alert__bar">
-                                    <i class="fas fa-tasks"></i>
-                                    <div class="alert__info">
-                                        You have assigned new task. <strong>Job: #JB025437</strong>
-                                    </div>
-                                    <div class="alert__stamp">
-                                        <span>16 Jan 2021 - 10:05 AM</span>
-                                    </div>
-                                </div>--%>
                             </div>
 
                             <div class="dropdown__foo text-center">
@@ -175,7 +157,6 @@
                     <div class="dropdown account__dropdown ml-3">
                         <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <asp:Image ImageUrl="images/user-profile.jpg" alt="John Smith" Width="128" runat="server" ID="imgprofilepic" />
-                            <%--  <img  src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />--%>
                             <span class="account__user robotomd">
                                 <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
                         </div>
@@ -189,25 +170,6 @@
 
             </div>
         </header>
-        <%--<div class="header__bottom">
-            <div class="header__tabs">
-                <ul class="d-flex align-items-center justify-content-center list-inline">
-                    <li>
-                        <a href="my-tasks.html" class="bttn active d-flex align-items-center" title="My Task">
-                            <span class="rxicon-icon-my-tasks mr-2 "></span>
-                            My Tasks
-                        </a>
-                    </li>
-                    <li>
-                        <a href="JobReports.aspx" class="bttn d-flex align-items-center" title="Job Reports">
-                            <span class="rxicon-icon-job-reports mr-2 "></span>
-                            Job Reports
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>--%>
-
         <div class="header__bottom" runat="server" id="divFacility">
             <!-- Selected Facility -->
             <h4 class="d-flex align-items-center justify-content-center py-2 mt-xl-2 header__facility mb-0">
@@ -217,7 +179,11 @@
         </div>
         <div class="main">
             <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-            <asp:SiteMapPath ID="SiteMapPath1" runat="server" PathSeparator=" > "></asp:SiteMapPath>
+            <div class="site__container site__breadcrumb">
+
+                <asp:SiteMapPath ID="SiteMapPath1" runat="server" PathSeparator=" > " NodeStyle-CssClass="breadcrumb-item" RootNodeStyle-CssClass="breadcrumb-item"  CurrentNodeStyle-CssClass="breadcrumb-item" CssClass="breadcrumb"></asp:SiteMapPath>
+
+            </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
