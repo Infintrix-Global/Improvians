@@ -51,6 +51,11 @@ namespace Evo
                     SiteMapPath1.SiteMapProvider = "SitemapOperator";
                     SiteMapPath1.DataBind();
                 }
+                else if (Session["Role"].ToString() == "12")
+                {
+                    SiteMapPath1.SiteMapProvider = "SitemapAssistantGrower";
+                    SiteMapPath1.DataBind();
+                }
             }
 
             String activepage = Request.RawUrl;

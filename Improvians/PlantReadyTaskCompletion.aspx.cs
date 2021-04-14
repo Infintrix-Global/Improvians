@@ -145,8 +145,6 @@ namespace Evo
             nv.Add("@PlantExpirationDate", txtPlantExpirationDate.Text);
             nv.Add("@RootQuality", ddlRootQuality.SelectedItem.Text);
             nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
-            //   nv.Add("@wo",wo);
-            //  nv.Add("@mode","2");
 
             result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyCompletion", nv);
 
@@ -169,7 +167,18 @@ namespace Evo
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
-              else if (Session["Role"].ToString() == "2")
+                else if (Session["Role"].ToString() == "2")
+                {
+                    url = "PlantReadyAssignmentForm.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
+                else if (Session["Role"].ToString() == "1")
                 {
                     url = "PlantReadyAssignmentForm.aspx";
                     string script = "window.onload = function(){ alert('";
@@ -324,7 +333,7 @@ namespace Evo
 
                 smtpClient.Send(mail);
 
-              
+
             }
             else
             {
@@ -381,17 +390,17 @@ namespace Evo
         }
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void btnGeneral_Task1_Click(object sender, EventArgs e)
         {
-          
+
             general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
-            
-            
+
+
             btnGeneral_Task1.Attributes.Add("class", "request__block-head collapsed");
-           
+
         }
     }
 }

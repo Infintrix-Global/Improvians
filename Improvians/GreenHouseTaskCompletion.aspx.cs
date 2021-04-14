@@ -128,30 +128,35 @@ namespace Evo
             {
                 // lblmsg.Text = "Completion Successful";
                 clear();
-                if (Session["Role"].ToString() == "2")
+
+                string url = "";
+                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                if (Session["Role"].ToString() == "12")
                 {
-                    string message = "Completion Successful";
-                    string url = "MyTaskGreenSupervisorFinal.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                    url = "GerminationRequestForm.aspx";
+                }
+                else if (Session["Role"].ToString() == "1")
+                {
+                    url = "GerminationRequestForm.aspx";
+                }
+                else if (Session["Role"].ToString() == "2")
+                {
+                    url = "MyTaskGreenSupervisorFinal.aspx";
                 }
                 else
                 {
-                    string message = "Completion Successful";
-                    string url = "MyTaskSpray.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                    url = "MyTaskSpray.aspx";
                 }
+                string message = "Completion Successful";
+              //  string url = "MyTaskGreenSupervisorFinal.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
             }
             else
             {

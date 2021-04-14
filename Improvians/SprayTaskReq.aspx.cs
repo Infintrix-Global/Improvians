@@ -146,9 +146,31 @@ namespace Evo
             result = objCommon.GetDataInsertORUpdate("SP_AddSprayRequest", nv);
             if (result > 0)
             {
+
+                string url = "";
+                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                if (Session["Role"].ToString() == "12")
+                {
+                    url = "FertilizerTaskReq.aspx";
+                }
+                else if (Session["Role"].ToString() == "1")
+                {
+                    url = "FertilizerTaskReq.aspx";
+                }
+                else if (Session["Role"].ToString() == "2")
+                {
+                    url = "SprayTaskRequest.aspx";
+                }
+                else
+                {
+                    url = "SprayTaskRequest.aspx";
+                }
+
+
+
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Completion Successful";
-                string url = "SprayTaskRequest.aspx";
+               // string url = "SprayTaskRequest.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
