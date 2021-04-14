@@ -276,6 +276,7 @@ namespace Evo
             checkNotification(1);
 
             notificationDiv.Attributes.Add("class", "dropdown-menu dropdown-menu-left dropdown-menu-sm-right show");
+            notificationDiv1.Attributes.Add("class", "dropdown alert__dropdown ml-auto show");
             //DataTable dtSearch1 = new DataTable();
         }
 
