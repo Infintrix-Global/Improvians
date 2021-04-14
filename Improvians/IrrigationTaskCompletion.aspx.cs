@@ -203,6 +203,17 @@ namespace Evo
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
+                if (Session["Role"].ToString() == "1")
+                {
+                    url = "IrrigationAssignmentForm.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                }
                 else
                 {
                     url = "IrrigationCompletionForm.aspx";

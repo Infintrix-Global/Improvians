@@ -145,9 +145,26 @@ namespace Evo
             result = objCommon.GetDataInsertORUpdate("SP_AddChemicalTaskCompletion", nv);
             if (result > 0)
             {
+                string url = "";
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                if (Session["Role"].ToString() == "12")
+                {
+                     url = "ChemicalRequestForm.aspx";
+                }
+                else if (Session["Role"].ToString() == "1")
+                {
+                     url = "ChemicalRequestForm.aspx";
+                }
+                else if (Session["Role"].ToString() == "2")
+                {
+                     url = "ChemicalTaskRequest.aspx";
+                }
+                else
+                {
+                     url = "ChemicalTaskRequest.aspx";
+                }
                 string message = "Completion Successful";
-                string url = "ChemicalTaskRequest.aspx";
+            
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";

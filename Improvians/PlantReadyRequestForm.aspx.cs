@@ -312,7 +312,7 @@ namespace Evo
                     nv.Add("@PlantDate", txtPlantDate.Text);
                     nv.Add("@Role", Session["Role"].ToString());
                     nv.Add("@SeedDate", "");
-                    nv.Add("@Jid","");
+                    nv.Add("@Jid", lblJid.Text);
 
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTaskStart", nv);
                     NameValueCollection nv5 = new NameValueCollection();
