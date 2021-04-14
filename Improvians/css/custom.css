@@ -422,7 +422,8 @@ h2:not(.mb-3) + .breadcrumb {
 }
 
 .breadcrumb-item a, .breadcrumb > span > a {
-    color: #505050;
+    color: #488949;
+    font-weight: bold;
 }
 
 .breadcrumb-item + .breadcrumb-item {

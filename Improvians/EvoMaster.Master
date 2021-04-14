@@ -170,6 +170,14 @@
 
             </div>
         </header>
+
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <div class="site__container site__breadcrumb">
+
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" CurrentNodeStyle-CssClass="active" CssClass="breadcrumb"></asp:SiteMapPath>
+
+        </div>
+
         <div class="header__bottom" runat="server" id="divFacility">
             <!-- Selected Facility -->
             <h4 class="d-flex align-items-center justify-content-center py-2 mt-xl-2 header__facility mb-0">
@@ -178,12 +186,6 @@
             </h4>
         </div>
         <div class="main">
-            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-            <div class="site__container site__breadcrumb">
-
-                <asp:SiteMapPath ID="SiteMapPath1" runat="server" CurrentNodeStyle-CssClass="active" CssClass="breadcrumb"></asp:SiteMapPath>
-
-            </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
