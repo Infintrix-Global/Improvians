@@ -249,21 +249,7 @@ public void Bindcname()
         {
             if (e.CommandName == "Select")
             {
-                //userinput.Visible = true;
-                //string rowIndex = e.CommandArgument.ToString();
-
-                //wo = rowIndex;
-
-                //DataTable dt = new DataTable();
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@wo", wo);
-                //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-                //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-                //nv.Add("@Facility", ddlFacility.SelectedValue);
-                //nv.Add("@Mode", "2");
-                //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-
-                //lblJobID.Text = dt.Rows[0]["jobcode"].ToString();
+               
 
 
                 userinput.Visible = true;
