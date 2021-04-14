@@ -8,6 +8,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Growers Transplanting, Inc</title>
+     <!-- Apple Splash Screens -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="images/splash/apple_splash_2048.png" sizes="2048x2732" rel="apple-touch-startup-image" />
+    <link href="images/splash/apple_splash_1668.png" sizes="1668x2224" rel="apple-touch-startup-image" />
+    <link href="images/splash/apple_splash_1536.png" sizes="1536x2048" rel="apple-touch-startup-image" />
+    <link href="images/splash/apple_splash_1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
+    <link href="images/splash/apple_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" />
+    <link href="images/splash/apple_splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
+    <link href="images/splash/apple_splash_640.png" sizes="640x1136" rel="apple-touch-startup-image" />
 
     <!-- Cross platform favicon setup & app themeing -->
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
