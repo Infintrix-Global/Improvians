@@ -92,10 +92,10 @@
                                     <ItemTemplate>
                                         <div class='alert__bar <%# (Eval("IsViewed").ToString() == "False" ?"alert__bar--unread" : "alert__bar--read" )  
                                            %>'>
-                                             <i id="lblLogo" runat="server" class="fas fa-tasks"></i>
+                                            <i id="lblLogo" runat="server" class="fas fa-tasks"></i>
                                             <asp:Label ID="lblID" Text='<%# Eval("ID") %>' runat="server" Visible="false" />
                                             <%--  OnClick='updateNotification(<%# Eval("ID") %>)'    target="_blank" href="<%# Eval("Task") + "AssignmentForm.aspx" %>"--%>
-                                           
+
 
                                             <%--    <div style="float: left">--%>
 
@@ -129,7 +129,7 @@
                                             </span>
 
                                             <span class="w-100">
-                                                <asp:LinkButton runat="server" ID="remoteNotificationLink" style="width:fit-content" Text="Clear" class="alert__bar--clear bttn" OnClick="remoteNotificationLink_Click">
+                                                <asp:LinkButton runat="server" ID="remoteNotificationLink" Style="width: fit-content" Text="Clear" class="alert__bar--clear bttn" OnClick="remoteNotificationLink_Click">
                                                 </asp:LinkButton>
                                             </span>
                                         </div>
@@ -206,6 +206,8 @@
             </h4>
         </div>
         <div class="main">
+            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" PathSeparator=" > "></asp:SiteMapPath>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
