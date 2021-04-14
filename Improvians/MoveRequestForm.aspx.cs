@@ -100,7 +100,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             DataTable dt = new DataTable();
 
-            if (Session["Role"].ToString() == "12")
+            if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")
             {
 
                 dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);

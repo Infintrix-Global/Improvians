@@ -73,7 +73,7 @@ namespace Evo
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
 
-                dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
+             dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
             
 
             gvPlantReady.DataSource = dt;
