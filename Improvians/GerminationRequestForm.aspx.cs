@@ -30,7 +30,7 @@ namespace Evo
                 Bindcname();
                 //BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode("0");
-                BindGridGerm("0");
+                BindGridGerm(JobCode);
                 BindSupervisorList();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }

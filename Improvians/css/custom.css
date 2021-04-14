@@ -392,7 +392,7 @@ header {
 
 /* Breadcrumbs */
 .site__breadcrumb {
-    background: #f8f8f8;
+    /*background: #f8f8f8;*/
     position: absolute;
     top: 95px;
     left: 0;
