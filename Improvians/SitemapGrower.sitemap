@@ -1,8 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="~/Dashboard.aspx" title="Dashboard"  description="">
-    <siteMapNode url="~/MyTaskGrower.aspx" title="My Tasks"  description="" >
-    <siteMapNode url="~/ChemicalJobBuildUp.aspx" title="Chemical"  description="" />
+	<siteMapNode url="~/Dashboard.aspx" title="Dashboard" >
+		<siteMapNode url="~/MyTaskGrower.aspx" title="My Tasks"  >
+			<siteMapNode url="~/ChemicalRequestForm.aspx" title="Chemical"  />
+			<siteMapNode url="~/ChemicalJobBuildUp.aspx" title="Chemical"  />
+			<siteMapNode url="~/ChemicalTaskCompletion.aspx" title="Chemical"  />
+			<siteMapNode url="~/GrowerPutAwayForm.aspx" title="Put Away Location Assignment" />
+			<siteMapNode url="~/GerminationRequestForm.aspx" title="Germination Count Task"/>
+			<siteMapNode url="~/GreenHouseTaskCompletion.aspx" title="Germination Count Task Completion"/>
+			<siteMapNode url="~/FertilizerTaskReq.aspx" title="Fertilization"/>
+			<siteMapNode url="~/FerJobBuildUp.aspx" title="Fertilization"/>
+			<siteMapNode url="~/IrrigationRequestForm.aspx" title="Irrigation"/>
+			<siteMapNode url="~/IrrJobBuildUp.aspx" title="Irrigation"/>
+			<siteMapNode url="~/CropHealthDetails.aspx" title="Crop Health Report"/>
+			<siteMapNode url="~/CropHealthReport.aspx" title="Crop Health Report"/>
+			<siteMapNode url="~/PlantReadyRequestForm.aspx" title="Plant Ready"/>
+			<siteMapNode url="~/MoveRequestForm.aspx" title="Move"/>
+			<siteMapNode url="~/MoveTaskCompletion.aspx" title="Move Completion"/>
+			<siteMapNode url="~/DumpRequestForm.aspx" title="Dump"/>
+			<siteMapNode url="~/DumpTaskCompletion.aspx" title="Dump Completion"/>
+			<siteMapNode url="~/GeneralTaskRequestForm.aspx" title="General Task"/>
+			<siteMapNode url="~/GeneralTaskCompletion.aspx" title="General Task Completion"/>
+		</siteMapNode>
+		<siteMapNode url="~/CreateTask.aspx" title="Create Task"  />
+		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
 	</siteMapNode>
-  </siteMapNode>
 </siteMap>

@@ -3,6 +3,63 @@
 	<siteMapNode url="~/Dashboard.aspx" title="Dashboard"  description="">
 		<siteMapNode url="~/MyTaskGreenSupervisorFinal.aspx" title="My Tasks"  description="" >
 			<siteMapNode url="~/ChemicalTaskRequest.aspx" title="Chemical"  description="" />
+			<siteMapNode url="~/ChemicalRequestForm.aspx" title="Chemical"  >
+				<siteMapNode url="~/ChemicalJobBuildUp.aspx" title="Job Buildup"  />
+				<siteMapNode url="~/ChemicalTaskCompletion.aspx" title="Completion"  />
+				<siteMapNode url="~/ChemicalTaskViewDetails.aspx" title="Chemical Task View"  />
+			</siteMapNode>
+
+			<siteMapNode url="~/GrowerPutAwayForm.aspx" title="Put Away Location Assignment" />
+			<siteMapNode url="~/MyTaskLogisticManager.aspx" title="Put Away" >
+				<siteMapNode url="~/MoveTaskAssignment.aspx" title="Assignment"/>
+				<siteMapNode url="~/MoveCompletionForm.aspx" title="Completion"/>
+			</siteMapNode>
+
+			<siteMapNode url="~/GerminationRequestForm.aspx" title="Germination Count Task"/>
+			<siteMapNode url="~/GerminationAssignmentForm.aspx" title="Germination Count Task">
+				<siteMapNode url="~/GerminationTaskAssignment.aspx" title="Assignment"/>
+				<siteMapNode url="~/GreenHouseTaskCompletion.aspx" title="Completion"/>
+			</siteMapNode>
+
+			<siteMapNode url="~/FerJobBuildUp.aspx" title="Fertilization"/>
+			<siteMapNode url="~/FertilizerTaskReq.aspx" title="Fertilization"/>
+			<siteMapNode url="~/SprayTaskRequest.aspx" title="Fertilization">
+				<siteMapNode url="~/SprayTaskViewDetails.aspx" title="Completion"/>
+				<siteMapNode url="~/SprayTaskAssignment.aspx" title="Assignment"/>
+				<siteMapNode url="~/SprayTaskReq.aspx" title="Completion"/>
+			</siteMapNode>
+
+
+			<siteMapNode url="~/IrrigationRequestForm.aspx" title="Irrigation"/>
+			<siteMapNode url="~/IrrigationAssignmentForm.aspx" title="Irrigation">
+				<siteMapNode url="~/IrrigationTaskViewDetails.aspx" title="Completion"/>
+				<siteMapNode url="~/IrrigationTaskCompletion.aspx" title="Completion"/>
+				<siteMapNode url="~/IrrigationTaskAssignment.aspx" title="Assignment"/>
+			</siteMapNode>
+
+			<siteMapNode url="~/IrrJobBuildUp.aspx" title="Irrigation"/>
+			<siteMapNode url="~/CropHealthDetails.aspx" title="Crop Health Report"/>
+			<siteMapNode url="~/CropHealthReport.aspx" title="Crop Health Report"/>
+			<siteMapNode url="~/PlantReadyRequestForm.aspx" title="Plant Ready"/>
+			<siteMapNode url="~/PlantReadyAssignmentForm.aspx" title="Plant Ready">
+				<siteMapNode url="~/PlantReadyTaskCompletion.aspx" title="Completion"/>
+				<siteMapNode url="~/PlantReadyTaskAssignment.aspx" title="Assignment"/>
+			</siteMapNode>
+
+			<siteMapNode url="~/MoveRequestForm.aspx" title="Move">
+				<siteMapNode url="~/MoveTaskCompletion.aspx" title="Move Completion"/>
+			</siteMapNode>
+
+			<siteMapNode url="~/DumpAssignmentForm.aspx" title="Dump">
+				<siteMapNode url="~/DumpTaskCompletion.aspx" title="Dump Completion"/>
+				<siteMapNode url="~/DumpTaskAssignment.aspx" title="Assignment"/>
+			</siteMapNode>
+			<siteMapNode url="~/GeneralTaskAssignmentForm.aspx" title="General Task">
+				<siteMapNode url="~/GeneralTaskAssignment.aspx" title="Assignment"/>
+				<siteMapNode url="~/GeneralTaskCompletion.aspx" title="Completion"/>
+			</siteMapNode>
 		</siteMapNode>
+		<siteMapNode url="~/CreateTask.aspx" title="Create Task"  />
+		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
 	</siteMapNode>
 </siteMap>
