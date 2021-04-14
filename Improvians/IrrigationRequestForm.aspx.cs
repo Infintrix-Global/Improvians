@@ -264,6 +264,69 @@ namespace Evo
                 string IrrigationCode = GridIrrigation.DataKeys[rowIndex].Values[3].ToString();
                 Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}&jobCode={1}&ICode={2}", BatchLocation, jobCode, IrrigationCode));
             }
+
+            if (e.CommandName == "GStart")
+            {
+             
+
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string BatchLocation = GridIrrigation.DataKeys[rowIndex].Values[0].ToString();
+                string jobCode = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
+                string IrrigationCode = GridIrrigation.DataKeys[rowIndex].Values[3].ToString();
+
+                string jid = GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
+
+
+                if (IrrigationCode == "0")
+                {
+
+                    DataTable dt = new DataTable();
+                    NameValueCollection nv17 = new NameValueCollection();
+                
+                    nv17.Add("@Mode", "13");
+                    dt = objCommon.GetDataTable("GET_Common", nv17);
+                    IrrigationCode =dt.Rows[0]["ICode"].ToString();
+
+
+
+                            long result16 = 0;
+                            NameValueCollection nv = new NameValueCollection();
+                            nv.Add("@SupervisorID", Session["LoginID"].ToString());
+
+                            nv.Add("@Jobcode", jobCode);
+                            nv.Add("@Customer", "");
+                            nv.Add("@Item", "");
+                            nv.Add("@Facility", "");
+                            nv.Add("@GreenHouseID", BatchLocation);
+                            nv.Add("@TotalTray", "");
+                            nv.Add("@TraySize", "");
+                            nv.Add("@Itemdesc", "");
+
+                            nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                            // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                            nv.Add("@IrrigatedNoTrays", "");
+                            nv.Add("@WaterRequired", "");
+                            nv.Add("@IrrigationDuration", "");
+                            nv.Add("@SprayDate","");
+                            //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                            nv.Add("@SeedDate","");
+
+
+                            nv.Add("@Nots", "");
+                            nv.Add("@LoginID", Session["LoginID"].ToString());
+                            nv.Add("@Role", Session["Role"].ToString());
+                            nv.Add("@Jid", jid);
+                            result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTaskStart", nv);
+
+
+                             Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", IrrigationCode));
+                }
+                else
+                {
+                    Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", IrrigationCode));
+                }
+
+            }
         }
 
 
