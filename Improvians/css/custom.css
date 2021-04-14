@@ -421,16 +421,20 @@ h2:not(.mb-3) + .breadcrumb {
     margin-top: 20px;
 }
 
-.breadcrumb-item a {
-    color: #505050;
+.breadcrumb-item a, .breadcrumb > span > a {
+    color: #488949;
+    font-weight: bold;
 }
 
 .breadcrumb-item + .breadcrumb-item {
     padding-left: .5rem;
 }
 
-.breadcrumb-item.active {
+.breadcrumb > span { padding-right: 0.5rem; }
+
+.breadcrumb-item.active, .breadcrumb > span.active {
     color: #808080;
+    padding-right: 0;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -440,7 +444,9 @@ h2:not(.mb-3) + .breadcrumb {
     color: #6c757d;
 }
 
-.site__breadcrumb ~ .main__header { margin-top: 110px; }
+.site__breadcrumb ~ .main__header, .site__breadcrumb ~ .main .main__header {
+    margin-top: 110px;
+}
 
 .header__tabs { position: relative; }
 
@@ -1232,17 +1238,16 @@ textarea.input__control {
 
 @media only screen and (max-width: 1499px) {
     .header__bottom .custom__dropdown { max-width: 330px; }
-    .header__bottom { max-width: 100%; margin-top: 70px; }
+    .header__bottom { max-width: 100%; margin-top: 30px; }
     .header__bottom + .main { margin-top: 30px;}
     .main .header__bottom { margin-top: 40px; }
-    .site__breadcrumb ~ .main__header { margin-top: 0; }
+    .site__breadcrumb ~ .main__header, .site__breadcrumb ~ .main .main__header { margin-top: 0; }
+    .site__breadcrumb ~ .header__bottom { margin-top: 75px; }
     .data__table th, .data__table td { padding: 10px 15px; }
     .dashboard__block:not(.dashboard__matrix) { padding: 25px; }
     .logo-link--vertical img { max-width: 150px; height: auto; }
     .login__container h1 { font-size: 30px; }
     .floating__footer i { font-size: 22px; }
-    .header__bottom { margin-top: 30px; }
-    .header__bottom + .main { margin-top: 30px; }
     .filter__row { flex-wrap: wrap; }
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 auto; }
     .floating__footer a { padding: 12px 25px; }
@@ -1485,8 +1490,7 @@ textarea.input__control {
     header .d-flex > a { max-width: 60px; overflow: hidden; }
     header a > img { max-width: 1000px; height: auto; }
     .site__breadcrumb { overflow: auto; }
-    .breadcrumb { flex-wrap: nowrap; }
-    .breadcrumb-item { display: inline-flex; white-space: nowrap; }
+    .breadcrumb-item { display: inline-flex; }
     .breadcrumb-item:last-child { padding-right: 15px; }
 }
 

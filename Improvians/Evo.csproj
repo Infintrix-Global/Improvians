@@ -1094,6 +1094,8 @@
     <Content Include="Upload.ashx" />
     <Content Include="SitemapGrower.sitemap" />
     <Content Include="SitemapSupervisor.sitemap" />
+    <Content Include="SitemapOperator.sitemap" />
+    <Content Include="SitemapAssistantGrower.sitemap" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

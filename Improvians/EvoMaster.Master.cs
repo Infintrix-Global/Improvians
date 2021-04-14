@@ -35,6 +35,27 @@ namespace Evo
                 {
                     imgprofilepic.ImageUrl = @"~\Admin\EmployeeProfile\" + Session["Photo"].ToString();
                 }
+                if (Session["Role"].ToString() == "1")
+                {
+
+                    SiteMapPath1.SiteMapProvider = "SitemapGrower";
+                    SiteMapPath1.DataBind();
+                }
+                else if (Session["Role"].ToString() == "2")
+                {
+                    SiteMapPath1.SiteMapProvider = "SitemapSupervisor";
+                    SiteMapPath1.DataBind();
+                }
+                else if (Session["Role"].ToString() == "3" || Session["Role"].ToString() == "5" || Session["Role"].ToString() == "11")
+                {
+                    SiteMapPath1.SiteMapProvider = "SitemapOperator";
+                    SiteMapPath1.DataBind();
+                }
+                else if (Session["Role"].ToString() == "12")
+                {
+                    SiteMapPath1.SiteMapProvider = "SitemapAssistantGrower";
+                    SiteMapPath1.DataBind();
+                }
             }
 
             String activepage = Request.RawUrl;
@@ -59,17 +80,7 @@ namespace Evo
                 }
             }
 
-            if (Session["Role"].ToString() == "1" )
-            {
-              
-                SiteMapPath1.SiteMapProvider = "SitemapGrower";
-                SiteMapPath1.DataBind();
-            }
-            else if (Session["Role"].ToString() == "2" )
-            {               
-                SiteMapPath1.SiteMapProvider = "SitemapSupervisor";
-                SiteMapPath1.DataBind();
-            }
+            
             checkNotification(1);
 
         }
