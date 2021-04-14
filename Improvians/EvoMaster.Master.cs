@@ -251,13 +251,10 @@ namespace Evo
             string id = ((Label)row.FindControl("lblID")).Text;
             nv.Add("@Nid", id);
 
-
             var result = objCommon.GetDataExecuteScaler("SP_ClearNotificationById", nv);
             checkNotification(1);
-            //var res = row.Parent.Parent.FindControl("alert__dropdown") ;
-            //HtmlControl ress = (HtmlControl)res;
-            //ress.Attributes.Add("aria-expanded", "true"); 
-            //r1.Visible = true;
+
+            notificationDiv.Attributes.Add("class", "dropdown-menu dropdown-menu-left dropdown-menu-sm-right show");
             //DataTable dtSearch1 = new DataTable();
         }
 

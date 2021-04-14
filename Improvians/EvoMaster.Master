@@ -92,7 +92,7 @@
                             <%-- </span>--%>
                         </div>
 
-                        <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="alert__dropdown">
+                        <div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-right" aria-labelledby="alert__dropdown" id="notificationDiv" runat="server"> 
                             <div class="dropdown__head">
                                 <div>Notifications</div>
                             </div>
