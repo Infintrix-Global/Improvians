@@ -22,7 +22,7 @@
                         fileReader.onload = (function (e) {
                             var file = e.target;
                             $("<span class=\"pip\">" +
-                                "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                                "<img class=\"img-fluid imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
                                 "<br/><span class=\"remove\">Remove image</span>" +
                                 "</span>").insertAfter("#files");
                             $(".remove").click(function () {

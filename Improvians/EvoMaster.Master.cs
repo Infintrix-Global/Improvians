@@ -116,11 +116,6 @@ namespace Evo
 
             r1.DataSource = dtSearch1;
             r1.DataBind();
-
-
-
-
-
         }
 
         protected void lnkmytask_Click(object sender, EventArgs e)
@@ -269,7 +264,10 @@ namespace Evo
 
             var result = objCommon.GetDataExecuteScaler("SP_ClearNotificationById", nv);
             checkNotification(1);
-
+            //var res = row.Parent.Parent.FindControl("alert__dropdown") ;
+            //HtmlControl ress = (HtmlControl)res;
+            //ress.Attributes.Add("aria-expanded", "true"); 
+            //r1.Visible = true;
             //DataTable dtSearch1 = new DataTable();
         }
 

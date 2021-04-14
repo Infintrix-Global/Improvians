@@ -270,7 +270,25 @@ namespace Evo
                 BindGridGerm("0");
             }
            
+            if(e.CommandName== "GStart")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gvGerm.Rows[rowIndex];
+                string ChId = "0";
+                lblID.Text = (row.FindControl("lblID") as Label).Text;
 
+
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
+          ;
+                nv.Add("@GTID", lblID.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                result = objCommon.GetDataExecuteScaler("SP_AddGerminatioMyTasknGrowarStart", nv);
+
+                // Session["WorkOrder"] = JobID;
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}", result.ToString(), ChId));
+            }
 
         }
 
