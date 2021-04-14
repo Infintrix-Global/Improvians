@@ -1092,6 +1092,8 @@
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
     <Content Include="Upload.ashx" />
+    <Content Include="SitemapGrower.sitemap" />
+    <Content Include="SitemapSupervisor.sitemap" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

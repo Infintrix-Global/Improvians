@@ -144,7 +144,7 @@ namespace Evo
             //{
             //    nv.Add("@BenchLocation", "0");
             //}
-            if (Session["Role"].ToString()=="12")
+            if (Session["Role"].ToString() == "12")
             {
                 dt = objCommon.GetDataTable("SP_GetFertilizerRequestAAssistantGrower", nv);
             }
@@ -152,7 +152,7 @@ namespace Evo
             {
                 dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
             }
-          
+
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
@@ -279,6 +279,63 @@ namespace Evo
 
 
                 Response.Redirect(String.Format("~/FerJobBuildUp.aspx?Bench={0}&jobCode={1}&FCode={2}", BatchLocation, jobCode, FCode));
+            }
+
+            if (e.CommandName == "GStart")
+            {
+                int FertilizationCode = 0;
+
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string BatchLocation = gvFer.DataKeys[rowIndex].Values[0].ToString();
+                string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
+                string FCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
+
+                string jid = gvFer.DataKeys[rowIndex].Values[3].ToString();
+
+
+                if (FCode == "0")
+                {
+
+
+                    dtTrays.Clear();
+
+                    NameValueCollection nv14 = new NameValueCollection();
+
+                    nv14.Add("@Mode", "12");
+                    DataTable dt1 = objCommon.GetDataTable("GET_Common", nv14);
+                    FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
+
+                    dtTrays.Rows.Add("", "", "", "", "");
+
+                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, BatchLocation, "", "", "", "", "");
+
+
+                    long result2 = 0;
+                    NameValueCollection nv4 = new NameValueCollection();
+                    nv4.Add("@SupervisorID", Session["LoginID"].ToString());
+                    nv4.Add("@Type", "Fertilizer");
+                    nv4.Add("@Jobcode", jobCode);
+                    nv4.Add("@Customer", "");
+                    nv4.Add("@Item", "");
+                    nv4.Add("@Facility","");
+                    nv4.Add("@GreenHouseID", BatchLocation) ;
+                    nv4.Add("@TotalTray", "");
+                    nv4.Add("@TraySize", "");
+                    nv4.Add("@Itemdesc", "");
+                    //nv.Add("@WorkOrder", lblwo.Text);
+                    nv4.Add("@LoginID", Session["LoginID"].ToString());
+                    nv4.Add("@FertilizationCode", FertilizationCode.ToString());
+                    nv4.Add("@FertilizationDate","");
+                    nv4.Add("@seedDate", "");
+                    nv4.Add("@Jid", jid);
+                    result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
+                    Response.Redirect(String.Format("~/SprayTaskReq.aspx?FertilizationCode={0}", FertilizationCode));
+                }
+                else
+                {
+                    Response.Redirect(String.Format("~/SprayTaskReq.aspx?FertilizationCode={0}", FCode));
+                }
+
             }
         }
 

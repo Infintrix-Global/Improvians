@@ -61,7 +61,7 @@
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                            class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode,ChemicalCode" OnRowDataBound="gvFer_RowDataBound"
+                            class="striped" AllowSorting="true" PageSize="10" DataKeyNames="GreenHouseID,jobcode,ChemicalCode,jid" OnRowDataBound="gvFer_RowDataBound"
                             GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
@@ -77,7 +77,7 @@
 
                                 <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+                                        <asp:Label ID="lblBatchlocation1" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -85,6 +85,7 @@
                                     <ItemTemplate>
                                         <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                         <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                         
                                         <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
                                         <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                         <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
@@ -147,7 +148,11 @@
 
                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
+
                                         <asp:Button ID="btnSelect" runat="server" Text="Job Build Up" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                         <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+
+                                        
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
