@@ -56,7 +56,7 @@ namespace Evo
 
 
 
-public void Bindcname()
+        public void Bindcname()
         {
 
             DataTable dt = new DataTable();
@@ -249,9 +249,6 @@ public void Bindcname()
         {
             if (e.CommandName == "Select")
             {
-               
-
-
                 userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
@@ -259,9 +256,6 @@ public void Bindcname()
                 lblPRRId.Text = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
                 lblJid.Text = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
                 lblIsAssistant.Text = gvPlantReady.DataKeys[rowIndex].Values[5].ToString();
-
-
-               
                 lblBenchlocation.Text = gvPlantReady.DataKeys[rowIndex].Values[7].ToString();
                 lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
                 lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
@@ -281,6 +275,72 @@ public void Bindcname()
                     txtPlantComments.Text = dt.Rows[0]["Comments"].ToString();
                     txtPlantDate.Text = Convert.ToDateTime(dt.Rows[0]["PlanDate"]).ToString("yyyy-MM-dd");
                     // txtDumpDate.Text = Convert.ToDateTime(dt.Rows[0]["DumpDateR"]).ToString("yyyy-MM-dd");
+                }
+            }
+
+            if (e.CommandName == "GStart")
+            {
+                long result = 0;
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+                lblGrowerID.Text = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
+                lblPRRId.Text = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
+                lblJid.Text = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
+                lblIsAssistant.Text = gvPlantReady.DataKeys[rowIndex].Values[5].ToString();
+                lblBenchlocation.Text = gvPlantReady.DataKeys[rowIndex].Values[7].ToString();
+                lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
+                lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
+
+                if (lblPRRId.Text == "0")
+                {
+
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
+
+                    nv.Add("@Jobcode", lblJobID.Text);
+                    nv.Add("@Customer", "");
+                    nv.Add("@Item", "");
+                    nv.Add("@Facility", "");
+                    nv.Add("@GreenHouseID", lblBenchlocation.Text);
+                    nv.Add("@TotalTray", lblTotalTrays.Text);
+                    nv.Add("@TraySize", "");
+                    nv.Add("@Itemdesc","");
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChId", "0");
+                    nv.Add("@wo", "");
+                    nv.Add("@Comments", txtPlantComments.Text.Trim());
+                    nv.Add("@PlantDate", txtPlantDate.Text);
+                    nv.Add("@Role", Session["Role"].ToString());
+                    nv.Add("@SeedDate", "");
+                    nv.Add("@Jid","");
+
+                    result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTaskStart", nv);
+                    NameValueCollection nv5 = new NameValueCollection();
+
+                    nv5.Add("@PRTA", result.ToString());
+                    DataTable dt = objCommon.GetDataTable("SP_GetPlantReadyTaskAssignmentSelect", nv5);
+
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result.ToString(), dt.Rows[0]["PRID"].ToString()));
+                }
+                else
+                {
+
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@OperatorID", Session["LoginID"].ToString());
+                    nv.Add("@Notes", "");
+                    nv.Add("@PRID", lblPRRId.Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@PlantExpirationDate", "");
+
+                    long result1 = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignmentNew", nv);
+
+                    //  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
+
+                    if (result > 0)
+                    {
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result1, lblPRRId.Text));
+                    }
+
                 }
             }
         }
@@ -315,7 +375,7 @@ public void Bindcname()
                     url = "MyTaskAssistantGrower.aspx";
                 }
                 string message = "Assignment Successful";
-              //  string url = "MyTaskGrower.aspx";
+                //  string url = "MyTaskGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -357,7 +417,7 @@ public void Bindcname()
             Response.Redirect("~/PlantReadyReqManual.aspx");
         }
 
-      
+
     }
 
 }
