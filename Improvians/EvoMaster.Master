@@ -181,7 +181,7 @@
             <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
             <div class="site__container site__breadcrumb">
 
-                <asp:SiteMapPath ID="SiteMapPath1" runat="server" PathSeparator=" > " NodeStyle-CssClass="breadcrumb-item" RootNodeStyle-CssClass="breadcrumb-item"  CurrentNodeStyle-CssClass="breadcrumb-item" CssClass="breadcrumb"></asp:SiteMapPath>
+                <asp:SiteMapPath ID="SiteMapPath1" runat="server" CurrentNodeStyle-CssClass="active" CssClass="breadcrumb"></asp:SiteMapPath>
 
             </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
