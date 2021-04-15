@@ -18,7 +18,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 string Fdate = "", TDate = "";
-                Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(7).ToString("yyyy-MM-dd");
 
                 txtFromDate.Text = Fdate;
@@ -27,7 +27,7 @@ namespace Evo
 
                 BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode(ddlBenchLocation.SelectedValue);
-                BindGridIrrigation();
+                BindGridIrrigation(0);
                 BindSupervisorList();
             }
         }
@@ -48,6 +48,22 @@ namespace Evo
             }
         }
 
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
         private string wo
         {
             get
@@ -106,21 +122,21 @@ namespace Evo
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridIrrigation();
+            BindGridIrrigation(1);
 
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
 
-        public void BindGridIrrigation()
+        public void BindGridIrrigation(int p)
         {
 
             DataTable dt = new DataTable();
@@ -172,12 +188,40 @@ namespace Evo
             GridIrrigation.DataBind();
 
 
+            //foreach (GridViewRow row in GridIrrigation.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+            if (p != 1)
+            {
+                highlight();
+            }
+
+
+        }
+        private void highlight()
+        {
+            var i = GridIrrigation.Rows.Count;
+            bool check = false;
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
-                if (checkJob == JobCode)
+                var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
                 {
                     row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check)
+                {
+                    GridIrrigation.PageIndex++;
+                    GridIrrigation.DataBind();
+                    highlight();
                 }
             }
         }
@@ -225,7 +269,7 @@ namespace Evo
             Bindcname();           
             BindBenchLocation(Session["Facility"].ToString());
             BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -267,64 +311,12 @@ namespace Evo
 
             if (e.CommandName == "GStart")
             {
-             
-
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string BatchLocation = GridIrrigation.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
                 string IrrigationCode = GridIrrigation.DataKeys[rowIndex].Values[3].ToString();
 
-                string jid = GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
-
-
-                if (IrrigationCode == "0")
-                {
-
-                    DataTable dt = new DataTable();
-                    NameValueCollection nv17 = new NameValueCollection();
-                
-                    nv17.Add("@Mode", "13");
-                    dt = objCommon.GetDataTable("GET_Common", nv17);
-                    IrrigationCode =dt.Rows[0]["ICode"].ToString();
-
-
-
-                            long result16 = 0;
-                            NameValueCollection nv = new NameValueCollection();
-                            nv.Add("@SupervisorID", Session["LoginID"].ToString());
-
-                            nv.Add("@Jobcode", jobCode);
-                            nv.Add("@Customer", "");
-                            nv.Add("@Item", "");
-                            nv.Add("@Facility", "");
-                            nv.Add("@GreenHouseID", BatchLocation);
-                            nv.Add("@TotalTray", "");
-                            nv.Add("@TraySize", "");
-                            nv.Add("@Itemdesc", "");
-
-                            nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                            // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                            nv.Add("@IrrigatedNoTrays", "");
-                            nv.Add("@WaterRequired", "");
-                            nv.Add("@IrrigationDuration", "");
-                            nv.Add("@SprayDate","");
-                            //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                            nv.Add("@SeedDate","");
-
-
-                            nv.Add("@Nots", "");
-                            nv.Add("@LoginID", Session["LoginID"].ToString());
-                            nv.Add("@Role", Session["Role"].ToString());
-                            nv.Add("@Jid", jid);
-                            result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTaskStart", nv);
-
-
-                             Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", IrrigationCode));
-                }
-                else
-                {
-                    Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", IrrigationCode));
-                }
+                Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}", BatchLocation, jobCode, IrrigationCode));
 
             }
         }
@@ -411,7 +403,7 @@ namespace Evo
         protected void GridIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridIrrigation.PageIndex = e.NewPageIndex;
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void btnAssign_Click(object sender, EventArgs e)
@@ -457,12 +449,12 @@ namespace Evo
 
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void GridIrrigation_RowDataBound(object sender, GridViewRowEventArgs e)

@@ -569,8 +569,6 @@ namespace Evo
                     nv.Add("@FertilizationDate", txtDate.Text);
                     nv.Add("@Jid", Jid);
                
-                   
-                     nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                      result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
                    

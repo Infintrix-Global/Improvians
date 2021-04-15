@@ -219,11 +219,11 @@ namespace Evo
                 {
                     if (TaskName == "Fertilizer")
                     {
-                        Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job);
+                        Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                     }
                     else
                     {
-                        Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job);
+                        Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                     }
 
 
@@ -236,7 +236,7 @@ namespace Evo
                             Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc);
                             break;
                         case "Move":
-                            Response.Redirect("MoveReqAsssignment.aspx?jobId=" + job);
+                            Response.Redirect("MoveReqAsssignment.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                         case "Fertilizer":
                             Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc);
@@ -245,7 +245,7 @@ namespace Evo
                             Response.Redirect(TaskName + "CompletionForm.aspx?benchLoc=" + benchLoc);
                             break;
                         default:
-                            Response.Redirect(TaskName + "CompletionForm.aspx?jobId=" + job);
+                            Response.Redirect(TaskName + "CompletionForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                     }
 
@@ -258,7 +258,7 @@ namespace Evo
                             Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc);
                             break;
                         case "Move":
-                            Response.Redirect("MoveRequestForm.aspx?jobId=" + job);
+                            Response.Redirect("MoveRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                         case "Fertilizer":
                             Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc);
@@ -267,7 +267,7 @@ namespace Evo
                             Response.Redirect(TaskName + "AssignmentForm.aspx?benchLoc=" + benchLoc);
                             break;
                         default:
-                            Response.Redirect(TaskName + "AssignmentForm.aspx?jobId=" + job);
+                            Response.Redirect(TaskName + "AssignmentForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                     }
 

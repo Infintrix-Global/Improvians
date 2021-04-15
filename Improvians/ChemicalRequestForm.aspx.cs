@@ -38,7 +38,7 @@ namespace Evo
                 Bindcname();
                 BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode(ddlBenchLocation.SelectedValue);
-                BindGridFerReq();
+                BindGridFerReq(0);
                 dtTrays.Clear();
             }
         }
@@ -49,6 +49,23 @@ namespace Evo
                 if (Request.QueryString["jobId"] != null)
                 {
                     return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
                 }
                 return "";
             }
@@ -101,20 +118,20 @@ namespace Evo
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridFerReq();
+            BindGridFerReq(1);
 
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq();
+            BindGridFerReq(1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq();
+            BindGridFerReq(1);
         }
 
-        public void BindGridFerReq()
+        public void BindGridFerReq(int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -161,12 +178,40 @@ namespace Evo
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
+            //foreach (GridViewRow row in gvFer.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lblID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+            if (p != 1)
+            {
+                highlight();
+            }
+
+
+        }
+        private void highlight()
+        {
+            var i = gvFer.Rows.Count;
+            bool check = false;
             foreach (GridViewRow row in gvFer.Rows)
             {
                 var checkJob = (row.FindControl("lblID") as Label).Text;
-                if (checkJob == JobCode)
+                var checklocation = (row.FindControl("lblBatchlocation1") as Label).Text;
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
                 {
                     row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check)
+                {
+                    gvFer.PageIndex++;
+                    gvFer.DataBind();
+                    highlight();
                 }
             }
         }
@@ -218,7 +263,7 @@ namespace Evo
         protected void gvFer_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvFer.PageIndex = e.NewPageIndex;
-            BindGridFerReq();
+            BindGridFerReq(1);
         }
 
 
@@ -257,13 +302,13 @@ namespace Evo
             BindBenchLocation(Session["Facility"].ToString());
             BindJobCode(ddlBenchLocation.SelectedValue);
 
-            BindGridFerReq();
+            BindGridFerReq(1);
         }
 
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridFerReq();
+            BindGridFerReq(1);
             BindGridFerDetails();
         }
 
@@ -281,12 +326,12 @@ namespace Evo
 
         protected void btnSearch_Click1(object sender, EventArgs e)
         {
-            BindGridFerReq();
+            BindGridFerReq(1);
         }
 
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq();
+            BindGridFerReq(1);
         }
 
 
