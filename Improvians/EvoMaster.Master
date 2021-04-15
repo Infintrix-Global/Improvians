@@ -171,10 +171,10 @@
             </div>
         </header>
 
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
         <div class="site__container site__breadcrumb">
 
-            <asp:SiteMapPath ID="SiteMapPath1" runat="server" CurrentNodeStyle-CssClass="active" CssClass="breadcrumb"></asp:SiteMapPath>
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server"  CurrentNodeStyle-CssClass="active" CssClass="breadcrumb"></asp:SiteMapPath>
 
         </div>
 
