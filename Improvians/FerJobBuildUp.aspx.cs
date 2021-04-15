@@ -31,17 +31,16 @@ namespace Evo
                     Bench = Request.QueryString["Bench"].ToString();
                 }
 
-                if (Request.QueryString["Start"] != null)
-                {
-                    StartButton = Request.QueryString["Start"].ToString();
-                }
+              
 
                 if (Request.QueryString["jobCode"] != null)
                 {
                     JobCode = Request.QueryString["jobCode"].ToString();
                 }
+
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
+
                 BindGridFerReq();
                 BindGridFerDetails("'" + Bench + "'");
 
@@ -407,7 +406,7 @@ namespace Evo
             {
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
             //    Quantity
-                  txtQty.Text= dt.Rows[0]["Quantity"].ToString();
+                txtQty.Text= dt.Rows[0]["Quantity"].ToString();
             }
         }
 
@@ -472,6 +471,7 @@ namespace Evo
                 //}
 
             }
+
             txtTrays.Text = tray.ToString();
         }
 
@@ -501,7 +501,7 @@ namespace Evo
                 long result = 0;
                 long Mresult = 0;
                 NameValueCollection nv = new NameValueCollection();
-             //   nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                 nv.Add("@Type", "Fertilizer");
                 nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
                 nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
@@ -511,17 +511,9 @@ namespace Evo
                 nv.Add("@FertilizationDate", txtDate.Text);
                 nv.Add("@Jid",Jid);
             
-                if (StartButton == "start")
-                {
-                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataExecuteScaler("SP_AdFertilizerRequestManualCreateTaskStart", nv);
-                }
-                else
-                {
-                    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+                  result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
-                }
+                
 
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
@@ -567,7 +559,7 @@ namespace Evo
                 {
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
-                   // nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                     nv.Add("@Type", "Fertilizer");
                     nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
@@ -576,20 +568,12 @@ namespace Evo
                     nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv.Add("@FertilizationDate", txtDate.Text);
                     nv.Add("@Jid", Jid);
-                //    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+               
+                   
+                     nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
-
-                    if (StartButton == "start")
-                    {
-                        nv.Add("@SupervisorID", Session["LoginID"].ToString());
-                        result = objCommon.GetDataExecuteScaler("SP_AdFertilizerRequestManualCreateTaskStart", nv);
-                    }
-                    else
-                    {
-                        nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                        result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
-
-                    }
+                   
                 }
                 //  }
 

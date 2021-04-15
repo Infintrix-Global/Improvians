@@ -208,66 +208,9 @@ namespace Evo
                 string BatchLocation = gvFer.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
                 string CCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
-                Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1}&CCode={2}&Start={3}", BatchLocation, jobCode, CCode, "start"));
-                //  Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1},&CCode={2}", BatchLocation, jobCode, CCode));
-             //   Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1}&CCode={2}&Start={3}", BatchLocation, jobCode,"start"));
 
-                //   int ChemicalCode = 0;
-                //   string Batchlocation = "";
-                //   int rowIndex = Convert.ToInt32(e.CommandArgument);
-                //   string CCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
-                //   string BatchLocation = gvFer.DataKeys[rowIndex].Values[0].ToString();
-                //   string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
-                //   string jid = gvFer.DataKeys[rowIndex].Values[3].ToString();
-
-                //   Label Batchlocation1 = (Label)gvFer.Rows[rowIndex].FindControl("lblBatchlocation1");
-                ////   Batchlocation = (Label)gvFer.Rows[rowIndex].FindControl("testname");
-                //   if (CCode=="0")
-                //   {
-
-
-                //       dtCTrays.Clear();
-
-                //       dtCTrays.Clear();
-                //       DataTable dt1 = new DataTable();
-                //       NameValueCollection nv1 = new NameValueCollection();
-                //       nv1.Add("@Mode", "16");
-                //       dt1 = objCommon.GetDataTable("GET_Common", nv1);
-                //       ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
-
-
-                //       dtCTrays.Rows.Add("", "", "");
-                //       objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation1.Text, "", "", "");
-
-
-                //       long result = 0;
-                //       NameValueCollection nv = new NameValueCollection();
-                //       nv.Add("@SupervisorID", Session["LoginID"].ToString());
-                //       nv.Add("@Type", "Chemical");
-                //       nv.Add("@Jobcode", jobCode);
-                //       nv.Add("@Customer", "");
-                //       nv.Add("@Item", "");
-                //       nv.Add("@Facility", "");
-                //       nv.Add("@GreenHouseID", Batchlocation1.Text);
-                //       nv.Add("@TotalTray", "");
-                //       nv.Add("@TraySize", "");
-                //       nv.Add("@Itemdesc", "");
-                //       //nv.Add("@WorkOrder", lblwo.Text);
-                //       nv.Add("@LoginID", Session["LoginID"].ToString());
-                //       nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                //       nv.Add("@ChemicalDate", "");
-                //       nv.Add("@Comments", "");
-                //       nv.Add("@Method", "");
-                //       nv.Add("@seedDate", "");
-                //       nv.Add("@Jid", jid);
-                //       result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
-                //       Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}", ChemicalCode));
-
-                //   }
-                //   else
-                //   {
-                //       Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}", CCode));
-                //   }
+                Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}", BatchLocation, jobCode, CCode));
+         
 
             }
         }
