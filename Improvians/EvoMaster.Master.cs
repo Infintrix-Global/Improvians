@@ -195,6 +195,7 @@ namespace Evo
             RepeaterItem row = (RepeaterItem)link.NamingContainer;
             string id = ((Label)row.FindControl("lblID")).Text;
             string job = ((Label)row.FindControl("lblJobId")).Text;
+            string benchLoc = ((Label)row.FindControl("lblBenchLoc")).Text;
 
             nv.Add("@Nid", id);
             string TaskName = ((Label)row.FindControl("lblTaskName")).Text;
@@ -221,13 +222,16 @@ namespace Evo
                     switch (TaskName)
                     {
                         case "Chemical":
-                            Response.Redirect("ChemicalTaskRequest.aspx?jobId=" + job);
+                            Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc);
                             break;
                         case "Move":
                             Response.Redirect("MoveReqAsssignment.aspx?jobId=" + job);
                             break;
                         case "Fertilizer":
-                            Response.Redirect("SprayTaskRequest.aspx?jobId=" + job);
+                            Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc);
+                            break;
+                        case "Irrigation":
+                            Response.Redirect(TaskName + "CompletionForm.aspx?benchLoc=" + benchLoc);
                             break;
                         default:
                             Response.Redirect(TaskName + "CompletionForm.aspx?jobId=" + job);
@@ -240,13 +244,16 @@ namespace Evo
                     switch (TaskName)
                     {
                         case "Chemical":
-                            Response.Redirect("ChemicalTaskRequest.aspx?jobId=" + job);
+                            Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc);
                             break;
                         case "Move":
                             Response.Redirect("MoveRequestForm.aspx?jobId=" + job);
                             break;
                         case "Fertilizer":
-                            Response.Redirect("SprayTaskRequest.aspx?jobId=" + job);
+                            Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc);
+                            break;
+                        case "Irrigation":
+                            Response.Redirect(TaskName + "AssignmentForm.aspx?benchLoc=" + benchLoc);
                             break;
                         default:
                             Response.Redirect(TaskName + "AssignmentForm.aspx?jobId=" + job);
