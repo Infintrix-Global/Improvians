@@ -1144,6 +1144,8 @@
     <Content Include="SitemapSupervisor.sitemap" />
     <Content Include="SitemapOperator.sitemap" />
     <Content Include="SitemapAssistantGrower.sitemap" />
+    <Content Include="SitemapSeedlinePlanner.sitemap" />
+    <Content Include="SitemapSeedlineSupervisor.sitemap" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

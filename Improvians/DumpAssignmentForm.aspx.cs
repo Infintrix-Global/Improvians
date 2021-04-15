@@ -18,7 +18,7 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                BindGridGerm();
+                BindGridGerm(0);
             }
         }
 
@@ -39,6 +39,22 @@ namespace Evo
             }
         }
 
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
 
 
 
@@ -75,7 +91,7 @@ namespace Evo
 
         }
 
-        public void BindGridGerm()
+        public void BindGridGerm(int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -90,38 +106,55 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetSupervisorDumpTask", nv);
             gvDump.DataSource = dt;
             gvDump.DataBind();
-
-            foreach (GridViewRow row in gvDump.Rows)
-            {
-                var checkJob = (row.FindControl("lbljobID") as Label).Text;
-                if (checkJob == JobCode)
-                {
-                    row.CssClass = "highlighted";
-                }
+            if (p != 1){
+                highlight();
             }
 
 
+         }
+        private void highlight()
+        {
+            var i = gvDump.Rows.Count;
+            bool check = false;
+            foreach (GridViewRow row in gvDump.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
+                {
+                    row.CssClass = "highlighted";                   
+                    check = true;
+                }
+                if (i == 0 && !check)
+                {
+                    gvDump.PageIndex++;
+                    gvDump.DataBind();
+                    highlight();
+                }
+            }
         }
+        
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm();
+            BindGridGerm(1);
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm();
+            BindGridGerm(1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm();
+            BindGridGerm(1);
         }
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             Bindcname();
             BindJobCode();
-            BindGridGerm();
+            BindGridGerm(1);
         }
         protected void gvDump_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -190,7 +223,7 @@ namespace Evo
         protected void gvDump_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvDump.PageIndex = e.NewPageIndex;
-            BindGridGerm();
+            BindGridGerm(1);
         }
 
         protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
