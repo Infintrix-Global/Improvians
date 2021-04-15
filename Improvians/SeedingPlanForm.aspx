@@ -3,22 +3,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
-            <div class="row">
-                <div class="col-lg-10">
-                    <h2>
-                        <asp:LinkButton ID="LinkMyTask" ForeColor="#505050" PostBackUrl="~/DashBoard.aspx" runat="server"> My Tasks </asp:LinkButton></h2>
-                    <h2>Seedline Planning</h2>
-                </div>
-                <%--  </div>
-            <div class="row">--%>
+            <%--  <div class="row">--%>
+           <%-- <div class="col-lg-10">--%>
 
-                <div class="col-lg-2">
-                    <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action" />
-                </div>
-    </div>
-    <div class="row">
+                <h2 class="head__title-icon mb-3 ">Seedline Planning</h2>
+            <%--</div>--%>
+
+            <div class="col-lg-2">
+                <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action" />
+            </div>
+            <%--</div>--%>
+            <div class="row">
                 <div class="col-lg-2">
                     <label>From Date </label>
 
