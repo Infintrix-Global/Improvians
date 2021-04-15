@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+	<siteMapNode url="~/Dashboard.aspx" title="Dashboard"  >
+		<siteMapNode url="~/MyTaskProductionPlanner.aspx" title="My Tasks"  >
+			<siteMapNode url="~/SeedLineCompletionFinal.aspx" title="Task Completion"  />
+		</siteMapNode>
+		<siteMapNode url="~/TrackTaskSeedlinePlanner.aspx" title="Track Task" />
+		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
+	</siteMapNode>
+</siteMap>

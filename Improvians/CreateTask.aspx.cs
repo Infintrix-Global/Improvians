@@ -2462,62 +2462,24 @@ namespace Evo
 
             int ChemicalCode = 0;
             string Batchlocation = "";
-            // string Assigned = "";
-            string x = "'" + Bench1 + "'" + ",";
-            string chkSelected = "";
-            int c = 0;
-            string BatchLocd = "";
-            string JobCode = "";
+            dtCTrays.Clear();
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mode", "16");
+            dt1 = objCommon.GetDataTable("GET_Common", nv1);
+            ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
+
             foreach (GridViewRow row in gvFer.Rows)
-            {
-                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                if (chckrw.Checked == true)
-                {
-                    BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
-                    JobCode = (row.FindControl("lblID") as Label).Text;
-                    c = c + 1;
-                    x += "'" + BatchLocd + "',";
-
-                }
-            }
-
-
-            if (c == 1)
-            {
-                foreach (GridViewRow row in gvFer.Rows)
                 {
                     CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                     if (chckrw.Checked == true)
                     {
-                        dtCTrays.Clear();
-                        Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
-
-                        NameValueCollection nv5 = new NameValueCollection();
-                        nv5.Add("@Mode", "2");
-                        nv5.Add("@Batchlocation", Batchlocation);
-                        DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
-
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            ChemicalCode = Convert.ToInt32(dt.Rows[0]["ChemicalCode"]);
-                        }
-                        else
-                        {
-                            dtCTrays.Clear();
-                            DataTable dt1 = new DataTable();
-                            NameValueCollection nv1 = new NameValueCollection();
-                            nv1.Add("@Mode", "16");
-                            dt1 = objCommon.GetDataTable("GET_Common", nv1);
-                            ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
-
-
+                       
                             dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
                             objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
-                            // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
-
-                            // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
-                        }
+                        
+                    
 
 
                         long result = 0;
@@ -2551,14 +2513,13 @@ namespace Evo
                         var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
                     }
-                    Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1}&CCode={2}&Start={3}", (row.FindControl("lblGreenHouse") as Label).Text, (row.FindControl("lblID") as Label).Text, ChemicalCode, "start"));
-              
+                
                 }
-            }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please Select only One JobCode')", true);
-            }
+
+                Response.Redirect(String.Format("~/ChemicalStart.aspx?&CCode={0}", ChemicalCode));
+
+
+             
 
         }
 
@@ -2567,7 +2528,14 @@ namespace Evo
 
             string Batchlocation = "";
             int FertilizationCode = 0;
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv14 = new NameValueCollection();
+            NameValueCollection nvimg = new NameValueCollection();
+            nv14.Add("@Mode", "12");
+            dt1 = objCommon.GetDataTable("GET_Common", nv14);
 
+
+            FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -2575,30 +2543,12 @@ namespace Evo
                 {
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
-                    NameValueCollection nv5 = new NameValueCollection();
-                    nv5.Add("@Mode", "1");
-                    nv5.Add("@Batchlocation", Batchlocation);
-                    DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
+                   
 
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
+                    dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-                        FertilizationCode = Convert.ToInt32(dt.Rows[0]["FertilizationCode"]);
-                    }
-                    else
-                    {
-                        dtTrays.Clear();
-                        DataTable dt1 = new DataTable();
-                        NameValueCollection nv14 = new NameValueCollection();
-                        NameValueCollection nvimg = new NameValueCollection();
-                        nv14.Add("@Mode", "12");
-                        dt1 = objCommon.GetDataTable("GET_Common", nv14);
-                        FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
-
-                        dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
-
-                        objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
-                    }
+                     objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                    
 
                     long result2 = 0;
                     NameValueCollection nv4 = new NameValueCollection();
@@ -2629,11 +2579,12 @@ namespace Evo
                     var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
                 }
-                Response.Redirect(String.Format("~/FerJobBuildUp.aspx?Bench={0}&jobCode={1}&FCode={2}&Start={3}", (row.FindControl("lblGreenHouse") as Label).Text, (row.FindControl("lblID") as Label).Text, FertilizationCode, "start"));
 
+           
         
             }
-         
+            Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?&FCode={0}", FertilizationCode));
+
         }
 
         protected void btnStartGermination_Click(object sender, EventArgs e)

@@ -16,24 +16,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="Sc1" runat="server"></asp:ScriptManager>
-    <div class="main">
+    <div class="main__header">
         <div class="site__container">
             <h2>Seedline Planner Task Completion Form</h2>
-
-            <%-- <div class="filter__row d-flex">
-                <div class="row justify-content-center">
-                    <div class="col m3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
-                    <div class="col m3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-
-                </div>
-            </div>--%>
 
             <div class="row">
                 <div class=" col m12">
@@ -45,7 +30,7 @@
                                 AllowSorting="true" PageSize="10" OnRowDataBound="gvGerm_RowDataBound"
                                 GridLines="None"
                                 ShowHeaderWhenEmpty="True" Width="100%">
-                                <Columns>
+                                <columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>
                                             <table>
@@ -112,13 +97,13 @@
 
 
 
-                                </Columns>
+                                </columns>
 
-                                <PagerStyle CssClass="paging" HorizontalAlign="Right" />
-                                <PagerSettings Mode="NumericFirstLast" />
-                                <EmptyDataTemplate>
+                                <pagerstyle cssclass="paging" horizontalalign="Right" />
+                                <pagersettings mode="NumericFirstLast" />
+                                <emptydatatemplate>
                                     No Record Available
-                                </EmptyDataTemplate>
+                                </emptydatatemplate>
                             </asp:GridView>
 
 
@@ -170,7 +155,8 @@
                                     <asp:TextBox ID="txtSeedingDate" ClientIDMode="Static" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                                     <span class="error_message">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSeedingDate" ValidationGroup="e"
-                                            SetFocusOnError="true" ErrorMessage="Please Enter Seeding Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            SetFocusOnError="true" ErrorMessage="Please Enter Seeding Date" ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
                                     </span>
                                 </div>
 
@@ -195,7 +181,8 @@
                                     <asp:TextBox ID="txtTrays" runat="server" TextMode="Number" class="input__control robotomd" placeholder="No of trays to be seeded"></asp:TextBox>
                                     <span class="error_message">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTrays" ValidationGroup="e"
-                                            SetFocusOnError="true" ErrorMessage="Please Enter # Trays" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            SetFocusOnError="true" ErrorMessage="Please Enter # Trays" ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
                                     </span>
 
                                 </div>
@@ -222,7 +209,7 @@
                                     <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped data__table w-auto"
                                         GridLines="None" OnRowDataBound="gvDetails_RowDataBound" OnRowDeleting="gvDetails_RowDeleting"
                                         ShowHeaderWhenEmpty="True">
-                                        <Columns>
+                                        <columns>
 
                                             <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="100">
                                                 <ItemTemplate>
@@ -288,12 +275,12 @@
                                             </asp:TemplateField>
 
 
-                                        </Columns>
-                                        <PagerStyle CssClass="paging" HorizontalAlign="Right" />
-                                        <PagerSettings Mode="NumericFirstLast" />
-                                        <EmptyDataTemplate>
+                                        </columns>
+                                        <pagerstyle cssclass="paging" horizontalalign="Right" />
+                                        <pagersettings mode="NumericFirstLast" />
+                                        <emptydatatemplate>
                                             No Record Available
-                                        </EmptyDataTemplate>
+                                        </emptydatatemplate>
                                     </asp:GridView>
 
                                 </div>
@@ -392,8 +379,9 @@
                         <div class="col-12 text-center mt-4">
                             <asp:Label ID="lblsubmsg" runat="server" Text="Job sent to grower for put-away location once submitted." Font-Italic="true"></asp:Label>
                         </div>
+                    </asp:Panel>
                 </div>
-                </asp:Panel>
+
             </div>
         </div>
 
