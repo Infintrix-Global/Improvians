@@ -215,6 +215,7 @@
     <Content Include="DashBoard.aspx" />
     <Content Include="FertilizerTaskStart.aspx" />
     <Content Include="FertilizerTaskStart1.aspx" />
+    <Content Include="firebase-messaging-sw.js" />
     <Content Include="GeneralTaskRequestForm.aspx" />
     <Content Include="DumpRequestForm.aspx" />
     <Content Include="GeneralTaskCompletionForm.aspx" />
@@ -255,6 +256,7 @@
     <Content Include="images\splash\apple_splash_2048.png" />
     <Content Include="images\splash\apple_splash_640.png" />
     <Content Include="images\splash\apple_splash_750.png" />
+    <Content Include="index.html" />
     <Content Include="IrrigationStart.aspx" />
     <Content Include="IrrigationStart1.aspx" />
     <Content Include="IrrigationTaskViewDetails.aspx" />

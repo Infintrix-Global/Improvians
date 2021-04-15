@@ -68,8 +68,8 @@ namespace Evo
                 }
             }
 
-            String activepage = Request.RawUrl;
-            if (activepage.Contains("DashBoard"))
+            String activepage = Request.RawUrl.ToLower();
+            if (activepage.Contains("dashboard"))
             {
                 dashlink.Attributes.Add("class", "active");
                 lnkmytask.Attributes.Remove("class");

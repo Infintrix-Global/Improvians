@@ -8,6 +8,8 @@ using System.Configuration;
 using System.Globalization;
 using System.Web.Hosting;
 using System.IO;
+using System.Net;
+using System.Text;
 
 namespace Evo.BAL_Classes
 {
@@ -337,6 +339,79 @@ namespace Evo.BAL_Classes
             swExtLogFile.Write("*****Error message=****" + msg + " at " + DateTime.Now.ToString());
             swExtLogFile.Flush();
             swExtLogFile.Close();
+        }
+
+
+
+        public string SendNotification(string NotificationFormat)
+        {
+            FCMResponse response;
+            AppSettingsReader settingsReader = new AppSettingsReader();
+            string SERVER_API_KEY = (string)settingsReader.GetValue("SERVER_API_KEY", typeof(String));
+            var SENDER_ID =  (string)settingsReader.GetValue("SENDER_ID", typeof(String));
+
+            WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+            tRequest.Method = "post";
+            tRequest.ContentType = "application/json";
+
+            Byte[] byteArray = Encoding.UTF8.GetBytes(NotificationFormat);
+            tRequest.Headers.Add(string.Format("Authorization: key={0}", SERVER_API_KEY));
+            tRequest.Headers.Add(string.Format("Sender: id={0}", SENDER_ID));
+            tRequest.ContentLength = byteArray.Length;
+            tRequest.ContentType = "application/json";
+            using (Stream dataStream = tRequest.GetRequestStream())
+            {
+                dataStream.Write(byteArray, 0, byteArray.Length);
+
+                using (WebResponse tResponse = tRequest.GetResponse())
+                {
+                    using (Stream dataStreamResponse = tResponse.GetResponseStream())
+                    {
+                        using (StreamReader tReader = new StreamReader(dataStreamResponse))
+                        {
+                            String responseFromFirebaseServer = tReader.ReadToEnd();
+                            response = Newtonsoft.Json.JsonConvert.DeserializeObject<FCMResponse>(responseFromFirebaseServer);
+                        }
+                    }
+
+                }
+            }
+
+            return response.ToString();
+        }
+
+        public string getExactPayload(string UserID, string Tokens, string Message, string Title, string typemsg)
+        {
+            string postData = "";
+            postData = "{\"collapse_key\":\"score_update\",\"time_to_live\":108,\"delay_while_idle\":true,\"priority\":\"high\",\"data\": { \"userid\": \"" + UserID + "\",\"Message\": \"" + Message + "\",\"Title\": \"" + Title + "\",\"Type\": \"" + typemsg + "\"}  ,\"registration_ids\":[\"" + Tokens + "\"] }";
+            return postData;
+        }
+
+        public string SendMessage(string UserID, string Tokens, string Message, string Title, string TypeMsg)
+        {
+            var objNotification = new
+            {
+                to = Tokens,
+                data = new
+                {
+                    postData = getExactPayload(UserID, Tokens, Message, Title, TypeMsg)
+                }
+
+            };
+            return SendNotification(Newtonsoft.Json.JsonConvert.SerializeObject(objNotification));
+        }
+
+        public class FCMResponse
+        {
+            public long multicast_id { get; set; }
+            public int success { get; set; }
+            public int failure { get; set; }
+            public int canonical_ids { get; set; }
+            public List<FCMResult> results { get; set; }
+        }
+        public class FCMResult
+        {
+            public string message_id { get; set; }
         }
 
     }
