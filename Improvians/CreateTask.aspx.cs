@@ -1345,6 +1345,7 @@ namespace Evo
 
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
                         objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+
                         // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
                         // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
@@ -2458,80 +2459,67 @@ namespace Evo
 
         protected void btnStartChemical_Click(object sender, EventArgs e)
         {
+
             int ChemicalCode = 0;
             string Batchlocation = "";
-            // string Assigned = "";
+            dtCTrays.Clear();
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mode", "16");
+            dt1 = objCommon.GetDataTable("GET_Common", nv1);
+            ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
 
             foreach (GridViewRow row in gvFer.Rows)
-            {
-                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                if (chckrw.Checked == true)
                 {
-                    dtCTrays.Clear();
-                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
-
-                    NameValueCollection nv5 = new NameValueCollection();
-                    nv5.Add("@Mode", "2");
-                    nv5.Add("@Batchlocation", Batchlocation);
-                    DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
-
-                    if (dt != null && dt.Rows.Count > 0)
+                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                    if (chckrw.Checked == true)
                     {
-                        ChemicalCode = Convert.ToInt32(dt.Rows[0]["ChemicalCode"]);
+                       
+                            dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
+                            objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+
+                        
+                    
+
+
+                        long result = 0;
+                        NameValueCollection nv = new NameValueCollection();
+                        nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                        nv.Add("@Type", "Chemical");
+                        nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                        nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                        nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                        nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                        nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                        //nv.Add("@WorkOrder", lblwo.Text);
+                        nv.Add("@LoginID", Session["LoginID"].ToString());
+                        nv.Add("@ChemicalCode", ChemicalCode.ToString());
+                        nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
+                        nv.Add("@Comments", txtCComments.Text);
+                        nv.Add("@Method", ddlMethod.SelectedValue);
+                        nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
+
+                        NameValueCollection nvn = new NameValueCollection();
+                        nvn.Add("@LoginID", Session["LoginID"].ToString());
+                        nvn.Add("@SupervisorID", Session["LoginID"].ToString());
+                        nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                        nvn.Add("@TaskName", "Chemical");
+                        nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
                     }
-                    else
-                    {
-                        dtCTrays.Clear();
-                        DataTable dt1 = new DataTable();
-                        NameValueCollection nv1 = new NameValueCollection();
-                        nv1.Add("@Mode", "16");
-                        dt1 = objCommon.GetDataTable("GET_Common", nv1);
-                        ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
-
-
-                        dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                        objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
-                        // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
-
-                        // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
-                    }
-
-
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
-                    nv.Add("@Type", "Chemical");
-                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                    //nv.Add("@WorkOrder", lblwo.Text);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                    nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                    nv.Add("@Comments", txtCComments.Text);
-                    nv.Add("@Method", ddlMethod.SelectedValue);
-                    nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
-
-                    NameValueCollection nvn = new NameValueCollection();
-                    nvn.Add("@LoginID", Session["LoginID"].ToString());
-                    nvn.Add("@SupervisorID", Session["LoginID"].ToString());
-                    nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                    nvn.Add("@TaskName", "Chemical");
-                    nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
-
+                
                 }
-            }
+
+                Response.Redirect(String.Format("~/ChemicalStart.aspx?&CCode={0}", ChemicalCode));
 
 
-            Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}", ChemicalCode));
+             
 
         }
 
@@ -2540,8 +2528,14 @@ namespace Evo
 
             string Batchlocation = "";
             int FertilizationCode = 0;
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv14 = new NameValueCollection();
+            NameValueCollection nvimg = new NameValueCollection();
+            nv14.Add("@Mode", "12");
+            dt1 = objCommon.GetDataTable("GET_Common", nv14);
 
 
+            FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -2549,30 +2543,12 @@ namespace Evo
                 {
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
-                    NameValueCollection nv5 = new NameValueCollection();
-                    nv5.Add("@Mode", "1");
-                    nv5.Add("@Batchlocation", Batchlocation);
-                    DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
+                   
 
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
+                    dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-                        FertilizationCode = Convert.ToInt32(dt.Rows[0]["FertilizationCode"]);
-                    }
-                    else
-                    {
-                        dtTrays.Clear();
-                        DataTable dt1 = new DataTable();
-                        NameValueCollection nv14 = new NameValueCollection();
-                        NameValueCollection nvimg = new NameValueCollection();
-                        nv14.Add("@Mode", "12");
-                        dt1 = objCommon.GetDataTable("GET_Common", nv14);
-                        FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
-
-                        dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
-
-                        objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
-                    }
+                     objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                    
 
                     long result2 = 0;
                     NameValueCollection nv4 = new NameValueCollection();
@@ -2603,9 +2579,11 @@ namespace Evo
                     var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
                 }
-            }
 
-            Response.Redirect(String.Format("~/SprayTaskReq.aspx?FertilizationCode={0}", FertilizationCode));
+           
+        
+            }
+            Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?&FCode={0}", FertilizationCode));
 
         }
 

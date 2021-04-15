@@ -23,13 +23,13 @@ namespace Evo
             }
         }
 
-        private string JobCode
+        private string benchLoc
         {
             get
             {
-                if (Request.QueryString["jobId"] != null)
+                if (Request.QueryString["benchLoc"] != null)
                 {
-                    return Request.QueryString["jobId"].ToString();
+                    return Request.QueryString["benchLoc"].ToString();
                 }
                 return "";
             }
@@ -43,7 +43,7 @@ namespace Evo
 
 
 
-private string wo
+        private string wo
         {
             get
             {
@@ -69,14 +69,14 @@ private string wo
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
-            //foreach (GridViewRow row in gvGerm.Rows)
-            //{
-            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
-            //    if (checkJob == JobCode)
-            //    {
-            //        row.CssClass = "highlighted";
-            //    }
-            //}
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lblGreenHouseID") as Label).Text;
+                if (checkJob == benchLoc)
+                {
+                    row.CssClass = "highlighted";
+                }
+            }
         }
 
 

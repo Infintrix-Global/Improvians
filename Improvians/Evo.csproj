@@ -197,6 +197,7 @@
     <Content Include="Admin\ViewEmployee.aspx" />
     <Content Include="ChemicalJobBuildUp.aspx" />
     <Content Include="ChemicalReqManual.aspx" />
+    <Content Include="ChemicalStart.aspx" />
     <Content Include="ChemicalTaskCompletion.aspx" />
     <Content Include="ChemicalRequestForm.aspx" />
     <Content Include="ChemicalTaskRequest.aspx" />
@@ -210,6 +211,7 @@
     <Content Include="css\custom.css" />
     <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="FertilizerTaskStart.aspx" />
     <Content Include="GeneralTaskRequestForm.aspx" />
     <Content Include="DumpRequestForm.aspx" />
     <Content Include="GeneralTaskCompletionForm.aspx" />
@@ -493,6 +495,13 @@
     <Compile Include="ChemicalReqManual.aspx.designer.cs">
       <DependentUpon>ChemicalReqManual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChemicalStart.aspx.cs">
+      <DependentUpon>ChemicalStart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChemicalStart.aspx.designer.cs">
+      <DependentUpon>ChemicalStart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChemicalTaskCompletion.aspx.cs">
       <DependentUpon>ChemicalTaskCompletion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -550,6 +559,13 @@
     </Compile>
     <Compile Include="DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FertilizerTaskStart.aspx.cs">
+      <DependentUpon>FertilizerTaskStart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FertilizerTaskStart.aspx.designer.cs">
+      <DependentUpon>FertilizerTaskStart.aspx</DependentUpon>
     </Compile>
     <Compile Include="GeneralTaskRequestForm.aspx.cs">
       <DependentUpon>GeneralTaskRequestForm.aspx</DependentUpon>

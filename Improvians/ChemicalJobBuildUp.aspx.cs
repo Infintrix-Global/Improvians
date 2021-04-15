@@ -32,6 +32,13 @@ namespace Evo
                     Bench = Request.QueryString["Bench"].ToString();
                 }
 
+
+
+                if (Request.QueryString["Start"] != null)
+                {
+                    StartButton = Request.QueryString["Start"].ToString();
+                }
+
                 if (Request.QueryString["jobCode"] != null)
                 {
                     JobCode = Request.QueryString["jobCode"].ToString();
@@ -140,6 +147,23 @@ namespace Evo
                 ViewState["JobCode"] = value;
             }
         }
+
+        private string StartButton
+        {
+            get
+            {
+                if (ViewState["StartButton"] != null)
+                {
+                    return (string)ViewState["StartButton"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["StartButton"] = value;
+            }
+        }
+
 
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -386,7 +410,7 @@ namespace Evo
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
 
-           // dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
+            // dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
 
             if (Session["Role"].ToString() == "12")
             {
@@ -399,7 +423,7 @@ namespace Evo
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
-         //   Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
+            //   Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
             Jid = dt.Rows[0]["Jid"].ToString();
 
             decimal tray = 0;
@@ -470,7 +494,7 @@ namespace Evo
                 long result = 0;
                 long Mresult = 0;
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+             
                 nv.Add("@Type", "Chemical");
                 nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
                 nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
@@ -481,10 +505,30 @@ namespace Evo
                 nv.Add("@Comments", txtComments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
                 nv.Add("@Jid", Jid);
-                result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
+
+
+                if (StartButton == "start")
+                {
+                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTaskStart", nv);
+                }
+                else
+                {
+                    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
+                }
+            
+
+
+
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
+
+
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
+
+
+
 
                 NameValueCollection nvn = new NameValueCollection();
                 nvn.Add("@LoginID", Session["LoginID"].ToString());
@@ -522,8 +566,8 @@ namespace Evo
                     nv.Add("@ChemicalCode", ChemicalCode.ToString());
                     nv.Add("@ChemicalDate", txtDate.Text);
                     nv.Add("@Comments", txtComments.Text);
-                    nv.Add("@Method",ddlMethod.SelectedValue);
-                     
+                    nv.Add("@Method", ddlMethod.SelectedValue);
+
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
                 }
                 else
@@ -539,14 +583,26 @@ namespace Evo
                     nv.Add("@ChemicalCode", ChemicalCode.ToString());
                     nv.Add("@ChemicalDate", txtDate.Text);
                     nv.Add("@Jid", Jid);
-                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
+
+
+                    if (StartButton == "start")
+                    {
+                        nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                        result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTaskStart", nv);
+                    }
+                    else
+                    {
+                        nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                        result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
+                    }
+
                 }
-                //  }
+
 
             }
 
-            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text,txtTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtTrays,ddlFertilizer.SelectedValue, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
+            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
+            objTask.AddChemicalRequestDetails(dtTrays, ddlFertilizer.SelectedValue, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
 
             string url = "";
             if (Session["Role"].ToString() == "1")
@@ -558,7 +614,7 @@ namespace Evo
                 url = "MyTaskAssistantGrower.aspx";
             }
             string message = "Assignment Successful";
-          //  string url = "MyTaskGrower.aspx";
+            //  string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -578,10 +634,10 @@ namespace Evo
 
         public void Clear()
         {
-           
+
             txtSQFT.Text = "";
             txtTrays.Text = "";
-         
+
             BindFertilizer();
             dtTrays.Clear();
         }

@@ -31,12 +31,16 @@ namespace Evo
                     Bench = Request.QueryString["Bench"].ToString();
                 }
 
+              
+
                 if (Request.QueryString["jobCode"] != null)
                 {
                     JobCode = Request.QueryString["jobCode"].ToString();
                 }
+
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
+
                 BindGridFerReq();
                 BindGridFerDetails("'" + Bench + "'");
 
@@ -44,6 +48,22 @@ namespace Evo
                 BindFertilizer();
                 BindGridFerReqView(Request.QueryString["FCode"].ToString());
                 BindSQFTofBench("'" + Bench + "'");
+            }
+        }
+
+        private string StartButton
+        {
+            get
+            {
+                if (ViewState["StartButton"] != null)
+                {
+                    return (string)ViewState["StartButton"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["StartButton"] = value;
             }
         }
 
@@ -386,7 +406,7 @@ namespace Evo
             {
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
             //    Quantity
-                  txtQty.Text= dt.Rows[0]["Quantity"].ToString();
+                txtQty.Text= dt.Rows[0]["Quantity"].ToString();
             }
         }
 
@@ -451,6 +471,7 @@ namespace Evo
                 //}
 
             }
+
             txtTrays.Text = tray.ToString();
         }
 
@@ -489,7 +510,11 @@ namespace Evo
                 nv.Add("@FertilizationCode", FertilizationCode.ToString());
                 nv.Add("@FertilizationDate", txtDate.Text);
                 nv.Add("@Jid",Jid);
-                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+            
+                  result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+
+                
+
                 NameValueCollection nv123 = new NameValueCollection();
                 nv123.Add("@Jid", Jid);
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
@@ -543,7 +568,12 @@ namespace Evo
                     nv.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv.Add("@FertilizationDate", txtDate.Text);
                     nv.Add("@Jid", Jid);
-                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+               
+                   
+                     nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+
+                   
                 }
                 //  }
 

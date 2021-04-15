@@ -84,7 +84,7 @@
                     </a>
 
 
-                    <div class="dropdown alert__dropdown ml-auto">
+                    <div class="dropdown alert__dropdown ml-auto" id="notificationDiv1" runat="server">
                         <div class="dropdown-toggle" data-display="static" id="alert__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-bell"></i>
                             <%-- <span class="alert__badge">--%>
