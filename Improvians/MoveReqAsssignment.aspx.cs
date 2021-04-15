@@ -84,10 +84,10 @@ namespace Evo
 
             if (p != 1)
             {
-                highlight();
+                highlight(dt.Rows.Count);
             }
         }
-        private void highlight()
+        private void highlight(int limit)
         {
             var i = gvFer.Rows.Count;
             bool check = false;
@@ -101,11 +101,11 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check)
+                if (i == 0 && !check && limit>= 20)
                 {
                     gvFer.PageIndex++;
                     gvFer.DataBind();
-                    highlight();
+                    highlight((limit - 20));
                 }
             }
         }
