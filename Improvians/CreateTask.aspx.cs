@@ -1681,14 +1681,68 @@ namespace Evo
 
         }
 
-        protected void btnCropHealthSubmit_Click(object sender, EventArgs e)
+
+        public void CropeSubmit(string Assigned)
         {
 
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Aid", Assigned);
+            dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
+
+
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", Assigned);
+
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChId", "0");
+                    nv.Add("@Comments", txtCommentsDump.Text.Trim());
+                    nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
+                    nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
+                    nv.Add("@CropDate", txtDumpDate.Text);
+                    nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    result = objCommon.GetDataExecuteScaler("SP_AddCropReportRequestManuaCreateTask", nv);
+
+                }
+            }
+
+
+
+            string message = "Assignment Successful";
+            string url = "CreateTask.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
+
+        protected void btnCropHealthSubmit_Click(object sender, EventArgs e)
+        {
+            CropeSubmit(ddlCropHealthAssignment.SelectedValue);
         }
 
         protected void btnCropHealthSave_Click(object sender, EventArgs e)
         {
-
+            CropeSubmit(Session["LoginID"].ToString());
         }
 
         protected void btnCropHealthStart_Click(object sender, EventArgs e)
@@ -2591,10 +2645,13 @@ namespace Evo
                 {
                     BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
                     JobCode = (row.FindControl("lblID") as Label).Text;
+                   
                     c = c + 1;
                     x += "'" + BatchLocd + "',";
 
                 }
+
+
             }
 
 
