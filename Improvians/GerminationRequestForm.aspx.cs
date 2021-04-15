@@ -30,7 +30,7 @@ namespace Evo
                 Bindcname();
                 //BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode("0");
-                BindGridGerm(JobCode);
+                BindGridGerm(JobCode,0);
                 BindSupervisorList();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
@@ -43,6 +43,23 @@ namespace Evo
                 if (Request.QueryString["jobId"] != null)
                 {
                     return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
                 }
                 return "";
             }
@@ -103,24 +120,24 @@ namespace Evo
         //}
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm("0");
+            BindGridGerm("0",1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue,1);
         }
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm("0");
+            BindGridGerm("0",1);
         }
 
         protected void RadioButtonListF_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm("0");
+            BindGridGerm("0",1);
         }
 
-        public void BindGridGerm(string JobCode)
+        public void BindGridGerm(string JobCode, int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -152,15 +169,43 @@ namespace Evo
             gvGerm.DataBind();
 
 
+            //foreach (GridViewRow row in gvGerm.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+
+            if (p != 1)
+            {
+                highlight();
+            }
+
+
+        }
+        private void highlight()
+        {
+            var i = gvGerm.Rows.Count;
+            bool check = false;
             foreach (GridViewRow row in gvGerm.Rows)
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
-                if (checkJob == JobCode)
+                var checklocation = (row.FindControl("lblBenchLocation") as Label).Text;
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
                 {
                     row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check)
+                {
+                    gvGerm.PageIndex++;
+                    gvGerm.DataBind();
+                    highlight();
                 }
             }
-
         }
         public void BindSupervisorList()
         {
@@ -242,7 +287,7 @@ namespace Evo
                 nv.Add("@GTID", GTID.ToString());
                 result = objCommon.GetDataInsertORUpdate("SP_DismissGerminationRequest", nv);
 
-                BindGridGerm("0");
+                BindGridGerm("0",1);
             }
             if (e.CommandName == "Reschedule")
             {
@@ -267,7 +312,7 @@ namespace Evo
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtNewDate.Focus();
-                BindGridGerm("0");
+                BindGridGerm("0",1);
             }
            
             if(e.CommandName== "GStart")
@@ -417,7 +462,7 @@ namespace Evo
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridGerm("0");
+            BindGridGerm("0",1);
         }
 
         //protected void radweek_SelectedIndexChanged(object sender, EventArgs e)
@@ -451,7 +496,7 @@ namespace Evo
             Bindcname();            
          
             BindJobCode("0");
-            BindGridGerm("0");
+            BindGridGerm("0",1);
 
         }
 
@@ -496,7 +541,7 @@ namespace Evo
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue,1);
         }
 
       
@@ -505,7 +550,7 @@ namespace Evo
         {
             txtFromDate.Text = "";
             txtToDate.Text = "";
-            BindGridGerm(txtSearchJobNo.Text);
+            BindGridGerm(txtSearchJobNo.Text,1);
         }
 
         protected void txtBatchLocation_TextChanged(object sender, EventArgs e)
@@ -513,7 +558,7 @@ namespace Evo
             txtFromDate.Text = "";
             txtToDate.Text = "";
             BindJobCode(txtBatchLocation.Text);
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue,1);
         }
 
 

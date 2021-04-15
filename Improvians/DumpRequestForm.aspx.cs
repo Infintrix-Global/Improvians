@@ -20,7 +20,7 @@ namespace Evo
                 Bindcname();
                 BindJobCode();
                 // BindFacility();
-                BindGridPlantReady();
+                BindGridPlantReady(0);
                 BindSupervisorList();
             }
         }
@@ -42,6 +42,24 @@ namespace Evo
             }
         }
 
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
         private string wo
         {
             get
@@ -58,7 +76,7 @@ namespace Evo
             }
         }
 
-        public void BindGridPlantReady()
+        public void BindGridPlantReady(int p)
         {
 
             DataTable dt = new DataTable();
@@ -80,16 +98,44 @@ namespace Evo
             gvPlantReady.DataBind();
 
 
-            foreach (GridViewRow row in gvPlantReady.Rows)
+            //foreach (GridViewRow row in gvPlantReady.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+
+
+            if (p != 1)
             {
-                var checkJob = (row.FindControl("lbljobID") as Label).Text;
-                if (checkJob == JobCode)
-                {
-                    row.CssClass = "highlighted";
-                }
+                highlight();
             }
 
 
+        }
+        private void highlight()
+        {
+            var i = gvPlantReady.Rows.Count;
+            bool check = false;
+            foreach (GridViewRow row in gvPlantReady.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                var checklocation = (row.FindControl("lblBenchLoc") as Label).Text;
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
+                {
+                    row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check)
+                {
+                    gvPlantReady.PageIndex++;
+                    gvPlantReady.DataBind();
+                    highlight();
+                }
+            }
         }
         public void BindSupervisorList()
         {
@@ -187,17 +233,17 @@ namespace Evo
         //}
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridPlantReady();
+            BindGridPlantReady(1);
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridPlantReady();
+            BindGridPlantReady(1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridPlantReady();
+            BindGridPlantReady(1);
         }
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
@@ -205,7 +251,7 @@ namespace Evo
             Bindcname();
             BindJobCode();
 
-            BindGridPlantReady();
+            BindGridPlantReady(1);
         }
         protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -239,7 +285,7 @@ namespace Evo
                 string ChId = "";
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string Did = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
-                //  ChId = gvDump.DataKeys[rowIndex].Values[1].ToString();
+                //  ChId = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
 
                 if (ChId == "")
                 {
@@ -357,7 +403,7 @@ namespace Evo
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPlantReady.PageIndex = e.NewPageIndex;
-            BindGridPlantReady();
+            BindGridPlantReady(1);
         }
 
 

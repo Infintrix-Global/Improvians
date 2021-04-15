@@ -27,7 +27,7 @@ namespace Evo
 
                 BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode(ddlBenchLocation.SelectedValue);
-                BindGridIrrigation();
+                BindGridIrrigation(0);
                 BindSupervisorList();
             }
         }
@@ -48,6 +48,22 @@ namespace Evo
             }
         }
 
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
         private string wo
         {
             get
@@ -106,21 +122,21 @@ namespace Evo
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridIrrigation();
+            BindGridIrrigation(1);
 
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
 
-        public void BindGridIrrigation()
+        public void BindGridIrrigation(int p)
         {
 
             DataTable dt = new DataTable();
@@ -172,12 +188,40 @@ namespace Evo
             GridIrrigation.DataBind();
 
 
+            //foreach (GridViewRow row in GridIrrigation.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+            if (p != 1)
+            {
+                highlight();
+            }
+
+
+        }
+        private void highlight()
+        {
+            var i = GridIrrigation.Rows.Count;
+            bool check = false;
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
-                if (checkJob == JobCode)
+                var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
                 {
                     row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check)
+                {
+                    GridIrrigation.PageIndex++;
+                    GridIrrigation.DataBind();
+                    highlight();
                 }
             }
         }
@@ -225,7 +269,7 @@ namespace Evo
             Bindcname();           
             BindBenchLocation(Session["Facility"].ToString());
             BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -411,7 +455,7 @@ namespace Evo
         protected void GridIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridIrrigation.PageIndex = e.NewPageIndex;
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void btnAssign_Click(object sender, EventArgs e)
@@ -457,12 +501,12 @@ namespace Evo
 
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void GridIrrigation_RowDataBound(object sender, GridViewRowEventArgs e)
