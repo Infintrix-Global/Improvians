@@ -212,6 +212,7 @@
     <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
     <Content Include="FertilizerTaskStart.aspx" />
+    <Content Include="firebase-messaging-sw.js" />
     <Content Include="GeneralTaskRequestForm.aspx" />
     <Content Include="DumpRequestForm.aspx" />
     <Content Include="GeneralTaskCompletionForm.aspx" />
@@ -252,10 +253,12 @@
     <Content Include="images\splash\apple_splash_2048.png" />
     <Content Include="images\splash\apple_splash_640.png" />
     <Content Include="images\splash\apple_splash_750.png" />
+    <Content Include="index.html" />
     <Content Include="IrrigationTaskViewDetails.aspx" />
     <Content Include="JobReport.aspx" />
     <Content Include="JobReports.aspx" />
     <Content Include="js\jquery.uploadify.js" />
+    <Content Include="Message.html" />
     <Content Include="MoveReqAsssignment.aspx" />
     <Content Include="MoveRequestForm.aspx" />
     <Content Include="MovesReqManual.aspx" />
