@@ -198,6 +198,7 @@
     <Content Include="ChemicalJobBuildUp.aspx" />
     <Content Include="ChemicalReqManual.aspx" />
     <Content Include="ChemicalStart.aspx" />
+    <Content Include="ChemicalStart1.aspx" />
     <Content Include="ChemicalTaskCompletion.aspx" />
     <Content Include="ChemicalRequestForm.aspx" />
     <Content Include="ChemicalTaskRequest.aspx" />
@@ -212,6 +213,7 @@
     <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
     <Content Include="FertilizerTaskStart.aspx" />
+    <Content Include="FertilizerTaskStart1.aspx" />
     <Content Include="GeneralTaskRequestForm.aspx" />
     <Content Include="DumpRequestForm.aspx" />
     <Content Include="GeneralTaskCompletionForm.aspx" />
@@ -252,6 +254,8 @@
     <Content Include="images\splash\apple_splash_2048.png" />
     <Content Include="images\splash\apple_splash_640.png" />
     <Content Include="images\splash\apple_splash_750.png" />
+    <Content Include="IrrigationStart.aspx" />
+    <Content Include="IrrigationStart1.aspx" />
     <Content Include="IrrigationTaskViewDetails.aspx" />
     <Content Include="JobReport.aspx" />
     <Content Include="JobReports.aspx" />
@@ -502,6 +506,13 @@
     <Compile Include="ChemicalStart.aspx.designer.cs">
       <DependentUpon>ChemicalStart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChemicalStart1.aspx.cs">
+      <DependentUpon>ChemicalStart1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChemicalStart1.aspx.designer.cs">
+      <DependentUpon>ChemicalStart1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChemicalTaskCompletion.aspx.cs">
       <DependentUpon>ChemicalTaskCompletion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -566,6 +577,13 @@
     </Compile>
     <Compile Include="FertilizerTaskStart.aspx.designer.cs">
       <DependentUpon>FertilizerTaskStart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FertilizerTaskStart1.aspx.cs">
+      <DependentUpon>FertilizerTaskStart1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FertilizerTaskStart1.aspx.designer.cs">
+      <DependentUpon>FertilizerTaskStart1.aspx</DependentUpon>
     </Compile>
     <Compile Include="GeneralTaskRequestForm.aspx.cs">
       <DependentUpon>GeneralTaskRequestForm.aspx</DependentUpon>
@@ -643,6 +661,20 @@
     </Compile>
     <Compile Include="GeneralTaskAssignmentForm.aspx.designer.cs">
       <DependentUpon>GeneralTaskAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationStart.aspx.cs">
+      <DependentUpon>IrrigationStart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationStart.aspx.designer.cs">
+      <DependentUpon>IrrigationStart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IrrigationStart1.aspx.cs">
+      <DependentUpon>IrrigationStart1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IrrigationStart1.aspx.designer.cs">
+      <DependentUpon>IrrigationStart1.aspx</DependentUpon>
     </Compile>
     <Compile Include="IrrigationTaskViewDetails.aspx.cs">
       <DependentUpon>IrrigationTaskViewDetails.aspx</DependentUpon>

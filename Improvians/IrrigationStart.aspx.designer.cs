@@ -11,17 +11,8 @@ namespace Evo
 {
 
 
-    public partial class ChemicalStart1
+    public partial class IrrigationStart1
     {
-
-        /// <summary>
-        /// sc1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager sc1;
 
         /// <summary>
         /// lblbench control.
@@ -42,13 +33,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Label lblmsg;
 
         /// <summary>
-        /// gvFer control.
+        /// GridIrrigation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvFer;
+        protected global::System.Web.UI.WebControls.GridView GridIrrigation;
 
         /// <summary>
         /// RadioBench control.
@@ -141,112 +132,22 @@ namespace Evo
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl userinput;
 
         /// <summary>
-        /// pnlint control.
+        /// txtWaterRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlint;
+        protected global::System.Web.UI.WebControls.TextBox txtWaterRequired;
 
         /// <summary>
-        /// lbltype control.
+        /// txtSprayDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltype;
-
-        /// <summary>
-        /// ddlFertilizer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFertilizer;
-
-        /// <summary>
-        /// ddlMethod control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMethod;
-
-        /// <summary>
-        /// txtDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
-
-        /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
-        /// RequiredFieldValidator7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
-
-        /// <summary>
-        /// lblUnMovedTrays control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUnMovedTrays;
-
-        /// <summary>
-        /// txtTrays control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTrays;
-
-        /// <summary>
-        /// txtSQFT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSQFT;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// RequiredFieldValidator6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.TextBox txtSprayDate;
 
         /// <summary>
         /// txtResetSprayTaskForDays control.
@@ -258,13 +159,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtResetSprayTaskForDays;
 
         /// <summary>
-        /// txtComments control.
+        /// txtNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtComments;
+        protected global::System.Web.UI.WebControls.TextBox txtNotes;
 
         /// <summary>
         /// btnSubmit control.
