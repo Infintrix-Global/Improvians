@@ -1,5 +1,4 @@
-﻿using Evo.Bal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -9,13 +8,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
 namespace Evo
 {
-    public partial class MoveRequestForm : System.Web.UI.Page
+    public partial class CropReportRequestForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
-        BAL_CommonMasters objBAL = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,7 +42,6 @@ namespace Evo
             }
         }
 
-
         private string benchLoc
         {
             get
@@ -62,6 +58,7 @@ namespace Evo
                 // JobCode = value;
             }
         }
+
 
         private string wo
         {
@@ -90,54 +87,61 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
 
-            dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
+            // nv.Add("@Mode", "7");
+            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
-            gvMoveReq.DataSource = dt;
-            gvMoveReq.DataBind();
 
-            //foreach (GridViewRow row in gvMoveReq.Rows)
-            //{
-            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
-            //    if (checkJob == JobCode)
-            //    {
-            //        row.CssClass = "highlighted";
-            //    }
-            //}
+            dt = objCommon.GetDataTable("SP_GetCropReportRequestAssistantGrower", nv);
+
+
+            gvPlantReady.DataSource = dt;
+            gvPlantReady.DataBind();
+
+
+           
 
             if (p != 1)
             {
-                highlight(dt.Rows.Count);
+                highlight();
             }
 
 
         }
-        private void highlight(int limit)
+        private void highlight()
         {
-            var i = gvMoveReq.Rows.Count;
+            var i = gvPlantReady.Rows.Count;
             bool check = false;
-            foreach (GridViewRow row in gvMoveReq.Rows)
+            foreach (GridViewRow row in gvPlantReady.Rows)
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
-                var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var checklocation = (row.FindControl("lblBenchLoc") as Label).Text;
                 i--;
                 if (checkJob == JobCode && checklocation == benchLoc)
                 {
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit >= 20)
+                if (i == 0 && !check)
                 {
-                    gvMoveReq.PageIndex++;
-                    gvMoveReq.DataBind();
-                    highlight((limit - 20));
+                    gvPlantReady.PageIndex++;
+                    gvPlantReady.DataBind();
+                    highlight();
                 }
             }
         }
         public void BindSupervisorList()
         {
-
+            //NameValueCollection nv = new NameValueCollection();
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            //ddlSupervisor.DataTextField = "EmployeeName";
+            //ddlSupervisor.DataValueField = "ID";
+            //ddlSupervisor.DataBind();
+            //ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
             NameValueCollection nv = new NameValueCollection();
+            //if (Session["Role"].ToString() == "1")
+            //{
+
             DataTable dt = new DataTable();
 
             if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")
@@ -151,24 +155,25 @@ namespace Evo
             }
             else
             {
-
+                // dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
             }
-            ddlLogisticManager.DataSource = dt;
+
+            ddlCropAssignment.DataSource = dt;
             //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlLogisticManager.DataTextField = "EmployeeName";
-            ddlLogisticManager.DataValueField = "ID";
-            ddlLogisticManager.DataBind();
-            ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlCropAssignment.DataTextField = "EmployeeName";
+            ddlCropAssignment.DataValueField = "ID";
+            ddlCropAssignment.DataBind();
+            ddlCropAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
             //}
             //if (Session["Role"].ToString() == "12")
             //{
-            //    ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+            //    ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
             //    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            //    ddlLogisticManager.DataTextField = "EmployeeName";
-            //    ddlLogisticManager.DataValueField = "ID";
-            //    ddlLogisticManager.DataBind();
-            //    ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
-            //  }
+            //    ddlDumptAssignment.DataTextField = "EmployeeName";
+            //    ddlDumptAssignment.DataValueField = "ID";
+            //    ddlDumptAssignment.DataBind();
+            //    ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
+            //}
         }
         public void Bindcname()
         {
@@ -203,7 +208,7 @@ namespace Evo
 
         }
 
-
+    
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridPlantReady(1);
@@ -223,72 +228,33 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-            BindFacility();
+
             BindGridPlantReady(1);
         }
-
-        public void BindFacility()
-        {
-            ddlToFacility.DataSource = objBAL.GetMainLocation();
-            ddlToFacility.DataTextField = "l1";
-            ddlToFacility.DataValueField = "l1";
-            ddlToFacility.DataBind();
-            ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
-            ddlToFacility.SelectedValue = Session["Facility"].ToString();
-            BindBench_Location();
-        }
-
-        public void BindBench_Location()
-        {
-            //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
-            ddlToGreenHouse.DataSource = objBAL.GetLocation(ddlToFacility.SelectedValue);
-            ddlToGreenHouse.DataTextField = "p2";
-            ddlToGreenHouse.DataValueField = "p2";
-            ddlToGreenHouse.DataBind();
-            ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
-
-
-        }
-
-
-
-        protected void ddlToFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindBench_Location();
-        }
-
-
-        protected void gvMoveReq_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
             {
-
-                BindFacility();
-
                 userinput.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                HiddenFieldDid.Value = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
-                HiddenFieldJid.Value = gvMoveReq.DataKeys[rowIndex].Values[2].ToString();
-                lblJobID.Text = gvMoveReq.DataKeys[rowIndex].Values[3].ToString();
-                lblBenchlocation.Text = gvMoveReq.DataKeys[rowIndex].Values[4].ToString();
-                lblTotalTrays.Text = gvMoveReq.DataKeys[rowIndex].Values[5].ToString();
-                lblDescription.Text = gvMoveReq.DataKeys[rowIndex].Values[6].ToString();
+                HiddenFieldDid.Value = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+                HiddenFieldJid.Value = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
+
+
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@MoveId", HiddenFieldDid.Value);
+                nv.Add("@CropId", HiddenFieldDid.Value);
 
-                dt = objCommon.GetDataTable("SP_GetMOVERequestView", nv);
+                dt = objCommon.GetDataTable("SP_GeCropHealthReportRequestView", nv);
 
                 if (dt != null & dt.Rows.Count > 0)
                 {
-                    BindFacility();
-                    txtMoveComments.Text = dt.Rows[0]["Comments"].ToString();
-                    txtMoveNumberOfTrays.Text = dt.Rows[0]["TraysRequest"].ToString();
-                    txtMoveDate.Text = Convert.ToDateTime(dt.Rows[0]["MoveDate"]).ToString("yyyy-MM-dd");
-                    ddlToFacility.SelectedValue = dt.Rows[0]["FacilityTo"].ToString();
-                    ddlToGreenHouse.SelectedValue = dt.Rows[0]["GrenHouseToRequest"].ToString();
+                    txtCommentsDump.Text = dt.Rows[0]["Comments"].ToString();
+                    txtQuantityofTray.Text = dt.Rows[0]["QuantityOfTray"].ToString();
+                    txtCropDate.Text = Convert.ToDateTime(dt.Rows[0]["CropHealthReportDate"]).ToString("yyyy-MM-dd");
                 }
-                ddlLogisticManager.Focus();
+                //ddlSupervisor.Focus();
+
 
             }
 
@@ -296,8 +262,10 @@ namespace Evo
             {
                 string ChId = "";
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                string Did = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
-                //  ChId = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
+                string Did = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+                string BatchLoc = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
+                string JobCode = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
+                //  ChId = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
 
                 if (ChId == "")
                 {
@@ -310,28 +278,27 @@ namespace Evo
 
 
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@MoveDate", "");
-                nv.Add("@Comments", "");
-                nv.Add("@QuantityOfTray", "");
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@MoveID", Did);
-
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
+                nv.Add("@Comments", "");
+                nv.Add("@CropId", Did);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@QuantityOfTray", "");
+                nv.Add("@CropDate", "");
 
-
-                long result = objCommon.GetDataExecuteScaler("SP_AddMoveTaskAssignment", nv);
+                long result = objCommon.GetDataExecuteScaler("SP_AddCRopeTaskStart", nv);
 
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
+                    Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}}&CropAT={1}", BatchLoc, JobCode, result));
+                  //  Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
                 }
             }
 
         }
 
 
-        protected void btnMoveSubmit_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
@@ -339,44 +306,37 @@ namespace Evo
             //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
             // nv.Add("@WO",wo);
 
+            GridViewRow row = gvPlantReady.Rows[0];
+
+            var txtJobNo = (row.FindControl("lbljobID") as Label).Text;
+            var txtBenchLocation = (row.FindControl("lblBenchLoc") as Label).Text;
+
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Aid", ddlLogisticManager.SelectedValue);
+            nv1.Add("@Aid", ddlCropAssignment.SelectedValue);
             dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
 
-
-
-            nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
-            nv.Add("@MoveNumberOfTrays", txtMoveNumberOfTrays.Text);
-
-            nv.Add("@FromFacility", Session["LoginID"].ToString());
-            nv.Add("@GrowerPutAwayID", "0");
+            nv.Add("@SupervisorID", ddlCropAssignment.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@ToFacility", ddlToFacility.SelectedValue);
-            nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
-
-            nv.Add("@MoveDate", txtMoveDate.Text);
-            nv.Add("@Comments", txtMoveComments.Text);
-            nv.Add("@mvoeId", HiddenFieldDid.Value);
-            nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+            nv.Add("@Did", HiddenFieldDid.Value);
+            nv.Add("@Comments", txtCommentsDump.Text);
+            nv.Add("@wo", "0");
             nv.Add("@ManualID", HiddenFieldJid.Value);
+            nv.Add("@CropDate", txtCropDate.Text);
+            nv.Add("@QuantityOfTray", txtQuantityofTray.Text);
+            nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddMoveRequestASManua", nv);
+            nv.Add("@jobcode", txtJobNo);
+            nv.Add("@GreenHouseID", txtBenchLocation);
 
-            NameValueCollection nvn = new NameValueCollection();
-            nvn.Add("@LoginID", Session["LoginID"].ToString());
-            nvn.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
-            nvn.Add("@Jobcode", lblJobID.Text);
-            nvn.Add("@TaskName", "Move");
-            nvn.Add("@GreenHouseID", ddlToGreenHouse.SelectedValue);
-            var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
+
+            result = objCommon.GetDataInsertORUpdate("SP_AddCropReportManua", nv);
 
 
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-
 
                 string url = "";
                 if (Session["Role"].ToString() == "1")
@@ -388,8 +348,9 @@ namespace Evo
                     url = "MyTaskAssistantGrower.aspx";
                 }
 
+
                 string message = "Assignment Successful";
-                //   string url = "MyTaskAssistantGrower.aspx";
+                //string url = "MyTaskAssistantGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -409,20 +370,27 @@ namespace Evo
 
         public void clear()
         {
+
             //  ddlSupervisor.SelectedIndex = 0;
+
         }
 
-        protected void MoveReset_Click(object sender, EventArgs e)
+        protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
             Response.Redirect("~/MyTaskAssistantGrower.aspx");
         }
 
-        protected void gvMoveReq_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvMoveReq.PageIndex = e.NewPageIndex;
+            gvPlantReady.PageIndex = e.NewPageIndex;
             BindGridPlantReady(1);
         }
+
+
     }
 
 }
+
+
+

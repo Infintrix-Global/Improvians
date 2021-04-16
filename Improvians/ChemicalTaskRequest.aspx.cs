@@ -22,7 +22,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                BindGridSprayReq();
+                BindGridSprayReq(0);
             }
         }
 
@@ -47,7 +47,7 @@ namespace Evo
 
 
 
-        public void BindGridSprayReq()
+        public void BindGridSprayReq(int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -58,15 +58,41 @@ namespace Evo
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
 
+            //foreach (GridViewRow row in gvSpray.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lblGreenHouseID") as Label).Text;
+            //    if (checkJob == benchLoc)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+
+            if (p != 1)
+            {
+               highlight(dt.Rows.Count);
+            }
+        }
+        private void highlight(int limit)
+        {
+            var i = gvSpray.Rows.Count;
+            bool check = false;
             foreach (GridViewRow row in gvSpray.Rows)
             {
-                var checkJob = (row.FindControl("lblGreenHouseID") as Label).Text;
-                if (checkJob == benchLoc)
+                //var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                i--;
+                if (checklocation == benchLoc)
                 {
                     row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check && limit>= 20)
+                {
+                    gvSpray.PageIndex++;
+                    gvSpray.DataBind();
+                    highlight((limit - 20));
                 }
             }
-
         }
 
 
@@ -97,7 +123,7 @@ namespace Evo
         protected void gvSpray_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvSpray.PageIndex = e.NewPageIndex;
-            BindGridSprayReq();
+            BindGridSprayReq(1);
         }
     }
 }

@@ -71,7 +71,7 @@
                         <p>Review and assign irrigation tasks to Greenhouse Supervisor</p>
                     </div>
                 </a>
-                <a href="CropHealthDetails.aspx" class="dashboard__box">
+                <a href="CropReportRequestForm.aspx" class="dashboard__box">
                     <div class="dashboard__box-img">
                         <img src="./images/dashboard_crop-health-report.png" width="137" height="131" alt="Crop Health Report" />
                     </div>

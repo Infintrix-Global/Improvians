@@ -18,7 +18,7 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
-                BindGridIrrigation();
+                BindGridIrrigation(0);
 
             }
         }
@@ -59,7 +59,7 @@ namespace Evo
             }
         }
 
-        public void BindGridIrrigation()
+        public void BindGridIrrigation(int p)
         {
 
             DataTable dt = new DataTable();
@@ -69,12 +69,37 @@ namespace Evo
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
-            foreach (GridViewRow row in gvGerm.Rows)
+            //foreach (GridViewRow row in gvGerm.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lblGreenHouseID") as Label).Text;
+            //    if (checkJob == benchLoc)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+            if (p != 1)
             {
-                var checkJob = (row.FindControl("lblGreenHouseID") as Label).Text;
-                if (checkJob == benchLoc)
+                highlight(dt.Rows.Count);
+            }
+        }
+        private void highlight(int limit)
+        {
+            var i = gvGerm.Rows.Count;
+            bool check = false;
+            foreach (GridViewRow row in gvGerm.Rows)
+            {               
+                var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                i--;
+                if (checklocation == benchLoc)
                 {
                     row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check && limit >= 20)
+                {
+                    gvGerm.PageIndex++;
+                    gvGerm.DataBind();
+                    highlight((limit - 20));
                 }
             }
         }
@@ -82,19 +107,19 @@ namespace Evo
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             Bindcname();
             BindJobCode();
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
         public void Bindcname()
         {
@@ -192,7 +217,7 @@ namespace Evo
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridIrrigation();
+            BindGridIrrigation(1);
         }
 
 

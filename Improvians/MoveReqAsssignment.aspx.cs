@@ -20,7 +20,7 @@ namespace Evo
             {
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
-                BindGridMoveReq();
+                BindGridMoveReq(0);
             }
         }
 
@@ -41,10 +41,25 @@ namespace Evo
             }
         }
 
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
 
 
-
-        public void BindGridMoveReq()
+        public void BindGridMoveReq(int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -58,15 +73,41 @@ namespace Evo
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
+            //foreach (GridViewRow row in gvFer.Rows)
+            //{
+            //    var checkJob = (row.FindControl("lblID") as Label).Text;
+            //    if (checkJob == JobCode)
+            //    {
+            //        row.CssClass = "highlighted";
+            //    }
+            //}
+
+            if (p != 1)
+            {
+                highlight(dt.Rows.Count);
+            }
+        }
+        private void highlight(int limit)
+        {
+            var i = gvFer.Rows.Count;
+            bool check = false;
             foreach (GridViewRow row in gvFer.Rows)
             {
                 var checkJob = (row.FindControl("lblID") as Label).Text;
-                if (checkJob == JobCode)
+                var checklocation = (row.FindControl("lblGreenHouse") as Label).Text;
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
                 {
                     row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check && limit>= 20)
+                {
+                    gvFer.PageIndex++;
+                    gvFer.DataBind();
+                    highlight((limit - 20));
                 }
             }
-
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
