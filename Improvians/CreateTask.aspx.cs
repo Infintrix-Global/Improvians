@@ -2554,6 +2554,7 @@ namespace Evo
                     c = c + 1;
                     x += "'" + BatchLocd + "',";
 
+                  
                 }
             }
 
@@ -2581,7 +2582,6 @@ namespace Evo
                         JobCOde = (row.FindControl("lblID") as Label).Text;
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
                         objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
-
 
 
 
