@@ -2342,12 +2342,11 @@ namespace Evo
                 }
             }
 
-            NameValueCollection nv5 = new NameValueCollection();
-            nv5.Add("@MTAID", result.ToString());
-            DataTable dt = objCommon.GetDataTable("SP_GetMoveTaskAssignmentSelect", nv5);
+            //NameValueCollection nv5 = new NameValueCollection();
+            //nv5.Add("@MTAID", result.ToString());
+            //DataTable dt = objCommon.GetDataTable("SP_GetMoveTaskAssignmentSelect", nv5);
 
-            Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&DrId={1}", result.ToString(), dt.Rows[0]["MoveID"].ToString()));
-
+            Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}", result));
 
 
         }

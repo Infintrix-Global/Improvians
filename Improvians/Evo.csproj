@@ -263,6 +263,7 @@
     <Content Include="JobReport.aspx" />
     <Content Include="JobReports.aspx" />
     <Content Include="js\jquery.uploadify.js" />
+    <Content Include="MoveCompletionStart.aspx" />
     <Content Include="MoveReqAsssignment.aspx" />
     <Content Include="MoveRequestForm.aspx" />
     <Content Include="MovesReqManual.aspx" />
@@ -359,6 +360,7 @@
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="MyTaskSiteMoveTeam.aspx" />
     <Content Include="MyTaskSpray.aspx" />
+    <Content Include="offline-fallback.html" />
     <Content Include="PlantReadyAssignmentForm.aspx" />
     <Content Include="PlantReadyCompletionForm.aspx" />
     <Content Include="PlantReadyReqManual.aspx" />
@@ -706,6 +708,13 @@
     </Compile>
     <Compile Include="JobReports.aspx.designer.cs">
       <DependentUpon>JobReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoveCompletionStart.aspx.cs">
+      <DependentUpon>MoveCompletionStart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoveCompletionStart.aspx.designer.cs">
+      <DependentUpon>MoveCompletionStart.aspx</DependentUpon>
     </Compile>
     <Compile Include="MoveReqAsssignment.aspx.cs">
       <DependentUpon>MoveReqAsssignment.aspx</DependentUpon>

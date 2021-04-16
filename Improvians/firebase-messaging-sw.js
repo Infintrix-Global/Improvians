@@ -38,9 +38,9 @@ messaging.setBackgroundMessageHandler(function(payload) {
 messaging.onBackgroundMessage((payload) => {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
     // Customize notification here
-    const notificationTitle = 'Background Message Title';
+    const notificationTitle = 'New Task Assigned';
     const notificationOptions = {
-        body: 'Background Message body.',
+        body: 'New Task Assigned.',
         icon: '/firebase-logo.png'
     };
 
