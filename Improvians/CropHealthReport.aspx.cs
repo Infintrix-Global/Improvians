@@ -545,7 +545,7 @@ namespace Evo
 
         }
 
-        protected void btnFSubmit_Click(object sender, EventArgs e)
+        public void SubmitFertilization(string Assign)
         {
             string Batchlocation = "";
             int FertilizationCode = 0;
@@ -562,7 +562,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-             
+
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -605,7 +605,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                      
+
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
@@ -650,8 +650,8 @@ namespace Evo
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
 
 
-              //  NameValueCollection nv4 = new NameValueCollection();
-                nv4.Add("@SupervisorID", ddlFertilizationSupervisor.SelectedValue);
+                //  NameValueCollection nv4 = new NameValueCollection();
+                nv4.Add("@SupervisorID", Assign);
                 nv4.Add("@Type", "Fertilizer");
                 nv4.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv4.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
@@ -673,7 +673,7 @@ namespace Evo
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation,"","","", txtResetSprayTaskForDays.Text,txtcomments.Text);
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtcomments.Text);
             long result16 = 0;
             NameValueCollection nv11 = new NameValueCollection();
             nv11.Add("@Chid", Chid);
@@ -691,9 +691,28 @@ namespace Evo
 
         }
 
+        protected void btnFSubmit_Click(object sender, EventArgs e)
+        {
+            SubmitFertilization(ddlFertilizationSupervisor.SelectedValue);
+        }
+
+        protected void btnSaveFLSubmit_Click(object sender, EventArgs e)
+        {
+            SubmitFertilization(Session["LoginID"].ToString());
+        }
+
+        protected void btnBSaveSubmit_Click(object sender, EventArgs e)
+        {
+            SubmitGermination(Session["LoginID"].ToString());
+        }
         protected void btngerminationSumit_Click(object sender, EventArgs e)
         {
+            SubmitGermination(ddlgerminationSupervisor.SelectedValue);
+        }
 
+
+        public void SubmitGermination(string Assign)
+        {
             if (Chid == "")
             {
                 long result = 0;
@@ -701,16 +720,6 @@ namespace Evo
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
 
-
-                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                //{
-                //    folderPath = Server.MapPath("~/images/");
-                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                //}
-                //else
-                //{
-                //    folderPath = "";
-                //}
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -756,7 +765,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        
+
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
@@ -790,12 +799,12 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                nv.Add("@SupervisorID", ddlgerminationSupervisor.SelectedValue);
+                nv.Add("@SupervisorID", Assign);
                 nv.Add("@InspectionDueDate", txtGerDate.Text);
                 nv.Add("@TraysInspected", txtTGerTrays.Text);
                 nv.Add("@Chid", Chid);
                 nv.Add("@LoginId", Session["LoginID"].ToString());
-                nv.Add("@Comments",txtcomments.Text);
+                nv.Add("@Comments", txtcomments.Text);
 
                 result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
             }
@@ -825,6 +834,7 @@ namespace Evo
                 //  lblmsg.Text = "Assignment Not Successful";
             }
         }
+
 
         protected void btngerminationReset_Click(object sender, EventArgs e)
         {
@@ -901,10 +911,16 @@ namespace Evo
 
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
         {
-
+            // 
+            SubmitIrrigation(ddlirrigationSupervisor.SelectedValue);
+        }
+        protected void btnSaveirrigation_Click(object sender, EventArgs e)
+        {
+            SubmitIrrigation(Session["LoginID"].ToString());
         }
 
-        protected void btnirrigationSubmit_Click(object sender, EventArgs e)
+
+        public void SubmitIrrigation(string Assign)
         {
             int IrrigationCode = 0;
             DataTable dt = new DataTable();
@@ -921,15 +937,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                //{
-                //    folderPath = Server.MapPath("~/images/");
-                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                //}
-                //else
-                //{
-                //    folderPath = "";
-                //}
+             
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -1001,11 +1009,11 @@ namespace Evo
             {
 
                 long result16 = 0;
-             
+
 
 
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
+                nv.Add("@SupervisorID", Assign);
 
                 nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
@@ -1051,7 +1059,12 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
 
-        protected void btnplant_readySubmit_Click(object sender, EventArgs e)
+        protected void btnirrigationSubmit_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        public void SubmitPlantReady(string Assign)
         {
             int IrrigationCode = 0;
             DataTable dt = new DataTable();
@@ -1146,7 +1159,7 @@ namespace Evo
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlplant_readySupervisor.SelectedValue);
+                nv.Add("@SupervisorID", Assign);
                 nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
                 nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
@@ -1185,7 +1198,15 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
+        protected void btnplant_readySubmit_Click(object sender, EventArgs e)
+        {
+            SubmitPlantReady(ddlplant_readySupervisor.SelectedValue);
+        }
 
+        protected void btnSavePlantReady_Click(object sender, EventArgs e)
+        {
+            SubmitPlantReady(Session["LoginID"].ToString());
+        }
         protected void btnplant_readyReset_Click(object sender, EventArgs e)
         {
 
@@ -1227,10 +1248,8 @@ namespace Evo
         }
 
        
-
-        protected void btngeneraltasksave_Click(object sender, EventArgs e)
+        public void Submitgeneraltask(string Assign)
         {
-
             if (Chid == "")
             {
                 long result = 0;
@@ -1313,13 +1332,13 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                nv.Add("@SupervisorID", Session["SelectedAssignment"].ToString());
+                nv.Add("@SupervisorID", Assign);
 
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text);
                 nv.Add("@MoveTo", txtTo.Text);
                 nv.Add("@date", txtgeneralDate.Text);
-                nv.Add("@RoleId",Session["Role"].ToString());
+                nv.Add("@RoleId", Session["Role"].ToString());
                 nv.Add("@Comments", txtgeneralComment.Text);
                 nv.Add("@Chid", Chid);
                 nv.Add("@LoginId", Session["LoginID"].ToString());
@@ -1377,10 +1396,21 @@ namespace Evo
                 //  lblmsg.Text = "Assignment Not Successful";
             }
 
+        }
+
+        protected void btnSaveGeneral_Click(object sender, EventArgs e)
+        {
+            Submitgeneraltask(Session["SelectedAssignment"].ToString());
+
+        
+        }
+        protected void btngeneraltasksave_Click(object sender, EventArgs e)
+        {
+            Submitgeneraltask(Session["LoginID"].ToString());
 
         }
 
-        protected void btnChemicalSubmit_Click(object sender, EventArgs e)
+        public void SubmitChemical(string Assign)
         {
             string Batchlocation = "";
             int ChemicalCode = 0;
@@ -1397,7 +1427,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                
+
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -1471,10 +1501,10 @@ namespace Evo
 
 
                 long result3 = 0;
-              
+
 
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
+                nv.Add("@SupervisorID", Assign);
                 nv.Add("@Type", "Chemical");
                 nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
@@ -1492,7 +1522,7 @@ namespace Evo
                 nv.Add("@Method", ddlMethod.SelectedValue);
                 nv.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
-             
+
                 result3 = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
             }
@@ -1515,6 +1545,18 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
         }
+
+        protected void btnChemicalSubmit_Click(object sender, EventArgs e)
+        {
+            SubmitChemical(ddlChemical_supervisor.SelectedValue);
+        }
+
+
+        protected void btnChemicalSFLSubmit_Click(object sender, EventArgs e)
+        {
+            SubmitChemical(Session["LoginID"].ToString());
+        }
+
 
         public void BindFacility()
         {
@@ -1552,6 +1594,16 @@ namespace Evo
 
        
         protected void btnMoveSubmit_Click(object sender, EventArgs e)
+        {
+            MoveSubmit(ddlLogisticManager.SelectedValue);
+        }
+
+        protected void btnSaveMove_Click(object sender, EventArgs e)
+        {
+            MoveSubmit(Session["LoginID"].ToString());
+        }
+
+        public void MoveSubmit(string Assign)
         {
             if (Chid == "")
             {
@@ -1630,7 +1682,7 @@ namespace Evo
             foreach (GridViewRow row in GridViewView.Rows)
             {
                 NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
+                nv.Add("@SupervisorID", Assign);
                 nv.Add("@WorkOrder", "0");
                 nv.Add("@GrowerPutAwayID", "0");
 
@@ -1648,8 +1700,8 @@ namespace Evo
                 nv.Add("@TraySize", (row.FindControl("lblTraySiz1") as Label).Text);
                 nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
                 nv.Add("@ChId", Chid);
-                nv.Add("@Comments",txtcomments.Text.Trim());
-              
+                nv.Add("@Comments", txtcomments.Text.Trim());
+
                 nv.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
 
                 nv.Add("@FormBanchlocation", (row.FindControl("lblGreenHouse1") as Label).Text);
@@ -1685,50 +1737,21 @@ namespace Evo
             }
         }
 
+
         protected void MoveReset_Click(object sender, EventArgs e)
         {
            
         }
 
-      
+    
+
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
             Clear();
         }
 
-        protected void btnBSaveSubmit_Click(object sender, EventArgs e)
-        {
+      
 
-        }
-
-        protected void btnSaveFLSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnChemicalSFLSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnSaveirrigation_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnSavePlantReady_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnSaveMove_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnSaveGeneral_Click(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }
