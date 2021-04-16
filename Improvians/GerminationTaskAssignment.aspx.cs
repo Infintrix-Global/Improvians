@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evo.BAL_Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -41,7 +42,7 @@ namespace Evo
 
             if (dt1 != null && dt1.Rows.Count > 0)
             {
-                txtDate.Text =Convert.ToDateTime (dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
+                txtDate.Text = Convert.ToDateTime(dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
                 txtNotes.Text = dt1.Rows[0]["Comments"].ToString();
                 txtTrays.Text = dt1.Rows[0]["#TraysInspected"].ToString();
             }
@@ -59,7 +60,7 @@ namespace Evo
 
             if (dt1 != null && dt1.Rows.Count > 0)
             {
-                PanelCropHealth.Visible =true;
+                PanelCropHealth.Visible = true;
                 gvCropHealth.DataSource = dt1;
                 gvCropHealth.DataBind();
 
@@ -87,9 +88,9 @@ namespace Evo
         public void BindOperatorList()
         {
             NameValueCollection nv = new NameValueCollection();
-           // nv.Add("@RoleID", "3");
+            // nv.Add("@RoleID", "3");
 
-          //  ddlOperator.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv);
+            //  ddlOperator.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv);
             ddlOperator.DataSource = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
             ddlOperator.DataTextField = "EmployeeName";
             ddlOperator.DataValueField = "ID";
@@ -123,6 +124,7 @@ namespace Evo
             {
                 //lblmsg.Text = "Assignment Successful";
                 clear();
+             
                 string message = "Assignment Successful";
                 string url = "MyTaskGreenSupervisorFinal.aspx";
                 string script = "window.onload = function(){ alert('";
@@ -143,7 +145,7 @@ namespace Evo
         {
             ddlOperator.SelectedIndex = 0;
             txtNotes.Text = "";
-           
+
 
         }
         protected void btnReset_Click(object sender, EventArgs e)
@@ -163,9 +165,9 @@ namespace Evo
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                
+
                 Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
-              
+
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
                 lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text + "&GermNo=" + lblGermNo.Text;
                 //  lnkJobID.NavigateUrl(String.Format("~/CropHealthReport.aspx?Chid={0}", Chid));

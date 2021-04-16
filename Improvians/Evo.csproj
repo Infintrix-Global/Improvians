@@ -360,6 +360,7 @@
     <Content Include="MyTaskShippingCoordinator.aspx" />
     <Content Include="MyTaskSiteMoveTeam.aspx" />
     <Content Include="MyTaskSpray.aspx" />
+    <Content Include="offline-fallback.html" />
     <Content Include="PlantReadyAssignmentForm.aspx" />
     <Content Include="PlantReadyCompletionForm.aspx" />
     <Content Include="PlantReadyReqManual.aspx" />
