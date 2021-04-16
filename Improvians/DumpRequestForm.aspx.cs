@@ -353,6 +353,13 @@ namespace Evo
             result = objCommon.GetDataInsertORUpdate("SP_AddDumpRequestManua", nv);
 
 
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", txtJobNo);
+            nameValue.Add("@GreenHouseID", txtBenchLocation);
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);

@@ -338,6 +338,15 @@ namespace Evo
 
             result = objCommon.GetDataInsertORUpdate("SP_AddMoveRequestASManua", nv);
 
+       
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", lblJobID.Text);
+            nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
             NameValueCollection nvn = new NameValueCollection();
             nvn.Add("@LoginID", Session["LoginID"].ToString());
             nvn.Add("@SupervisorID", ddlLogisticManager.SelectedValue);

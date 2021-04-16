@@ -520,6 +520,18 @@ namespace Evo
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
                 //  }
 
+                //GridViewRow row = gvTask.Rows[0];
+                //var txtJobNo = "";
+                var txtBenchLocation = (row.FindControl("lblGreenHouse") as Label).Text;
+
+                nv.Clear();
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@jobcode", "");
+                nv.Add("@GreenHouseID", txtBenchLocation);
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nv);
+
+
                 NameValueCollection nvn = new NameValueCollection();
                 nvn.Add("@LoginID", Session["LoginID"].ToString());
                 nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
@@ -527,6 +539,8 @@ namespace Evo
                 nvn.Add("@TaskName", "Fertilizer");
                 nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
+
 
             }
 
@@ -572,7 +586,7 @@ namespace Evo
                      result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
                    
-                }
+                }               
                 //  }
 
             }

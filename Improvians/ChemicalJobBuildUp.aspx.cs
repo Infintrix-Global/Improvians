@@ -517,6 +517,12 @@ namespace Evo
                 Mresult = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
 
 
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                nameValue.Add("@jobcode", JobCode);
+                nameValue.Add("@GreenHouseID", Bench);
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
 
                 NameValueCollection nvn = new NameValueCollection();

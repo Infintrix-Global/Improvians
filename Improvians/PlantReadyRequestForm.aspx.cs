@@ -403,7 +403,15 @@ namespace Evo
             nv.Add("@RoleId", Session["Role"].ToString());
             nv.Add("@IsAssistant", lblIsAssistant.Text);
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
+            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);           
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", lblJobID.Text);
+            nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
