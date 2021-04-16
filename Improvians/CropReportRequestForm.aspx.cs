@@ -21,7 +21,7 @@ namespace Evo
                 BindJobCode();
                 // BindFacility();
                 BindGridPlantReady(0);
-                BindSupervisorList();
+              
             }
         }
 
@@ -129,52 +129,7 @@ namespace Evo
             //    }
             //}
         }
-        public void BindSupervisorList()
-        {
-            //NameValueCollection nv = new NameValueCollection();
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            //ddlSupervisor.DataTextField = "EmployeeName";
-            //ddlSupervisor.DataValueField = "ID";
-            //ddlSupervisor.DataBind();
-            //ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-
-            NameValueCollection nv = new NameValueCollection();
-            //if (Session["Role"].ToString() == "1")
-            //{
-
-            DataTable dt = new DataTable();
-
-            if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")
-            {
-
-                dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-            }
-            else if (Session["Role"].ToString() == "2")
-            {
-                dt = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
-            }
-            else
-            {
-                // dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-            }
-
-            ddlCropAssignment.DataSource = dt;
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlCropAssignment.DataTextField = "EmployeeName";
-            ddlCropAssignment.DataValueField = "ID";
-            ddlCropAssignment.DataBind();
-            ddlCropAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            //}
-            //if (Session["Role"].ToString() == "12")
-            //{
-            //    ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-            //    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            //    ddlDumptAssignment.DataTextField = "EmployeeName";
-            //    ddlDumptAssignment.DataValueField = "ID";
-            //    ddlDumptAssignment.DataBind();
-            //    ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            //}
-        }
+     
         public void Bindcname()
         {
 
@@ -240,7 +195,7 @@ namespace Evo
                 string Did = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
                 string BatchLoc = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
                 string JobCode = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
-                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}}&CropAT={1}", BatchLoc, JobCode, Did));
+                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&CropAT={2}", BatchLoc, JobCode, Did));
 
 
             }

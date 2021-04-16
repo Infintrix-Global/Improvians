@@ -6,8 +6,8 @@
     <div class="main__header">
         <div class="site__container">
             <h2 class="head__title-icon">
-                <img src="./images/dashboard_dump-request.png" width="137" height="132" alt="Plant Ready">
-                Dump </h2>
+                <img src="./images/dashboard_crop-health-report.png" width="137" height="132" alt="Plant Ready">
+                Crop Health Report </h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
@@ -93,7 +93,7 @@
 
 
                                 <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-                             
+
                                 <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                 <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
 
@@ -112,53 +112,7 @@
                 </asp:GridView>
             </div>
 
-            <div class="text-left dashboard__block my-4">
 
-                <div id="userinput" runat="server" visible="false" class="row justify-content-center">
-                    <div class="col-12">
-
-                        <div class="row">
-                            <div class="mb-3 col-12 col-md-auto">
-                                <label>Assignment </label>
-                                <asp:HiddenField ID="HiddenFieldJid" runat="server" />
-                                <asp:HiddenField ID="HiddenFieldDid" runat="server" />
-                                <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
-                                <asp:DropDownList ID="ddlCropAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-
-                            </div>
-
-                            <div class="mb-3 col-12 col-md-auto">
-                                <label class="d-block">Dump Date</label>
-                                <asp:TextBox ID="txtCropDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
-                            </div>
-
-                            <div class="mb-3 col-12 col-md-auto">
-
-                                <label>Quantity of Tray </label>
-                                <asp:TextBox ID="txtQuantityofTray" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                            </div>
-
-                            <div class="mb-3 col-12 col-md-auto">
-
-                                <label>Comments </label>
-
-                                <asp:TextBox ID="txtCommentsDump" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-
-
-                            </div>
-                            <div class="mb-3 col-12 col-md-auto align-self-end">
-                                <asp:Button Text="Submit" ID="btnDumpSumbit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
-
-                                <asp:Button Text="Reset" ID="btnDumpReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
 
         </div>
     </div>
