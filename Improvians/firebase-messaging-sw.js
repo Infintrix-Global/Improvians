@@ -41,8 +41,7 @@ messaging.onBackgroundMessage((payload) => {
     const notificationTitle = 'New Task Assigned';
     const notificationOptions = {
         body: 'New Task Assigned.',
-        icon: '/firebase-logo.png',
-        
+        icon: '/firebase-logo.png'
     };
 
     self.registration.showNotification(notificationTitle,
