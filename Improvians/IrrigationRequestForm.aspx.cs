@@ -217,11 +217,11 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 20)
+                if (i == 0 && !check && limit>= 10)
                 {
                     GridIrrigation.PageIndex++;
                     GridIrrigation.DataBind();
-                    highlight((limit - 20));
+                    highlight((limit - 10));
                 }
             }
         }

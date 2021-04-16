@@ -129,11 +129,11 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 20)
+                if (i == 0 && !check && limit>= 10)
                 {
                     gvTask.PageIndex++;
                     gvTask.DataBind();
-                    highlight((limit - 20));
+                    highlight((limit - 10));
                 }
             }
         }
@@ -382,7 +382,10 @@ namespace Evo
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
-           
+
+            GridViewRow row = gvTask.Rows[0];
+            var txtJobNo = (row.FindControl("lbljobID") as Label).Text;
+            var txtBenchLocation = (row.FindControl("lblGreenHouseID") as Label).Text;
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@Aid",ddlGeneralAssignment.SelectedValue);
@@ -407,6 +410,15 @@ namespace Evo
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                nv.Clear();
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                //nv.Add("@Did", HiddenFieldDid.Value);
+                nv.Add("@jobcode", txtJobNo);
+                nv.Add("@GreenHouseID", txtBenchLocation);
+               // nv.Add("@Mode", "1");
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nv);
+
 
                 string url = "";
                 if (Session["Role"].ToString() == "1")
