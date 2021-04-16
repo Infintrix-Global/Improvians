@@ -1,4 +1,5 @@
 ﻿using Evo.Bal;
+using Evo.BAL_Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -407,7 +408,10 @@ namespace Evo
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-
+                General objGeneral = new General();
+                BAL_Login _ballogin = new BAL_Login();
+                string Token = _ballogin.GetFCMToken(int.Parse(ddlSupervisor.SelectedValue));
+                objGeneral.SendMessage(ddlSupervisor.SelectedValue, Token, "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {
