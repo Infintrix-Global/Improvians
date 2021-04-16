@@ -1,4 +1,5 @@
 ﻿using Evo.Bal;
+using Evo.BAL_Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -22,7 +23,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 string Fdate = "", TDate = "";
-                Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
 
                 txtFromDate.Text = Fdate;
@@ -30,7 +31,7 @@ namespace Evo
                 Bindcname();
                 //BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode("0");
-                BindGridGerm(JobCode,0);
+                BindGridGerm(JobCode, 0);
                 BindSupervisorList();
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             }
@@ -88,7 +89,7 @@ namespace Evo
 
         public void BindJobCode(string ddlBench)
         {
-          //  ddlJobNo.Items[0].Selected = false;
+            //  ddlJobNo.Items[0].Selected = false;
             ddlJobNo.ClearSelection();
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
@@ -96,7 +97,7 @@ namespace Evo
             ddlJobNo.DataBind();
 
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-            
+
         }
 
         //public void BindBenchLocation(string ddlMain)
@@ -120,21 +121,21 @@ namespace Evo
         //}
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm("0",1);
+            BindGridGerm("0", 1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm(ddlJobNo.SelectedValue,1);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm("0",1);
+            BindGridGerm("0", 1);
         }
 
         protected void RadioButtonListF_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm("0",1);
+            BindGridGerm("0", 1);
         }
 
         public void BindGridGerm(string JobCode, int p)
@@ -145,16 +146,16 @@ namespace Evo
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", txtBatchLocation.Text);
-            nv.Add("@Week","");
-            nv.Add("@Status","");
+            nv.Add("@Week", "");
+            nv.Add("@Status", "");
             nv.Add("@Jobsource", RadioButtonListSourse.SelectedValue);
             nv.Add("@GermNo", RadioButtonListGno.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
-            nv.Add("@AssignedBy","");
-            
+            nv.Add("@AssignedBy", "");
 
-         //   dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
+
+            //   dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
 
             if (Session["Role"].ToString() == "12")
             {
@@ -199,7 +200,7 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 20)
+                if (i == 0 && !check && limit >= 20)
                 {
                     gvGerm.PageIndex++;
                     gvGerm.DataBind();
@@ -248,7 +249,7 @@ namespace Evo
                 lblID.Text = (row.FindControl("lblID") as Label).Text;
 
                 lblAGD.Text = (row.FindControl("lblIsAG") as Label).Text;
-                
+
                 string Datwc = (row.FindControl("lblGermDate") as Label).Text;
 
                 txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
@@ -269,7 +270,7 @@ namespace Evo
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {
                     txtDate.Text = Convert.ToDateTime(dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
-                  
+
                     txtTrays.Text = dt1.Rows[0]["#TraysInspected"].ToString();
                 }
 
@@ -287,7 +288,7 @@ namespace Evo
                 nv.Add("@GTID", GTID.ToString());
                 result = objCommon.GetDataInsertORUpdate("SP_DismissGerminationRequest", nv);
 
-                BindGridGerm("0",1);
+                BindGridGerm("0", 1);
             }
             if (e.CommandName == "Reschedule")
             {
@@ -312,10 +313,10 @@ namespace Evo
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
                 txtNewDate.Focus();
-                BindGridGerm("0",1);
+                BindGridGerm("0", 1);
             }
-           
-            if(e.CommandName== "GStart")
+
+            if (e.CommandName == "GStart")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
@@ -326,7 +327,7 @@ namespace Evo
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-          ;
+                ;
                 nv.Add("@GTID", lblID.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 result = objCommon.GetDataExecuteScaler("SP_AddGerminatioMyTasknGrowarStart", nv);
@@ -389,42 +390,46 @@ namespace Evo
         {
             long result = 0;
 
-            
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-                nv.Add("@InspectionDueDate", txtDate.Text);
-                nv.Add("@#TraysInspected", txtTrays.Text);
-                nv.Add("@ID", lblID.Text);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@Role", ddlSupervisor.SelectedValue);
-                nv.Add("@ISAG", lblAGD.Text);
 
-                result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
-           
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+            nv.Add("@InspectionDueDate", txtDate.Text);
+            nv.Add("@#TraysInspected", txtTrays.Text);
+            nv.Add("@ID", lblID.Text);
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Role", ddlSupervisor.SelectedValue);
+            nv.Add("@ISAG", lblAGD.Text);
 
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@OperatorID", ddlSupervisor.SelectedValue);
-                //nv.Add("@Notes","");
-                //nv.Add("@WorkOrderID", "");
-                //nv.Add("@GTRID", lblID.Text);
-                //nv.Add("@LoginID", Session["LoginID"].ToString());
-                //result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew1", nv);
-            
+            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
+
+
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@OperatorID", ddlSupervisor.SelectedValue);
+            //nv.Add("@Notes","");
+            //nv.Add("@WorkOrderID", "");
+            //nv.Add("@GTRID", lblID.Text);
+            //nv.Add("@LoginID", Session["LoginID"].ToString());
+            //result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew1", nv);
+
 
             if (result > 0)
             {
                 string url = "";
-                if (Session["Role"].ToString()=="1")
+                if (Session["Role"].ToString() == "1")
                 {
-                     url = "MyTaskGrower.aspx";
+                    url = "MyTaskGrower.aspx";
                 }
                 else
                 {
                     url = "MyTaskAssistantGrower.aspx";
                 }
+                General objGeneral = new General();
+                BAL_Login _ballogin = new BAL_Login();
+                string Token = _ballogin.GetFCMToken(int.Parse(ddlSupervisor.SelectedValue));
+                objGeneral.SendMessage(ddlSupervisor.SelectedValue, Token, "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
-              //  string url = "MyTaskGrower.aspx";
+                //  string url = "MyTaskGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -462,7 +467,7 @@ namespace Evo
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridGerm("0",1);
+            BindGridGerm("0", 1);
         }
 
         //protected void radweek_SelectedIndexChanged(object sender, EventArgs e)
@@ -484,7 +489,7 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-          
+
 
             RadioButtonListSourse.Items[0].Selected = false;
 
@@ -493,10 +498,10 @@ namespace Evo
             RadioButtonListGno.Items[0].Selected = false;
 
             RadioButtonListGno.ClearSelection();
-            Bindcname();            
-         
+            Bindcname();
+
             BindJobCode("0");
-            BindGridGerm("0",1);
+            BindGridGerm("0", 1);
 
         }
 
@@ -513,8 +518,8 @@ namespace Evo
                     lblsource.Text = "Navision";
                 }
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
-                lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text+ "&GermNo=" + lblGermNo.Text;
-              //  string SyDate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text + "&GermNo=" + lblGermNo.Text;
+                //  string SyDate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 //string GDate = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy-MM-dd");
 
                 //if(Convert.ToDateTime(System.DateTime.Now) > Convert.ToDateTime(lblGermDate.Text))
@@ -541,16 +546,16 @@ namespace Evo
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridGerm(ddlJobNo.SelectedValue,1);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
-      
+
 
         protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
         {
             txtFromDate.Text = "";
             txtToDate.Text = "";
-            BindGridGerm(txtSearchJobNo.Text,1);
+            BindGridGerm(txtSearchJobNo.Text, 1);
         }
 
         protected void txtBatchLocation_TextChanged(object sender, EventArgs e)
@@ -558,7 +563,7 @@ namespace Evo
             txtFromDate.Text = "";
             txtToDate.Text = "";
             BindJobCode(txtBatchLocation.Text);
-            BindGridGerm(ddlJobNo.SelectedValue,1);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
 
@@ -603,7 +608,7 @@ namespace Evo
         public static List<string> SearchBenchLocation(string prefixText, int count)
         {
             using (SqlConnection conn = new SqlConnection())
-        {
+            {
 
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["EvoNavision"].ConnectionString;
                 using (SqlCommand cmd = new SqlCommand())
@@ -645,6 +650,6 @@ namespace Evo
             }
         }
 
-      
+
     }
 }

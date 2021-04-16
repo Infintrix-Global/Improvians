@@ -34,5 +34,45 @@ namespace Evo.BAL_Classes
             return ds.Tables[0];
 
         }
+        public int UpdateFCMToken(int ID, string FCMToken)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ID", ID);
+                objGeneral.AddParameterWithValueToSQLCommand("@FCMToken", FCMToken);
+                _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_UpdateFCMToken");
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public string GetFCMToken(int ID)
+        {
+            string FCMToken = string.Empty;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ID", ID);
+                DataSet ds = objGeneral.GetDatasetByCommand_SP("SP_GetFCMToken");
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    DataTable dt = ds.Tables[0];
+                    if (dt != null && dt.Rows.Count > 0)
+                        FCMToken = dt.Rows[0]["FCMToken"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return FCMToken;
+        }
     }
 }

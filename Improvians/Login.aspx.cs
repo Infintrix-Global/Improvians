@@ -41,6 +41,8 @@ namespace Evo
                 Session["Mobile"] = _dtLogin.Rows[0]["EmployeeCode"].ToString();
                 Session["Photo"] = _dtLogin.Rows[0]["Photo"].ToString();
                 Session["EmployeeName"] = _dtLogin.Rows[0]["EmployeeName"].ToString();
+                int result = _ballogin.UpdateFCMToken(int.Parse(_dtLogin.Rows[0]["ID"].ToString()), token.Value);
+
                 /*admin */
                 if (_dtLogin.Rows[0]["RoleID"].ToString() == "4")
                 {

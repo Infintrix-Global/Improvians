@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Growers Transplanting, Inc</title>
-     <!-- Apple Splash Screens -->
+    <!-- Apple Splash Screens -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-   <%-- <link href="images/splash/apple_splash_2048.png" sizes="2048x2732" rel="apple-touch-startup-image" />
+    <%-- <link href="images/splash/apple_splash_2048.png" sizes="2048x2732" rel="apple-touch-startup-image" />
     <link href="images/splash/apple_splash_1668.png" sizes="1668x2224" rel="apple-touch-startup-image" />
     <link href="images/splash/apple_splash_1536.png" sizes="1536x2048" rel="apple-touch-startup-image" />
     <link href="images/splash/apple_splash_1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
@@ -72,7 +72,7 @@
 <body class="login__page">
 
     <div class="login__container">
-       <div class="col-lg-6 ml-lg-auto">
+        <div class="col-lg-6 ml-lg-auto">
             <div class="login__wrapper text-center">
                 <a href="#" class="logo-link logo-link--vertical">
                     <img src="images/logo-vertical.svg" alt="" width="180" height="179" />
@@ -104,7 +104,7 @@
                     <label>
                         <a class="bttn-link" href="#" title="Forgot Password?">Forgot Password?</a>
                     </label>
-
+                    <asp:HiddenField runat="server" ID="token"></asp:HiddenField>
                     <asp:Button ID="btnlogin" class="bttn bttn-primary w-100 bttn-action" runat="server" Text="Login" OnClick="btnlogin_Click" />
                 </form>
             </div>
@@ -115,5 +115,39 @@
     <script defer="defer" src="js/popper.min.js"></script>
     <script defer="defer" src="js/bootstrap.min.js"></script>
     <script defer="defer" src="js/custom.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-messaging.js"></script>
+    <script>
+
+        TokenElem = document.getElementById("token");
+
+        var config = {
+            apiKey: "AIzaSyDqjI1uzyT7VG2T39BLPALZDkcN3vJDLX8",
+            authDomain: "growerstrans-1172b.firebaseapp.com",
+            projectId: "growerstrans-1172b",
+            storageBucket: "growerstrans-1172b.appspot.com",
+            messagingSenderId: "342218804881",
+            appId: "1:342218804881:web:5ceb489d5eb65407aaf930",
+            measurementId: "G-1FYPTX710Q"
+        };
+        firebase.initializeApp(config);
+
+        const messaging = firebase.messaging();
+        messaging
+            .requestPermission()
+            .then(function () {
+                console.log("Notification permission granted.");
+                // get the token in the form of promise
+                return messaging.getToken()
+            })
+            .then(function (token) {
+                TokenElem.value = token
+            })
+            .catch(function (err) {
+                console.log("Unable to get permission to notify.", err);
+            });
+
+
+    </script>
 </body>
 </html>
