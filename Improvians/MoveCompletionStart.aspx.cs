@@ -26,7 +26,7 @@ namespace Evo
                 BindFacility();
                 BindBench_Location();
                 BindPlantReady();
-               
+                binviewMoveDetails(Did);
 
             }
         }
@@ -58,6 +58,27 @@ namespace Evo
         {
             BindBench_Location();
         }
+
+
+        public void binviewMoveDetails(string Mid)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@MoveId", Mid);
+
+            dt = objCommon.GetDataTable("SP_GetMOVERequestView", nv);
+
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                BindFacility();
+                txtMoveComments.Text = dt.Rows[0]["Comments"].ToString();
+                txtMoveNumberOfTrays.Text = dt.Rows[0]["TraysRequest"].ToString();
+                txtMoveDate.Text = Convert.ToDateTime(dt.Rows[0]["MoveDate"]).ToString("yyyy-MM-dd");
+                ddlToFacility.SelectedValue = dt.Rows[0]["FacilityTo"].ToString();
+                ddlToGreenHouse.SelectedValue = dt.Rows[0]["GrenHouseToRequest"].ToString();
+            }
+        }
+
         private string wo
         {
             get
