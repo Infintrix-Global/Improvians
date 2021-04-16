@@ -37,6 +37,7 @@
 		<siteMapNode url="~/CreateTask.aspx" title="Create Task"  >
 			<siteMapNode url="~/ChemicalStart.aspx" title="Chemical"  />
 			<siteMapNode url="~/FertilizerTaskStart.aspx" title="Fertilization"  />
+			<siteMapNode url="~/MoveCompletionStart.aspx" title="Move"  />
 		</siteMapNode>
 		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
 	</siteMapNode>
