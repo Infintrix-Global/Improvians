@@ -5,7 +5,8 @@ var requiredCacheFiles   = [
 ];
 
 self.addEventListener('install', function(event){
-  console.log("[serviceWorker] installed.");
+    console.log("[serviceWorker] installed.");
+    self.skipWaiting();
   event.waitUntil(
     caches.open(cacheName).then(function(cache){
       return cache.addAll(requiredCacheFiles);
