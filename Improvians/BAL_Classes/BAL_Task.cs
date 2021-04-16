@@ -261,6 +261,36 @@ namespace Evo.BAL_Classes
             return dt;
         }
 
+        public DataTable GetCreateTaskRequestStart(string FacilityLocation, string BenchLocation, string JobCode)
+        {
+            General objGeneral = new General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, GPD.Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode" +
+                            "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo " +
+
+                            "where ";
+                if (!string.IsNullOrEmpty(FacilityLocation))
+                {
+                    strQuery += "  FacilityID ='" + FacilityLocation + "'";
+                }
+                if (!string.IsNullOrEmpty(BenchLocation))
+                {
+                    strQuery += " and  GPD.GreenHouseID in (" + BenchLocation + ")";
+                }
+                if (!string.IsNullOrEmpty(JobCode))
+                {
+                    strQuery += " and GTS.jobcode in (" + JobCode + ")";
+                }
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
 
 
 

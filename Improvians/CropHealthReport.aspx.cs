@@ -60,9 +60,25 @@ namespace Evo
                     dtTrays.Clear();
                 }
 
-                if(Request.QueryString["BatchLoc"] != null && Request.QueryString["JobCode"] != null)
+
+                if (Request.QueryString["BatchLoc"] != null)
                 {
-                    BindGridFerReq(Request.QueryString["BatchLoc"].ToString(), Request.QueryString["JobCode"].ToString());
+                    Bench = Request.QueryString["BatchLoc"].ToString();
+                }
+
+
+
+                if (Request.QueryString["JobCode"] != null)
+                {
+                    JobCode = Request.QueryString["JobCode"].ToString();
+                }
+
+            
+
+                if (Request.QueryString["BatchLoc"] != null && Request.QueryString["JobCode"] != null)
+                {
+
+                    BindGridFerReq("'" + Bench + "'", "'" + JobCode + "'");
                 }
                 BindSupervisor();
 
@@ -91,6 +107,39 @@ namespace Evo
             else
             {
                 divLaptop.Visible = true;
+            }
+        }
+
+
+        private string Bench
+        {
+            get
+            {
+                if (ViewState["Bench"] != null)
+                {
+                    return (string)ViewState["Bench"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Bench"] = value;
+            }
+        }
+
+        private string JobCode
+        {
+            get
+            {
+                if (ViewState["JobCode"] != null)
+                {
+                    return (string)ViewState["JobCode"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["JobCode"] = value;
             }
         }
 
@@ -183,9 +232,9 @@ namespace Evo
 
          //   DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
 
-            dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
+            dt = objTask.GetCreateTaskRequestStart(Session["Facility"].ToString(), BenchLoc, JobNo);
           
-            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
+            DataTable dtManual = objTask.GetManualRequestStart(Session["Facility"].ToString(), BenchLoc, JobNo);
 
             //if (dtManual != null && dtManual.Rows.Count > 0)
             //{
@@ -513,15 +562,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                //{
-                //    folderPath = Server.MapPath("~/images/");
-                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                //}
-                //else
-                //{
-                //    folderPath = "";
-                //}
+             
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -960,29 +1001,7 @@ namespace Evo
             {
 
                 long result16 = 0;
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@SupervisorID", ddlirrigationSupervisor.SelectedValue);
-
-                //nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
-                //nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
-                //nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                //nv.Add("@Facility", Session["Facility"].ToString());
-                //nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
-                //nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
-                //nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
-                //nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-
-                //nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                //// nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                //nv.Add("@IrrigatedNoTrays", (row.FindControl("lblTotTray1") as Label).Text);
-                //nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                //nv.Add("@IrrigationDuration", "");
-                //nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
-                ////nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                //nv.Add("@Nots", txtcomments.Text.Trim());
-                //nv.Add("@LoginID", Session["LoginID"].ToString());
-                //nv.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
-                //result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManual", nv);
+             
 
 
                 NameValueCollection nv = new NameValueCollection();
@@ -1219,16 +1238,6 @@ namespace Evo
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
 
-
-                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
-                //{
-                //    folderPath = Server.MapPath("~/images/");
-                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
-                //}
-                //else
-                //{
-                //    folderPath = "";
-                //}
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -1462,26 +1471,7 @@ namespace Evo
 
 
                 long result3 = 0;
-                //NameValueCollection nv = new NameValueCollection();
-                //nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
-                //nv.Add("@Type", "Chemical");
-                //nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
-                //nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
-                //nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
-                //nv.Add("@Facility", Session["Facility"].ToString());
-                //nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
-                //nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
-                //nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
-                //nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
-                ////nv.Add("@WorkOrder", lblwo.Text);
-                //nv.Add("@LoginID", Session["LoginID"].ToString());
-                //nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                //nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                //nv.Add("@Comments", txtcomments.Text);
-                //nv.Add("@Method", ddlMethod.SelectedValue);
-                //nv.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
-
-                //result3 = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
+              
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlChemical_supervisor.SelectedValue);
@@ -1706,6 +1696,39 @@ namespace Evo
             Clear();
         }
 
-       
+        protected void btnBSaveSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSaveFLSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnChemicalSFLSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSaveirrigation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSavePlantReady_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSaveMove_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSaveGeneral_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

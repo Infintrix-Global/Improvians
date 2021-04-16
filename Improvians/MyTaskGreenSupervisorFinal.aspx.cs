@@ -36,6 +36,7 @@ namespace Evo
             lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
             lblDumpCount.Text = dt.Tables[8].Rows.Count.ToString();
             lblGeneralTaskCount.Text = dt.Tables[6].Rows.Count.ToString();
+            lblCropHealthReport.Text = dt.Tables[9].Rows.Count.ToString();
 
         }
 

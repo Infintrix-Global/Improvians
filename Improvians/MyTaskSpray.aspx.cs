@@ -50,6 +50,8 @@ namespace Evo
             lblMove.Text = dt.Tables[7].Rows.Count.ToString();
 
             lblGeneralCount.Text = dt.Tables[8].Rows.Count.ToString();
+
+            lblCropHealthReport.Text = dt.Tables[9].Rows.Count.ToString();
         }
     }
 }
