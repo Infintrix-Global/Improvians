@@ -263,6 +263,8 @@
     <Content Include="JobReport.aspx" />
     <Content Include="JobReports.aspx" />
     <Content Include="js\jquery.uploadify.js" />
+    <Content Include="ManageTaskJobReport.aspx" />
+    <Content Include="MoveCompletionStart.aspx" />
     <Content Include="MoveReqAsssignment.aspx" />
     <Content Include="MoveRequestForm.aspx" />
     <Content Include="MovesReqManual.aspx" />
@@ -707,6 +709,20 @@
     </Compile>
     <Compile Include="JobReports.aspx.designer.cs">
       <DependentUpon>JobReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageTaskJobReport.aspx.cs">
+      <DependentUpon>ManageTaskJobReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageTaskJobReport.aspx.designer.cs">
+      <DependentUpon>ManageTaskJobReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoveCompletionStart.aspx.cs">
+      <DependentUpon>MoveCompletionStart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoveCompletionStart.aspx.designer.cs">
+      <DependentUpon>MoveCompletionStart.aspx</DependentUpon>
     </Compile>
     <Compile Include="MoveReqAsssignment.aspx.cs">
       <DependentUpon>MoveReqAsssignment.aspx</DependentUpon>

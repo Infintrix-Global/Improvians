@@ -87,7 +87,7 @@
                                         <span>
                                             <asp:Label ID="lblCreate" runat="server" Text="Create Task"></asp:Label> </span>
                                     </a>
-                                    <a runat="server" href="#" id="TrackTasks" class="dashboard__task">
+                                    <a runat="server" href="ManageTaskJobReport.aspx" id="TrackTasks" class="dashboard__task">
                                         <img src="images/link-assign-task.svg" width="184" height="184" alt="Assign a Task" />
                                            <span><asp:Label ID="lblManageTask" runat="server" Text="Manage Task"></asp:Label>  </span>
                                     </a>

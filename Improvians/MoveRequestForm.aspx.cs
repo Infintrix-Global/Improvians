@@ -125,11 +125,11 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit >= 20)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvMoveReq.PageIndex++;
                     gvMoveReq.DataBind();
-                    highlight((limit - 20));
+                    highlight((limit - 10));
                 }
             }
         }
@@ -297,35 +297,10 @@ namespace Evo
                 string ChId = "";
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string Did = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
-                //  ChId = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
-
-                if (ChId == "")
-                {
-                    ChId = "0";
-                }
-                else
-                {
-                    ChId = ChId;
-                }
-
-
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@MoveDate", "");
-                nv.Add("@Comments", "");
-                nv.Add("@QuantityOfTray", "");
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@MoveID", Did);
-
-                nv.Add("@OperatorID", Session["LoginID"].ToString());
-
-
-                long result = objCommon.GetDataExecuteScaler("SP_AddMoveTaskAssignment", nv);
-
-
-                if (result > 0)
-                {
-                    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
-                }
+               
+              
+                    Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}",Did));
+                
             }
 
         }
@@ -362,6 +337,15 @@ namespace Evo
             nv.Add("@ManualID", HiddenFieldJid.Value);
 
             result = objCommon.GetDataInsertORUpdate("SP_AddMoveRequestASManua", nv);
+
+       
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", lblJobID.Text);
+            nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
             NameValueCollection nvn = new NameValueCollection();
             nvn.Add("@LoginID", Session["LoginID"].ToString());

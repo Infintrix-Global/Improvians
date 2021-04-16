@@ -217,11 +217,11 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 20)
+                if (i == 0 && !check && limit>= 10)
                 {
                     GridIrrigation.PageIndex++;
                     GridIrrigation.DataBind();
-                    highlight((limit - 20));
+                    highlight((limit - 10));
                 }
             }
         }
@@ -357,9 +357,22 @@ namespace Evo
                     nv.Add("@ResetSprayTaskForDays","");
 
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
+
+                    var txtJobNo = (row.FindControl("lbljobID") as Label).Text;
+                    var txtBenchLocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+
+                    NameValueCollection nameValue = new NameValueCollection();
+                    nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                    nameValue.Add("@jobcode", txtJobNo);
+                    nameValue.Add("@GreenHouseID", txtBenchLocation);
+
+                    var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
                     if (result > 0)
                     {
                         // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
+
 
                     }
                     else
@@ -369,6 +382,7 @@ namespace Evo
                     }
                 }
             }
+
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";

@@ -200,11 +200,11 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit >= 20)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvGerm.PageIndex++;
                     gvGerm.DataBind();
-                    highlight((limit - 20));
+                    highlight((limit - 10));
                 }
             }
         }
@@ -402,6 +402,16 @@ namespace Evo
 
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
 
+
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", lblJobID.Text);
+
+            nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
+
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
             //NameValueCollection nv = new NameValueCollection();
             //nv.Add("@OperatorID", ddlSupervisor.SelectedValue);
