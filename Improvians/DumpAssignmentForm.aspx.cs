@@ -106,7 +106,8 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetSupervisorDumpTask", nv);
             gvDump.DataSource = dt;
             gvDump.DataBind();
-            if (p != 1){
+            if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
+            {
                 highlight(dt.Rows.Count); 
             }
 
@@ -126,11 +127,11 @@ namespace Evo
                     row.CssClass = "highlighted";                   
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 20)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvDump.PageIndex++;
                     gvDump.DataBind();
-                    highlight((limit - 20));
+                    highlight((limit - 10));
                 }
             }
         }

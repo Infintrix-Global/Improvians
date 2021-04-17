@@ -147,6 +147,14 @@ namespace Evo
             result = objCommon.GetDataExecuteScaler("SP_AddDumpTaskAssignment", nv);
             if (result > 0)
             {
+
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                nameValue.Add("@jobcode", txtJobNo);
+                nameValue.Add("@GreenHouseID", txtBenchLocation);
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
                 //lblmsg.Text = "Assignment Successful";
                 clear();
                 string message = "Assignment Successful";

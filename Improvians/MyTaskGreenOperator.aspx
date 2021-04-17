@@ -37,7 +37,7 @@
                 <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                 <div class="portlet-body">
                     <div class="data__table">
-                        <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" PageSize="20"
+                        <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" PageSize="10"
                             class="striped"  AllowSorting="true"  OnPageIndexChanging="gvGerm_PageIndexChanging1"
                             GridLines="None"  OnRowCommand="gvGerm_RowCommand"
                             ShowHeaderWhenEmpty="True" Width="100%">
