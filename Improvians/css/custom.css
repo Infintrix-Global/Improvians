@@ -202,6 +202,16 @@ table .bttn {
 
 .submit-bttn { min-width: 112px; }
 
+.bttn-group { display: flex; flex-wrap: wrap; align-items: center; }
+
+.bttn-group .bttn {
+    margin-right: 10px;
+}
+
+.bttn-group .bttn:last-child {
+    margin-right: 0;
+}
+
 .site__container {
     padding-left: 45px;
     padding-right: 45px;
@@ -1446,6 +1456,7 @@ textarea.input__control {
         font-size: 14px;
         padding-left: 0;
     }
+    .request__block { margin-bottom: 30px; }
 }
 
 @media only screen and (max-width: 639px) {
