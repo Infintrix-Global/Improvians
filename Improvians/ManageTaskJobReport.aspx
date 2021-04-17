@@ -5,10 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="main__header">
         <div class="site__container">
-            <h2>Manage Task</h2>
-
-
-
+            <h2 class="mb-4">Manage Task</h2>
+            
             <div class="row">
                 <div class=" col m12">
                     <div class="portlet light ">

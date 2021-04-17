@@ -4,8 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
-    <div class="main__header">
-        <div class="site__container">
+    <div class="site__container">
             <h2 class="head__title-icon mb-3">
                 <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
                 Fertilization
@@ -304,5 +303,4 @@
             <%--   </ContentTemplate>
             </asp:UpdatePanel>--%>
         </div>
-    </div>
 </asp:Content>
