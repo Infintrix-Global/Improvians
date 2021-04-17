@@ -146,6 +146,12 @@ namespace Evo
             result = objCommon.GetDataInsertORUpdate("SP_AddSprayRequest", nv);
             if (result > 0)
             {
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                nameValue.Add("@jobcode", "");
+                nameValue.Add("@GreenHouseID", lblBenchLocation.Text);
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
                 string url = "";
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);

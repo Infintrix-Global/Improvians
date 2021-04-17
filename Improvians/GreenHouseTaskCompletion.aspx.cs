@@ -124,8 +124,21 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Jid", Jid);
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationCompletion", nv);
+
+            
+
             if (result > 0)
             {
+                GridViewRow row = gvGerm.Rows[0];
+                var txtJobNo = (row.FindControl("lbljobID") as Label).Text;
+                var txtBenchLocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                nameValue.Add("@jobcode", txtJobNo);
+                nameValue.Add("@GreenHouseID", txtBenchLocation);
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
                 // lblmsg.Text = "Completion Successful";
                 clear();
 

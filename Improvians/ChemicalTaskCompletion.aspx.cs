@@ -143,6 +143,18 @@ namespace Evo
             nv.Add("@Nots", txtNotes.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddChemicalTaskCompletion", nv);
+
+
+            
+            var txtBenchLocation = lblBenchLocation.Text;
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", "");
+            nameValue.Add("@GreenHouseID", txtBenchLocation);
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
             if (result > 0)
             {
                 string url = "";

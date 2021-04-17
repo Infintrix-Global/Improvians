@@ -131,6 +131,16 @@ namespace Evo
 
             result = objCommon.GetDataExecuteScaler("SP_AddMoveCompletionNew", nv);
 
+            GridViewRow row = gvPlantReady.Rows[0];
+            var txtJobNo = (row.FindControl("lblID") as Label).Text;
+            var txtBenchLocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", txtJobNo);
+            nameValue.Add("@GreenHouseID", txtBenchLocation);
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
             if (result > 0)
             {
