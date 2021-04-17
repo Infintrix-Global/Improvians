@@ -181,6 +181,25 @@ table .bttn {
 
 .bttn-danger { background: rgb(209, 9, 9); color: #ffffff; }
 
+.bttn.bttn-icon {
+    padding: 0;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 16px;
+    background: rgb(72 137 73);
+    border-radius: 7px;
+}
+
+.bttn.bttn-back {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
 .submit-bttn { min-width: 112px; }
 
 .site__container {
@@ -393,6 +412,8 @@ header {
 /* Breadcrumbs */
 .site__breadcrumb {
     /*background: #f8f8f8;*/
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 95px;
     left: 0;
@@ -404,8 +425,9 @@ header {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding: 10px 1rem;
+    padding: 15px 1rem;
     padding-left: 0;
+    margin-left: 10px;
     margin-bottom: 0;
     list-style: none;
     border-radius: .25rem;
@@ -1349,7 +1371,7 @@ textarea.input__control {
     .header__bottom + .main { margin-top: 30px;}
     .main .header__bottom { margin-top: 40px; }
     .site__breadcrumb ~ .main__header, .site__breadcrumb ~ .main .main__header { margin-top: 0; }
-    .site__breadcrumb ~ .header__bottom { margin-top: 75px; }
+    .site__breadcrumb ~ .header__bottom { margin-top: 55px; }
 
     .bttn { padding: 10px 25px; }
     .custom__dropdown, .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon) { padding: 0 25px; }
@@ -1446,7 +1468,7 @@ textarea.input__control {
     .break__table-sm tr th { display: none; }
     .site__breadcrumb { top: 81px; }
     .breadcrumb {
-        padding: 8px 1rem;
+        /*padding: 8px 1rem;*/
         font-size: 14px;
         padding-left: 0;
     }
