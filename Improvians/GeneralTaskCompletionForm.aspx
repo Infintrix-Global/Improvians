@@ -40,7 +40,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvTask_PageIndexChanging"
+                                    class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvTask_PageIndexChanging"
                                     GridLines="None" OnRowCommand="gvTask_RowCommand"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>

@@ -183,7 +183,7 @@
 
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="20"
+                                    class="striped" AllowSorting="true" PageSize="10"
                                     GridLines="None"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
