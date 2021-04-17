@@ -106,7 +106,8 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetSupervisorDumpTask", nv);
             gvDump.DataSource = dt;
             gvDump.DataBind();
-            if (p != 1){
+            if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
+            {
                 highlight(dt.Rows.Count); 
             }
 

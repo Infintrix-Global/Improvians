@@ -131,7 +131,7 @@ namespace Evo
             //    }
             //}
 
-            if (p != 1)
+            if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
             }
