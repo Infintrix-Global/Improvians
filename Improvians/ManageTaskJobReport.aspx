@@ -3,8 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main__header">
-        <div class="site__container">
+    <div class="site__container">
             <h2 class="mb-4">Manage Task</h2>
             
             <div class="row">
@@ -152,5 +151,4 @@
             </div>
 
         </div>
-    </div>
 </asp:Content>

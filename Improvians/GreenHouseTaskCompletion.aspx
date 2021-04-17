@@ -3,8 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main">
-        <div class="site__container">
+    <div class="site__container">
             <h2>Germination Count Task Completion</h2>
 
             <div class="row">
@@ -19,15 +18,6 @@
                                     ShowHeaderWhenEmpty="True" Width="100%">
 
                                     <Columns>
-                                        <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-
-                                                <asp:Label ID="lblStatus" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
-
-
-
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -135,9 +125,6 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>
-
-
-
                             </div>
                         </div>
 
@@ -344,5 +331,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </asp:Content>
