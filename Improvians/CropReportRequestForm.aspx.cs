@@ -98,36 +98,36 @@ namespace Evo
             gvPlantReady.DataBind();
 
 
-           
 
-            if (p != 1)
+
+            if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
-                highlight();
+                highlight(dt.Rows.Count);
             }
 
 
         }
-        private void highlight()
+        private void highlight(int limit)
         {
-            //var i = gvPlantReady.Rows.Count;
-            //bool check = false;
-            //foreach (GridViewRow row in gvPlantReady.Rows)
-            //{
-            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
-            //    var checklocation = (row.FindControl("lblBenchLoc") as Label).Text;
-            //    i--;
-            //    if (checkJob == JobCode && checklocation == benchLoc)
-            //    {
-            //        row.CssClass = "highlighted";
-            //        check = true;
-            //    }
-            //    if (i == 0 && !check)
-            //    {
-            //        gvPlantReady.PageIndex++;
-            //        gvPlantReady.DataBind();
-            //        highlight();
-            //    }
-            //}
+            var i = gvPlantReady.Rows.Count;
+            bool check = false;
+            foreach (GridViewRow row in gvPlantReady.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                var checklocation = (row.FindControl("lblBenchLoc") as Label).Text;
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
+                {
+                    row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check && limit >= 10)
+                {
+                    gvPlantReady.PageIndex++;
+                    gvPlantReady.DataBind();
+                    highlight((limit - 10));
+                }
+            }
         }
      
         public void Bindcname()
