@@ -528,6 +528,7 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@jobcode", "");
                 nv.Add("@GreenHouseID", txtBenchLocation);
+                nv.Add("@TaskName", "Fertilizer");
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nv);
 

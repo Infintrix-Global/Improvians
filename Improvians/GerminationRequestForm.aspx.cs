@@ -409,7 +409,7 @@ namespace Evo
             nameValue.Add("@jobcode", lblJobID.Text);
 
             nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
-
+            nameValue.Add("@TaskName", "Germination");
 
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
