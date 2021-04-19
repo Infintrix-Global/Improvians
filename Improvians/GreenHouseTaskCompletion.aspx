@@ -206,6 +206,76 @@
                         </div>
                     </div>
                 </asp:Panel>
+
+
+
+
+
+                <asp:Panel ID="PanelViewGJob" Visible="false" runat="server">
+                    <br />
+                
+                    
+                    <div class="portlet-body">
+                        <div class="data__table">
+                            <asp:GridView ID="GridViewGDetails" runat="server" AutoGenerateColumns="False"
+                                class="striped" AllowSorting="true" OnRowDataBound="GridViewGDetails_RowDataBound"
+                                GridLines="None"
+                                ShowHeaderWhenEmpty="True" Width="100%">
+                                <Columns>
+
+                                    <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblInspectionDate" runat="server" Text='<%# Eval("InspectionDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="#TraysInspected" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblTraysInspected" runat="server" Text="" ></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Germination%" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblGermination" runat="server" Text=""></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="#BadPlants" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblBadPlants" runat="server" Text=""></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="GermVigor" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblGermVigor" runat="server" Text='<%# Eval("GermVigor")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                        
+
+                                </Columns>
+
+                                <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                <PagerSettings Mode="NumericFirstLast" />
+                                <EmptyDataTemplate>
+                                    No Record Available
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+
+                        </div>
+                        <br />
+
+                        <br />
+
+                        <div class="row">
+                            <label>Commment:</label>
+                            <div class="col-lg-12">
+                                <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+                </asp:Panel>
                 <br />
                 <div id="userinput" runat="server" class="assign__task d-flex">
                     <asp:Panel ID="pnlint" runat="server">

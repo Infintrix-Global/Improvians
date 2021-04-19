@@ -20,6 +20,7 @@ namespace Evo
                 if (Request.QueryString["GTAID"] != null)
                 {
                     gtaID = Request.QueryString["GTAID"].ToString();
+                    BindGridCalView(Request.QueryString["GTAID"].ToString());
                 }
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
@@ -32,7 +33,21 @@ namespace Evo
             }
         }
 
+        public void BindGridCalView(string  GTAID)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@GTAID", GTAID.ToString());
+            dt1 = objCommon.GetDataTable("SP_GetGerminationTaskCompletionView", nv1);
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                PanelViewGJob.Visible = true;
+                GridViewGDetails.DataSource = dt1;
+                GridViewGDetails.DataBind();
 
+             
+            }
+        }
 
 
         public void BindGridCropHealth(int Chid)
@@ -89,7 +104,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@GTAID", gtaID);
-            dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTaskByGTAID", nv);
+            dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTaskByGTAIDNew", nv);
 
 
             gvGerm.DataSource = dt;
@@ -347,6 +362,37 @@ namespace Evo
 
             objGP.Add(objInv);
             ViewState["ojbpro"] = objGP;
+        }
+
+        protected void GridViewGDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+              
+                Label lblTraysInspected = (Label)e.Row.FindControl("lblTraysInspected");
+             Label lblGermination = (Label)e.Row.FindControl("lblGermination");
+              Label lblBadPlants = (Label)e.Row.FindControl("lblBadPlants");
+              //  Label lblTaskRequestType = (Label)e.Row.FindControl("lblTaskRequestType");
+
+                DataTable dt1 = new DataTable();
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("@GTAID", Request.QueryString["GTAID"].ToString());
+                dt1 = objCommon.GetDataTable("SP_GetGerminationTaskCompletionView", nv1);
+
+
+
+                if (dt1 != null && dt1.Rows.Count > 0)
+                {
+                    lblTraysInspected.Text = dt1.Rows[0]["#TraysInspected"].ToString();
+                    lblGermination.Text = dt1.Rows[0]["Germination%"].ToString();
+                    lblBadPlants.Text = dt1.Rows[0]["#BadPlants"].ToString();
+
+                }
+             
+
+             
+
+            }
         }
     }
 }
