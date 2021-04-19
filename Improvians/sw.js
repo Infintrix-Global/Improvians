@@ -30,12 +30,16 @@ self.addEventListener('activate', function(event){
 });
 
 self.addEventListener('fetch', function(event) {
-  if (event.request.mode === 'navigate' || (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
-    event.respondWith(
-      fetch(event.request).catch(function(error) {
-        console.log('Fetch failed; returning offline page instead.', error);
-        return caches.match('./offline-fallback.html');
-      })
-    );
-  }
+    if (event.request.mode === 'navigate' || (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
+        if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
+            return;
+        }
+
+        event.respondWith(
+          fetch(event.request).catch(function(error) {
+            console.log('Fetch failed; returning offline page instead.', error);
+            return caches.match('./offline-fallback.html');
+          })
+        );
+    }
 });
