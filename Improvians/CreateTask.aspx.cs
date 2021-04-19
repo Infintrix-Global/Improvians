@@ -586,6 +586,16 @@ namespace Evo
 
             dtTrays.Clear();
         }
+        public void ClearGeneral()
+        {
+            ddlAssignments.SelectedValue = "0";
+            ddlTaskType.SelectedValue = "0";
+            txtgeneralDate.Text = DateTime.Now.ToString("yyyy/mm/dd");
+            txtgeneralComment.Text = "";
+            txtFrom.Text = "";
+            txtTo.Text = "";
+        }
+       
 
         protected void chckchanged(object sender, EventArgs e)
         {
@@ -1649,6 +1659,7 @@ namespace Evo
                 smtpClient.Send(mail);
 
                 Clear();
+                ClearGeneral();
             }
             else
             {
@@ -2167,14 +2178,8 @@ namespace Evo
 
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
-            // Clear();
-
-            ddlAssignments.SelectedValue = "0";
-            ddlTaskType.SelectedValue = "0";
-            txtgeneralDate.Text = DateTime.Now.ToString("yyyy/mm/dd");
-            txtgeneralComment.Text = "";
-            txtFrom.Text = "";
-            txtTo.Text = "";
+            Clear();
+            ClearGeneral();
         }
 
         protected void gvFer_RowDataBound(object sender, GridViewRowEventArgs e)
