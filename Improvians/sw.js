@@ -29,7 +29,7 @@ self.addEventListener('activate', function(event){
   return self.clients.claim();
 });
 
-self.addEventListener('fetch', function(event) {
+/*self.addEventListener('fetch', function(event) {
   if (event.request.mode === 'navigate' || (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
     event.respondWith(
       fetch(event.request).catch(function(error) {
@@ -38,4 +38,5 @@ self.addEventListener('fetch', function(event) {
       })
     );
   }
+  */
 });
