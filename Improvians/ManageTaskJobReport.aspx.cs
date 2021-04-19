@@ -76,7 +76,7 @@ namespace Evo
             ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-          
+
 
         }
 
@@ -88,17 +88,17 @@ namespace Evo
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@BenchLocation",ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@JobNo",ddlJobNo.SelectedValue);
-            nv.Add("@Customer",ddlCustomer.SelectedValue);
-            nv.Add("@RequestType",ddlTaskRequestType.SelectedValue);
+            nv.Add("@JobNo", ddlJobNo.SelectedValue);
+            nv.Add("@Customer", ddlCustomer.SelectedValue);
+            nv.Add("@RequestType", ddlTaskRequestType.SelectedValue);
 
-            nv.Add("@AssingTo",ddlAssignedBy.SelectedValue);
-            nv.Add("@WorkDateForm",txtFromDate.Text);
-            nv.Add("@WorkDateTo",txtToDate.Text);
-            
+            nv.Add("@AssingTo", ddlAssignedBy.SelectedValue);
+            nv.Add("@WorkDateForm", txtFromDate.Text);
+            nv.Add("@WorkDateTo", txtToDate.Text);
+
 
             AllData = objCommon.GetDataTable("GetManageTaskJobHistory", nv);
             gvGerm.DataSource = AllData;
@@ -180,15 +180,19 @@ namespace Evo
                 nv.Add("@RequestType", lblTaskRequestType.Text);
                 dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobView", nv);
 
-                if(dt !=null && dt.Rows.Count >0)
+                if (dt != null && dt.Rows.Count > 0)
                 {
                     lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
                     btnStart.Enabled = true;
+
+                    btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
                 }
                 else
                 {
                     lblTaskStatus.Text = "Pending";
                     btnStart.Enabled = false;
+
+                    btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
                 }
 
                 //if (lblStatusValues.Text == "1" || lblStatusValues.Text == "2")
