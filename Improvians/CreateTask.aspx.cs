@@ -820,18 +820,18 @@ namespace Evo
                 {
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
-                    NameValueCollection nv5 = new NameValueCollection();
-                    nv5.Add("@Mode", "1");
-                    nv5.Add("@Batchlocation", Batchlocation);
-                    DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
+                    //NameValueCollection nv5 = new NameValueCollection();
+                    //nv5.Add("@Mode", "1");
+                    //nv5.Add("@Batchlocation", Batchlocation);
+                    //DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
 
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
+                    //if (dt != null && dt.Rows.Count > 0)
+                    //{
 
-                        FertilizationCode = Convert.ToInt32(dt.Rows[0]["FertilizationCode"]);
-                    }
-                    else
-                    {
+                   //     FertilizationCode = Convert.ToInt32(dt.Rows[0]["FertilizationCode"]);
+                    //}
+                    //else
+                    //{
                         dtTrays.Clear();
                         DataTable dt1 = new DataTable();
                         NameValueCollection nv14 = new NameValueCollection();
@@ -843,7 +843,8 @@ namespace Evo
                         dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
                         objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
-                    }
+                 //   }
+
 
                     long result2 = 0;
                     NameValueCollection nv4 = new NameValueCollection();
@@ -1324,17 +1325,17 @@ namespace Evo
                     dtCTrays.Clear();
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
-                    NameValueCollection nv5 = new NameValueCollection();
-                    nv5.Add("@Mode", "2");
-                    nv5.Add("@Batchlocation", Batchlocation);
-                    DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
+                    //NameValueCollection nv5 = new NameValueCollection();
+                    //nv5.Add("@Mode", "2");
+                    //nv5.Add("@Batchlocation", Batchlocation);
+                    //DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
 
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        ChemicalCode = Convert.ToInt32(dt.Rows[0]["ChemicalCode"]);
-                    }
-                    else
-                    {
+                    //if (dt != null && dt.Rows.Count > 0)
+                    //{
+                    //    ChemicalCode = Convert.ToInt32(dt.Rows[0]["ChemicalCode"]);
+                    //}
+                    //else
+                    //{
                         dtCTrays.Clear();
                         DataTable dt1 = new DataTable();
                         NameValueCollection nv1 = new NameValueCollection();
@@ -1349,7 +1350,7 @@ namespace Evo
                         // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
                         // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
-                    }
+                    //}
 
 
                     long result = 0;

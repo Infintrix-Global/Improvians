@@ -30,7 +30,13 @@
                     <asp:DropDownList ID="ddlTaskRequestType" runat="server" class="custom__dropdown robotomd">
                         <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
                         <asp:ListItem Text="Fertilization" Value="Fertilization"></asp:ListItem>
-                        <asp:ListItem Text="App" Value="App"></asp:ListItem>
+                        <asp:ListItem Text="Chemical" Value="Chemical"></asp:ListItem>
+                        <asp:ListItem Text="Germination" Value="Germination"></asp:ListItem>
+                        <asp:ListItem Text="Irrigation" Value="Irrigation"></asp:ListItem>
+                        <asp:ListItem Text="Plant Ready" Value="Plant Ready"></asp:ListItem>
+                        <asp:ListItem Text="Dump" Value="Dump"></asp:ListItem>
+                        <asp:ListItem Text="Move" Value="Move"></asp:ListItem>
+                        <asp:ListItem Text="GeneralTask" Value="GeneralTask"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -38,7 +44,7 @@
             <div class="row mb-1 mb-md-4 align-items-end">
 
 
-       
+
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Work From Date</label>
                     <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
@@ -60,11 +66,11 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowCommand="gvGerm_RowCommand"
                                     class="striped" AllowSorting="true" OnPageIndexChanging="gvGerm_PageIndexChanging" PageSize="15"
-                                    GridLines="None"
+                                    GridLines="None" DataKeyNames="BenchLocation,JobNo,TaskRequestType" OnRowDataBound="gvGerm_RowDataBound"
                                     ShowHeaderWhenEmpty="True" Width="100%">
-                                    <Columns>
+                                    <columns>
 
                                         <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -76,7 +82,7 @@
                                             <ItemTemplate>
 
                                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("JobNo","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("JobNo") %>' Font-Underline="true" />
-
+                                                    <asp:Label ID="lblJobNo" Visible="false" runat="server" Text='<%# Eval("JobNo")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -144,18 +150,6 @@
 
 
                                         </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Status" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-
-                                                <asp:Label ID="lblPutawayStatusValues" runat="server" Text='<%# Eval("TaskStatus")  %>'></asp:Label>
-
-
-                                            </ItemTemplate>
-
-
-                                        </asp:TemplateField>
-
                                         <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
@@ -166,10 +160,22 @@
 
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Status" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblTaskStatus" runat="server" Text='<%# Eval("TaskStatus")  %>'></asp:Label>
+
+
+                                            </ItemTemplate>
+
+
+                                        </asp:TemplateField>
+
+                                        
                                         <asp:TemplateField HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
-                                                <asp:Button ID="btnStart" runat="server" Text="View Job" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                                <asp:Button ID="btnStart" runat="server" Text="View Job"   CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
 
                                             </ItemTemplate>
@@ -179,13 +185,13 @@
 
 
 
-                                    </Columns>
+                                    </columns>
 
-                                    <PagerStyle CssClass="paging" HorizontalAlign="Right" />
-                                    <PagerSettings Mode="NumericFirstLast" />
-                                    <EmptyDataTemplate>
+                                    <pagerstyle cssclass="paging" horizontalalign="Right" />
+                                    <pagersettings mode="NumericFirstLast" />
+                                    <emptydatatemplate>
                                         No Record Available
-                                    </EmptyDataTemplate>
+                                    </emptydatatemplate>
                                 </asp:GridView>
 
 
@@ -198,5 +204,6 @@
 
             </div>
 
+        </div>
         </div>
 </asp:Content>

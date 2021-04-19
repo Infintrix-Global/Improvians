@@ -21,13 +21,24 @@ namespace Evo
             if (!IsPostBack)
             {
                 Bindcname();
+                BindSupervisorList();
                 BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode("0");
                 BindGridGerm();
             }
         }
 
+        public void BindSupervisorList()
+        {
+            NameValueCollection nv = new NameValueCollection();
 
+            ddlAssignedBy.DataSource = objCommon.GetDataTable("SP_GetSeedsRoles", nv);
+
+            ddlAssignedBy.DataTextField = "EmployeeName";
+            ddlAssignedBy.DataValueField = "ID";
+            ddlAssignedBy.DataBind();
+            ddlAssignedBy.Items.Insert(0, new ListItem("--Select--", "0"));
+        }
         public void Bindcname()
         {
 
@@ -65,7 +76,7 @@ namespace Evo
             ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-          
+
 
         }
 
@@ -77,17 +88,17 @@ namespace Evo
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@BenchLocation",ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@JobNo",ddlJobNo.SelectedValue);
-            nv.Add("@Customer",ddlCustomer.SelectedValue);
-            nv.Add("@RequestType",ddlTaskRequestType.SelectedValue);
+            nv.Add("@JobNo", ddlJobNo.SelectedValue);
+            nv.Add("@Customer", ddlCustomer.SelectedValue);
+            nv.Add("@RequestType", ddlTaskRequestType.SelectedValue);
 
-            nv.Add("@AssingTo",ddlAssignedBy.SelectedValue);
-            nv.Add("@WorkDateForm",txtFromDate.Text);
-            nv.Add("@WorkDateTo",txtToDate.Text);
-            
+            nv.Add("@AssingTo", ddlAssignedBy.SelectedValue);
+            nv.Add("@WorkDateForm", txtFromDate.Text);
+            nv.Add("@WorkDateTo", txtToDate.Text);
+
 
             AllData = objCommon.GetDataTable("GetManageTaskJobHistory", nv);
             gvGerm.DataSource = AllData;
@@ -110,7 +121,13 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
+            Bindcname();
+            BindSupervisorList();
+            BindBenchLocation(Session["Facility"].ToString());
+            BindJobCode("0");
+            BindGridGerm();
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,6 +144,76 @@ namespace Evo
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridGerm();
+        }
+
+        protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            if (e.CommandName == "GStart")
+            {
+
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string BatchLocation = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                string jobCode = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+                string TaskRequestType = gvGerm.DataKeys[rowIndex].Values[2].ToString();
+
+                Response.Redirect(String.Format("~/ViewJobDetails.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestType={2}", BatchLocation, jobCode, TaskRequestType));
+
+
+            }
+        }
+
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnStart = (Button)e.Row.FindControl("btnStart");
+                Label lblTaskStatus = (Label)e.Row.FindControl("lblTaskStatus");
+                Label lblBenchLocation = (Label)e.Row.FindControl("lblBenchLocation");
+                Label lblJobNo = (Label)e.Row.FindControl("lblJobNo");
+                Label lblTaskRequestType = (Label)e.Row.FindControl("lblTaskRequestType");
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@BenchLocation", lblBenchLocation.Text);
+                nv.Add("@JobNo", lblJobNo.Text);
+                nv.Add("@RequestType", lblTaskRequestType.Text);
+                dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobView", nv);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
+                    btnStart.Enabled = true;
+
+                    btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
+                }
+                else
+                {
+                    lblTaskStatus.Text = "Pending";
+                    btnStart.Enabled = false;
+
+                    btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
+                }
+
+                //if (lblStatusValues.Text == "1" || lblStatusValues.Text == "2")
+                //{
+                //    lblstatus.Text = "Completed";
+                //}
+                //else
+                //{
+                //    lblstatus.Text = "Pending";
+                //}
+
+                //if (lblStatusValues.Text == "2")
+                //{
+                //    lblPudawayDate.Text = lblPudawayDate.Text;
+                //}
+                //else
+                //{
+                //    lblPudawayDate.Text = "Pending";
+                //}
+
+            }
         }
 
 
