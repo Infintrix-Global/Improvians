@@ -74,7 +74,7 @@ namespace Evo
                 dashlink.Attributes.Add("class", "active");
                 lnkmytask.Attributes.Remove("class");
                 divFacility.Visible = false;
-                SiteMapPath1.Visible = false;
+                divSitemap.Visible = false;
             }
             else
             {
