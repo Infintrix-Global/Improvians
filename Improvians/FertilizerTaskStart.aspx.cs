@@ -426,7 +426,7 @@ namespace Evo
 
             //  dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
 
-            DataTable dtManual = objTask.GetManualRequestStart(Session["Facility"].ToString(), BenchLoc, "");
+            DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'" );
 
 
 
