@@ -1,55 +1,41 @@
+var cacheName = 'offline__VERSION__';
 
-var CACHE_STATIC_NAME = 'static-v4';
-var CACHE_DYNAMIC_NAME = 'dynamic-v2';
+var requiredCacheFiles   = [
+  './offline-fallback.html',
+];
 
-self.addEventListener('install', function (event) {
-    console.log('[Service Worker] Installing Service Worker ...', event);
-    event.waitUntil(
-        caches.open(CACHE_STATIC_NAME)
-            .then(function (cache) {
-                console.log('[Service Worker] Precaching App Shell');
-                cache.addAll([
-                    './offline-fallback.html'
-                ]);
-            })
-    )
+self.addEventListener('install', function(event){
+    console.log("[serviceWorker] installed.");
+    self.skipWaiting();
+  event.waitUntil(
+    caches.open(cacheName).then(function(cache){
+      return cache.addAll(requiredCacheFiles);
+    })
+  );
 });
 
-self.addEventListener('activate', function (event) {
-    console.log('[Service Worker] Activating Service Worker ....', event);
-    event.waitUntil(
-        caches.keys()
-            .then(function (keyList) {
-                return Promise.all(keyList.map(function (key) {
-                    if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
-                        console.log('[Service Worker] Removing old cache.', key);
-                        return caches.delete(key);
-                    }
-                }));
-            })
-    );
-    return self.clients.claim();
+self.addEventListener('activate', function(event){
+  console.log("[serviceWorker] activated.");
+  event.waitUntil(
+    caches.keys().then(function(keyList){
+      return Promise.all(keyList.map(function(key){
+        if (key !== cacheName) {
+          console.log('[ServiceWorker] Removing old cache', key);
+          return caches.delete(key);
+        }
+      }));
+    })
+  );
+  return self.clients.claim();
 });
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function(event) {
+  if (event.request.mode === 'navigate' || (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
     event.respondWith(
-        caches.match(event.request)
-            .then(function (response) {
-                if (response) {
-                    return response;
-                } else {
-                    return fetch(event.request)
-                        .then(function (res) {
-                            return caches.open(CACHE_DYNAMIC_NAME)
-                                .then(function (cache) {
-                                    cache.put(event.request.url, res.clone());
-                                    return res;
-                                })
-                        })
-                        .catch(function (err) {
-
-                        });
-                }
-            })
+      fetch(event.request).catch(function(error) {
+        console.log('Fetch failed; returning offline page instead.', error);
+        return caches.match('./offline-fallback.html');
+      })
     );
+  }
 });
