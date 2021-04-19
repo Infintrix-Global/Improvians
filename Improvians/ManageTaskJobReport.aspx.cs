@@ -157,7 +157,31 @@ namespace Evo
                 string jobCode = gvGerm.DataKeys[rowIndex].Values[1].ToString();
                 string TaskRequestType = gvGerm.DataKeys[rowIndex].Values[2].ToString();
 
-                Response.Redirect(String.Format("~/ViewJobDetails.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestType={2}", BatchLocation, jobCode, TaskRequestType));
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@BenchLocation", BatchLocation);
+                nv.Add("@JobNo", jobCode);
+                nv.Add("@RequestType", TaskRequestType);
+                dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobViewDetsils", nv);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    if (TaskRequestType == "Fertilization")
+                    {
+                        Response.Redirect(String.Format("~/SprayTaskReq.aspx?FertilizationCode={0}", dt.Rows[0]["FertilizationCode"].ToString()));
+                    }
+                    if (TaskRequestType == "Chemical")
+                    {
+                        Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}",dt.Rows[0]["ChemicalCode"].ToString()));
+                    }
+                    if (TaskRequestType == "Germination")
+                    {
+                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", dt.Rows[0]["ID"].ToString()));
+                    }
+
+                }
+ 
+                //    Response.Redirect(String.Format("~/ViewJobDetails.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestType={2}", BatchLocation, jobCode, TaskRequestType));
 
 
             }

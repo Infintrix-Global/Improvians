@@ -2688,7 +2688,7 @@ namespace Evo
             NameValueCollection nvimg = new NameValueCollection();
             nv14.Add("@Mode", "12");
             dt1 = objCommon.GetDataTable("GET_Common", nv14);
-
+            FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
 
 
             foreach (GridViewRow row in gvFer.Rows)
