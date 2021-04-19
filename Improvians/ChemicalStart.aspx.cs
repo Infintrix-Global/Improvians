@@ -415,15 +415,32 @@ namespace Evo
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
+            DataTable dtManual = objTask.GetManualRequestStart(Session["Facility"].ToString(), BenchLoc, "");
 
-            if (dtManual != null && dtManual.Rows.Count > 0)
+
+            if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
                 dt.AcceptChanges();
+                gvJobHistory.DataSource = dt;
+                gvJobHistory.DataBind();
+
             }
-            gvJobHistory.DataSource = dt;
-            gvJobHistory.DataBind();
+            else if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                gvJobHistory.DataSource = dtManual;
+                gvJobHistory.DataBind();
+
+            }
+            else
+            {
+                gvJobHistory.DataSource = dt;
+                gvJobHistory.DataBind();
+
+
+            }
+
+        
 
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
@@ -510,31 +527,31 @@ namespace Evo
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                if ((row.FindControl("lblGrowerputawayID") as Label).Text == "0")
-                {
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
-                    nv.Add("@Type", "Chemical");
-                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                    //nv.Add("@WorkOrder", lblwo.Text);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                    nv.Add("@ChemicalDate", txtDate.Text);
-                    nv.Add("@Comments", txtComments.Text);
-                    nv.Add("@Method", ddlMethod.SelectedValue);
+                //if ((row.FindControl("lblGrowerputawayID") as Label).Text == "0")
+                //{
+                //    long result = 0;
+                //    NameValueCollection nv = new NameValueCollection();
+                //    nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                //    nv.Add("@Type", "Chemical");
+                //    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                //    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                //    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                //    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                //    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                //    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                //    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                //    //nv.Add("@WorkOrder", lblwo.Text);
+                //    nv.Add("@LoginID", Session["LoginID"].ToString());
+                //    nv.Add("@ChemicalCode", ChemicalCode.ToString());
+                //    nv.Add("@ChemicalDate", txtDate.Text);
+                //    nv.Add("@Comments", txtComments.Text);
+                //    nv.Add("@Method", ddlMethod.SelectedValue);
 
-                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
-                }
-                else
-                {
+                //    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
+                //}
+                //else
+                //{
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
 
@@ -545,14 +562,14 @@ namespace Evo
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@ChemicalCode", ChemicalCode.ToString());
                     nv.Add("@ChemicalDate", txtDate.Text);
-                    nv.Add("@Jid", Jid);
+                    nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
 
 
                     nv.Add("@SupervisorID", Session["LoginID"].ToString());
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTaskStart", nv);
 
 
-                }
+              //  }
 
 
             }
