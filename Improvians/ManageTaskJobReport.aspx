@@ -29,7 +29,7 @@
                     <label>Task Request Type </label>
                     <asp:DropDownList ID="ddlTaskRequestType" runat="server" class="custom__dropdown robotomd">
                         <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
-                        <asp:ListItem Text="Navision" Value="Manual"></asp:ListItem>
+                        <asp:ListItem Text="Fertilization" Value="Fertilization"></asp:ListItem>
                         <asp:ListItem Text="App" Value="App"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
