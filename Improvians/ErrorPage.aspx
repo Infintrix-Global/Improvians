@@ -76,7 +76,6 @@
             <h1>500</h1>
             <h3>Server Error</h3>
             <h4>Something Went Wrong!!!</h4>
-            <a href="javascript:history.back()" class="bttn bttn-primary">Go Back</a>
             <asp:HyperLink runat="server" ID="lnkBack" CssClass="bttn bttn-primary" Text="Click here to go back" />
         </div>
     </form>
