@@ -3,12 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main main__header">
-        <div class="site__container">
+    <div class="site__container">
             <h2 class="head__title-icon">
                 <img src="images/dashboard_general-task.png" width="137" height="132" alt="General Task" />
-                General Task Completion</h2>
-
+                General Task Completion
+            </h2>
 
             <div class="data__table">
                 <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
@@ -238,5 +237,4 @@
             </div>
 
         </div>
-    </div>
 </asp:Content>
