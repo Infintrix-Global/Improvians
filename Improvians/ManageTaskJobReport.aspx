@@ -22,7 +22,7 @@
                     <asp:DropDownList ID="ddlCustomer" runat="server" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
-                    <label>Assigned By </label>
+                    <label>Assigned To </label>
                     <asp:DropDownList ID="ddlAssignedBy" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
@@ -140,7 +140,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Assing To" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Assigned To" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblAssingTo" runat="server" Text='<%# Eval("AssingTo")  %>'></asp:Label>
@@ -160,7 +160,7 @@
 
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Status" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Completion Status" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblTaskStatus" runat="server" Text='<%# Eval("TaskStatus")  %>'></asp:Label>
@@ -175,7 +175,7 @@
                                         <asp:TemplateField HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
-                                                <asp:Button ID="btnStart" runat="server" Text="View Job"   CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                                <asp:Button ID="btnStart" runat="server" Text="Job Report"   CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
 
                                             </ItemTemplate>

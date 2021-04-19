@@ -168,17 +168,20 @@ namespace Evo
                 {
                     if (TaskRequestType == "Fertilization")
                     {
-                        Response.Redirect(String.Format("~/SprayTaskReq.aspx?FertilizationCode={0}", dt.Rows[0]["FertilizationCode"].ToString()));
+                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?FertilizationCode={0}", dt.Rows[0]["FertilizationCode"].ToString()));
                     }
                     if (TaskRequestType == "Chemical")
                     {
-                        Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}",dt.Rows[0]["ChemicalCode"].ToString()));
+                        Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}", dt.Rows[0]["ChemicalCode"].ToString()));
                     }
                     if (TaskRequestType == "Germination")
                     {
                         Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", dt.Rows[0]["ID"].ToString()));
                     }
-
+                    if (TaskRequestType == "Irrigation")
+                    {
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", dt.Rows[0]["IrrigationCode"].ToString()));
+                    }
                 }
  
                 //    Response.Redirect(String.Format("~/ViewJobDetails.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestType={2}", BatchLocation, jobCode, TaskRequestType));

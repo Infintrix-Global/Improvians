@@ -133,7 +133,7 @@
                                             </HeaderTemplate>
                                             <ItemTemplate>
 
-                                                <asp:CheckBox runat="server" Checked="true" ID="chkSelect"></asp:CheckBox>
+                                                <asp:CheckBox runat="server"  ID="chkSelect"></asp:CheckBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
