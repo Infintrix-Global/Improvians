@@ -77,7 +77,7 @@ namespace Evo
             //        row.CssClass = "highlighted";
             //    }
             //}
-            if (p != 1)
+            if (p != 1 && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
             }
@@ -95,11 +95,11 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit >= 20)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvGerm.PageIndex++;
                     gvGerm.DataBind();
-                    highlight((limit - 20));
+                    highlight((limit - 10));
                 }
             }
         }

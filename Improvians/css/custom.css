@@ -181,7 +181,36 @@ table .bttn {
 
 .bttn-danger { background: rgb(209, 9, 9); color: #ffffff; }
 
+.bttn.bttn-icon {
+    padding: 0;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 16px;
+    background: rgb(72 137 73);
+    border-radius: 7px;
+}
+
+.bttn.bttn-back {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
 .submit-bttn { min-width: 112px; }
+
+.bttn-group { display: flex; flex-wrap: wrap; align-items: center; }
+
+.bttn-group .bttn {
+    margin-right: 10px;
+}
+
+.bttn-group .bttn:last-child {
+    margin-right: 0;
+}
 
 .site__container {
     padding-left: 45px;
@@ -393,10 +422,10 @@ header {
 /* Breadcrumbs */
 .site__breadcrumb {
     /*background: #f8f8f8;*/
-    position: absolute;
-    top: 95px;
-    left: 0;
-    right: 0;
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .breadcrumb {
@@ -404,8 +433,7 @@ header {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding: 10px 1rem;
-    padding-left: 0;
+    margin-left: 10px;
     margin-bottom: 0;
     list-style: none;
     border-radius: .25rem;
@@ -444,25 +472,7 @@ h2:not(.mb-3) + .breadcrumb {
     color: #6c757d;
 }
 
-.site__breadcrumb ~ .main__header, .site__breadcrumb ~ .main .main__header {
-    margin-top: 110px;
-}
-
 .header__tabs { position: relative; }
-
-/*
-.header__tabs::before {
-    content: "";
-    display: block;
-    width: 50px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: linear-gradient(90deg, rgba(244,246,250,0%) 0%, rgba(244, 246, 250, 0.73) 50%, rgb(244,246,250) 100%);
-    opacity: 0;
-}
-*/
 
 .header__tabs-scroll::before {
     content: "";
@@ -523,23 +533,28 @@ textarea.input__control {
     padding-right: 52px;
 }
 
-.filter__control:focus, .input__control:focus { outline: none; } 
+.filter__control:focus, .input__control:focus { outline: none; }
 
 .header__bottom {
-    position: relative;
-    margin-top: -76px;
-    display: block;
+    position: absolute;
     max-width: calc(100% - 698px);
     margin-left: auto;
     margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 95px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header__bottom .custom__dropdown { max-width: 401px; }
-
-.header__bottom + .main { margin-top: 70px; }
-
 .header__bottom .bttn { padding-left: 15px; padding-right: 15px; }
 .header__bottom [class^="rxicon-"] { font-size: 24px; }
+
+.main { margin-top: 25px; }
+.main .main { margin-top: 0; }
 
 /*Footer*/
 .floating__footer {
@@ -922,10 +937,6 @@ textarea.input__control {
 }
 
 /*Updates*/
-.main__header {
-    margin-top: 50px;
-}
-
 .form__md {
     max-width: 100%;
     width: 600px;
@@ -1326,6 +1337,33 @@ textarea.input__control {
     .break__table-lg tr:nth-child(even) > td { background: #f6f6f6; }
     .break__table-lg tr:nth-child(even) > td:nth-child(odd) { background: #ffffff; }
     .break__table-lg tr th { display: none; }
+
+
+    .data__mobile th {
+        display: none;
+    }
+
+    .data__mobile tr {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        width: 100%;
+    }
+
+    .data__mobile tr.overdue + tr {
+        padding-top: 20px;
+    }
+
+    .data__mobile {
+        overflow: hidden;
+    }
+
+    .data__mobile td {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .data__mobile td [data-head]::before {content: attr(data-head);display: block;width: 100%;font-weight: bold;padding: 5px 0;}
 }
 
 @media only screen and (max-width: 1023px) {
@@ -1345,17 +1383,15 @@ textarea.input__control {
 }
 
 @media only screen and (max-width: 991px) {
-    .header__bottom { max-width: 100%; margin-top: 30px; }
-    .header__bottom + .main { margin-top: 30px;}
-    .main .header__bottom { margin-top: 40px; }
-    .site__breadcrumb ~ .main__header, .site__breadcrumb ~ .main .main__header { margin-top: 0; }
-    .site__breadcrumb ~ .header__bottom { margin-top: 75px; }
-
     .bttn { padding: 10px 25px; }
-    .custom__dropdown, .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon) { padding: 0 25px; }
+    .header__bottom { position: static; height: auto; display: flex; }
+    .main .header__bottom { margin-bottom: 30px; }
+    .main .main .header__bottom { margin-bottom: 0; }
+    .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon) { padding: 0 25px; }
     textarea.input__control:not(.input__control-icon):not(.filter__search) { padding: 15px; }
     .filter__search { padding-left: 45px; }
-    h2 { font-size: 26px; }
+    h2 { font-size: 24px; }
+    .head__title-icon img { max-width: 40px; }
     .dashboard__block--asign h3 { font-size: 22px; }
     .dashboard__row { margin-top: 30px; }
     .block__head + .activity__graph { margin-top: 25px; }
@@ -1369,11 +1405,8 @@ textarea.input__control {
     .has__footer { padding-bottom: 112px; }
     .dashboard__paging { margin-bottom: 10px; }
     .dashboard__block--asign { margin-bottom: 30px; }
-
-    .dashboard__box {
-        flex: 1 0 calc(50% - 30px);
-        max-width: calc(50% - 30px);
-    }
+    .dashboard__matrix:nth-child(-n+3) { margin-bottom: 30px; }
+    .dashboard__box { flex: 1 0 calc(50% - 30px); max-width: calc(50% - 30px); }
 
     /*Break Table*/
     .break__table:not(.break__table-sm) tr td { display: flex; }
@@ -1446,10 +1479,11 @@ textarea.input__control {
     .break__table-sm tr th { display: none; }
     .site__breadcrumb { top: 81px; }
     .breadcrumb {
-        padding: 8px 1rem;
+        /*padding: 8px 1rem;*/
         font-size: 14px;
         padding-left: 0;
     }
+    .request__block { margin-bottom: 30px; }
 }
 
 @media only screen and (max-width: 639px) {
@@ -1519,7 +1553,6 @@ textarea.input__control {
     .dashboard__matrixdetail .matrixdetail-subtitle { line-height: 25px; }
     .floating__footer a { padding: 10px; }
     .filter__row { margin-top: 10px; }
-    .header__bottom + .main { margin-top: 20px; }
     .filter__row > .filter__control:not(.bttn) { max-width: 100%; width: 100%; flex: 1 0 100%; }
     h2 { font-size: 24px; }
     .header__bottom { padding-left: 15px; padding-right: 15px; }

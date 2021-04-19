@@ -7,7 +7,52 @@
         <div class="site__container">
             <h2>Manage Task</h2>
 
+            <div class="row">
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Bench Location </label>
+                    <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Job No </label>
+                    <asp:DropDownList ID="ddlJobNo" runat="server" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
 
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Customer </label>
+                    <asp:DropDownList ID="ddlCustomer" runat="server" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Assigned By </label>
+                    <asp:DropDownList ID="ddlAssignedBy" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Task Request Type </label>
+                    <asp:DropDownList ID="ddlTaskRequestType" runat="server" class="custom__dropdown robotomd">
+                        <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
+                        <asp:ListItem Text="Navision" Value="Manual"></asp:ListItem>
+                        <asp:ListItem Text="App" Value="App"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+
+            <div class="row mb-1 mb-md-4 align-items-end">
+
+
+       
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Work From Date</label>
+                    <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                </div>
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Work To Date </label>
+                    <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                </div>
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
+                    <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
+
+                </div>
+            </div>
 
             <div class="row">
                 <div class=" col m12">
@@ -121,7 +166,7 @@
 
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
                                                 <asp:Button ID="btnStart" runat="server" Text="View Job" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
@@ -132,7 +177,7 @@
 
                                         </asp:TemplateField>
 
-                                      
+
 
                                     </Columns>
 
@@ -154,5 +199,4 @@
             </div>
 
         </div>
-    </div>
 </asp:Content>

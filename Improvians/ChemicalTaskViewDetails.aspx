@@ -2,30 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
-    <div class="main">
-        <div class="site__container">
-            <h2 class="text-left">Chemical Task View </h2>
-            <%-- <asp:UpdatePanel ID="up1" runat="server">
-                <ContentTemplate>--%>
-
-
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <div class="site__container">
+            <h2 class="text-left mb-3">Chemical Task View </h2>
             <div class="row">
-
-
-
                 <div class="col-lg-6">
                     <h3 class="robotobold">
                         <label>Bench Location</label><br />
                         <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
                     </h3>
                 </div>
-
-                <div class="col-lg-6">
-                </div>
-
-
-
             </div>
             <br />
             <div class="row">
@@ -255,6 +241,4 @@
             <%--   </ContentTemplate>
             </asp:UpdatePanel>--%>
         </div>
-    </div>
-
 </asp:Content>

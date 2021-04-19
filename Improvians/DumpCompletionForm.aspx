@@ -3,11 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main__header">
-        <div class="site__container">
+    <div class="site__container">
             <h2 class="head__title-icon">
                 <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready">
-              Dump Completion Form</h2>
+                Dump Completion Form
+            </h2>
 
             <div class="filter__row d-flex">
                 <div class="row">
@@ -28,8 +28,6 @@
                         <br />
                         <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
                     </div>
-
-
                 </div>
             </div>
 
@@ -40,7 +38,7 @@
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true" PageSize="20" OnPageIndexChanging="gvGerm_PageIndexChanging"
+                                    class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand"  DataKeyNames="DumpTaskAssignmentId,DumpId"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
@@ -140,5 +138,4 @@
             </div>
 
         </div>
-    </div>
 </asp:Content>

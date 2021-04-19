@@ -3,8 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="main">
-        <div class="site__container">
+    <div class="site__container">
             <h2>Germination Count Task Completion</h2>
 
             <div class="row">
@@ -19,21 +18,12 @@
                                     ShowHeaderWhenEmpty="True" Width="100%">
 
                                     <Columns>
-                                        <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-
-                                                <asp:Label ID="lblStatus" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
-
-
-
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                                 <asp:Label ID="lblGTAID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
-                                                <asp:Label ID="Label1" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                                <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                                 <%--  <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />--%>
 
                                                 <asp:HyperLink ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:HyperLink>
@@ -56,7 +46,7 @@
 
                                         <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+                                                <asp:Label ID="lblGreenHouseID" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -135,9 +125,6 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>
-
-
-
                             </div>
                         </div>
 
@@ -344,5 +331,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </asp:Content>
