@@ -373,11 +373,14 @@ namespace Evo
             nv.Add("@Foce", Foce);
 
             dt = objCommon.GetDataTable("SP_GetTaskAssignmentFertilizationView", nv);
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
                 //    Quantity
                 txtQty.Text = dt.Rows[0]["Quantity"].ToString();
+
+                txtComments.Text = dt.Rows[0]["Comments"].ToString();
             }
         }
 
@@ -549,7 +552,7 @@ namespace Evo
 
             }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, "0", FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text);
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text,txtComments.Text);
 
             string url = "";
             if (Session["Role"].ToString() == "1")

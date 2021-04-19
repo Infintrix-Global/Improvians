@@ -1747,7 +1747,7 @@ namespace Evo
 
         protected void btnCropHealthStart_Click(object sender, EventArgs e)
         {
-            string x = "'" + Bench1 + "'" + ",";
+            string x = "";
             string chkSelected = "";
             int c = 0;
             string BatchLocd = "";
@@ -2452,6 +2452,7 @@ namespace Evo
 
         }
 
+
         protected void btnStartirrigation_Click(object sender, EventArgs e)
         {
             string x = "'" + Bench1 + "'" + ",";
@@ -2459,39 +2460,38 @@ namespace Evo
             int c = 0;
             string BatchLocd = "";
             string JobCode = "";
+            //foreach (GridViewRow row in gvFer.Rows)
+            //{
+            //    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+            //    if (chckrw.Checked == true)
+            //    {
+            //        BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
+            //        JobCode = (row.FindControl("lblID") as Label).Text;
+            //        c = c + 1;
+            //        x += "'" + BatchLocd + "',";
+
+            //    }
+            //}
+            int IrrigationCode = 0;
+            string Batchlocation = "";
+            string JobCOde = "";
+            DataTable dt = new DataTable();
+            NameValueCollection nv17 = new NameValueCollection();
+            NameValueCollection nvimg = new NameValueCollection();
+            nv17.Add("@Mode", "13");
+            dt = objCommon.GetDataTable("GET_Common", nv17);
+            IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                 if (chckrw.Checked == true)
                 {
-                    BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
-                    JobCode = (row.FindControl("lblID") as Label).Text;
-                    c = c + 1;
-                    x += "'" + BatchLocd + "',";
-
-                }
-            }
-
-
-            if (c == 1)
-            {
-
-                int IrrigationCode = 0;
-                string Batchlocation = "";
-                string JobCOde = "";
-                DataTable dt = new DataTable();
-                NameValueCollection nv17 = new NameValueCollection();
-                NameValueCollection nvimg = new NameValueCollection();
-                nv17.Add("@Mode", "13");
-                dt = objCommon.GetDataTable("GET_Common", nv17);
-                IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
-
-
-
-                foreach (GridViewRow row in gvFer.Rows)
-                {
-                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                    if (chckrw.Checked == true)
+                    if (BatchLocd != "" & BatchLocd != (row.FindControl("lblGreenHouse") as Label).Text)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select only one Bench. Mutiple bench selection can be done after starting this task in the completion form.')", true);
+                        break;
+                    }
+                    else
                     {
                         Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
@@ -2524,17 +2524,35 @@ namespace Evo
                         nv.Add("@Role", Session["Role"].ToString());
                         nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                         result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTaskStart", nv);
-
                     }
+
                 }
-
-                Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}", Batchlocation, JobCOde, IrrigationCode));
-
             }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select only one Bench. Mutiple bench selection can be done after starting this task in the completion form.')", true);
-            }
+            Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}", Batchlocation, JobCOde, IrrigationCode));
+
+            //if (c == 1)
+            //{
+
+               
+
+
+
+            //    foreach (GridViewRow row in gvFer.Rows)
+            //    {
+            //        CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+            //        if (chckrw.Checked == true)
+            //        {
+                       
+
+            //        }
+            //    }
+
+              
+            //}
+            //else
+            //{
+            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select only one Bench. Mutiple bench selection can be done after starting this task in the completion form.')", true);
+            //}
         }
 
         protected void btnStartChemical_Click(object sender, EventArgs e)
@@ -2545,6 +2563,17 @@ namespace Evo
             int Q = 0;
             string BatchLocd = "";
             string JobCode = "";
+
+
+            int ChemicalCode = 0;
+            string Batchlocation = "";
+            string JobCOde = "";
+            dtCTrays.Clear();
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mode", "16");
+            dt1 = objCommon.GetDataTable("GET_Common", nv1);
+            ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
 
 
             foreach (GridViewRow row in gvFer.Rows)
@@ -2561,75 +2590,66 @@ namespace Evo
                     {
 
                         BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
-                        JobCode = (row.FindControl("lblID") as Label).Text;
-                        c = c + 1;
-                        x += "'" + BatchLocd + "',";
+                        //JobCode = (row.FindControl("lblID") as Label).Text;
+                        //c = c + 1;
+                        //x += "'" + BatchLocd + "',";
+
+                        Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+
+                        JobCOde = (row.FindControl("lblID") as Label).Text;
+                        dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
+                        objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+
+
+                        long result = 0;
+                        NameValueCollection nv = new NameValueCollection();
+                        nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                        nv.Add("@Type", "Chemical");
+                        nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                        nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                        nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                        nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                        nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                        //nv.Add("@WorkOrder", lblwo.Text);
+                        nv.Add("@LoginID", Session["LoginID"].ToString());
+                        nv.Add("@ChemicalCode", ChemicalCode.ToString());
+                        nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
+                        nv.Add("@Comments", txtCComments.Text);
+                        nv.Add("@Method", ddlMethod.SelectedValue);
+                        nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
+
+                        NameValueCollection nvn = new NameValueCollection();
+                        nvn.Add("@LoginID", Session["LoginID"].ToString());
+                        nvn.Add("@SupervisorID", Session["LoginID"].ToString());
+                        nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                        nvn.Add("@TaskName", "Chemical");
+                        nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
                     }
 
-
                 }
             }
 
 
 
 
-            int ChemicalCode = 0;
-            string Batchlocation = "";
-            string JobCOde = "";
-            dtCTrays.Clear();
-            DataTable dt1 = new DataTable();
-            NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Mode", "16");
-            dt1 = objCommon.GetDataTable("GET_Common", nv1);
-            ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
-
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                if (chckrw.Checked == true)
-                {
-                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
-
-                    JobCOde = (row.FindControl("lblID") as Label).Text;
-                    dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                    objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
 
+            //foreach (GridViewRow row in gvFer.Rows)
+            //{
+            //    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+            //    if (chckrw.Checked == true)
+            //    {
 
 
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
-                    nv.Add("@Type", "Chemical");
-                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                    //nv.Add("@WorkOrder", lblwo.Text);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                    nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                    nv.Add("@Comments", txtCComments.Text);
-                    nv.Add("@Method", ddlMethod.SelectedValue);
-                    nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
+            //    }
 
-                    NameValueCollection nvn = new NameValueCollection();
-                    nvn.Add("@LoginID", Session["LoginID"].ToString());
-                    nvn.Add("@SupervisorID", Session["LoginID"].ToString());
-                    nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                    nvn.Add("@TaskName", "Chemical");
-                    nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
-
-                }
-
-            }
+            //}
 
             Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}", Batchlocation, JobCOde, ChemicalCode));
 
@@ -2644,40 +2664,43 @@ namespace Evo
             int c = 0;
             string BatchLocd = "";
             string JobCode = "";
+            //foreach (GridViewRow row in gvFer.Rows)
+            //{
+            //    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+            //    if (chckrw.Checked == true)
+            //    {
+            //        BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
+            //        JobCode = (row.FindControl("lblID") as Label).Text;
+
+            //        c = c + 1;
+            //        x += "'" + BatchLocd + "',";
+
+            //    }
+
+
+            //}
+            string Batchlocation = "";
+            string JobCOde = "";
+            int FertilizationCode = 0;
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv14 = new NameValueCollection();
+            NameValueCollection nvimg = new NameValueCollection();
+            nv14.Add("@Mode", "12");
+            dt1 = objCommon.GetDataTable("GET_Common", nv14);
+
+
+
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                 if (chckrw.Checked == true)
                 {
-                    BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
-                    JobCode = (row.FindControl("lblID") as Label).Text;
-
-                    c = c + 1;
-                    x += "'" + BatchLocd + "',";
-
-                }
-
-
-            }
-
-
-            if (c == 1)
-            {
-                string Batchlocation = "";
-                string JobCOde = "";
-                int FertilizationCode = 0;
-                DataTable dt1 = new DataTable();
-                NameValueCollection nv14 = new NameValueCollection();
-                NameValueCollection nvimg = new NameValueCollection();
-                nv14.Add("@Mode", "12");
-                dt1 = objCommon.GetDataTable("GET_Common", nv14);
-
-
-                FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
-                foreach (GridViewRow row in gvFer.Rows)
-                {
-                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                    if (chckrw.Checked == true)
+                    if (BatchLocd != "" & BatchLocd != (row.FindControl("lblGreenHouse") as Label).Text)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select only one Bench. Mutiple bench selection can be done after starting this task in the completion form.')", true);
+                        break;
+                    }
+                    else
                     {
                         Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
@@ -2718,18 +2741,36 @@ namespace Evo
 
                     }
 
-
-
                 }
+            }
+
+            Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}", Batchlocation, JobCOde, FertilizationCode));
+
+            //if (c == 1)
+            //{
+
+            //    FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
+            //    foreach (GridViewRow row in gvFer.Rows)
+            //    {
+            //        CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+            //        if (chckrw.Checked == true)
+            //        {
 
 
-                Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}", Batchlocation, JobCOde, FertilizationCode));
-                //  Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?&FCode={0}", FertilizationCode));
-            }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select only one Bench. Mutiple bench selection can be done after starting this task in the completion form.')", true);
-            }
+            //        }
+
+
+
+            //    }
+
+
+
+            //    //  Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?&FCode={0}", FertilizationCode));
+            //}
+            //else
+            //{
+            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select only one Bench. Mutiple bench selection can be done after starting this task in the completion form.')", true);
+            //}
 
         }
 

@@ -30,7 +30,7 @@ namespace Evo
                 }
                 BindPlantReady();
                 BindViewDetilas(Convert.ToInt32(Request.QueryString["PRID"]));
-
+                BindSupervisorList();
                 if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
                 {
                     GeneralTaskId.Visible = true;
@@ -41,6 +41,18 @@ namespace Evo
                     GeneralTaskId.Visible = false;
                 }
             }
+        }
+
+        public void BindSupervisorList()
+        {
+            NameValueCollection nv = new NameValueCollection();
+
+            ddlAssignments.DataSource = objCommon.GetDataTable("SP_GetSeedsRoles", nv);
+
+            ddlAssignments.DataTextField = "EmployeeName";
+            ddlAssignments.DataValueField = "ID";
+            ddlAssignments.DataBind();
+            ddlAssignments.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
         public void BindViewDetilas(int PRid)
@@ -395,7 +407,7 @@ namespace Evo
         }
         protected void btnGeneraltask_Click(object sender, EventArgs e)
         {
-            GeneraltaskSubmit(Session["LoginID"].ToString());
+            GeneraltaskSubmit(ddlAssignments.SelectedValue);
         }
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {

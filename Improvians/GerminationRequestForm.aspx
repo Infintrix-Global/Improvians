@@ -54,23 +54,7 @@
             </div>
 
             <div class="row mb-1 mb-md-4 align-items-end">
-                <%-- <div class="col-md-6 mb-3">
-                    <label>Week </label>
-                    <asp:RadioButtonList ID="radweek" runat="server" Width="100%" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="radweek_SelectedIndexChanged">
-                        <asp:ListItem Text="Last Week" Value="1" class="custom-control custom-radio mr-3"></asp:ListItem>
-                        <asp:ListItem Text="This Week" Value="2" class="custom-control custom-radio mr-3"></asp:ListItem>
-                        <asp:ListItem Text="Next Week" Value="3" class="custom-control custom-radio"></asp:ListItem>
-                    </asp:RadioButtonList>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label>Status </label>
-                    <asp:RadioButtonList ID="radStatus" runat="server" Width="100%" OnSelectedIndexChanged="radStatus_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
-                        <asp:ListItem Text="Overdue" Value="1" class="custom-control custom-radio mr-3"></asp:ListItem>
-                        <asp:ListItem Text="Today" Value="2" class="custom-control custom-radio mr-3"></asp:ListItem>
-                        <asp:ListItem Text="Upcoming" Value="3" class="custom-control custom-radio"></asp:ListItem>
-                    </asp:RadioButtonList>
-                </div>--%>
+              
 
                  <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Job Source </label>

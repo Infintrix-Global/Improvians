@@ -352,7 +352,10 @@
                                 <label>Minimum Days Until Next Fertilization</label>
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
-
+                             <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                <label>Comments</label>
+                                <asp:TextBox ID="txtComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                            </div>
                     
 
                             <div class="col-12">

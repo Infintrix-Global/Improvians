@@ -306,7 +306,16 @@
                                     <asp:Panel ID="Panel1" runat="server">
                                         <div class="row">
 
+                                             <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                                    <label>Assignment</label>
+                                                    <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
+                                                    <%--                                                        <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                                                    <span class="error_message">
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </span>
+                                                </div>
                                             <div class="col-12 col-md-4 col-lg-3 mb-3">
                                                 <label>Task Type</label>
 
