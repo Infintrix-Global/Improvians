@@ -607,6 +607,14 @@ namespace Evo
 
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
                 }
+                NameValueCollection nvn = new NameValueCollection();
+
+                nvn.Add("@LoginID", Session["LoginID"].ToString());                
+                nvn.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
+                nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                nvn.Add("@TaskName", "Irrigation");
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nvn);
             }
             string url = "";
             if (Session["Role"].ToString() == "1")

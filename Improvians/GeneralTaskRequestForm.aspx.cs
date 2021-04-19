@@ -415,7 +415,7 @@ namespace Evo
                 //nv.Add("@Did", HiddenFieldDid.Value);
                 nv.Add("@jobcode", txtJobNo);
                 nv.Add("@GreenHouseID", txtBenchLocation);
-               // nv.Add("@Mode", "1");
+                nv.Add("@TaskName", "GeneralTask");
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nv);
 

@@ -521,6 +521,8 @@ namespace Evo
                 nameValue.Add("@LoginID", Session["LoginID"].ToString());
                 nameValue.Add("@jobcode", JobCode);
                 nameValue.Add("@GreenHouseID", Bench);
+                nameValue.Add("@TaskName", "Chemical");
+
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
