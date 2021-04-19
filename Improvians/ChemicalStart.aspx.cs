@@ -415,7 +415,7 @@ namespace Evo
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objTask.GetManualRequestStart(Session["Facility"].ToString(), BenchLoc, "");
+            DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
 
 
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)

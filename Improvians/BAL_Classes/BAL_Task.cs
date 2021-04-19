@@ -361,5 +361,38 @@ namespace Evo.BAL_Classes
             return dt;
         }
 
+        public DataTable GetManualRequestStart1(string FacilityLocation, string BenchLocation, string JobCode)
+        {
+            General objGeneral = new General();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "Select GJSPM.jobcode,'0' as wo,GJSPM.jid,'0' as GrowerPutAwayId,GJSPM.cname,GJSPM.itemdescp,GJSPM.itemno,  " +
+                            " GJSPM.loc_seedline as FacilityID,GJSPM.GreenHouseID, GJSPM.Trays,GJSPM.TraySize,GJSPM.SeedDate as SeededDate,GJSPM.GenusCode from [gti_jobs_seeds_plan_Manual] GJSPM where 1=1 ";
+
+                if (!string.IsNullOrEmpty(FacilityLocation))
+                {
+                    strQuery += " and GJSPM.loc_seedline ='" + FacilityLocation + "'";
+                }
+                if (!string.IsNullOrEmpty(BenchLocation))
+                {
+                    strQuery += " and GJSPM.GreenHouseID in (" + BenchLocation + ")";
+                }
+                if (!string.IsNullOrEmpty(JobCode))
+                {
+                    strQuery += " and jobcode not in (" + JobCode + ")";
+                }
+
+
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
     }
 }

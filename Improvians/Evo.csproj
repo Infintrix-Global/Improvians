@@ -384,6 +384,7 @@
     <Content Include="SprayTaskViewDetails.aspx" />
     <Content Include="sw.js" />
     <Content Include="TrackTaskSeedlinePlanner.aspx" />
+    <Content Include="ViewJobDetails.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1124,6 +1125,13 @@
     </Compile>
     <Compile Include="TrackTaskSeedlinePlanner.aspx.designer.cs">
       <DependentUpon>TrackTaskSeedlinePlanner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewJobDetails.aspx.cs">
+      <DependentUpon>ViewJobDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewJobDetails.aspx.designer.cs">
+      <DependentUpon>ViewJobDetails.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

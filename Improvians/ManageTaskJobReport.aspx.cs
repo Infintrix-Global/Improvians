@@ -146,6 +146,72 @@ namespace Evo
             BindGridGerm();
         }
 
+        protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            if (e.CommandName == "GStart")
+            {
+
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string BatchLocation = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                string jobCode = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+                string TaskRequestType = gvGerm.DataKeys[rowIndex].Values[2].ToString();
+
+                Response.Redirect(String.Format("~/ViewJobDetails.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestType={2}", BatchLocation, jobCode, TaskRequestType));
+
+
+            }
+        }
+
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnStart = (Button)e.Row.FindControl("btnStart");
+                Label lblTaskStatus = (Label)e.Row.FindControl("lblTaskStatus");
+                Label lblBenchLocation = (Label)e.Row.FindControl("lblBenchLocation");
+                Label lblJobNo = (Label)e.Row.FindControl("lblJobNo");
+                Label lblTaskRequestType = (Label)e.Row.FindControl("lblTaskRequestType");
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@BenchLocation", lblBenchLocation.Text);
+                nv.Add("@JobNo", lblJobNo.Text);
+                nv.Add("@RequestType", lblTaskRequestType.Text);
+                dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobView", nv);
+
+                if(dt !=null && dt.Rows.Count >0)
+                {
+                    lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
+                    btnStart.Enabled = true;
+                }
+                else
+                {
+                    lblTaskStatus.Text = "Pending";
+                    btnStart.Enabled = false;
+                }
+
+                //if (lblStatusValues.Text == "1" || lblStatusValues.Text == "2")
+                //{
+                //    lblstatus.Text = "Completed";
+                //}
+                //else
+                //{
+                //    lblstatus.Text = "Pending";
+                //}
+
+                //if (lblStatusValues.Text == "2")
+                //{
+                //    lblPudawayDate.Text = lblPudawayDate.Text;
+                //}
+                //else
+                //{
+                //    lblPudawayDate.Text = "Pending";
+                //}
+
+            }
+        }
+
 
 
         //protected void gvGerm_RowDataBound1(object sender, GridViewRowEventArgs e)
