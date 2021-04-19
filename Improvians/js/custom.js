@@ -1,4 +1,5 @@
 jQuery(document).ready(function ($) {
+    /*
     if ('serviceWorker' in navigator) {
         console.log('CLIENT: service worker registration in progress.');
         navigator.serviceWorker.register('./sw.js', { scope: './' }).then(function () {
@@ -9,4 +10,5 @@ jQuery(document).ready(function ($) {
     } else {
         console.log('CLIENT: service worker is not supported.');
     }
+    */
 });
