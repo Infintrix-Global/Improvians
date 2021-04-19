@@ -277,7 +277,7 @@
 
             <div class="task_request_assignments" id="task_request-group">
 
-                <div id="GeneralTaskId" runat="server" visible="false" class="task_request-buttons">
+                <div id="GeneralTaskId" runat="server" class="task_request-buttons">
 
 
                     <asp:LinkButton runat="server" ID="btnGeneral_Task1" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneral_Task1_Click">

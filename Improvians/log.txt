@@ -4771,3 +4771,14 @@ The statement has been terminated. at 4/5/2021 1:32:54 AM
 *****Error message=****@Comments:po[po[ at 4/18/2021 9:43:56 AM
 *****Error message=****@Role:1 at 4/18/2021 9:43:56 AM
 *****Error message=****@Jid:459 at 4/18/2021 9:43:56 AM
+*****Error message=****@SupervisorID:6 at 4/18/2021 11:17:40 PM
+*****Error message=****@ManualID:18 at 4/18/2021 11:17:40 PM
+*****Error message=****@Comments:dsd at 4/18/2021 11:17:40 PM
+*****Error message=****@PRid:0 at 4/18/2021 11:17:40 PM
+*****Error message=****@PlantDate:2021-05-11 at 4/18/2021 11:17:40 PM
+*****Error message=****@LoginID:1 at 4/18/2021 11:17:40 PM
+*****Error message=****@RoleId:1 at 4/18/2021 11:17:40 PM
+*****Error message=****@IsAssistant:0 at 4/18/2021 11:17:40 PM
+*****Error message=****@LoginID:1 at 4/18/2021 11:17:43 PM
+*****Error message=****@jobcode:JB029367 at 4/18/2021 11:17:43 PM
+*****Error message=****@GreenHouseID:ENC1-H03-5-B at 4/18/2021 11:17:43 PM
