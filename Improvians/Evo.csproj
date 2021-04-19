@@ -213,6 +213,7 @@
     <Content Include="css\custom.css" />
     <Content Include="css\uploadify.css" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="FertilizerTaskStart.aspx" />
     <Content Include="FertilizerTaskStart1.aspx" />
     <Content Include="firebase-messaging-sw.js" />
@@ -583,6 +584,13 @@
     </Compile>
     <Compile Include="DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="FertilizerTaskStart.aspx.cs">
       <DependentUpon>FertilizerTaskStart.aspx</DependentUpon>

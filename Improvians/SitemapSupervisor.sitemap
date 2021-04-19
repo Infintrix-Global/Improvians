@@ -66,5 +66,8 @@
 			<siteMapNode url="~/IrrigationStart.aspx" title="Irrigation"/>
 		</siteMapNode>
 		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
+		<siteMapNode url="~/ManageTaskJobReport.aspx" title="Manage Task" >
+			<siteMapNode url="~/ViewJobDetails.aspx" title="View Job" />
+		</siteMapNode>
 	</siteMapNode>
 </siteMap>

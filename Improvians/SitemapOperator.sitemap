@@ -56,6 +56,6 @@
 			</siteMapNode>
 		</siteMapNode>
 		<siteMapNode url="~/CreateTask.aspx" title="Create Task"  />
-		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
+		
 	</siteMapNode>
 </siteMap>
