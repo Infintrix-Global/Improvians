@@ -1472,7 +1472,7 @@ namespace Evo
                     nvn.Add("@SupervisorID", Assigned);
                     nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                     nvn.Add("@TaskName", "Move");
-                    nvn.Add("@GreenHouseID", ddlToGreenHouse.SelectedValue);
+                    nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                     var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
 
