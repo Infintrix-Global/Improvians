@@ -272,115 +272,116 @@
 
         </div>
 
+        <asp:Panel ID="PanelView" runat="server">
+            <h4 class="mt-4 mt-lg-3">Task Requests:</h4>
 
-        <h4 class="mt-4 mt-lg-3">Task Requests:</h4>
+            <div class="task_request_assignments" id="task_request-group">
 
-        <div class="task_request_assignments" id="task_request-group">
-
-            <div id="GeneralTaskId" runat="server" visible="false" class="task_request-buttons">
+                <div id="GeneralTaskId" runat="server" visible="false" class="task_request-buttons">
 
 
-                <asp:LinkButton runat="server" ID="btnGeneral_Task1" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneral_Task1_Click">
+                    <asp:LinkButton runat="server" ID="btnGeneral_Task1" ForeColor="Black" class="request__block-head collapsed" OnClick="btnGeneral_Task1_Click">
                             <span class="">
                                 <img src="./images/dashboard_general-task.png" width="137" height="134" alt="General Task" />
                                 General Task
                             </span>
-                </asp:LinkButton>
+                    </asp:LinkButton>
 
-            </div>
+                </div>
 
-            <div id="general_task_request" runat="server" class="collapse dashboard__block request__block-collapse mb-4" data-parent="#task_request-group">
-                <div class="request__body">
-                    <h2 class="text-left mb-3">General Task</h2>
-                    <div id="divcomments" runat="server">
-                        <div class="portlet light ">
+                <div id="general_task_request" runat="server" class="collapse dashboard__block request__block-collapse mb-4" data-parent="#task_request-group">
+                    <div class="request__body">
+                        <h2 class="text-left mb-3">General Task</h2>
+                        <div id="divcomments" runat="server">
+                            <div class="portlet light ">
 
-                            <div class="portlet-body">
-                                <%--  <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
+                                <div class="portlet-body">
+                                    <%--  <asp:UpdatePanel runat="server" ID="update2" UpdateMode="Conditional">
                                             <ContentTemplate>--%>
-                                <asp:Panel ID="Panel1" runat="server">
-                                    <div class="row">
+                                    <asp:Panel ID="Panel1" runat="server">
+                                        <div class="row">
 
-                                             <div class="col-12 col-md-4 col-lg-3 mb-3">
-                                                    <label>Assignment</label>
-                                                    <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                            <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                                <label>Assignment</label>
+                                                <asp:DropDownList ID="ddlAssignments" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
-                                                    <%--                                                        <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>--%>
-                                                    <span class="error_message">
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
-                                                            SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                                    </span>
-                                                </div>
+                                                <%--                                                        <asp:DropDownList ID="ddlAssignments" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignments_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                                                <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"
+                                                        SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                                            </div>
                                             <div class="col-12 col-md-4 col-lg-3 mb-3">
                                                 <label>Task Type</label>
 
-                                            <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
-                                                <asp:ListItem Text="--Select--" Value="0" />
-                                                <asp:ListItem Text="Add Bird Netting" Value="1" />
-                                                <asp:ListItem Text="Remove Bird Netting" Value="2" />
-                                                <asp:ListItem Text="Move" Value="3" />
-                                                <asp:ListItem Text="Other" Value="4" />
-                                            </asp:DropDownList>
+                                                <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                                                    <asp:ListItem Text="--Select--" Value="0" />
+                                                    <asp:ListItem Text="Add Bird Netting" Value="1" />
+                                                    <asp:ListItem Text="Remove Bird Netting" Value="2" />
+                                                    <asp:ListItem Text="Move" Value="3" />
+                                                    <asp:ListItem Text="Other" Value="4" />
+                                                </asp:DropDownList>
 
 
+                                            </div>
+
+                                            <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                                <label>General Task Date</label>
+                                                <asp:TextBox ID="txtgeneralDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                                                <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtgeneralDate" ValidationGroup="x"
+                                                        SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Date" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                                            </div>
+                                            <div class="d-none d-sm-block w-100"></div>
+                                            <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                                <label>Comments</label>
+                                                <asp:TextBox ID="txtgeneralComment" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                                <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtgeneralComment" ValidationGroup="x"
+                                                        SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                                            </div>
+
+                                            <div class="col-xl-3" id="divFrom" style="display: none;" runat="server">
+                                                <label>From</label>
+                                                <asp:TextBox ID="txtFrom" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                                <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtFrom" ValidationGroup="x"
+                                                        SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                                            </div>
+                                            <div class="col-xl-3" id="divTo" style="display: none;" runat="server">
+                                                <label>To</label>
+                                                <asp:TextBox ID="txtTo" runat="server" CssClass="input__control"></asp:TextBox>
+
+                                                <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtTo" ValidationGroup="x"
+                                                        SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <asp:Button Text="Send Email" ID="btnSendMail" CssClass="submit-bttn bttn bttn-primary mr-2" runat="server" OnClick="btnSendMail_Click" Visible="false" />
+
+
+                                                <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnGeneraltask_Click" />
+
+                                                <asp:Button Text="Reset" ID="btnGeneralReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralReset_Click" />
+
+                                            </div>
                                         </div>
-
-                                        <div class="col-12 col-md-4 col-lg-3 mb-3">
-                                            <label>General Task Date</label>
-                                            <asp:TextBox ID="txtgeneralDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
-                                            <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtgeneralDate" ValidationGroup="x"
-                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Date" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
-                                        </div>
-                                        <div class="d-none d-sm-block w-100"></div>
-                                        <div class="col-12 col-md-4 col-lg-3 mb-3">
-                                            <label>Comments</label>
-                                            <asp:TextBox ID="txtgeneralComment" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                            <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtgeneralComment" ValidationGroup="x"
-                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
-                                        </div>
-
-                                        <div class="col-xl-3" id="divFrom" style="display: none;" runat="server">
-                                            <label>From</label>
-                                            <asp:TextBox ID="txtFrom" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                            <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtFrom" ValidationGroup="x"
-                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
-                                        </div>
-                                        <div class="col-xl-3" id="divTo" style="display: none;" runat="server">
-                                            <label>To</label>
-                                            <asp:TextBox ID="txtTo" runat="server" CssClass="input__control"></asp:TextBox>
-
-                                            <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtTo" ValidationGroup="x"
-                                                    SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Assignment" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <asp:Button Text="Send Email" ID="btnSendMail" CssClass="submit-bttn bttn bttn-primary mr-2" runat="server" OnClick="btnSendMail_Click" Visible="false" />
-
-
-                                            <asp:Button Text="Submit" ID="btnGeneraltask" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnGeneraltask_Click" />
-
-                                            <asp:Button Text="Reset" ID="btnGeneralReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralReset_Click" />
-
-                                        </div>
-                                    </div>
-                                </asp:Panel>
-                                <%-- </ContentTemplate>
+                                    </asp:Panel>
+                                    <%-- </ContentTemplate>
                                         </asp:UpdatePanel>--%>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </asp:Panel>
     </div>
 </asp:Content>

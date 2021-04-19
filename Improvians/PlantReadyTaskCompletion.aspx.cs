@@ -33,12 +33,12 @@ namespace Evo
                 BindSupervisorList();
                 if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
                 {
-                    GeneralTaskId.Visible = true;
+                    PanelView.Visible = true;
 
                 }
                 else
                 {
-                    GeneralTaskId.Visible = false;
+                    PanelView.Visible = false;
                 }
             }
         }
