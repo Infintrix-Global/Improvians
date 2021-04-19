@@ -21,13 +21,24 @@ namespace Evo
             if (!IsPostBack)
             {
                 Bindcname();
+                BindSupervisorList();
                 BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode("0");
                 BindGridGerm();
             }
         }
 
+        public void BindSupervisorList()
+        {
+            NameValueCollection nv = new NameValueCollection();
 
+            ddlAssignedBy.DataSource = objCommon.GetDataTable("SP_GetSeedsRoles", nv);
+
+            ddlAssignedBy.DataTextField = "EmployeeName";
+            ddlAssignedBy.DataValueField = "ID";
+            ddlAssignedBy.DataBind();
+            ddlAssignedBy.Items.Insert(0, new ListItem("--Select--", "0"));
+        }
         public void Bindcname()
         {
 
@@ -110,7 +121,13 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
+            Bindcname();
+            BindSupervisorList();
+            BindBenchLocation(Session["Facility"].ToString());
+            BindJobCode("0");
+            BindGridGerm();
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
