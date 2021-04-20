@@ -607,7 +607,7 @@ namespace Evo
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
 
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -767,7 +767,7 @@ namespace Evo
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
 
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -982,7 +982,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
@@ -1133,7 +1133,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
@@ -1300,7 +1300,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
@@ -1472,7 +1472,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
@@ -1658,7 +1658,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);

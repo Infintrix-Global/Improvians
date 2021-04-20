@@ -195,7 +195,7 @@ namespace Evo
                 string Did = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
                 string BatchLoc = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
                 string JobCode = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
-                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&CropAT={2}", BatchLoc, JobCode, Did));
+                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&CropAT={2}", "'" + BatchLoc + "'", JobCode, Did));
 
 
             }
