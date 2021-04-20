@@ -175,7 +175,7 @@
                                         <asp:TemplateField HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
-                                                <asp:Button ID="btnStart" runat="server" Text="Job Report"   CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                                <asp:Button ID="btnStart" runat="server" Text="Task Report"   CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
 
                                             </ItemTemplate>

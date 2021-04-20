@@ -257,7 +257,7 @@
                                     <asp:TemplateField HeaderText="Spray Date">
                                         <ItemTemplate>
 
-                                            <asp:Label ID="lblSprayDate" runat="server" Text='<%#Bind("SprayDate""{0:MM/dd/yyyy}") %>'></asp:Label>
+                                            <asp:Label ID="lblSprayDate" runat="server" Text='<%#Bind("SprayDate","{0:MM/dd/yyyy}") %>'></asp:Label>
 
                                         </ItemTemplate>
 
