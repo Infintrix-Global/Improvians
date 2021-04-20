@@ -421,7 +421,8 @@ namespace Evo
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nv);
 
-
+                BAL_Classes.General objGeneral = new BAL_Classes.General();
+                objGeneral.SendMessage(int.Parse(ddlGeneralAssignment.SelectedValue), "New General Task Assigned", "New General Task Assigned", "General");
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {
