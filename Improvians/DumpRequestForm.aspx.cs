@@ -261,6 +261,8 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 HiddenFieldDid.Value = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
                 HiddenFieldJid.Value = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
+                ViewState["jobcode"] = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
+                ViewState["benchloc"] = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
 
 
                 DataTable dt = new DataTable();
@@ -323,12 +325,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             //  nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
             //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
-            // nv.Add("@WO",wo);
-           
-            GridViewRow row = gvPlantReady.Rows[0];
-
-            var txtJobNo = (row.FindControl("lbljobID") as Label).Text;
-            var txtBenchLocation = (row.FindControl("lblBenchLoc") as Label).Text;
+            // nv.Add("@WO",wo);                     
 
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
@@ -345,8 +342,8 @@ namespace Evo
             nv.Add("@QuantityOfTray", txtQuantityofTray.Text);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
 
-            nv.Add("@jobcode", txtJobNo);
-            nv.Add("@GreenHouseID", txtBenchLocation);
+            nv.Add("@jobcode", ViewState["jobcode"].ToString());
+            nv.Add("@GreenHouseID", ViewState["benchloc"].ToString());
 
 
 
@@ -355,8 +352,8 @@ namespace Evo
 
             NameValueCollection nameValue = new NameValueCollection();
             nameValue.Add("@LoginID", Session["LoginID"].ToString());
-            nameValue.Add("@jobcode", txtJobNo);
-            nameValue.Add("@GreenHouseID", txtBenchLocation);
+            nv.Add("@jobcode", ViewState["jobcode"].ToString());
+            nv.Add("@GreenHouseID", ViewState["benchloc"].ToString());
             nameValue.Add("@TaskName", "Dump");
 
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
