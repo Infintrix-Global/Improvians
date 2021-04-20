@@ -114,9 +114,9 @@
     <script src="js/jquery.min.js"></script>
     <script defer="defer" src="js/popper.min.js"></script>
     <script defer="defer" src="js/bootstrap.min.js"></script>
-    <script defer="defer" src="js/custom.js"></script>
+    <script src="js/custom.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-messaging.js"></script>
+    <script src="js/firebase-messaging.js"></script>
     <script>
 
         TokenElem = document.getElementById("token");
