@@ -1,5 +1,5 @@
 importScripts('https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/8.4.1/firebase-messaging.js');
+importScripts('./js/firebase-messaging.js');
 
 // Initialize the Firebase app in the service worker by passing in the
 // messagingSenderId.
@@ -23,7 +23,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
         payload,
     );
     // Customize notification here
-    const notificationTitle = "Background Message Title1";
+    const notificationTitle = "Background Message Title";
     const notificationOptions = {
         body: "Background Message body1.",
         icon: "/itwonders-web-logo.png",
