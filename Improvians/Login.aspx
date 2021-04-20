@@ -142,6 +142,7 @@
             })
             .then(function (token) {
                 TokenElem.value = token
+                console.log(token);
             })
             .catch(function (err) {
                 console.log("Unable to get permission to notify.", err);

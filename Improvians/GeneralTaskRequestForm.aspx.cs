@@ -257,7 +257,8 @@ namespace Evo
                 userinput.Visible = true;
                 HiddenFieldDid.Value = gvTask.DataKeys[rowIndex].Values[1].ToString();
                 HiddenFieldJid.Value = gvTask.DataKeys[rowIndex].Values[2].ToString();
-
+                ViewState["jobcode"] = gvTask.DataKeys[rowIndex].Values[3].ToString();
+                ViewState["benchloc"] = gvTask.DataKeys[rowIndex].Values[4].ToString();
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
@@ -383,9 +384,10 @@ namespace Evo
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
 
-            GridViewRow row = gvTask.Rows[0];
-            var txtJobNo = (row.FindControl("lbljobID") as Label).Text;
-            var txtBenchLocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+            //GridViewRow row = gvTask.Rows[0];
+            var txtJobNo = ViewState["jobcode"].ToString();
+            var txtBenchLocation = ViewState["benchloc"].ToString();
+
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@Aid",ddlGeneralAssignment.SelectedValue);
@@ -413,8 +415,8 @@ namespace Evo
                 nv.Clear();
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 //nv.Add("@Did", HiddenFieldDid.Value);
-                nv.Add("@jobcode", txtJobNo);
-                nv.Add("@GreenHouseID", txtBenchLocation);
+                nv.Add("@jobcode",  txtJobNo);
+                nv.Add("@GreenHouseID", txtBenchLocation); 
                 nv.Add("@TaskName", "GeneralTask");
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nv);
