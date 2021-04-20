@@ -387,14 +387,16 @@ namespace Evo.BAL_Classes
             return postData;
         }
 
-        public string SendMessage(string UserID, string Tokens, string Message, string Title, string TypeMsg)
+        public string SendMessage(int UserID, string Message, string Title, string TypeMsg)
         {
+            BAL_Login _ballogin = new BAL_Login();
+            string Token = _ballogin.GetFCMToken(UserID);
             var objNotification = new
             {
-                to = Tokens,
+                to = Token,
                 data = new
                 {
-                    postData = getExactPayload(UserID, Tokens, Message, Title, TypeMsg)
+                    postData = getExactPayload(UserID.ToString(), Token, Message, Title, TypeMsg)
                 }
 
             };
