@@ -417,8 +417,8 @@ namespace Evo
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                General objGeneral = new General();
-                objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Plant Ready Assigned", "New Plant Ready Assigned", "Plant Ready");
+                Evo.BAL_Classes.General objGeneral = new General();
+                objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {

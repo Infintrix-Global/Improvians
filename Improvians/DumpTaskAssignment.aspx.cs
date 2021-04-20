@@ -157,6 +157,8 @@ namespace Evo
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
                 //lblmsg.Text = "Assignment Successful";
+                BAL_Classes.General objGeneral = new BAL_Classes.General();
+                objGeneral.SendMessage(int.Parse(ddlOperator.SelectedValue), "New Dump Task Assigned", "New Dump Task Assigned", "Dump");
                 clear();
                 string message = "Assignment Successful";
                 string url = "DumpAssignmentForm.aspx";
