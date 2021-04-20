@@ -69,6 +69,24 @@ namespace Evo
         protected global::System.Web.UI.WebControls.GridView GridViewDumpView;
 
         /// <summary>
+        /// GridDumpComplition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridDumpComplition;
+
+        /// <summary>
+        /// PanelAddDump control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelAddDump;
+
+        /// <summary>
         /// txtDumpDate control.
         /// </summary>
         /// <remarks>

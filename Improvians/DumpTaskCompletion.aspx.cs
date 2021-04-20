@@ -27,10 +27,31 @@ namespace Evo
                 }
                 BindPlantReady();
                 BindViewDumpDetilas(Convert.ToInt32(Request.QueryString["DrId"]));
-
+                BindGridDumpComplition(Did);
             }
         }
 
+
+
+
+
+        public void BindGridDumpComplition(string DUMPAID)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@DumpTaskAssignmentId", DUMPAID.ToString());
+            dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenDumpTaskCompletionView", nv1);
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                PanelCropHealth.Visible = true;
+                PanelAddDump.Visible = false;
+             
+                GridDumpComplition.DataSource = dt1;
+                GridDumpComplition.DataBind();
+
+            }
+
+        }
         public void BindGridCropHealth(int Chid)
         {
             DataTable dt1 = new DataTable();
