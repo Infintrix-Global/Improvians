@@ -168,11 +168,12 @@ namespace Evo
                 {
                     if (TaskRequestType == "Fertilization")
                     {
-                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?FertilizationCode={0}", dt.Rows[0]["FertilizationCode"].ToString()));
+                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?FertilizationCode={0}&FCID={1}", dt.Rows[0]["FertilizationCode"].ToString(), dt.Rows[0]["SprayId"].ToString()));
                     }
                     if (TaskRequestType == "Chemical")
                     {
-                        Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}", dt.Rows[0]["ChemicalCode"].ToString()));
+                        
+                        Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}&CCID={1}", dt.Rows[0]["ChemicalCode"].ToString(), dt.Rows[0]["ChemicalCompletionId"].ToString()));
                     }
                     if (TaskRequestType == "Germination")
                     {
@@ -180,8 +181,36 @@ namespace Evo
                     }
                     if (TaskRequestType == "Irrigation")
                     {
-                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", dt.Rows[0]["IrrigationCode"].ToString()));
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}&ICID={1}", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString()));
+
+                        
                     }
+
+
+                    if (TaskRequestType == "Plant Ready")
+                    {
+
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString()));
+                    }
+
+                    if (TaskRequestType == "Dump")
+                    {
+                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", dt.Rows[0]["DumpTaskAssignmentId"].ToString() , 0, dt.Rows[0]["DumpId"].ToString() ));
+                       
+                    }
+                    if (TaskRequestType == "Move")
+                    {
+                       
+                        Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}", dt.Rows[0]["MoveID"].ToString()));
+
+                    }
+                    if (TaskRequestType == "GeneralTask")
+                    {
+                        Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", dt.Rows[0]["GeneralTaskAssignmentId"].ToString(), 0, dt.Rows[0]["GeneralId"].ToString()));
+                     
+
+                    }
+
                 }
  
                 //    Response.Redirect(String.Format("~/ViewJobDetails.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestType={2}", BatchLocation, jobCode, TaskRequestType));

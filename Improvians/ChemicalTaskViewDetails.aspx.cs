@@ -27,6 +27,18 @@ namespace Evo
                 {
                     ChemicalCode = Request.QueryString["ChemicalCode"].ToString();
                 }
+
+                if (Request.QueryString["CCID"] != null)
+                {
+                    BindGridSprayCompletionDetails(Request.QueryString["CCID"].ToString());
+                        PanlTaskComplition.Visible = true;
+                }
+                else
+                {
+                    PanlTaskComplition.Visible = false;
+                }
+
+
                 BindenchLocation();
 
                 BindGridSprayDetails();
@@ -40,7 +52,7 @@ namespace Evo
         {
             DataTable dt1 = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-           
+
             nv1.Add("@ChemicalCode", ChemicalCode);
 
             dt1 = objCommon.GetDataTable("SP_GetChemicalRequestSelectDetails", nv1);
@@ -111,6 +123,18 @@ namespace Evo
             }
         }
 
+        public void BindGridSprayCompletionDetails(string ChemicalCompletionId)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@ChemicalCompletionId", ChemicalCompletionId);
+
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenChemicalTaskCompletionView", nv);
+
+            GridViewCompletion.DataSource = dt;
+            GridViewCompletion.DataBind();
+
+        }
 
         public void BindGridSprayDetails()
         {

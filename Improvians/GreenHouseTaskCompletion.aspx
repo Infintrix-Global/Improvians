@@ -199,7 +199,7 @@
                         <br />
 
                         <div class="row">
-                            <label>Commment:</label>
+                           <%-- <label>Commment:</label>--%>
                             <div class="col-lg-12">
                                 <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
                             </div>

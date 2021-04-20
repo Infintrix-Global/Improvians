@@ -60,6 +60,33 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Label lblCommment;
 
         /// <summary>
+        /// PanelComplitionDetsil control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelComplitionDetsil;
+
+        /// <summary>
+        /// GridPlantComplition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridPlantComplition;
+
+        /// <summary>
+        /// PantReadyAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PantReadyAdd;
+
+        /// <summary>
         /// GridViewDumpView control.
         /// </summary>
         /// <remarks>

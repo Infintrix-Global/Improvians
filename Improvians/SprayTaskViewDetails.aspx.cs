@@ -27,6 +27,16 @@ namespace Evo
                 {
                     FertilizationCode = Request.QueryString["FertilizationCode"].ToString();
                 }
+
+                if (Request.QueryString["FCID"] != null)
+                {
+                    BindGridSprayCompletionDetails(Request.QueryString["FCID"].ToString());
+                    PanlTaskComplition.Visible = true;
+                }
+                else
+                {
+                    PanlTaskComplition.Visible = false;
+                }
                 BindenchLocation();
                
                 BindGridSprayDetails();
@@ -55,6 +65,18 @@ namespace Evo
 
         }
 
+        public void BindGridSprayCompletionDetails(string ChemicalCompletionId)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@SprayId", ChemicalCompletionId);
+
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenFertilizationTaskCompletionView", nv);
+
+            GridViewCompletion.DataSource = dt;
+            GridViewCompletion.DataBind();
+
+        }
 
         private string FertilizationCode
         {

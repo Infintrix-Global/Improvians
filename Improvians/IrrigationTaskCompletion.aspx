@@ -49,7 +49,7 @@
 
                     <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
-                            <asp:Label ID="Label12" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                            <asp:Label ID="lblSprayDate" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -67,7 +67,7 @@
 
                     <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
-                            <asp:Label ID="Label12" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
+                            <asp:Label ID="lblEmployeeName" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

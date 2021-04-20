@@ -57,7 +57,7 @@
                     <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
 
-                            <asp:Label ID="Label12" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                            <asp:Label ID="Label121" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
@@ -205,9 +205,48 @@
                                     </EmptyDataTemplate>
                                 </asp:GridView>
 
+                                 <br />
+                                <asp:GridView ID="GridDumpComplition" runat="server" AutoGenerateColumns="False"
+                                    class="striped" AllowSorting="true"
+                                    GridLines="None"
+                                    ShowHeaderWhenEmpty="True" Width="100%">
+                                    <Columns>
+
+                                        <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblCQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblCDumpDate" runat="server" Text='<%# Eval("DumpDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblCComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+
+
+
+                                    </Columns>
+
+                                    <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                    <PagerSettings Mode="NumericFirstLast" />
+                                    <EmptyDataTemplate>
+                                        No Record Available
+                                    </EmptyDataTemplate>
+                                </asp:GridView>
                             </div>
                         </div>
                         <br />
+                        <asp:Panel ID="PanelAddDump" runat="server">
+
                         <div class="row">
 
 
@@ -239,7 +278,7 @@
 
                             </div>
                         </div>
-
+                        </asp:Panel>
                     </div>
                 </div>
             </form>
