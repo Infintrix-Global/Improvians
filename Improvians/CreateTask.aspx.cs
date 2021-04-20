@@ -2708,6 +2708,7 @@ namespace Evo
                     }
                     else
                     {
+
                         Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
                         JobCOde = (row.FindControl("lblID") as Label).Text;
@@ -2749,6 +2750,7 @@ namespace Evo
 
                 }
             }
+
 
             Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}", Batchlocation, JobCOde, FertilizationCode));
 

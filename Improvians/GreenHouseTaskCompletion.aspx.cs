@@ -42,6 +42,7 @@ namespace Evo
             if (dt1 != null && dt1.Rows.Count > 0)
             {
                 PanelViewGJob.Visible = true;
+                userinput.Visible = false;
                 GridViewGDetails.DataSource = dt1;
                 GridViewGDetails.DataBind();
 
@@ -62,7 +63,7 @@ namespace Evo
                 gvCropHealth.DataSource = dt1;
                 gvCropHealth.DataBind();
 
-                lblCommment.Text = dt1.Rows[0]["CropHealthCommit"].ToString();
+                lblCommment.Text = "Commment   :"+ dt1.Rows[0]["CropHealthCommit"].ToString();
             }
         }
 

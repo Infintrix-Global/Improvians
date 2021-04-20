@@ -21,6 +21,15 @@ namespace Evo
                 {
                     IrrigationCode = Request.QueryString["IrrigationCode"].ToString();
                 }
+                if (Request.QueryString["ICID"] != null)
+                {
+                    BindGridSprayCompletionDetails(Request.QueryString["ICID"].ToString());
+                    PanlTaskComplition.Visible = true;
+                }
+                else
+                {
+                    PanlTaskComplition.Visible = false;
+                }
                 BindGridViewDetailsGerm();
                 BindenchLocation();
                 BindgvIrrigation();
@@ -28,7 +37,18 @@ namespace Evo
             }
         }
 
+        public void BindGridSprayCompletionDetails(string CompletionId)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@IrrigationTaskAssignmentId", CompletionId);
 
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenIrrigationTaskCompletionView", nv);
+
+            GridViewCompletion.DataSource = dt;
+            GridViewCompletion.DataBind();
+
+        }
 
 
         public void BindenchLocation()

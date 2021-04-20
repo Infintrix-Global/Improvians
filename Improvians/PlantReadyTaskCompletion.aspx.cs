@@ -29,6 +29,7 @@ namespace Evo
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
                 BindPlantReady();
+                BindGridPalntReadyComplition(PRAID);
                 BindViewDetilas(Convert.ToInt32(Request.QueryString["PRID"]));
                 BindSupervisorList();
                 if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
@@ -41,6 +42,26 @@ namespace Evo
                     PanelView.Visible = false;
                 }
             }
+        }
+
+
+        public void BindGridPalntReadyComplition(string PRAID)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@PlantReadyTaskAssignmentId", PRAID.ToString());
+            dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadyTaskCompletionView", nv1);
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                PanelCropHealth.Visible = true;
+                PanelComplitionDetsil.Visible = false;
+                PantReadyAdd.Visible = false;
+                PanelView.Visible = false;
+                GridPlantComplition.DataSource = dt1;
+                GridPlantComplition.DataBind();
+             
+            }
+
         }
 
         public void BindSupervisorList()

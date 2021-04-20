@@ -57,7 +57,7 @@
                     <asp:TemplateField HeaderText="Plant Ready Work Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
 
-                            <asp:Label ID="Label12" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                            <asp:Label ID="LabelDate" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <%--  <asp:TemplateField HeaderText="Planned Ship Date" HeaderStyle-CssClass="autostyle2">
@@ -159,8 +159,65 @@
                 </div>
             </asp:Panel>
             <br />
+            <asp:Panel ID="PanelComplitionDetsil" Visible="false" runat="server">
+                <br />
+               <%-- <h2 class="text-left">Crop Health Report </h2>--%>
 
-            <div class="row justify-content-center">
+                <br />
+                <div class="portlet-body">
+                    <div class="data__table">
+                        <asp:GridView ID="GridPlantComplition" runat="server" AutoGenerateColumns="False"
+                            class="striped" AllowSorting="true"
+                            GridLines="None"
+                            ShowHeaderWhenEmpty="True" Width="100%">
+                            <Columns>
+
+                                <asp:TemplateField HeaderText="Updated Ready Date" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblUpdatedReadyDate" runat="server" Text='<%# Eval("UpdatedReadyDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Plant Expiration Date" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblPlantExpirationDate" runat="server" Text='<%# Eval("PlantExpirationDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Root Quality" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblRootQuality" runat="server" Text='<%# Eval("RootQuality")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="lblPlantHeight" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblPlantHeight" runat="server" Text='<%# Eval("PlantHeight")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+
+
+                            </Columns>
+
+                            <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                            <PagerSettings Mode="NumericFirstLast" />
+                            <EmptyDataTemplate>
+                                No Record Available
+                            </EmptyDataTemplate>
+                        </asp:GridView>
+
+                    </div>
+                </div>
+                
+            </asp:Panel>
+            <br />
+            <div Id="PantReadyAdd" runat="server" class="row justify-content-center">
                 <div class="col-12">
 
                     <div class="portlet-body">
@@ -196,7 +253,11 @@
 
                         </div>
                     </div>
+                
                     <br />
+
+
+
                     <div class="row">
 
 

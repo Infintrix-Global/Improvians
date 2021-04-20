@@ -205,6 +205,62 @@
                     </div>
                 </div>
             </form>
+
+            <br />
+
+            <asp:Panel ID="PanlTaskComplition" runat="server">
+
+                    <div class="portlet-body">
+                        <div class="data__table">
+                            <asp:GridView ID="GridViewCompletion"
+                                AutoGenerateColumns="false" runat="server">
+                                <Columns>
+
+                                    <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Spray Date">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblSprayDate" runat="server" Text='<%#Bind("SprayDate","{0:MM/dd/yyyy}") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="No Of Passes">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblNoOfPasses" runat="server" Text='<%#Bind("NoOfPasses") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+
+                                    
+                                    <asp:TemplateField HeaderText="Comments">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblCommentsC" runat="server" Text='<%#Bind("Comments") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+                                </Columns>
+                                <PagerStyle CssClass="pagination-ys" HorizontalAlign="Right" />
+                                <PagerSettings Mode="NumericFirstLast" />
+                                <EmptyDataTemplate>
+                                    No Record Available
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+
+                        </div>
+                    </div>
+
+                </asp:Panel>
         </div>
     </div>
 </asp:Content>
