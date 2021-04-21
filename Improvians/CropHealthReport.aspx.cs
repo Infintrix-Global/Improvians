@@ -1389,14 +1389,12 @@ namespace Evo
 
         protected void btnSaveGeneral_Click(object sender, EventArgs e)
         {
-            Submitgeneraltask(Session["SelectedAssignment"].ToString());
-
-        
-        }
-        protected void btngeneraltasksave_Click(object sender, EventArgs e)
-        {
+            
             Submitgeneraltask(Session["LoginID"].ToString());
-
+        }
+        protected void btnGeneralSubmit_Click(object sender, EventArgs e)
+        {
+            Submitgeneraltask(Session["SelectedAssignment"].ToString());
         }
 
         public void SubmitChemical(string Assign)
