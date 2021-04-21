@@ -263,6 +263,7 @@
     <Content Include="IrrigationTaskViewDetails.aspx" />
     <Content Include="JobReport.aspx" />
     <Content Include="JobReports.aspx" />
+    <Content Include="js\custom1.js" />
     <Content Include="js\firebase-messaging.js" />
     <Content Include="js\jquery.uploadify.js" />
     <Content Include="Login1.aspx" />
