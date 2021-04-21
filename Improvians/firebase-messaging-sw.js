@@ -38,14 +38,13 @@ messaging.setBackgroundMessageHandler(function (payload) {
 
 messaging.onBackgroundMessage((payload) => {
     var postData = JSON.parse(payload.data.postData);
-    console.log('[firebase-messaging-sw.js] Received background title ', postData.Title);
 
-    // navigator.setAppBadge();
-    // Customize notification here
     const notificationTitle = postData.Title;
     const notificationOptions = {
         body: postData.Message,
-        icon: 'images/logo.png',
+        icon: 'images/badge.png',
+        badge: 'images/badge.png',
+
     };
 
     self.registration.showNotification(notificationTitle,
