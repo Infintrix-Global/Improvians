@@ -434,9 +434,7 @@ namespace Evo
                     url = "MyTaskAssistantGrower.aspx";
                 }
                 General objGeneral = new General();
-                BAL_Login _ballogin = new BAL_Login();
-                string Token = _ballogin.GetFCMToken(int.Parse(ddlSupervisor.SelectedValue));
-                objGeneral.SendMessage(ddlSupervisor.SelectedValue, Token, "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
+                objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Assignment Successful";
                 //  string url = "MyTaskGrower.aspx";

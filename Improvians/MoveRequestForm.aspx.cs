@@ -361,7 +361,8 @@ namespace Evo
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-
+                BAL_Classes.General objGeneral = new BAL_Classes.General();
+                objGeneral.SendMessage(int.Parse(ddlLogisticManager.SelectedValue), "New Move Task Assigned", "New Move Task Assigned", "Move");
 
                 string url = "";
                 if (Session["Role"].ToString() == "1")

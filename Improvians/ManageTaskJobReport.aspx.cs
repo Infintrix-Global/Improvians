@@ -42,14 +42,24 @@ namespace Evo
         public void Bindcname()
         {
 
+            //DataTable dt = new DataTable();
+            //NameValueCollection nv = new NameValueCollection();
+
+            //nv.Add("@Mode", "8");
+            //dt = objCommon.GetDataTable("GET_Common", nv);
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "8");
-            dt = objCommon.GetDataTable("GET_Common", nv);
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation","0");
+            nv.Add("@Mode", "3");
+
+
+            dt = objCommon.GetDataTable("GetManageTaskJobHistorySearch", nv);
             ddlCustomer.DataSource = dt;
-            ddlCustomer.DataTextField = "cname";
-            ddlCustomer.DataValueField = "cname";
+            ddlCustomer.DataTextField = "Customer";
+            ddlCustomer.DataValueField = "Customer";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
 
@@ -59,9 +69,20 @@ namespace Evo
         {
             //  ddlJobNo.Items[0].Selected = false;
             ddlJobNo.ClearSelection();
-            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
-            ddlJobNo.DataTextField = "Jobcode";
-            ddlJobNo.DataValueField = "Jobcode";
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@Mode", "2");
+
+
+            dt = objCommon.GetDataTable("GetManageTaskJobHistorySearch", nv);
+            //   ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataTextField = "JobNo";
+            ddlJobNo.DataValueField = "JobNo";
             ddlJobNo.DataBind();
 
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
@@ -70,10 +91,21 @@ namespace Evo
 
         public void BindBenchLocation(string ddlMain)
         {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+      
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation","0");
+            nv.Add("@Mode","1");
 
-            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
-            ddlBenchLocation.DataTextField = "p2";
-            ddlBenchLocation.DataValueField = "p2";
+
+            dt = objCommon.GetDataTable("GetManageTaskJobHistorySearch", nv);
+
+            // ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "BenchLocation";
+            ddlBenchLocation.DataValueField = "BenchLocation";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
 

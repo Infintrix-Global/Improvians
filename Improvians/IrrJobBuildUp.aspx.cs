@@ -625,6 +625,9 @@ namespace Evo
             {
                 url = "MyTaskAssistantGrower.aspx";
             }
+            BAL_Classes.General objGeneral = new BAL_Classes.General();
+            objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
+
 
             string message = "Assignment Successful";
            // string url = "MyTaskGrower.aspx";

@@ -185,7 +185,7 @@ namespace Evo
             //}
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
-                highlight(dt.Rows.Count); 
+                highlight(dt.Rows.Count);
             }
 
 
@@ -204,7 +204,7 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 10)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvPlantReady.PageIndex++;
                     gvPlantReady.DataBind();
@@ -348,7 +348,7 @@ namespace Evo
                     nv.Add("@GreenHouseID", lblBenchlocation.Text);
                     nv.Add("@TotalTray", lblTotalTrays.Text);
                     nv.Add("@TraySize", "");
-                    nv.Add("@Itemdesc","");
+                    nv.Add("@Itemdesc", "");
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@ChId", "0");
                     nv.Add("@wo", "");
@@ -404,7 +404,7 @@ namespace Evo
             nv.Add("@RoleId", Session["Role"].ToString());
             nv.Add("@IsAssistant", lblIsAssistant.Text);
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);           
+            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
 
             NameValueCollection nameValue = new NameValueCollection();
             nameValue.Add("@LoginID", Session["LoginID"].ToString());
@@ -417,10 +417,8 @@ namespace Evo
             if (result > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                General objGeneral = new General();
-                BAL_Login _ballogin = new BAL_Login();
-                string Token = _ballogin.GetFCMToken(int.Parse(ddlSupervisor.SelectedValue));
-                objGeneral.SendMessage(ddlSupervisor.SelectedValue, Token, "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
+                Evo.BAL_Classes.General objGeneral = new General();
+                objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {
