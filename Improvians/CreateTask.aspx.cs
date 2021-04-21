@@ -32,6 +32,7 @@ namespace Evo
         BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
         clsCommonMasters objCom = new clsCommonMasters();
+        General objGeneral = new General();
         static string ReceiverEmail = "";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -491,7 +492,7 @@ namespace Evo
             dt = objTask.GetCreateTaskRequestSelectNew(Session["Facility"].ToString(), BenchLoc, jobNo, ddlCustomer.SelectedValue);
             //  DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
 
-            DataTable dtManual = objTask.GetManualRequestSelectNew(Session["Facility"].ToString(), BenchLoc, jobNo,ddlCustomer.SelectedValue);
+            DataTable dtManual = objTask.GetManualRequestSelectNew(Session["Facility"].ToString(), BenchLoc, jobNo, ddlCustomer.SelectedValue);
 
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
@@ -595,7 +596,7 @@ namespace Evo
             txtFrom.Text = "";
             txtTo.Text = "";
         }
-       
+
 
         protected void chckchanged(object sender, EventArgs e)
         {
@@ -838,22 +839,22 @@ namespace Evo
                     //if (dt != null && dt.Rows.Count > 0)
                     //{
 
-                   //     FertilizationCode = Convert.ToInt32(dt.Rows[0]["FertilizationCode"]);
+                    //     FertilizationCode = Convert.ToInt32(dt.Rows[0]["FertilizationCode"]);
                     //}
                     //else
                     //{
-                        dtTrays.Clear();
-                        DataTable dt1 = new DataTable();
-                        NameValueCollection nv14 = new NameValueCollection();
-                        NameValueCollection nvimg = new NameValueCollection();
-                        nv14.Add("@Mode", "12");
-                        dt1 = objCommon.GetDataTable("GET_Common", nv14);
-                        FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
+                    dtTrays.Clear();
+                    DataTable dt1 = new DataTable();
+                    NameValueCollection nv14 = new NameValueCollection();
+                    NameValueCollection nvimg = new NameValueCollection();
+                    nv14.Add("@Mode", "12");
+                    dt1 = objCommon.GetDataTable("GET_Common", nv14);
+                    FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
 
-                        dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
+                    dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-                        objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
-                 //   }
+                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                    //   }
 
 
                     long result2 = 0;
@@ -886,6 +887,7 @@ namespace Evo
 
                 }
             }
+            objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
 
 
             string message = "Assignment Successful";
@@ -944,6 +946,7 @@ namespace Evo
             if (result16 > 0)
             {
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                objGeneral.SendMessage(int.Parse(Assigned), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
                 string message = "Assignment Successful";
                 string url = "CreateTask.aspx";
                 string script = "window.onload = function(){ alert('";
@@ -1129,7 +1132,7 @@ namespace Evo
             //    objCommon.GetDataInsertORUpdate("SP_AddBatchLocationType", nv1);
             //}
 
-
+            objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
             string message = "Assignment Successful";
             string url = "CreateTask.aspx";
             string script = "window.onload = function(){ alert('";
@@ -1225,7 +1228,7 @@ namespace Evo
 
             }
 
-
+            objGeneral.SendMessage(int.Parse(Assigned), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
 
             string message = "Assignment Successful";
             string url = "CreateTask.aspx";
@@ -1346,20 +1349,20 @@ namespace Evo
                     //}
                     //else
                     //{
-                        dtCTrays.Clear();
-                        DataTable dt1 = new DataTable();
-                        NameValueCollection nv1 = new NameValueCollection();
-                        nv1.Add("@Mode", "16");
-                        dt1 = objCommon.GetDataTable("GET_Common", nv1);
-                        ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
+                    dtCTrays.Clear();
+                    DataTable dt1 = new DataTable();
+                    NameValueCollection nv1 = new NameValueCollection();
+                    nv1.Add("@Mode", "16");
+                    dt1 = objCommon.GetDataTable("GET_Common", nv1);
+                    ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
 
 
-                        dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                        objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+                    dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
+                    objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
-                        // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
+                    // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-                        // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                    // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
                     //}
 
 
@@ -1395,7 +1398,7 @@ namespace Evo
 
                 }
             }
-
+            objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
 
             string message = "Assignment Successful";
             string url = "CreateTask.aspx";
@@ -1489,6 +1492,7 @@ namespace Evo
                 }
             }
 
+            objGeneral.SendMessage(int.Parse(Assigned), "New Move Task Assigned", "New Move Task Assigned", "Move");
 
 
             string message = "Assignment Successful";
@@ -1551,6 +1555,7 @@ namespace Evo
                 }
             }
 
+            objGeneral.SendMessage(int.Parse(Assigned), "New Dump Task Assigned", "New Dump Task Assigned", "Dump");
 
 
             string message = "Assignment Successful";
@@ -1621,6 +1626,8 @@ namespace Evo
 
             if (result16 > 0)
             {
+                objGeneral.SendMessage(int.Parse(Assigned), "New General Task Assigned", "New General Task Assigned", "General");
+
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string CCEmail = "";
 
@@ -1735,6 +1742,7 @@ namespace Evo
             }
 
 
+            objGeneral.SendMessage(int.Parse(Assigned), "New Crop Health Report Assigned", "New Crop Health Report Task Assigned", "Crop Health Report");
 
             string message = "Assignment Successful";
             string url = "CreateTask.aspx";
@@ -2539,7 +2547,7 @@ namespace Evo
             //if (c == 1)
             //{
 
-               
+
 
 
 
@@ -2548,12 +2556,12 @@ namespace Evo
             //        CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
             //        if (chckrw.Checked == true)
             //        {
-                       
+
 
             //        }
             //    }
 
-              
+
             //}
             //else
             //{
