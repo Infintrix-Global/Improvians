@@ -287,13 +287,10 @@ namespace Evo
             BindSQFTofBench(BatchLocd);
         }
 
-
         protected void btnReset_Click(object sender, EventArgs e)
         {
 
         }
-
-
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -376,9 +373,6 @@ namespace Evo
             //  Clear();
         }
 
-
-
-
         public void Clear()
         {
             ddlpr.SelectedValue = "0";
@@ -414,11 +408,6 @@ namespace Evo
         }
 
        
-
-       
-
-
-
         //---------------------------------------------------------------- Tab Details-------
         public void BindSQFTofBench(string benchLoc)
         {
@@ -538,8 +527,6 @@ namespace Evo
            
         }
 
-
-
         protected void btnFReset_Click(object sender, EventArgs e)
         {
 
@@ -607,7 +594,7 @@ namespace Evo
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
 
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -624,9 +611,6 @@ namespace Evo
                 }
 
             }
-
-
-
             foreach (GridViewRow row in GridViewView.Rows)
             {
 
@@ -651,13 +635,16 @@ namespace Evo
 
 
                 //  NameValueCollection nv4 = new NameValueCollection();
+
+                var jobCode = (row.FindControl("lblID1") as Label).Text;
+
                 nv4.Add("@SupervisorID", Assign);
                 nv4.Add("@Type", "Fertilizer");
                 nv4.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nv4.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
                 nv4.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
                 nv4.Add("@Facility", Session["Facility"].ToString());
-                nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv4.Add("@GreenHouseID", Batchlocation);
                 nv4.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
                 nv4.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
                 nv4.Add("@Itemdesc", (row.FindControl("lblSeededDate1") as Label).Text);
@@ -668,6 +655,15 @@ namespace Evo
                 nv4.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv4.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
                 result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
+
+              
+                NameValueCollection nvn = new NameValueCollection();
+                nvn.Add("@LoginID", Session["LoginID"].ToString());
+                nvn.Add("@SupervisorID", Assign);
+                nvn.Add("@Jobcode", jobCode);
+                nvn.Add("@TaskName", "Fertilizer");
+                nvn.Add("@GreenHouseID", Batchlocation);
+                var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
             }
 
@@ -710,7 +706,6 @@ namespace Evo
             SubmitGermination(ddlgerminationSupervisor.SelectedValue);
         }
 
-
         public void SubmitGermination(string Assign)
         {
             if (Chid == "")
@@ -744,9 +739,6 @@ namespace Evo
                         imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
                     }
                 }
-
-
-
                 foreach (GridViewRow row in gvFer.Rows)
                 {
                     CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -767,7 +759,7 @@ namespace Evo
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
 
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
@@ -806,7 +798,7 @@ namespace Evo
                 nv.Add("@LoginId", Session["LoginID"].ToString());
                 nv.Add("@Comments", txtcomments.Text);
 
-                result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
+                result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);               
             }
 
             if (result16 > 0)
@@ -834,7 +826,6 @@ namespace Evo
                 //  lblmsg.Text = "Assignment Not Successful";
             }
         }
-
 
         protected void btngerminationReset_Click(object sender, EventArgs e)
         {
@@ -911,14 +902,12 @@ namespace Evo
 
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
         {
-            // 
-            SubmitIrrigation(ddlirrigationSupervisor.SelectedValue);
+            //            
         }
         protected void btnSaveirrigation_Click(object sender, EventArgs e)
         {
             SubmitIrrigation(Session["LoginID"].ToString());
         }
-
 
         public void SubmitIrrigation(string Assign)
         {
@@ -982,7 +971,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
@@ -1001,17 +990,10 @@ namespace Evo
 
             }
 
-
-
-
-
             foreach (GridViewRow row in GridViewView.Rows)
             {
 
                 long result16 = 0;
-
-
-
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", Assign);
 
@@ -1039,7 +1021,7 @@ namespace Evo
                 nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
                 result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
-
+                
             }
 
 
@@ -1061,7 +1043,7 @@ namespace Evo
 
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
         {
-           
+            SubmitIrrigation(ddlirrigationSupervisor.SelectedValue);
         }
 
         public void SubmitPlantReady(string Assign)
@@ -1133,7 +1115,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
@@ -1151,9 +1133,6 @@ namespace Evo
                 }
 
             }
-
-
-
             foreach (GridViewRow row in GridViewView.Rows)
             {
 
@@ -1177,8 +1156,7 @@ namespace Evo
                 nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
 
-                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
-
+                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);                
 
             }
 
@@ -1211,7 +1189,6 @@ namespace Evo
         {
 
         }
-
 
         protected void chckchanged(object sender, EventArgs e)
         {
@@ -1246,7 +1223,6 @@ namespace Evo
                 divTo.Style["display"] = "none";
             }
         }
-
        
         public void Submitgeneraltask(string Assign)
         {
@@ -1300,7 +1276,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
@@ -1344,6 +1320,14 @@ namespace Evo
                 nv.Add("@LoginId", Session["LoginID"].ToString());
 
                 result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGeneralTaskRequest", nv);
+
+                //NameValueCollection nvn = new NameValueCollection();
+                //nvn.Add("@LoginID", Session["LoginID"].ToString());
+                //nvn.Add("@SupervisorID", Assign);
+                //nvn.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                //nvn.Add("@TaskName", "GeneralTask");
+                //nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                //var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
             }
 
             if (result16 > 0)
@@ -1352,11 +1336,15 @@ namespace Evo
                 NameValueCollection nv11 = new NameValueCollection();
                 nv11.Add("@Chid", Chid);
                 result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+                
+                /*
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
                 string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
                 string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
                 smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
+               
                 // smtpClient.U'seDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                
                 string CCEmail = "";
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.EnableSsl = true;
@@ -1385,7 +1373,8 @@ namespace Evo
                 //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
                 //   mail.Attachments.Add(atc);
                 smtpClient.Send(mail);
-                //Clear();
+                */
+
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
 
                 //Response.Redirect("MyTaskGrower.aspx");
@@ -1400,14 +1389,12 @@ namespace Evo
 
         protected void btnSaveGeneral_Click(object sender, EventArgs e)
         {
-            Submitgeneraltask(Session["SelectedAssignment"].ToString());
-
-        
-        }
-        protected void btngeneraltasksave_Click(object sender, EventArgs e)
-        {
+            
             Submitgeneraltask(Session["LoginID"].ToString());
-
+        }
+        protected void btnGeneralSubmit_Click(object sender, EventArgs e)
+        {
+            Submitgeneraltask(Session["SelectedAssignment"].ToString());
         }
 
         public void SubmitChemical(string Assign)
@@ -1457,8 +1444,6 @@ namespace Evo
                     CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                     if (chckrw.Checked == true)
                     {
-
-
                         long result1 = 0;
                         NameValueCollection nv1 = new NameValueCollection();
                         nv1.Add("@chid", result.ToString());
@@ -1472,11 +1457,10 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
-
 
                     }
 
@@ -1492,17 +1476,9 @@ namespace Evo
                 }
 
             }
-
-
-
             foreach (GridViewRow row in GridViewView.Rows)
             {
-
-
-
                 long result3 = 0;
-
-
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", Assign);
                 nv.Add("@Type", "Chemical");
@@ -1525,6 +1501,15 @@ namespace Evo
 
                 result3 = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
+
+                NameValueCollection nvn = new NameValueCollection();
+                nvn.Add("@LoginID", Session["LoginID"].ToString());
+                nvn.Add("@SupervisorID", Assign);
+                nvn.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nvn.Add("@TaskName", "Chemical");
+                nvn.Add("@GreenHouseID",Batchlocation);
+                var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
             }
 
             dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
@@ -1551,12 +1536,10 @@ namespace Evo
             SubmitChemical(ddlChemical_supervisor.SelectedValue);
         }
 
-
         protected void btnChemicalSFLSubmit_Click(object sender, EventArgs e)
         {
             SubmitChemical(Session["LoginID"].ToString());
         }
-
 
         public void BindFacility()
         {
@@ -1581,7 +1564,6 @@ namespace Evo
 
         }
 
-
         protected void btnChemicalReset_Click(object sender, EventArgs e)
         {
 
@@ -1591,7 +1573,6 @@ namespace Evo
         {
             BindBench_Location();
         }
-
        
         protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
@@ -1637,9 +1618,6 @@ namespace Evo
                         imgresult = objCommon.GetDataInsertORUpdate("InsertCropHealthImage", nvimg);
                     }
                 }
-
-
-
                 foreach (GridViewRow row in gvFer.Rows)
                 {
                     CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -1658,7 +1636,7 @@ namespace Evo
                         nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                         nv1.Add("@SoDate", "");
                         nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
                         nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
@@ -1709,6 +1687,14 @@ namespace Evo
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
                 result16 = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
 
+                NameValueCollection nvn = new NameValueCollection();
+                nvn.Add("@LoginID", Session["LoginID"].ToString());
+                nvn.Add("@SupervisorID", Assign);
+                nvn.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nvn.Add("@TaskName", "Move");
+                nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
             }
 
             if (result16 > 0)
@@ -1737,21 +1723,15 @@ namespace Evo
             }
         }
 
-
         protected void MoveReset_Click(object sender, EventArgs e)
         {
            
-        }
-
-    
+        }    
 
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
             Clear();
-        }
-
-      
-
+        }      
      
     }
 }

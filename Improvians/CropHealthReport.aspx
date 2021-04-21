@@ -124,6 +124,9 @@
                                                 <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
+                                                 <asp:Label ID="lblj_id" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
+
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
@@ -927,7 +930,7 @@
                                                     <div class="col-xl-3">
                                                         <div style="margin-top: 5%;">
                                                             <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" Visible="false" />
-                                                            <asp:Button Text="Submit" ID="btngeneraltasksave" type="submit" CssClass="bttn bttn-primary bttn-action" OnClick="btngeneraltasksave_Click" runat="server" />
+                                                            <asp:Button Text="Submit" ID="btnGeneralSubmit" type="submit" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralSubmit_Click" runat="server" />
                                                             <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveGeneral" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSaveGeneral_Click" />
                                                             <asp:Button Text="Reset" ID="btnGeneralReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralReset_Click" />
 
