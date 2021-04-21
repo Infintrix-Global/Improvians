@@ -23,12 +23,12 @@
                 </div>
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Assigned To </label>
-                    <asp:DropDownList ID="ddlAssignedBy" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlAssignedBy" runat="server" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Task Request Type </label>
                     <asp:DropDownList ID="ddlTaskRequestType" runat="server" class="custom__dropdown robotomd">
-                        <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
+                      <%--  <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
                         <asp:ListItem Text="Fertilization" Value="Fertilization"></asp:ListItem>
                         <asp:ListItem Text="Chemical" Value="Chemical"></asp:ListItem>
                         <asp:ListItem Text="Germination" Value="Germination"></asp:ListItem>
@@ -36,7 +36,7 @@
                         <asp:ListItem Text="Plant Ready" Value="Plant Ready"></asp:ListItem>
                         <asp:ListItem Text="Dump" Value="Dump"></asp:ListItem>
                         <asp:ListItem Text="Move" Value="Move"></asp:ListItem>
-                        <asp:ListItem Text="GeneralTask" Value="GeneralTask"></asp:ListItem>
+                        <asp:ListItem Text="GeneralTask" Value="GeneralTask"></asp:ListItem>--%>
                     </asp:DropDownList>
                 </div>
             </div>

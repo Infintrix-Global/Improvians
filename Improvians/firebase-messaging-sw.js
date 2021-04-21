@@ -38,6 +38,8 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
 messaging.onBackgroundMessage((payload) => {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    console.log('[firebase-messaging-sw.js] Received background data ', payload.data);
+    console.log('[firebase-messaging-sw.js] Received background title ', payload.data.Title);
 
    // navigator.setAppBadge();
     // Customize notification here

@@ -261,6 +261,45 @@ namespace Evo.BAL_Classes
             return dt;
         }
 
+
+        public DataTable GetCreateTaskRequestSelectNew(string FacilityLocation, string BenchLocation, string JobCode, string CustName)
+        {
+            General objGeneral = new General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, GPD.Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode" +
+                            "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo " +
+
+                            "where ";
+                if (!string.IsNullOrEmpty(FacilityLocation))
+                {
+                    strQuery += "  FacilityID ='" + FacilityLocation + "'";
+                }
+                if (!string.IsNullOrEmpty(BenchLocation))
+                {
+                    strQuery += " and  GPD.GreenHouseID in (" + BenchLocation + ")";
+                }
+                if (!string.IsNullOrEmpty(JobCode))
+                {
+                    strQuery += " and GTS.jobcode ='" + JobCode + "'";
+                }
+                if (!string.IsNullOrEmpty(CustName))
+                {
+                    strQuery += " and cname ='" + CustName + "'";
+                }
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+
+
+
         public DataTable GetCreateTaskRequestStart(string FacilityLocation, string BenchLocation, string JobCode)
         {
             General objGeneral = new General();
@@ -326,6 +365,49 @@ namespace Evo.BAL_Classes
             }
             return dt;
         }
+
+
+
+        public DataTable GetManualRequestSelectNew(string FacilityLocation, string BenchLocation, string JobCode,string CustName)
+        {
+            General objGeneral = new General();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "Select GJSPM.jobcode,'0' as wo,GJSPM.jid as GrowerPutAwayId,GJSPM.cname,GJSPM.itemdescp,GJSPM.itemno,  " +
+                            " GJSPM.loc_seedline as FacilityID,GJSPM.GreenHouseID, GJSPM.Trays,GJSPM.TraySize,GJSPM.SeedDate as SeededDate,GJSPM.GenusCode from [gti_jobs_seeds_plan_Manual] GJSPM where 1=1 ";
+
+                if (!string.IsNullOrEmpty(FacilityLocation))
+                {
+                    strQuery += " and GJSPM.loc_seedline ='" + FacilityLocation + "'";
+                }
+                if (!string.IsNullOrEmpty(BenchLocation))
+                {
+                    strQuery += " and GJSPM.GreenHouseID in (" + BenchLocation + ")";
+                }
+                if (!string.IsNullOrEmpty(JobCode))
+                {
+                    strQuery += " and jobcode ='" + JobCode + "'";
+                }
+                if (!string.IsNullOrEmpty(CustName))
+                {
+                    strQuery += " and GJSPM.cname ='" + CustName + "'";
+                }
+
+
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+
+
+
 
 
         public DataTable GetManualRequestStart(string FacilityLocation, string BenchLocation, string JobCode)
