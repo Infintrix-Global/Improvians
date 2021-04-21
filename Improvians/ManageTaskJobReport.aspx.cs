@@ -233,7 +233,7 @@ namespace Evo
                     if (TaskRequestType == "Move")
                     {
                        
-                        Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}", dt.Rows[0]["MoveID"].ToString()));
+                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}", dt.Rows[0]["MoveTaskAssignmentId"].ToString()));
 
                     }
                     if (TaskRequestType == "GeneralTask")

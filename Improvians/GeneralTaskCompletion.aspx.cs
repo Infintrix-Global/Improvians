@@ -26,10 +26,29 @@ namespace Evo
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
                 BindTask();
-
+                BindGridGeneraComplition(Did);
             }
         }
 
+
+        public void BindGridGeneraComplition(string Did)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@GeneralTaskAssignmentId", Did.ToString());
+            dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenGeneralTaskCompletionView", nv1);
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+               
+                PanelComplitionDetsil.Visible = true;
+                GeneralAdd.Visible = false;
+             
+                GridPlantComplition.DataSource = dt1;
+                GridPlantComplition.DataBind();
+
+            }
+
+        }
         public void BindGridCropHealth(int Chid)
         {
             DataTable dt1 = new DataTable();
@@ -151,6 +170,9 @@ namespace Evo
             nv.Add("@Comments", txtComment.Text);
             nv.Add("@QuantityOfTray", "");
             nv.Add("@GeneralTaskDate", txtGeneralDate.Text);
+            nv.Add("@TaskType", ddlTaskType.SelectedItem.Text);
+            nv.Add("@MoveFrom", txtFrom.Text);
+            nv.Add("@MoveTo", txtTo.Text);
 
             result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskCompletion", nv);
 
@@ -172,6 +194,8 @@ namespace Evo
                 string url;
                // if (Session["Role"].ToString() == "3")
                 //{
+
+
                     url = "GeneralTaskAssignmentForm.aspx";
                     string script = "window.onload = function(){ alert('";
                     script += message;
@@ -180,7 +204,9 @@ namespace Evo
                     script += url;
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                clear();
+                    clear();
+
+
                 //}
                 //if (Session["Role"].ToString() == "2")
                 //{
