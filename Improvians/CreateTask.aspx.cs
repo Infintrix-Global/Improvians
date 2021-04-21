@@ -130,7 +130,7 @@ namespace Evo
             ddlCustomer.DataTextField = "cname";
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
-            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlCustomer.Items.Insert(0, new ListItem("--Select--", ""));
 
         }
 
@@ -182,12 +182,12 @@ namespace Evo
 
             //dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
 
-            DataTable dtNV = objBAL.GetLocation(ddlMain);
+            DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
 
 
             ddlBenchLocation.DataSource = dtNV;
-            ddlBenchLocation.DataTextField = "p2";
-            ddlBenchLocation.DataValueField = "p2";
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
 
@@ -488,10 +488,10 @@ namespace Evo
             //NameValueCollection nv = new NameValueCollection();
             //nv.Add("@BenchLocation",BenchLoc);
             // dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
-            dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
+            dt = objTask.GetCreateTaskRequestSelectNew(Session["Facility"].ToString(), BenchLoc, jobNo, ddlCustomer.SelectedValue);
             //  DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
 
-            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, jobNo);
+            DataTable dtManual = objTask.GetManualRequestSelectNew(Session["Facility"].ToString(), BenchLoc, jobNo,ddlCustomer.SelectedValue);
 
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
@@ -651,7 +651,7 @@ namespace Evo
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq("", "");
+            BindGridFerReq("'" + ddlBenchLocation.SelectedValue + "'", ddlJobNo.SelectedValue);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)

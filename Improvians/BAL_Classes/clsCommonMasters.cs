@@ -320,7 +320,33 @@ namespace Evo
             return ds.Tables[0];
         }
 
+
+        public DataTable GetLocationDetsil(string MainLocation)
+        {
+            General objGeneral = new General();
+            DataTable dt = new DataTable();
+            try
+            {
+                // strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '"+ MainLocation + "'";
+                string strQuery = "Select * from gti_jobs_seeds_plan_Manual where loc_seedline ='" + MainLocation + "' ";
+
+
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+
     }
+
+
+
 
 }
 [Serializable]
