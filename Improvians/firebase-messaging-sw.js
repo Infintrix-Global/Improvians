@@ -17,7 +17,7 @@ firebase.initializeApp({
 // messages.
 const messaging = firebase.messaging();
 
-messaging.setBackgroundMessageHandler(function(payload) {
+messaging.setBackgroundMessageHandler(function (payload) {
     console.log(
         "[firebase-messaging-sw.js] Received background message ",
         payload,
@@ -37,14 +37,14 @@ messaging.setBackgroundMessageHandler(function(payload) {
 });
 
 messaging.onBackgroundMessage((payload) => {
-    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    var postData = JSON.parse(payload.data.postData);
 
-   // navigator.setAppBadge();
-    // Customize notification here
-    const notificationTitle = 'New Task Assigned';
+    const notificationTitle = postData.Title;
     const notificationOptions = {
-        body: 'New Task Assigned.',
-        icon: '/images/logo.png',
+        body: postData.Message,
+        icon: 'images/badge.png',
+        badge: 'images/badge.png',
+
     };
 
     self.registration.showNotification(notificationTitle,

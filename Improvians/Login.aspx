@@ -148,7 +148,10 @@
                 console.log("Unable to get permission to notify.", err);
             });
 
-
+        messaging.onMessage((payload) => {
+            console.log('Message received. ', payload);
+            // ...
+        });
     </script>
 </body>
 </html>

@@ -228,6 +228,7 @@
     <Content Include="DumpTaskCompletion.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
     <Content Include="GeneralTaskAssignmentForm.aspx" />
+    <Content Include="images\badge.png" />
     <Content Include="images\cancel.png" />
     <Content Include="images\dashboard_chemical.png" />
     <Content Include="images\dashboard_dump-request.png" />
