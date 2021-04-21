@@ -53,8 +53,8 @@ namespace Evo
             dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadyTaskCompletionView", nv1);
             if (dt1 != null && dt1.Rows.Count > 0)
             {
-                PanelCropHealth.Visible = true;
-                PanelComplitionDetsil.Visible = false;
+             
+                PanelComplitionDetsil.Visible = true;
                 PantReadyAdd.Visible = false;
                 PanelView.Visible = false;
                 GridPlantComplition.DataSource = dt1;

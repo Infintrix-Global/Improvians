@@ -10,6 +10,7 @@
     <title>Login - Growers Transplanting, Inc</title>
     <!-- Apple Splash Screens -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+
     <%-- <link href="images/splash/apple_splash_2048.png" sizes="2048x2732" rel="apple-touch-startup-image" />
     <link href="images/splash/apple_splash_1668.png" sizes="1668x2224" rel="apple-touch-startup-image" />
     <link href="images/splash/apple_splash_1536.png" sizes="1536x2048" rel="apple-touch-startup-image" />
@@ -114,7 +115,7 @@
     <script src="js/jquery.min.js"></script>
     <script defer="defer" src="js/popper.min.js"></script>
     <script defer="defer" src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="js/custom1.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
     <script src="js/firebase-messaging.js"></script>
     <script>
@@ -136,19 +137,17 @@
         messaging
             .requestPermission()
             .then(function () {
-                console.log("Notification permission granted.");
+                alert("1: Notification permission granted.");
                 // get the token in the form of promise
                 return messaging.getToken()
             })
             .then(function (token) {
                 TokenElem.value = token
-                console.log(token);
+                alert("2:" + token);
             })
             .catch(function (err) {
-                console.log("Unable to get permission to notify.", err);
+                alert("3: Unable to get permission to notify.", err);
             });
-
-
     </script>
 </body>
 </html>

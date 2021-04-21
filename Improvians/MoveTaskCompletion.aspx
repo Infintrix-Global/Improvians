@@ -212,8 +212,6 @@
                                         </asp:TemplateField>
 
 
-
-
                                     </Columns>
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -223,41 +221,95 @@
                                     </EmptyDataTemplate>
                                 </asp:GridView>
 
+
+                                <br />
+
+                                <br />
                             </div>
                         </div>
                         <br />
-                        <div class="row">
+
+                        <asp:Panel ID="PanelComplitionDetsil" Visible="false" runat="server">
+                            <br />
+                            <%-- <h2 class="text-left">Crop Health Report </h2>--%>
+
+                            <br />
+                            <div class="portlet-body">
+                                <div class="data__table">
+                                    <asp:GridView ID="GridMoveComplition" runat="server" AutoGenerateColumns="False"
+                                        class="striped" AllowSorting="true"
+                                        GridLines="None"
+                                        ShowHeaderWhenEmpty="True" Width="100%">
+                                        <Columns>
+
+                                            <asp:TemplateField HeaderText="Move Date" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblUpdatedReadyDate" runat="server" Text='<%# Eval("MoveDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
 
 
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <label class="d-block">Move Date</label>
+                                            <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblTaskType" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
-                                <asp:TextBox ID="txtDumpDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
+
+                                            <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                        </Columns>
+
+                                        <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                        <PagerSettings Mode="NumericFirstLast" />
+                                        <EmptyDataTemplate>
+                                            No Record Available
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
+
+                                </div>
                             </div>
 
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <label class="d-block">Number Of Tray</label>
-                                <asp:TextBox ID="txtQuantityOfTray" TextMode="Number" class="input__control" runat="server"></asp:TextBox>
+                        </asp:Panel>
+
+                        <asp:Panel ID="PanelAdd" runat="server">
+                            <div class="row">
+
+
+
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <label class="d-block">Move Date</label>
+
+                                    <asp:TextBox ID="txtDumpDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <label class="d-block">Number Of Tray</label>
+                                    <asp:TextBox ID="txtQuantityOfTray" TextMode="Number" class="input__control" runat="server"></asp:TextBox>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <label class="d-block">Comments</label>
+                                    <asp:TextBox ID="txtComment" TextMode="MultiLine" class="input__control" runat="server"></asp:TextBox>
+                                </div>
+
+
+
+                                <div class="col-12 my-3">
+
+
+
+                                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
+                                    <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />
+
+                                </div>
                             </div>
-
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <label class="d-block">Comments</label>
-                                <asp:TextBox ID="txtComment" TextMode="MultiLine" class="input__control" runat="server"></asp:TextBox>
-                            </div>
-
-
-
-                            <div class="col-12 my-3">
-
-
-
-                                <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
-                                <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />
-
-                            </div>
-                        </div>
-
+                        </asp:Panel>
                     </div>
                 </div>
             </form>
