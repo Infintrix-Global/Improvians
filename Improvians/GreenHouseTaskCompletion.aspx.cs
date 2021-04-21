@@ -105,6 +105,8 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@GTAID", gtaID);
+            nv.Add("@RoleId", Session["Role"].ToString());
+            
             dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTaskByGTAIDNew", nv);
 
 
