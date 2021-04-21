@@ -283,6 +283,9 @@ header {
     height: auto;
     border-radius: 100%;
     margin-right: 15px;
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
 }
 
 .account__dropdown .account__user {
@@ -1503,7 +1506,7 @@ textarea.input__control {
     .has__footer { padding-bottom: 84px; }
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 calc(50% - 8px); max-width: calc(50% - 8px); }
     .account__dropdown .account__user { font-size: 16px; }
-    .account__dropdown img { max-width: 48px; }
+    .account__dropdown img { max-width: 48px;  width: 48px; height: 48px;  }
     .account__dropdown .account__user { margin-right: 5px; }
     .custom__dropdown, .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon) { padding: 0 15px; }
     .custom__dropdown, .custom__dropdown.filter__control:not(.filter__search), .input__control.input__control-icon { padding-right: 35px; }
@@ -1594,7 +1597,12 @@ textarea.input__control {
     .dashboard__paging li:first-child { margin-right: 10px; }
     .dashboard__paging li:last-child { margin-left: 10px; }
     .alert__dropdown .dropdown-menu { transform: translate(-38%, 5px); }
-    .account__dropdown img { max-width: 40px; margin-right: 9px; }
+    .account__dropdown img {
+        max-width: 40px;
+        margin-right: 9px;
+        width: 40px;
+        height: 40px;
+    }
     .bttn { padding: 10px 15px; }
 }
 
