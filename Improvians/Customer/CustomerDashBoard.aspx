@@ -3,6 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="header__bottom">
+        <div class="d-flex align-items-center justify-content-center">
+            <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown input__control-auto robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
+        </div>
+    </div>
     <div class="main__header">
         <div class="site__container">
              <h2> <asp:Label ID="lblCustName" runat="server" /></h2>
@@ -20,7 +25,7 @@
                     <label>To Plant Due Date </label>
                     <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
                 </div>
-                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 align-self-end">
                     <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
                     <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
 

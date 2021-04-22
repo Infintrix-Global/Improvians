@@ -65,29 +65,6 @@
 <body>
     <form id="form1" runat="server">
         <header>
-           <%-- <div class="site__container">
-                <div class="d-flex align-items-center">
-
-                    <a href="CustomerDashBoard.aspx" title="Growers Transplanting Inc">
-                        <img src="images/logo-vertical.svg" alt="Growers Transplanting Inc" width="120" height="90" />
-                    </a>
-
-                    <div class="site__container">
-                        <div class="dropdown account__dropdown ml-3">
-                            <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />
-                                <span class="account__user robotomd">
-                                    <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
-                            </div>
-
-                            <div class="dropdown-menu" aria-labelledby="account__dropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="../Login.aspx">Log Out</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
              <div class="site__container">
                 <div class="d-flex align-items-center">
                     <a href="CustomerDashBoard.aspx" title="Growers Transplanting Inc">

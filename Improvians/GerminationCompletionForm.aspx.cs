@@ -116,7 +116,7 @@ namespace Evo
 
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
-                highlight(dt.Rows.Count); 
+                highlight(dt.Rows.Count);
             }
         }
         private void highlight(int limit)

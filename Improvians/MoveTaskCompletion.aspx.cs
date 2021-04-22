@@ -13,6 +13,13 @@ namespace Evo
     public partial class MoveTaskCompletion : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Role"].ToString() == "13")
+            {
+                this.Page.MasterPageFile = "~/Customer/CustomerMaster.master";
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
