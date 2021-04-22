@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AddCustomer.aspx" />
     <Content Include="Admin\AddEmployee.aspx" />
     <Content Include="Admin\AdminDashBoard.aspx" />
     <Content Include="Admin\CropHealthMaster.aspx" />
@@ -193,6 +194,7 @@
     <Content Include="Admin\js\popper.min.js" />
     <Content Include="Admin\js\slick.min.js" />
     <Content Include="Admin\GeneralConfiguration.aspx" />
+    <Content Include="Admin\ViewCustomer.aspx" />
     <Content Include="Admin\ViewPlantProductionProfile.aspx" />
     <Content Include="Admin\ViewEmployee.aspx" />
     <Content Include="ChemicalJobBuildUp.aspx" />
@@ -392,6 +394,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AddCustomer.aspx.cs">
+      <DependentUpon>AddCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddCustomer.aspx.designer.cs">
+      <DependentUpon>AddCustomer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AddEmployee.aspx.cs">
       <DependentUpon>AddEmployee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -472,6 +481,13 @@
     </Compile>
     <Compile Include="Admin\GeneralConfiguration.aspx.designer.cs">
       <DependentUpon>GeneralConfiguration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewCustomer.aspx.cs">
+      <DependentUpon>ViewCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewCustomer.aspx.designer.cs">
+      <DependentUpon>ViewCustomer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ViewPlantProductionProfile.aspx.cs">
       <DependentUpon>ViewPlantProductionProfile.aspx</DependentUpon>

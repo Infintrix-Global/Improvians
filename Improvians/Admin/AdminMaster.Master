@@ -90,6 +90,20 @@
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
+                             <li>
+                                <a class="current" href="AddCustomer.aspx" title="Add Customer">
+                                    <i class="side-icon far fa-user"></i>
+                                    <span class="side-title">Add Customer</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                              <li>
+                                <a class="current" href="ViewCustomer.aspx" title="View Customer">
+                                    <i class="side-icon fas fa-eye"></i>
+                                    <span class="side-title">View Customer</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
                             <li class="has__dropdown">
                                 <a class="current" href="ViewPlantProductionProfile.aspx" title="View Employee">
                                     <i class="side-icon fas fa-seedling"></i>
