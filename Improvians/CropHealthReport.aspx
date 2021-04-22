@@ -572,9 +572,12 @@
                             <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
 
 
-                                <asp:Button Text="Submit" CausesValidation="true" ID="btnFSubmit" CssClass="mr-2 bttn bttn-primary" runat="server" OnClick="btnFSubmit_Click" />
-                                <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveFLSubmit" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveFLSubmit_Click" />
-                                <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary" OnClick="btnFReset_Click" />
+                                <asp:Button Text="Submit" CausesValidation="true" ID="btnFSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnFSubmit_Click" />
+                                <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveFLSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSaveFLSubmit_Click" />
+                                <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnFReset_Click" />
+
+
+                              
                             </div>
 
                         </div>
@@ -927,13 +930,16 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="col-xl-3">
+                                                    <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                                                         <div style="margin-top: 5%;">
-                                                            <asp:Button Text="Send Email" ID="btnSendMail" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSendMail_Click" Visible="false" />
+                                                            <asp:Button Text="Send Email" ID="btnSendMail" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSendMail_Click" Visible="false" />
                                                             <asp:Button Text="Submit" ID="btnGeneralSubmit" type="submit" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralSubmit_Click" runat="server" />
-                                                            <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveGeneral" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSaveGeneral_Click" />
+                                                            <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveGeneral" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSaveGeneral_Click" />
                                                             <asp:Button Text="Reset" ID="btnGeneralReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralReset_Click" />
 
+
+
+                                                               
                                                         </div>
                                                     </div>
                                                 </div>

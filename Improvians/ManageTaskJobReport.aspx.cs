@@ -48,7 +48,8 @@ namespace Evo
             nv.Add("@JobNo", jobNo);
             nv.Add("@Mode", "5");
 
-            dt = objCommon.GetDataTable("GetManageTaskJobHistorySearch", nv);
+        
+           
             ddlTaskRequestType.DataSource = dt;
             ddlTaskRequestType.DataTextField = "TaskRequestType";
             ddlTaskRequestType.DataValueField = "TaskRequestType";
@@ -177,8 +178,17 @@ namespace Evo
             nv.Add("@WorkDateForm", txtFromDate.Text);
             nv.Add("@WorkDateTo", txtToDate.Text);
 
+            if (Session["Role"].ToString() == "2")
+            {
+             
+                AllData = objCommon.GetDataTable("GetManageTaskJobSupervisorHistory", nv);
+            }
+            else
+            {
+                AllData = objCommon.GetDataTable("GetManageTaskJobHistory", nv);
+            }
 
-            AllData = objCommon.GetDataTable("GetManageTaskJobHistory", nv);
+           
             gvGerm.DataSource = AllData;
             gvGerm.DataBind();
 
@@ -297,7 +307,7 @@ namespace Evo
                     if (TaskRequestType == "Move")
                     {
                        
-                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}", dt.Rows[0]["MoveTaskAssignmentId"].ToString()));
+                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&DrId={1}", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString()));
 
                     }
                     if (TaskRequestType == "GeneralTask")
@@ -334,10 +344,13 @@ namespace Evo
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
-                    btnStart.Enabled = true;
+                    if (dt.Rows[0]["WorkDate"].ToString() != "")
+                    {
+                        lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
+                        btnStart.Enabled = true;
 
-                    btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
+                        btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
+                    }
                 }
                 else
                 {

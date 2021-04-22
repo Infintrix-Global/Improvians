@@ -42,8 +42,8 @@ namespace Evo
             {
 
                 PanelComplitionDetsil.Visible = true;
-                GridMoveComplition.Visible = false;
-
+             
+                PanelAdd.Visible = false;
                 GridMoveComplition.DataSource = dt1;
                 GridMoveComplition.DataBind();
 

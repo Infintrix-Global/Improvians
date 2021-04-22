@@ -43,9 +43,9 @@ namespace Evo
             dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenDumpTaskCompletionView", nv1);
             if (dt1 != null && dt1.Rows.Count > 0)
             {
-                PanelCropHealth.Visible = true;
+            //    PanelCropHealth.Visible = true;
                 PanelAddDump.Visible = false;
-             
+                PanelComplition.Visible = true;
                 GridDumpComplition.DataSource = dt1;
                 GridDumpComplition.DataBind();
 
