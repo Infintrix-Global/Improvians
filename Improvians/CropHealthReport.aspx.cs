@@ -36,6 +36,8 @@ namespace Evo
         clsCommonMasters objCom = new clsCommonMasters();
         static string ReceiverEmail = "";
         static string folderPath = "";
+        General objGeneral = new General();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -674,6 +676,7 @@ namespace Evo
             NameValueCollection nv11 = new NameValueCollection();
             nv11.Add("@Chid", Chid);
             result16 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+            objGeneral.SendMessage(int.Parse(Assign), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Fertilizer");
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -808,6 +811,8 @@ namespace Evo
                 nv11.Add("@Chid", Chid);
                 result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                objGeneral.SendMessage(int.Parse(Assign), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
+
                 string message = "Assignment Successful";
                 string url = "MyTaskGrower.aspx";
                 string script = "window.onload = function(){ alert('";
@@ -1029,6 +1034,8 @@ namespace Evo
             NameValueCollection nv11 = new NameValueCollection();
             nv11.Add("@Chid", Chid);
             result18 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
+            objGeneral.SendMessage(int.Parse(Assign), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
+
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -1165,6 +1172,7 @@ namespace Evo
             NameValueCollection nv111 = new NameValueCollection();
             nv111.Add("@Chid", Chid);
             result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv111);
+            objGeneral.SendMessage(int.Parse(Assign), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
@@ -1520,6 +1528,8 @@ namespace Evo
             nv11.Add("@Chid", Chid);
             result16 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
 
+            objGeneral.SendMessage(int.Parse(Assign), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
+
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
@@ -1704,6 +1714,8 @@ namespace Evo
                 nv11.Add("@Chid", Chid);
                 result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                objGeneral.SendMessage(int.Parse(Assign), "New Move Task Assigned", "New Move Task Assigned", "Move");
+
                 string message = "Assignment Successful";
                 string url = "MyTaskGrower.aspx";
                 string script = "window.onload = function(){ alert('";
