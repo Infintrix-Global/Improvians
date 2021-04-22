@@ -67,6 +67,30 @@ namespace Evo
             for (int i = 0; i < AllData.Rows.Count; i++)
             {
 
+                string PlantReadyDate = "";
+                string PlantDueDate = "";
+                DataTable dtpD = new DataTable();
+                NameValueCollection nv123 = new NameValueCollection();
+                nv123.Add("@Tray_Size", AllData.Rows[i]["TraySize"].ToString());
+                nv123.Add("@GCode", AllData.Rows[i]["GenusCode"].ToString());
+                dtpD = objCommon.GetDataTable("spGetDateDhiftCreateTaskPlantNo", nv123);
+
+                if (dtpD != null && dtpD.Rows.Count > 0)
+                {
+                    int PlantPDate = 0;
+                    int PlanrDDate = 0;
+                    //for (int i = 0; i < dt.Rows.Count; i++)
+                    //{
+                    //    PlantPDate =
+                    //}
+                    PlanrDDate = Convert.ToInt32(dtpD.Rows[0]["dateshift"]);
+                    PlantPDate = Convert.ToInt32(dtpD.Rows[1]["dateshift"]);
+                    PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlantPDate).ToString("MM/dd/yyyy");
+                    PlantDueDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
+
+                }
+
+
                 string GreenHouseID = (AllData.Rows[i]["GreenHouseID"].ToString());
                 string FacilityID = (AllData.Rows[i]["FacilityID"].ToString());
                 string jobcode = (AllData.Rows[i]["jobcode"].ToString());
@@ -93,6 +117,10 @@ namespace Evo
                 nv.Add("@Seeddate", seeddate);
                 nv.Add("@germcount", germcount);
                 nv.Add("@GenusCode", GenusCode);
+                nv.Add("@PlantDueDate", PlantDueDate);
+                nv.Add("@PlantReadyDate", PlantReadyDate);
+
+              
                 _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
 
                 DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);

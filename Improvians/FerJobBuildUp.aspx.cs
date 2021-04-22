@@ -477,10 +477,6 @@ namespace Evo
 
             }
 
-
-
-            gvJobHistory.DataSource = dt;
-            gvJobHistory.DataBind();
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
