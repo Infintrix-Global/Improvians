@@ -214,6 +214,81 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\custom.css" />
     <Content Include="css\uploadify.css" />
+    <Content Include="Customer\css\all.min.css" />
+    <Content Include="Customer\css\aos.css" />
+    <Content Include="Customer\css\bootstrap.min.css" />
+    <Content Include="Customer\css\custom.css" />
+    <Content Include="Customer\CustomerDashBoard.aspx" />
+    <Content Include="Customer\fonts\icons\rxicons.svg" />
+    <Content Include="Customer\images\delete.png" />
+    <Content Include="Customer\images\edit.png" />
+    <Content Include="Customer\images\favicon\android-icon-144x144.png" />
+    <Content Include="Customer\images\favicon\android-icon-192x192.png" />
+    <Content Include="Customer\images\favicon\android-icon-36x36.png" />
+    <Content Include="Customer\images\favicon\android-icon-48x48.png" />
+    <Content Include="Customer\images\favicon\android-icon-72x72.png" />
+    <Content Include="Customer\images\favicon\android-icon-96x96.png" />
+    <Content Include="Customer\images\favicon\apple-icon-114x114.png" />
+    <Content Include="Customer\images\favicon\apple-icon-120x120.png" />
+    <Content Include="Customer\images\favicon\apple-icon-144x144.png" />
+    <Content Include="Customer\images\favicon\apple-icon-152x152.png" />
+    <Content Include="Customer\images\favicon\apple-icon-180x180.png" />
+    <Content Include="Customer\images\favicon\apple-icon-57x57.png" />
+    <Content Include="Customer\images\favicon\apple-icon-60x60.png" />
+    <Content Include="Customer\images\favicon\apple-icon-72x72.png" />
+    <Content Include="Customer\images\favicon\apple-icon-76x76.png" />
+    <Content Include="Customer\images\favicon\apple-icon-precomposed.png" />
+    <Content Include="Customer\images\favicon\apple-icon.png" />
+    <Content Include="Customer\images\favicon\favicon-16x16.png" />
+    <Content Include="Customer\images\favicon\favicon-32x32.png" />
+    <Content Include="Customer\images\favicon\favicon-96x96.png" />
+    <Content Include="Customer\images\favicon\favicon.ico" />
+    <Content Include="Customer\images\favicon\ms-icon-144x144.png" />
+    <Content Include="Customer\images\favicon\ms-icon-150x150.png" />
+    <Content Include="Customer\images\favicon\ms-icon-310x310.png" />
+    <Content Include="Customer\images\favicon\ms-icon-70x70.png" />
+    <Content Include="Customer\images\icon-dropdown.svg" />
+    <Content Include="Customer\images\icons\icon-account.svg" />
+    <Content Include="Customer\images\icons\icon-checkbox.svg" />
+    <Content Include="Customer\images\icons\icon-dashboard.svg" />
+    <Content Include="Customer\images\icons\icon-dropdown.svg" />
+    <Content Include="Customer\images\icons\icon-email.svg" />
+    <Content Include="Customer\images\icons\icon-facility-probability.svg" />
+    <Content Include="Customer\images\icons\icon-germination-seed.svg" />
+    <Content Include="Customer\images\icons\icon-greenhouse-control.svg" />
+    <Content Include="Customer\images\icons\icon-labor-efficiency.svg" />
+    <Content Include="Customer\images\icons\icon-mytasks.svg" />
+    <Content Include="Customer\images\icons\icon-password.svg" />
+    <Content Include="Customer\images\icons\icon-phone.svg" />
+    <Content Include="Customer\images\icons\icon-plant-quality.svg" />
+    <Content Include="Customer\images\icons\icon-radio.svg" />
+    <Content Include="Customer\images\icons\icon-search.svg" />
+    <Content Include="Customer\images\icons\icon-site-capacity.svg" />
+    <Content Include="Customer\images\icons\icon-user.svg" />
+    <Content Include="Customer\images\link-assign-task.svg" />
+    <Content Include="Customer\images\link-my-task.svg" />
+    <Content Include="Customer\images\link-site-tasks.svg" />
+    <Content Include="Customer\images\link-track-tasks.svg" />
+    <Content Include="Customer\images\login-bg.jpg" />
+    <Content Include="Customer\images\logo-vertical.svg" />
+    <Content Include="Customer\images\logo.png" />
+    <Content Include="Customer\images\no-photo.jpg" />
+    <Content Include="Customer\images\profile-picture.jpg" />
+    <Content Include="Customer\images\rxicons-v1.0\demo-files\demo.css" />
+    <Content Include="Customer\images\rxicons-v1.0\demo-files\demo.js" />
+    <Content Include="Customer\images\rxicons-v1.0\demo.html" />
+    <Content Include="Customer\images\rxicons-v1.0\fonts\rxicons.svg" />
+    <Content Include="Customer\images\rxicons-v1.0\Read Me.txt" />
+    <Content Include="Customer\images\rxicons-v1.0\style.css" />
+    <Content Include="Customer\images\user-profile.jpg" />
+    <Content Include="Customer\images\view.png" />
+    <Content Include="Customer\js\aos.js" />
+    <Content Include="Customer\js\bootstrap.min.js" />
+    <Content Include="Customer\js\custom.js" />
+    <Content Include="Customer\js\custom1.js" />
+    <Content Include="Customer\js\jquery.min.js" />
+    <Content Include="Customer\js\popper.min.js" />
+    <Content Include="Customer\js\slick.min.js" />
     <Content Include="DashBoard.aspx" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="FertilizerTaskStart.aspx" />
@@ -598,6 +673,20 @@
     </Compile>
     <Compile Include="CropReportRequestForm.aspx.designer.cs">
       <DependentUpon>CropReportRequestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CustomerDashBoard.aspx.cs">
+      <DependentUpon>CustomerDashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CustomerDashBoard.aspx.designer.cs">
+      <DependentUpon>CustomerDashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CustomerMaster.Master.cs">
+      <DependentUpon>CustomerMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CustomerMaster.Master.designer.cs">
+      <DependentUpon>CustomerMaster.Master</DependentUpon>
     </Compile>
     <Compile Include="DashBoard.aspx.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
@@ -1207,6 +1296,26 @@
     <Content Include="Admin\images\rxicons-v1.0\fonts\rxicons.woff" />
     <None Include="Admin\packages.config" />
     <Content Include="manifest.json" />
+    <Content Include="Customer\CustomerMaster.Master" />
+    <Content Include="Customer\images\rxicons-v1.0\fonts\rxicons.eot" />
+    <Content Include="Customer\images\rxicons-v1.0\fonts\rxicons.ttf" />
+    <Content Include="Customer\images\rxicons-v1.0\fonts\rxicons.woff" />
+    <Content Include="Customer\fonts\fa\fa-brands-400.ttf" />
+    <Content Include="Customer\fonts\fa\fa-brands-400.woff2" />
+    <Content Include="Customer\fonts\fa\fa-regular-400.ttf" />
+    <Content Include="Customer\fonts\fa\fa-regular-400.woff2" />
+    <Content Include="Customer\fonts\fa\fa-solid-900.ttf" />
+    <Content Include="Customer\fonts\fa\fa-solid-900.woff2" />
+    <Content Include="Customer\fonts\icons\rxicons.eot" />
+    <Content Include="Customer\fonts\icons\rxicons.ttf" />
+    <Content Include="Customer\fonts\icons\rxicons.woff" />
+    <Content Include="Customer\fonts\Roboto-Bold.ttf" />
+    <Content Include="Customer\fonts\Roboto-Bold.woff2" />
+    <Content Include="Customer\fonts\Roboto-Medium.ttf" />
+    <Content Include="Customer\fonts\Roboto-Medium.woff2" />
+    <Content Include="Customer\fonts\Roboto-Regular.ttf" />
+    <Content Include="Customer\fonts\Roboto-Regular.woff2" />
+    <Content Include="Customer\fonts\selection.json" />
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
     <Content Include="Upload.ashx" />

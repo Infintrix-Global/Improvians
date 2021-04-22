@@ -48,6 +48,10 @@ namespace Evo
                 {
                     Response.Redirect("~/Admin/AdminDashBoard.aspx");
                 }
+                else if (_dtLogin.Rows[0]["RoleID"].ToString() == "13") /*customer */
+                {
+                    Response.Redirect("~/Customer/CustomerDashBoard.aspx");
+                }
                 else
                 {
                     Response.Redirect("~/DashBoard.aspx");
