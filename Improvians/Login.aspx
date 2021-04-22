@@ -171,6 +171,9 @@
             });
 
             function callInstallPrompt() {
+                if (window.matchMedia('(display-mode: standalone)').matches) {
+                    $(".pwa").remove();
+                } 
                 // We can't fire the dialog before preventing default browser dialog
                 if (installPromptEvent !== undefined) {
                     installPromptEvent.prompt();
