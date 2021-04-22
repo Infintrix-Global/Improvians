@@ -44,6 +44,7 @@
 		<siteMapNode url="~/ManageTaskJobReport.aspx" title="Manage Task">
 			
 			<siteMapNode url="~/ViewJobDetails.aspx" title="View Job"/>
+			
 			<!--<siteMapNode url="~/SprayTaskViewDetails.aspx?PageType=ManageTask" title="Fertilization Completion"/>
 			<siteMapNode url="~/ChemicalTaskViewDetails.aspx?PageType=ManageTask" title="Chemical Completion"/>
 			<siteMapNode url="~/GreenHouseTaskCompletion.aspx?PageType=ManageTask" title="Germination Completion"/>
