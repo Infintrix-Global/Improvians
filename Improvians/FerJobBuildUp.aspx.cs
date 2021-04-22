@@ -511,7 +511,7 @@ namespace Evo
                 nv.Add("@FertilizationDate", txtDate.Text);
                 nv.Add("@Jid",Jid);
             
-                  result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
                 
 

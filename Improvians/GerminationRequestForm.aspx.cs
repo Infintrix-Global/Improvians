@@ -269,8 +269,10 @@ namespace Evo
 
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {
-                    txtDate.Text = Convert.ToDateTime(dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
-
+                    if (dt1.Rows[0]["InspectionDueDate"].ToString() != "")
+                    {
+                        txtDate.Text = Convert.ToDateTime(dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
+                    }
                     txtTrays.Text = dt1.Rows[0]["#TraysInspected"].ToString();
                 }
 
@@ -424,27 +426,40 @@ namespace Evo
 
             if (result > 0)
             {
+                General objGeneral = new General();
+
+                objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
+
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
+
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {
-                    url = "MyTaskGrower.aspx";
+                 
+                    Response.Redirect("MyTaskGrower.aspx");
                 }
                 else
                 {
-                    url = "MyTaskAssistantGrower.aspx";
+                  
+                    Response.Redirect("MyTaskAssistantGrower.aspx");
                 }
-                General objGeneral = new General();
-                objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
-                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                string message = "Assignment Successful";
-                //  string url = "MyTaskGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+
+            
+                //string message = "Assignment Successful";
+                ////  string url = "MyTaskGrower.aspx";
+                //string script = "window.onload = function(){ alert('";
+                //script += message;
+                //script += "');";
+                //script += "window.location = '";
+                //script += url;
+                //script += "'; }";
+                //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+
+
                 // lblmsg.Text = "Assignment Successful";
                 clear();
             }
@@ -658,6 +673,6 @@ namespace Evo
             }
         }
 
-
+      
     }
 }
