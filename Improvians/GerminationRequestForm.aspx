@@ -16,7 +16,6 @@
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
 
-
                 <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
                     MinimumPrefixLength="2"
                     CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
@@ -35,11 +34,12 @@
                     ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
                 </cc1:AutoCompleteExtender>
             </div>
+
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Assigned By </label>
                 <asp:DropDownList ID="ddlAssignedBy" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
@@ -47,13 +47,13 @@
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-               
+
         </div>
 
-            <div class="row mb-1 mb-md-4 align-items-end">
-              
+        <div class="row mb-1 mb-md-4 align-items-end">
 
-                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job Source </label>
                 <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                     <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
@@ -95,7 +95,7 @@
                         GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
-                               
+
                             <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblBenchLocation" data-head="Bench Location" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -114,14 +114,14 @@
                                     <asp:HyperLink data-head="Job No." ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                                
+
                             <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDescription" data-head="Plant Type" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblTrays" data-head="Total Trays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                 </ItemTemplate>
@@ -157,22 +157,22 @@
                                     <asp:Label ID="lblsource" data-head="Job Source" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                                
-                              
-                                
+
+
+
                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Select" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                        <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                    <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
 
                                     <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Reschedule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
                                     <asp:Button ID="btndismiss" runat="server" Text="Dismiss" OnClientClick="return confirm('Are you sure you want to dismiss this ?'); " CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
-                                      
+
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -240,6 +240,8 @@
                         <div class="col-lg-3">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
+
+                            <asp:Button Text="Submit my " ID="Button1" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="Button1_Click" />
                         </div>
                     </div>
                 </asp:Panel>
@@ -273,6 +275,9 @@
                         <div class="col-12">
                             <asp:Button Text="Submit" ID="btnReschedule" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReschedule_Click" />
                             <asp:Button Text="Reset" ID="btnRescheduleReset" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnResetReschedule_Click" />
+
+
+
                         </div>
                     </div>
                 </asp:Panel>
