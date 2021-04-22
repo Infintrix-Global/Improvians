@@ -11,7 +11,7 @@ namespace Evo.Admin
 {
 
 
-    public partial class NotificationPreference
+    public partial class ViewCustomer
     {
 
         /// <summary>
@@ -24,48 +24,48 @@ namespace Evo.Admin
         protected global::System.Web.UI.ScriptManager SrciptManager1;
 
         /// <summary>
-        /// ddlTasks control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTasks;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
-        /// gvUsers control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUsers;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// submitPreference control.
+        /// btnClear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitPreference;
+        protected global::System.Web.UI.WebControls.Button btnClear;
 
         /// <summary>
-        /// submitErrorMsg control.
+        /// count control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label submitErrorMsg;
+        protected global::System.Web.UI.WebControls.Label count;
 
         /// <summary>
-        /// gvUserDetails control.
+        /// GridEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUserDetails;
+        protected global::System.Web.UI.WebControls.GridView GridEmployee;
     }
 }
