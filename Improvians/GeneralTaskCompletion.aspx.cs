@@ -9,9 +9,16 @@ using System.Web.UI.WebControls;
 
 namespace Evo
 {
-    public partial class GeneralTaskCompletion: System.Web.UI.Page
+    public partial class GeneralTaskCompletion : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Role"].ToString() == "13")
+            {
+                this.Page.MasterPageFile = "~/Customer/CustomerMaster.master";
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,10 +46,10 @@ namespace Evo
             dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenGeneralTaskCompletionView", nv1);
             if (dt1 != null && dt1.Rows.Count > 0)
             {
-               
+
                 PanelComplitionDetsil.Visible = true;
                 GeneralAdd.Visible = false;
-             
+
                 GridPlantComplition.DataSource = dt1;
                 GridPlantComplition.DataBind();
 
@@ -106,7 +113,7 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-           
+
             nv.Add("@GeneralTaskAssignmentId", Did);
             dt = objCommon.GetDataTable("SP_GetOperatorGeneralTaskDetails", nv);
             gvTask.DataSource = dt;
@@ -189,22 +196,22 @@ namespace Evo
             if (result > 0)
             {
                 // lblmsg.Text = "Completion Successful";
-                
+
                 string message = "Completion Successful";
                 string url;
-               // if (Session["Role"].ToString() == "3")
+                // if (Session["Role"].ToString() == "3")
                 //{
 
 
-                    url = "GeneralTaskAssignmentForm.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                    clear();
+                url = "GeneralTaskAssignmentForm.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                clear();
 
 
                 //}

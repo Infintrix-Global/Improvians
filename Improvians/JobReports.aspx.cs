@@ -36,6 +36,13 @@ namespace Evo
 
         public static DataTable dtCTrays = new DataTable()
         { Columns = { "Fertilizer", "Tray", "SQFT" } };
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["Role"].ToString() == "13")
+            {
+                this.Page.MasterPageFile = "~/Customer/CustomerMaster.master";
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -68,6 +75,10 @@ namespace Evo
                 txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                if (Session["Role"].ToString() == "13")
+                {
+                    divTaskRequest.Visible = false;
+                }
             }
         }
 
@@ -201,7 +212,7 @@ namespace Evo
             }
             if (filter != string.Empty)
                 dataView.RowFilter = filter.Substring(4);
-           // dataView.Sort = " EndingDate  ASC ";
+            // dataView.Sort = " EndingDate  ASC ";
             GV4.DataSource = dataView;
             GV4.DataBind();
         }

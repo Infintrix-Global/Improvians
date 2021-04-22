@@ -109,7 +109,19 @@
                             </span>
                         </label>
                     </div>
-                   
+                    <div class="col-md-6 col-xl-5 order-md-1">
+                        <label class="mb-0">
+                            <h3>Facility</h3>
+                        </label>
+                        <div>
+                            <asp:Repeater ID="repFacility" runat="server">
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkFacility" Text='<%#Bind("FacilityName")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
+                                    <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("FacilityID")%>' />
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                    </div>
 
 
                     <div class="clearfix"></div>
