@@ -40,13 +40,48 @@ messaging.onBackgroundMessage((payload) => {
     var postData = JSON.parse(payload.data.postData);
 
     const notificationTitle = postData.Title;
+    var click_action = "https://webportal.growerstrans.com/TESTGEM/DashBoard.aspx";
     const notificationOptions = {
         body: postData.Message,
         icon: 'images/badge.png',
         badge: 'images/badge.png',
-
+        data: {
+            url: click_action
+        }
     };
 
     self.registration.showNotification(notificationTitle,
         notificationOptions);
+
+
+
+    self.addEventListener('notificationclick', function (event) {
+        var notification = event.notification;
+        var action = event.action;
+
+        console.log(notification);
+
+        if (action === 'confirm') {
+            console.log('Confirm was chosen');
+            notification.close();
+        } else {
+            console.log(action);
+            event.waitUntil(
+                clients.matchAll()
+                    .then(function (clis) {
+                        var client = clis.find(function (c) {
+                            return c.visibilityState === 'visible';
+                        });
+
+                        if (client !== undefined) {
+                            client.navigate(notification.data.url);
+                            client.focus();
+                        } else {
+                            clients.openWindow(notification.data.url);
+                        }
+                        notification.close();
+                    })
+            );
+        }
+    });
 });

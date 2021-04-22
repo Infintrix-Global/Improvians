@@ -328,7 +328,7 @@ namespace Evo
             try
             {
                 // strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '"+ MainLocation + "'";
-                string strQuery = "Select * from gti_jobs_seeds_plan_Manual where loc_seedline ='" + MainLocation + "' ";
+                string strQuery = "Select  distinct GreenHouseID from gti_jobs_seeds_plan_Manual where loc_seedline ='" + MainLocation + "' order by GreenHouseID ";
 
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);

@@ -221,6 +221,11 @@ namespace Evo
                     {
                         Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                     }
+                    if (TaskName == "CropHealthReport")
+                    {
+                        Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                    }
+                    
                     else
                     {
                         Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
@@ -232,6 +237,9 @@ namespace Evo
                 {
                     switch (TaskName)
                     {
+                        case "CropHealthReport":
+                            Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                            break;
                         case "Chemical":
                             Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc);
                             break;
@@ -254,6 +262,9 @@ namespace Evo
                 {
                     switch (TaskName)
                     {
+                        case "CropHealthReport":
+                            Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                            break;
                         case "Chemical":
                             Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc);
                             break;
@@ -305,6 +316,9 @@ namespace Evo
             string Task = (e.Item.FindControl("lblTaskName") as Label).Text;
             switch (Task)
             {
+                case "CropHealthReport":
+                    control.Attributes["class"] = "imgicon-crophealth";
+                    break;
                 case "Chemical":
                     control.Attributes["class"] = "imgicon-chemical";
                     break;

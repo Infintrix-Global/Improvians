@@ -29,7 +29,7 @@ namespace Evo
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
                 BindPlantReady();
-                BindGridPalntReadyComplition(PRAID);
+              
                 BindViewDetilas(Convert.ToInt32(Request.QueryString["PRID"]));
                 BindSupervisorList();
                 if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
@@ -41,6 +41,7 @@ namespace Evo
                 {
                     PanelView.Visible = false;
                 }
+                BindGridPalntReadyComplition(PRAID);
             }
         }
 

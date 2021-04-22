@@ -206,6 +206,7 @@
                                 </asp:GridView>
 
                                  <br />
+                                  <asp:Panel ID="PanelComplition" Visible="false" runat="server">
                                 <asp:GridView ID="GridDumpComplition" runat="server" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true"
                                     GridLines="None"
@@ -242,6 +243,7 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>
+                                      </asp:Panel>
                             </div>
                         </div>
                         <br />

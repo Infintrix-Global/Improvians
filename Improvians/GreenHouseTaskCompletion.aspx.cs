@@ -63,7 +63,7 @@ namespace Evo
                 gvCropHealth.DataSource = dt1;
                 gvCropHealth.DataBind();
 
-                lblCommment.Text = "Commment   :"+ dt1.Rows[0]["CropHealthCommit"].ToString();
+                //lblCommment.Text = "Commment   :"+ dt1.Rows[0]["CropHealthCommit"].ToString();
             }
         }
 
@@ -105,6 +105,8 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@GTAID", gtaID);
+            nv.Add("@RoleId", Session["Role"].ToString());
+            
             dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTaskByGTAIDNew", nv);
 
 
