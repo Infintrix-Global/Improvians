@@ -241,7 +241,7 @@
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
 
-                            <asp:Button Text="Submit my " ID="Button1" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="Button1_Click" />
+
                         </div>
                     </div>
                 </asp:Panel>
