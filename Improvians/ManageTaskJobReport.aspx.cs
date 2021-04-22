@@ -274,20 +274,20 @@ namespace Evo
                 {
                     if (TaskRequestType == "Fertilization")
                     {
-                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?FertilizationCode={0}&FCID={1}&ManageTask={2}", dt.Rows[0]["FertilizationCode"].ToString(), dt.Rows[0]["SprayId"].ToString(), "ManageTask"));
+                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?PageType={0}&FertilizationCode={1}&FCID={2}","ManageTask", dt.Rows[0]["FertilizationCode"].ToString(), dt.Rows[0]["SprayId"].ToString()));
                     }
                     if (TaskRequestType == "Chemical")
                     {
                         
-                        Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}&CCID={1}&ManageTask={2}", dt.Rows[0]["ChemicalCode"].ToString(), dt.Rows[0]["ChemicalCompletionId"].ToString(), "ManageTask"));
+                        Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?PageType={0}&ChemicalCode={1}&CCID={2}", "ManageTask", dt.Rows[0]["ChemicalCode"].ToString(), dt.Rows[0]["ChemicalCompletionId"].ToString()));
                     }
                     if (TaskRequestType == "Germination")
                     {
-                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&ManageTask={1}", dt.Rows[0]["ID"].ToString(), "ManageTask"));
+                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}", "ManageTask", dt.Rows[0]["ID"].ToString()));
                     }
                     if (TaskRequestType == "Irrigation")
                     {
-                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}&ICID={1}&ManageTask={2}", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString(), "ManageTask"));
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}","ManageTask", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString()));
 
                         
                     }
@@ -296,23 +296,23 @@ namespace Evo
                     if (TaskRequestType == "Plant Ready")
                     {
 
-                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&ManageTask={2}", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString(), "ManageTask"));
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}","ManageTask", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString()));
                     }
 
                     if (TaskRequestType == "Dump")
                     {
-                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&ManageTask={3}", dt.Rows[0]["DumpTaskAssignmentId"].ToString() , 0, dt.Rows[0]["DumpId"].ToString(), "ManageTask"));
+                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}","ManageTask", dt.Rows[0]["DumpTaskAssignmentId"].ToString() , 0, dt.Rows[0]["DumpId"].ToString()));
                        
                     }
                     if (TaskRequestType == "Move")
                     {
                        
-                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&DrId={1}&ManageTask={2}", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString(), "ManageTask"));
+                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}","ManageTask", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString()));
 
                     }
                     if (TaskRequestType == "GeneralTask")
                     {
-                        Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&ManageTask={3}", dt.Rows[0]["GeneralTaskAssignmentId"].ToString(), 0, dt.Rows[0]["GeneralId"].ToString(), "ManageTask"));
+                        Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}","ManageTask", dt.Rows[0]["GeneralTaskAssignmentId"].ToString(), 0, dt.Rows[0]["GeneralId"].ToString()));
                      
 
                     }
