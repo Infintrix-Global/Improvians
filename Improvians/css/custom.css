@@ -557,7 +557,7 @@ textarea.input__control {
     padding-right: 52px;
 }
 
-.filter__control:focus, .input__control:focus { outline: none; }
+.filter__control:focus, .input__control:focus { outline: none; } 
 
 .header__bottom {
     position: absolute;
@@ -1197,6 +1197,20 @@ textarea.input__control {
     text-align: left;
 }
 
+/*PWA Button*/
+.pwa {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.pwa .bttn {
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
     .container {
@@ -1451,6 +1465,9 @@ textarea.input__control {
     .break__table:not(.break__table-sm) tr:nth-child(even) > td { background: #f6f6f6; }
     .break__table:not(.break__table-sm) tr:nth-child(even) > td:nth-child(odd) { background: #ffffff; }
     .break__table:not(.break__table-sm) tr th { display: none; }
+
+    .pwa { right: 0; left: 0; text-align: center; }
+    .login__container { padding-top: 100px; }
 }
 
 @media only screen and (max-width: 767px) {
@@ -1521,7 +1538,7 @@ textarea.input__control {
     .has__footer { padding-bottom: 84px; }
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 calc(50% - 8px); max-width: calc(50% - 8px); }
     .account__dropdown .account__user { font-size: 16px; }
-    .account__dropdown img { max-width: 48px;  width: 48px; height: 48px;  }
+    .account__dropdown img { max-width: 48px; width: 48px; height: 48px; }
     .account__dropdown .account__user { margin-right: 5px; }
     .custom__dropdown, .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon) { padding: 0 15px; }
     .custom__dropdown, .custom__dropdown.filter__control:not(.filter__search), .input__control.input__control-icon { padding-right: 35px; }
@@ -1612,12 +1629,7 @@ textarea.input__control {
     .dashboard__paging li:first-child { margin-right: 10px; }
     .dashboard__paging li:last-child { margin-left: 10px; }
     .alert__dropdown .dropdown-menu { transform: translate(-38%, 5px); }
-    .account__dropdown img {
-        max-width: 40px;
-        margin-right: 9px;
-        width: 40px;
-        height: 40px;
-    }
+    .account__dropdown img { max-width: 40px; margin-right: 9px; width: 40px; height: 40px; }
     .bttn { padding: 10px 15px; }
 }
 

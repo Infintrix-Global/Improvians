@@ -111,6 +111,15 @@
         </div>
     </div>
 
+
+    <!-- PWA Intalll Button -->
+    <div class="pwa">
+        <button class="bttn bttn-primary">
+            <i class="fas fa-plus-circle pr-md-1"></i>
+            <span>Insall App?</span>
+        </button>
+    </div>
+
     <script src="js/jquery.min.js"></script>
     <script defer="defer" src="js/popper.min.js"></script>
     <script defer="defer" src="js/bootstrap.min.js"></script>
@@ -151,6 +160,26 @@
         messaging.onMessage((payload) => {
             console.log('Message received. ', payload);
             // ...
+        });
+
+        jQuery(document).ready(function ($) {
+            var installPromptEvent;
+            window.addEventListener('beforeinstallprompt', function (event) {
+                event.preventDefault();
+                installPromptEvent = event;
+                $('.pwa').css('display', 'block');
+            });
+
+            function callInstallPrompt() {
+                // We can't fire the dialog before preventing default browser dialog
+                if (installPromptEvent !== undefined) {
+                    installPromptEvent.prompt();
+                }
+            }
+
+            $(".pwa button").on("click", function () {
+                callInstallPrompt();
+            });
         });
     </script>
 </body>
