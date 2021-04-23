@@ -58,14 +58,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Customer" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("Customer")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-
-
                                         <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPlantType" runat="server" Text='<%# Eval("PlantType")  %>'></asp:Label>
@@ -91,20 +83,6 @@
                                                 <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
-
-                                        <%--<asp:TemplateField HeaderText="TaskRequestType" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblplan_date" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Planned Due Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbldue_date" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
-
 
                                         <asp:TemplateField HeaderText="Task Request Type" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
