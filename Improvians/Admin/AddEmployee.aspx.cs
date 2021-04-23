@@ -58,7 +58,8 @@ namespace Evo.Admin
                         Email = txtEmail.Text,
                         Designation = ddlDesignation.SelectedValue,
                         Department = "",
-                        Photo = lblProfile.Text
+                        Photo = lblProfile.Text,
+                        NavisionCustomerID =""
                     };
 
                     _isInserted = objCommon.InsertEmployee(objEmployee);

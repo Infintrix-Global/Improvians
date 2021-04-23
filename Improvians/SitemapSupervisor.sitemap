@@ -7,6 +7,7 @@
 				<siteMapNode url="~/ChemicalJobBuildUp.aspx" title="Job Buildup"  />
 				<siteMapNode url="~/ChemicalTaskCompletion.aspx" title="Completion"  />
 				<siteMapNode url="~/ChemicalTaskViewDetails.aspx" title="Chemical Task View"  />
+				<siteMapNode url="~/ChemicalStart.aspx" title="Chemical"  />
 			</siteMapNode>
 
 			<siteMapNode url="~/GrowerPutAwayForm.aspx" title="Put Away Location Assignment" />
@@ -23,6 +24,7 @@
 
 			<siteMapNode url="~/FerJobBuildUp.aspx" title="Fertilization"/>
 			<siteMapNode url="~/FertilizerTaskReq.aspx" title="Fertilization"/>
+			<siteMapNode url="~/FertilizerTaskStart.aspx" title="Fertilization"  />
 			<siteMapNode url="~/SprayTaskRequest.aspx" title="Fertilization">
 				<siteMapNode url="~/SprayTaskViewDetails.aspx" title="Completion"/>
 				<siteMapNode url="~/SprayTaskAssignment.aspx" title="Assignment"/>
@@ -32,6 +34,7 @@
 
 			<siteMapNode url="~/IrrigationRequestForm.aspx" title="Irrigation"/>
 			<siteMapNode url="~/IrrigationAssignmentForm.aspx" title="Irrigation">
+				<siteMapNode url="~/IrrigationStart.aspx" title="Irrigation"/>
 				<siteMapNode url="~/IrrigationTaskViewDetails.aspx" title="Completion"/>
 				<siteMapNode url="~/IrrigationTaskCompletion.aspx" title="Completion"/>
 				<siteMapNode url="~/IrrigationTaskAssignment.aspx" title="Assignment"/>
@@ -60,10 +63,15 @@
 			</siteMapNode>
 		</siteMapNode>
 		<siteMapNode url="~/CreateTask.aspx" title="Create Task"  >
-			<siteMapNode url="~/ChemicalStart.aspx" title="Chemical"  />
-			<siteMapNode url="~/FertilizerTaskStart.aspx" title="Fertilization"  />
-			<siteMapNode url="~/MoveCompletionStart.aspx" title="Move"  />
-			<siteMapNode url="~/IrrigationStart.aspx" title="Irrigation"/>
+			<siteMapNode url="~/GreenHouseTaskCompletion.aspx?PageType=CreateTask" title="Germination"/>
+			<siteMapNode url="~/ChemicalStart.aspx?PageType=CreateTask" title="Chemical"  />
+			<siteMapNode url="~/FertilizerTaskStart.aspx?PageType=CreateTask" title="Fertilization"  />
+			<siteMapNode url="~/MoveCompletionStart.aspx?PageType=CreateTask" title="Move"  />
+			<siteMapNode url="~/IrrigationStart.aspx?PageType=CreateTask" title="Irrigation"/>
+			<siteMapNode url="~/DumpTaskCompletion.aspx?PageType=CreateTask" title="Dump"/>
+			<siteMapNode url="~/CropHealthReport.aspx?PageType=CreateTask" title="Crop Health Report" />
+			<siteMapNode url="~/PlantReadyTaskCompletion.aspx?PageType=CreateTask" title="Plant Ready" />
+			<siteMapNode url="~/GeneralTaskCompletion.aspx?PageType=CreateTask" title="General"/>
 		</siteMapNode>
 		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
 		<siteMapNode url="~/ManageTaskJobReport.aspx" title="Manage Task">

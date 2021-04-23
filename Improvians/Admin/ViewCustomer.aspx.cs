@@ -18,24 +18,27 @@ namespace Evo.Admin
         {
             if (!IsPostBack)
             {
-               
+
                 GetEmployeeList();
             }
         }
         public void GetEmployeeList()
         {
-            DataTable dt = new DataTable();          
-            string sqr = "Select * from Login L  inner join Role R on L.RoleID=R.RoleID where L.IsActive=1 and L.RoleID=13";          
+            DataTable dt = new DataTable();
+            string sqr = "Select * from Login L  where L.IsActive=1 and L.RoleID=13";
 
             dt = objGeneral.GetDatasetByCommand(sqr);
             GridEmployee.DataSource = dt;
             GridEmployee.DataBind();
-            count.Text = "Number of Customers =" + dt.Rows.Count;
+            if (dt == null)
+                count.Text = "Number of Customers =0";
+            else
+                count.Text = "Number of Customers =" + dt.Rows.Count;
             ViewState["dirState"] = dt;
             ViewState["sortdr"] = "Asc";
         }
 
-    
+
 
         protected void GridEmployee_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -93,7 +96,7 @@ namespace Evo.Admin
             {
                 sqr += "and L.EmployeeName like '%' +'" + txtName.Text + "'+ '%'";
             }
-            
+
             dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
             GridFillSearch();
 
@@ -126,7 +129,7 @@ namespace Evo.Admin
         protected void btnClear_Click(object sender, EventArgs e)
         {
             txtName.Text = "";
-           
+
         }
     }
 }

@@ -1798,7 +1798,7 @@ namespace Evo
             if (c == 1)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
-                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}", chkSelected, JobCode));
+                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&PageType={2}", chkSelected, JobCode,"CreateTask"));
             }
             else
             {
@@ -2301,7 +2301,7 @@ namespace Evo
             NameValueCollection nv5 = new NameValueCollection();
             nv5.Add("@DTAID", result.ToString());
             DataTable dt = objCommon.GetDataTable("SP_GetDumpTaskAssignmentSelect", nv5);
-            Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&DrId={1}", result.ToString(), dt.Rows[0]["DumpId"].ToString()));
+            Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&DrId={1}&PageType={2}", result.ToString(), dt.Rows[0]["DumpId"].ToString(),"CreateTask"));
 
         }
 
@@ -2369,7 +2369,7 @@ namespace Evo
             //nv5.Add("@MTAID", result.ToString());
             //DataTable dt = objCommon.GetDataTable("SP_GetMoveTaskAssignmentSelect", nv5);
 
-            Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}", result));
+            Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}&PageType={1}", result,"CreateTask"));
 
 
         }
@@ -2465,7 +2465,7 @@ namespace Evo
                 nv5.Add("@PRTA", result.ToString());
                 DataTable dt = objCommon.GetDataTable("SP_GetPlantReadyTaskAssignmentSelect", nv5);
 
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result.ToString(), dt.Rows[0]["PRID"].ToString()));
+                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&PageType={2}", result.ToString(), dt.Rows[0]["PRID"].ToString(),"CreateTask"));
             }
             else
             {
@@ -2551,7 +2551,7 @@ namespace Evo
 
                 }
             }
-            Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}", Batchlocation, JobCOde, IrrigationCode));
+            Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}&PageType={3}", Batchlocation, JobCOde, IrrigationCode,"CreateTask"));
 
             //if (c == 1)
             //{
@@ -2674,7 +2674,7 @@ namespace Evo
 
             //}
 
-            Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}", Batchlocation, JobCOde, ChemicalCode));
+            Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}&PageType={3}", Batchlocation, JobCOde, ChemicalCode,"CreateTask"));
 
 
         }
@@ -2769,7 +2769,7 @@ namespace Evo
             }
 
 
-            Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}", Batchlocation, JobCOde, FertilizationCode));
+            Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}&PageType={3}", Batchlocation, JobCOde, FertilizationCode,"CreateTask"));
 
             //if (c == 1)
             //{
@@ -2844,7 +2844,7 @@ namespace Evo
                 }
 
 
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", result16));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}", result16,"CreateTask"));
             }
             else
             {
