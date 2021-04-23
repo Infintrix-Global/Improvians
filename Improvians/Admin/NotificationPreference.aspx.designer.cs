@@ -51,6 +51,15 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.Button submitPreference;
 
         /// <summary>
+        /// reset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button reset;
+
+        /// <summary>
         /// submitErrorMsg control.
         /// </summary>
         /// <remarks>
