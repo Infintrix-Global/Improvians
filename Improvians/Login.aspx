@@ -116,7 +116,7 @@
     <div class="pwa">
         <button class="bttn bttn-primary">
             <i class="fas fa-plus-circle pr-md-1"></i>
-            <span>Insall App?</span>
+            <span>Insall App</span>
         </button>
     </div>
 
