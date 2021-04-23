@@ -138,7 +138,7 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderStyle-Width="15%" HeaderText="Putaway Facility">
+                                    <asp:TemplateField HeaderStyle-Width="126px" HeaderText="Putaway Facility">
                                         <ItemTemplate>
                                             <%-- <asp:TextBox ID="txtSeedline" runat="server" Text='<%# Eval("loc") %>' Width="50"></asp:TextBox>--%>
                                             <asp:Label ID="lbl_Seedline" Visible="false" Text='<%# Eval("loc") %>' runat="server"></asp:Label>
@@ -147,7 +147,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Work order Trays">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="Txtgtrays" Width="50" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="Txtgtrays" Width="130px" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Scheduled Seed Date">
