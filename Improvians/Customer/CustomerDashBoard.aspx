@@ -10,7 +10,7 @@
     </div>
     <div class="main__header">
         <div class="site__container">
-             <h2> <asp:Label ID="lblCustName" runat="server" /></h2>
+             <h2 class="head__title-icon mb-4 my-4"> <asp:Label ID="lblCustName" runat="server" /></h2>
             <div class="row">
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Job No </label>

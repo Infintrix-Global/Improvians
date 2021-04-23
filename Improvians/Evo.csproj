@@ -305,6 +305,7 @@
     <Content Include="DumpTaskCompletion.aspx" />
     <Content Include="FerJobBuildUp.aspx" />
     <Content Include="GeneralTaskAssignmentForm.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="images\badge.png" />
     <Content Include="images\cancel.png" />
     <Content Include="images\dashboard_chemical.png" />
@@ -792,6 +793,9 @@
     </Compile>
     <Compile Include="GeneralTaskAssignmentForm.aspx.designer.cs">
       <DependentUpon>GeneralTaskAssignmentForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IrrigationStart.aspx.cs">
       <DependentUpon>IrrigationStart.aspx</DependentUpon>

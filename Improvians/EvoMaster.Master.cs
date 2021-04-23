@@ -19,17 +19,17 @@ namespace Evo
         CommonControl objCommon = new CommonControl();
         List<int> Operators = new List<int> { 3, 5, 11 };
         protected void Page_Init(object sender, EventArgs e)
-        {
+        {           
             if (Session["LoginID"] == null)
             {
                 Response.Redirect("~/Login.aspx");
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-
                 lblEmpName.Text = Session["EmployeeName"].ToString();
                 if (!string.IsNullOrEmpty(Session["Photo"].ToString()))
                 {
@@ -37,7 +37,6 @@ namespace Evo
                 }
                 if (Session["Role"].ToString() == "1")
                 {
-
                     SiteMapPath1.SiteMapProvider = "SitemapGrower";
                     SiteMapPath1.DataBind();
                 }
@@ -91,10 +90,12 @@ namespace Evo
                 }
             }
 
-            
+
             checkNotification(1);
 
         }
+
+       
 
         protected void checkNotification(int n)
         {
@@ -225,7 +226,7 @@ namespace Evo
                     {
                         Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                     }
-                    
+
                     else
                     {
                         Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
