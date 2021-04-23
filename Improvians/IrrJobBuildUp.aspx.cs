@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Evo.Bal;
 using System.Text.RegularExpressions;
+using Evo.BAL_Classes;
 
 namespace Evo
 {
@@ -16,6 +17,7 @@ namespace Evo
 
         CommonControl objCommon = new CommonControl();
         BAL_Fertilizer objFer = new BAL_Fertilizer();
+        BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,7 +41,7 @@ namespace Evo
                 BindGridIrrDetails("'" + Bench + "'");
                 BindGridIrrDetailsViewReq();
                 lblbench.Text = Bench;
-              
+
             }
         }
         private string ICode
@@ -436,7 +438,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@ICode", ICode);
             dt = objCommon.GetDataTable("SP_GetIrrigationTaskAssignmentView", nv);
-          
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 txtNotes.Text = dt.Rows[0]["Nots"].ToString();
@@ -444,7 +446,7 @@ namespace Evo
                 txtSprayDate.Text = Convert.ToDateTime(dt.Rows[0]["SprayDate"]).ToString("yyyy-MM-dd");
                 txtWaterRequired.Text = dt.Rows[0]["WaterRequired"].ToString();
             }
-            
+
         }
 
 
@@ -454,21 +456,38 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetIrrigationRequestSelect", nv);
-            DataTable dtManual = objFer.GetManualFertilizerRequestSelect("", BenchLoc, "");
+            DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
 
-            if (dtManual != null && dtManual.Rows.Count > 0)
+
+            if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
                 dt.AcceptChanges();
+                gvJobHistory.DataSource = dt;
+                gvJobHistory.DataBind();
+
             }
-            gvJobHistory.DataSource = dt;
-            gvJobHistory.DataBind();
+            else if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                gvJobHistory.DataSource = dtManual;
+                gvJobHistory.DataBind();
+
+            }
+            else
+            {
+                gvJobHistory.DataSource = dt;
+                gvJobHistory.DataBind();
+
+
+            }
+
+         
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             int IrrigationCode = 0;
-           
+
             foreach (GridViewRow row1 in GridIrrigation.Rows)
             {
                 string IrrigationCode1 = (row1.FindControl("lblIrrigationCode") as Label).Text;
@@ -609,7 +628,7 @@ namespace Evo
                 }
                 NameValueCollection nvn = new NameValueCollection();
 
-                nvn.Add("@LoginID", Session["LoginID"].ToString());                
+                nvn.Add("@LoginID", Session["LoginID"].ToString());
                 nvn.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
                 nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 nvn.Add("@TaskName", "Irrigation");
@@ -630,7 +649,7 @@ namespace Evo
 
 
             string message = "Assignment Successful";
-           // string url = "MyTaskGrower.aspx";
+            // string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";

@@ -445,15 +445,31 @@ namespace Evo
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-            DataTable dtManual = objTask.GetManualRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
+            DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
 
-            if (dtManual != null && dtManual.Rows.Count > 0)
+
+            if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
                 dt.AcceptChanges();
+                gvJobHistory.DataSource = dt;
+                gvJobHistory.DataBind();
+
             }
-            gvJobHistory.DataSource = dt;
-            gvJobHistory.DataBind();
+            else if (dtManual != null && dtManual.Rows.Count > 0)
+            {
+                gvJobHistory.DataSource = dtManual;
+                gvJobHistory.DataBind();
+
+            }
+            else
+            {
+                gvJobHistory.DataSource = dt;
+                gvJobHistory.DataBind();
+
+
+            }
+
 
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)

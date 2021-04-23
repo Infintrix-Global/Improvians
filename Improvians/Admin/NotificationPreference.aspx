@@ -56,22 +56,27 @@
                                                 <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
                                             </HeaderTemplate>--%>
                                         <ItemTemplate>
-                                            <%--  <div class="custom-control custom-checkbox mr-3">--%>
                                             <%--                                                <asp:CheckBox runat="server" ID="chkSelect" ></asp:CheckBox>--%>
-                                            <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
-                                            <asp:Label ID="userRoleNames" runat="server" Text='<%# Eval("UserName")   %>'></asp:Label>
-                                            <%--                                            </div>--%>
+                                             <asp:CheckBox ID="chkSelect" Text='<%#Bind("UserName")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
+
+<%--                                            <asp:CheckBox runat="server" ID="chkSelect" CssClass="custom-control custom-checkbox"></asp:CheckBox>--%>
+                                            <%--<asp:Label ID="userRoleNames" runat="server" Text='<%# Eval("UserName")   %>'></asp:Label>--%>
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Send Notification Via" HeaderStyle-CssClass="autostyle2">
 
                                         <ItemTemplate>
-                                            <asp:CheckBox runat="server" ID="chkApp"></asp:CheckBox>
-                                            <asp:Label ID="appName" runat="server" Text="App"></asp:Label>
+                                          <%--  <asp:CheckBox runat="server" ID="chkApp"></asp:CheckBox>
+                                            <asp:Label ID="appName" runat="server" Text="App"></asp:Label>--%>
 
-                                            <asp:CheckBox runat="server" ID="chkEmail"></asp:CheckBox>
-                                            <asp:Label ID="emailName" runat="server" Text="Email"></asp:Label>
+                                            <asp:CheckBox ID="chkApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server" ></asp:CheckBox>
+                                            <asp:CheckBox ID="chkEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server" ></asp:CheckBox>
+
+
+                                          <%--  <asp:CheckBox runat="server" ID="chkEmail"></asp:CheckBox>
+                                            <asp:Label ID="emailName" runat="server" Text="Email"></asp:Label>--%>
                                             <%--  <div class="custom-control custom-checkbox mr-3">
                                                 <asp:CheckBox runat="server" ID="chkApp"  CssClass="custom-control-input"></asp:CheckBox>
                                                 <asp:Label ID="appName" runat="server" CssClass="custom-control-label" Text="App"></asp:Label>
@@ -185,6 +190,7 @@
                         </div>--%>
 
                         <asp:Button runat="server" ID="submitPreference" Text="Update Preferences" disabled="disabled" CssClass="submit-bttn bttn bttn-primary w-auto" OnClick="submitPreference_Click" />
+                        <asp:Button runat="server" ID="reset" Text="Reset" CssClass="submit-bttn bttn bttn-primary w-auto" OnClick="reset_Click" />
                         <asp:Label runat="server" ID="submitErrorMsg" Visible="false" ForeColor="Red" Font-Bold="true"></asp:Label>
                     </div>
 
@@ -194,13 +200,15 @@
                         <div class="data__table data__table-height">
                             <asp:GridView ID="gvUserDetails" runat="server" AutoGenerateColumns="False"
                                 class="striped" AllowSorting="true" OnRowDataBound="gvUserDetails_RowDataBound"
-                                GridLines="None" OnRowCommand="gvUserDetails_RowCommand"
+                                GridLines="None" OnRowCommand="gvUserDetails_RowCommand" OnRowDeleting="gvUserDetails_RowDeleting" OnRowEditing="gvUserDetails_RowEditing"
                                 ShowHeaderWhenEmpty="True">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="20%">
 
                                         <ItemTemplate>
+
                                             <asp:Label ID="lblTask" runat="server" Text='<%# Eval("TaskType")   %>'></asp:Label>
+                                            <asp:Label ID="NPId" runat="server" Text='<%# Eval("ID")   %>' Visible="false"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -220,8 +228,8 @@
                                     <asp:TemplateField HeaderText="Actions" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="20%" ItemStyle-CssClass="text-center">
 
                                         <ItemTemplate>
-                                           <asp:LinkButton ID="btnEdit" runat="server" CssClass="bttn bttn__icons bttn__icons--edit mr-2" CommandName="Edit" CommandArgument='<%# Eval("ID")  %>'><i class='fa fa-edit'></i> </asp:LinkButton>
-                                           <asp:LinkButton ID="btnDelete" runat="server" CssClass="bttn bttn__icons bttn__icons--delete" CommandName="Delete" CommandArgument='<%# Eval("ID")  %>'><i class='fa fa-trash'></i></asp:LinkButton>
+                                            <asp:LinkButton ID="btnEdit" runat="server" CssClass="bttn bttn__icons bttn__icons--edit mr-2" CommandName="Edit" CommandArgument='<%# Eval("UserName")  %>'><i class='fa fa-edit'></i> </asp:LinkButton>
+                                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="bttn bttn__icons bttn__icons--delete" CommandName="Delete" CommandArgument='<%# Eval("ID")  %>'><i class='fa fa-trash'></i></asp:LinkButton>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
