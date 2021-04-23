@@ -88,7 +88,7 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Seedline Facility">
+                                    <asp:TemplateField  HeaderStyle-Width="70px" HeaderText="Seedline Facility">
                                         <ItemTemplate>
                                             <asp:Label ID="lblSeedline" runat="server" Text='<%# Eval("loc") %>'></asp:Label>
 
@@ -118,16 +118,16 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Sales Order Seed Date">
+                                    <asp:TemplateField HeaderText="Sales Order Seed Date" HeaderStyle-Width="100px">
                                         <ItemTemplate>
                                             <asp:Label ID="lblSODate" runat="server" HtmlEncode="false" Text='<%# Eval("sodate","{0:MM/dd/yyyy}") %>'></asp:Label>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Sales Order Trays">
+                                    <asp:TemplateField  HeaderStyle-Width="100px" HeaderText="Sales Order Trays">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblSOTrays" runat="server" Text='<%# Eval("sotrays","{0:####}") %>'></asp:Label>
+                                            <asp:Label ID="lblSOTray" runat="server" Text='<%# Eval("sotrays","{0:####}") %>'></asp:Label>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -138,25 +138,25 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderStyle-Width="126px" HeaderText="Putaway Facility">
+                                    <asp:TemplateField HeaderStyle-Width="146px" HeaderText="Putaway Facility">
                                         <ItemTemplate>
                                             <%-- <asp:TextBox ID="txtSeedline" runat="server" Text='<%# Eval("loc") %>' Width="50"></asp:TextBox>--%>
                                             <asp:Label ID="lbl_Seedline" Visible="false" Text='<%# Eval("loc") %>' runat="server"></asp:Label>
-                                            <asp:DropDownList ID="ddlBenchLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlBenchLocation"  class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Work order Trays">
+                                    <asp:TemplateField HeaderStyle-Width="70px" HeaderText="Work order Trays">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="Txtgtrays" Width="130px" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="Txtgtrays" Width="70px"  Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Scheduled Seed Date">
+                                    <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="150px">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="Txtgplantdt" TextMode="Date" Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="Txtgplantdt"  TextMode="Date" Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Seeds Allocated">
+                                    <asp:TemplateField  HeaderStyle-Width="70px" HeaderText="Seeds Allocated">
                                         <ItemTemplate>
                                             <asp:Label ID="lblAllocated" runat="server" Text='<%# Eval("alloc") %>'></asp:Label>
                                             <asp:HiddenField ID="HiddenFieldsotrays" Value='<%# Eval("sotrays") %>' runat="server" />

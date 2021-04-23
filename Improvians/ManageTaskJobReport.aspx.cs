@@ -346,6 +346,7 @@ namespace Evo
                 {
                     if (dt.Rows[0]["WorkDate"].ToString() != "")
                     {
+
                         lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
                         btnStart.Enabled = true;
 

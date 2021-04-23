@@ -814,6 +814,10 @@ namespace Evo
 
         protected void btnFReset_Click(object sender, EventArgs e)
         {
+            txtFDate.Text = "";
+            BindFertilizer();
+            BindSupervisor();
+            txtQty.Text = "";
 
         }
 
@@ -976,7 +980,12 @@ namespace Evo
         }
         protected void btngerminationReset_Click(object sender, EventArgs e)
         {
-
+            txtGerDate.Text = "";
+            txtTGerTrays.Text = "";
+            txtGcomments.Text = "";
+            BindSupervisor();
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse show");
+            btnIrrigation.Attributes.Add("class", "request__block-head");
         }
 
 
