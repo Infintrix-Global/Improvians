@@ -52,8 +52,8 @@ namespace Evo
                 userinput.Visible = false;
                 GridViewGDetails.DataSource = dt1;
                 GridViewGDetails.DataBind();
+                lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
 
-             
             }
         }
 

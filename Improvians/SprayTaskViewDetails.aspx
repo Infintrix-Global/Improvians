@@ -172,9 +172,12 @@
                         </div>
                     </div>
                 </asp:Panel>
+
                 <br />
                 <asp:Panel ID="pnlint" runat="server">
-
+                    <h2 class="text-left">
+                        <asp:Label ID="lblReqUser" runat="server" Text=""></asp:Label>
+                        Task Request</h2>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewDetails"
@@ -257,9 +260,10 @@
 
                 </asp:Panel>
                 <br />
-                <br />
                 <asp:Panel ID="PanlTaskComplition" runat="server">
-
+                    <h2 class="text-left">
+                        <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>
+                        Completion Form </h2>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewCompletion"
@@ -301,6 +305,7 @@
                     </div>
 
                 </asp:Panel>
+
             </div>
         </div>
 

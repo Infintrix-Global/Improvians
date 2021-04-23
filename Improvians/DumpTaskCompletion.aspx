@@ -168,6 +168,11 @@
             <form class="web__form pt-2">
                 <div class="row justify-content-center">
                     <div class="col-12">
+                        <br />
+                        <h2 class="text-left">
+                            <asp:Label ID="lblReqUser" runat="server" Text=""></asp:Label>
+                           Task Request </h2>
+
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
@@ -205,81 +210,88 @@
                                     </EmptyDataTemplate>
                                 </asp:GridView>
 
-                                 <br />
-                                  <asp:Panel ID="PanelComplition" Visible="false" runat="server">
-                                <asp:GridView ID="GridDumpComplition" runat="server" AutoGenerateColumns="False"
-                                    class="striped" AllowSorting="true"
-                                    GridLines="None"
-                                    ShowHeaderWhenEmpty="True" Width="100%">
-                                    <Columns>
+                                <br />
+                                <asp:Panel ID="PanelComplition" Visible="false" runat="server">
+                                    <h2 class="text-left">
+                                        <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>
+                                        Completion Form  </h2>
+                                    <div class="portlet-body">
+                                        <div class="data__table">
+                                            <asp:GridView ID="GridDumpComplition" runat="server" AutoGenerateColumns="False"
+                                                class="striped" AllowSorting="true"
+                                                GridLines="None"
+                                                ShowHeaderWhenEmpty="True" Width="100%">
+                                                <Columns>
 
-                                        <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-
-                                        <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCDumpDate" runat="server" Text='<%# Eval("DumpDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblCQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
 
 
+                                                    <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblCDumpDate" runat="server" Text='<%# Eval("DumpDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblCComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
 
 
-                                    </Columns>
 
-                                    <PagerStyle CssClass="paging" HorizontalAlign="Right" />
-                                    <PagerSettings Mode="NumericFirstLast" />
-                                    <EmptyDataTemplate>
-                                        No Record Available
-                                    </EmptyDataTemplate>
-                                </asp:GridView>
-                                      </asp:Panel>
+
+                                                </Columns>
+
+                                                <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                                <PagerSettings Mode="NumericFirstLast" />
+                                                <EmptyDataTemplate>
+                                                    No Record Available
+                                                </EmptyDataTemplate>
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                </asp:Panel>
                             </div>
                         </div>
                         <br />
                         <asp:Panel ID="PanelAddDump" runat="server">
 
-                        <div class="row">
+                            <div class="row">
 
 
 
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <label class="d-block">Dump Date</label>
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <label class="d-block">Dump Date</label>
 
-                                <asp:TextBox ID="txtDumpDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtDumpDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <label class="d-block">Quantity Of Tray</label>
+                                    <asp:TextBox ID="txtQuantityOfTray" TextMode="Number" class="input__control" runat="server"></asp:TextBox>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <label class="d-block">Comments</label>
+                                    <asp:TextBox ID="txtComment" TextMode="MultiLine" class="input__control" runat="server"></asp:TextBox>
+                                </div>
+
+
+
+                                <div class="col-12 my-3">
+
+
+
+                                    <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
+                                    <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />
+
+                                </div>
                             </div>
-
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <label class="d-block">Quantity Of Tray</label>
-                                <asp:TextBox ID="txtQuantityOfTray" TextMode="Number" class="input__control" runat="server"></asp:TextBox>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <label class="d-block">Comments</label>
-                                <asp:TextBox ID="txtComment" TextMode="MultiLine" class="input__control" runat="server"></asp:TextBox>
-                            </div>
-
-
-
-                            <div class="col-12 my-3">
-
-
-
-                                <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
-                                <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />
-
-                            </div>
-                        </div>
                         </asp:Panel>
                     </div>
                 </div>

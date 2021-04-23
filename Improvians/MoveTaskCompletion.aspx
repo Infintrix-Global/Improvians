@@ -169,6 +169,9 @@
             <form class="web__form pt-2">
                 <div class="row justify-content-center">
                     <div class="col-12">
+                              <br />
+                    <h2 class="text-left">
+                        <asp:Label ID="lblReqUser" runat="server" Text=""></asp:Label>  Task Request </h2>
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
@@ -232,7 +235,8 @@
                         <asp:Panel ID="PanelComplitionDetsil" Visible="false" runat="server">
                             <br />
                             <%-- <h2 class="text-left">Crop Health Report </h2>--%>
-
+                            <h2 class="text-left">
+                        <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label> Completion Form </h2>
                             <br />
                             <div class="portlet-body">
                                 <div class="data__table">

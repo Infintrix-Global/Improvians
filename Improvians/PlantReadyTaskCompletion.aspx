@@ -160,43 +160,50 @@
             </asp:Panel>
             <br />
             <div class="portlet-body">
-                        <div class="data__table">
-                            <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
-                                class="striped" AllowSorting="true"
-                                GridLines="None"
-                                ShowHeaderWhenEmpty="True" Width="100%">
-                                <Columns>
+                <br />
+                <h2 class="text-left">
+                    <asp:Label ID="lblReqUser" runat="server" Text=""></asp:Label>
+                   Task Request</h2>
+                <div class="data__table">
+
+                    <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
+                        class="striped" AllowSorting="true"
+                        GridLines="None"
+                        ShowHeaderWhenEmpty="True" Width="100%">
+                        <Columns>
 
 
 
-                                    <asp:TemplateField HeaderText="Plant Ready Work Date">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Comments">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Plant Ready Work Date">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Comments">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
 
-                                </Columns>
+                        </Columns>
 
-                                <PagerStyle CssClass="paging" HorizontalAlign="Right" />
-                                <PagerSettings Mode="NumericFirstLast" />
-                                <EmptyDataTemplate>
-                                    No Record Available
-                                </EmptyDataTemplate>
-                            </asp:GridView>
+                        <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                        <PagerSettings Mode="NumericFirstLast" />
+                        <EmptyDataTemplate>
+                            No Record Available
+                        </EmptyDataTemplate>
+                    </asp:GridView>
 
-                        </div>
-                    </div>
+                </div>
+            </div>
             <br />
             <asp:Panel ID="PanelComplitionDetsil" Visible="false" runat="server">
                 <br />
-               <%-- <h2 class="text-left">Crop Health Report </h2>--%>
-
+                <%-- <h2 class="text-left">Crop Health Report </h2>--%>
+                <h2 class="text-left">
+                    <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>
+                   Completion Form </h2>
                 <br />
                 <div class="portlet-body">
                     <div class="data__table">
@@ -248,17 +255,17 @@
 
                     </div>
                 </div>
-                
+
             </asp:Panel>
 
-            
+
 
             <br />
-            <div Id="PantReadyAdd" runat="server" class="row justify-content-center">
+            <div id="PantReadyAdd" runat="server" class="row justify-content-center">
                 <div class="col-12">
 
-                    
-                
+
+
                     <br />
 
 

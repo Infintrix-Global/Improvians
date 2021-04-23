@@ -52,7 +52,7 @@ namespace Evo
 
                 GridPlantComplition.DataSource = dt1;
                 GridPlantComplition.DataBind();
-
+                lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
             }
 
         }

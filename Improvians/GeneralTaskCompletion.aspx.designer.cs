@@ -69,6 +69,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Panel PanelComplitionDetsil;
 
         /// <summary>
+        /// lblComplitionUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblComplitionUser;
+
+        /// <summary>
         /// GridPlantComplition control.
         /// </summary>
         /// <remarks>
