@@ -1211,6 +1211,12 @@ textarea.input__control {
     border-radius: 6px;
 }
 
+.data__table-shrink td, .data__table-shrink th {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 7px;
+}
+
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
     .container {
