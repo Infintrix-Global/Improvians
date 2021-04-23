@@ -45,7 +45,7 @@ namespace Evo.Admin
             {
                 int eid = Convert.ToInt32(e.CommandArgument);
                 Session["EmployeeID"] = eid;
-                Response.Redirect("~/Admin/EditProfile.aspx");
+                Response.Redirect("~/Admin/EditCustomer.aspx");
             }
 
             if (e.CommandName == "RemoveProfile")

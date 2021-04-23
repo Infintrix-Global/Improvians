@@ -300,6 +300,7 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@EmployeeCode", objEmployee.EmployeeCode);
                 objGeneral.AddParameterWithValueToSQLCommand("@Designation", objEmployee.Designation);
                 objGeneral.AddParameterWithValueToSQLCommand("@Department", objEmployee.Department);
+                objGeneral.AddParameterWithValueToSQLCommand("@NavisionCustomerID", objEmployee.NavisionCustomerID);
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddEmployee");
             }
             catch (Exception ex)
@@ -504,6 +505,7 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@EmployeeCode", objEmployee.EmployeeCode);
                 objGeneral.AddParameterWithValueToSQLCommand("@Designation", objEmployee.Designation);
                 objGeneral.AddParameterWithValueToSQLCommand("@Department", objEmployee.Department);
+                objGeneral.AddParameterWithValueToSQLCommand("@NavisionCustomerID", objEmployee.NavisionCustomerID);
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_UpdateEmployee");
             }
             catch (Exception ex)
@@ -826,7 +828,7 @@ namespace Evo.Admin
             int _isUpdated = -1;
             try
             {
-                General objGeneral = new General();              
+                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@PlantReady", PlantReady);
                 _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("UpdatePlantProductionPlantReadyConfiguration");
             }
@@ -855,7 +857,7 @@ namespace Evo.Admin
 
         }
 
-        public int AddPlantProductionCropPlantReady(string Crop,int PlantReady)
+        public int AddPlantProductionCropPlantReady(string Crop, int PlantReady)
         {
             int _isUpdated = -1;
             try
@@ -1057,6 +1059,7 @@ public class Employee
     public string Department { get; set; }
 
     public string Photo { get; set; }
+    public string NavisionCustomerID { get; set; }
 
 }
 

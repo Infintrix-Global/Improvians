@@ -67,7 +67,7 @@
                                            
                                              <asp:TemplateField HeaderText="Navision Customer ID" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <%--<asp:Label ID="Label8" runat="server" Text='<%# Eval("Facility")  %>'></asp:Label>--%>
+                                                    <asp:Label ID="Label8" runat="server" Text='<%# Eval("NavisionCustomerID")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">

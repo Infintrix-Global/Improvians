@@ -22,15 +22,10 @@ namespace Evo.Admin
             if (!IsPostBack)
             {
                 Bindcname();
-                BindFacility();
+                
             }
         }
-        public void BindFacility()
-        {
-            repFacility.DataSource = objCommon.GetFacilityMaster();
-            repFacility.DataBind();
-        }
-
+      
         public void Bindcname()
         {
 
@@ -66,7 +61,8 @@ namespace Evo.Admin
                         Email = txtEmail.Text,
                         Designation = "13",
                         Department = "",
-                        Photo = lblProfile.Text
+                        Photo = lblProfile.Text,
+                        NavisionCustomerID = txtNavisionID.Text
                     };
 
                     _isInserted = objCommon.InsertEmployee(objEmployee);
@@ -95,14 +91,7 @@ namespace Evo.Admin
 
                         lblmsg.Text = "Customer Added ";
                         lblmsg.ForeColor = System.Drawing.Color.Green;
-                        foreach (RepeaterItem item in repFacility.Items)
-                        {
-                            CheckBox chkFacility = (CheckBox)item.FindControl("chkFacility");
-                            if (chkFacility.Checked)
-                            {
-                                objCommon.AddEmployeeFacility(_isInserted, ((HiddenField)item.FindControl("hdnValue")).Value);
-                            }
-                        }
+                       
                         Response.Redirect("~/Admin/ViewCustomer.aspx");
                         btclear_Click(sender, e);
                     }

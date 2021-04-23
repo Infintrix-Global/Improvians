@@ -23,7 +23,8 @@ namespace Evo
                 lblCustName.Text = Session["EmployeeName"].ToString();
                 BindJobCode();
                 BindGridGerm();
-                BindFacility();
+                //BindFacility();
+                Session["Facility"] = "";
             }
         }
 
@@ -46,29 +47,29 @@ namespace Evo
 
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
         }
-        public void BindFacility()
-        {
-            BAL_Task objTask = new BAL_Task();
-            DataSet ds = objTask.GetEmployeeByID(Convert.ToInt32(Session["LoginID"]));
-            ddlFacility.DataSource = ds.Tables[1];
-            ddlFacility.DataTextField = "FacilityName";
-            ddlFacility.DataValueField = "FacilityName";
-            ddlFacility.DataBind();
-            //ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-            if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
-            {
-                ddlFacility.SelectedValue = Session["Facility"].ToString();
-            }
-            else
-            {
-                Session["Facility"] = ddlFacility.SelectedValue;
-            }
+        //public void BindFacility()
+        //{
+        //    BAL_Task objTask = new BAL_Task();
+        //    DataSet ds = objTask.GetEmployeeByID(Convert.ToInt32(Session["LoginID"]));
+        //    ddlFacility.DataSource = ds.Tables[1];
+        //    ddlFacility.DataTextField = "FacilityName";
+        //    ddlFacility.DataValueField = "FacilityName";
+        //    ddlFacility.DataBind();
+        //    //ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+        //    if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
+        //    {
+        //        ddlFacility.SelectedValue = Session["Facility"].ToString();
+        //    }
+        //    else
+        //    {
+        //        Session["Facility"] = ddlFacility.SelectedValue;
+        //    }
 
-        }
-        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Session["Facility"] = ddlFacility.SelectedValue;
-                 }
+        //}
+        //protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    Session["Facility"] = ddlFacility.SelectedValue;
+        //         }
 
         public void BindGridGerm()
         {
