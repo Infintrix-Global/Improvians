@@ -80,7 +80,7 @@
                                             <tr>
                                                 <td>Planned Due Date</td>
                                                 <td>
-                                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}")  %>'></asp:Label></td>
+                                                    <asp:Label ID="lbldue_date" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}")  %>'></asp:Label></td>
 
                                             </tr>
                                             <tr>
@@ -123,7 +123,12 @@
                         <div class="col-lg-6" runat="server" visible="false">
                             <label># OF SEEDS REQUIRED TO FULFILL ORDER:</label><br />
                             <h3 class="robotobold">
-                                <asp:Label ID="lblJobID" runat="server" Visible="false"></asp:Label></h3>
+                                <asp:Label ID="lblJobID" runat="server" Visible="false"></asp:Label>
+
+                                <asp:Label ID="lblduedate" runat="server" Visible="false"></asp:Label>
+                                
+                                <asp:Label ID="lblSeedingDate" runat="server" Visible="false"></asp:Label>
+                            </h3>
                             <h3 class="robotobold"></h3>
                         </div>
                         <div class="row">

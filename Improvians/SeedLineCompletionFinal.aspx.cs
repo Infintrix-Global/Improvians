@@ -78,6 +78,8 @@ namespace Evo
                 lblSeedRequired.Text = ((Convert.ToInt32(dt.Rows[0]["trays_plan"].ToString())) * (Convert.ToInt32(dt.Rows[0]["TraySize"].ToString()))).ToString();
                 txtActualTraysNo.Text = "0";
                 txtTrays.Text = Convert.ToInt32(lblTrays.Text).ToString();
+                lblduedate.Text = dt.Rows[0]["due_date"].ToString();
+                lblSeedingDate.Text = dt.Rows[0]["SoDate"].ToString();
             }
         }
 
@@ -114,8 +116,22 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-        
 
+
+            string PlannedDueDate = "" ;
+            int DayNo = 0;
+                     
+            if(Convert.ToDateTime(txtSeedingDate.Text) >= Convert.ToDateTime(lblSeedingDate.Text))
+            {
+                DayNo = Convert.ToInt32((Convert.ToDateTime(txtSeedingDate.Text) - Convert.ToDateTime(lblSeedingDate.Text)).TotalDays.ToString());
+                PlannedDueDate = Convert.ToDateTime(lblduedate.Text).AddDays(DayNo).ToString("MM/dd/yyyy");
+             
+            }
+            else
+            {
+
+                PlannedDueDate = lblduedate.Text;
+            }
 
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
@@ -157,6 +173,9 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@WorkOrder", wo.ToString());
             nv.Add("@JobComments", ddlJobComments.SelectedValue);
+            nv.Add("@PlannedDueDate", PlannedDueDate);
+
+
             result = objCommon.GetDataExecuteScaler("SP_AddSeedLineTaskCompletion", nv);
             if (result > 0)
             {
@@ -176,7 +195,7 @@ namespace Evo
                         string LotComments = (row.FindControl("ddlLotComments") as DropDownList).SelectedValue;
 
                         objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, "", "", InitialSeedLotWeight, FinalSeedLotWeight, LotComments);
-                       
+
                     }
                 }
                 Clear();
