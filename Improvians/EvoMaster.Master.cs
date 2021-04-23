@@ -216,6 +216,7 @@ namespace Evo
 
             if (TaskName != null)
             {
+                TaskName = TaskName.Replace(" ", "");
                 if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")   // for grower and assistant grower
                 {
                     if (TaskName == "Fertilizer")
@@ -315,6 +316,7 @@ namespace Evo
             HtmlControl control = e.Item.FindControl("lblLogo") as HtmlControl;
 
             string Task = (e.Item.FindControl("lblTaskName") as Label).Text;
+            Task = Task.Replace(" ", "");
             switch (Task)
             {
                 case "CropHealthReport":
