@@ -179,7 +179,8 @@ namespace Evo.Admin
                     Designation = ddlDesignation.SelectedValue,
                     Photo = lblProfile.Text,
                     EmployeeCode = txtUserName.Text,
-                    Password = objCommon.Encrypt(txtPassword.Text)
+                    Password = objCommon.Encrypt(txtPassword.Text),
+                    NavisionCustomerID =""
                 };
                 _isInserted = objCommon.UpdateEmployee(objEmployee);
                 if (_isInserted == -1)
