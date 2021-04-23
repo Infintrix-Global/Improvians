@@ -181,6 +181,10 @@
                 <br />
                 <%-- <h2 class="text-left">Crop Health Report </h2>--%>
 
+
+                <h2 class="text-left">
+                    <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>
+                 Completion Form  </h2>
                 <br />
                 <div class="portlet-body">
                     <div class="data__table">
@@ -196,7 +200,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                             
+
 
                                 <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -209,7 +213,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                   <asp:TemplateField HeaderText="Move To" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="Move To" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblMoveTo" runat="server" Text='<%# Eval("MoveTo")  %>'></asp:Label>
                                     </ItemTemplate>
@@ -238,7 +242,7 @@
             </asp:Panel>
             <br />
             <form class="web__form pt-2">
-                <div Id="GeneralAdd" runat="server" class="row justify-content-center">
+                <div id="GeneralAdd" runat="server" class="row justify-content-center">
                     <div class="col-12">
 
                         <div class="row">

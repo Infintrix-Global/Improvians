@@ -214,7 +214,8 @@
             <asp:Panel ID="PanelViewGJob" Visible="false" runat="server">
                 <br />
 
-
+                <h2 class="text-left">
+                        <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>  Completion Form </h2>
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="GridViewGDetails" runat="server" AutoGenerateColumns="False"

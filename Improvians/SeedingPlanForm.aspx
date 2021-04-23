@@ -106,13 +106,18 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Cust Name">
+                                    <asp:TemplateField HeaderText="Customer Name">
                                         <ItemTemplate>
                                             <asp:Label ID="lblCustName" runat="server" Text='<%# Eval("cname") %>'></asp:Label>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Soil">
+                                        <ItemTemplate>
+                                              <asp:Label ID="lblSoil" runat="server" Text='<%# Eval("Soil") %>'></asp:Label>
 
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Sales Order Seed Date">
                                         <ItemTemplate>
                                             <asp:Label ID="lblSODate" runat="server" HtmlEncode="false" Text='<%# Eval("sodate","{0:MM/dd/yyyy}") %>'></asp:Label>

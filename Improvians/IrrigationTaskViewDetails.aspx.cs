@@ -20,6 +20,8 @@ namespace Evo
                 this.Page.MasterPageFile = "~/Customer/CustomerMaster.master";
             }
         }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -54,6 +56,8 @@ namespace Evo
 
             GridViewCompletion.DataSource = dt;
             GridViewCompletion.DataBind();
+            lblComplitionUser.Text = dt.Rows[0]["EmployeeName"].ToString();
+
 
         }
 
@@ -120,6 +124,8 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetails", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
+            lblReqUser.Text = dt.Rows[0]["EmployeeName"].ToString();
             //lblBenchLocation.Text = dt.Rows[0]["BenchLocation"].ToString();
 
             ChId = dt.Rows[0]["CropHealth"].ToString();

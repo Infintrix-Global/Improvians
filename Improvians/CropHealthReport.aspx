@@ -569,11 +569,11 @@
                                     </div>--%>
                             </div>
 
-                            <div class="mb-md-3 col-xl-3 col-md-6 col-12 align-self-end">
+                            <div class="col-auto">
 
 
                                 <asp:Button Text="Submit" CausesValidation="true" ID="btnFSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnFSubmit_Click" />
-                                <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveFLSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSaveFLSubmit_Click" />
+                                <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveFLSubmit" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveFLSubmit_Click" />
                                 <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnFReset_Click" />
 
 
