@@ -66,8 +66,18 @@
 			<siteMapNode url="~/IrrigationStart.aspx" title="Irrigation"/>
 		</siteMapNode>
 		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
-		<siteMapNode url="~/ManageTaskJobReport.aspx" title="Manage Task" >
-			<siteMapNode url="~/ViewJobDetails.aspx" title="View Job" />
+		<siteMapNode url="~/ManageTaskJobReport.aspx" title="Manage Task">
+
+			<siteMapNode url="~/ViewJobDetails.aspx" title="View Job"/>
+			<siteMapNode url="~/SprayTaskViewDetails.aspx?PageType=ManageTask" title="Fertilization Completion"/>
+			<siteMapNode url="~/ChemicalTaskViewDetails.aspx?PageType=ManageTask" title="Chemical Completion"/>
+			<siteMapNode url="~/IrrigationTaskViewDetails.aspx?PageType=ManageTask" title="Irrigation Completion"/>
+			<siteMapNode url="~/GreenHouseTaskCompletion.aspx?PageType=ManageTask" title="Germination Completion"/>
+			<siteMapNode url="~/MoveTaskCompletion.aspx?PageType=ManageTask" title="Move Completion"/>
+			<siteMapNode url="~/PlantReadyTaskCompletion.aspx?PageType=ManageTask" title="Plant Ready Completion"/>
+			<siteMapNode url="~/DumpTaskCompletion.aspx?PageType=ManageTask" title="Dump Completion"/>
+			<siteMapNode url="~/GeneralTaskCompletion.aspx?PageType=ManageTask" title="General Completion"/>
+
 		</siteMapNode>
 	</siteMapNode>
 </siteMap>

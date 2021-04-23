@@ -43,7 +43,7 @@ namespace Evo
                     else
                         Param = new SqlParameter(nv.AllKeys[i], nv.Get(nv.AllKeys[i]));
                     cmd.Parameters.Add(Param);
-                    ErrorMessage(nv.AllKeys[i] + ":" + nv.Get(nv.AllKeys[i]));
+                    //ErrorMessage(nv.AllKeys[i] + ":" + nv.Get(nv.AllKeys[i]));
                 }
 
                 cmd.CommandTimeout = 0;

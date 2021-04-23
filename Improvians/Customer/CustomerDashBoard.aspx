@@ -10,7 +10,7 @@
     </div>
     <div class="main__header">
         <div class="site__container">
-             <h2> <asp:Label ID="lblCustName" runat="server" /></h2>
+             <h2 class="head__title-icon mb-4 my-4"> <asp:Label ID="lblCustName" runat="server" /></h2>
             <div class="row">
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Job No </label>
@@ -58,14 +58,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Customer" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("Customer")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-
-
                                         <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPlantType" runat="server" Text='<%# Eval("PlantType")  %>'></asp:Label>
@@ -91,20 +83,6 @@
                                                 <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
-
-                                        <%--<asp:TemplateField HeaderText="TaskRequestType" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblplan_date" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Planned Due Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbldue_date" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
-
 
                                         <asp:TemplateField HeaderText="Task Request Type" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>

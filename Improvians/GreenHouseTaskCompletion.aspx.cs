@@ -24,6 +24,9 @@ namespace Evo
         {
             if (!IsPostBack)
             {
+              
+
+
                 if (Request.QueryString["GTAID"] != null)
                 {
                     gtaID = Request.QueryString["GTAID"].ToString();
@@ -40,7 +43,7 @@ namespace Evo
             }
         }
 
-        public void BindGridCalView(string  GTAID)
+        public void BindGridCalView(string GTAID)
         {
             DataTable dt1 = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
@@ -113,7 +116,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@GTAID", gtaID);
             nv.Add("@RoleId", Session["Role"].ToString());
-            
+
             dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTaskByGTAIDNew", nv);
 
 
@@ -150,7 +153,7 @@ namespace Evo
             nv.Add("@Jid", Jid);
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationCompletion", nv);
 
-            
+
 
             if (result > 0)
             {
@@ -188,7 +191,7 @@ namespace Evo
                     url = "MyTaskSpray.aspx";
                 }
                 string message = "Completion Successful";
-              //  string url = "MyTaskGreenSupervisorFinal.aspx";
+                //  string url = "MyTaskGreenSupervisorFinal.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -207,7 +210,7 @@ namespace Evo
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-            
+
 
             GridSplitJob.DataSource = null;
             GridSplitJob.DataBind();
@@ -236,7 +239,7 @@ namespace Evo
             }
         }
 
-    
+
 
         protected void sbtTray_Click(object sender, EventArgs e)
         {
@@ -245,7 +248,7 @@ namespace Evo
 
             Table table = (Table)Page.FindControl("tbltray");
             int count = 0;
-          
+
 
             foreach (GridViewRow item in GridSplitJob.Rows)
             {
@@ -378,11 +381,11 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-              
+
                 Label lblTraysInspected = (Label)e.Row.FindControl("lblTraysInspected");
-             Label lblGermination = (Label)e.Row.FindControl("lblGermination");
-              Label lblBadPlants = (Label)e.Row.FindControl("lblBadPlants");
-              //  Label lblTaskRequestType = (Label)e.Row.FindControl("lblTaskRequestType");
+                Label lblGermination = (Label)e.Row.FindControl("lblGermination");
+                Label lblBadPlants = (Label)e.Row.FindControl("lblBadPlants");
+                //  Label lblTaskRequestType = (Label)e.Row.FindControl("lblTaskRequestType");
 
                 DataTable dt1 = new DataTable();
                 NameValueCollection nv1 = new NameValueCollection();
@@ -398,9 +401,9 @@ namespace Evo
                     lblBadPlants.Text = dt1.Rows[0]["#BadPlants"].ToString();
 
                 }
-             
 
-             
+
+
 
             }
         }
