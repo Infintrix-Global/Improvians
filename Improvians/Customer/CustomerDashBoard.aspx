@@ -3,11 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="header__bottom">
+   <%-- <div class="header__bottom">
         <div class="d-flex align-items-center justify-content-center">
             <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown input__control-auto robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
         </div>
-    </div>
+    </div>--%>
     <div class="main__header">
         <div class="site__container">
              <h2 class="head__title-icon mb-4 my-4"> <asp:Label ID="lblCustName" runat="server" /></h2>

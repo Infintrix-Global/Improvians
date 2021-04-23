@@ -20,6 +20,8 @@ namespace Evo
         }
         public SiteMapNode ChangeMapPath(Object sender, SiteMapResolveEventArgs e)
         {
+            if (SiteMap.CurrentNode == null)
+                return null;
             SiteMapNode currentNode = SiteMap.CurrentNode.Clone(true);
             SiteMapNode tempNode = currentNode;
             string PageType = e.Context.Request.QueryString["PageType"];

@@ -11,7 +11,7 @@ namespace Evo.Admin
 {
 
 
-    public partial class AddCustomer
+    public partial class EditCustomer
     {
 
         /// <summary>
@@ -78,13 +78,13 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.Label lblProfile;
 
         /// <summary>
-        /// ddlCustName control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustName;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
         /// RequiredFieldValidator4 control.
@@ -204,12 +204,12 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
-        /// btAdd control.
+        /// btnUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btAdd;
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
     }
 }
