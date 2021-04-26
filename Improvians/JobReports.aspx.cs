@@ -413,8 +413,16 @@ namespace Evo
 
         protected void GV5_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (Session["Role"].ToString() == "13")
+            {
+                e.Row.Cells[3].Visible = false;
+            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                //if (Session["Role"].ToString() == "13")
+                //{
+                //    e.Row.FindControl("btn_Edit").Visible = false;
+                //}
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
                     DataSet ds = new DataSet();

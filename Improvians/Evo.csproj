@@ -341,11 +341,11 @@
     <Content Include="IrrigationStart.aspx" />
     <Content Include="IrrigationStart1.aspx" />
     <Content Include="IrrigationTaskViewDetails.aspx" />
-    <Content Include="JobReport.aspx" />
     <Content Include="JobReports.aspx" />
     <Content Include="js\custom1.js" />
     <Content Include="js\firebase-messaging.js" />
     <Content Include="js\jquery.uploadify.js" />
+    <Content Include="CustomerLogin.aspx" />
     <Content Include="Login1.aspx" />
     <Content Include="ManageTaskJobReport.aspx" />
     <Content Include="MoveCompletionStart.aspx" />
@@ -826,19 +826,19 @@
     <Compile Include="IrrigationTaskViewDetails.aspx.designer.cs">
       <DependentUpon>IrrigationTaskViewDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="JobReport.aspx.cs">
-      <DependentUpon>JobReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="JobReport.aspx.designer.cs">
-      <DependentUpon>JobReport.aspx</DependentUpon>
-    </Compile>
     <Compile Include="JobReports.aspx.cs">
       <DependentUpon>JobReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="JobReports.aspx.designer.cs">
       <DependentUpon>JobReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerLogin.aspx.cs">
+      <DependentUpon>CustomerLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerLogin.aspx.designer.cs">
+      <DependentUpon>CustomerLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login1.aspx.cs">
       <DependentUpon>Login1.aspx</DependentUpon>
