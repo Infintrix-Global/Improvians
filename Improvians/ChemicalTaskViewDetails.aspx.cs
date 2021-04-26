@@ -140,7 +140,7 @@ namespace Evo
 
             GridViewCompletion.DataSource = dt;
             GridViewCompletion.DataBind();
-            lblComplitionUser.Text = dt.Rows[0]["EmployeeName"].ToString();
+          //  lblComplitionUser.Text = dt.Rows[0]["EmployeeName"].ToString();
         }
 
         public void BindGridSprayDetails()
@@ -153,7 +153,7 @@ namespace Evo
 
             GridViewDetails.DataSource = dt;
             GridViewDetails.DataBind();
-            lblReqUser.Text = dt.Rows[0]["EmployeeName"].ToString();
+          
         }
 
         protected void gvSpray_RowCommand(object sender, GridViewCommandEventArgs e)

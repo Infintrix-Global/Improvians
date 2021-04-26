@@ -167,7 +167,7 @@
                     <div class="col-12">
                           <br />
                     <h2 class="text-left">
-                        <asp:Label ID="lblReqUser" runat="server" Text=""></asp:Label> Task Request</h2>
+                       Task Request Flow</h2>
 
                         <div class="data__table">
                             <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -175,6 +175,28 @@
                                 GridLines="None"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
+                                     <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="Assigned By">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="Assigned To">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Bench Location">
                                         <ItemTemplate>
@@ -212,18 +234,26 @@
 
             <asp:Panel ID="PanlTaskComplition" runat="server">
                 <h2 class="text-left">
-                        <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label> Completion Form  </h2>
+                       Completion Form  </h2>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewCompletion"
                                 AutoGenerateColumns="false" runat="server">
                                 <Columns>
 
-                                    <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                   <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
                                         <ItemTemplate>
                                             <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
                                         </ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Assigned By">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Spray Date">

@@ -56,8 +56,7 @@ namespace Evo
 
             GridViewCompletion.DataSource = dt;
             GridViewCompletion.DataBind();
-            lblComplitionUser.Text = dt.Rows[0]["EmployeeName"].ToString();
-
+          
 
         }
 
@@ -125,7 +124,7 @@ namespace Evo
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
-            lblReqUser.Text = dt.Rows[0]["EmployeeName"].ToString();
+        
             //lblBenchLocation.Text = dt.Rows[0]["BenchLocation"].ToString();
 
             ChId = dt.Rows[0]["CropHealth"].ToString();

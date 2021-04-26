@@ -55,7 +55,7 @@ namespace Evo
                 PanelComplition.Visible = true;
                 GridDumpComplition.DataSource = dt1;
                 GridDumpComplition.DataBind();
-                lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
+               
             }
 
         }
@@ -115,7 +115,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenttView", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
-            lblReqUser.Text = dt.Rows[0]["EmployeeName"].ToString();
+          
         }
 
         public void BindPlantReady()

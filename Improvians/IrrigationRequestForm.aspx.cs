@@ -478,9 +478,12 @@ namespace Evo
             {
 
                 Label lblsource = (Label)e.Row.FindControl("lblsource");
-                if (lblsource.Text == "Manual")
+                if (lblsource.Text != "")
                 {
-                    lblsource.Text = "Navision";
+                    if (lblsource.Text == "Manual")
+                    {
+                        lblsource.Text = "Navision";
+                    }
                 }
             }
         }
