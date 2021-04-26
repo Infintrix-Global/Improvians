@@ -224,7 +224,7 @@ namespace Evo
                         Label lblItem = (item.Cells[0].FindControl("lblItem") as Label);
                         Label lblCustName = (item.Cells[0].FindControl("lblCustName") as Label);
                         Label lblSODate = (item.Cells[0].FindControl("lblSODate") as Label);
-                        Label lblSOTrays = (item.Cells[0].FindControl("lblSOTrays") as Label);
+                        Label lblSOTrays = (item.Cells[0].FindControl("lblSO_Tray") as Label);
                         Label lblTraySize = (item.Cells[0].FindControl("lblTraySize") as Label);
                         TextBox Txtgtrays = (item.Cells[0].FindControl("Txtgtrays") as TextBox);
                         TextBox Txtgplantdt = (item.Cells[0].FindControl("Txtgplantdt") as TextBox);
@@ -237,7 +237,7 @@ namespace Evo
                         HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
                         HiddenField HiddenFieldGenusCode = (item.Cells[0].FindControl("HiddenFieldGenusCode") as HiddenField);
 
-                        
+                        string lblSOTrays1 = lblSOTrays.Text;
                         if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
                         {
 

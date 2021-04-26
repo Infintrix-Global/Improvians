@@ -53,7 +53,7 @@
                                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
-                                            <asp:Label ID="lblIsAssistant" runat="server" Text='<%# Eval("IsAssistant")  %>' Visible="false"></asp:Label>
+                                         
                                             <asp:Label ID="lblIrrigationCode" runat="server" Text='<%# Eval("IrrigationCode")  %>' Visible="false"></asp:Label>
 
 

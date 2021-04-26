@@ -373,23 +373,16 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", JobCode);
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", "0");
+         
+         
             nv.Add("@BenchLocation", Bench);
-            nv.Add("@RequestType", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
+          
 
             // dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
 
-            if (Session["Role"].ToString() == "12")
-            {
-                dt = objCommon.GetDataTable("SP_GetChemicalRequestAssistantGrower", nv);
-            }
-            else
-            {
-                dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
-            }
+         
+                dt = objCommon.GetDataTable("SP_GetChemicalRequestStart", nv);
+           
             gvFer.DataSource = dt;
             gvFer.DataBind();
 

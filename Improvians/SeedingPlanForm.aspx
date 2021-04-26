@@ -127,7 +127,7 @@
 
                                     <asp:TemplateField  HeaderStyle-Width="100px" HeaderText="Sales Order Trays">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblSOTray" runat="server" Text='<%# Eval("sotrays","{0:####}") %>'></asp:Label>
+                                            <asp:Label ID="lblSO_Tray" runat="server" Text='<%# Eval("sotrays","{0:####}") %>'></asp:Label>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
