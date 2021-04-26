@@ -412,26 +412,34 @@ namespace Evo
 
         public void BindGridFerReq()
         {
+            //DataTable dt = new DataTable();
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@JobCode", JobCode);
+            //nv.Add("@CustomerName", "0");
+            //nv.Add("@Facility", "0");
+            //nv.Add("@BenchLocation", Bench);
+            //nv.Add("@RequestType", "0");
+            //nv.Add("@FromDate", "");
+            //nv.Add("@ToDate","");
+
+
+            //if (Session["Role"].ToString() == "12")
+            //{
+            //    dt = objCommon.GetDataTable("SP_GetFertilizerRequestAAssistantGrower", nv);
+            //}
+            //else
+            //{
+            //    dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+            //}
+
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", JobCode);
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", "0");
-            nv.Add("@BenchLocation", Bench);
-            nv.Add("@RequestType", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate","");
-     
-          //  dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
 
-            if (Session["Role"].ToString() == "12")
-            {
-                dt = objCommon.GetDataTable("SP_GetFertilizerRequestAAssistantGrower", nv);
-            }
-            else
-            {
-                dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
-            }
+            nv.Add("@BenchLocation", Bench);
+
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequestGrowerStart", nv);
+
 
             gvFer.DataSource = dt;
             gvFer.DataBind();

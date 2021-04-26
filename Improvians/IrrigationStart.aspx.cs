@@ -372,22 +372,11 @@ namespace Evo
             //  nv.Add("@Mode", "1");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@JobCode", JobCode);
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", "0");
+      
             nv.Add("@BenchLocation", Bench);
-            nv.Add("@RequestType", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            // dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
-
-            if (Session["Role"].ToString() == "12")
-            {
-                dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
-            }
-            else
-            {
-                dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
-            }
+           
+                dt = objCommon.GetDataTable("SP_GetIrrigationRequesStart", nv);
+         
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
             int tray = 0;
@@ -426,7 +415,10 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", BenchLoc);
             dt = objCommon.GetDataTable("SP_GetIrrigationRequestSelect", nv);
+
             DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
+
+
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -449,8 +441,7 @@ namespace Evo
 
             }
 
-            gvJobHistory.DataSource = dt;
-            gvJobHistory.DataBind();
+          
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

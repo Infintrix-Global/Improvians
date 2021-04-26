@@ -365,31 +365,33 @@ namespace Evo
         public void BindGridIrrigation()
         {
 
+            //DataTable dt = new DataTable();
+            //NameValueCollection nv = new NameValueCollection();
+
+            //nv.Add("@JobCode", JobCode);
+            //nv.Add("@CustomerName", "0");
+            //nv.Add("@Facility", "0");
+            //nv.Add("@BenchLocation", Bench);
+            //nv.Add("@RequestType", "0");
+            //nv.Add("@FromDate", "");
+            //nv.Add("@ToDate", "");
+
+            //if (Session["Role"].ToString() == "12")
+            //{
+            //    dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
+            //}
+            //else
+            //{
+            //    dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+            //}
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@wo","");
-            //  nv.Add("@JobCode",ddlJobNo.SelectedValue);
-            //  nv.Add("@CustomerName",ddlCustomer.SelectedValue);
-            //   nv.Add("@Facility",ddlFacility.SelectedValue);
-            //  nv.Add("@Mode", "1");
-            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
             nv.Add("@JobCode", JobCode);
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", "0");
-            nv.Add("@BenchLocation", Bench);
-            nv.Add("@RequestType", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            // dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
 
-            if (Session["Role"].ToString() == "12")
-            {
-                dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
-            }
-            else
-            {
-                dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
-            }
+            nv.Add("@BenchLocation", Bench);
+
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequesStart", nv);
+
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
             int tray = 0;

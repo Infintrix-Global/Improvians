@@ -22,21 +22,16 @@
                     <asp:DropDownList ID="ddlCustomer" runat="server" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Crop </label>
+                    <asp:DropDownList ID="ddlCrop" runat="server" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Assigned To </label>
                     <asp:DropDownList ID="ddlAssignedBy" runat="server" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Task Request Type </label>
                     <asp:DropDownList ID="ddlTaskRequestType" runat="server" class="custom__dropdown robotomd">
-                      <%--  <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
-                        <asp:ListItem Text="Fertilization" Value="Fertilization"></asp:ListItem>
-                        <asp:ListItem Text="Chemical" Value="Chemical"></asp:ListItem>
-                        <asp:ListItem Text="Germination" Value="Germination"></asp:ListItem>
-                        <asp:ListItem Text="Irrigation" Value="Irrigation"></asp:ListItem>
-                        <asp:ListItem Text="Plant Ready" Value="Plant Ready"></asp:ListItem>
-                        <asp:ListItem Text="Dump" Value="Dump"></asp:ListItem>
-                        <asp:ListItem Text="Move" Value="Move"></asp:ListItem>
-                        <asp:ListItem Text="GeneralTask" Value="GeneralTask"></asp:ListItem>--%>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -70,7 +65,7 @@
                                     class="striped" AllowSorting="true" OnPageIndexChanging="gvGerm_PageIndexChanging" PageSize="15"
                                     GridLines="None" DataKeyNames="BenchLocation,JobNo,TaskRequestType" OnRowDataBound="gvGerm_RowDataBound"
                                     ShowHeaderWhenEmpty="True" Width="100%">
-                                    <columns>
+                                    <Columns>
 
                                         <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -82,7 +77,7 @@
                                             <ItemTemplate>
 
                                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("JobNo","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("JobNo") %>' Font-Underline="true" />
-                                                    <asp:Label ID="lblJobNo" Visible="false" runat="server" Text='<%# Eval("JobNo")  %>'></asp:Label>
+                                                <asp:Label ID="lblJobNo" Visible="false" runat="server" Text='<%# Eval("JobNo")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -171,11 +166,11 @@
 
                                         </asp:TemplateField>
 
-                                        
+
                                         <asp:TemplateField HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
-                                                <asp:Button ID="btnStart" runat="server" Text="Task Report"   CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                                <asp:Button ID="btnStart" runat="server" Text="Task Report" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
 
                                             </ItemTemplate>
@@ -185,13 +180,13 @@
 
 
 
-                                    </columns>
+                                    </Columns>
 
-                                    <pagerstyle cssclass="paging" horizontalalign="Right" />
-                                    <pagersettings mode="NumericFirstLast" />
-                                    <emptydatatemplate>
+                                    <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                                    <PagerSettings Mode="NumericFirstLast" />
+                                    <EmptyDataTemplate>
                                         No Record Available
-                                    </emptydatatemplate>
+                                    </EmptyDataTemplate>
                                 </asp:GridView>
 
 
@@ -205,5 +200,5 @@
             </div>
 
         </div>
-        </div>
+    </div>
 </asp:Content>
