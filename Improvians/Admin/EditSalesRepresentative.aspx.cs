@@ -12,7 +12,7 @@ using Evo.Admin.BAL_Classes;
 namespace Evo.Admin
 {
 
-    public partial class EditCustomer : System.Web.UI.Page
+    public partial class EditSalesRepresentative : System.Web.UI.Page
     {
         clsCommonMasters objCommon = new clsCommonMasters();
         BAL_Task objTask = new BAL_Task();
@@ -22,23 +22,10 @@ namespace Evo.Admin
             {
                 string eid = Session["EmployeeID"].ToString();
                 int x = Convert.ToInt32(eid);
-                BindSales();
                 bindEmployeeProfile(x);
-               
             }
         }
-        private void BindSales()
-        {
-            DataTable dt = new DataTable();
-            string sqr = "Select ID, EmployeeName from Login L  where L.IsActive=1 and L.RoleID=14";
-            General objGeneral = new General();
-            dt = objGeneral.GetDatasetByCommand(sqr);
-            ddlSales.DataSource = dt;
-            ddlSales.DataTextField = "EmployeeName";
-            ddlSales.DataValueField = "ID";
-            ddlSales.DataBind();
-            ddlSales.Items.Insert(0, new ListItem("--Select--", ""));
-        }
+
         protected void btnProfile_Click(object sender, EventArgs e)
         {
             UploadImageProfile();
@@ -132,13 +119,12 @@ namespace Evo.Admin
                     lblProfile.Text = dt1.Tables[0].Rows[0]["Photo"].ToString();
                     lblProfile.Visible = false;
                     ImageProfile.ImageUrl = @"~\Admin\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
-                    txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
-                    ddlSales.SelectedValue = "0";// dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
-                    txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();
-                    txtNavisionID.Text = dt1.Tables[0].Rows[0]["NavisionCustomerID"].ToString();
+                  //  txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
+                    //ddlDepartment.SelectedValue = dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
+                    txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();                    
                     txtMobile.Text = dt1.Tables[0].Rows[0]["Mobile"].ToString();
                     txtEmail.Text = dt1.Tables[0].Rows[0]["Email"].ToString();
-                    txtUserName.Text = dt1.Tables[0].Rows[0]["EmployeeCode"].ToString();
+                  //  txtUserName.Text = dt1.Tables[0].Rows[0]["EmployeeCode"].ToString();
                 }
 
             }
@@ -160,17 +146,17 @@ namespace Evo.Admin
                     Mobile = txtMobile.Text,
                     Email = txtEmail.Text,
                     Department = "",
-                    Designation = "13",
-                    NavisionCustomerID = txtNavisionID.Text,
+                    Designation = "14",
+                    NavisionCustomerID = "",
                     Photo = lblProfile.Text,
-                    EmployeeCode = txtUserName.Text,
-                    Password = objCommon.Encrypt(txtPassword.Text)
+                    EmployeeCode = "",
+                    Password = ""//objCommon.Encrypt(txtPassword.Text)
                 };
                 _isInserted = objCommon.UpdateEmployee(objEmployee);
                 if (_isInserted == -1)
                 {
 
-                    lblmsg.Text = "Failed to Update Customer";
+                    lblmsg.Text = "Failed to Update Sales Representative";
                     lblmsg.ForeColor = System.Drawing.Color.Red;
 
                 }
@@ -178,10 +164,10 @@ namespace Evo.Admin
                 else
                 {
 
-                    lblmsg.Text = "Customer Updated ";
+                    lblmsg.Text = "Sales Representative Updated ";
                     lblmsg.ForeColor = System.Drawing.Color.Green;
 
-                    Response.Redirect("~/Admin/ViewCustomer.aspx");
+                    Response.Redirect("~/Admin/ViewSalesRepresentative.aspx");
 
                 }
             }

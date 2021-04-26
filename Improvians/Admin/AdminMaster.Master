@@ -104,6 +104,20 @@
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
+                             <li>
+                                <a class="current" href="AddSalesRepresentative.aspx" title="Add Sales Representative">
+                                    <i class="side-icon far fa-user"></i>
+                                    <span class="side-title">Add Sales Representative</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                              <li>
+                                <a class="current" href="ViewSalesRepresentative.aspx" title="View Sales Representative">
+                                    <i class="side-icon fas fa-eye"></i>
+                                    <span class="side-title">View Sales Representative</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
                             <li class="has__dropdown">
                                 <a class="current" href="ViewPlantProductionProfile.aspx" title="View Employee">
                                     <i class="side-icon fas fa-seedling"></i>

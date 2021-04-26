@@ -6,7 +6,7 @@
     <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
     <div class="admin__content">
         <div class="container-fluid">
-            <h1 class="text-center text-sm-left">Edit EditCustomer</h1>
+            <h1 class="text-center text-sm-left">Edit Customer</h1>
 
             <hr />
             <!-- BEGIN FORM-->
@@ -119,6 +119,10 @@
                         </label>
                     </div>
                     <div class="col-md-6 col-xl-5 order-md-1">
+                         <label>
+                            <h3>Sales Representative</h3>
+                            <asp:DropDownList ID="ddlSales" runat="server" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>                           
+                        </label>
                     </div>
 
 
