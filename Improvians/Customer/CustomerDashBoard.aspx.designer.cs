@@ -33,6 +33,24 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
 
         /// <summary>
+        /// ddlCrop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCrop;
+
+        /// <summary>
+        /// ddlFacility control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
+
+        /// <summary>
         /// txtFromDate control.
         /// </summary>
         /// <remarks>
