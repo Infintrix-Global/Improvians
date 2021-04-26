@@ -3,20 +3,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <%-- <div class="header__bottom">
-        <div class="d-flex align-items-center justify-content-center">
-            <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown input__control-auto robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged"></asp:DropDownList>
-        </div>
-    </div>--%>
     <div class="main__header">
         <div class="site__container">
-             <h2 class="head__title-icon mb-4 my-4"> <asp:Label ID="lblCustName" runat="server" /></h2>
+            <h2 class="head__title-icon mb-4 my-4">
+                <asp:Label ID="lblCustName" runat="server" /></h2>
             <div class="row">
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Job No </label>
                     <asp:DropDownList ID="ddlJobNo" runat="server" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                 </div>
-
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Crop</label>
+                    <asp:DropDownList ID="ddlCrop" runat="server" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
+                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                    <label>Facility</label>
+                    <asp:DropDownList ID="ddlFacility" runat="server" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
+                </div>
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>From Plant Due Date</label>
                     <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
@@ -115,7 +118,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lbldue_date" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
 
-                                                
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

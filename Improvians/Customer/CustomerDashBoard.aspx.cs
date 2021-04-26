@@ -22,9 +22,10 @@ namespace Evo
             {
                 lblCustName.Text = Session["EmployeeName"].ToString();
                 BindJobCode();
-                BindGridGerm();
-                //BindFacility();
+                BindCrop();
+                BindFacility();
                 Session["Facility"] = "";
+                BindGridGerm();
             }
         }
 
@@ -36,6 +37,8 @@ namespace Evo
 
             nv.Add("@Customer", Session["EmployeeName"].ToString());
             nv.Add("@JobNo", ddlJobNo.SelectedValue);
+            nv.Add("@Crop", ddlCrop.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@WorkDateForm", txtFromDate.Text);
             nv.Add("@WorkDateTo", txtToDate.Text);
             nv.Add("@Mode", "2");
@@ -47,29 +50,55 @@ namespace Evo
 
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
         }
-        //public void BindFacility()
-        //{
-        //    BAL_Task objTask = new BAL_Task();
-        //    DataSet ds = objTask.GetEmployeeByID(Convert.ToInt32(Session["LoginID"]));
-        //    ddlFacility.DataSource = ds.Tables[1];
-        //    ddlFacility.DataTextField = "FacilityName";
-        //    ddlFacility.DataValueField = "FacilityName";
-        //    ddlFacility.DataBind();
-        //    //ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-        //    if (Session["Facility"] != null && Session["Facility"].ToString() != string.Empty)
-        //    {
-        //        ddlFacility.SelectedValue = Session["Facility"].ToString();
-        //    }
-        //    else
-        //    {
-        //        Session["Facility"] = ddlFacility.SelectedValue;
-        //    }
+        public void BindFacility()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Customer", Session["EmployeeName"].ToString());
+            nv.Add("@JobNo", ddlJobNo.SelectedValue);
+            nv.Add("@Crop", ddlCrop.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@WorkDateForm", txtFromDate.Text);
+            nv.Add("@WorkDateTo", txtToDate.Text);
+            nv.Add("@Mode", "4");
+            DataTable dt = objCommon.GetDataTable("GetCustomerManageTask", nv);
+            ddlFacility.DataSource = dt;
+            ddlFacility.DataTextField = "loc_seedline";
+            ddlFacility.DataValueField = "loc_seedline";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        //}
-        //protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    Session["Facility"] = ddlFacility.SelectedValue;
-        //         }
+        }
+        protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //BindJobCode();
+            //BindCrop();
+            BindGridGerm();
+        }
+
+        protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //BindJobCode();
+            //BindFacility();
+            BindGridGerm();
+        }
+        public void BindCrop()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Customer", Session["EmployeeName"].ToString());
+            nv.Add("@JobNo", ddlJobNo.SelectedValue);
+            nv.Add("@Crop", ddlCrop.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@WorkDateForm", txtFromDate.Text);
+            nv.Add("@WorkDateTo", txtToDate.Text);
+            nv.Add("@Mode", "3");
+            dt = objCommon.GetDataTable("GetCustomerManageTask", nv);
+            ddlCrop.DataSource = dt;
+            ddlCrop.DataTextField = "GenusCode";
+            ddlCrop.DataValueField = "GenusCode";
+            ddlCrop.DataBind();
+            ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
 
         public void BindGridGerm()
         {
@@ -77,6 +106,8 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Customer", Session["EmployeeName"].ToString());
             nv.Add("@JobNo", ddlJobNo.SelectedValue);
+            nv.Add("@Crop", ddlCrop.SelectedValue);
+            nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@WorkDateForm", txtFromDate.Text);
             nv.Add("@WorkDateTo", txtToDate.Text);
             nv.Add("@Mode", "1");
@@ -101,23 +132,23 @@ namespace Evo
             txtToDate.Text = "";
 
             BindJobCode();
+            BindCrop();
+            BindFacility();
             BindGridGerm();
         }
 
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //BindCrop();
+            //BindFacility();
             BindGridGerm();
-
         }
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
             if (e.CommandName == "GStart")
             {
-
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string BatchLocation = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = gvGerm.DataKeys[rowIndex].Values[1].ToString();
@@ -148,14 +179,10 @@ namespace Evo
                     if (TaskRequestType == "Irrigation")
                     {
                         Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}", "ManageTask", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString()));
-
-
                     }
-
 
                     if (TaskRequestType == "Plant Ready")
                     {
-
                         Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString()));
                     }
 
@@ -166,22 +193,14 @@ namespace Evo
                     }
                     if (TaskRequestType == "Move")
                     {
-
                         Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString()));
 
                     }
                     if (TaskRequestType == "GeneralTask")
                     {
                         Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", dt.Rows[0]["GeneralTaskAssignmentId"].ToString(), 0, dt.Rows[0]["GeneralId"].ToString()));
-
-
                     }
-
                 }
-
-                //    Response.Redirect(String.Format("~/ViewJobDetails.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestType={2}", BatchLocation, jobCode, TaskRequestType));
-
-
             }
         }
 

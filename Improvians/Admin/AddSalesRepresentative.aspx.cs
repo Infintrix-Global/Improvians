@@ -8,51 +8,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Evo.Admin.BAL_Classes;
 using Evo.Admin;
-using System.Collections.Specialized;
 
 namespace Evo.Admin
 {
-    public partial class AddCustomer : System.Web.UI.Page
+    public partial class AddSalesRepresentative : System.Web.UI.Page
     {
-        clsCommonMasters objCommon = new clsCommonMasters();
-        CommonControl objCom = new CommonControl();
-        BAL_Task objTask = new BAL_Task();
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                Bindcname();
-                BindSales();
-            }
-        }
-      
-        public void Bindcname()
-        {
-
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-
-            nv.Add("@Mode", "8");
-            dt = objCom.GetDataTable("GET_Common", nv);
-            ddlCustName.DataSource = dt;
-            ddlCustName.DataTextField = "cname";
-            ddlCustName.DataValueField = "cname";
-            ddlCustName.DataBind();
-            ddlCustName.Items.Insert(0, new ListItem("--Select--", ""));
-
-        }
-        private void BindSales()
-        {
-            DataTable dt = new DataTable();
-            string sqr = "Select ID, EmployeeName from Login L  where L.IsActive=1 and L.RoleID=14";
-            General objGeneral = new General();
-            dt = objGeneral.GetDatasetByCommand(sqr);
-            ddlSales.DataSource = dt;
-            ddlSales.DataTextField = "EmployeeName";
-            ddlSales.DataValueField = "ID";
-            ddlSales.DataBind();
-            ddlSales.Items.Insert(0, new ListItem("--Select--", ""));
-        }
+        clsCommonMasters objCommon = new clsCommonMasters();   
 
         protected void btAdd_Click(object sender, EventArgs e)
         {
@@ -66,15 +27,15 @@ namespace Evo.Admin
                     Employee objEmployee = new Employee()
                     {
 
-                        Name = ddlCustName.SelectedItem.Text,
+                        Name = txtName.Text,
                         Mobile = txtMobile.Text,
-                        Password = objCommon.Encrypt(txtPassword.Text),
-                        EmployeeCode = txtUserName.Text,
+                        Password = "",// objCommon.Encrypt(txtPassword.Text),
+                        EmployeeCode="", //txtUserName.Text,
                         Email = txtEmail.Text,
-                        Designation = "13",
+                        Designation = "14",
                         Department = "",
                         Photo = lblProfile.Text,
-                        NavisionCustomerID = txtNavisionID.Text
+                        NavisionCustomerID =""
                     };
 
                     _isInserted = objCommon.InsertEmployee(objEmployee);
@@ -82,7 +43,7 @@ namespace Evo.Admin
                     if (_isInserted == -1)
                     {
 
-                        lblmsg.Text = "Failed to Add Customer";
+                        lblmsg.Text = "Failed to Add Sales Representative";
                         lblmsg.ForeColor = System.Drawing.Color.Red;
 
                     }
@@ -101,10 +62,11 @@ namespace Evo.Admin
                     else
                     {
 
-                        lblmsg.Text = "Customer Added ";
+                        lblmsg.Text = "Employee Added ";
                         lblmsg.ForeColor = System.Drawing.Color.Green;
-                       
-                        Response.Redirect("~/Admin/ViewCustomer.aspx");
+                      
+                        // objCommon.AddEmployeeFacility(_isInserted, ddlFacility.SelectedValue);
+                        Response.Redirect("~/Admin/ViewSalesRepresentative.aspx");
                         btclear_Click(sender, e);
                     }
                 }
@@ -121,10 +83,9 @@ namespace Evo.Admin
 
         protected void btclear_Click(object sender, EventArgs e)
         {
-            txtNavisionID.Text = "";
+            txtName.Text = "";
             txtMobile.Text = "";
             txtEmail.Text = "";
-            ddlCustName.DataBind();
         }
 
         protected void btnProfile_Click(object sender, EventArgs e)
