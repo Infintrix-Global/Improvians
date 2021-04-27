@@ -131,7 +131,7 @@ namespace Evo.Admin
                 {
                     lblProfile.Text = dt1.Tables[0].Rows[0]["Photo"].ToString();
                     lblProfile.Visible = false;
-                    ImageProfile.ImageUrl = @"~\Admin\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
+                    ImageProfile.ImageUrl = @"..\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
                     txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
                     ddlSales.SelectedValue = GetSalesForCustomer();// dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
                     txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();
