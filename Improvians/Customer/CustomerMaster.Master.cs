@@ -13,7 +13,7 @@ namespace Evo
         {
             if (Session["LoginID"] == null)
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/CustomerLogin.aspx");
             }
         }
         protected void Page_Load(object sender, EventArgs e)

@@ -65,12 +65,16 @@
 <body>
     <form id="form1" runat="server">
         <header>
-             <div class="site__container">
+            <div class="site__container">
                 <div class="d-flex align-items-center">
                     <a href="CustomerDashBoard.aspx" title="Growers Transplanting Inc">
                         <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
                     </a>
-                                       
+                    <div class="ml-auto">
+                        <a href="ContactSalesRepresentative.aspx" class="customer__support" title="Contact Support">
+                            <i class="rxicon-icon-customer-support"></i>
+                        </a>
+                    </div>
                     <div class="dropdown account__dropdown ml-auto">
                         <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Profile">
                             <img src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />
@@ -81,14 +85,13 @@
                                 <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label>
                             </span>
                             <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="../Login.aspx">Log Out</a>
+                            <a class="dropdown-item" href="../Login.aspx">Log Out</a>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-             
         </asp:ContentPlaceHolder>
 
 

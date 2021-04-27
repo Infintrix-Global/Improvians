@@ -218,6 +218,7 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\custom.css" />
     <Content Include="css\uploadify.css" />
+    <Content Include="Customer\ContactSalesRepresentative.aspx" />
     <Content Include="Customer\css\all.min.css" />
     <Content Include="Customer\css\aos.css" />
     <Content Include="Customer\css\bootstrap.min.css" />
@@ -707,6 +708,13 @@
     </Compile>
     <Compile Include="CropReportRequestForm.aspx.designer.cs">
       <DependentUpon>CropReportRequestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ContactSalesRepresentative.aspx.cs">
+      <DependentUpon>ContactSalesRepresentative.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ContactSalesRepresentative.aspx.designer.cs">
+      <DependentUpon>ContactSalesRepresentative.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\CustomerDashBoard.aspx.cs">
       <DependentUpon>CustomerDashBoard.aspx</DependentUpon>
