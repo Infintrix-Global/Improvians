@@ -1259,6 +1259,7 @@ textarea.input__control {
     object-position: top center;
     height: 100%;
     max-width: 192px;
+    background: #efefef;
 }
 
 .rxicon-icon-customer-support {
