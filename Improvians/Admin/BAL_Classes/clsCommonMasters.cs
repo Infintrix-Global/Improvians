@@ -1107,3 +1107,10 @@ public class CropHealthMasters
     public string CauseOfProblem { get; set; }
     public bool IsActive { get; set; }
 }
+
+public class NotificationPreferenceMaster
+{
+    public int id { get; set; }
+    public bool IsApp { get; set; }
+    public bool IsEmail{ get; set; }    
+}

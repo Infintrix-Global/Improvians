@@ -166,6 +166,12 @@ namespace Evo
 
         }
 
+        internal long UpdateNotificationPreference(NotificationPreferenceMaster obj)
+        {
+            //need to add a code
+            throw new NotImplementedException();
+        }
+
         public DataSet GetDataSet(string storedProcedure, NameValueCollection nv)
         {
 
