@@ -1220,6 +1220,9 @@ textarea.input__control {
 /*Performance Log Sheet*/
 .page__us {
     width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    color: #222222;
 }
 
 .inline__fields {
@@ -1240,6 +1243,16 @@ textarea.input__control {
 .page__us .data__table {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.page__us .data__table tr:nth-child(even) td {
+    background: #e4fce4;
+}
+
+.page__us .data__table th, .page__us .data__table td {
+    padding: 6px 11px;
+    font-size: 14px;
+    color: #222222;
 }
 
 /*Help Page STARTS*/
