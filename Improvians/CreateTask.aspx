@@ -658,7 +658,7 @@
                                             <asp:Button Text="Assign" ValidationGroup="e" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action mb-3" runat="server" />
                                             <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveMove" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClick="btnSaveMove_Click" />
                                             <asp:Button Text="Start" CausesValidation="true" ID="btnStartMove" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClick="btnStartMove_Click" />
-                                            <asp:Button Text="Reset" ID="MoveReset" runat="server" OnClick="MoveReset_Click" CssClass="bttn bttn-primary bttn-action mb-3" />
+                                            <asp:Button Text="Reset" ID="MoveReset" runat="server" OnClick="MoveReset_Click" CssClass="bttn bttn-primary bttn-action mb-3"  />
                                         </div>
                                     </div>
                                 </div>

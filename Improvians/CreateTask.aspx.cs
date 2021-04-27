@@ -1075,7 +1075,10 @@ namespace Evo
         }
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
         {
-
+            txtWaterRequired.Text = "";
+            BindSupervisor();
+            irrigation_count.Attributes.Add("class", "request__block-collapse collapse show");
+            btnIrrigation.Attributes.Add("class", "request__block-head");
         }
 
         public void irrigationSubmit(string Assigned)
@@ -1264,7 +1267,10 @@ namespace Evo
 
         protected void btnplant_readyReset_Click(object sender, EventArgs e)
         {
-
+            BindSupervisor();
+            txtPlantComments.Text = ""; ;
+            plant_ready_count.Attributes.Add("class", "request__block-collapse collapse show");
+            btnPlantReady.Attributes.Add("class", "request__block-head");
         }
 
 
@@ -1320,6 +1326,11 @@ namespace Evo
         protected void btnChemicalReset_Click(object sender, EventArgs e)
         {
 
+            BindSupervisor();
+            BindChemical();
+            txtResetChemicalSprayTask.Text = "";
+            Chemical_count.Attributes.Add("class", "request__block-collapse collapse show");
+            btnChemical.Attributes.Add("class", "request__block-head");
         }
 
         protected void btnChemicalSubmit_Click(object sender, EventArgs e)
@@ -1453,6 +1464,13 @@ namespace Evo
 
         protected void MoveReset_Click(object sender, EventArgs e)
         {
+            BindSupervisor();
+            BindFacility();
+            BindBench_Location();
+            txtMoveComments.Text = "";
+            txtMoveDate.Text = "";
+            txtMoveNumberOfTrays.Text = "";
+            btnMoveRequest.Attributes.Add("class", "request__block-collapse collapse show");
 
         }
         public void MoveSubmit(string Assigned)
@@ -1588,7 +1606,11 @@ namespace Evo
 
         protected void btnDumpReset_Click(object sender, EventArgs e)
         {
-
+            txtCommentsDump.Text = "";
+            txtQuantityofTray.Text = "";
+            BindSupervisor();
+            dump_request.Attributes.Add("class", "request__block-collapse collapse show");
+            btnDump.Attributes.Add("class", "request__block-head");
         }
 
         public void GeneraltaskSubmit(string Assigned)
@@ -1812,7 +1834,8 @@ namespace Evo
 
         protected void btnCropReset_Click(object sender, EventArgs e)
         {
-
+            BindSupervisor();
+            txtCropHealthComments.Text = "";
         }
 
 
