@@ -1,6 +1,7 @@
 ﻿using Evo.BAL_Classes;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,7 @@ namespace Evo.Customer
     public partial class ContactSalesRepresentative : System.Web.UI.Page
     {
         General objGeneral = new General();
+        CommonControl objCommon = new CommonControl();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,6 +35,22 @@ namespace Evo.Customer
                 lnkEmail.HRef = "mailto:" + dt.Rows[0]["Email"].ToString();
                 ImageProfile.Src = @"..\EmployeeProfile\" + dt.Rows[0]["Photo"].ToString();
             }
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Uid", Session["LoginID"].ToString());
+            DataTable dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
+            string CCMail = dt1.Rows[0]["Email"].ToString();
+
+            string ToMail = lblEmail.Text;
+            string Subject= "Contact Request is made by "+ Session["EmployeeName"].ToString(); 
+            string msg = msgs.Text;
+
+            objGeneral.SendMail(ToMail, CCMail, Subject, msg);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thanks! We will contact you soon.')", true);
+            msgs.Text = "";
         }
     }
 }

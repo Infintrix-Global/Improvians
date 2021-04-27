@@ -1225,12 +1225,8 @@ textarea.input__control {
     color: #222222;
 }
 
-.inline__fields {
-    min-width: 92px;
-}
-
 .field__blank {
-    min-width: 185px;
+    min-width: 155px;
     border-bottom: 1px solid;
     height: 18px;
     text-align: center;
@@ -1791,6 +1787,11 @@ textarea.input__control {
         background: #ffffff;
     }
 
+    .page__us {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
     .page__us .custom__dropdown, .page__us .filter__control, .page__us .input__control {
         height: 40px;
         line-height: 40px;
@@ -1809,6 +1810,4 @@ textarea.input__control {
     .page__us .data__table th  {
         padding: 3px 5px;
     }
-
-    .page__us .inline__fields-signs { min-width: 99px; }
 }

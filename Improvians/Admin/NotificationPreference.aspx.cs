@@ -23,8 +23,8 @@ namespace Evo.Admin
             {
                 Session["UserName"] = "";
                 //BindUserName("");
-                BindUserDetails();
-                if (ddlTasks.SelectedValue != "0")
+              //  BindUserDetails();
+                if (ddlTTypes.SelectedValue != "0")
                 {
                     submitPreference.Attributes.Remove("disabled");
                 }
@@ -82,9 +82,9 @@ namespace Evo.Admin
         {            
                 var sqr = "";
             DataTable dt = new DataTable();
-            if (ddlTasks.SelectedValue != "0")
+            if (ddlTTypes.SelectedValue != "0")
             {
-                sqr = "select Id,UserName,TaskType ,IsApp,IsEmail from dbo.NotificationPreference where TaskType='" +ddlTasks.SelectedValue +"' order by Id desc";
+                sqr = "select Id,UserName,TaskType ,IsApp,IsEmail from dbo.NotificationPreference where TaskType='" + ddlTTypes.SelectedValue +"' order by Id desc";
             }
             else
             {
@@ -92,9 +92,9 @@ namespace Evo.Admin
             }
             dt.Clear();
             dt = objGeneral.GetDatasetByCommand(sqr);
-            gvUserDetails.DataSource = dt;
-            gvUserDetails.DataBind();
-            if (ddlTasks.SelectedValue != "0")
+          //  gvUserDetails.DataSource = dt;
+          //  gvUserDetails.DataBind();
+            if (ddlTTypes.SelectedValue != "0")
             {
                 submitPreference.Attributes.Remove("disabled");
             }
@@ -114,47 +114,111 @@ namespace Evo.Admin
 
         protected void submitPreference_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in gvUserDetails.Rows)
+            long result1 = 0;
+            foreach (GridViewRow row in gvUsersProfile.Rows)
             {
-                //CheckBox chk1 = (row.FindControl("chkSelect") as CheckBox);
-                //if (chk1.Checked)
-                //{
-                    CheckBox chk2 = (row.FindControl("chkApp") as CheckBox);
-                    CheckBox chk3 = (row.FindControl("chkEmail") as CheckBox);
+                if (!string.IsNullOrEmpty(((TextBox)row.FindControl("viaApp")).Text) && !string.IsNullOrEmpty(((TextBox)row.FindControl("viaEmail")).Text))
+                {
+                    string id = ((Label)row.FindControl("NPId")).Text;
 
-                    //var UserName = (row.FindControl("userRoleNames") as Label).Text;
+                    CheckBox chk2 = (row.FindControl("viaApp") as CheckBox);
+                    CheckBox chk3 = (row.FindControl("viaEmail") as CheckBox);
 
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@UserName", "");
-                    nv.Add("@ViaApp", chk2.Checked.ToString());
-                    nv.Add("@ViaEmail", chk3.Checked.ToString());
-                    nv.Add("@TaskName", ddlTasks.SelectedValue);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    var result = objCommon.GetDataExecuteScaler("SP_AddNotificationPreference", nv);
+                    NotificationPreferenceMaster obj = new NotificationPreferenceMaster()
+                    {
+                        id = Convert.ToInt32(id),
+                        IsApp = chk2.Checked,
+                        IsEmail = chk3.Checked
+                    };
 
-                  //  chk1.Checked = false;
-                    chk2.Checked = false;
-                    chk3.Checked = false;
-            //    }
+                    //need to add a code to update
+                    result1 = objCommon.UpdateNotificationPreference(obj);
+                }
             }
+            string message = "Record updated Successful";
+            string url = "NotificationPreference.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
             BindUserDetails();
             //BindUserName("");
         }
 
+        private List<NotificationPreferenceDetails> NotificationPreferenceData
+        {
+            get
+            {
+                if (ViewState["NotificationPreferenceData"] != null)
+                {
+                    return (List<NotificationPreferenceDetails>)ViewState["NotificationPreferenceData"];
+                }
+                return new List<NotificationPreferenceDetails>();
+            }
+            set
+            {
+                ViewState["NotificationPreferenceData"] = value;
+            }
+        }
+
+        protected void btnAddProfile_Click(object sender, EventArgs e)
+        {
+            pnlAdd.Visible = true;
+            pnlList.Visible = false;
+            AddNewRow(true);
+        }
+
+        private void AddNewRow(bool AddBlankRow)
+        {
+          
+                List<NotificationPreferenceDetails> objProfile = new List<NotificationPreferenceDetails>();
+
+                foreach (GridViewRow row in gvAddUsers.Rows)
+                {
+                    CheckBox chk2 = (row.FindControl("chkApp") as CheckBox);
+                    CheckBox chk3 = (row.FindControl("chkEmail") as CheckBox);
+                DropDownList task= (row.FindControl("ddlTasks") as DropDownList);
+                DropDownList userName = (row.FindControl("ddlUsers") as DropDownList);
+
+                //var UserName = (row.FindControl("userRoleNames") as Label).Text;
+                AddProfileDetail(ref objProfile, task.SelectedValue,userName.SelectedValue, chk2.Checked, chk3.Checked);
+
+                NotificationPreferenceData = objProfile;
+                //GridProfileBind();
+
+            }                              
+
+        }
+
+        private void AddProfileDetail(ref List<NotificationPreferenceDetails> objPD, string TaskType, string UserName, bool IsEmail, bool IsApp)
+        {
+            NotificationPreferenceDetails objProfile = new NotificationPreferenceDetails();
+
+            objProfile.Id = objPD.Count + 1;
+            objProfile.TaskType = TaskType;
+            objProfile.UserName = UserName;
+            objProfile.viaEmail = IsEmail;           
+            objProfile.viaApp = IsApp;           
+
+            objPD.Add(objProfile);
+            ViewState["objPD"] = objPD;
+        }
         protected void ddlTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
             DropDownList list = (DropDownList)sender;
             if (list.SelectedValue != "0")
             {
                 submitPreference.Attributes.Remove("disabled");
-                submitErrorMsg.Text = "";
-                submitErrorMsg.Visible = false;
+               
             }
             else
             {
                 submitPreference.Attributes.Add("disabled", "disabled");
-                submitErrorMsg.Text = "Please select task type.";
-                submitErrorMsg.Visible = true;
+             
             }
         }
 
@@ -203,7 +267,7 @@ namespace Evo.Admin
 
         protected void reset_Click(object sender, EventArgs e)
         {
-            ddlTasks.SelectedValue = "0";
+            ddlTTypes.SelectedValue = "0";
             //BindUserName("");
             BindUserDetails();
         }
@@ -222,5 +286,25 @@ namespace Evo.Admin
         {
 
         }
+
+        protected void ButtonAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvUsersProfile_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+    }
+   
+    [Serializable]
+    public class NotificationPreferenceDetails
+    {
+        public int Id { get; set; }
+        public string TaskType { get; set; }
+        public string UserName { get; set; }
+        public bool viaApp { get; set; }
+        public bool viaEmail { get; set; }
     }
 }

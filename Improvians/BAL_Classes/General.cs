@@ -10,6 +10,8 @@ using System.Web.Hosting;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Net.Mail;
+using System.Web.Configuration;
 
 namespace Evo.BAL_Classes
 {
@@ -415,6 +417,32 @@ namespace Evo.BAL_Classes
         public class FCMResult
         {
             public string message_id { get; set; }
+        }
+
+        public void SendMail(string ToMail, string CCMail, string subject, string msg)
+        {
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+            string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
+            smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
+
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.EnableSsl = true;
+            MailMessage mail = new MailMessage();
+
+            mail.Subject = subject;
+            mail.Body = msg;
+
+            mail.From = new MailAddress(FromMail);
+            mail.To.Add(new MailAddress(ToMail));
+            if (!string.IsNullOrEmpty(CCMail))
+            {
+                mail.CC.Add(new MailAddress(CCMail));
+            }
+
+            //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
+            //   mail.Attachments.Add(atc);
+            smtpClient.Send(mail);
         }
 
     }

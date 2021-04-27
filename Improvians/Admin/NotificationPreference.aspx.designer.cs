@@ -69,49 +69,22 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.Panel pnlList;
 
         /// <summary>
-        /// ddlCode control.
+        /// ddlTTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCode;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTTypes;
 
         /// <summary>
-        /// ddlCrop control.
+        /// submitPreference control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCrop;
-
-        /// <summary>
-        /// ddlTrayCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrayCode;
-
-        /// <summary>
-        /// ddlActivityCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlActivityCode;
-
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button submitPreference;
 
         /// <summary>
         /// btnClear control.
@@ -132,66 +105,21 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.Button btnAddProfile;
 
         /// <summary>
-        /// btnAddDateNo control.
+        /// count control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddDateNo;
+        protected global::System.Web.UI.WebControls.Label count;
 
         /// <summary>
-        /// btnUpdateDateno control.
+        /// gvUsersProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateDateno;
-
-        /// <summary>
-        /// ddlTasks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTasks;
-
-        /// <summary>
-        /// reset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button reset;
-
-        /// <summary>
-        /// gvUserDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUserDetails;
-
-        /// <summary>
-        /// submitPreference control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitPreference;
-
-        /// <summary>
-        /// submitErrorMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label submitErrorMsg;
+        protected global::System.Web.UI.WebControls.GridView gvUsersProfile;
     }
 }

@@ -9,7 +9,7 @@
             <h1 class="text-center text-sm-left">Notification Preference</h1>
 
             <hr />
-             <asp:Panel ID="pnlAdd" runat="server" Visible="false">
+            <asp:Panel ID="pnlAdd" runat="server" Visible="false">
 
                 <div class="portlet-body">
                     <div class="data__table data__table-height">
@@ -19,53 +19,49 @@
                                 <asp:BoundField DataField="RowNumber" HeaderText="No." />
                                 <asp:TemplateField HeaderText="Task Type" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                         <asp:DropDownList runat="server" ID="ddlTasks" AutoPostBack="true" OnSelectedIndexChanged="ddlTasks_SelectedIndexChanged" CssClass="custom__dropdown input__control-auto robotomd">
-                                <asp:ListItem Text="Select Task Type" Value="0" Selected="True" disabled="disabled" />
-                                <asp:ListItem Value="Germination" Text="Germination Count" />
-                                <asp:ListItem Value="Fertilizer" Text="Fertilization" />
-                                <asp:ListItem Value="Chemical" Text="Chemical" />
-                                <asp:ListItem Value="Irrigation" Text="Irrigation" />
-                                <asp:ListItem Value="PlantReady" Text="Plant Ready" />
-                                <asp:ListItem Value="Move" Text="Move Request" />
-                                <asp:ListItem Value="Dump" Text="Dump" />
-                                <asp:ListItem Value="GeneralTask" Text="General Task" />
-                            </asp:DropDownList>
+                                        <asp:DropDownList ID="ddlTasks" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTasks_SelectedIndexChanged" CssClass="custom__dropdown input__control-auto robotomd">
+                                             <asp:ListItem Text="Select Task Type" Value="0" Selected="True" disabled="disabled" />
+                                            <asp:ListItem Value="Germination" Text="Germination Count" />
+                                            <asp:ListItem Value="Fertilizer" Text="Fertilization" />
+                                            <asp:ListItem Value="Chemical" Text="Chemical" />
+                                            <asp:ListItem Value="Irrigation" Text="Irrigation" />
+                                            <asp:ListItem Value="PlantReady" Text="Plant Ready" />
+                                            <asp:ListItem Value="Move" Text="Move Request" />
+                                            <asp:ListItem Value="Dump" Text="Dump" />
+                                            <asp:ListItem Value="GeneralTask" Text="General Task" />
+                                        </asp:DropDownList>
+                                        
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlTasks" ValidationGroup="e"
                                             InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Select Task" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        <asp:HiddenField ID="hdnCode" runat="server" Value='<%# Eval("Task")%>' />
+                                        <asp:HiddenField ID="hdnCode" runat="server" Value='<%# Eval("TaskType")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Users">
                                     <ItemTemplate>
-                                        <asp:DropDownList ID="ddlCrop" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlCrop" ValidationGroup="e"
-                                            InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Crop" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        <asp:HiddenField ID="hdnCrop" runat="server" Value='<%# Eval("Crop")%>' />
+                                        <asp:DropDownList ID="ddlUsers" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlUsers" ValidationGroup="e"
+                                            InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Select User" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:HiddenField ID="hdnId" runat="server" Value='<%# Eval("UserName")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                            
+
                                 <asp:TemplateField HeaderText="Activity Code" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:DropDownList ID="ddlActivityCode" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlActivityCode" ValidationGroup="e"
-                                            InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Enter Activity Code" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        <asp:HiddenField ID="hdnActivityCode" runat="server" Value='<%# Eval("ActivityCode")%>' />
+                                           <asp:CheckBox ID="chkApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server"></asp:CheckBox>
+                                                <asp:CheckBox ID="chkEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server"></asp:CheckBox>
+                                        <asp:HiddenField ID="hdnApp" runat="server" Value='<%# Eval("IsApp")%>' />
+                                        <asp:HiddenField ID="hdnEmail" runat="server" Value='<%# Eval("IsEmail")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Date Shift" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
-                                        <asp:TextBox ID="txtDateShift" class="custom__dropdown robotomd" runat="server"></asp:TextBox>
-                                        <asp:HiddenField ID="hdnDateShift" runat="server" Value='<%# Eval("DateShift")%>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
                                         <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
-
                                     </ItemTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <FooterTemplate>
-                                        <asp:Button ID="ButtonAdd" OnClick="btAdd_Click" runat="server" CausesValidation="true" ValidationGroup="e"
+
+                                        <asp:Button ID="ButtonAdd" OnClick="ButtonAdd_Click" runat="server" CausesValidation="true" ValidationGroup="e"
                                             Text="Add Row" CssClass="bttn bttn-primary bttn-action" />
                                     </FooterTemplate>
                                 </asp:TemplateField>
@@ -91,51 +87,92 @@
                 <div class="filter__row d-flex">
                     <div class="row">
                         <div class="col m3">
-                            <label>Code </label>
-
-                            <asp:DropDownList ID="ddlCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                            <label>Task Type </label>
+                            <asp:DropDownList runat="server" ID="ddlTTypes" AutoPostBack="true" OnSelectedIndexChanged="ddlTasks_SelectedIndexChanged" CssClass="custom__dropdown input__control-auto robotomd">
+                                            <asp:ListItem Text="Select Task Type" Value="0" Selected="True" disabled="disabled" />
+                                            <asp:ListItem Value="Germination" Text="Germination Count" />
+                                            <asp:ListItem Value="Fertilizer" Text="Fertilization" />
+                                            <asp:ListItem Value="Chemical" Text="Chemical" />
+                                            <asp:ListItem Value="Irrigation" Text="Irrigation" />
+                                            <asp:ListItem Value="PlantReady" Text="Plant Ready" />
+                                            <asp:ListItem Value="Move" Text="Move Request" />
+                                            <asp:ListItem Value="Dump" Text="Dump" />
+                                            <asp:ListItem Value="GeneralTask" Text="General Task" />
+                                        </asp:DropDownList>
                         </div>
-                        <div class="col m3">
-                            <label>Crop </label>
+                        
+                         <div class="col-auto align-self-end">
+                            <%--<asp:Button ID="Button1" Text="Reset" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnClear_Click" />--%>
+                            <asp:Button runat="server" ID="submitPreference" Text="Update Preferences" disabled="disabled" CssClass="submit-bttn bttn bttn-primary w-auto" OnClick="submitPreference_Click" />
 
-                            <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                        </div>
-                        <div class="col m3">
-                            <label>Tray Code </label>
-
-                            <asp:DropDownList ID="ddlTrayCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlTrayCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                        </div>
-                        <div class="col m3">
-                            <label>Activity Code </label>
-
-                            <asp:DropDownList ID="ddlActivityCode" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlActivityCode_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                         </div>
 
-<%--                        <div class="col-auto align-self-end">
-                            <asp:Button ID="btnSearch" Text="Search" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSearch_Click" />
-                        </div>--%>
-                        <div class="col-auto align-self-end">
-                            <asp:Button ID="btnSave" Text="Save" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSave_Click" />
-                        </div>
                         <div class="col-auto align-self-end">
                             <asp:Button ID="btnClear" Text="Reset" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnClear_Click" />
                         </div>
                         <div class="col-auto align-self-end">
                             <asp:Button ID="btnAddProfile" Text="Add" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnAddProfile_Click" />
                         </div>
-                         <div class="col-auto align-self-end">
-                            <asp:Button ID="btnAddDateNo" Text="Add No" Visible="false" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnAddDateNo_Click" />
-                        </div>
-                         <div class="col-auto align-self-end">
-                            <asp:Button ID="btnUpdateDateno" Text="Update No"  class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnUpdateDateno_Click" />
-                        </div>
+                      
                     </div>
                 </div>
             </asp:Panel>
 
+              <div class="filter__row d-flex">
+                <div class="row justify-content-lg-center">
+                    <div class=" col m12">
+                        <div class="portlet light ">
+                            <asp:Label runat="server" Text="" ID="count"></asp:Label>
+                            <div class="portlet-body">
+                                <div class="data__table data__table-height">
 
+                                    <asp:GridView ID="gvUsersProfile" runat="server" AutoGenerateColumns="False"
+                                        class="striped" OnRowCommand="gvUsersProfile_RowCommand"  
+                                        GridLines="None"
+                                        ShowHeaderWhenEmpty="True" Width="100%">
+                                        <Columns>
 
-            <div class="admin__form">
+                                            <asp:TemplateField HeaderText="Task Type" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                     <asp:Label ID="lblTask" runat="server" Text='<%# Eval("TaskType")   %>'></asp:Label>
+                                                <asp:Label ID="NPId" runat="server" Text='<%# Eval("ID")   %>' Visible="false"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Users" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                   <asp:Label ID="lblUserName" runat="server" Text='<%# Eval("UserName")   %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Send Via" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                     <asp:CheckBox ID="viaApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server"></asp:CheckBox>
+                                                    <asp:CheckBox ID="viaEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server"></asp:CheckBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                                                              
+                                            <asp:TemplateField HeaderText="" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" CommandArgument='<%# Eval("id")  %>' ID="btnDelete" runat="server" CssClass="bttn bttn-primary bttn-action" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
+                                        <EmptyDataTemplate>
+                                            No Record Available
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+          <%--  <div class="admin__form">
                 <div class="row">
                     <div class="col-lg-6 col-12">
                         <label>
@@ -154,7 +191,6 @@
                             </asp:DropDownList>
                         </label>
 
-                        <%--<div class="col-lg-6 col-12 mt-0 mt-lg-0">--%>
                         <div class="portlet-body">
 
                             <h3>Assigned Notifications</h3>
@@ -183,9 +219,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Send Via" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="20%">
                                             <ItemTemplate>
-                                                <%--<asp:Label ID="lblSendVia" runat="server" Text='<%# Eval("SendType")   %>'></asp:Label>--%>
-                                                <asp:CheckBox ID="chkApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server"></asp:CheckBox>
-                                                <asp:CheckBox ID="chkEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server"></asp:CheckBox>
+                                             
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -208,9 +242,21 @@
                                     </EmptyDataTemplate>
                                 </asp:GridView>
                             </div>
-                        </div>
+                        </div>                        
 
-                        <%--                        <label class="mb-0">
+                        <asp:Button runat="server" ID="submitPreference" Text="Update Preferences" disabled="disabled" CssClass="submit-bttn bttn bttn-primary w-auto" OnClick="submitPreference_Click" />
+                        <asp:Label runat="server" ID="submitErrorMsg" Visible="false" ForeColor="Red" Font-Bold="true"></asp:Label>
+                    </div>
+                </div>
+            </div>--%>
+
+
+        </div>
+    </div>
+
+
+</asp:Content>
+<%--                        <label class="mb-0">
                             <h3>Send Notification to:</h3>
                         </label>
 
@@ -331,14 +377,3 @@
                                 </tr>
                             </table>
                         </div>--%>
-
-                        <asp:Button runat="server" ID="submitPreference" Text="Update Preferences" disabled="disabled" CssClass="submit-bttn bttn bttn-primary w-auto" OnClick="submitPreference_Click" />
-                        <asp:Label runat="server" ID="submitErrorMsg" Visible="false" ForeColor="Red" Font-Bold="true"></asp:Label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</asp:Content>
