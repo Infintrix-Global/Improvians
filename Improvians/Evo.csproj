@@ -336,8 +336,10 @@
     <Content Include="images\favicon\apple-icon.png" />
     <Content Include="images\icons\icon-checkbox.svg" />
     <Content Include="images\icons\icon-dropdown.svg" />
+    <Content Include="images\icons\icon-ppt.svg" />
     <Content Include="images\icons\icon-radio.svg" />
     <Content Include="images\icons\icon-search.svg" />
+    <Content Include="images\icons\icon-video.png" />
     <Content Include="images\splash\apple_splash_1125.png" />
     <Content Include="images\splash\apple_splash_1242.png" />
     <Content Include="images\splash\apple_splash_1536.png" />
