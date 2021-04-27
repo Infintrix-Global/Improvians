@@ -66,6 +66,7 @@ namespace Evo
             {
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
                 ddlMethod.SelectedItem.Text = dt.Rows[0]["Method"].ToString();
+                txtComments.Text = dt.Rows[0]["Comments"].ToString();
             }
         }
 

@@ -407,6 +407,7 @@ namespace Evo
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
             //    Quantity
                 txtQty.Text= dt.Rows[0]["Quantity"].ToString();
+                
             }
         }
 
