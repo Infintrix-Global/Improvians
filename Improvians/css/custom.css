@@ -1225,10 +1225,6 @@ textarea.input__control {
     color: #222222;
 }
 
-.inline__fields {
-    min-width: 92px;
-}
-
 .field__blank {
     min-width: 185px;
     border-bottom: 1px solid;
@@ -1814,6 +1810,4 @@ textarea.input__control {
     .page__us .data__table th  {
         padding: 3px 5px;
     }
-
-    .page__us .inline__fields-signs { min-width: 99px; }
 }
