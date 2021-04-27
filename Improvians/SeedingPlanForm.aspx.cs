@@ -104,6 +104,7 @@ namespace Evo
                 lblTotal.Text = dtOnlyLeftWO.Rows.Count.ToString() + " Records";
                 DGJob.DataSource = dtOnlyLeftWO;
                 DGJob.DataBind();
+                ViewState["data"] = dtOnlyLeftWO;
             }
             else
             {
@@ -130,7 +131,8 @@ namespace Evo
         }
         protected void BtnPrint_Click(object sender, EventArgs e)
         {
-
+            DataTable dt =(DataTable) ViewState["data"];
+            ExportToPdf(dt);
         }
 
         private static void DrawLine(PdfWriter writer, float x1, float y1, float x2, float y2, BaseColor color)
@@ -158,7 +160,7 @@ namespace Evo
                     PdfTable.TotalWidth = 200f;
                     PdfTable.LockedWidth = true;
 
-                    PdfPCell PdfPCell = new PdfPCell(new Phrase(new Chunk("Employee Details", font18)));
+                    PdfPCell PdfPCell = new PdfPCell(new Phrase(new Chunk("Performance Program Log Sheet", font18)));
                     PdfPCell.Border = Rectangle.NO_BORDER;
                     PdfTable.AddCell(PdfPCell);
                     DrawLine(writer, 25f, pdfDoc.Top - 30f, pdfDoc.PageSize.Width - 25f, pdfDoc.Top - 30f, new BaseColor(System.Drawing.Color.Red));
@@ -184,7 +186,7 @@ namespace Evo
                 }
                 pdfDoc.Close();
                 Response.ContentType = "application/pdf";
-                Response.AddHeader("content-disposition", "attachment; filename=dsejReport_" + DateTime.Now.Date.Day.ToString() + DateTime.Now.Date.Month.ToString() + DateTime.Now.Date.Year.ToString() + DateTime.Now.Date.Hour.ToString() + DateTime.Now.Date.Minute.ToString() + DateTime.Now.Date.Second.ToString() + DateTime.Now.Date.Millisecond.ToString() + ".pdf");
+                Response.AddHeader("content-disposition", "attachment; filename=SeedlinePlanning_" + DateTime.Now.Date.Day.ToString() + DateTime.Now.Date.Month.ToString() + DateTime.Now.Date.Year.ToString() + DateTime.Now.Date.Hour.ToString() + DateTime.Now.Date.Minute.ToString() + DateTime.Now.Date.Second.ToString() + DateTime.Now.Date.Millisecond.ToString() + ".pdf");
                 System.Web.HttpContext.Current.Response.Write(pdfDoc);
                 Response.Flush();
                 Response.End();
