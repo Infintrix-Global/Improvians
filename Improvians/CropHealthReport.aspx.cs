@@ -89,6 +89,8 @@ namespace Evo
                 BindFertilizer();
               
                 BindChemical();
+                BinCauseofproblem();
+                BindTypeofproblem();
                 txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -178,7 +180,30 @@ namespace Evo
             }
         }
 
+        public void BindTypeofproblem()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@mode", "23");
 
+            ddlpr.DataSource = objCommon.GetDataTable("GET_Common", nv);
+            ddlpr.DataTextField = "TypeOfProblem";
+            ddlpr.DataValueField = "TypeOfProblem";
+            ddlpr.DataBind();
+            ddlpr.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+
+        public void BinCauseofproblem()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@mode", "23");
+
+            DropDownListCause.DataSource = objCommon.GetDataTable("GET_Common", nv);
+            DropDownListCause.DataTextField = "CauseOfProblem";
+            DropDownListCause.DataValueField = "CauseOfProblem";
+            DropDownListCause.DataBind();
+            DropDownListCause.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
         public void BindGridCropHealth()
         {
             DataTable dt = new DataTable();
@@ -678,16 +703,17 @@ namespace Evo
             result16 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
             objGeneral.SendMessage(int.Parse(Assign), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Fertilizer");
 
-            string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            //string message = "Assignment Successful";
+            //string url = "MyTaskGrower.aspx";
+            //string script = "window.onload = function(){ alert('";
+            //script += message;
+            //script += "');";
+            //script += "window.location = '";
+            //script += url;
+            //script += "'; }";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
         }
 
         protected void btnFSubmit_Click(object sender, EventArgs e)
@@ -813,17 +839,19 @@ namespace Evo
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 objGeneral.SendMessage(int.Parse(Assign), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
 
-                string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                //string message = "Assignment Successful";
+                //string url = "MyTaskGrower.aspx";
+                //string script = "window.onload = function(){ alert('";
+                //script += message;
+                //script += "');";
+                //script += "window.location = '";
+                //script += url;
+                //script += "'; }";
+                //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 // lblmsg.Text = "Assignment Successful";
                 //  clear();
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
             }
             else
             {
@@ -1037,15 +1065,16 @@ namespace Evo
             objGeneral.SendMessage(int.Parse(Assign), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
 
 
-            string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            //string message = "Assignment Successful";
+            //string url = "MyTaskGrower.aspx";
+            //string script = "window.onload = function(){ alert('";
+            //script += message;
+            //script += "');";
+            //script += "window.location = '";
+            //script += url;
+            //script += "'; }";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
         }
 
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
@@ -1174,15 +1203,16 @@ namespace Evo
             result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv111);
             objGeneral.SendMessage(int.Parse(Assign), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
 
-            string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            //string message = "Assignment Successful";
+            //string url = "MyTaskGrower.aspx";
+            //string script = "window.onload = function(){ alert('";
+            //script += message;
+            //script += "');";
+            //script += "window.location = '";
+            //script += url;
+            //script += "'; }";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
         }
         protected void btnplant_readySubmit_Click(object sender, EventArgs e)
         {
@@ -1530,15 +1560,16 @@ namespace Evo
 
             objGeneral.SendMessage(int.Parse(Assign), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
 
-            string message = "Assignment Successful";
-            string url = "MyTaskGrower.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            //string message = "Assignment Successful";
+            //string url = "MyTaskGrower.aspx";
+            //string script = "window.onload = function(){ alert('";
+            //script += message;
+            //script += "');";
+            //script += "window.location = '";
+            //script += url;
+            //script += "'; }";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
         }
 
         protected void btnChemicalSubmit_Click(object sender, EventArgs e)
@@ -1716,17 +1747,19 @@ namespace Evo
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 objGeneral.SendMessage(int.Parse(Assign), "New Move Task Assigned", "New Move Task Assigned", "Move");
 
-                string message = "Assignment Successful";
-                string url = "MyTaskGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                //string message = "Assignment Successful";
+                //string url = "MyTaskGrower.aspx";
+                //string script = "window.onload = function(){ alert('";
+                //script += message;
+                //script += "');";
+                //script += "window.location = '";
+                //script += url;
+                //script += "'; }";
+                //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 // lblmsg.Text = "Assignment Successful";
                 //  clear();
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
             }
             else
             {

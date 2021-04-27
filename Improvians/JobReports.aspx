@@ -396,7 +396,7 @@
 
                     <div class="task_request-buttons">
 
-                        <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click1">
+                        <asp:LinkButton runat="server" ID="btngermination" ForeColor="Black" class="request__block-head collapsed" OnClick="btngermination_Click">
                               <span class="">
                                 <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count" />
                                 Germination Count

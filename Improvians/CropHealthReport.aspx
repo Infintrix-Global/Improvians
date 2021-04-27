@@ -124,7 +124,7 @@
                                                 <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
-                                                 <asp:Label ID="lblj_id" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
+                                                <asp:Label ID="lblj_id" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
 
 
                                             </ItemTemplate>
@@ -275,11 +275,6 @@
                         <div class="col-lg-3">
                             <label>Type of problem</label><span style="color: red">*</span>
                             <asp:DropDownList ID="ddlpr" runat="server" class="custom__dropdown robotomd">
-                                <asp:ListItem Value="0">Select</asp:ListItem>
-                                <asp:ListItem Value="1"><%--Germination--%></asp:ListItem>
-                                <asp:ListItem Value="2">Irrigation</asp:ListItem>
-                                <asp:ListItem Value="3">Seeding</asp:ListItem>
-                                <asp:ListItem Value="4">Soil</asp:ListItem>
                             </asp:DropDownList>
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlpr" ValidationGroup="x"
@@ -290,11 +285,10 @@
                         <div class="col-lg-3">
                             <label>Cause of problem</label><span style="color: red">*</span>
                             <asp:DropDownList ID="DropDownListCause" runat="server" class="custom__dropdown robotomd">
-                                <asp:ListItem Value="0">Select</asp:ListItem>
+                                <%--   <asp:ListItem Value="0">Select</asp:ListItem>
                                 <asp:ListItem Value="1">Cause1</asp:ListItem>
                                 <asp:ListItem Value="2">Cause2</asp:ListItem>
-                                <asp:ListItem Value="3">Cause3</asp:ListItem>
-
+                                <asp:ListItem Value="3">Cause3</asp:ListItem>--%>
                             </asp:DropDownList>
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownListCause" ValidationGroup="x"
@@ -396,14 +390,7 @@
 
                     </div>
                     <br />
-                    <div class="row">
-                        <div class="col-auto">
 
-                            <asp:Button Text="Save for later" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
-
-                            <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
-                        </div>
-                    </div>
                 </asp:Panel>
 
 
@@ -498,7 +485,7 @@
                             <div class="row">
                                 <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
                                     <asp:Button Text="Submit" ID="btngerminationSumit" CssClass="bttn bttn-primary bttn-action" OnClick="btngerminationSumit_Click" runat="server" />
-                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnBSaveSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnBSaveSubmit_Click" />
+                                    <asp:Button Text="Save for later" CausesValidation="true" Visible="false" ID="btnBSaveSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnBSaveSubmit_Click" />
                                     <asp:Button Text="Reset" ID="btngerminationReset" runat="server" OnClick="btngerminationReset_Click" CssClass="bttn bttn-primary bttn-action" />
                                 </div>
                             </div>
@@ -573,11 +560,11 @@
 
 
                                 <asp:Button Text="Submit" CausesValidation="true" ID="btnFSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnFSubmit_Click" />
-                                <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveFLSubmit" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveFLSubmit_Click" />
+                                <asp:Button Text="Save for later" CausesValidation="true"  Visible="false" ID="btnSaveFLSubmit" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveFLSubmit_Click" />
                                 <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnFReset_Click" />
 
 
-                              
+
                             </div>
 
                         </div>
@@ -640,7 +627,7 @@
                                     <div class="w-100"></div>
                                     <div class="col-auto">
                                         <asp:Button Text="Submit" CausesValidation="true" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnChemicalSubmit_Click" />
-                                        <asp:Button Text="Save for later" CausesValidation="true" ID="btnChemicalSFLSubmit" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnChemicalSFLSubmit_Click" />
+                                        <asp:Button Text="Save for later"  Visible="false" CausesValidation="true" ID="btnChemicalSFLSubmit" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnChemicalSFLSubmit_Click" />
                                         <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnChemicalReset_Click" />
                                     </div>
                                 </div>
@@ -693,7 +680,7 @@
                                 <div class="mb-xl-3 col-12 col-xl-6 align-self-end">
 
                                     <asp:Button Text="Submit" ID="btnirrigationSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnirrigationSubmit_Click" />
-                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveirrigation" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveirrigation_Click" />
+                                    <asp:Button Text="Save for later"  Visible="false" CausesValidation="true" ID="btnSaveirrigation" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveirrigation_Click" />
                                     <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnirrigationReset_Click1" />
 
                                 </div>
@@ -727,7 +714,7 @@
                                 <div class="d-none d-sm-block w-100"></div>
                                 <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                                     <asp:Button Text="Submit" ID="btnplant_readySubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnplant_readySubmit_Click" />
-                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnSavePlantReady" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSavePlantReady_Click" />
+                                    <asp:Button Text="Save for later"  Visible="false" CausesValidation="true" ID="btnSavePlantReady" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSavePlantReady_Click" />
                                     <asp:Button Text="Reset" ID="btnplant_readyReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnplant_readyReset_Click" />
 
                                 </div>
@@ -796,7 +783,7 @@
                                 <div class="row">
                                     <div class="col-auto">
                                         <asp:Button Text="Submit" ValidationGroup="e" ID="btnMoveSubmit" OnClick="btnMoveSubmit_Click" CssClass="bttn bttn-primary bttn-action" runat="server" />
-                                        <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveMove" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveMove_Click" />
+                                        <asp:Button Text="Save for later"  Visible="false" CausesValidation="true" ID="btnSaveMove" CssClass="submit-bttn bttn bttn-primary" runat="server" OnClick="btnSaveMove_Click" />
                                         <asp:Button Text="Reset" ID="MoveReset" runat="server" OnClick="MoveReset_Click" CssClass="bttn bttn-primary bttn-action" />
                                     </div>
                                 </div>
@@ -831,7 +818,7 @@
                                 </div>--%>
                                 <div class="mb-3 col-12 align-self-end">
                                     <asp:Button Text="Submit" ID="btnDumpSumbit" CssClass="bttn bttn-primary bttn-action" runat="server" />
-                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveDump" CssClass="submit-bttn bttn bttn-primary" runat="server" />
+                                    <asp:Button Text="Save for later"  Visible="false" CausesValidation="true" ID="btnSaveDump" CssClass="submit-bttn bttn bttn-primary" runat="server" />
                                     <asp:Button Text="Reset" ID="btnDumpReset" runat="server" CssClass="bttn bttn-primary bttn-action" />
                                 </div>
                             </div>
@@ -934,12 +921,12 @@
                                                         <div style="margin-top: 5%;">
                                                             <asp:Button Text="Send Email" ID="btnSendMail" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSendMail_Click" Visible="false" />
                                                             <asp:Button Text="Submit" ID="btnGeneralSubmit" type="submit" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralSubmit_Click" runat="server" />
-                                                            <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveGeneral" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSaveGeneral_Click" />
+                                                            <asp:Button Text="Save for later"  Visible="false" CausesValidation="true" ID="btnSaveGeneral" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSaveGeneral_Click" />
                                                             <asp:Button Text="Reset" ID="btnGeneralReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnGeneralReset_Click" />
 
 
 
-                                                               
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -952,6 +939,15 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-auto">
+
+                    <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
+
+                    <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                 </div>
             </div>
         </div>
