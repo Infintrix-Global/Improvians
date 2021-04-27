@@ -44,30 +44,30 @@
                                                     <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
                                                     <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
-                                           
+                                            </asp:TemplateField>                                           
                                             <asp:TemplateField HeaderText="Customer Name" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label7" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
                                              <asp:TemplateField HeaderText="User Name" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label11" runat="server" Text='<%# Eval("EmployeeCode")  %>'></asp:Label>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
-                                           
+                                            </asp:TemplateField>                                           
                                             <asp:TemplateField HeaderText="Email" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label9" runat="server" Text='<%# Eval("Email")  %>'></asp:Label>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
-
-                                           
+                                            </asp:TemplateField>                                           
                                              <asp:TemplateField HeaderText="Navision Customer ID" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label8" runat="server" Text='<%# Eval("NavisionCustomerID")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                               <asp:TemplateField HeaderText="Sales Representative" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Sales")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">

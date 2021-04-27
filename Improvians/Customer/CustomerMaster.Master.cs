@@ -13,7 +13,7 @@ namespace Evo
         {
             if (Session["LoginID"] == null)
             {
-                Response.Redirect("~/Login.aspx");
+                Response.Redirect("~/CustomerLogin.aspx");
             }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -21,6 +21,10 @@ namespace Evo
             if (!IsPostBack)
             {
                 lblEmpName.Text = Session["EmployeeName"].ToString();
+                if (!string.IsNullOrEmpty(Session["Photo"].ToString()))
+                {
+                    imgprofilepic.ImageUrl = @"~\EmployeeProfile\" + Session["Photo"].ToString();
+                }
             }
         }
     }

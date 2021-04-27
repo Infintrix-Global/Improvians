@@ -24,7 +24,7 @@ namespace Evo.Admin
                 int x = Convert.ToInt32(eid);
                 BindSales();
                 bindEmployeeProfile(x);
-               
+
             }
         }
         private void BindSales()
@@ -131,9 +131,9 @@ namespace Evo.Admin
                 {
                     lblProfile.Text = dt1.Tables[0].Rows[0]["Photo"].ToString();
                     lblProfile.Visible = false;
-                    ImageProfile.ImageUrl = @"~\Admin\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
+                    ImageProfile.ImageUrl = @"..\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
                     txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
-                    ddlSales.SelectedValue = "0";// dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
+                    ddlSales.SelectedValue = GetSalesForCustomer();// dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
                     txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();
                     txtNavisionID.Text = dt1.Tables[0].Rows[0]["NavisionCustomerID"].ToString();
                     txtMobile.Text = dt1.Tables[0].Rows[0]["Mobile"].ToString();
@@ -148,6 +148,17 @@ namespace Evo.Admin
             }
         }
 
+        private string GetSalesForCustomer()
+        {
+            string sqr = "Select SalesID from CustomerSalesMapping where CustomerID=" + Session["EmployeeID"].ToString();
+            General objGeneral = new General();
+            DataTable dt= objGeneral.GetDatasetByCommand(sqr);
+            if (dt != null && dt.Rows.Count > 0)
+                return dt.Rows[0][0].ToString();
+            else
+                return "0";
+
+        }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -180,7 +191,7 @@ namespace Evo.Admin
 
                     lblmsg.Text = "Customer Updated ";
                     lblmsg.ForeColor = System.Drawing.Color.Green;
-
+                    objCommon.AddCustomerSalesMapping(Convert.ToInt32(Session["EmployeeID"].ToString()), Convert.ToInt32(ddlSales.SelectedValue));
                     Response.Redirect("~/Admin/ViewCustomer.aspx");
 
                 }

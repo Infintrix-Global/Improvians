@@ -46,7 +46,7 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                            
-                                            <asp:TemplateField HeaderText="Customer Name" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
+                                            <asp:TemplateField HeaderText="Sales Representative Name" HeaderStyle-CssClass="autostyle2" SortExpression="EmployeeName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label7" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                                 </ItemTemplate>
@@ -58,12 +58,16 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
                                            
-                                            <asp:TemplateField HeaderText="Email" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Mobile" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="Label9" runat="server" Text='<%# Eval("Email")  %>'></asp:Label>
+                                                    <asp:Label ID="Label9" runat="server" Text='<%# Eval("Mobile")  %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                                                                     
+                                            <asp:TemplateField HeaderText="Email" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label10" runat="server" Text='<%# Eval("Email")  %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>                                             
                                          
                                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
