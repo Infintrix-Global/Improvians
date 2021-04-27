@@ -18,14 +18,13 @@ namespace Evo.Admin
         {
             if (!IsPostBack)
             {
-
                 GetEmployeeList();
             }
         }
         public void GetEmployeeList()
         {
             DataTable dt = new DataTable();
-            string sqr = "Select * from Login L  where L.IsActive=1 and L.RoleID=13";
+            string sqr = "Select L.*,L1.EmployeeName as Sales from Login L left outer join CustomerSalesMapping C on L.ID=C.CustomerID  left outer join Login L1 on C.SalesID=L1.ID where L.IsActive=1 and L.RoleID=13";
 
             dt = objGeneral.GetDatasetByCommand(sqr);
             GridEmployee.DataSource = dt;
@@ -91,7 +90,7 @@ namespace Evo.Admin
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             DataTable dtSearch1;
-            string sqr = "Select * from Login L  inner join Role R on L.RoleID=R.RoleID where L.IsActive=1 and L.RoleID=13";
+            string sqr = "Select L.*,L1.EmployeeName as Sales from Login L left outer join CustomerSalesMapping C on L.ID=C.CustomerID  left outer join Login L1 on C.SalesID=L1.ID where L.IsActive=1 and L.RoleID=13";
             if (txtName.Text != "")
             {
                 sqr += "and L.EmployeeName like '%' +'" + txtName.Text + "'+ '%'";

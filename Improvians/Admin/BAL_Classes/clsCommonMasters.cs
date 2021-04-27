@@ -533,6 +533,24 @@ namespace Evo.Admin
             }
             return _isInserted;
         }
+        public int AddCustomerSalesMapping(int CustomerID,int SalesID)
+        {
+            int _isInserted = -1;
+            try
+            {
+                General objGeneral = new General();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@CustomerID", CustomerID);
+                objGeneral.AddParameterWithValueToSQLCommand("@SalesID", SalesID);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddCustomerSalesMapping");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
 
         public int UpdateChemical(ChemicalMasters obj)
         {

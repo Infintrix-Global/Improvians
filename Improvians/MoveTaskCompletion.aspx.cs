@@ -53,7 +53,7 @@ namespace Evo
                 PanelAdd.Visible = false;
                 GridMoveComplition.DataSource = dt1;
                 GridMoveComplition.DataBind();
-                lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
+               
             }
 
         }
@@ -113,7 +113,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetTaskAssignmentMoveView", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
-            lblReqUser.Text = dt.Rows[0]["EmployeeName"].ToString();
+         
         }
 
         public void BindPlantReady()

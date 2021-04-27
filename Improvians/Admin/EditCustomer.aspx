@@ -121,7 +121,10 @@
                     <div class="col-md-6 col-xl-5 order-md-1">
                          <label>
                             <h3>Sales Representative</h3>
-                            <asp:DropDownList ID="ddlSales" runat="server" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>                           
+                            <asp:DropDownList ID="ddlSales" runat="server" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>    
+                              <span class="error_message">-    
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlSales" InitialValue="0" ErrorMessage="Please Select Sales Representative" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                            </span>
                         </label>
                     </div>
 

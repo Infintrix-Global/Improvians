@@ -246,7 +246,7 @@
 
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Assigned by">
+                                                    <asp:TemplateField HeaderText="Completed By">
                                                         <ItemTemplate>
 
                                                             <asp:Label ID="lblCAassignedTo" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>

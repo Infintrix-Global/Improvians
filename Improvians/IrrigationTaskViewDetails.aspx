@@ -234,7 +234,7 @@
 
             <asp:Panel ID="PanlTaskComplition" runat="server">
                 <h2 class="text-left">
-                       Completion Form  </h2>
+                       Completion   </h2>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewCompletion"
@@ -247,7 +247,7 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Assigned By">
+                                     <asp:TemplateField HeaderText="Completed By">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>

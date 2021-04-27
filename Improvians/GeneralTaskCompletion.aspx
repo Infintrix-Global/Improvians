@@ -184,7 +184,7 @@
 
                 <h2 class="text-left">
                     <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>
-                 Completion Form  </h2>
+                    Completion Form  </h2>
                 <br />
                 <div class="portlet-body">
                     <div class="data__table">
@@ -193,6 +193,20 @@
                             GridLines="None"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
+
+                                <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Completed By">
+                                    <ItemTemplate>
+
+                                        <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
