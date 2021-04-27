@@ -1791,6 +1791,11 @@ textarea.input__control {
         background: #ffffff;
     }
 
+    .page__us {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
     .page__us .custom__dropdown, .page__us .filter__control, .page__us .input__control {
         height: 40px;
         line-height: 40px;
