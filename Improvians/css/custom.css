@@ -1226,7 +1226,7 @@ textarea.input__control {
 }
 
 .field__blank {
-    min-width: 185px;
+    min-width: 155px;
     border-bottom: 1px solid;
     height: 18px;
     text-align: center;
