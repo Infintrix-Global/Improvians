@@ -2853,5 +2853,23 @@ namespace Evo
 
 
         }
+
+        protected void chkSelect_CheckedChanged(object sender, EventArgs e)
+        {
+         
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    CheckBox chkRow = (row.Cells[0].FindControl("chkSelect") as CheckBox);
+                    if (chkRow.Checked)
+                    {
+                        string Trays = (row.FindControl("lblTotTray") as Label).Text;
+                        txtFTrays.Text = Trays;
+                        txtChemicalTrays.Text = Trays;
+                    }
+                }
+            }
+        }
     }
 }

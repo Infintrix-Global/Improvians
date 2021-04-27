@@ -31,6 +31,7 @@ namespace Evo
                 {
                     gtaID = Request.QueryString["GTAID"].ToString();
                     BindGridCalView(Request.QueryString["GTAID"].ToString());
+                    BindViewDetilas(Request.QueryString["GTAID"].ToString());
                 }
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
@@ -41,6 +42,20 @@ namespace Evo
                 BindGridGerm();
 
             }
+        }
+
+
+        public void BindViewDetilas(string GTAID)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@GTAID", GTAID.ToString());
+
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskRequestView", nv);
+            GridViewGermination.DataSource = dt;
+            GridViewGermination.DataBind();
+
         }
 
         public void BindGridCalView(string GTAID)
@@ -55,7 +70,7 @@ namespace Evo
                 userinput.Visible = false;
                 GridViewGDetails.DataSource = dt1;
                 GridViewGDetails.DataBind();
-                lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
+               // lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
 
             }
         }
