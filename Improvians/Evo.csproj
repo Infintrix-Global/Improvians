@@ -283,7 +283,6 @@
     <Content Include="Customer\images\rxicons-v1.0\fonts\rxicons.svg" />
     <Content Include="Customer\images\rxicons-v1.0\Read Me.txt" />
     <Content Include="Customer\images\rxicons-v1.0\style.css" />
-    <Content Include="Customer\images\support-passport-photo.jpg" />
     <Content Include="Customer\images\user-profile.jpg" />
     <Content Include="Customer\images\view.png" />
     <Content Include="Customer\js\aos.js" />
