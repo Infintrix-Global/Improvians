@@ -284,6 +284,7 @@
     <Content Include="Customer\images\rxicons-v1.0\fonts\rxicons.svg" />
     <Content Include="Customer\images\rxicons-v1.0\Read Me.txt" />
     <Content Include="Customer\images\rxicons-v1.0\style.css" />
+    <Content Include="Customer\images\support-passport-photo.jpg" />
     <Content Include="Customer\images\user-profile.jpg" />
     <Content Include="Customer\images\view.png" />
     <Content Include="Customer\js\aos.js" />
@@ -1352,6 +1353,7 @@
     <Content Include="Customer\fonts\Roboto-Regular.ttf" />
     <Content Include="Customer\fonts\Roboto-Regular.woff2" />
     <Content Include="Customer\fonts\selection.json" />
+    <Content Include="Customer\fonts\icons\selection.json" />
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
     <Content Include="Upload.ashx" />
