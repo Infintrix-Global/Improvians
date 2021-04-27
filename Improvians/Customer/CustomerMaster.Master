@@ -75,7 +75,7 @@
                             <i class="rxicon-icon-customer-support"></i>
                         </a>
                     </div>
-                    <div class="dropdown account__dropdown ml-auto">
+                    <div class="dropdown account__dropdown ml-3">
                         <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Profile">
                             <asp:Image ImageUrl="images/user-profile.jpg" alt="John Smith" Width="128" runat="server" ID="imgprofilepic" />
                         </div>
