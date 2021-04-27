@@ -103,7 +103,7 @@ namespace Evo.Admin
 
                         lblmsg.Text = "Customer Added ";
                         lblmsg.ForeColor = System.Drawing.Color.Green;
-                       
+                        objCommon.AddCustomerSalesMapping(_isInserted, Convert.ToInt32(ddlSales.SelectedValue));
                         Response.Redirect("~/Admin/ViewCustomer.aspx");
                         btclear_Click(sender, e);
                     }
