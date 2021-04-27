@@ -1220,27 +1220,39 @@ textarea.input__control {
 /*Performance Log Sheet*/
 .page__us {
     width: 100%;
-}
-
-.inline__fields {
-    min-width: 92px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #222222;
 }
 
 .field__blank {
-    min-width: 185px;
+    min-width: 155px;
     border-bottom: 1px solid;
-    height: 24px;
+    height: 18px;
     text-align: center;
 }
 
 .page__logo {
-    width: 100px;
+    width: 80px;
     height: auto;
 }
 .page__us .data__table {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.page__us .data__table tr:nth-child(even) td {
+    background: #e4fce4;
+}
+
+.page__us .data__table th, .page__us .data__table td {
+    padding: 0 11px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #222222;
+}
+
+.page__us .data__table tr:nth-child(odd) > th { background: #489d48; color: #ffffff; }
 
 /*Help Page STARTS*/
 .section__help {
@@ -1775,6 +1787,11 @@ textarea.input__control {
         background: #ffffff;
     }
 
+    .page__us {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
     .page__us .custom__dropdown, .page__us .filter__control, .page__us .input__control {
         height: 40px;
         line-height: 40px;
@@ -1785,14 +1802,12 @@ textarea.input__control {
     .page__us .data__table tr { page-break-after:always; }
     
     .page__us .data__table td, .page__us .data__table th {
-        padding: 1px 5px;
-        font-size: 10px;
-        line-height: 14px;
+        padding: 0 5px;
+        font-size: 8px;
+        line-height: 12px;
     }
 
     .page__us .data__table th  {
         padding: 3px 5px;
     }
-
-    .page__us .inline__fields-signs { min-width: 99px; }
 }

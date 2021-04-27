@@ -321,6 +321,7 @@ namespace Evo
                 string FCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
 
 
+
                 Response.Redirect(String.Format("~/FerJobBuildUp.aspx?Bench={0}&jobCode={1}&FCode={2}", BatchLocation, jobCode, FCode));
             }
 

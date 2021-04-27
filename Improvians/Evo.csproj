@@ -123,8 +123,6 @@
     <Content Include="Admin\css\aos.css" />
     <Content Include="Admin\css\bootstrap.min.css" />
     <Content Include="Admin\EditProfile.aspx" />
-    <Content Include="Admin\EmployeeProfile\data-privacy-and-security-features-you-should-know.jpg" />
-    <Content Include="Admin\EmployeeProfile\Screenshot %289%29.png" />
     <Content Include="Admin\ChemicalMaster.aspx" />
     <Content Include="Admin\FertilizerMaster.aspx" />
     <Content Include="Admin\fonts\icons\rxicons.svg" />
@@ -285,7 +283,6 @@
     <Content Include="Customer\images\rxicons-v1.0\fonts\rxicons.svg" />
     <Content Include="Customer\images\rxicons-v1.0\Read Me.txt" />
     <Content Include="Customer\images\rxicons-v1.0\style.css" />
-    <Content Include="Customer\images\support-passport-photo.jpg" />
     <Content Include="Customer\images\user-profile.jpg" />
     <Content Include="Customer\images\view.png" />
     <Content Include="Customer\js\aos.js" />
@@ -296,6 +293,11 @@
     <Content Include="Customer\js\popper.min.js" />
     <Content Include="Customer\js\slick.min.js" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="EmployeeProfile\0-ABCD.png" />
+    <Content Include="EmployeeProfile\data-privacy-and-security-features-you-should-know.jpg" />
+    <Content Include="EmployeeProfile\sales1.png" />
+    <Content Include="EmployeeProfile\sales2.png" />
+    <Content Include="EmployeeProfile\sales3.png" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="FertilizerTaskStart.aspx" />
     <Content Include="FertilizerTaskStart1.aspx" />
