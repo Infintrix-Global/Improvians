@@ -162,8 +162,8 @@
             <div class="portlet-body">
                 <br />
                 <h2 class="text-left">
-                    <asp:Label ID="lblReqUser" runat="server" Text=""></asp:Label>
-                   Task Request</h2>
+                  
+                    Task Request Flow</h2>
                 <div class="data__table">
 
                     <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
@@ -173,7 +173,28 @@
                         <Columns>
 
 
+                            <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                <ItemTemplate>
+                                    <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Assigned By">
+                                <ItemTemplate>
+
+                                    <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
+
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Assigned To">
+                                <ItemTemplate>
+
+                                    <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Plant Ready Work Date">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
@@ -202,8 +223,8 @@
                 <br />
                 <%-- <h2 class="text-left">Crop Health Report </h2>--%>
                 <h2 class="text-left">
-                    <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>
-                   Completion Form </h2>
+                   
+                    Completion  </h2>
                 <br />
                 <div class="portlet-body">
                     <div class="data__table">
@@ -212,6 +233,21 @@
                             GridLines="None"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
+                                
+                                    <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Completed By">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Updated Ready Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
