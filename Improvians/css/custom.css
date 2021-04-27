@@ -1232,12 +1232,12 @@ textarea.input__control {
 .field__blank {
     min-width: 185px;
     border-bottom: 1px solid;
-    height: 24px;
+    height: 18px;
     text-align: center;
 }
 
 .page__logo {
-    width: 100px;
+    width: 80px;
     height: auto;
 }
 .page__us .data__table {
@@ -1250,10 +1250,13 @@ textarea.input__control {
 }
 
 .page__us .data__table th, .page__us .data__table td {
-    padding: 6px 11px;
+    padding: 0 11px;
     font-size: 14px;
+    line-height: 20px;
     color: #222222;
 }
+
+.page__us .data__table tr:nth-child(odd) > th { background: #489d48; color: #ffffff; }
 
 /*Help Page STARTS*/
 .section__help {
@@ -1798,9 +1801,9 @@ textarea.input__control {
     .page__us .data__table tr { page-break-after:always; }
     
     .page__us .data__table td, .page__us .data__table th {
-        padding: 1px 5px;
-        font-size: 10px;
-        line-height: 14px;
+        padding: 0 5px;
+        font-size: 8px;
+        line-height: 12px;
     }
 
     .page__us .data__table th  {
