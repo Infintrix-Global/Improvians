@@ -1257,12 +1257,12 @@ textarea.input__control {
 .card-respresentative img {
     object-fit: cover;
     object-position: top center;
-    width: 100%;
     height: 100%;
+    max-width: 192px;
 }
 
 .rxicon-icon-customer-support {
-    font-size: 20px;
+    font-size: 26px;
     vertical-align: middle;
     color: #488949;
 }
