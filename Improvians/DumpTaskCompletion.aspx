@@ -169,9 +169,7 @@
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <br />
-                        <h2 class="text-left">
-                            <asp:Label ID="lblReqUser" runat="server" Text=""></asp:Label>
-                           Task Request </h2>
+                        <h2 class="text-left">Task Request Flow</h2>
 
                         <div class="portlet-body">
                             <div class="data__table">
@@ -180,6 +178,28 @@
                                     GridLines="None"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
+                                        <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                            <ItemTemplate>
+                                                <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Assigned By">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Assigned To">
+                                            <ItemTemplate>
+
+                                                <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                            </ItemTemplate>
+
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
@@ -212,9 +232,7 @@
 
                                 <br />
                                 <asp:Panel ID="PanelComplition" Visible="false" runat="server">
-                                    <h2 class="text-left">
-                                        <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>
-                                        Completion Form  </h2>
+                                    <h2 class="text-left">Completion  </h2>
                                     <div class="portlet-body">
                                         <div class="data__table">
                                             <asp:GridView ID="GridDumpComplition" runat="server" AutoGenerateColumns="False"
@@ -222,7 +240,22 @@
                                                 GridLines="None"
                                                 ShowHeaderWhenEmpty="True" Width="100%">
                                                 <Columns>
+                                                    <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Completed By">
+                                                        <ItemTemplate>
+
+                                                            <asp:Label ID="lblCAassignedTo" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                                        </ItemTemplate>
+
+                                                    </asp:TemplateField>
+
+                                                    
                                                     <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblCQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>

@@ -67,7 +67,7 @@ namespace Evo
                 PanelView.Visible = false;
                 GridPlantComplition.DataSource = dt1;
                 GridPlantComplition.DataBind();
-                lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
+             
             }
 
         }
@@ -94,7 +94,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytView", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
-            lblReqUser.Text = dt.Rows[0]["EmployeeName"].ToString();
+           
         }
         public void BindGridCropHealth(int Chid)
         {

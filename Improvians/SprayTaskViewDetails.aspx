@@ -176,8 +176,8 @@
                 <br />
                 <asp:Panel ID="pnlint" runat="server">
                     <h2 class="text-left">
-                        <asp:Label ID="lblReqUser" runat="server" Text=""></asp:Label>
-                        Task Request</h2>
+                     
+                         Task Request Flow</h2>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewDetails"
@@ -190,6 +190,23 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="Assigned By">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="Assigned To">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Fertilizer">
                                         <ItemTemplate>
                                             <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
@@ -262,8 +279,8 @@
                 <br />
                 <asp:Panel ID="PanlTaskComplition" runat="server">
                     <h2 class="text-left">
-                        <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>
-                        Completion Form </h2>
+                     
+                        Completion  </h2>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewCompletion"
@@ -276,7 +293,14 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Completed By">
+                                        <ItemTemplate>
 
+                                            <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Spray Date">
                                         <ItemTemplate>
 

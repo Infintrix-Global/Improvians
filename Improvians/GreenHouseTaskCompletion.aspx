@@ -208,14 +208,90 @@
             </asp:Panel>
 
 
+            <asp:Panel ID="Panel1" runat="server">
+                <br />
+                <h2 class="text-left"> Task Request Flow </h2>
+                <br />
+                <div class="portlet-body">
+                    <div class="data__table">
+                        <asp:GridView ID="GridViewGermination" runat="server" AutoGenerateColumns="False"
+                            class="striped" AllowSorting="true"
+                            GridLines="None"
+                            ShowHeaderWhenEmpty="True" Width="100%">
+                            <Columns>
+                                
+                            <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                <ItemTemplate>
+                                    <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Assigned By">
+                                <ItemTemplate>
+
+                                    <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
+
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Assigned To">
+                                <ItemTemplate>
+
+                                    <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Trays Inspected" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTraysInspecteda" runat="server" Text='<%# Eval("TraysInspected")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                             
+                             
+
+                                <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblInspectionDueDatea" runat="server" Text='<%# Eval("InspectionDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                   <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                            </Columns>
+
+                            <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                            <PagerSettings Mode="NumericFirstLast" />
+                            <EmptyDataTemplate>
+                                No Record Available
+                            </EmptyDataTemplate>
+                        </asp:GridView>
+
+                    </div>
+                    <br />
+
+                    <br />
+
+                    <div class="row">
+                        <%-- <label>Commment:</label>--%>
+                        <div class="col-lg-12">
+                            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
 
 
             <asp:Panel ID="PanelViewGJob" Visible="false" runat="server">
                 <br />
 
                 <h2 class="text-left">
-                        <asp:Label ID="lblComplitionUser" runat="server" Text=""></asp:Label>  Completion Form </h2>
+                         Completion Form </h2>
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="GridViewGDetails" runat="server" AutoGenerateColumns="False"
@@ -223,7 +299,20 @@
                             GridLines="None"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
+                                <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Completed By">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblInspectionDate" runat="server" Text='<%# Eval("InspectionDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
