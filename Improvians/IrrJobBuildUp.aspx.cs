@@ -545,7 +545,7 @@ namespace Evo
                 nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
 
                 nv.Add("@Role", ddlSupervisor.SelectedValue);
-                nv.Add("@ISAG", (row.FindControl("lblIsAssistant") as Label).Text);
+                nv.Add("@ISAG", "0");
                 nv.Add("@jid", Jid);
 
 
