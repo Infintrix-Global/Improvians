@@ -1352,6 +1352,7 @@
     <Content Include="Customer\fonts\Roboto-Regular.ttf" />
     <Content Include="Customer\fonts\Roboto-Regular.woff2" />
     <Content Include="Customer\fonts\selection.json" />
+    <Content Include="Customer\fonts\icons\selection.json" />
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
     <Content Include="Upload.ashx" />
