@@ -843,6 +843,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Button btnDumpReset;
 
         /// <summary>
+        /// general_task_request control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl general_task_request;
+
+        /// <summary>
         /// divcomments control.
         /// </summary>
         /// <remarks>

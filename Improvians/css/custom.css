@@ -1254,6 +1254,7 @@ textarea.input__control {
 
 .page__us .data__table tr:nth-child(odd) > th { background: #489d48; color: #ffffff; }
 
+
 /*Help Page STARTS*/
 .section__help {
     padding-bottom: 30px;
@@ -1810,4 +1811,30 @@ textarea.input__control {
     .page__us .data__table th  {
         padding: 3px 5px;
     }
+
+    .page__us--header {
+        position: fixed;
+        width: 100%;
+        top: 24px;
+    }
+
+    .page__us--footer {
+        position: fixed;
+        width: 100%;
+        bottom: 24px;
+    }
+    
+    .page__us .page-break {
+        margin-top: 160px;
+        margin-bottom: 84px;
+        page-break-after: always;
+    }
+
+    .page__us .page-break + .page-break {
+        margin-top: 176px;
+    }
+    
+    .page__us tr.page-break { page-break-after:always; }
+    .page__us table { page-break-after:always; }
+    
 }

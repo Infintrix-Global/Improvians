@@ -38,8 +38,6 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-
-
                 Bindcname();
                 BindBenchLocation(Session["Facility"].ToString());
                 dtTrays.Clear();
@@ -112,8 +110,6 @@ namespace Evo
                     }
 
                 }
-
-
             }
         }
 
@@ -1289,7 +1285,7 @@ namespace Evo
                 divFrom.Style["display"] = "none";
                 divTo.Style["display"] = "none";
             }
-
+            ddlAssignments.Focus();
         }
 
         protected void btnSearchDet_Click(object sender, EventArgs e)
@@ -1619,7 +1615,8 @@ namespace Evo
             long result16 = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Aid", Session["SelectedAssignment"].ToString());
+            //nv1.Add("@Aid", Session["SelectedAssignment"].ToString());
+            nv1.Add("@Aid", Assigned);
             dt = objCommon.GetDataTable("spGeEmployeeRoleDetails", nv1);
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -1678,8 +1675,9 @@ namespace Evo
 
                 NameValueCollection nv = new NameValueCollection();
 
-                var getToMail = Session["SelectedAssignment"].ToString();
+                //var getToMail = Session["SelectedAssignment"].ToString();
                 // var getToMail = ddlAssignments.SelectedValue;
+                var getToMail = Assigned;                
                 nv.Add("@Uid", getToMail);
                 DataTable dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
                 ReceiverEmail = dt1.Rows[0]["Email"].ToString();
