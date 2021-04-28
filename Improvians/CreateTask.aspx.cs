@@ -1289,7 +1289,7 @@ namespace Evo
                 divFrom.Style["display"] = "none";
                 divTo.Style["display"] = "none";
             }
-
+            ddlAssignments.Focus();
         }
 
         protected void btnSearchDet_Click(object sender, EventArgs e)

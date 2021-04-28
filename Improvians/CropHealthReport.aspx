@@ -825,7 +825,7 @@
                         </div>
                     </div>
 
-                    <div id="general_task_request" class="collapse request__block-collapse" data-parent="#task_request-group">
+                    <div id="general_task_request" runat="server" class="collapse request__block-collapse" data-parent="#task_request-group">
                         <div class="request__body">
                             <br />
                             <h2 class="text-left">General Task</h2>

@@ -1260,6 +1260,9 @@ namespace Evo
                 divFrom.Style["display"] = "none";
                 divTo.Style["display"] = "none";
             }
+            general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
+
+            divcomments.Focus();
         }
        
         public void Submitgeneraltask(string Assign)
