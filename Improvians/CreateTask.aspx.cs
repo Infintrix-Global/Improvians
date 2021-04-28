@@ -1820,7 +1820,7 @@ namespace Evo
             if (c == 1)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
-                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&PageType={2}", chkSelected, JobCode,"CreateTask"));
+                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&CropAT={2}&PageType={3}", chkSelected, JobCode,0,"CreateTask"));
             }
             else
             {

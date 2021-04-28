@@ -68,15 +68,17 @@ namespace Evo
                     Bench = Request.QueryString["BatchLoc"].ToString();
                 }
 
+                if (Request.QueryString["CropAT"] != null)
+                {
+                    CropRId = Request.QueryString["CropAT"].ToString();
+                }
 
 
                 if (Request.QueryString["JobCode"] != null)
                 {
                     JobCode = Request.QueryString["JobCode"].ToString();
                 }
-
             
-
                 if (Request.QueryString["BatchLoc"] != null && Request.QueryString["JobCode"] != null)
                 {
 
@@ -114,7 +116,21 @@ namespace Evo
             }
         }
 
-
+        private string CropRId
+        {
+            get
+            {
+                if (ViewState["CropRId"] != null)
+                {
+                    return (string)ViewState["CropRId"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["CropRId"] = value;
+            }
+        }
         private string Bench
         {
             get
@@ -291,6 +307,7 @@ namespace Evo
 
             }
 
+            lblJid.Text = dt.Rows[0]["jid"].ToString();
             //gvFer.DataSource = dt;
             //gvFer.DataBind();
 
@@ -342,8 +359,10 @@ namespace Evo
             nv.Add("@Date", txtDate.Text);
             nv.Add("@Filepath", folderPath);
             nv.Add("@CropHealthCommit", txtcomments.Text);
-
-            result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+            nv.Add("@CropRId", CropRId);
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@jid", lblJid.Text);
+            result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReportStart", nv);
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFile file = Request.Files[i];
