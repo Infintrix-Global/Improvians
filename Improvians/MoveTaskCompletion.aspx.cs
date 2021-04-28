@@ -109,8 +109,8 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@MoveId", RDid.ToString());
-            dt = objCommon.GetDataTable("SP_GetTaskAssignmentMoveView", nv);
+            nv.Add("@Jid",lbljid.Text);
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmentMoveViewStart", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
          
@@ -131,7 +131,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetOperatorMoveTaskDetails", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
-
+            lbljid.Text = dt.Rows[0]["jid"].ToString();
         }
 
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)

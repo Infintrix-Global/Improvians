@@ -23,11 +23,27 @@ namespace Evo.Admin
             {
                 Session["UserName"] = "";
                 //BindUserName("");
-              //  BindUserDetails();
+                //  BindUserDetails();
                 if (ddlTTypes.SelectedValue != "0")
                 {
                     submitPreference.Attributes.Remove("disabled");
                 }
+            }
+        }
+
+        private List<NotificationPreferenceDetails> NotificationPreferenceData
+        {
+            get
+            {
+                if (ViewState["NotificationPreferenceData"] != null)
+                {
+                    return (List<NotificationPreferenceDetails>)ViewState["NotificationPreferenceData"];
+                }
+                return new List<NotificationPreferenceDetails>();
+            }
+            set
+            {
+                ViewState["NotificationPreferenceData"] = value;
             }
         }
 
@@ -79,12 +95,12 @@ namespace Evo.Admin
         //}
 
         private void BindUserDetails()
-        {            
-                var sqr = "";
+        {
+            var sqr = "";
             DataTable dt = new DataTable();
             if (ddlTTypes.SelectedValue != "0")
             {
-                sqr = "select Id,UserName,TaskType ,IsApp,IsEmail from dbo.NotificationPreference where TaskType='" + ddlTTypes.SelectedValue +"' order by Id desc";
+                sqr = "select Id,UserName,TaskType ,IsApp,IsEmail from dbo.NotificationPreference where TaskType='" + ddlTTypes.SelectedValue + "' order by Id desc";
             }
             else
             {
@@ -92,8 +108,8 @@ namespace Evo.Admin
             }
             dt.Clear();
             dt = objGeneral.GetDatasetByCommand(sqr);
-          //  gvUserDetails.DataSource = dt;
-          //  gvUserDetails.DataBind();
+            //  gvUserDetails.DataSource = dt;
+            //  gvUserDetails.DataBind();
             if (ddlTTypes.SelectedValue != "0")
             {
                 submitPreference.Attributes.Remove("disabled");
@@ -110,7 +126,59 @@ namespace Evo.Admin
             //  }
         }
 
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
 
+            int _isInserted = -1;
+            foreach (GridViewRow item in gvAddUsers.Rows)
+            {
+
+                if (item.RowType == DataControlRowType.DataRow)
+                {
+
+                    DropDownList ddlTasksTypes = (DropDownList)item.Cells[0].FindControl("ddlTasks");
+                    DropDownList ddlUsers = (DropDownList)item.Cells[0].FindControl("ddlUsers");
+                    CheckBox chkApps = (item.Cells[0].FindControl("chkApp") as CheckBox);
+                    CheckBox chkEmails = (item.Cells[0].FindControl("chkEmail") as CheckBox);
+
+                    NotificationPreferenceMaster obj = new NotificationPreferenceMaster()
+                    {
+                        Task = ddlTasksTypes.SelectedValue,
+                        User = ddlUsers.SelectedValue,
+                        IsApp = chkApps.Checked,
+                        IsEmail = chkEmails.Checked
+                    };
+                    //add logic
+                    _isInserted = objCommon.InsertNotificationPreference(obj);
+                }
+            }
+            if (_isInserted == -1)
+            {
+                lblmsg.Text = "Failed to Add Profile";
+                lblmsg.ForeColor = System.Drawing.Color.Red;
+                pnlAdd.Visible = true;
+            }
+            else
+            {
+                lblmsg.Text = "";
+                pnlList.Visible = true;
+                pnlAdd.Visible = false;
+                //  ddlCrop.SelectedValue = Crop;
+                //  BindDropdowns(Crop);
+                // ddlActivityCode.SelectedValue = ActivityCode;
+                //ddlTrayCode.SelectedValue = TraySize;
+                BindGrid();
+            }
+
+        }
+
+        private void BindGrid()
+        {
+            //add logic
+            DataTable dt = objCommon.GetNotificationPreference(ddlTTypes.SelectedValue);
+            gvUsersProfile.DataSource = dt;
+            gvUsersProfile.DataBind();
+        }
 
         protected void submitPreference_Click(object sender, EventArgs e)
         {
@@ -123,10 +191,14 @@ namespace Evo.Admin
 
                     CheckBox chk2 = (row.FindControl("viaApp") as CheckBox);
                     CheckBox chk3 = (row.FindControl("viaEmail") as CheckBox);
+                    var tasks = (row.FindControl("lblTask") as Label).Text;
+                    var user = (row.FindControl("lblUserName") as Label).Text;
 
                     NotificationPreferenceMaster obj = new NotificationPreferenceMaster()
                     {
                         id = Convert.ToInt32(id),
+                        Task = tasks,
+                        User = user,
                         IsApp = chk2.Checked,
                         IsEmail = chk3.Checked
                     };
@@ -149,22 +221,6 @@ namespace Evo.Admin
             //BindUserName("");
         }
 
-        private List<NotificationPreferenceDetails> NotificationPreferenceData
-        {
-            get
-            {
-                if (ViewState["NotificationPreferenceData"] != null)
-                {
-                    return (List<NotificationPreferenceDetails>)ViewState["NotificationPreferenceData"];
-                }
-                return new List<NotificationPreferenceDetails>();
-            }
-            set
-            {
-                ViewState["NotificationPreferenceData"] = value;
-            }
-        }
-
         protected void btnAddProfile_Click(object sender, EventArgs e)
         {
             pnlAdd.Visible = true;
@@ -174,23 +230,23 @@ namespace Evo.Admin
 
         private void AddNewRow(bool AddBlankRow)
         {
-          
-                List<NotificationPreferenceDetails> objProfile = new List<NotificationPreferenceDetails>();
 
-                foreach (GridViewRow row in gvAddUsers.Rows)
-                {
-                    CheckBox chk2 = (row.FindControl("chkApp") as CheckBox);
-                    CheckBox chk3 = (row.FindControl("chkEmail") as CheckBox);
-                DropDownList task= (row.FindControl("ddlTasks") as DropDownList);
+            List<NotificationPreferenceDetails> objProfile = new List<NotificationPreferenceDetails>();
+
+            foreach (GridViewRow row in gvAddUsers.Rows)
+            {
+                CheckBox chk2 = (row.FindControl("chkApp") as CheckBox);
+                CheckBox chk3 = (row.FindControl("chkEmail") as CheckBox);
+                DropDownList task = (row.FindControl("ddlTasks") as DropDownList);
                 DropDownList userName = (row.FindControl("ddlUsers") as DropDownList);
 
                 //var UserName = (row.FindControl("userRoleNames") as Label).Text;
-                AddProfileDetail(ref objProfile, task.SelectedValue,userName.SelectedValue, chk2.Checked, chk3.Checked);
+                AddProfileDetail(ref objProfile, task.SelectedValue, userName.SelectedValue, chk2.Checked, chk3.Checked);
 
                 NotificationPreferenceData = objProfile;
                 //GridProfileBind();
 
-            }                              
+            }
 
         }
 
@@ -201,8 +257,8 @@ namespace Evo.Admin
             objProfile.Id = objPD.Count + 1;
             objProfile.TaskType = TaskType;
             objProfile.UserName = UserName;
-            objProfile.viaEmail = IsEmail;           
-            objProfile.viaApp = IsApp;           
+            objProfile.viaEmail = IsEmail;
+            objProfile.viaApp = IsApp;
 
             objPD.Add(objProfile);
             ViewState["objPD"] = objPD;
@@ -213,37 +269,13 @@ namespace Evo.Admin
             if (list.SelectedValue != "0")
             {
                 submitPreference.Attributes.Remove("disabled");
-               
+
             }
             else
             {
                 submitPreference.Attributes.Add("disabled", "disabled");
-             
+
             }
-        }
-
-
-
-        protected void gvUserDetails_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            NameValueCollection nv = new NameValueCollection();
-            switch (e.CommandName)
-            {
-                case "Edit":
-                    // var highlight = gvUsers.Rows.Cast<GridViewRow>().FirstOrDefault(z => (z.FindControl("userRoleNames") as Label).Text.ToString() == e.CommandArgument.ToString()).RowIndex;
-                    //BindUserName(e.CommandArgument.ToString());
-                    break;
-                case "Delete":
-                    nv.Add("@Id", e.CommandArgument.ToString());
-                    var result = objCommon.GetDataExecuteScaler("SP_DeleteNotificationPreference", nv);
-                    BindUserDetails();
-                    break;
-            }
-        }
-
-        protected void gvUserDetails_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
         }
 
         protected void gvUsers_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -287,6 +319,28 @@ namespace Evo.Admin
 
         }
 
+        protected void gvUserDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            NameValueCollection nv = new NameValueCollection();
+            switch (e.CommandName)
+            {
+                case "Edit":
+                    // var highlight = gvUsers.Rows.Cast<GridViewRow>().FirstOrDefault(z => (z.FindControl("userRoleNames") as Label).Text.ToString() == e.CommandArgument.ToString()).RowIndex;
+                    //BindUserName(e.CommandArgument.ToString());
+                    break;
+                case "Delete":
+                    nv.Add("@Id", e.CommandArgument.ToString());
+                    var result = objCommon.GetDataExecuteScaler("SP_DeleteNotificationPreference", nv);
+                    BindUserDetails();
+                    break;
+            }
+        }
+
+        protected void gvUserDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
         protected void ButtonAdd_Click(object sender, EventArgs e)
         {
 
@@ -297,7 +351,7 @@ namespace Evo.Admin
 
         }
     }
-   
+
     [Serializable]
     public class NotificationPreferenceDetails
     {

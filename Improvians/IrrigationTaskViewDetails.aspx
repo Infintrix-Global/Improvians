@@ -15,6 +15,7 @@
         </div>
         <div class="data__table">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
+              <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
             <asp:GridView ID="gvIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                 class="striped" AllowSorting="true"
                 GridLines="None" PageSize="10" OnPageIndexChanging="gvIrrigation_PageIndexChanging"

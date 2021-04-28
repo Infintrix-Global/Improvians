@@ -135,7 +135,7 @@
 
         <div class="dashboard__block dashboard__block--asign">
 
-            <h3>Task Completion</h3>
+         
             <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
                 <br />
                 <h2 class="text-left">Crop Health Report </h2>
@@ -363,6 +363,7 @@
             </asp:Panel>
             <br />
             <div id="userinput" runat="server" class="assign__task d-flex">
+                   <h3>Task Completion</h3>
                 <asp:Panel ID="pnlint" runat="server">
                     <div class="row">
                         <div class="col">

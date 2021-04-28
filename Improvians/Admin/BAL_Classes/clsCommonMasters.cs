@@ -1129,6 +1129,8 @@ public class CropHealthMasters
 public class NotificationPreferenceMaster
 {
     public int id { get; set; }
+    public string Task{ get; set; }
+    public string User{ get; set; }
     public bool IsApp { get; set; }
     public bool IsEmail{ get; set; }    
 }

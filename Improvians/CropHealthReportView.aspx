@@ -236,7 +236,7 @@
                     <div class="col-md-12">
                         <div class="portlet-body">
                             <div class="data__table">
-                                <asp:DataList ID="CropePhotos" runat="server" OnItemCommand="CategoryPhotos_ItemCommand" BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
+                                <asp:DataList ID="CropePhotos" runat="server"  BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
                                     <ItemTemplate>
                                         <div>
 
