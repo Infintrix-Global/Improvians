@@ -30,8 +30,7 @@ namespace Evo
                 if (Request.QueryString["GTAID"] != null)
                 {
                     gtaID = Request.QueryString["GTAID"].ToString();
-                    BindGridCalView(Request.QueryString["GTAID"].ToString());
-                    BindViewDetilas(Request.QueryString["GTAID"].ToString());
+                 
                 }
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
@@ -40,7 +39,8 @@ namespace Evo
                 }
                 txtInspectionDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindGridGerm();
-
+                BindGridCalView(Request.QueryString["GTAID"].ToString());
+                BindViewDetilas(Request.QueryString["GTAID"].ToString());
             }
         }
 
@@ -50,7 +50,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@GTAID", GTAID.ToString());
+            nv.Add("@Jid", Jid);
 
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskRequestView", nv);
             GridViewGermination.DataSource = dt;
@@ -143,7 +143,7 @@ namespace Evo
                 lblwoid.Text = dt.Rows[0]["wo"].ToString();
                 lblJobid.Text = dt.Rows[0]["jobcode"].ToString();
                 lblSeedlot.Text = dt.Rows[0]["TraySize"].ToString();
-                Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
+                Jid = dt.Rows[0]["Jid"].ToString();
                 //  txtTrays.Text = dt.Rows[0]["#TraysInspected"].ToString();
 
                 //  Bindtxttray(Convert.ToInt32(dt.Rows[0]["#TraysInspected"].ToString()));

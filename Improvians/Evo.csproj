@@ -210,6 +210,7 @@
     <Content Include="CreateTask.aspx" />
     <Content Include="CropHealthDetails.aspx" />
     <Content Include="CropHealthReport.aspx" />
+    <Content Include="CropHealthReportView.aspx" />
     <Content Include="CropReportRequestForm.aspx" />
     <Content Include="css\all.min.css" />
     <Content Include="css\aos.css" />
@@ -707,6 +708,13 @@
     </Compile>
     <Compile Include="CropHealthReport.aspx.designer.cs">
       <DependentUpon>CropHealthReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CropHealthReportView.aspx.cs">
+      <DependentUpon>CropHealthReportView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CropHealthReportView.aspx.designer.cs">
+      <DependentUpon>CropHealthReportView.aspx</DependentUpon>
     </Compile>
     <Compile Include="CropReportRequestForm.aspx.cs">
       <DependentUpon>CropReportRequestForm.aspx</DependentUpon>
