@@ -169,7 +169,7 @@ namespace Evo
             nv.Add("@IrrigationCode", IrrigationCode);
             nv.Add("@RoleId", Session["Role"].ToString());
            
-            if (Session["Role"].ToString() == "2")
+            if (Session["Role"].ToString() == "2" | Session["Role"].ToString() == "12" | Session["Role"].ToString() == "1")
             {
                 dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIrrigationCode", nv);
             }

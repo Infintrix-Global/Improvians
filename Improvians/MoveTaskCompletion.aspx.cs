@@ -109,7 +109,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Jid", RDid.ToString());
+            nv.Add("@Jid",lbljid.Text);
             dt = objCommon.GetDataTable("SP_GetTaskAssignmentMoveViewStart", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
