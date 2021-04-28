@@ -45,9 +45,11 @@ namespace Evo.Customer
             string CCMail = dt1.Rows[0]["Email"].ToString();
 
             string ToMail = lblEmail.Text;
-            string Subject= "Contact Request is made by "+ Session["EmployeeName"].ToString(); 
-            string msg = msgs.Text;
-
+            string Subject= "Contact Request is made by "+ Session["EmployeeName"].ToString();
+            string msg = "Hi " + lblName.Text + "," + "<br />";
+            msg = msg + "You have received following message from customer: " + Session["EmployeeName"].ToString() + "<br />";
+            msg=msg+  msgs.Text + "<br />" + "<br />";
+            msg = msg + "Thanks, <br/> Customer Information Portal";
             objGeneral.SendMail(ToMail, CCMail, Subject, msg);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thanks! We will contact you soon.')", true);
             msgs.Text = "";

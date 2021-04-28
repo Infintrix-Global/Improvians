@@ -432,6 +432,7 @@ namespace Evo.BAL_Classes
 
             mail.Subject = subject;
             mail.Body = msg;
+            mail.IsBodyHtml = true;
 
             mail.From = new MailAddress(FromMail);
             mail.To.Add(new MailAddress(ToMail));
