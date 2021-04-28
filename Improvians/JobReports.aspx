@@ -457,7 +457,7 @@
             </div>
 
             <div runat="server" id="divSalesComment" visible="false" class="sales__message">
-                <h2 class="text-center pt-4">Contact Our Sales Representative:</h2>
+                <h2 class="text-left pt-4">Contact Our Sales Representative:</h2>
                 <label class='d-block robotomd'>Message: <span style="color: red">*</span></label>
                 <asp:TextBox ValidationGroup="e" CssClass="w-100 input__control" TextMode="MultiLine" Rows="5" ID="msgs" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
@@ -467,7 +467,7 @@
                 </asp:RequiredFieldValidator><br />
                 <asp:Button ID="btnSend" runat="server" CssClass="bttn bttn-primary" Text="Send Mail" OnClick="btnSend_Click" />
             </div>
-            </div>
+           
         </asp:Panel>
     </div>
 </asp:Content>
