@@ -85,7 +85,7 @@
                                 <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label>
                             </span>
                             <a class="dropdown-item" href="#">Profile</a>
-                            <a class="dropdown-item" href="../CustomerLogin.aspx">Log Out</a>
+                            <a class="dropdown-item" href="<%=ResolveUrl("~/CustomerLogin.aspx") %>">Log Out</a>
                         </div>
                     </div>
                 </div>
