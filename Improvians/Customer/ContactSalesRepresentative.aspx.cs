@@ -33,7 +33,8 @@ namespace Evo.Customer
                 lnkPhone.HRef = "tel:" + dt.Rows[0]["Mobile"].ToString();
                 lblEmail.Text = dt.Rows[0]["Email"].ToString();
                 lnkEmail.HRef = "mailto:" + dt.Rows[0]["Email"].ToString();
-                ImageProfile.Src = @"..\EmployeeProfile\" + dt.Rows[0]["Photo"].ToString();
+                if (!string.IsNullOrEmpty(dt.Rows[0]["Photo"].ToString()))
+                    ImageProfile.Src = @"..\EmployeeProfile\" + dt.Rows[0]["Photo"].ToString();
             }
         }
 
@@ -45,10 +46,10 @@ namespace Evo.Customer
             string CCMail = dt1.Rows[0]["Email"].ToString();
 
             string ToMail = lblEmail.Text;
-            string Subject= "Contact Request is made by "+ Session["EmployeeName"].ToString();
+            string Subject = "Contact Request is made by " + Session["EmployeeName"].ToString();
             string msg = "Hi " + lblName.Text + "," + "<br />";
             msg = msg + "You have received following message from customer: " + Session["EmployeeName"].ToString() + "<br />";
-            msg=msg+  msgs.Text + "<br />" + "<br />";
+            msg = msg + msgs.Text + "<br />" + "<br />";
             msg = msg + "Thanks, <br/> Customer Information Portal";
             objGeneral.SendMail(ToMail, CCMail, Subject, msg);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thanks! We will contact you soon.')", true);
