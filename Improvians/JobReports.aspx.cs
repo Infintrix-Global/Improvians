@@ -27,6 +27,7 @@ namespace Evo
         BAL_Task objTask = new BAL_Task();
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         Evo_General objGeneral = new Evo_General();
+        General objGen = new General();
 
         static string ReceiverEmail = "";
 
@@ -64,7 +65,7 @@ namespace Evo
                 }
 
                 BindJobCode("");
-             
+
                 if (Session["Role"].ToString() == "13")
                 {
                     divTaskRequest.Visible = false;
@@ -119,7 +120,7 @@ namespace Evo
             }
             GV6.DataSource = dtProfile;
             GV5.DataBind();
-            GV6.DataBind();         
+            GV6.DataBind();
         }
 
         public void BindJobHistoryDropdown()
@@ -362,7 +363,7 @@ namespace Evo
                 e.Row.Cells[3].Visible = false;
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
-            { 
+            {
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
                     DataSet ds = new DataSet();
@@ -371,14 +372,14 @@ namespace Evo
                     ddList.DataSource = objBAL.GetLocation(Session["Facility"].ToString()); ;
                     ddList.DataTextField = "p2";
                     ddList.DataValueField = "p2";
-                    ddList.DataBind(); 
+                    ddList.DataBind();
                 }
             }
         }
 
         //---------------------------------------------------------------------------------------------TASK Create ------------------
 
-      
+
 
         protected void GV2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -472,6 +473,30 @@ namespace Evo
         }
         #endregion
 
-   
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            string CCMail = Session["Email"].ToString();
+            DataTable dt = GetSalesData();
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string ToMail = dt.Rows[0]["Email"].ToString();
+                string Subject = "Contact Request is made by " + Session["EmployeeName"].ToString();
+                string msg = "Hi " + dt.Rows[0]["EmployeeName"].ToString() + "," + "<br />";
+                msg = msg + "You have received following message from customer: " + Session["EmployeeName"].ToString() + "<br />";
+                msg = msg + msgs.Text + "<br />" + "<br />";
+                msg = msg + "Job Information page associated with this message: <a href='" + HttpContext.Current.Request.Url + "'>Job Report</a><br/>";
+                msg = msg + "Thanks, <br/> Customer Information Portal";
+                objGen.SendMail(ToMail, CCMail, Subject, msg);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thanks! We will contact you soon.')", true);
+                msgs.Text = "";
+            }
+        }
+
+        private DataTable GetSalesData()
+        {
+            string sqr = "Select L.ID,EmployeeName,Mobile,Email,Photo from Login L join CustomerSalesMapping C on L.ID=C.SalesID where C.CustomerID=" + Session["LoginID"].ToString();
+            return objGen.GetDatasetByCommand(sqr);
+        }
+
     }
 }

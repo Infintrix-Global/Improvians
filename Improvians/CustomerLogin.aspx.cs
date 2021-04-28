@@ -40,6 +40,7 @@ namespace Evo
                 Session["Role"] = _dtLogin.Rows[0]["RoleID"].ToString();
                 Session["Mobile"] = _dtLogin.Rows[0]["EmployeeCode"].ToString();
                 Session["Photo"] = _dtLogin.Rows[0]["Photo"].ToString();
+                Session["Email"] = _dtLogin.Rows[0]["Email"].ToString();
                 Session["EmployeeName"] = _dtLogin.Rows[0]["EmployeeName"].ToString();
                 int result = _ballogin.UpdateFCMToken(int.Parse(_dtLogin.Rows[0]["ID"].ToString()), token.Value);
 
