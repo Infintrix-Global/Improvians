@@ -39,9 +39,10 @@ namespace Evo
                 {
                     PanlTaskComplition.Visible = false;
                 }
+                BindgvIrrigation();
                 BindGridViewDetailsGerm();
                 BindenchLocation();
-                BindgvIrrigation();
+               
 
             }
         }
@@ -117,10 +118,10 @@ namespace Evo
             //nv.Add("@JobCode", ddlJobNo.SelectedValue);
             //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             //nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@IrrigationCode", IrrigationCode);
+            nv.Add("@Jid", lbljid.Text);
             //nv.Add("@Mode", "6");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetails", nv);
+            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetailsStart", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -179,8 +180,8 @@ namespace Evo
 
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();
+            lbljid.Text = dt.Rows[0]["jid"].ToString();
 
-          
         }
 
         protected void gvIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)

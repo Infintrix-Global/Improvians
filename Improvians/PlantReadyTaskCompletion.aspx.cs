@@ -89,9 +89,9 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@PlantReadyId", PRid.ToString());
+            nv.Add("@Jid", lbljid.Text);
 
-            dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytView", nv);
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytViewStart", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
            
@@ -159,6 +159,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTaskByPRAID", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
+            lbljid.Text = dt.Rows[0]["jid"].ToString();
             //if (dt != null && dt.Rows.Count > 0)
             //{
             //    lblSeedlot.Text = dt.Rows[0]["SeedLots"].ToString();
