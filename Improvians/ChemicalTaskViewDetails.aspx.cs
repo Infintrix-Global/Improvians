@@ -44,11 +44,11 @@ namespace Evo
                     PanlTaskComplition.Visible = false;
                 }
 
-
+                BindGridSprayReq();
                 BindenchLocation();
 
                 BindGridSprayDetails();
-                BindGridSprayReq();
+          
 
             }
         }
@@ -100,7 +100,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetChemicalDetailsRequest", nv);
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
-
+            lbljid.Text = dt.Rows[0]["jid"].ToString();
             ChId = dt.Rows[0]["CropHealth"].ToString();
             if (ChId == "")
             {
@@ -147,9 +147,9 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@ChemicalCode", ChemicalCode);
+            nv.Add("@JID", lbljid.Text);
 
-            dt = objCommon.GetDataTable("SP_GetChemicalRequestSelectDetails", nv);
+            dt = objCommon.GetDataTable("SP_GetChemicalRequestSelectDetailsView", nv);
 
             GridViewDetails.DataSource = dt;
             GridViewDetails.DataBind();
