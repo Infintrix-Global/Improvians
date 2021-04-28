@@ -75,72 +75,108 @@
 
                     <div class="aside__list">
                         <ul class="list-unstyled">
-                            <li>
-                                <a class="current" href="AddEmployee.aspx" title="Add Employee">
-                                    <i class="side-icon far fa-user"></i>
-                                    <span class="side-title">Add Employee</span>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="#" title="Employee">
+                                    <i class="side-icon fas fa-users"></i>
+                                    <span class="side-title">Employee</span>
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
-                            </li>
 
-                            <li>
-                                <a class="current" href="ViewEmployee.aspx" title="View Employee">
-                                    <i class="side-icon fas fa-eye"></i>
-                                    <span class="side-title">View Employee</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
-                            </li>
-                             <li>
-                                <a class="current" href="AddCustomer.aspx" title="Add Customer">
-                                    <i class="side-icon far fa-user"></i>
-                                    <span class="side-title">Add Customer</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
-                            </li>
-                              <li>
-                                <a class="current" href="ViewCustomer.aspx" title="View Customer">
-                                    <i class="side-icon fas fa-eye"></i>
-                                    <span class="side-title">View Customer</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
-                            </li>
-                             <li>
-                                <a class="current" href="AddSalesRepresentative.aspx" title="Add Sales Representative">
-                                    <i class="side-icon far fa-user"></i>
-                                    <span class="side-title">Add Sales Representative</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
-                            </li>
-                              <li>
-                                <a class="current" href="ViewSalesRepresentative.aspx" title="View Sales Representative">
-                                    <i class="side-icon fas fa-eye"></i>
-                                    <span class="side-title">View Sales Representative</span>
-                                    <i class="side-control fas fa-angle-right"></i>
-                                </a>
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <li>
+                                        <a class="" href="AddEmployee.aspx" title="Add Employee">
+                                            <i class="side-icon far fa-user"></i>
+                                            <span class="side-title">Add</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="" href="ViewEmployee.aspx" title="View Employee">
+                                            <i class="side-icon fas fa-eye"></i>
+                                            <span class="side-title">View</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="has__dropdown">
-                                <a class="current" href="ViewPlantProductionProfile.aspx" title="View Employee">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="#" title="Customer">
+                                    <i class="side-icon fas fa-user"></i>
+                                    <span class="side-title">Customer</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <li>
+                                        <a class="" href="AddCustomer.aspx" title="Add Customer">
+                                            <i class="side-icon far fa-user"></i>
+                                            <span class="side-title">Add</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="ViewCustomer.aspx" title="View Customer">
+                                            <i class="side-icon fas fa-eye"></i>
+                                            <span class="side-title">View</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="#" title="Sales Representative">
+                                    <i class="side-icon fas fa-user-tie"></i>
+                                    <span class="side-title">Sales Representative</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <li>
+                                        <a class="" href="AddSalesRepresentative.aspx" title="Add Sales Representative">
+                                            <i class="side-icon far fa-user"></i>
+                                            <span class="side-title">Add</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="ViewSalesRepresentative.aspx" title="View Sales Representative">
+                                            <i class="side-icon fas fa-eye"></i>
+                                            <span class="side-title">View</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has__dropdown">
+                                <a class="current" href="ViewPlantProductionProfile.aspx" title="Plant Production Profile">
                                     <i class="side-icon fas fa-seedling"></i>
                                     <span class="side-title">Plant Production Profile</span>
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                                 <ul class="list-unstyled dropdown__list">
                                     <li>
-                                        <a class="" href="ViewPlantProductionProfile.aspx" title="View Employee">
+                                        <a class="" href="ViewPlantProductionProfile.aspx" title="Plant Production Table">
                                             <i class="side-icon fas fa-seedling"></i>
                                             <span class="side-title">Plant Production Table</span>
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="" href="GeneralConfiguration.aspx" title="View Employee">
+                                        <a class="" href="GeneralConfiguration.aspx" title="Germination Configuration">
                                             <i class="side-icon fas fa-cogs"></i>
                                             <span class="side-title">Germination Configuration</span>
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
                                     </li>
-                                     <li>
-                                        <a class="" href="PlantReadyConfiguration.aspx" title="View Employee">
+                                    <li>
+                                        <a class="" href="PlantReadyConfiguration.aspx" title="Plant Ready Configuration">
                                             <i class="side-icon fas fa-cog"></i>
                                             <span class="side-title">Plant Ready Configuration</span>
                                             <i class="side-control fas fa-angle-right"></i>
