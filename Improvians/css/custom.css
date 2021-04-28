@@ -31,11 +31,11 @@
 /*Font Icons*/
 @font-face {
   font-family: 'rxicons';
-  src: url('../fonts/icons/rxicons.ttf?dcji45') format('truetype'),
-    url('../fonts/icons/rxicons.woff?dcji45') format('woff');
+  src: url('../fonts/icons/rxicons.ttf?342ggi') format('truetype'),
+       url('../fonts/icons/rxicons.woff?342ggi') format('woff');
   font-weight: normal;
   font-style: normal;
-  font-display: block;
+  font-display: swap;
 }
 
 [class^="rxicon-"], [class*=" rxicon-"] {
@@ -52,6 +52,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.rxicon-icon-job-report:before {
+  content: "\e90c";
+}
+.rxicon-icon-print:before {
+  content: "\e90d";
+}
+.rxicon-icon-customer-support:before {
+  content: "\e90b";
+}
 .rxicon-icon-job-reports:before {
   content: "\e909";
 }
@@ -85,6 +94,7 @@
 .rxicon-icon-dashboard:before {
   content: "\e903";
 }
+
 
 
 /*General*/
@@ -1323,6 +1333,48 @@ textarea.input__control {
 
 /*Help Page ENDS*/
 
+/*Reports Page*/
+.reports__buttons {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 560px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14vh;
+    margin-bottom: 14vh;
+}
+
+.reports__buttons a {
+    flex:1 0 calc(50% - 7.5px);
+    max-width: calc(50% - 7.5px);
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.reports__buttons .card-body {
+    width: 100%;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.reports__buttons i {
+    font-size: 50px;
+    line-height: 50px;
+    color: #438644;
+}
+
+.reports__buttons .card-title {
+    font-size: 24px;
+    color: #505050;
+    margin-top: 20px;
+    font-family: 'roboto-bold', sans-serif;
+}
+
+/*Reports Page ENDS*/
+
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
     .container {
@@ -1641,6 +1693,10 @@ textarea.input__control {
     .request__block { margin-bottom: 30px; }
 
     .section__help h1 { font-size: 30px; line-height: 40px; }
+    .reports__buttons { 
+        margin-top: 10vh;
+        margin-top: 10vh;
+    }
 }
 
 @media only screen and (max-width: 639px) {
@@ -1662,6 +1718,7 @@ textarea.input__control {
 
     .task_request-buttons { max-width: 100%; }
     .request__block-head { width: calc(50% - 15px); }
+    .reports__buttons { max-width: 490px; }
 }
 
 @media only screen and (max-width: 575px) {
@@ -1723,6 +1780,10 @@ textarea.input__control {
     .request__block-head { width: calc(100% - 0px); }
 
     .section__help h1 { font-size: 28px; line-height: 38px; }
+    .reports__buttons a { min-height: 140px; }
+    .reports__buttons i { font-size: 40px; line-height: 30px; }
+    .reports__buttons .card-title { font-size: 20px; line-height: 24px; margin-top: 12px; }
+    .reports__buttons .card-body { padding-left: 10px; padding-right: 10px; }
 }
 
 
