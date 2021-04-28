@@ -481,13 +481,14 @@ namespace Evo
             {
                 string ToMail = dt.Rows[0]["Email"].ToString();
                 string Subject = "Contact Request is made by " + Session["EmployeeName"].ToString();
-                string msg = "Hi " + dt.Rows[0]["EmployeeName"].ToString() + "," + "<br />";
+                string Sales = dt.Rows[0]["EmployeeName"].ToString();
+                string msg = "Hi " + Sales + "," + "<br />";
                 msg = msg + "You have received following message from customer: " + Session["EmployeeName"].ToString() + "<br />";
                 msg = msg + msgs.Text + "<br />" + "<br />";
                 msg = msg + "Job Information page associated with this message: <a href='" + HttpContext.Current.Request.Url + "'>Job Report</a><br/>";
                 msg = msg + "Thanks, <br/> Customer Information Portal";
                 objGen.SendMail(ToMail, CCMail, Subject, msg);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thanks! We will contact you soon.')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thank you for your message. Our Sales Representative "+ Sales + " has been sent this request over an email. "+ Sales  + " will get in touch with you soon')", true);
                 msgs.Text = "";
             }
         }
