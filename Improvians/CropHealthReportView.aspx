@@ -240,7 +240,7 @@
                                     <ItemTemplate>
                                         <div>
 
-                                            <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("CoverImage") %>' runat="server" />
+                                            <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("Imagepath") %>' runat="server" />
 
 
                                         </div>
