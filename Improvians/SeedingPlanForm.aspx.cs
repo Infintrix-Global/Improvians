@@ -131,8 +131,7 @@ namespace Evo
         }
         protected void BtnPrint_Click(object sender, EventArgs e)
         {
-            DataTable dt =(DataTable) ViewState["data"];
-            ExportToPdf(dt);
+            Response.Redirect("PrintSeedlinePlannerReport.aspx");
         }
 
         private static void DrawLine(PdfWriter writer, float x1, float y1, float x2, float y2, BaseColor color)
