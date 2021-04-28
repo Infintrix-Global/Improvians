@@ -291,23 +291,23 @@ namespace Evo
                 dt.AcceptChanges();
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
-
+                lblJid.Text = dt.Rows[0]["jid"].ToString();
             }
             else if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 gvFer.DataSource = dtManual;
                 gvFer.DataBind();
-
+                lblJid.Text = dtManual.Rows[0]["jid"].ToString();
             }
             else
             {
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
 
-
+                lblJid.Text = dt.Rows[0]["jid"].ToString();
             }
 
-            lblJid.Text = dt.Rows[0]["jid"].ToString();
+           // lblJid.Text = dt.Rows[0]["jid"].ToString();
             //gvFer.DataSource = dt;
             //gvFer.DataBind();
 
@@ -407,16 +407,18 @@ namespace Evo
                 }
             }
 
-            string message = "Assignment Successful";
-            string url = "CropHealthDetails.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            //string message = "Assignment Successful";
+            //string url = "CropHealthDetails.aspx";
+            //string script = "window.onload = function(){ alert('";
+            //script += message;
+            //script += "');";
+            //script += "window.location = '";
+            //script += url;
+            //script += "'; }";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             //  Clear();
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
         }
 
         public void Clear()

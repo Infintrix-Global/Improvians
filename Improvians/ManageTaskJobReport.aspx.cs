@@ -32,8 +32,6 @@ namespace Evo
             }
         }
 
-
-
         public void BindTaskRequestTypeList(string ddlBench, string jobNo, string Cust)
         {
             //  NameValueCollection nv = new NameValueCollection();
@@ -47,10 +45,11 @@ namespace Evo
             nv.Add("@BenchLocation", ddlBench);
             nv.Add("@Customer", Cust);
             nv.Add("@JobNo", jobNo);
+            nv.Add("@GenusCode", "0");
             nv.Add("@Mode", "5");
 
-        
-           
+
+            dt = objCommon.GetDataTable("GetManageTaskJobHistorySearch", nv);
             ddlTaskRequestType.DataSource = dt;
             ddlTaskRequestType.DataTextField = "TaskRequestType";
             ddlTaskRequestType.DataValueField = "TaskRequestType";
@@ -58,6 +57,8 @@ namespace Evo
             ddlTaskRequestType.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
+
+  
         public void BindSupervisorList(string ddlBench, string jobNo,string Cust)
         {
             //  NameValueCollection nv = new NameValueCollection();
@@ -71,6 +72,7 @@ namespace Evo
             nv.Add("@BenchLocation", ddlBench);
             nv.Add("@Customer", Cust);
             nv.Add("@JobNo", jobNo);
+            nv.Add("@GenusCode", "0");
             nv.Add("@Mode", "4");
 
             dt = objCommon.GetDataTable("GetManageTaskJobHistorySearch", nv);

@@ -455,6 +455,7 @@
     <Content Include="MyTaskSiteMoveTeam.aspx" />
     <Content Include="MyTaskSpray.aspx" />
     <Content Include="offline-fallback.html" />
+    <Content Include="PerformanceLogSheet.aspx" />
     <Content Include="PlantReadyAssignmentForm.aspx" />
     <Content Include="PlantReadyCompletionForm.aspx" />
     <Content Include="PlantReadyReqManual.aspx" />
@@ -1170,6 +1171,13 @@
     </Compile>
     <Compile Include="MyTaskSpray.aspx.designer.cs">
       <DependentUpon>MyTaskSpray.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceLogSheet.aspx.cs">
+      <DependentUpon>PerformanceLogSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerformanceLogSheet.aspx.designer.cs">
+      <DependentUpon>PerformanceLogSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlantReadyAssignmentForm.aspx.cs">
       <DependentUpon>PlantReadyAssignmentForm.aspx</DependentUpon>
