@@ -68,6 +68,7 @@ namespace Evo
                 if (Session["Role"].ToString() == "13")
                 {
                     divTaskRequest.Visible = false;
+                    divSalesComment.Visible = true;
                 }
             }
         }

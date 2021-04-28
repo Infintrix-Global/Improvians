@@ -67,11 +67,11 @@
         <header>
             <div class="site__container">
                 <div class="d-flex align-items-center">
-                    <a href="CustomerDashBoard.aspx" title="Growers Transplanting Inc">
+                    <a href="Customer/CustomerDashBoard.aspx" title="Growers Transplanting Inc">
                         <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
                     </a>
                     <div class="ml-auto">
-                        <a href="ContactSalesRepresentative.aspx" class="customer__support" title="Contact Support">
+                        <a href="Customer/ContactSalesRepresentative.aspx" class="customer__support" title="Contact Support">
                             <i class="rxicon-icon-customer-support"></i>
                         </a>
                     </div>
