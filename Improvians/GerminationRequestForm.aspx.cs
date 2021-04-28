@@ -244,27 +244,63 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
                 //string facName = (row.FindControl("lblFacility") as Label).Text;
-
+            
                 DataTable dt = new DataTable();
                 //   NameValueCollection nv = new NameValueCollection();
                 //  nv.Add("@FacilityName", facName);
                 //  dt = objCommon.GetDataTable("SP_GetSupervisorNameByFacilityID", nv);
-                lblJobID.Text = (row.FindControl("lbljobID") as Label).Text;
-                lblID.Text = (row.FindControl("lblID") as Label).Text;
+                //lblJobID.Text = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                //lblID.Text = (row.FindControl("lblID") as Label).Text;
 
-                lblAGD.Text = (row.FindControl("lblIsAG") as Label).Text;
+                //lblAGD.Text = (row.FindControl("lblIsAG") as Label).Text;
 
-                string Datwc = (row.FindControl("lblGermDate") as Label).Text;
+                //string Datwc = (row.FindControl("lblGermDate") as Label).Text;
 
-                txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
+                //txtDate.Text = Convert.ToDateTime((row.FindControl("lblGermDate") as Label).Text).ToString("yyyy-MM-dd");
 
-                lblBenchlocation.Text = (row.FindControl("lblBenchLocation") as Label).Text;
-                lblDescription.Text = (row.FindControl("lblDescription") as Label).Text;
-                lblTotalTrays.Text = (row.FindControl("lblTrays") as Label).Text;
+                //lblBenchlocation.Text = (row.FindControl("lblBenchLocation") as Label).Text;
+                //lblDescription.Text = (row.FindControl("lblDescription") as Label).Text;
+                //lblTotalTrays.Text = (row.FindControl("lblTrays") as Label).Text;
+
+
+
+
+
+                lblJobID.Text = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                lblID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+
+                lblAGD.Text = gvGerm.DataKeys[rowIndex].Values[2].ToString();
+
+                string Datwc = gvGerm.DataKeys[rowIndex].Values[3].ToString();
+
+                txtDate.Text = Convert.ToDateTime(gvGerm.DataKeys[rowIndex].Values[3].ToString()).ToString("yyyy-MM-dd");
+
+                lblBenchlocation.Text = gvGerm.DataKeys[rowIndex].Values[4].ToString();
+                lblDescription.Text = gvGerm.DataKeys[rowIndex].Values[5].ToString();
+                lblTotalTrays.Text = gvGerm.DataKeys[rowIndex].Values[6].ToString();
+
+
+
+
                 //  txtTrays.Text = (row.FindControl("lblTrays") as Label).Text;
                 //   lblfacsupervisor.InnerText = "Green House Supervisor"; //+ facName;
                 // lblSupervisorID.Text = dt.Rows[0]["ID"].ToString();
                 //lblSupervisorName.Text = dt.Rows[0]["EmployeeName"].ToString();
+
+                //int rowIndex = Convert.ToInt32(e.CommandArgument);
+                //lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+                //lblGrowerID.Text = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
+                //lblPRRId.Text = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
+                //lblJid.Text = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
+                //lblIsAssistant.Text = gvPlantReady.DataKeys[rowIndex].Values[5].ToString();
+                //lblBenchlocation.Text = gvPlantReady.DataKeys[rowIndex].Values[7].ToString();
+                //lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
+                //lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
+
+
+
+
+
 
                 DataTable dt1 = new DataTable();
                 NameValueCollection nv1 = new NameValueCollection();
@@ -324,10 +360,12 @@ namespace Evo
 
             if (e.CommandName == "GStart")
             {
+                //int rowIndex = Convert.ToInt32(e.CommandArgument);
+                //GridViewRow row = gvGerm.Rows[rowIndex];
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
                 string ChId = "0";
-                lblID.Text = (row.FindControl("lblID") as Label).Text;
+                lblID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
 
 
                 long result = 0;
