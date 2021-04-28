@@ -214,6 +214,16 @@ namespace Evo
             return ds;
         }
 
+        internal DataTable GetNotificationPreference(string selectedValue)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal int InsertNotificationPreference(NotificationPreferenceMaster obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public DataTable GetDataTable(string storedProcedure, NameValueCollection nv)
         {
 
