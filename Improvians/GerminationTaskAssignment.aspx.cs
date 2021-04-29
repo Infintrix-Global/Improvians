@@ -105,6 +105,7 @@ namespace Evo
             nv.Add("@GTRID", gtrID);
             dt = objCommon.GetDataTable("SP_GetGreenHouseSupervisorAssignedJobByGTRID", nv);
             wo = dt.Rows[0]["wo"].ToString();
+            lblTaskRequestKey.Text = dt.Rows[0]["TaskRequestKey"].ToString();
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -119,6 +120,10 @@ namespace Evo
             nv.Add("@WorkOrderID", wo);
             nv.Add("@GTRID", gtrID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@InspectionDueDate", txtDate.Text);
+            nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
+            nv.Add("@TraysInspected", txtTrays.Text);
+            
             result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew", nv);
             if (result > 0)
             {

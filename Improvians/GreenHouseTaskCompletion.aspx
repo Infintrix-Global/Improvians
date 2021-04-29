@@ -21,7 +21,7 @@
                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                            <asp:Label ID="lblGTAID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
+                                         <%--   <asp:Label ID="lblGTAID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>--%>
                                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             <%--  <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />--%>
@@ -92,11 +92,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+<%--                                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label4" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
 
                                     <asp:TemplateField HeaderText="Trays inspected" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
@@ -110,11 +110,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
+<%--                                    <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label46" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
 
 
                                 </Columns>
@@ -291,7 +291,7 @@
                 <br />
 
                 <h2 class="text-left">
-                         Completion Form </h2>
+                         Completion  </h2>
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="GridViewGDetails" runat="server" AutoGenerateColumns="False"
@@ -356,15 +356,17 @@
                     </div>
                     <br />
 
-                    <br />
+                  
 
 
                 </div>
             </asp:Panel>
             <br />
             <div id="userinput" runat="server" class="assign__task d-flex">
-                   <h3>Task Completion</h3>
+             
                 <asp:Panel ID="pnlint" runat="server">
+                    <h2 class="text-left">
+                         Completion Form </h2> <br />
                     <div class="row">
                         <div class="col">
                             <label>Germination Count Date </label>

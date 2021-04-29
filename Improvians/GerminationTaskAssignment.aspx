@@ -201,6 +201,8 @@
             <br />
             <div id="userinput" runat="server" class="assign__task d-flex">
                 <asp:Panel ID="pnlint" runat="server">
+
+                    <asp:Label ID="lblTaskRequestKey" Visible="false" runat="server" Text=""></asp:Label>
                     <div class="row">
                         <div class="col">
                             <label>Assignment</label>

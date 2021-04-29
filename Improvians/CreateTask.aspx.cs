@@ -916,6 +916,8 @@ namespace Evo
         {
             long result16 = 0;
 
+
+
             foreach (GridViewRow row in gvFer.Rows)
             {
 
@@ -939,6 +941,7 @@ namespace Evo
                     nv.Add("@Comments", txtGcomments.Text);
                     nv.Add("@Role", Session["Role"].ToString());
                     nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                 
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
                 }
             }
