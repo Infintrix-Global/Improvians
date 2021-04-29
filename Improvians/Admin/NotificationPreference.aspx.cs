@@ -74,10 +74,7 @@ namespace Evo.Admin
             dt = objGeneral.GetDatasetByCommand(sqr);
             gvUsersProfile.DataSource = dt;
             gvUsersProfile.DataBind();
-            if (ddlTTypes.SelectedValue != "0")
-            {
-                submitPreference.Attributes.Remove("disabled");
-            }
+            
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -122,42 +119,30 @@ namespace Evo.Admin
             gvAddUsers.DataBind();
         }
 
-        protected void submitPreference_Click(object sender, EventArgs e)
+        protected void SubmitPreference(GridViewRow row)
         {
             long result1 = 0;
-            foreach (GridViewRow row in gvUsersProfile.Rows)
+
+            string id = ((Label)row.FindControl("NPId")).Text;
+
+            CheckBox chk2 = (row.FindControl("viaApp") as CheckBox);
+            CheckBox chk3 = (row.FindControl("viaEmail") as CheckBox);
+            var tasks = (row.FindControl("lblTask") as Label).Text;
+            var user = (row.FindControl("lblUserName") as Label).Text;
+
+            NotificationPreferenceMaster obj = new NotificationPreferenceMaster()
             {
-                string id = ((Label)row.FindControl("NPId")).Text;
+                id = Convert.ToInt32(id),
+                Task = tasks,
+                User = user,
+                IsApp = chk2.Checked,
+                IsEmail = chk3.Checked
+            };
 
-                CheckBox chk2 = (row.FindControl("viaApp") as CheckBox);
-                CheckBox chk3 = (row.FindControl("viaEmail") as CheckBox);
-                var tasks = (row.FindControl("lblTask") as Label).Text;
-                var user = (row.FindControl("lblUserName") as Label).Text;
+            //methdo can be used to update as well.
+            result1 = objCommon.InsertNotificationPreference(obj);
 
-                NotificationPreferenceMaster obj = new NotificationPreferenceMaster()
-                {
-                    id = Convert.ToInt32(id),
-                    Task = tasks,
-                    User = user,
-                    IsApp = chk2.Checked,
-                    IsEmail = chk3.Checked
-                };
-
-                //methdo can be used to update as well.
-                result1 = objCommon.InsertNotificationPreference(obj);
-
-            }
-            string message = "Record updated Successful";
-            string url = "NotificationPreference.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
-            BindUserDetails();
+//            BindUserDetails();
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
@@ -217,15 +202,7 @@ namespace Evo.Admin
         }
         protected void ddlTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DropDownList list = (DropDownList)sender;
-            if (list.SelectedValue != "0")
-            {
-                submitPreference.Attributes.Remove("disabled");
-            }
-            else
-            {
-                submitPreference.Attributes.Add("disabled", "disabled");
-            }
+            DropDownList list = (DropDownList)sender;            
             BindUserDetails();
         }
 
@@ -247,7 +224,7 @@ namespace Evo.Admin
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                DropDownList ddlTaskTypess= (DropDownList)e.Row.FindControl("ddlTasks");
+                DropDownList ddlTaskTypess = (DropDownList)e.Row.FindControl("ddlTasks");
                 DropDownList ddlUserName = (DropDownList)e.Row.FindControl("ddlUsers");
                 CheckBox check1 = (CheckBox)e.Row.FindControl("chkApp");
                 CheckBox check2 = (CheckBox)e.Row.FindControl("chkEmail");
@@ -255,15 +232,15 @@ namespace Evo.Admin
                 BindUserNames(ddlUserName);
 
                 HiddenField hdnTasktypes = (HiddenField)e.Row.FindControl("hdnTask");
-                HiddenField hdnusers= (HiddenField)e.Row.FindControl("hdnUserNames");
-                HiddenField hdnViaapp= (HiddenField)e.Row.FindControl("hdnViaApps");
-                HiddenField hdnViaEmail= (HiddenField)e.Row.FindControl("hdnViaEmails");
-                
+                HiddenField hdnusers = (HiddenField)e.Row.FindControl("hdnUserNames");
+                HiddenField hdnViaapp = (HiddenField)e.Row.FindControl("hdnViaApps");
+                HiddenField hdnViaEmail = (HiddenField)e.Row.FindControl("hdnViaEmails");
+
                 ddlTaskTypess.SelectedValue = hdnTasktypes.Value;
                 ddlUserName.SelectedValue = hdnusers.Value;
 
-                check1.Checked = hdnViaapp.Value == "True" ? true : false; 
-                check2.Checked = hdnViaEmail.Value == "True" ? true : false; 
+                check1.Checked = hdnViaapp.Value == "True" ? true : false;
+                check2.Checked = hdnViaEmail.Value == "True" ? true : false;
             }
         }
 
@@ -310,12 +287,18 @@ namespace Evo.Admin
 
         protected void viaApp_CheckedChanged(object sender, EventArgs e)
         {
-            
+            CheckBox chkApp = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkApp.NamingContainer;
+
+            SubmitPreference(row);
         }
 
         protected void viaEmail_CheckedChanged(object sender, EventArgs e)
         {
+            CheckBox chkApp = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkApp.NamingContainer;
 
+            SubmitPreference(row);
         }
     }
 
