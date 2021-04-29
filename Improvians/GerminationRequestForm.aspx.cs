@@ -444,7 +444,16 @@ namespace Evo
             nv.Add("@Role", ddlSupervisor.SelectedValue);
             nv.Add("@ISAG", lblAGD.Text);
             nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
-            result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
+
+            if (Session["Role"].ToString()=="1")
+            {
+                result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
+            }
+            else
+            {
+                result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequestAS", nv);
+            }
+        
 
 
 
@@ -465,6 +474,18 @@ namespace Evo
             //nv.Add("@LoginID", Session["LoginID"].ToString());
             //result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew1", nv);
 
+            if (Session["Role"].ToString() == "1")
+            {
+
+                Response.Redirect("MyTaskGrower.aspx");
+            }
+            else
+            {
+
+                Response.Redirect("MyTaskAssistantGrower.aspx");
+            }
+
+
 
             if (result > 0)
             {
@@ -477,6 +498,8 @@ namespace Evo
 
 
                 string url = "";
+
+
                 if (Session["Role"].ToString() == "1")
                 {
                  
@@ -507,7 +530,7 @@ namespace Evo
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+               // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
         }

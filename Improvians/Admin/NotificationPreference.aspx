@@ -131,7 +131,7 @@
                         <div class="portlet light ">
                             <asp:Label runat="server" Text="" ID="count"></asp:Label>
                             <div class="portlet-body">
-                                <div class="data__table data__table-height">
+                                <div class="data__table data__table-height" style="max-height:600px;overflow-y:scroll;">
 
                                     <asp:GridView ID="gvUsersProfile" runat="server" AutoGenerateColumns="False"
                                         class="striped" OnRowCommand="gvUsersProfile_RowCommand" OnRowDataBound="gvUsersProfile_RowDataBound"
@@ -156,8 +156,8 @@
                                                 <ItemTemplate>                                                    
                                                     <asp:HiddenField ID="hdnApps" runat="server" Value='<%# Eval("IsApp")%>'></asp:HiddenField>
                                                     <asp:HiddenField ID="hdnEmails" runat="server" Value='<%# Eval("IsEmail")%>'></asp:HiddenField>                                                    
-                                                    <asp:CheckBox ID="viaApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server" ></asp:CheckBox>
-                                                    <asp:CheckBox ID="viaEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server" ></asp:CheckBox>
+                                                    <asp:CheckBox ID="viaApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" AutoPostBack="true" runat="server" OnCheckedChanged="viaApp_CheckedChanged" ></asp:CheckBox>
+                                                    <asp:CheckBox ID="viaEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" AutoPostBack="true" runat="server" OnCheckedChanged="viaEmail_CheckedChanged" ></asp:CheckBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
