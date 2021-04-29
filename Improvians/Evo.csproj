@@ -1402,6 +1402,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\EmailTemplates\" />
     <Folder Include="bin\" />
     <Folder Include="uploads\" />
   </ItemGroup>

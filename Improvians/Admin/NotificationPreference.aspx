@@ -156,8 +156,8 @@
                                                 <ItemTemplate>                                                    
                                                     <asp:HiddenField ID="hdnApps" runat="server" Value='<%# Eval("IsApp")%>'></asp:HiddenField>
                                                     <asp:HiddenField ID="hdnEmails" runat="server" Value='<%# Eval("IsEmail")%>'></asp:HiddenField>                                                    
-                                                    <asp:CheckBox ID="viaApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server" OnCheckedChanged="viaApp_CheckedChanged" ></asp:CheckBox>
-                                                    <asp:CheckBox ID="viaEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server" OnCheckedChanged="viaEmail_CheckedChanged" ></asp:CheckBox>
+                                                    <asp:CheckBox ID="viaApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" AutoPostBack="true" runat="server" OnCheckedChanged="viaApp_CheckedChanged" ></asp:CheckBox>
+                                                    <asp:CheckBox ID="viaEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" AutoPostBack="true" runat="server" OnCheckedChanged="viaEmail_CheckedChanged" ></asp:CheckBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
