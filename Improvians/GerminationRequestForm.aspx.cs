@@ -278,7 +278,7 @@ namespace Evo
                 lblBenchlocation.Text = gvGerm.DataKeys[rowIndex].Values[4].ToString();
                 lblDescription.Text = gvGerm.DataKeys[rowIndex].Values[5].ToString();
                 lblTotalTrays.Text = gvGerm.DataKeys[rowIndex].Values[6].ToString();
-
+                lblTaskRequestKey.Text = gvGerm.DataKeys[rowIndex].Values[7].ToString();
 
 
 
@@ -443,7 +443,7 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Role", ddlSupervisor.SelectedValue);
             nv.Add("@ISAG", lblAGD.Text);
-
+            nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
 
 

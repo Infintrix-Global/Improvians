@@ -155,11 +155,15 @@ namespace Evo
             long result = 0;
             if (e.CommandName == "Start")
             {
+                //int rowIndex = Convert.ToInt32(e.CommandArgument);
+                //GridViewRow row = gvGerm.Rows[rowIndex];
+
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
-                GTAID = (row.FindControl("lblID") as Label).Text;
 
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}", GTAID));
+                GTAID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                lblGTR_ID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&GTRID={1}&IsF={2}", GTAID, lblGTR_ID.Text,0));
             }
         }
 

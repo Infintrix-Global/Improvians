@@ -20,12 +20,12 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-               
-                BindSupervisorList("0", "0","0");
+
+                BindSupervisorList("0", "0", "0");
 
                 BindTaskRequestTypeList("0", "0", "0");
-                BindBenchLocation(Session["Facility"].ToString(),"0","0","0");
-                BindJobCode("0","0", "0");
+                BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
+                BindJobCode("0", "0", "0");
                 Bindcname("0", "0", "0");
                 BindCrop("0", "0", "0");
                 BindGridGerm();
@@ -58,8 +58,8 @@ namespace Evo
         }
 
 
-  
-        public void BindSupervisorList(string ddlBench, string jobNo,string Cust)
+
+        public void BindSupervisorList(string ddlBench, string jobNo, string Cust)
         {
             //  NameValueCollection nv = new NameValueCollection();
 
@@ -82,7 +82,7 @@ namespace Evo
             ddlAssignedBy.DataBind();
             ddlAssignedBy.Items.Insert(0, new ListItem("--Select--", "0"));
         }
-        public void Bindcname(string ddlBench, string jobNo,string Core)
+        public void Bindcname(string ddlBench, string jobNo, string Core)
         {
 
             //DataTable dt = new DataTable();
@@ -111,7 +111,7 @@ namespace Evo
 
         }
 
-        public void BindJobCode(string ddlBench,string Customer,string Core)
+        public void BindJobCode(string ddlBench, string Customer, string Core)
         {
             //  ddlJobNo.Items[0].Selected = false;
             ddlJobNo.ClearSelection();
@@ -139,18 +139,18 @@ namespace Evo
 
         }
 
-        public void BindBenchLocation(string ddlMain,string jobNo,string Customer,string Core)
+        public void BindBenchLocation(string ddlMain, string jobNo, string Customer, string Core)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-      
+
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@Customer", Customer);
             nv.Add("@JobNo", jobNo);
             nv.Add("@GenusCode", Core);
-            nv.Add("@Mode","1");
+            nv.Add("@Mode", "1");
 
             dt = objCommon.GetDataTable("GetManageTaskJobHistorySearch", nv);
 
@@ -211,7 +211,7 @@ namespace Evo
             nv.Add("@GenusCode", ddlCrop.SelectedValue);
             if (Session["Role"].ToString() == "2")
             {
-             
+
                 AllData = objCommon.GetDataTable("GetManageTaskJobSupervisorHistory", nv);
             }
             else
@@ -219,7 +219,7 @@ namespace Evo
                 AllData = objCommon.GetDataTable("GetManageTaskJobHistory", nv);
             }
 
-           
+
             gvGerm.DataSource = AllData;
             gvGerm.DataBind();
 
@@ -242,19 +242,19 @@ namespace Evo
         {
             txtFromDate.Text = "";
             txtToDate.Text = "";
-            Bindcname("0", "0","0");
+            Bindcname("0", "0", "0");
             BindSupervisorList("0", "0", "0");
             BindTaskRequestTypeList("0", "0", "0");
-            BindBenchLocation(Session["Facility"].ToString(), "0", "0","0");
-            BindJobCode("0","0","0");
+            BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
+            BindJobCode("0", "0", "0");
             BindCrop("0", "0", "0");
             BindGridGerm();
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Bindcname(ddlBenchLocation.SelectedValue, "0","0");
-            BindJobCode(ddlBenchLocation.SelectedValue,"0","0");
+            Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
+            BindJobCode(ddlBenchLocation.SelectedValue, "0", "0");
             BindSupervisorList(ddlBenchLocation.SelectedValue, "0", "0");
             BindTaskRequestTypeList(ddlBenchLocation.SelectedValue, "0", "0");
             BindCrop(ddlBenchLocation.SelectedValue, "0", "0");
@@ -263,37 +263,40 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Bindcname("0",ddlJobNo.SelectedValue,"0");
-            BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, "0","0");
-            BindSupervisorList( "0", ddlJobNo.SelectedValue, "0");
-            BindTaskRequestTypeList("0",ddlJobNo.SelectedValue, "0");
+            Bindcname("0", ddlJobNo.SelectedValue, "0");
+            BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, "0", "0");
+            BindSupervisorList("0", ddlJobNo.SelectedValue, "0");
+            BindTaskRequestTypeList("0", ddlJobNo.SelectedValue, "0");
             BindCrop("0", ddlJobNo.SelectedValue, "0");
             BindGridGerm();
-            
+
         }
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindBenchLocation(Session["Facility"].ToString(), "0",ddlCustomer.SelectedValue,"0");
-            BindJobCode("0", ddlCustomer.SelectedValue,"0");
+            BindBenchLocation(Session["Facility"].ToString(), "0", ddlCustomer.SelectedValue, "0");
+            BindJobCode("0", ddlCustomer.SelectedValue, "0");
             BindSupervisorList("0", "0", ddlCustomer.SelectedValue);
-            BindTaskRequestTypeList("0", "0",ddlCustomer.SelectedValue);
+            BindTaskRequestTypeList("0", "0", ddlCustomer.SelectedValue);
             BindCrop("0", "0", ddlCustomer.SelectedValue);
             BindGridGerm();
         }
 
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Bindcname("0","0",ddlCrop.SelectedValue);
+            Bindcname("0", "0", ddlCrop.SelectedValue);
             BindBenchLocation(Session["Facility"].ToString(), "0", "0", ddlCrop.SelectedValue);
-            BindJobCode("0","0", ddlCrop.SelectedValue);
-            BindSupervisorList("0", "0","0");
+            BindJobCode("0", "0", ddlCrop.SelectedValue);
+            BindSupervisorList("0", "0", "0");
             BindTaskRequestTypeList("0", "0", ddlCustomer.SelectedValue);
             BindGridGerm();
         }
 
 
-
+        protected void ddlTaskRequestType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
 
 
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -319,11 +322,19 @@ namespace Evo
                 nv.Add("@RequestType", TaskRequestType);
                 dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobViewDetsils", nv);
 
+
+                DataTable dtR = new DataTable();
+                NameValueCollection nvR = new NameValueCollection();
+                nvR.Add("@BenchLocation", BatchLocation);
+                nvR.Add("@JobNo", jobCode);
+                nvR.Add("@RequestType", TaskRequestType);
+                dtR = objCommon.GetDataTable("GetManageTaskJobHistoryjobViewDetsilsRequest", nvR);
+
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     if (TaskRequestType == "Fertilization")
                     {
-                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?PageType={0}&FertilizationCode={1}&FCID={2}","ManageTask", dt.Rows[0]["FertilizationCode"].ToString(), dt.Rows[0]["SprayId"].ToString()));
+                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?PageType={0}&FertilizationCode={1}&FCID={2}", "ManageTask", dt.Rows[0]["FertilizationCode"].ToString(), dt.Rows[0]["SprayId"].ToString()));
                     }
                     if (TaskRequestType == "Chemical")
                     {
@@ -331,11 +342,12 @@ namespace Evo
                     }
                     if (TaskRequestType == "Germination")
                     {
-                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}", "ManageTask", dt.Rows[0]["ID"].ToString()));
+                        
+                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", dt.Rows[0]["ID"].ToString(), dt.Rows[0]["GTRID"].ToString(),1));
                     }
                     if (TaskRequestType == "Irrigation")
                     {
-                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}","ManageTask", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString()));
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}", "ManageTask", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString()));
 
                     }
 
@@ -343,34 +355,87 @@ namespace Evo
                     if (TaskRequestType == "Plant Ready")
                     {
 
-                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}","ManageTask", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString()));
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString()));
                     }
 
                     if (TaskRequestType == "Dump")
                     {
-                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}","ManageTask", dt.Rows[0]["DumpTaskAssignmentId"].ToString() , 0, dt.Rows[0]["DumpId"].ToString()));
-                       
+                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", dt.Rows[0]["DumpTaskAssignmentId"].ToString(), 0, dt.Rows[0]["DumpId"].ToString()));
+
                     }
                     if (TaskRequestType == "Move")
                     {
-                       
-                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}","ManageTask", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString()));
+
+                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString()));
 
                     }
                     if (TaskRequestType == "GeneralTask")
                     {
-                        Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}","ManageTask", dt.Rows[0]["GeneralTaskAssignmentId"].ToString(), 0, dt.Rows[0]["GeneralId"].ToString()));
-                     
+                        Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", dt.Rows[0]["GeneralTaskAssignmentId"].ToString(), 0, dt.Rows[0]["GeneralId"].ToString()));
+
                     }
                     if (TaskRequestType == "Crop Health Report")
                     {
-                      
+
                         Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", dt.Rows[0]["CropHealthReportTaskAssignmentId"].ToString(), 0, dt.Rows[0]["CropHealthReportId"].ToString()));
 
                     }
 
                 }
- 
+                else if(dtR != null && dtR.Rows.Count > 0)
+                {
+                    if (TaskRequestType == "Fertilization")
+                    {
+                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?PageType={0}&FertilizationCode={1}&FCID={2}", "ManageTask", dt.Rows[0]["FertilizationCode"].ToString(), dt.Rows[0]["SprayId"].ToString()));
+                    }
+                    if (TaskRequestType == "Chemical")
+                    {
+                        Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?PageType={0}&ChemicalCode={1}&CCID={2}", "ManageTask", dt.Rows[0]["ChemicalCode"].ToString(), dt.Rows[0]["ChemicalCompletionId"].ToString()));
+                    }
+                    if (TaskRequestType == "Germination")
+                    {
+                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", 0, dtR.Rows[0]["ID"].ToString(),1));
+                    }
+                    if (TaskRequestType == "Irrigation")
+                    {
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}", "ManageTask", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString()));
+
+                    }
+
+
+                    if (TaskRequestType == "Plant Ready")
+                    {
+
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString()));
+                    }
+
+                    if (TaskRequestType == "Dump")
+                    {
+                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", dt.Rows[0]["DumpTaskAssignmentId"].ToString(), 0, dt.Rows[0]["DumpId"].ToString()));
+
+                    }
+                    if (TaskRequestType == "Move")
+                    {
+
+                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString()));
+
+                    }
+                    if (TaskRequestType == "GeneralTask")
+                    {
+                        Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", dt.Rows[0]["GeneralTaskAssignmentId"].ToString(), 0, dt.Rows[0]["GeneralId"].ToString()));
+
+                    }
+                    if (TaskRequestType == "Crop Health Report")
+                    {
+
+                        Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", dt.Rows[0]["CropHealthReportTaskAssignmentId"].ToString(), 0, dt.Rows[0]["CropHealthReportId"].ToString()));
+
+                    }
+                }
+                else
+                {
+
+                }
                 //    Response.Redirect(String.Format("~/ViewJobDetails.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestType={2}", BatchLocation, jobCode, TaskRequestType));
 
 
@@ -400,7 +465,7 @@ namespace Evo
                     {
 
                         lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
-                        btnStart.Enabled = true;
+
 
                         btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
                     }
@@ -408,8 +473,8 @@ namespace Evo
                 else
                 {
                     lblTaskStatus.Text = "Pending";
-                  //  btnStart.Enabled = false;
-
+                    //  btnStart.Enabled = false;
+                    btnStart.Enabled = true;
                     btnStart.Attributes.Add("class", "bttn bttn-disabled bttn-action my-1 mx-auto d-block w-100");
                 }
 
@@ -434,7 +499,9 @@ namespace Evo
             }
         }
 
-    
+
+
+
 
 
 

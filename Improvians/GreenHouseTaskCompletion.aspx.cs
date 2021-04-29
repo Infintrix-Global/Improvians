@@ -32,6 +32,37 @@ namespace Evo
                     gtaID = Request.QueryString["GTAID"].ToString();
                  
                 }
+                if (Request.QueryString["GTRID"] != null)
+                {
+                    gtRID = Request.QueryString["GTRID"].ToString();
+
+                }
+
+               
+            
+          
+
+               if (gtaID=="0")
+                {
+                    PanelViewGJob.Visible = false;
+                    userinput.Visible = false;
+                    
+                }
+                else
+                {
+                    if (Request.QueryString["IsF"].ToString() == "1")
+                    {
+
+                        PanelViewGJob.Visible = true;
+                        userinput.Visible = true;
+                    }
+                    else
+                    {
+                        PanelViewGJob.Visible = false;
+                        userinput.Visible = true;
+                    }
+                }
+                
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
@@ -50,9 +81,19 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Jid", Jid);
-
+            if (gtaID == "0")
+            {
+                nv.Add("@Login", Session["LoginID"].ToString());
+                nv.Add("@GTRid", gtRID);
+            }
+            else
+            {
+                nv.Add("@Login", "0");
+                nv.Add("@GTRid", gtRID);
+            }
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskRequestView", nv);
+
+
             GridViewGermination.DataSource = dt;
             GridViewGermination.DataBind();
 
@@ -108,6 +149,25 @@ namespace Evo
             }
         }
 
+
+        private string gtRID
+        {
+            get
+            {
+                if (ViewState["gtRID"] != null)
+                {
+                    return (string)ViewState["gtRID"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["gtRID"] = value;
+            }
+        }
+
+
+
         private string Jid
         {
             get
@@ -129,7 +189,7 @@ namespace Evo
 
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@GTAID", gtaID);
+            nv.Add("@GTR", gtRID.ToString());
             nv.Add("@RoleId", Session["Role"].ToString());
 
             dt = objCommon.GetDataTable("SP_GetGreenHouseOperatorGerminationTaskByGTAIDNew", nv);

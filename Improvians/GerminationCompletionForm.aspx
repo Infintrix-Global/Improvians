@@ -29,9 +29,10 @@
                     <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                     <div class="portlet-body">
                         <div class="data__table">
+                            <asp:Label ID="lblGTR_ID" runat="server" Visible="false" Text=""></asp:Label>
                             <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
-                                GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound"
+                                GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound" DataKeyNames="ID,GTR_ID"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
                                     <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -140,7 +141,7 @@
                                     <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
 
-                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Start" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Start" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                             <%-- <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>--%>
                                         </ItemTemplate>
                                     </asp:TemplateField>

@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                     <label>Task Request Type </label>
-                    <asp:DropDownList ID="ddlTaskRequestType" runat="server" class="custom__dropdown robotomd">
+                    <asp:DropDownList ID="ddlTaskRequestType" runat="server" OnSelectedIndexChanged="ddlTaskRequestType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                     </asp:DropDownList>
                 </div>
             </div>
