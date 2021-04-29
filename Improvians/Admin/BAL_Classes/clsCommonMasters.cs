@@ -774,7 +774,7 @@ namespace Evo.Admin
             try
             {
 
-
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 1);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -802,7 +802,7 @@ namespace Evo.Admin
         {
             try
             {
-
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 17);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
@@ -912,7 +912,7 @@ namespace Evo.Admin
         {
             try
             {
-
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 18);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
@@ -941,7 +941,7 @@ namespace Evo.Admin
             try
             {
 
-
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@crop", crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@code", code);
                 ds = objGeneral.GetDatasetByCommand_SP("GetTrayCodeByActivityCode");
@@ -956,7 +956,7 @@ namespace Evo.Admin
             try
             {
 
-
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 2);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -987,7 +987,7 @@ namespace Evo.Admin
             int _isDeleted = -1;
             try
             {
-
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@EmployeeID", employeeID);
                 _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("SP_RemoveEmployee");
             }
