@@ -50,7 +50,7 @@ namespace Evo.Admin
             DataTable dt = new DataTable();
 
             sqr = "select distinct RTRIM(L.EmployeeName) + '_' + R.RoleAbbreviation as UserName from Role R inner join Login L on L.RoleID = R.RoleID " +
-                "where L.ISActive = 1  and R.RoleAbbreviation Is Not Null";
+                "where L.ISActive = 1  and R.RoleAbbreviation Is Not Null and L.RoleID not in('13','14')";
 
             dt = objGeneral.GetDatasetByCommand(sqr);
             ddlUsers.DataSource = dt;
