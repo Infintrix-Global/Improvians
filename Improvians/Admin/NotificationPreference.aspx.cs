@@ -21,10 +21,7 @@ namespace Evo.Admin
         {
             if (!IsPostBack)
             {
-                if (ddlTTypes.SelectedValue != "0")
-                {
-                    submitPreference.Attributes.Remove("disabled");
-                }
+                BindUserDetails();
             }
         }
 
@@ -167,8 +164,9 @@ namespace Evo.Admin
         {
             // BindTask();
             ddlTTypes.SelectedIndex = 0;
-            gvUsersProfile.DataSource = null;
-            gvUsersProfile.DataBind();
+            BindUserDetails();
+            //gvUsersProfile.DataSource = null;
+            //gvUsersProfile.DataBind();
         }
 
         protected void btnAddProfile_Click(object sender, EventArgs e)
@@ -181,18 +179,18 @@ namespace Evo.Admin
         private void AddNewRow(bool AddBlankRow)
         {
             List<NotificationPreferenceDetails> objProfile = new List<NotificationPreferenceDetails>();
-
+            DropDownList task = new DropDownList();
             foreach (GridViewRow row in gvAddUsers.Rows)
             {
                 CheckBox chk2 = (row.FindControl("chkApp") as CheckBox);
                 CheckBox chk3 = (row.FindControl("chkEmail") as CheckBox);
-                DropDownList task = (row.FindControl("ddlTasks") as DropDownList);
+                task = (row.FindControl("ddlTasks") as DropDownList);
                 DropDownList userName = (row.FindControl("ddlUsers") as DropDownList);
 
                 AddProfileDetail(ref objProfile, task.SelectedValue, userName.SelectedValue, chk2.Checked, chk3.Checked);
             }
             if (AddBlankRow)
-                AddProfileDetail(ref objProfile, "0", "0", false, false);
+                AddProfileDetail(ref objProfile, string.IsNullOrWhiteSpace(task.SelectedValue) ? "0" : task.SelectedValue, "0", false, false);
             NotificationPreferenceData = objProfile;
             GridProfileBind();
 
@@ -306,6 +304,16 @@ namespace Evo.Admin
         }
 
         protected void gvUsersProfile_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void viaApp_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void viaEmail_CheckedChanged(object sender, EventArgs e)
         {
 
         }
