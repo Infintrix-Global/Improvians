@@ -12,7 +12,7 @@ using System.Collections.Specialized;
 using System.Drawing;
 
 namespace Evo.Admin
-{    
+{
     public partial class NotificationPreference : Page
     {
         clsCommonMasters objCommon = new clsCommonMasters();
@@ -45,17 +45,20 @@ namespace Evo.Admin
         }
 
         private void BindUserNames(DropDownList ddlUsers)
-        {            
+        {
             var sqr = "";
             DataTable dt = new DataTable();
-           
+
             sqr = "select distinct RTRIM(L.EmployeeName) + '_' + R.RoleAbbreviation as UserName from Role R inner join Login L on L.RoleID = R.RoleID " +
                 "where L.ISActive = 1  and R.RoleAbbreviation Is Not Null";
-           
+
             dt = objGeneral.GetDatasetByCommand(sqr);
             ddlUsers.DataSource = dt;
+            ddlUsers.DataTextField = "UserName";
+            ddlUsers.DataValueField = "UserName";
             ddlUsers.DataBind();
             ddlUsers.Items.Insert(0, new ListItem("Select User", "0"));
+            //ddlUsers.DataBind();
         }
 
         private void BindUserDetails()
@@ -81,8 +84,8 @@ namespace Evo.Admin
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        {            
-            int _isInserted = -1;
+        {
+            //  int _isInserted = -1;
             foreach (GridViewRow item in gvAddUsers.Rows)
             {
                 if (item.RowType == DataControlRowType.DataRow)
@@ -99,22 +102,15 @@ namespace Evo.Admin
                         IsApp = chkApps.Checked,
                         IsEmail = chkEmails.Checked
                     };
-                    _isInserted = objCommon.InsertNotificationPreference(obj);
+                    var _Inserted = objCommon.InsertNotificationPreference(obj);
                 }
             }
-            if (_isInserted == -1)
-            {
-                lblmsg.Text = "Failed to Add Profile";
-                lblmsg.ForeColor = System.Drawing.Color.Red;
-                pnlAdd.Visible = true;
-            }
-            else
-            {
-                lblmsg.Text = "";
-                pnlList.Visible = true;
-                pnlAdd.Visible = false;               
-                BindUserDetails();
-            }
+
+            lblmsg.Text = "";
+            pnlList.Visible = true;
+            pnlAdd.Visible = false;
+            BindUserDetails();
+
 
         }
 
@@ -174,7 +170,7 @@ namespace Evo.Admin
             gvUsersProfile.DataSource = null;
             gvUsersProfile.DataBind();
         }
-        
+
         protected void btnAddProfile_Click(object sender, EventArgs e)
         {
             pnlAdd.Visible = true;
@@ -234,24 +230,42 @@ namespace Evo.Admin
             }
             BindUserDetails();
         }
-        
+
         protected void reset_Click(object sender, EventArgs e)
         {
-            ddlTTypes.SelectedValue = "0";            
+            ddlTTypes.SelectedValue = "0";
             BindUserDetails();
-        }        
+        }
 
         protected void gvAddUsers_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            List<NotificationPreferenceDetails> objProfile = NotificationPreferenceData;
+            objProfile.RemoveAt(e.RowIndex);
+            NotificationPreferenceData = objProfile;
+            GridProfileBind();
         }
 
         protected void gvAddUsers_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                DropDownList ddlTaskTypess= (DropDownList)e.Row.FindControl("ddlTasks");
                 DropDownList ddlUserName = (DropDownList)e.Row.FindControl("ddlUsers");
+                CheckBox check1 = (CheckBox)e.Row.FindControl("chkApp");
+                CheckBox check2 = (CheckBox)e.Row.FindControl("chkEmail");
+
                 BindUserNames(ddlUserName);
+
+                HiddenField hdnTasktypes = (HiddenField)e.Row.FindControl("hdnTask");
+                HiddenField hdnusers= (HiddenField)e.Row.FindControl("hdnUserNames");
+                HiddenField hdnViaapp= (HiddenField)e.Row.FindControl("hdnViaApps");
+                HiddenField hdnViaEmail= (HiddenField)e.Row.FindControl("hdnViaEmails");
+                
+                ddlTaskTypess.SelectedValue = hdnTasktypes.Value;
+                ddlUserName.SelectedValue = hdnusers.Value;
+
+                check1.Checked = hdnViaapp.Value == "True" ? true : false; 
+                check2.Checked = hdnViaEmail.Value == "True" ? true : false; 
             }
         }
 
@@ -270,7 +284,7 @@ namespace Evo.Admin
                 case "Delete":
                     nv.Add("@Id", e.CommandArgument.ToString());
                     var result = objCommonC.GetDataExecuteScaler("SP_DeleteNotificationPreference", nv);
-                    break;                
+                    break;
             }
             BindUserDetails();
         }
@@ -278,15 +292,15 @@ namespace Evo.Admin
         protected void gvUsersProfile_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
-            {               
+            {
                 CheckBox chkApp = e.Row.FindControl("viaApp") as CheckBox;
-                CheckBox chkEmail= e.Row.FindControl("viaEmail") as CheckBox;
+                CheckBox chkEmail = e.Row.FindControl("viaEmail") as CheckBox;
                 var appVal = (e.Row.FindControl("hdnApps") as HiddenField).Value;
                 var appEmail = (e.Row.FindControl("hdnEmails") as HiddenField).Value;
 
                 chkApp.Checked = appVal == "False" ? false : true;
                 chkEmail.Checked = appEmail == "False" ? false : true;
-               
+
             }
 
         }
