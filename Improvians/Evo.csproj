@@ -357,7 +357,6 @@
     <Content Include="js\firebase-messaging.js" />
     <Content Include="js\jquery.uploadify.js" />
     <Content Include="CustomerLogin.aspx" />
-    <Content Include="Login1.aspx" />
     <Content Include="ManageTaskJobReport.aspx" />
     <Content Include="MoveCompletionStart.aspx" />
     <Content Include="MoveReqAsssignment.aspx" />
@@ -470,7 +469,6 @@
     <Content Include="scripts\jquery-1.3.2.min.js" />
     <Content Include="scripts\jquery.uploadify.js" />
     <Content Include="scripts\uploader.swf" />
-    <Content Include="SeedingPlan\SeedingPlanForm.aspx" />
     <Content Include="SeedingPlanForm.aspx" />
     <Content Include="SeedLineCompletionFinal.aspx" />
     <Content Include="SeedLineLotFulfillment.aspx" />
@@ -888,13 +886,6 @@
     <Compile Include="CustomerLogin.aspx.designer.cs">
       <DependentUpon>CustomerLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login1.aspx.cs">
-      <DependentUpon>Login1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login1.aspx.designer.cs">
-      <DependentUpon>Login1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ManageTaskJobReport.aspx.cs">
       <DependentUpon>ManageTaskJobReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1252,13 +1243,6 @@
     </Compile>
     <Compile Include="PutAwayTaskCompletion.aspx.designer.cs">
       <DependentUpon>PutAwayTaskCompletion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SeedingPlan\SeedingPlanForm.aspx.cs">
-      <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SeedingPlan\SeedingPlanForm.aspx.designer.cs">
-      <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="SeedingPlanForm.aspx.cs">
       <DependentUpon>SeedingPlanForm.aspx</DependentUpon>
