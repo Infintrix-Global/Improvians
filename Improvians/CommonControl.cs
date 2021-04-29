@@ -12,6 +12,7 @@ using System.Web.Hosting;
 using System.IO;
 using System.Globalization;
 using System.Net;
+using Evo.Admin.BAL_Classes;
 
 namespace Evo
 {
@@ -29,7 +30,6 @@ namespace Evo
 
         public int GetDataInsertORUpdate(string storedProcedure, NameValueCollection nv)
         {
-
             int result = 0;
             using (SqlConnection con = new SqlConnection(CS))
             {
@@ -65,12 +65,10 @@ namespace Evo
             }
 
             return result;
-
         }
 
         public void ErrorMessage(string msg)
         {
-
             string ACPPath = HostingEnvironment.MapPath("~/log.txt");
             StreamWriter swExtLogFile = new StreamWriter(ACPPath, true);
             swExtLogFile.Write(Environment.NewLine);
@@ -120,7 +118,6 @@ namespace Evo
             }
 
             return result;
-
         }
 
         public long GetDataExecuteScalerRetObj(string storedProcedure, NameValueCollection nv)
@@ -147,9 +144,8 @@ namespace Evo
                 try
                 {
                     con.Open();
-                     cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                     result = (long)cmd.Parameters["@ID"].Value;
-
 
                 }
                 catch (Exception ex)
@@ -163,18 +159,10 @@ namespace Evo
             }
 
             return result;
-
-        }
-
-        internal long UpdateNotificationPreference(NotificationPreferenceMaster obj)
-        {
-            //need to add a code
-            throw new NotImplementedException();
         }
 
         public DataSet GetDataSet(string storedProcedure, NameValueCollection nv)
         {
-
             DataSet ds = new DataSet();
 
             using (SqlConnection con = new SqlConnection(CS))
@@ -214,19 +202,8 @@ namespace Evo
             return ds;
         }
 
-        internal DataTable GetNotificationPreference(string selectedValue)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal int InsertNotificationPreference(NotificationPreferenceMaster obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public DataTable GetDataTable(string storedProcedure, NameValueCollection nv)
         {
-
             DataTable dt = new DataTable();
 
             using (SqlConnection con = new SqlConnection(CS))
@@ -397,20 +374,20 @@ namespace Evo
         public string SendOTP(string mob, string msg)
         {
             string result;
-           
-                DataTable dtemp = new DataTable();
 
-                string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-                string sRandomOTP = GenerateRandomOTP(4, saAllowedCharacters);
-                CommonControl cc = new CommonControl();
-                NameValueCollection nv1 = new NameValueCollection();
-                nv1.Add("@Mobile", mob);
-                nv1.Add("@Otp", sRandomOTP);
-                cc.GetDataInsertORUpdate("SP_UpdatePassword", nv1);
-                String message = HttpUtility.UrlEncode(msg + sRandomOTP);
-                using (var wb = new WebClient())
-                {
-                    byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
+            DataTable dtemp = new DataTable();
+
+            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            string sRandomOTP = GenerateRandomOTP(4, saAllowedCharacters);
+            CommonControl cc = new CommonControl();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Mobile", mob);
+            nv1.Add("@Otp", sRandomOTP);
+            cc.GetDataInsertORUpdate("SP_UpdatePassword", nv1);
+            String message = HttpUtility.UrlEncode(msg + sRandomOTP);
+            using (var wb = new WebClient())
+            {
+                byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
                          {
                              //{ "apikey" , "OHz0QSTl/jg-fmAegzsE9WOm1LM9dAhd4cYyJT4ynw "},
                              { "apikey" , "INL4Hk01SM0-B3S8qoHDm8UuXoWlLRfe43WPoVwhYu"},
@@ -418,48 +395,29 @@ namespace Evo
                              { "message" , message},
                              { "sender" , "TXTLCL"}
                              });
-                    result = sRandomOTP;
-                    
-                }
-               
-          
-            return result;
-
-
-
-
-        }
-
-      
-        private string GenerateRandomOTP(int iOTPLength, string[] saAllowedCharacters)
-
-        {
-
-            string sOTP = String.Empty;
-
-            string sTempChars = String.Empty;
-
-            Random rand = new Random();
-
-            for (int i = 0; i < iOTPLength; i++)
-
-            {
-
-                int p = rand.Next(0, saAllowedCharacters.Length);
-
-                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
-
-                sOTP += sTempChars;
+                result = sRandomOTP;
 
             }
 
-            return sOTP;
-
+            return result;
         }
 
+        private string GenerateRandomOTP(int iOTPLength, string[] saAllowedCharacters)
+        {
+            string sOTP = String.Empty;
+            string sTempChars = String.Empty;
+            Random rand = new Random();
+            for (int i = 0; i < iOTPLength; i++)
+            {
+                int p = rand.Next(0, saAllowedCharacters.Length);
+                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
+                sOTP += sTempChars;
+            }
 
+            return sOTP;
+        }
 
-        public  string SendNotification(string NotificationFormat)
+        public string SendNotification(string NotificationFormat)
         {
             FCMResponse response;
             AppSettingsReader settingsReader = new AppSettingsReader();
@@ -496,14 +454,14 @@ namespace Evo
             return response.ToString();
         }
 
-        public  string getExactPayload(string UserID, string Tokens, string Message, string Title, string typemsg)
+        public string getExactPayload(string UserID, string Tokens, string Message, string Title, string typemsg)
         {
             string postData = "";
             postData = "{\"collapse_key\":\"score_update\",\"time_to_live\":108,\"delay_while_idle\":true,\"priority\":\"high\",\"data\": { \"userid\": \"" + UserID + "\",\"Message\": \"" + Message + "\",\"Title\": \"" + Title + "\",\"Type\": \"" + typemsg + "\"}  ,\"registration_ids\":[\"" + Tokens + "\"] }";
             return postData;
         }
 
-        public  string SendMessage(string UserID, string Tokens, string Message, string Title, string TypeMsg)
+        public string SendMessage(string UserID, string Tokens, string Message, string Title, string TypeMsg)
         {
             var objNotification = new
             {
@@ -517,8 +475,6 @@ namespace Evo
             return SendNotification(Newtonsoft.Json.JsonConvert.SerializeObject(objNotification));
         }
 
-
-
         public class FCMResponse
         {
             public long multicast_id { get; set; }
@@ -531,8 +487,5 @@ namespace Evo
         {
             public string message_id { get; set; }
         }
-
-
-
     }
 }
