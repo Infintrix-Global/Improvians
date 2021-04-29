@@ -204,6 +204,7 @@ table .bttn {
     display: flex;
     flex-direction: column;
     width: 280px;
+    max-width: 280px;
     flex: 1 0 280px;
     background: #ffffff;
     box-shadow: 0px 0px 13px 0px rgba(128,128,128, 0.11);
@@ -226,15 +227,18 @@ table .bttn {
 }
 
 .admin__logo {
+    display: flex;
+    align-items: center;
     width: 100%;
     padding: 15px;
     max-height: 99px;
+    min-height: 99px;
     text-align: center;
 }
 
 .admin__logo a { display: block; }
 
-.admin__logo img { width: 92px; }
+.admin__logo img { width: auto; max-width: 100%; }
 
 .aside__list a {
     display: flex;
@@ -862,6 +866,19 @@ header {
     background-image: url(../images/icons/icon-checkbox.svg);
 }
 
+.bttn.bttn__icons {	
+    font-size: 14px;	
+    width: 30px;	
+    height: 30px;	
+    line-height: 30px;	
+    padding: 0;	
+    border-radius: 4px;	
+    background: #505050;	
+    color: #ffffff;	
+}	
+.bttn__icons--edit:hover { background: #438644; }	
+.bttn__icons--delete:hover { background: #e22b2b; }
+
 /*Media Queries*/
 @media only screen and (max-width: 1839px) {
     .custom__dropdown, .filter__control, .input__control {
@@ -943,6 +960,7 @@ header {
     .input__control-icon { background-position: left 12px center; padding-left: 46px; }    
     .control__box { max-width: 100%;  }
     .admin__content h1 { font-size: 24px; line-height: 34px; }
+    .admin__logo { max-height: 85px; min-height: 85px; }
 }
 
 @media only screen and (max-width: 639px) {
@@ -952,6 +970,8 @@ header {
     .account__dropdown .account__user { margin-right: 5px; }
     .admin__form label h3 { font-size: 16px; }
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 calc(50% - 8px); max-width: calc(50% - 8px); }
+    .admin__logo { min-height: 78px; max-height: 78px; justify-content: center; }
+    .admin__logo img { max-width: 200px; }
 }
 
 @media only screen and (max-width: 575px) {
@@ -990,4 +1010,6 @@ header {
     .dashboard__paging { font-size: 14px; }
     .dashboard__paging li:first-child { margin-right: 10px; }
     .dashboard__paging li:last-child { margin-left: 10px; }
+    .admin__logo { min-height: 70px; max-height: 70px; }
+
 }
