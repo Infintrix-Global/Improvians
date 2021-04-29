@@ -300,7 +300,6 @@
     <Content Include="EmployeeProfile\sales1.png" />
     <Content Include="EmployeeProfile\sales2.png" />
     <Content Include="EmployeeProfile\sales3.png" />
-    <Content Include="EmployeeProfile\user-profile.jpg" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="FertilizerTaskStart.aspx" />
     <Content Include="FertilizerTaskStart1.aspx" />
@@ -343,6 +342,8 @@
     <Content Include="images\icons\icon-radio.svg" />
     <Content Include="images\icons\icon-search.svg" />
     <Content Include="images\icons\icon-video.png" />
+    <Content Include="images\job-report.png" />
+    <Content Include="images\print-report.png" />
     <Content Include="images\splash\apple_splash_1125.png" />
     <Content Include="images\splash\apple_splash_1242.png" />
     <Content Include="images\splash\apple_splash_1536.png" />

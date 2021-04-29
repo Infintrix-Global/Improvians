@@ -1302,7 +1302,7 @@ textarea.input__control {
     line-height: 22px;
     list-style: none;
     padding: 12px 0;
-    padding-right: 60px;
+    padding-left: 55px;
     color: #488949;
     border-bottom: 1px solid #f0f0f0;
 }
@@ -1312,8 +1312,8 @@ textarea.input__control {
     content: "";
     position: absolute;
     top: 0;
-    right: 0;
-    width: 50px;
+    left: 0;
+    width: 45px;
     height: 100%;
 }
 
@@ -1658,8 +1658,9 @@ textarea.input__control {
     .dashboard__grid { padding-top: 20px; }
     .dashboard__box { border-radius: 8px; }
     .dashboard__box-img { margin: 0 auto 20px; max-width: 84px; min-height: 87px; }
-    .dashboard__box-count { font-size: 30px; line-height: 30px; }
-    .dashboard__box-title { font-size: 20px; line-height: 26px; }
+    .dashboard__box-count { font-size: 30px; line-height: 30px; text-align: center; }
+    .dashboard__box-title { font-size: 20px; line-height: 26px; text-align: center; }
+    .dashboard__box-desc p { text-align: center; }
     .dashboard__box { flex-wrap: wrap; align-items: flex-start; }
     .dashboard__box-desc { padding-left: 0; width: 100%; }
 
@@ -1897,5 +1898,4 @@ textarea.input__control {
     
     .page__us tr.page-break { page-break-after:always; }
     .page__us table { page-break-after:always; }
-    
 }

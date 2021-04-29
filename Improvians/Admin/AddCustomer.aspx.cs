@@ -59,8 +59,8 @@ namespace Evo.Admin
             try
             {
                 DataTable dtCheckEmail = new DataTable();
-                if ((dtCheckEmail = objCommon.CheckEmailExists(txtEmail.Text.Trim())).Rows.Count == 0)
-                {
+                //if ((dtCheckEmail = objCommon.CheckEmailExists(txtEmail.Text.Trim())).Rows.Count == 0)
+                //{
                     int _isInserted = -1;
 
                     Employee objEmployee = new Employee()
@@ -107,11 +107,11 @@ namespace Evo.Admin
                         Response.Redirect("~/Admin/ViewCustomer.aspx");
                         btclear_Click(sender, e);
                     }
-                }
-                else
-                {
-                    lblStatus.Text = "Email already exists.Use Another Email ID";
-                }
+                //}
+                //else
+                //{
+                //    lblStatus.Text = "Email already exists.Use Another Email ID";
+                //}
             }
             catch (Exception ex)
             {
