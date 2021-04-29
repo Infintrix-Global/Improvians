@@ -34,7 +34,7 @@ namespace Evo.Customer
                 lblEmail.Text = dt.Rows[0]["Email"].ToString();
                 lnkEmail.HRef = "mailto:" + dt.Rows[0]["Email"].ToString();
                 if (!string.IsNullOrEmpty(dt.Rows[0]["Photo"].ToString()))
-                    ImageProfile.Src = @"..\EmployeeProfile\" + dt.Rows[0]["Photo"].ToString();
+                    ImageProfile.Src = dt.Rows[0]["Photo"].ToString();
             }
         }
 
@@ -48,7 +48,7 @@ namespace Evo.Customer
             string ToMail = lblEmail.Text;
             string Subject = "Contact Request is made by " + Session["EmployeeName"].ToString();
             string msg = "Hi " + lblName.Text + "," + "<br /><br />";
-            msg = msg + "You have received following message from customer: " + Session["EmployeeName"].ToString() + "<br />";
+            msg = msg + "You have received below message from customer name " + Session["EmployeeName"].ToString() + "<br />";
             msg = msg + msgs.Text + "<br />" + "<br />";
             msg = msg + "<br />Thanks, <br/> Customer Information Portal";
             objGeneral.SendMail(ToMail, CCMail, Subject, msg);

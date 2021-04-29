@@ -23,7 +23,7 @@ namespace Evo
                 lblEmpName.Text = Session["EmployeeName"].ToString();
                 if (!string.IsNullOrEmpty(Session["Photo"].ToString()))
                 {
-                    imgprofilepic.ImageUrl = @"~\EmployeeProfile\" + Session["Photo"].ToString();
+                    imgprofilepic.ImageUrl = Session["Photo"].ToString();
                 }
             }
         }
