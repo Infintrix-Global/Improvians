@@ -15,13 +15,13 @@
 
                 <div class="portlet-body">
                     <div class="data__table data__table-height">
-                        <asp:GridView ID="gvAddUsers" runat="server" ShowFooter="true" Width="100%" OnRowDeleting="gvAddUsers_RowDeleting"
+                        <asp:GridView ID="gvAddUsers" runat="server" ShowFooter="true" Width="70%" OnRowDeleting="gvAddUsers_RowDeleting"
                             AutoGenerateColumns="false" OnRowDataBound="gvAddUsers_RowDataBound">
                             <Columns>
-                                <asp:BoundField DataField="RowNumber" HeaderText="No." />
+<%--                                <asp:BoundField DataField="RowNumber" HeaderText="No." />--%>
                                 <asp:TemplateField HeaderText="Task Type" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:DropDownList ID="ddlTasks" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTasks_SelectedIndexChanged" CssClass="custom__dropdown input__control-auto robotomd">
+                                        <asp:DropDownList ID="ddlTasks" runat="server" AutoPostBack="true" CssClass="custom__dropdown input__control-auto robotomd">
                                             <asp:ListItem Text="Select Task Type" Value="0" Selected="True" disabled="disabled" />
                                             <asp:ListItem Value="Germination" Text="Germination Count" />
                                             <asp:ListItem Value="Fertilizer" Text="Fertilization" />
@@ -35,15 +35,15 @@
 
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlTasks" ValidationGroup="e"
                                             InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Select Task" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        <asp:HiddenField ID="hdnCode" runat="server" Value='<%# Eval("TaskType")%>' />
+                                        <asp:HiddenField ID="hdnTask" runat="server" Value='<%# Eval("TaskType")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Users">
-                                    <ItemTemplate>
-                                        <asp:DropDownList ID="ddlUsers" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                    <ItemTemplate>                                        
+                                        <asp:DropDownList ID="ddlUsers" runat="server" CssClass="custom__dropdown robotomd"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlUsers" ValidationGroup="e"
                                             InitialValue="0" SetFocusOnError="true" ErrorMessage="Please Select User" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        <asp:HiddenField ID="hdnId" runat="server" Value='<%# Eval("UserName")%>' />
+                                        <asp:HiddenField ID="hdnUserNames" runat="server" Value='<%# Eval("UserName")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -51,8 +51,13 @@
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server"></asp:CheckBox>
                                         <asp:CheckBox ID="chkEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server"></asp:CheckBox>
-                                        <asp:HiddenField ID="hdnApp" runat="server" Value='<%# Eval("IsApp")%>' />
-                                        <asp:HiddenField ID="hdnEmail" runat="server" Value='<%# Eval("IsEmail")%>' />
+                                        <asp:HiddenField ID="hdnViaApps" runat="server" Value='<%# Eval("viaApp")%>' />
+                                        <asp:HiddenField ID="hdnViaEmails" runat="server" Value='<%# Eval("viaEmail")%>' />
+
+
+                                       <%-- <asp:Label Visible="false" ID="apps" runat="server" Text='<%# Eval("IsApp")%>'></asp:Label>
+                                        <asp:Label Visible="false" ID="emails" runat="server" Text='<%# Eval("IsEmail")%>'></asp:Label>--%>
+                                       
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -129,8 +134,8 @@
                                 <div class="data__table data__table-height">
 
                                     <asp:GridView ID="gvUsersProfile" runat="server" AutoGenerateColumns="False"
-                                        class="striped" OnRowCommand="gvUsersProfile_RowCommand"
-                                        GridLines="None"
+                                        class="striped" OnRowCommand="gvUsersProfile_RowCommand" OnRowDataBound="gvUsersProfile_RowDataBound"
+                                        GridLines="None" OnRowDeleting="gvUsersProfile_RowDeleting"
                                         ShowHeaderWhenEmpty="True" Width="100%">
                                         <Columns>
 
@@ -148,9 +153,11 @@
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Send Via" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
-                                                <ItemTemplate>
-                                                    <asp:CheckBox ID="viaApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server"></asp:CheckBox>
-                                                    <asp:CheckBox ID="viaEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server"></asp:CheckBox>
+                                                <ItemTemplate>                                                    
+                                                    <asp:HiddenField ID="hdnApps" runat="server" Value='<%# Eval("IsApp")%>'></asp:HiddenField>
+                                                    <asp:HiddenField ID="hdnEmails" runat="server" Value='<%# Eval("IsEmail")%>'></asp:HiddenField>                                                    
+                                                    <asp:CheckBox ID="viaApp" Text="App" CssClass="custom-control custom-checkbox d-inline-block mr-2" runat="server" ></asp:CheckBox>
+                                                    <asp:CheckBox ID="viaEmail" Text="Email" CssClass="custom-control custom-checkbox d-inline-block" runat="server" ></asp:CheckBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 

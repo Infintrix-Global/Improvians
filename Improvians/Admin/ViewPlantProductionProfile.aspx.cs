@@ -158,7 +158,6 @@ namespace Evo.Admin
         protected void btAdd_Click(object sender, EventArgs e)
         {
             AddNewRow(true);
-
         }
         public void Clear()
         {

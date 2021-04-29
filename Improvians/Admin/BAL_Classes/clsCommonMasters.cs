@@ -1,5 +1,6 @@
 ﻿using Evo.Admin.BAL_Classes;
 using System;
+using System.Web.UI;
 using System.Collections.Specialized;
 using System.Data;
 using System.IO;
@@ -188,7 +189,7 @@ namespace Evo.Admin
         {
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@Email", email);
 
                 ds = objGeneral.GetDatasetByCommand_SP("SP_CheckEmaiLExists");
@@ -204,7 +205,8 @@ namespace Evo.Admin
         {
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
+
                 objGeneral.AddParameterWithValueToSQLCommand("@Mobile", mob);
                 objGeneral.AddParameterWithValueToSQLCommand("@Password", password);
                 ds = objGeneral.GetDatasetByCommand_SP("SP_CheckCurrentPassword");
@@ -221,7 +223,7 @@ namespace Evo.Admin
             int _isUpdated = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@Email", email);
                 objGeneral.AddParameterWithValueToSQLCommand("@Password", password);
                 _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("SP_UpdatePasswordByEmail");
@@ -238,7 +240,7 @@ namespace Evo.Admin
             int _isUpdated = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@Mobile", mobile);
                 objGeneral.AddParameterWithValueToSQLCommand("@Password", password);
                 _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("SP_UpdatePasswordByMobile");
@@ -256,7 +258,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@Email", email);
                 objGeneral.AddParameterWithValueToSQLCommand("@OTP", otp);
                 _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_UpdateOTP");
@@ -272,7 +274,8 @@ namespace Evo.Admin
         {
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
+
                 objGeneral.AddParameterWithValueToSQLCommand("@Email", email);
                 objGeneral.AddParameterWithValueToSQLCommand("@OTP", otp);
                 ds = objGeneral.GetDatasetByCommand_SP("SP_VerifyOTP");
@@ -290,7 +293,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@Photo", objEmployee.Photo);
                 objGeneral.AddParameterWithValueToSQLCommand("@Mobile", objEmployee.Mobile);
@@ -315,7 +318,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@Name", obj.FertilizerName);
                 objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
@@ -333,8 +336,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
-
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@Code", obj.code);
                 objGeneral.AddParameterWithValueToSQLCommand("@Crop", obj.crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@traycode", obj.traycode.ToString());
@@ -350,13 +352,33 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+        internal int InsertNotificationPreference(NotificationPreferenceMaster obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ViaApp", obj.IsApp);
+                objGeneral.AddParameterWithValueToSQLCommand("@ViaEmail", obj.IsEmail);
+                objGeneral.AddParameterWithValueToSQLCommand("@TaskName", obj.Task);
+                objGeneral.AddParameterWithValueToSQLCommand("@UserName", obj.User);                
+                objGeneral.AddParameterWithValueToSQLCommand("@LoginID", 5);                
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddNotificationPreference");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
 
         public int InsertPlantProductionAddNewProfile(ProfilePlanner obj)
         {
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@Code", obj.code);
                 objGeneral.AddParameterWithValueToSQLCommand("@Crop", obj.crop);
@@ -377,8 +399,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
-
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@Code", obj.code);
                 objGeneral.AddParameterWithValueToSQLCommand("@Crop", obj.crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@traycode", obj.traycode.ToString());
@@ -393,13 +414,12 @@ namespace Evo.Admin
             return _isInserted;
         }
 
-
         public int InsertChemicalMaster(ChemicalMasters obj)
         {
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@Name", obj.ChemicalName);
                 objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
@@ -418,7 +438,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@Name", obj.TaskType);
                 objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
@@ -436,8 +456,8 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
 
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@ProblemType", obj.TypeOfProblem);
                 objGeneral.AddParameterWithValueToSQLCommand("@ProblemCause", obj.CauseOfProblem);
                 objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
@@ -457,7 +477,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@pid", obj.pid);
                 objGeneral.AddParameterWithValueToSQLCommand("@dateshift", obj.dateshift);
@@ -476,7 +496,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@pid", id);
 
@@ -494,7 +514,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@EmployeeID", objEmployee.EmployeeID);
                 objGeneral.AddParameterWithValueToSQLCommand("@Photo", objEmployee.Photo);
@@ -520,7 +540,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
                 objGeneral.AddParameterWithValueToSQLCommand("@fertilizerName", obj.FertilizerName);
@@ -533,13 +553,13 @@ namespace Evo.Admin
             }
             return _isInserted;
         }
-        public int AddCustomerSalesMapping(int CustomerID,int SalesID)
+        public int AddCustomerSalesMapping(int CustomerID, int SalesID)
         {
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
 
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@CustomerID", CustomerID);
                 objGeneral.AddParameterWithValueToSQLCommand("@SalesID", SalesID);
 
@@ -557,8 +577,8 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
 
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
                 objGeneral.AddParameterWithValueToSQLCommand("@chemicalName", obj.ChemicalName);
 
@@ -576,7 +596,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
                 objGeneral.AddParameterWithValueToSQLCommand("@tasktype", obj.TaskType);
@@ -594,7 +614,7 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
 
                 objGeneral.AddParameterWithValueToSQLCommand("@id", obj.id);
                 objGeneral.AddParameterWithValueToSQLCommand("@ProblemType", obj.TypeOfProblem);
@@ -614,7 +634,7 @@ namespace Evo.Admin
             try
             {
 
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 3);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -628,8 +648,8 @@ namespace Evo.Admin
         {
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 20);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -643,8 +663,8 @@ namespace Evo.Admin
         {
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 21);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -660,8 +680,9 @@ namespace Evo.Admin
         {
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
+
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 22);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -675,7 +696,7 @@ namespace Evo.Admin
         {
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 23);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -690,8 +711,6 @@ namespace Evo.Admin
             DataTable dt = new DataTable();
             try
             {
-
-                General objGeneral = new General();
                 string strQuery = string.Empty;
                 strQuery = "SELECT pid,code, traycode, crop, activitycode, dateshift FROM gti_jobs_prodprofile WHERE 1=1 ";
                 if (code != "0")
@@ -721,8 +740,7 @@ namespace Evo.Admin
             {
             }
             return dt;
-        }
-
+        }       
 
         public DataTable GetPlanProductionCrop(string crop)
         {
@@ -730,7 +748,7 @@ namespace Evo.Admin
             try
             {
 
-                General objGeneral = new General();
+
                 string strQuery = string.Empty;
                 strQuery = "SELECT code, traycode, crop FROM gti_jobs_prodprofile WHERE 1=1";
 
@@ -757,7 +775,7 @@ namespace Evo.Admin
             try
             {
 
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 1);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -771,7 +789,7 @@ namespace Evo.Admin
             try
             {
 
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@code", Code);
                 ds = objGeneral.GetDatasetByCommand_SP("GetCropByCode");
             }
@@ -785,8 +803,8 @@ namespace Evo.Admin
         {
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 17);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -800,8 +818,8 @@ namespace Evo.Admin
         {
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 1);
                 ds = objGeneral.GetDatasetByCommand_SP("GetPlantProductionConfiguration");
             }
@@ -814,8 +832,8 @@ namespace Evo.Admin
         {
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 0);
                 ds = objGeneral.GetDatasetByCommand_SP("GetPlantProductionConfiguration");
             }
@@ -829,7 +847,7 @@ namespace Evo.Admin
             int _isUpdated = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination1", Germination1);
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination2", Germination2);
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination3", Germination3);
@@ -846,7 +864,7 @@ namespace Evo.Admin
             int _isUpdated = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@PlantReady", PlantReady);
                 _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("UpdatePlantProductionPlantReadyConfiguration");
             }
@@ -861,7 +879,8 @@ namespace Evo.Admin
             int _isUpdated = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
+
                 objGeneral.AddParameterWithValueToSQLCommand("@Crop", Crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination1", Germination1);
                 objGeneral.AddParameterWithValueToSQLCommand("@Germination2", Germination2);
@@ -880,7 +899,8 @@ namespace Evo.Admin
             int _isUpdated = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
+
                 objGeneral.AddParameterWithValueToSQLCommand("@Crop", Crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@PlantReady", PlantReady);
                 _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("AddPlantProductionCropPlantReady");
@@ -895,8 +915,8 @@ namespace Evo.Admin
         {
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 18);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -909,8 +929,8 @@ namespace Evo.Admin
         {
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@crop", code);
                 ds = objGeneral.GetDatasetByCommand_SP("GetActivityCodeByCrop");
             }
@@ -924,7 +944,7 @@ namespace Evo.Admin
             try
             {
 
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@crop", crop);
                 objGeneral.AddParameterWithValueToSQLCommand("@code", code);
                 ds = objGeneral.GetDatasetByCommand_SP("GetTrayCodeByActivityCode");
@@ -939,7 +959,7 @@ namespace Evo.Admin
             try
             {
 
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 2);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -954,7 +974,7 @@ namespace Evo.Admin
             try
             {
 
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@mode", 4);
                 ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
             }
@@ -970,7 +990,7 @@ namespace Evo.Admin
             int _isDeleted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@EmployeeID", employeeID);
                 _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("SP_RemoveEmployee");
             }
@@ -986,7 +1006,7 @@ namespace Evo.Admin
             int _isDeleted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@id", employeeID);
                 _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("DeleteFertilizer");
             }
@@ -1002,7 +1022,7 @@ namespace Evo.Admin
             int _isDeleted = -1;
             try
             {
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@id", employeeID);
                 _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("DeleteChemical");
             }
@@ -1018,7 +1038,7 @@ namespace Evo.Admin
             int _isDeleted = -1;
             try
             {
-                General objGeneral = new General();
+
                 objGeneral.AddParameterWithValueToSQLCommand("@id", eid);
                 _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("DeleteCropHealth");
             }
@@ -1033,8 +1053,8 @@ namespace Evo.Admin
             int _isInserted = -1;
             try
             {
+                objGeneral.ClearParameters();
 
-                General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@EmployeeID", employeeID);
                 objGeneral.AddParameterWithValueToSQLCommand("@FacilityID", FacilityID);
                 _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddEmployeeFacility");
@@ -1050,7 +1070,7 @@ namespace Evo.Admin
             try
             {
 
-                General objGeneral = new General();
+                objGeneral.ClearParameters();
                 objGeneral.AddParameterWithValueToSQLCommand("@GCode", GCode);
 
                 ds = objGeneral.GetDatasetByCommand_SP("spGetDateAdminShift");
@@ -1129,8 +1149,8 @@ public class CropHealthMasters
 public class NotificationPreferenceMaster
 {
     public int id { get; set; }
-    public string Task{ get; set; }
-    public string User{ get; set; }
+    public string Task { get; set; }
+    public string User { get; set; }
     public bool IsApp { get; set; }
-    public bool IsEmail{ get; set; }    
+    public bool IsEmail { get; set; }
 }
