@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Evo.Admin;
@@ -93,7 +94,7 @@ namespace Evo.Admin
                             System.IO.Directory.CreateDirectory(path);
                             FileUpProfile.SaveAs(path + @"\" + Imgname);
 
-                            ImageProfile.ImageUrl = @"~\EmployeeProfile\" + Imgname;
+                            ImageProfile.ImageUrl = WebConfigurationManager.AppSettings["PortalURL"] + @"\EmployeeProfile\" + Imgname;
                             ImageProfile.Visible = true;
                             lblProfile.Visible = true;
                             lblProfile.Text = Imgname;
@@ -131,7 +132,7 @@ namespace Evo.Admin
                 {
                     lblProfile.Text = dt1.Tables[0].Rows[0]["Photo"].ToString();
                     lblProfile.Visible = false;
-                    ImageProfile.ImageUrl = @"..\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
+                    ImageProfile.ImageUrl = dt1.Tables[0].Rows[0]["Photo"].ToString();
                     txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
                     ddlSales.SelectedValue = GetSalesForCustomer();// dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
                     txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();
@@ -152,7 +153,7 @@ namespace Evo.Admin
         {
             string sqr = "Select SalesID from CustomerSalesMapping where CustomerID=" + Session["EmployeeID"].ToString();
             General objGeneral = new General();
-            DataTable dt= objGeneral.GetDatasetByCommand(sqr);
+            DataTable dt = objGeneral.GetDatasetByCommand(sqr);
             if (dt != null && dt.Rows.Count > 0)
                 return dt.Rows[0][0].ToString();
             else
@@ -173,7 +174,7 @@ namespace Evo.Admin
                     Department = "",
                     Designation = "13",
                     NavisionCustomerID = txtNavisionID.Text,
-                    Photo = lblProfile.Text,
+                    Photo = ImageProfile.ImageUrl,
                     EmployeeCode = txtUserName.Text,
                     Password = objCommon.Encrypt(txtPassword.Text)
                 };
