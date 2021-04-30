@@ -73,6 +73,7 @@
                     <div class="ml-auto">
                         <a href="<%=ResolveUrl("~/Customer/ContactSalesRepresentative.aspx") %>" class="customer__support" title="Contact Support">
                             <i class="rxicon-icon-customer-support"></i>
+                            <span>Customer Support</span>
                         </a>
                     </div>
                     <div class="dropdown account__dropdown ml-3">

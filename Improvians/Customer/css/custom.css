@@ -1254,6 +1254,21 @@ textarea.input__control {
 
 
 /*Customer Portal CSS STARTS*/
+.customer__support {
+    max-width: 96px;
+    display: flex;
+    align-items: center;
+}
+
+.customer__support span {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-left: 5px;
+    text-transform: uppercase;
+    color: #3a3a3a;
+}
 .card-respresentative img {
     object-fit: cover;
     object-position: top center;

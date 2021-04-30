@@ -1861,8 +1861,6 @@ textarea.input__control {
         border-radius: 8px;
         padding-left: 15px;
     }
-
-    .page__us .data__table tr { page-break-after:always; }
     
     .page__us .data__table td, .page__us .data__table th {
         padding: 0 5px;
@@ -1885,17 +1883,10 @@ textarea.input__control {
         width: 100%;
         bottom: 24px;
     }
-    
+
     .page__us .page-break {
         margin-top: 160px;
         margin-bottom: 84px;
-        page-break-after: always;
+        page-break-before: always;
     }
-
-    .page__us .page-break + .page-break {
-        margin-top: 176px;
-    }
-    
-    .page__us tr.page-break { page-break-after:always; }
-    .page__us table { page-break-after:always; }
 }
