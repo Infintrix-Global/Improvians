@@ -307,6 +307,7 @@
     <Content Include="FertilizerTaskStart.aspx" />
     <Content Include="FertilizerTaskStart1.aspx" />
     <Content Include="firebase-messaging-sw.js" />
+    <Content Include="GrowersTrans.aspx" />
     <Content Include="GeneralTaskRequestForm.aspx" />
     <Content Include="DumpRequestForm.aspx" />
     <Content Include="GeneralTaskCompletionForm.aspx" />
@@ -339,6 +340,7 @@
     <Content Include="images\favicon\apple-icon-76x76.png" />
     <Content Include="images\favicon\apple-icon-precomposed.png" />
     <Content Include="images\favicon\apple-icon.png" />
+    <Content Include="images\growerstrans.png" />
     <Content Include="images\icons\icon-checkbox.svg" />
     <Content Include="images\icons\icon-dropdown.svg" />
     <Content Include="images\icons\icon-ppt.svg" />
@@ -779,6 +781,13 @@
     </Compile>
     <Compile Include="FertilizerTaskStart1.aspx.designer.cs">
       <DependentUpon>FertilizerTaskStart1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GrowersTrans.aspx.cs">
+      <DependentUpon>GrowersTrans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GrowersTrans.aspx.designer.cs">
+      <DependentUpon>GrowersTrans.aspx</DependentUpon>
     </Compile>
     <Compile Include="GeneralTaskRequestForm.aspx.cs">
       <DependentUpon>GeneralTaskRequestForm.aspx</DependentUpon>
