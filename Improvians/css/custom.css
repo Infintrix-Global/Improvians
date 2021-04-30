@@ -643,13 +643,13 @@ textarea.input__control {
 
 .dashboard__block h2 { color: #2a2a2a; }
 
-.dashboard__block h3, h3 {
+.dashboard__block h3, h3, .h3 {
     font-family: 'roboto-medium', sans-serif;
     font-size: 22px;
     margin-bottom: 22px;
 }
 
-.dashboard__block h4, h4 {
+.dashboard__block h4, h4, .h4 {
     font-family: 'roboto-medium', sans-serif;
     font-size: 18px;
     margin-bottom: 18px;
@@ -1270,10 +1270,8 @@ textarea.input__control {
     padding-bottom: 30px;
 }
 
-.section__help h1 {
+.section__help h2 {
     position: relative;
-    font-size: 40px;
-    line-height: 50px;
     text-align: center;
     padding-top: 30px;
     margin-bottom: 40px;
@@ -1283,10 +1281,13 @@ textarea.input__control {
     -webkit-box-shadow: 0px 1px 5px -1px #c7c7c7;
     -moz-box-shadow: 0px 1px 5px -1px #c7c7c7;
     box-shadow: 0px 1px 5px -1px #c7c7c7;
-    width: 1024px;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.help__reources .card {
+    width: 1024px;
 }
 
 .section__help h3 { font-family: 'roboto-medium', sans-serif; }
@@ -1330,6 +1331,76 @@ textarea.input__control {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.contact__pic img {
+    background: #f1f1f1;
+    margin-right: 15px;
+    max-width: 160px;
+    height: auto;
+}
+
+.contact__detail {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.contact__detail label {
+    font-family: 'roboto-bold', sans-serif;
+    min-width: 70px;
+}
+
+.contact__item { margin-bottom: 12px; }
+
+.contact__item label { margin-bottom: 0; }
+
+.contact__item i {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.contact__item, .contact__item a {
+    display: flex;
+    word-break: break-all;
+    color: #505050;
+}
+.contact__item a:hover { color: #489d48; }
+
+.accordion__help {
+    max-width: 100%;
+    width: 1024px;
+}
+
+.accordion .card-header {
+    position: relative;
+    cursor: pointer;
+}
+
+.accordion .card-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    background-image: url(../images/icon-dropdown.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 11px;
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+.accordion .card-header.collapsed::before {
+    transform: rotate(0deg);
+}
+
+.accordion .card-header h3 {
+    font-size: 20px;
+    padding-right: 30px;
+}
+
+.accordion .card-body a { color: #489d48; font-family: 'roboto-medium', sans-serif; }
+.accordion .card-body a:hover { text-decoration: underline; }
 
 /*Help Page ENDS*/
 
@@ -1566,8 +1637,6 @@ textarea.input__control {
     }
 
     .data__mobile td [data-head]::before {content: attr(data-head);display: block;width: 100%;font-weight: bold;padding: 5px 0;}
-
-    .section__help h1 { font-size: 34px; line-height: 44px; }
 }
 
 @media only screen and (max-width: 1023px) {
@@ -1693,11 +1762,13 @@ textarea.input__control {
     }
     .request__block { margin-bottom: 30px; }
 
-    .section__help h1 { font-size: 30px; line-height: 40px; }
     .reports__buttons { 
         margin-top: 10vh;
         margin-top: 10vh;
     }
+    .section__help h2 { margin-bottom: 25px; }
+    .accordion .card-header::before { width: 40px; }
+    .accordion .card-header h3 { font-size: 18px; padding-right: 20px;  }
 }
 
 @media only screen and (max-width: 639px) {
@@ -1742,6 +1813,9 @@ textarea.input__control {
     .site__breadcrumb { overflow: auto; }
     .breadcrumb-item { display: inline-flex; }
     .breadcrumb-item:last-child { padding-right: 15px; }
+    .contact__pic { text-align: center; }
+    .contact__pic img { margin-right: 0; }
+    .help__contact .card-body { padding: 15px; }
 }
 
 @media only screen and (max-width: 459px) {
@@ -1780,11 +1854,12 @@ textarea.input__control {
 
     .request__block-head { width: calc(100% - 0px); }
 
-    .section__help h1 { font-size: 28px; line-height: 38px; }
     .reports__buttons a { min-height: 140px; }
     .reports__buttons i { font-size: 40px; line-height: 30px; }
     .reports__buttons .card-title { font-size: 20px; line-height: 24px; margin-top: 12px; }
     .reports__buttons .card-body { padding-left: 10px; padding-right: 10px; }
+    .contact__detail { font-size: 16px; line-height: 20px; }
+    .contact__detail label { min-width: 60px; }
 }
 
 
@@ -1861,6 +1936,8 @@ textarea.input__control {
         border-radius: 8px;
         padding-left: 15px;
     }
+
+    .page__us .data__table tr { page-break-after:always; }
     
     .page__us .data__table td, .page__us .data__table th {
         padding: 0 5px;
@@ -1883,10 +1960,17 @@ textarea.input__control {
         width: 100%;
         bottom: 24px;
     }
-
+    
     .page__us .page-break {
         margin-top: 160px;
         margin-bottom: 84px;
-        page-break-before: always;
+        page-break-after: always;
     }
+
+    .page__us .page-break + .page-break {
+        margin-top: 176px;
+    }
+    
+    .page__us tr.page-break { page-break-after:always; }
+    .page__us table { page-break-after:always; }
 }
