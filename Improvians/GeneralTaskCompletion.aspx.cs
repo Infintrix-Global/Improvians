@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Evo.Admin.BAL_Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +14,10 @@ namespace Evo
     public partial class GeneralTaskCompletion : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        General objGeneral = new General();
+        private readonly EmailHelper _emailHelper;
+        DataTable dtCompletion = new DataTable();
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Session["Role"].ToString() == "13")
@@ -104,18 +110,14 @@ namespace Evo
             }
         }
 
-
-
-
-
-
         public void BindTask()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
             nv.Add("@GeneralTaskAssignmentId", Did);
-            dt = objCommon.GetDataTable("SP_GetOperatorGeneralTaskDetails", nv);
+            dtCompletion = objCommon.GetDataTable("SP_GetOperatorGeneralTaskDetails", nv);
+            dt = dtCompletion;
             gvTask.DataSource = dt;
             gvTask.DataBind();
             DateTime dNow = new DateTime();
@@ -140,8 +142,6 @@ namespace Evo
             }
         }
 
-
-
         protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Session["SelectedAssignment"] = ddlAssignments.SelectedValue;
@@ -162,6 +162,26 @@ namespace Evo
         {
             gvTask.PageIndex = e.NewPageIndex;
             BindTask();
+        }
+
+        public static string ConvertDataTableToHTML(DataTable dt)
+        {
+            string html = "<table>";
+            //add header row
+            html += "<tr>";
+            for (int i = 0; i < dt.Columns.Count; i++)
+                html += "<td>" + dt.Columns[i].ColumnName + "</td>";
+            html += "</tr>";
+            //add rows
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                html += "<tr>";
+                for (int j = 0; j < dt.Columns.Count; j++)
+                    html += "<td>" + dt.Rows[i][j].ToString() + "</td>";
+                html += "</tr>";
+            }
+            html += "</table>";
+            return html;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -193,6 +213,8 @@ namespace Evo
             nameValue.Add("@GreenHouseID", txtBenchLocation);
             nameValue.Add("@TaskName", "General Task");
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+            //SendMailAfterCompletion();
             if (result > 0)
             {
                 // lblmsg.Text = "Completion Successful";
@@ -212,27 +234,47 @@ namespace Evo
                 script += "'; }";
                 ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 clear();
-
-
-                //}
-                //if (Session["Role"].ToString() == "2")
-                //{
-                //    url = "GeneralTaskAssignmentForm.aspx";
-                //    string script = "window.onload = function(){ alert('";
-                //    script += message;
-                //    script += "');";
-                //    script += "window.location = '";
-                //    script += url;
-                //    script += "'; }";
-                //    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                //}
-
-
             }
             else
             {
                 lblmsg.Text = "Completion Not Successful";
             }
+        }
+
+        private void SendMailAfterCompletion()
+        {
+            string table1 =  ConvertDataTableToHTML(dtCompletion);           
+
+            var pathToFile = Path.DirectorySeparatorChar.ToString()
+                    + "Admin/EmailTemplates"
+                    + Path.DirectorySeparatorChar.ToString()
+                    + "GeneralTaskCompletionSendEmail.html";
+            string filePath;
+            using (StreamReader SourceReader = System.IO.File.OpenText(pathToFile))
+            {
+                filePath = SourceReader.ReadToEnd();
+            }
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("#FirstName#", "FirstName");
+            dic.Add("#JobNo#", "FirstName");
+            dic.Add("#Item#", "FirstName");
+            dic.Add("#BLoc#", "FirstName");
+            dic.Add("#TTrays#", "FirstName");
+            dic.Add("#TSize#", "FirstName");
+            dic.Add("#TaskType#", "FirstName");
+            dic.Add("#MoveF#", "FirstName");
+            dic.Add("#MoveT#", "FirstName");
+            dic.Add("#Cms#", "FirstName");
+            
+//            dic.Add("#GDate#", collection.StartDate.ToString("dd/MM/yyyy"));
+            dic.Add("#AssignBy#","");
+
+
+            string sbody = _emailHelper.getEmailBody(pathToFile, dic);
+  //          objGeneral.SendMail(ToMail, CCMail, "General Task is completed by ", sbody);
+
+
+
         }
 
         public void clear()

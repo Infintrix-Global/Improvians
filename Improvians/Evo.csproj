@@ -523,6 +523,7 @@
     <Compile Include="Admin\BAL_Classes\BAL_Login.cs" />
     <Compile Include="Admin\BAL_Classes\BAL_Task.cs" />
     <Compile Include="Admin\BAL_Classes\clsCommonMasters.cs" />
+    <Compile Include="Admin\BAL_Classes\EmailHelper.cs" />
     <Compile Include="Admin\BAL_Classes\General.cs" />
     <Compile Include="Admin\CropHealthMaster.cs">
       <DependentUpon>CropHealthMaster.aspx</DependentUpon>
