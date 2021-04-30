@@ -51,7 +51,7 @@
                             ErrorMessage="Message is required."
                             ForeColor="Red">
                         </asp:RequiredFieldValidator><br/>
-                        <asp:Button ID="btnSend" runat="server" CssClass="bttn bttn-primary" Text="Send Mail" OnClick="btnSend_Click" />
+                        <asp:Button ID="btnSend" runat="server" CssClass="bttn bttn-primary" Text="Send" OnClick="btnSend_Click" />
                     </div>
                 </div>
             </div>
