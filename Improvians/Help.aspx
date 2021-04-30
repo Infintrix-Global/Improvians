@@ -6,7 +6,7 @@
     <div class="main main__header">
             <div class="site__container">
 
-                <section class="section__help">
+                <section class="section__help help__reources">
                     <h2 class="robotobold">We are here to help</h2>
 
                     <div class="card">
