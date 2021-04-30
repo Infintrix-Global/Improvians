@@ -26,8 +26,16 @@ namespace Evo
                 {
                     imgprofilepic.ImageUrl = Session["Photo"].ToString();
                 }
-                SiteMapPath1.SiteMapProvider = "SitemapCustomer";
-                SiteMapPath1.DataBind();
+                String activepage = Request.RawUrl.ToLower();
+                if (activepage.Contains("dashboard"))
+                {
+                    divSitemap.Visible = false;
+                }
+                else
+                {
+                    SiteMapPath1.SiteMapProvider = "SitemapCustomer";
+                    SiteMapPath1.DataBind();
+                }
             }
         }
     }

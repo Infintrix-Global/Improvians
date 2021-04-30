@@ -32,7 +32,7 @@ namespace Evo
         private void BindRepeater(string strDate)
         {
             string strSQL = " select distinct loc_seedline, CONVERT(date, CreateOn) as CreateOn from gti_jobs_seeds_plan";
-            if (!string.IsNullOrEmpty(strDate) && strDate != "0")
+            if (!string.IsNullOrEmpty(strDate) && strDate != "--Select--")
                 strSQL = strSQL + " where CONVERT(date, CreateOn)= '" + strDate + "'";
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             repReport.DataSource = dt;
