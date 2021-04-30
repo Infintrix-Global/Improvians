@@ -14,6 +14,7 @@ namespace Evo
             if (Session["LoginID"] == null)
             {
                 Response.Redirect("~/CustomerLogin.aspx");
+               
             }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -25,6 +26,8 @@ namespace Evo
                 {
                     imgprofilepic.ImageUrl = Session["Photo"].ToString();
                 }
+                SiteMapPath1.SiteMapProvider = "SitemapCustomer";
+                SiteMapPath1.DataBind();
             }
         }
     }

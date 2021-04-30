@@ -23,14 +23,17 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                BindRepeater();
+                string strDate = Request.QueryString["Date"];
+                BindRepeater(strDate);
             }
         }
 
-      
-        private void BindRepeater()
+
+        private void BindRepeater(string strDate)
         {
             string strSQL = " select distinct loc_seedline, CONVERT(date, CreateOn) as CreateOn from gti_jobs_seeds_plan";
+            if (!string.IsNullOrEmpty(strDate) && strDate != "0")
+                strSQL = strSQL + " where CONVERT(date, CreateOn)= '" + strDate + "'";
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             repReport.DataSource = dt;
             repReport.DataBind();
@@ -41,7 +44,7 @@ namespace Evo
             GridView DGJob = (GridView)e.Item.FindControl("DGJob");
             Label lblFacility = (Label)e.Item.FindControl("lblFacility");
             Label lblDate = (Label)e.Item.FindControl("lblDate");
-            string strSQL = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'" ;
+            string strSQL = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             DGJob.DataSource = dt;
             DGJob.DataBind();
@@ -69,8 +72,8 @@ namespace Evo
             //doc.Close();
             //Response.Write(doc);
             string filePath = HostingEnvironment.MapPath("~/EmployeeProfile/");
-           
-            string SavePath =  "SeedlinePlannerLog" + DateTime.Now.Ticks.ToString() + ".pdf";
+
+            string SavePath = "SeedlinePlannerLog" + DateTime.Now.Ticks.ToString() + ".pdf";
             string Path = filePath + SavePath;
             var pdf = Pdf.From(h_textw.InnerWriter.ToString()).OfSize(PaperSize.Letter);
             byte[] content = pdf.Content();

@@ -61,6 +61,7 @@
 			<siteMapNode url="~/PlantReadyTaskCompletion.aspx?PageType=ManageTask" title="Plant Ready Completion"/>
 			<siteMapNode url="~/DumpTaskCompletion.aspx?PageType=ManageTask" title="Dump Completion"/>			
 			<siteMapNode url="~/GeneralTaskCompletion.aspx?PageType=ManageTask" title="General Completion"/>
+			<siteMapNode url="~/CropHealthReportView.aspx" title="Crop Health Completion"/>
 			
 		</siteMapNode>
 	</siteMapNode>

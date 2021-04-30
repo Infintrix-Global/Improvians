@@ -12,7 +12,7 @@
                             <div class="row text-left">
                                 <div class="col-auto">
                                     <label>Select Date</label>
-                                    <asp:DropDownList runat="server" ID="ddlDate" class="custom__dropdown">                            
+                                    <asp:DropDownList runat="server" ID="ddlDate" DataTextField="createon"  DataTextFormatString="{0:MM/dd/yyyy}"  DataValueField="createon" class="custom__dropdown">                            
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-auto align-self-end">

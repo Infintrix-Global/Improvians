@@ -485,7 +485,7 @@ namespace Evo
                 string msg = "Hi " + Sales + "," + "<br /><br />";
                 msg = msg + "You have received below message from customer name " + Session["EmployeeName"].ToString() + "<br />";
                 msg = msg + msgs.Text + "<br />" + "<br />";
-                msg = msg + "Job Information page associated with this message: <a href='" + HttpContext.Current.Request.Url + "'>Job Report</a><br/>";
+                msg = msg + "Job Information page associated with this message: <a href='" + HttpContext.Current.Request.Url + "'>"+ JobCode + "</a><br/>";
                 msg = msg + "<br />Thanks, <br/> Customer Information Portal";
                 objGen.SendMail(ToMail, CCMail, Subject, msg);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thank you for your message. Our Sales Representative "+ Sales + " has been sent this request over an email. "+ Sales  + " will get in touch with you soon')", true);
