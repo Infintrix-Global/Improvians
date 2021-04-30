@@ -96,16 +96,15 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="page-break">
                                 <div class="data__table">
                                     <asp:GridView ID="DGJob" runat="server" AutoGenerateColumns="False"
                                         class="striped"
-                                        GridLines="None"
+                                        GridLines="None" HeaderStyle-BackColor="#489d48"   HeaderStyle-ForeColor="#ffffff"
                                         ShowHeaderWhenEmpty="True" Width="100%">
 
                                         <Columns>
-                                            <asp:TemplateField HeaderText="DATE" HeaderStyle-Width="60px">
+                                            <asp:TemplateField HeaderText="DATE"  HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="SrNo" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
 
