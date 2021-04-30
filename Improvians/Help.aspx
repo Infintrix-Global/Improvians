@@ -7,7 +7,7 @@
             <div class="site__container">
 
                 <section class="section__help help__reources">
-                    <h2 class="robotobold">We are here to help</h2>
+                    <h2 class="h2 robotobold">Training Videos & Presentations</h2>
 
                     <div class="card">
                         <div class="card-body">
