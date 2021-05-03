@@ -118,6 +118,9 @@
     <Content Include="Admin\css\custom.css" />
     <Content Include="Admin\EditSalesRepresentative.aspx" />
     <Content Include="Admin\EditCustomer.aspx" />
+    <Content Include="Admin\HelpFAQ.aspx" />
+    <Content Include="Admin\HelpDocument.aspx" />
+    <Content Include="Admin\HelpContact.aspx" />
     <Content Include="Admin\PlantReadyConfiguration.aspx" />
     <Content Include="Admin\js\custom.js" />
     <Content Include="Admin\NotificationPreference.aspx" />
@@ -553,6 +556,27 @@
     </Compile>
     <Compile Include="Admin\EditCustomer.aspx.designer.cs">
       <DependentUpon>EditCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HelpFAQ.aspx.cs">
+      <DependentUpon>HelpFAQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\HelpFAQ.aspx.designer.cs">
+      <DependentUpon>HelpFAQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HelpDocument.aspx.cs">
+      <DependentUpon>HelpDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\HelpDocument.aspx.designer.cs">
+      <DependentUpon>HelpDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HelpContact.aspx.cs">
+      <DependentUpon>HelpContact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\HelpContact.aspx.designer.cs">
+      <DependentUpon>HelpContact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\PlantReadyConfiguration.aspx.cs">
       <DependentUpon>PlantReadyConfiguration.aspx</DependentUpon>
