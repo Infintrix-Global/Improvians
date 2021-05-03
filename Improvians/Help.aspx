@@ -12,45 +12,75 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <h3>Videos</h3>
-
-                                    <ul class="help__list help__list--video">
+                                <div class="col-12">
+                                    <ul class="help__list">
                                         <li>
-                                            <a href="index.html">Sample Video 1</a>
+                                            <span class="help__list-title robotobold h5 mb-0">Description</span>
+                                            <span class="help__list-action d-flex align-items-center">
+                                                <span class="help__list-cell">
+                                                    View<br/>Video
+                                                </span>
+                                                <span class="help__list-cell">
+                                                    View<br/>Presentation
+                                                </span>
+                                            </span>
                                         </li>
                                         <li>
-                                            <a href="index.html">Sample Video 2</a>
+                                            <span class="help__list-title">Sample Help Resource 2</span>
+                                            <span class="help__list-action d-flex align-items-center">
+                                                <a title="Download Video" href="#" class="help__list-link help__list-video">
+                                                    <img src="images/icons/icon-video.png" width="84" height="64" />
+                                                </a>
+                                                <a title="Download Presentation" href="#" class="help__list-link help__list-ppt">
+                                                    <img src="images/icons/icon-ppt.svg" width="36" height="36" />
+                                                </a>
+                                            </span>
                                         </li>
                                         <li>
-                                            <a href="index.html">Sample Video 3</a>
+                                            <span class="help__list-title">Sample Help Resource 3</span>
+                                            <span class="help__list-action d-flex align-items-center">
+                                                <a title="Download Presentation" href="#" class="help__list-link help__list-ppt">
+                                                    <img src="images/icons/icon-ppt.svg" width="36" height="36" />
+                                                </a>
+                                            </span>
                                         </li>
                                         <li>
-                                            <a href="index.html">Sample Video 4</a>
+                                            <span class="help__list-title">Sample Help Resource 4</span>
+                                            <span class="help__list-action d-flex align-items-center">
+                                                <a title="Download Presentation" href="#" class="help__list-link help__list-ppt">
+                                                    <img src="images/icons/icon-ppt.svg" width="36" height="36" />
+                                                </a>
+                                            </span>
                                         </li>
                                         <li>
-                                            <a href="index.html">Sample Video 5</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 pt-3 pt-md-0 col-md-6">
-                                    <h3>Presentations</h3>
-
-                                    <ul class="help__list help__list--ppt">
-                                        <li>
-                                            <a href="#">Sample Presentation 1</a>
+                                            <span class="help__list-title">Sample Help Resource 5</span>
+                                            <span class="help__list-action d-flex align-items-center">
+                                                <a title="Download Video" href="#" class="help__list-link help__list-video">
+                                                    <img src="images/icons/icon-video.png" width="84" height="64" />
+                                                </a>
+                                            </span>
                                         </li>
                                         <li>
-                                            <a href="#">Sample Presentation 2</a>
+                                            <span class="help__list-title">Sample Help Resource 6</span>
+                                            <span class="help__list-action d-flex align-items-center">
+                                                <a title="Download Video" href="#" class="help__list-link help__list-video">
+                                                    <img src="images/icons/icon-video.png" width="84" height="64" />
+                                                </a>
+                                                <a title="Download Presentation" href="#" class="help__list-link help__list-ppt">
+                                                    <img src="images/icons/icon-ppt.svg" width="36" height="36" />
+                                                </a>
+                                            </span>
                                         </li>
                                         <li>
-                                            <a href="#">Sample Presentation 3</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Sample Presentation 4</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Sample Presentation 5</a>
+                                            <span class="help__list-title">Sample Help Resource 6</span>
+                                            <span class="help__list-action d-flex align-items-center">
+                                                <a title="Download Video" href="#" class="help__list-link help__list-video">
+                                                    <img src="images/icons/icon-video.png" width="84" height="64" />
+                                                </a>
+                                                <a title="Download Presentation" href="#" class="help__list-link help__list-ppt">
+                                                    <img src="images/icons/icon-ppt.svg" width="36" height="36" />
+                                                </a>
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>
@@ -58,47 +88,18 @@
                         </div>
                     </div>
                 </section>
-
-                <section class="section__help help__contact text-center">
-                    <h2 class="h2 robotobold">Help Contact Information</h2>
-                    
-                    <div class="card d-inline-block">
-                        <div class="card-body text-left">
-                            <div class="d-sm-flex justify-content-center flex-sm-nowrap">
-                                <div class="contact__pic">
-                                    <img alt="Profile Picture" src="customer/images/support-passport-photo.png" width="406" height="462" />
-                                </div>
-                                <div class="contact__detail mt-4 mt-sm-0">
-                                    <div class="contact__item">
-                                        <label>Name:</label>
-                                        <span>John Doe</span>
-                                    </div>
-                                    <div class="contact__item">
-                                        <label>Email:</label>
-                                        <span>
-                                            <a class="d-flex" href="mailto:johndoe@growerstrans.com">
-                                                <span>johndoe@growerstrans.com</span>
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div class="contact__item">
-                                        <label>Phone:</label>
-                                        <span>
-                                            <a href="tel:+19876543210">
-                                                <span>+1-987-654-3210</span>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <section class="help__contact text-center">
+                    <h2 class="h2 robotobold" data-toggle="modal" data-target="#help__contact">
+                        <i class="mr-1 fas fa-phone-square-alt"></i>
+                        Contact Support
+                    </h2>
                 </section>
 
                 <section class="section__help help__faqs">
                     <h2 class="h2 robotobold">FAQ's</h2>
 
-                    <div class="accordion accordion__help mx-auto" id="faqswrapper">
+                    <div class="accordion accordion__help" id="faqswrapper">
                         <!-- FAQ 1 -->
                         <div class="card">
                             <div class="card-header" data-toggle="collapse" data-target="#faq1">
