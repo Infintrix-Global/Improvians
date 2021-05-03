@@ -43,7 +43,7 @@ namespace Evo
             {
                 Response.Redirect("~/CustomerLogin.aspx");
             }
-            if (Session["Role"].ToString() == "13")
+            if (Session["Role"].ToString() == "13" || Session["Role"].ToString() == "14")
             {
                 this.Page.MasterPageFile = "~/Customer/CustomerMaster.master";
             }
@@ -70,10 +70,14 @@ namespace Evo
 
                 BindJobCode("");
 
-                if (Session["Role"].ToString() == "13")
+                if (Session["Role"].ToString() == "13" ) //Customer
+                {
+                    divSalesComment.Visible = true;
+                    divTaskRequest.Visible = false;
+                }
+                else if ( Session["Role"].ToString() == "14")// Sales representative
                 {
                     divTaskRequest.Visible = false;
-                    divSalesComment.Visible = true;
                 }
             }
         }
@@ -294,8 +298,10 @@ namespace Evo
                     //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
                     //" AND t.[Job No_] like '" + prefixText + "%'";
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
-                        "";
+                    if (string.IsNullOrEmpty(Facility))
+                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where  jobcode like '" + prefixText + "%' order by jobcode";
+                    else
+                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;
@@ -362,7 +368,7 @@ namespace Evo
         protected void GV5_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             //do not show edit button to customer
-            if (Session["Role"].ToString() == "13")
+            if (Session["Role"].ToString() == "13" || Session["Role"].ToString() == "14")
             {
                 e.Row.Cells[3].Visible = false;
             }
@@ -489,10 +495,10 @@ namespace Evo
                 string msg = "Hi " + Sales + "," + "<br /><br />";
                 msg = msg + "You have received below message from customer name " + Session["EmployeeName"].ToString() + "<br />";
                 msg = msg + msgs.Text + "<br />" + "<br />";
-                msg = msg + "Job Information page associated with this message: <a href='" + HttpContext.Current.Request.Url + "'>"+ JobCode + "</a><br/>";
+                msg = msg + "Job Information page associated with this message: <a href='" + HttpContext.Current.Request.Url + "'>" + JobCode + "</a><br/>";
                 msg = msg + "<br />Thanks, <br/> Customer Information Portal";
                 objGen.SendMail(ToMail, CCMail, Subject, msg);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thank you for your message. Our Sales Representative "+ Sales + " has been sent this request over an email. "+ Sales  + " will get in touch with you soon')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thank you for your message. Our Sales Representative " + Sales + " has been sent this request over an email. " + Sales + " will get in touch with you soon')", true);
                 msgs.Text = "";
             }
         }

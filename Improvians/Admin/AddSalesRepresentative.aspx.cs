@@ -29,8 +29,8 @@ namespace Evo.Admin
 
                         Name = txtName.Text,
                         Mobile = txtMobile.Text,
-                        Password = "",// objCommon.Encrypt(txtPassword.Text),
-                        EmployeeCode="", //txtUserName.Text,
+                        Password =   objCommon.Encrypt(txtPassword.Text),
+                        EmployeeCode=txtUserName.Text,
                         Email = txtEmail.Text,
                         Designation = "14",
                         Department = "",
