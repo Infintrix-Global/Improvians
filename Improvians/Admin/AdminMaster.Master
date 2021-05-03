@@ -230,7 +230,7 @@
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
                                 <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
-                                    <i class="side-icon fas fa-file-invoice"></i>
+                                    <i class="side-icon fas fa-question-circle"></i>
                                     <span class="side-title">Help Management</span>
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
@@ -240,21 +240,21 @@
                                     <!-- Here need "dropdown__list" class -->
                                     <li>
                                         <a class="" href="HelpDocument.aspx" title="Document">
-                                            <i class="side-icon fas fa-flask"></i>
+                                            <i class="side-icon fa-file-download"></i>
                                             <span class="side-title">Document</span>
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="" href="HelpContact.aspx" title="Contact">
-                                            <i class="side-icon far fa-file-alt"></i>
+                                            <i class="side-icon far fa-id-card"></i>
                                             <span class="side-title">Contact</span>
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
                                     </li>
                                      <li>
                                         <a class="" href="HelpFAQ.aspx" title="FAQ">
-                                            <i class="side-icon far fa-file-alt"></i>
+                                            <i class="side-icon far fa-list-alt"></i>
                                             <span class="side-title">FAQ</span>
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
