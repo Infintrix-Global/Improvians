@@ -34,7 +34,7 @@ namespace Evo
                     FertilizationCode = Request.QueryString["FertilizationCode"].ToString();
                 }
 
-                if (Request.QueryString["FCID"] != null)
+                if (Request.QueryString["FCID"] != "0")
                 {
                     BindGridSprayCompletionDetails(Request.QueryString["FCID"].ToString());
                     PanlTaskComplition.Visible = true;
@@ -43,6 +43,17 @@ namespace Evo
                 {
                     PanlTaskComplition.Visible = false;
                 }
+
+                if (Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+                  
+                }
+
+                
+
+
+
                 BindGridSprayReq();
                 BindenchLocation();
                
@@ -102,7 +113,26 @@ namespace Evo
         }
 
 
-    
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
+
+
+
+        
+
         public void BindGridSprayReq()
         {
             string ChId = "";
@@ -150,9 +180,18 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@Jid", lbljid.Text);
+            nv.Add("@TaskRequestKey", TaskRequestKey);
 
-            dt = objCommon.GetDataTable("SP_GetSprayRequestFerChemDetailsView", nv);
+            
+            if (Request.QueryString["FCID"] != "0")
+            {
+                nv.Add("@Login","0");
+            }
+            else
+            {
+                nv.Add("@Login", Session["LoginID"].ToString());
+            }
+                dt = objCommon.GetDataTable("SP_GetSprayRequestFerChemDetailsView", nv);
 
             GridViewDetails.DataSource = dt;
             GridViewDetails.DataBind();

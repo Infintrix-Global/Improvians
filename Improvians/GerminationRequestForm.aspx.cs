@@ -364,6 +364,7 @@ namespace Evo
                 //GridViewRow row = gvGerm.Rows[rowIndex];
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
+
                 string ChId = "0";
                 lblID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
 
@@ -377,7 +378,7 @@ namespace Evo
                 result = objCommon.GetDataExecuteScaler("SP_AddGerminatioMyTasknGrowarStart", nv);
 
                 // Session["WorkOrder"] = JobID;
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}", result.ToString(), ChId));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}&GTRID={2}&IsF={3}", result.ToString(), ChId, lblID.Text,0));
             }
 
         }

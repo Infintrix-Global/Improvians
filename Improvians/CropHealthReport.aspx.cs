@@ -1540,9 +1540,10 @@ namespace Evo
                 }
 
             }
+
+            long result3 = 0;
             foreach (GridViewRow row in GridViewView.Rows)
             {
-                long result3 = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", Assign);
                 nv.Add("@Type", "Chemical");
@@ -1577,7 +1578,7 @@ namespace Evo
             }
 
             dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtCTrays, ddlChemical.SelectedValue, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtcomments.Text);
+            objTask.AddChemicalRequestDetails(dtCTrays, result3.ToString(), ddlChemical.SelectedValue, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtcomments.Text);
 
             long result16 = 0;
             NameValueCollection nv11 = new NameValueCollection();

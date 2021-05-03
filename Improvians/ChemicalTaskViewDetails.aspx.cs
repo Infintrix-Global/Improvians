@@ -44,6 +44,25 @@ namespace Evo
                     PanlTaskComplition.Visible = false;
                 }
 
+
+
+
+                if (Request.QueryString["CCID"] != "0")
+                {
+                    BindGridSprayCompletionDetails(Request.QueryString["CCID"].ToString());
+                    PanlTaskComplition.Visible = true;
+                }
+                else
+                {
+                    PanlTaskComplition.Visible = false;
+                }
+
+                if (Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+
+                }
+
                 BindGridSprayReq();
                 BindenchLocation();
 
@@ -66,6 +85,22 @@ namespace Evo
 
 
 
+        }
+
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
         }
 
 
@@ -147,7 +182,17 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JID", lbljid.Text);
+            nv.Add("@TaskRequestKey", TaskRequestKey);
+
+
+            if (Request.QueryString["FCID"] != "0")
+            {
+                nv.Add("@Login", "0");
+            }
+            else
+            {
+                nv.Add("@Login", Session["LoginID"].ToString());
+            }
 
             dt = objCommon.GetDataTable("SP_GetChemicalRequestSelectDetailsView", nv);
 

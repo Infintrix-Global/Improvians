@@ -831,18 +831,7 @@ namespace Evo
                 {
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
-                    //NameValueCollection nv5 = new NameValueCollection();
-                    //nv5.Add("@Mode", "1");
-                    //nv5.Add("@Batchlocation", Batchlocation);
-                    //DataTable dt = objCommon.GetDataTable("GET_CheckBatchlocation", nv5);
-
-                    //if (dt != null && dt.Rows.Count > 0)
-                    //{
-
-                    //     FertilizationCode = Convert.ToInt32(dt.Rows[0]["FertilizationCode"]);
-                    //}
-                    //else
-                    //{
+                  
                     dtTrays.Clear();
                     DataTable dt1 = new DataTable();
                     NameValueCollection nv14 = new NameValueCollection();
@@ -851,9 +840,7 @@ namespace Evo
                     dt1 = objCommon.GetDataTable("GET_Common", nv14);
                     FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
 
-                    dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
-
-                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                   
                     //   }
 
 
@@ -876,6 +863,12 @@ namespace Evo
                     nv4.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
                     nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
+
+
+                    dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
+
+                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+
 
                     NameValueCollection nvn = new NameValueCollection();
                     nvn.Add("@LoginID", Session["LoginID"].ToString());
@@ -1376,9 +1369,7 @@ namespace Evo
                     ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
 
 
-                    dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                    objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
-
+                
                     // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
                     // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
@@ -1414,6 +1405,10 @@ namespace Evo
                     nvn.Add("@TaskName", "Chemical");
                     nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                     var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
+
+                    dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
+                    objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), ddlChemical.SelectedItem.Text, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
                 }
             }
@@ -2868,7 +2863,13 @@ namespace Evo
                 }
 
 
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}", result16,"CreateTask"));
+                NameValueCollection nvR = new NameValueCollection();
+                nvR.Add("@GTAId", result16.ToString());
+               DataTable dtR = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationRequestID", nvR);
+                string GTRID= dtR.Rows[0]["GTRID"].ToString();
+
+
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}&GTRID={2}&IsF={3}", result16,"CreateTask", GTRID,0));
             }
             else
             {

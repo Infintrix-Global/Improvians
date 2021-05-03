@@ -271,7 +271,7 @@ namespace Evo
 
 
                     dtCTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-                    objTask.AddChemicalRequestDetails(dtCTrays, "0", ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
+                    objTask.AddChemicalRequestDetails(dtCTrays, "0", ddlFertilizer.SelectedItem.Text, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
 
 
                 }
