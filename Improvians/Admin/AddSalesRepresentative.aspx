@@ -57,14 +57,14 @@
                             <h3>Email ID<span style="color: red">*</span></h3>
                             <asp:TextBox ID="txtEmail" class="input__control input__control-icon email" placeholder="Enter your email here" TabIndex="4" runat="server"></asp:TextBox>
                             <asp:Label ID="lblStatus" runat="server" ForeColor="red"></asp:Label>
-                            <span class="error_message">
+                            <%-- <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmail" ValidationGroup="e"
                                     SetFocusOnError="true" ErrorMessage="Please Enter Email" ForeColor="Red"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="e"
                                     ForeColor="Red" ErrorMessage="Enter valid Email" Display="Dynamic" ControlToValidate="txtEmail"
                                     SetFocusOnError="True" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$">
                                 </asp:RegularExpressionValidator>
-                            </span>
+                            </span>--%>
                         </label>
                         <label>
                             <h3>Mobile Number</h3>
@@ -77,7 +77,7 @@
                             </span>
                         </label>
                     </div>
-                   <%-- <div class="col-md-6 col-xl-5 order-md-1">
+                    <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>User Name<span style="color: red">*</span></h3>
                             <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
@@ -89,7 +89,6 @@
                         </label>
                     </div>
 
-
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>Password<span style="color: red">*</span></h3>
@@ -98,7 +97,7 @@
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>
                         </label>
-                    </div>--%>                  
+                    </div>
 
 
                     <div class="clearfix"></div>

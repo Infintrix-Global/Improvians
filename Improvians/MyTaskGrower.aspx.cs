@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Evo.Bal;
+using System.Web.UI.HtmlControls;
 
 namespace Evo
 {
@@ -17,12 +18,23 @@ namespace Evo
         CommonControl objCommon = new CommonControl();
         // BAL_CommonMasters objCOm = new BAL_CommonMasters();
         public static DataTable AllData = new DataTable();
+        DataTable dt = new DataTable();
+        NameValueCollection nv = new NameValueCollection();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CountTotal();
                 BindGridGerm();
+                BindGridPutAway();
+                BindGridFer();
+                BindGridChem();
+                BindGridIrr();
+                BindGridCrop();
+                BindGridPR();
+                BindGridMov();
+                BindGridDum();
+                BindGridGen();
             }
         }
 
@@ -46,7 +58,6 @@ namespace Evo
             lblGeneralTotal.Text = dt.Tables[10].Rows.Count.ToString();
             //lnkMove.Text = dt.Tables[5].Rows.Count.ToString();
         }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long _isInserted = 1;
@@ -66,7 +77,6 @@ namespace Evo
             //  DGJob.DataBind();
             for (int i = 0; i < AllData.Rows.Count; i++)
             {
-
                 string PlantReadyDate = "";
                 string PlantDueDate = "";
                 DataTable dtpD = new DataTable();
@@ -89,8 +99,6 @@ namespace Evo
                     PlantDueDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
 
                 }
-
-
                 string GreenHouseID = (AllData.Rows[i]["GreenHouseID"].ToString());
                 string FacilityID = (AllData.Rows[i]["FacilityID"].ToString());
                 string jobcode = (AllData.Rows[i]["jobcode"].ToString());
@@ -120,7 +128,6 @@ namespace Evo
                 nv.Add("@PlantDueDate", PlantDueDate);
                 nv.Add("@PlantReadyDate", PlantReadyDate);
 
-              
                 _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
 
                 DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);
@@ -131,11 +138,8 @@ namespace Evo
                 nvChDate.Add("@GreenHouseID", GreenHouseID);
                 DataTable ChFdt = objCommon.GetDataTable("SP_GetFertilizationCheckResetSprayTask", nvChDate);
 
-
-
                 if (dtFez != null && dtFez.Rows.Count > 0)
                 {
-
                     //  string A = dtFez.Rows[0]["DateShift"].ToString().Replace("\u0002", "");
 
                     DataColumn col = dtFez.Columns["DateShift"];
@@ -147,8 +151,6 @@ namespace Evo
                         string AD = row[col].ToString().Replace("\u0002", "");
 
                         FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(AD))).ToString();
-
-
                         string TodatDate;
                         string ReSetSprayDate = "";
                         string DateCountNo = "0";
@@ -156,13 +158,10 @@ namespace Evo
                         DateCountNo = Fcount.ToString();
                         TodatDate = System.DateTime.Now.ToShortDateString();
 
-
-
                         if (ChFdt != null && ChFdt.Rows.Count > 0)
                         {
                             ReSetSprayDate = Convert.ToDateTime(ChFdt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChFdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
                         }
-
 
                         if (DateTime.Parse(FertilizationDate) >= DateTime.Parse(TodatDate))
                         {
@@ -171,8 +170,6 @@ namespace Evo
                             {
                                 FertilizationDate = FertilizationDate;
                                 NameValueCollection nv11 = new NameValueCollection();
-
-
                                 nv11.Add("@GrowerPutAwayId", "");
                                 nv11.Add("@wo", "");
                                 nv11.Add("@Jid", _isInserted.ToString());
@@ -194,8 +191,6 @@ namespace Evo
 
                                 break;
                             }
-
-
                         }
 
                         //if (Convert.ToDateTime(TodatDate) >= Convert.ToDateTime(FertilizationDate))
@@ -206,27 +201,14 @@ namespace Evo
                         //        break;
                         //    }
                         //}
-
-
-
-
                     }
-
-
-
-
                 }
-
-
                 DataTable dtChemical = objSP.GetSeedDateDatanew("SPRAYING", GenusCode, TraySize);
 
                 NameValueCollection nvChemChDate = new NameValueCollection();
 
                 nvChemChDate.Add("@GreenHouseID", GreenHouseID);
                 DataTable ChChemidt = objCommon.GetDataTable("SP_GetChemicalCheckResetSprayTask", nvChemChDate);
-
-
-
 
                 if (dtChemical != null && dtChemical.Rows.Count > 0)
                 {
@@ -239,8 +221,6 @@ namespace Evo
                         string FDay = row[col].ToString().Replace("\u0002", "");
 
                         ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(FDay))).ToString();
-
-
                         string TodatDate;
                         string ReSetChemicalDate = "";
                         string DateCountNo = "0";
@@ -248,24 +228,18 @@ namespace Evo
                         TodatDate = System.DateTime.Now.ToShortDateString();
                         DateCountNo = Ccount.ToString();
 
-
                         if (ChChemidt != null && ChChemidt.Rows.Count > 0)
                         {
                             ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
                         }
 
-
                         if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
                         {
-
                             if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
                             {
                                 ChemicalDate = ChemicalDate;
 
-
                                 NameValueCollection nv11 = new NameValueCollection();
-
-
                                 nv11.Add("@GrowerPutAwayId", "");
                                 nv11.Add("@wo", "");
                                 nv11.Add("@Jid", _isInserted.ToString());
@@ -286,14 +260,8 @@ namespace Evo
                                 break;
                             }
                         }
-
-
-
                     }
-
                 }
-
-
                 //------
 
                 DataTable dtISD = objSP.GetSeedDateDatanew("IRRIGATE", GenusCode, TraySize);
@@ -310,16 +278,12 @@ namespace Evo
                 nvIRRChDate.Add("@GreenHouseID", GreenHouseID);
                 DataTable Irrigationdt = objCommon.GetDataTable("SP_GetIrrigationResetSprayTask", nvIRRChDate);
 
-
-
                 if (dtISD != null && dtISD.Rows.Count > 0)
                 {
-
                     int Irrcount = 0;
                     DataColumn col = dtISD.Columns["DateShift"];
                     foreach (DataRow row in dtISD.Rows)
                     {
-
                         string IrrigateDate = string.Empty;
                         string IDay = row[col].ToString().Replace("\u0002", "");
 
@@ -367,12 +331,8 @@ namespace Evo
                                 break;
                             }
                         }
-
-
                     }
                 }
-
-
                 string PlanDate = string.Empty;
 
                 DataTable dt11 = new DataTable();
@@ -380,13 +340,10 @@ namespace Evo
                 nv111.Add("@TraySize", TraySize);
                 nv111.Add("@GCode", GenusCode);
 
-
                 dt11 = objCommon.GetDataTable("spGetDateDhift", nv111);
-
 
                 if (dt11 != null && dt11.Rows.Count > 0)
                 {
-
                     int Irrcount = 0;
 
                     int DF = Convert.ToInt32(dt11.Rows[0]["dateshift"]);
@@ -421,14 +378,7 @@ namespace Evo
 
                     _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsPlantReadyMenual", nv11);
 
-
-
                 }
-
-
-
-
-
 
                 // _isInserted = 1;
 
@@ -439,13 +389,132 @@ namespace Evo
             CountTotal();
         }
 
-        public void BindGridGerm()
+        private void BindGridGen()
         {
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
+            dt = new DataTable();
+            nv.Clear();
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetGeneralRequestAssistantGrower", nv);
+            BindData(dt, Gen, "GeneralTaskDate");
+        }
+
+        private void BindGridDum()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
+            BindData(dt, Dum, "DumpDateR");
+        }
+
+        private void BindGridMov()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
+            BindData(dt, Mov, "MoveDate");
+        }
+
+        private void BindGridPR()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "");
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
+            BindData(dt, PR, "SeededDate");
+        }
+
+        private void BindGridCrop()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetCropReportRequestAssistantGrower", nv);
+            BindData(dt, Crop, "CropHealthReportDate");
+        }
+
+        private void BindGridIrr()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "");
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
+            BindData(dt, Irr, "IrrigateSeedDate");
+        }
+
+        private void BindGridChem()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "");
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
+            BindData(dt, Chem, "ChemicalSeedDate");
+        }
+
+        private void BindGridFer()
+        {
+            dt = new DataTable();
+            nv.Clear();            
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "");
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");            
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+            BindData(dt, Fer, "FertilizeSeedDate");
+        }        
+
+        private void BindGridPutAway()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@Mode", "1");
+            nv.Add("@wo", "");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
+            BindData(dt, Put, "plan_date");                        
+        }       
+
+        public void BindGridGerm()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", "");
             nv.Add("@Week", "");
             nv.Add("@Status", "");
@@ -455,15 +524,17 @@ namespace Evo
             nv.Add("@ToDate", "");
             nv.Add("@AssignedBy", "");
 
-
-
             dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
+            BindData(dt, Ger, "GermDate");            
+        }
+
+        private void BindData(DataTable dt, HtmlAnchor html, string dateField)
+        {
             if (dt != null && dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-
-                    string dtimeString = Convert.ToDateTime(dt.Rows[i]["GermDate"]).ToString("yyyy/MM/dd");
+                    string dtimeString = Convert.ToDateTime(dt.Rows[i][dateField]).ToString("yyyy/MM/dd");
 
                     DateTime dtime = Convert.ToDateTime(dtimeString);
 
@@ -471,7 +542,7 @@ namespace Evo
 
                     if (nowtime > dtime)
                     {
-                        Ger.Attributes.Add("class", "dashboard__box dashboard__box-overdue");
+                        html.Attributes.Add("class", "dashboard__box dashboard__box-overdue");
                     }
                     else
                     {

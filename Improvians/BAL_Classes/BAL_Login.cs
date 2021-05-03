@@ -34,6 +34,27 @@ namespace Evo.BAL_Classes
             return ds.Tables[0];
 
         }
+        public DataTable getCustomerLoginDetails(LoginEntity _loginEntity)
+        {
+
+            DataSet ds = new DataSet();
+            try
+            {
+
+                objGeneral.AddParameterWithValueToSQLCommand("@UserName", _loginEntity.UserName);
+                objGeneral.AddParameterWithValueToSQLCommand("@Password", _loginEntity.Password);
+                ds = objGeneral.GetDatasetByCommand_SP("SP_Customerlogin");
+
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+
+            return ds.Tables[0];
+
+        }
         public int UpdateFCMToken(int ID, string FCMToken)
         {
             int _isInserted = -1;

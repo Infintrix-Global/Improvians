@@ -14,6 +14,7 @@ namespace Evo
             if (Session["LoginID"] == null)
             {
                 Response.Redirect("~/CustomerLogin.aspx");
+               
             }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -23,7 +24,17 @@ namespace Evo
                 lblEmpName.Text = Session["EmployeeName"].ToString();
                 if (!string.IsNullOrEmpty(Session["Photo"].ToString()))
                 {
-                    imgprofilepic.ImageUrl = @"~\EmployeeProfile\" + Session["Photo"].ToString();
+                    imgprofilepic.ImageUrl = Session["Photo"].ToString();
+                }
+                String activepage = Request.RawUrl.ToLower();
+                if (activepage.Contains("dashboard") || Session["Role"].ToString() == "14")
+                {
+                    divSitemap.Visible = false;
+                }
+                else
+                {
+                    SiteMapPath1.SiteMapProvider = "SitemapCustomer";
+                    SiteMapPath1.DataBind();
                 }
             }
         }

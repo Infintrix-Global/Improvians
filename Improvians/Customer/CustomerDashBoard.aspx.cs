@@ -23,8 +23,7 @@ namespace Evo
                 lblCustName.Text = Session["EmployeeName"].ToString();
                 BindJobCode();
                 BindCrop();
-                BindFacility();
-                Session["Facility"] = "";
+                BindFacility();                
                 BindGridGerm();
             }
         }

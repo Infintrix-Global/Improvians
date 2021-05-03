@@ -12,7 +12,7 @@
         </div>
 
         <div class="dashboard__grid">
-            <a href="GrowerPutAwayForm.aspx" class="dashboard__box">
+            <a runat="server" id="Put" href="GrowerPutAwayForm.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_put-away.png" width="137" height="140" alt="Put-Away" />
                 </div>
@@ -37,7 +37,7 @@
                     <p>Review and assign these tasks to the Greenhouse Supervisor</p>
                 </div>
             </a>
-            <a href="FertilizerTaskReq.aspx" class="dashboard__box">
+            <a runat="server" id="Fer" href="FertilizerTaskReq.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization" />
                 </div>
@@ -49,7 +49,7 @@
                     <p>Review and assign these tasks to the Sprayer</p>
                 </div>
             </a>
-            <a href="ChemicalRequestForm.aspx" class="dashboard__box">
+            <a runat="server" id="Chem" href="ChemicalRequestForm.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_chemical.png" width="137" height="136" alt="Chemical" />
                 </div>
@@ -61,7 +61,7 @@
                     <p>Review and assign these tasks to the Sprayer</p>
                 </div>
             </a>
-            <a href="IrrigationRequestForm.aspx" class="dashboard__box">
+            <a runat="server" id="Irr" href="IrrigationRequestForm.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation" />
                 </div>
@@ -73,7 +73,7 @@
                     <p>Review and assign irrigation tasks to Greenhouse Supervisor</p>
                 </div>
             </a>
-            <a href="CropReportRequestForm.aspx" class="dashboard__box">
+            <a runat="server" id="Crop" href="CropReportRequestForm.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_crop-health-report.png" width="137" height="131" alt="Crop Health Report" />
                 </div>
@@ -85,7 +85,7 @@
                     <p>Assign Crop Health Report Request</p>
                 </div>
             </a>
-            <a href="PlantReadyRequestForm.aspx" class="dashboard__box">
+            <a runat="server" id="PR" href="PlantReadyRequestForm.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready" />
                 </div>
@@ -97,7 +97,7 @@
                     <p>Review and assign Plant Health Reporting tasks to Greenhouse Supervisor</p>
                 </div>
             </a>
-            <a href="MoveRequestForm.aspx" class="dashboard__box">
+            <a runat="server" id="Mov" href="MoveRequestForm.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_move-request.png" width="137" height="134" alt="Move Request" />
                 </div>
@@ -109,7 +109,7 @@
                     <p>Review and assign move tasks</p>
                 </div>
             </a>
-            <a href="DumpRequestForm.aspx" class="dashboard__box">
+            <a runat="server" id="Dum" href="DumpRequestForm.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_dump-request.png" width="137" height="136" alt="Dump Request" />
                 </div>
@@ -121,7 +121,7 @@
                     <p>Review and Assign Dump Tasks</p>
                 </div>
             </a>
-            <a href="GeneralTaskRequestForm.aspx" class="dashboard__box">
+            <a runat="server" id="Gen" href="GeneralTaskRequestForm.aspx" class="dashboard__box">
                 <div class="dashboard__box-img">
                     <img src="./images/dashboard_general-task.png" width="137" height="124" alt="General Task" />
                 </div>

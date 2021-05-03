@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Evo.Admin;
@@ -80,7 +81,7 @@ namespace Evo.Admin
                             System.IO.Directory.CreateDirectory(path);
                             FileUpProfile.SaveAs(path + @"\" + Imgname);
 
-                            ImageProfile.ImageUrl = @"~\EmployeeProfile\" + Imgname;
+                            ImageProfile.ImageUrl = WebConfigurationManager.AppSettings["PortalURL"] + @"\EmployeeProfile\" + Imgname;
                             ImageProfile.Visible = true;
                             lblProfile.Visible = true;
                             lblProfile.Text = Imgname;
@@ -118,13 +119,13 @@ namespace Evo.Admin
                 {
                     lblProfile.Text = dt1.Tables[0].Rows[0]["Photo"].ToString();
                     lblProfile.Visible = false;
-                    ImageProfile.ImageUrl = Request.RawUrl + @"\EmployeeProfile\" + dt1.Tables[0].Rows[0]["Photo"].ToString();
-                  //  txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
+                    ImageProfile.ImageUrl = dt1.Tables[0].Rows[0]["Photo"].ToString();
+                    txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
                     //ddlDepartment.SelectedValue = dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
                     txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();                    
                     txtMobile.Text = dt1.Tables[0].Rows[0]["Mobile"].ToString();
                     txtEmail.Text = dt1.Tables[0].Rows[0]["Email"].ToString();
-                  //  txtUserName.Text = dt1.Tables[0].Rows[0]["EmployeeCode"].ToString();
+                    txtUserName.Text = dt1.Tables[0].Rows[0]["EmployeeCode"].ToString();
                 }
 
             }
@@ -148,9 +149,9 @@ namespace Evo.Admin
                     Department = "",
                     Designation = "14",
                     NavisionCustomerID = "",
-                    Photo = lblProfile.Text,
-                    EmployeeCode = "",
-                    Password = ""//objCommon.Encrypt(txtPassword.Text)
+                    Photo = ImageProfile.ImageUrl,
+                    EmployeeCode = txtUserName.Text,
+                    Password = objCommon.Encrypt(txtPassword.Text)
                 };
                 _isInserted = objCommon.UpdateEmployee(objEmployee);
                 if (_isInserted == -1)

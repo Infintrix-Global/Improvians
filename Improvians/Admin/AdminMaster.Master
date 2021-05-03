@@ -227,6 +227,40 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
+                                    <i class="side-icon fas fa-file-invoice"></i>
+                                    <span class="side-title">Help Management</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <!-- Here need "dropdown__list" class -->
+                                    <li>
+                                        <a class="" href="HelpDocument.aspx" title="Document">
+                                            <i class="side-icon fas fa-flask"></i>
+                                            <span class="side-title">Document</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="HelpContact.aspx" title="Contact">
+                                            <i class="side-icon far fa-file-alt"></i>
+                                            <span class="side-title">Contact</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                     <li>
+                                        <a class="" href="HelpFAQ.aspx" title="FAQ">
+                                            <i class="side-icon far fa-file-alt"></i>
+                                            <span class="side-title">FAQ</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
                         </ul>
                     </div>

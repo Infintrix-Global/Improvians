@@ -110,7 +110,7 @@
 
                         <div class="col-auto align-self-end">
                             <%--<asp:Button ID="Button1" Text="Reset" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnClear_Click" />--%>
-                            <asp:Button runat="server" ID="submitPreference" Text="Update Preferences" disabled="disabled" CssClass="submit-bttn bttn bttn-primary w-auto" OnClick="submitPreference_Click" />
+<%--                            <asp:Button runat="server" ID="submitPreference" Text="Update Preferences" disabled="disabled" CssClass="submit-bttn bttn bttn-primary w-auto" OnClick="submitPreference_Click" />--%>
 
                         </div>
 

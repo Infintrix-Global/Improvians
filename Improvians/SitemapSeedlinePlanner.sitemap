@@ -2,9 +2,16 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
 	<siteMapNode url="~/Dashboard.aspx" title="Dashboard"  >
 		<siteMapNode url="~/MyTaskSeedlinePlanner.aspx" title="My Tasks"  >
-			<siteMapNode url="~/SeedingPlanForm.aspx" title="Seedline Planning"  />			
+			<siteMapNode url="~/SeedingPlanForm.aspx" title="Seedline Planning"  />
 		</siteMapNode>
 		<siteMapNode url="~/TrackTaskSeedlinePlanner.aspx" title="Track Task" />
 		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
+		<siteMapNode url="~/Help.aspx" title="Help"/>
+		<siteMapNode url="~/ReportSeedlinePlanner.aspx" title="Reports" >
+			<siteMapNode url="~/JobReports.aspx?PageType=Reports" title="Job Information" />
+			<siteMapNode url="~/PrintSeedlineReport.aspx" title="Print Reports" >
+				<siteMapNode url="~/PrintSeedlinePlannerReport.aspx" title="Log Sheet" />
+			</siteMapNode>
+		</siteMapNode>
 	</siteMapNode>
 </siteMap>

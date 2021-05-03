@@ -65,6 +65,11 @@ namespace Evo
                     SiteMapPath1.SiteMapProvider = "SitemapSeedlineSupervisor";
                     SiteMapPath1.DataBind();
                 }
+                else if (Session["Role"].ToString() == "13" || Session["Role"].ToString() == "14")
+                {
+                    SiteMapPath1.SiteMapProvider = "SitemapCustomer";
+                    SiteMapPath1.DataBind();
+                }
             }
 
             String activepage = Request.RawUrl.ToLower();

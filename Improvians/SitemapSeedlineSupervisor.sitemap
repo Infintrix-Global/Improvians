@@ -6,5 +6,6 @@
 		</siteMapNode>
 		<siteMapNode url="~/TrackTaskSeedlinePlanner.aspx" title="Track Task" />
 		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
+		<siteMapNode url="~/Help.aspx" title="Help"/>
 	</siteMapNode>
 </siteMap>

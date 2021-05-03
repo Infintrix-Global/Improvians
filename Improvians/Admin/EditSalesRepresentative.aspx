@@ -86,7 +86,7 @@
                             </span>
                         </label>
                     </div>
-                    <%--  <div class="col-md-6 col-xl-5 order-md-1">
+                   <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>User Name<span style="color: red">*</span></h3>
                             <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
@@ -107,7 +107,7 @@
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>
                         </label>
-                    </div>--%>
+                    </div>
 
                     <div class="clearfix"></div>
 
