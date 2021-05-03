@@ -39,6 +39,10 @@ namespace Evo
         { Columns = { "Fertilizer", "Tray", "SQFT" } };
         protected void Page_PreInit(object sender, EventArgs e)
         {
+            if (Session["LoginID"] == null)
+            {
+                Response.Redirect("~/CustomerLogin.aspx");
+            }
             if (Session["Role"].ToString() == "13")
             {
                 this.Page.MasterPageFile = "~/Customer/CustomerMaster.master";

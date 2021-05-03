@@ -28,7 +28,7 @@ namespace Evo
             _LoginEntity.Password = objCommon.Encrypt(txtPassword.Text.Trim());
 
             BAL_Login _ballogin = new BAL_Login();
-            DataTable _dtLogin = _ballogin.getLoginDetails(_LoginEntity);
+            DataTable _dtLogin = _ballogin.getCustomerLoginDetails(_LoginEntity);
 
             if (Convert.ToInt32(_dtLogin.Rows[0][0].ToString()) == -1)
             {
