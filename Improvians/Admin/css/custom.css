@@ -1,4 +1,4 @@
-﻿@charset 'utf-8';
+@charset 'utf-8';
 
 /*Fonts*/
 @font-face {
@@ -41,7 +41,6 @@
 [class^="rxicon-"], [class*=" rxicon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'rxicons' !important;
-  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -255,7 +254,7 @@ table .bttn {
     color: #ffffff;
 }
 
-.has__dropdown:hover > a,
+/* .has__dropdown:hover > a, */
 .has__dropdown:hover > span,
 .has__dropdown.current > a,
 .has__dropdown.current > span {
@@ -429,6 +428,11 @@ header {
     outline: none;
 }
 
+.input__textarea {
+    min-height: 100px;
+    line-height: 26px;
+}
+
 .input__control-sm  {
     padding: 0 8px;    
     height: 45px;
@@ -472,11 +476,7 @@ header {
 .data__table-200 { max-height: 200px; overflow: auto; border: 1px solid #d7d7d7; }
 .data__table-250 { max-height: 250px; overflow: auto; border: 1px solid #d7d7d7; }
 .data__table-300 { max-height: 300px; overflow: auto; border: 1px solid #d7d7d7; }
-.data__table-500 {
-    max-height: 500px;
-    overflow: auto;
-    border: 1px solid #d7d7d7;
-}
+.data__table-500 { max-height: 500px; overflow: auto; border: 1px solid #d7d7d7; }
 .data__table th {
     font-family: 'roboto-bold', sans-serif;
     color: #2a2a2a;
@@ -489,9 +489,7 @@ header {
     line-height: 24px;
 }
 
-.data__table.border-none th, .data__table.border-none td {
-    border: 0;
-}
+.data__table.border-none th, .data__table.border-none td{ border: 0; }
 
 .data__table .bttn-action {
     border-radius: 5px;
@@ -735,6 +733,7 @@ header {
     max-width: 100%;
     height: auto;
     max-height: 100%;
+    object-fit: cover;
 }
 
 .admin__form .submit-bttn { width: 200px; margin-top: 30px; }
@@ -866,17 +865,18 @@ header {
     background-image: url(../images/icons/icon-checkbox.svg);
 }
 
-.bttn.bttn__icons {	
-    font-size: 14px;	
-    width: 30px;	
-    height: 30px;	
-    line-height: 30px;	
-    padding: 0;	
-    border-radius: 4px;	
-    background: #505050;	
-    color: #ffffff;	
-}	
-.bttn__icons--edit:hover { background: #438644; }	
+.bttn.bttn__icons {
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    border-radius: 4px;
+    background: #505050;
+    color: #ffffff;
+}
+
+.bttn__icons--edit:hover { background: #438644; }
 .bttn__icons--delete:hover { background: #e22b2b; }
 
 /*Media Queries*/
@@ -999,7 +999,6 @@ header {
     .filter__control.mlr-2 { margin-left: 0; margin-right: 0; }
 }
 
-
 @media only screen and (max-width: 359px) {
     h2 { font-size: 22px; }
     .login__wrapper { padding-left: 0; padding-right: 0; }
@@ -1011,5 +1010,4 @@ header {
     .dashboard__paging li:first-child { margin-right: 10px; }
     .dashboard__paging li:last-child { margin-left: 10px; }
     .admin__logo { min-height: 70px; max-height: 70px; }
-
 }

@@ -47,15 +47,15 @@ namespace Evo
 
 
 
-                if (Request.QueryString["CCID"] != "0")
-                {
-                    BindGridSprayCompletionDetails(Request.QueryString["CCID"].ToString());
-                    PanlTaskComplition.Visible = true;
-                }
-                else
-                {
-                    PanlTaskComplition.Visible = false;
-                }
+                //if (Request.QueryString["CCID"] != "0")
+                //{
+                //    BindGridSprayCompletionDetails(Request.QueryString["CCID"].ToString());
+                //    PanlTaskComplition.Visible = true;
+                //}
+                //else
+                //{
+                //    PanlTaskComplition.Visible = false;
+                //}
 
                 if (Request.QueryString["TaskRequestKey"] != null)
                 {
@@ -194,7 +194,7 @@ namespace Evo
                 nv.Add("@Login", Session["LoginID"].ToString());
             }
 
-            dt = objCommon.GetDataTable("SP_GetChemicalRequestSelectDetailsView", nv);
+            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetailsStartView", nv);
 
             GridViewDetails.DataSource = dt;
             GridViewDetails.DataBind();

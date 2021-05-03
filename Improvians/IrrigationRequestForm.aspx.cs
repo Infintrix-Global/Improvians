@@ -306,7 +306,8 @@ namespace Evo
                 string BatchLocation = GridIrrigation.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
                 string IrrigationCode = GridIrrigation.DataKeys[rowIndex].Values[3].ToString();
-                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}&jobCode={1}&ICode={2}", BatchLocation, jobCode, IrrigationCode));
+                string TaskRequestKey = GridIrrigation.DataKeys[rowIndex].Values[4].ToString();
+                Response.Redirect(String.Format("~/IrrJobBuildUp.aspx?Bench={0}&jobCode={1}&ICode={2}&TaskRequestKey={3}", BatchLocation, jobCode, IrrigationCode, TaskRequestKey));
             }
 
             if (e.CommandName == "GStart")
@@ -315,8 +316,8 @@ namespace Evo
                 string BatchLocation = GridIrrigation.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
                 string IrrigationCode = GridIrrigation.DataKeys[rowIndex].Values[3].ToString();
-
-                Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}", BatchLocation, jobCode, IrrigationCode));
+                string TaskRequestKey = GridIrrigation.DataKeys[rowIndex].Values[4].ToString();
+                Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}&TaskRequestKey={3}", BatchLocation, jobCode, IrrigationCode, TaskRequestKey));
 
             }
         }

@@ -612,9 +612,7 @@ namespace Evo
 
                 FR_ID = result.ToString();
 
-                NameValueCollection nv123 = new NameValueCollection();
-                nv123.Add("@Jid", Jid);
-                Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
+             
                 //  }
 
                 //GridViewRow row = gvTask.Rows[0];
@@ -696,6 +694,12 @@ namespace Evo
             }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
             objTask.AddFertilizerRequestDetails(dtTrays, FR_ID, FertilizationCode, lblbench.Text,"", "", "", txtResetSprayTaskForDays.Text);
+          
+            
+            long Mresult12 = 0;
+            NameValueCollection nv123 = new NameValueCollection();
+            nv123.Add("@BanchLocation", lblbench.Text);
+            Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
 
             string url = "";
             if (Session["Role"].ToString() == "1")

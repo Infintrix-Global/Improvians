@@ -347,7 +347,7 @@ namespace Evo
                     }
                     if (TaskRequestType == "Irrigation")
                     {
-                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}", "ManageTask", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString()));
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "ManageTask", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString(), dt.Rows[0]["TaskRequestKey"].ToString()));
 
                     }
 
@@ -398,11 +398,11 @@ namespace Evo
                     {
                         Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", 0, dtR.Rows[0]["ID"].ToString(),1));
                     }
-                    //if (TaskRequestType == "Irrigation")
-                    //{
-                    //    Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}", "ManageTask", dt.Rows[0]["IrrigationCode"].ToString(), dt.Rows[0]["IrrigationTaskAssignmentId"].ToString()));
+                    if (TaskRequestType == "Irrigation")
+                    {
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "ManageTask", dt.Rows[0]["IrrigationCode"].ToString(),0, dtR.Rows[0]["TaskRequestKey"].ToString()));
 
-                    //}
+                    }
 
 
                     //if (TaskRequestType == "Plant Ready")
