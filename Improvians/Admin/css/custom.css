@@ -879,6 +879,13 @@ header {
 .bttn__icons--edit:hover { background: #438644; }
 .bttn__icons--delete:hover { background: #e22b2b; }
 
+/*Help Docs*/
+.faq__link { flex: 1 0 auto; }
+.faq__link input { width: 100%; }
+.help__list-link img { height: auto; }
+.help__list-video img { width: 35px; }
+.help__list-ppt img { width: 32px; }
+
 /*Media Queries*/
 @media only screen and (max-width: 1839px) {
     .custom__dropdown, .filter__control, .input__control {
@@ -972,6 +979,13 @@ header {
     .filter__row > .filter__control:not(.bttn) { flex: 0 0 calc(50% - 8px); max-width: calc(50% - 8px); }
     .admin__logo { min-height: 78px; max-height: 78px; justify-content: center; }
     .admin__logo img { max-width: 200px; }
+    .faq__addfile > .faq__link {
+        display: block;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .faq__addfile > .faq__link input { width: 100%; }
 }
 
 @media only screen and (max-width: 575px) {
