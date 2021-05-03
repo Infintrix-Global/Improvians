@@ -587,12 +587,7 @@ namespace Evo
                 resultRID = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
 
 
-                NameValueCollection nv123 = new NameValueCollection();
-                nv123.Add("@Jid", Jid);
-
-
-                Mresult = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
-
+            
 
                 NameValueCollection nameValue = new NameValueCollection();
                 nameValue.Add("@LoginID", Session["LoginID"].ToString());
@@ -680,6 +675,11 @@ namespace Evo
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
             objTask.AddChemicalRequestDetails(dtTrays, result.ToString(), ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
+
+            long Mresult12 = 0;
+            NameValueCollection nv123 = new NameValueCollection();
+            nv123.Add("@BanchLocation", lblbench.Text);
+            Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
 
 
             Evo.BAL_Classes.General objGeneral = new General();

@@ -513,11 +513,11 @@ namespace Evo
 
 
 
-                NameValueCollection nv123 = new NameValueCollection();
-                nv123.Add("@Jid", Jid);
+                //NameValueCollection nv123 = new NameValueCollection();
+                //nv123.Add("@Jid", Jid);
 
 
-                Mresult = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
+                //Mresult = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
 
 
 
@@ -592,6 +592,11 @@ namespace Evo
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
             objTask.AddChemicalRequestDetails(dtTrays, FR_ID, ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
+
+            long Mresult12 = 0;
+            NameValueCollection nv123 = new NameValueCollection();
+            nv123.Add("@BanchLocation", lblbench.Text);
+            Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
 
             string url = "";
             if (Session["Role"].ToString() == "1")

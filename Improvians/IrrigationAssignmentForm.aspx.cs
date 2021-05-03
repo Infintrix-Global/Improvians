@@ -158,7 +158,11 @@ namespace Evo
             if (e.CommandName == "Assign")
             {
 
-                string IrrigationCode = e.CommandArgument.ToString();
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string IrrigationCode = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+
+
 
                 Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?IrrigationCode={0}", IrrigationCode));
 
@@ -188,9 +192,11 @@ namespace Evo
                 // nv.Add("@TraysSprayed", "");
                 // nv.Add("@SprayDuration", "");
                 //  nv.Add("@mode", "2");
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string IrrigationCode = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
 
-
-                string IrrigationCode = e.CommandArgument.ToString();
+               
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@IrrigationCode", IrrigationCode);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
@@ -207,8 +213,13 @@ namespace Evo
 
             if (e.CommandName == "ViewDetails")
             {
-                string IrrigationCode = e.CommandArgument.ToString();
-                Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", IrrigationCode));
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string IrrigationCode = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+
+                Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "ManageTask", IrrigationCode, 0, TaskRequestKey));
+
+             //   Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", IrrigationCode));
             }
 
 

@@ -56,7 +56,7 @@
         <div class="data__table">
             <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="GridIrrigation_RowDataBound"
                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="GridIrrigation_PageIndexChanging"
-                GridLines="None" OnRowCommand="GridIrrigation_RowCommand" DataKeyNames="GreenHouseID,jobcode,GrowerPutAwayId,IrrigationCode"
+                GridLines="None" OnRowCommand="GridIrrigation_RowCommand" DataKeyNames="GreenHouseID,jobcode,GrowerPutAwayId,IrrigationCode,TaskRequestKey"
                 ShowHeaderWhenEmpty="True" Width="100%">
                 <Columns>
 

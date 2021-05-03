@@ -506,9 +506,7 @@ namespace Evo
 
 
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestStart", nv);
-                NameValueCollection nv123 = new NameValueCollection();
-                nv123.Add("@Jid", Jid);
-                Mresult = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestMenualUpdate", nv123);
+            
                 if (result > 0)
                 {
                     // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
@@ -588,6 +586,12 @@ namespace Evo
 
                // }
             }
+            long Mresult1 = 0;
+            NameValueCollection nv123 = new NameValueCollection();
+            nv123.Add("@BanchLocation", lblbench.Text);
+            Mresult1 = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestMenualUpdate", nv123);
+
+
             string url = "";
             if (Session["Role"].ToString() == "1")
             {

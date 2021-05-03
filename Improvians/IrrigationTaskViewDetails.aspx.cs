@@ -39,6 +39,14 @@ namespace Evo
                 {
                     PanlTaskComplition.Visible = false;
                 }
+
+
+                if (Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+
+                }
+
                 BindgvIrrigation();
                 BindGridViewDetailsGerm();
                 BindenchLocation();
@@ -47,6 +55,24 @@ namespace Evo
             }
         }
 
+
+
+
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
         public void BindGridSprayCompletionDetails(string CompletionId)
         {
             DataTable dt = new DataTable();
@@ -118,9 +144,21 @@ namespace Evo
             //nv.Add("@JobCode", ddlJobNo.SelectedValue);
             //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             //nv.Add("@Facility", ddlFacility.SelectedValue);
-            nv.Add("@Jid", lbljid.Text);
+            //  nv.Add("@Jid", lbljid.Text);
             //nv.Add("@Mode", "6");
             //dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            nv.Add("@TaskRequestKey", TaskRequestKey);
+
+
+            if (Request.QueryString["FCID"] != "0")
+            {
+                nv.Add("@Login", "0");
+            }
+            else
+            {
+                nv.Add("@Login", Session["LoginID"].ToString());
+            }
+
             dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetailsStart", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();

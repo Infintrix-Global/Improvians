@@ -162,6 +162,7 @@ namespace Evo
             nv.Add("@SprayDuration","");
             nv.Add("@NoOfPasses", txtNoofPasses.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Banchloc", lblBenchLocation.Text);
             //if (Request.QueryString["ICom"] =="1")
             //{
             //    nv.Add("@mode", "1");
