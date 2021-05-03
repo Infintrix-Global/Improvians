@@ -605,7 +605,7 @@ namespace Evo
                 nv.Add("@FertilizationDate", txtDate.Text);
                 nv.Add("@Jid",Jid);
                 nv.Add("@TaskRequestKey", TaskRequestKey);
-                nv.Add("@JobCode", (row.FindControl("lblID") as Label).Text);
+                nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
                 
 
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
@@ -683,7 +683,7 @@ namespace Evo
                     nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
 
                     nv.Add("@TaskRequestKey", TaskRequestKey);
-                    nv.Add("@JobCode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
 
                     result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
