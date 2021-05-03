@@ -1272,7 +1272,6 @@ textarea.input__control {
 
 .section__help h2 {
     position: relative;
-    text-align: center;
     padding-top: 30px;
     margin-bottom: 40px;
 }
@@ -1282,8 +1281,6 @@ textarea.input__control {
     -moz-box-shadow: 0px 1px 5px -1px #c7c7c7;
     box-shadow: 0px 1px 5px -1px #c7c7c7;
     max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .help__reources .card {
@@ -1295,41 +1292,92 @@ textarea.input__control {
 .help__list {
     padding: 0;
     list-style: none;
+    max-height: 300px;
+    overflow: auto;
+    margin-bottom: 0;
 }
 
-.help__list li a {
+.help__list li {
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
     line-height: 22px;
     list-style: none;
-    padding: 12px 0;
-    padding-left: 55px;
-    color: #488949;
+    padding: 12px 12px;
+    padding-right: 22px;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.help__list--video a:before,
-.help__list--ppt a:before {
-    content: "";
-    position: absolute;
+.help__list li:first-child {
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 45px;
-    height: 100%;
+    background: #ffffff;
+    z-index: 1;
 }
 
-.help__list--video a:before {
-    background: url(../images/icons/icon-video.png);
-    background-size: 30px;
-    background-position: center;
-    background-repeat: no-repeat;
+.help__list-title {
+    flex: 1 0 calc(100% - 160px);
+    max-width: calc(100% - 160px);
+    padding-right: 15px;
 }
 
-.help__list--ppt a:before {
-    background: url(../images/icons/icon-ppt.svg);
-    background-size: 30px;
-    background-position: center;
-    background-repeat: no-repeat;
+.help__list-action { max-width: 160px; width: 160px; }
+.help__list-link { width: 80px; text-align: center; }
+.help__list-ppt { margin-left: auto; }
+.help__list-link img { height: auto; }
+.help__list-video img { width: 35px; }
+.help__list-ppt img { width: 32px; }
+
+.help__list-cell {
+    width: 80px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.help__contact h2 {
+    position: fixed;
+    right: 18px;
+    top: 50%;
+    transform: translate(50%,-50%) rotateZ( -90deg );
+    transform-origin: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    z-index: 999;
+    margin: 0;
+    cursor: pointer;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: #005a01;
+    color: #ffffff;
+}
+
+.modal__help .modal-header, .modal__help .modal-content, .modal__help .card {
+    border: 0;
+    overflow: hidden;
+    vertical-align: top;    
+}
+
+.modal__help .modal-header .close {
+    padding: 0;
+    color: #ffffff;
+    text-shadow: none;
+    text-align: center;
+    opacity: 1;
+    cursor: pointer;
+    border-radius: 100%;
+    background: red;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.modal__help .modal-header .close span {
+    font-size: 18px;
+    line-height: 20px;
+    vertical-align: top;    
+    cursor: pointer;
 }
 
 .contact__pic img {
@@ -1401,7 +1449,8 @@ textarea.input__control {
 
 .accordion .card-body a { color: #489d48; font-family: 'roboto-medium', sans-serif; }
 .accordion .card-body a:hover { text-decoration: underline; }
-
+.modal--auto { text-align: center; }
+.modal--auto .modal-dialog { max-width: 100%; display: inline-block; }
 /*Help Page ENDS*/
 
 /*Reports Page*/
@@ -1637,6 +1686,8 @@ textarea.input__control {
     }
 
     .data__mobile td [data-head]::before {content: attr(data-head);display: block;width: 100%;font-weight: bold;padding: 5px 0;}
+
+    .help__list li { padding: 12px 0; }
 }
 
 @media only screen and (max-width: 1023px) {
@@ -1769,6 +1820,7 @@ textarea.input__control {
     .section__help h2 { margin-bottom: 25px; }
     .accordion .card-header::before { width: 40px; }
     .accordion .card-header h3 { font-size: 18px; padding-right: 20px;  }
+    .help__contact h2 { font-size: 14px; }
 }
 
 @media only screen and (max-width: 639px) {
@@ -1791,6 +1843,13 @@ textarea.input__control {
     .task_request-buttons { max-width: 100%; }
     .request__block-head { width: calc(50% - 15px); }
     .reports__buttons { max-width: 490px; }
+    .help__list-cell { width: 68px; font-size: 12px; line-height: 16px; }
+    .help__list-action { max-width: 136px; width: 136px; }
+    .help__list-title { flex: 1 0 calc(100% - 136px); max-width: calc(100% - 136px); }
+    .help__list-link { width: 68px; }
+    .help__list-video img { width: 30px; }
+    .help__list-ppt img { width: 27px; }
+    .help__list-title.h5 { font-size: 18px; }
 }
 
 @media only screen and (max-width: 575px) {
