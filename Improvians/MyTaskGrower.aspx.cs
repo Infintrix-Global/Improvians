@@ -30,7 +30,7 @@ namespace Evo
                 BindGridFer();
                 BindGridChem();
                 BindGridIrr();
-                BindGridCrop();
+                //BindGridCrop();
                 BindGridPR();
                 BindGridMov();
                 BindGridDum();
@@ -505,7 +505,7 @@ namespace Evo
             nv.Add("@wo", "");
             nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
-            BindData(dt, Put, "plan_date");                        
+            BindData(dt, Put, "SeededDate");
         }       
 
         public void BindGridGerm()
@@ -539,6 +539,13 @@ namespace Evo
                     DateTime dtime = Convert.ToDateTime(dtimeString);
 
                     DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                    switch (html.Name)
+                    {
+                        case "Put" : dtime = dtime.AddDays(1);
+                            break;
+
+                    }
 
                     if (nowtime > dtime)
                     {
