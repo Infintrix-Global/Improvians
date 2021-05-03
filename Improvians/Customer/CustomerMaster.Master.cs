@@ -27,7 +27,7 @@ namespace Evo
                     imgprofilepic.ImageUrl = Session["Photo"].ToString();
                 }
                 String activepage = Request.RawUrl.ToLower();
-                if (activepage.Contains("dashboard"))
+                if (activepage.Contains("dashboard") || Session["Role"].ToString() == "14")
                 {
                     divSitemap.Visible = false;
                 }

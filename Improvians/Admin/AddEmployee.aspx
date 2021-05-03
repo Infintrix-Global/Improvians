@@ -42,7 +42,7 @@
                     <div class="col-md-6 col-xl-5">
                         <label>
                             <h3>Employee Name<span style="color: red">*</span></h3>
-                            <asp:TextBox ID="txtName" class="input__control input__control-icon username" placeholder="Enter your user name" TabIndex="3" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtName" class="input__control input__control-icon username" placeholder="Enter your employee name" TabIndex="3" runat="server"></asp:TextBox>
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtName" ValidationGroup="e"
                                     SetFocusOnError="true" ErrorMessage="Please Enter Name" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -69,7 +69,7 @@
                         <label>
                             <h3>Mobile Number</h3>
 
-                            <asp:TextBox ID="txtMobile" runat="server" class="input__control input__control-icon phone" placeholder="Enter your Mobile No. here" TabIndex="2"></asp:TextBox>
+                            <asp:TextBox ID="txtMobile" runat="server" class="input__control input__control-icon phone" placeholder="Enter your mobile No. here" TabIndex="2"></asp:TextBox>
 
                             <span class="error_message">
                                 <%--  <asp:RequiredFieldValidator ID="RequiredMobile" runat="server" ControlToValidate="txtMobile" ErrorMessage="Please Enter Mobile Number" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>--%>

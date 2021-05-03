@@ -120,12 +120,12 @@ namespace Evo.Admin
                     lblProfile.Text = dt1.Tables[0].Rows[0]["Photo"].ToString();
                     lblProfile.Visible = false;
                     ImageProfile.ImageUrl = dt1.Tables[0].Rows[0]["Photo"].ToString();
-                  //  txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
+                    txtPassword.Text = objCommon.Decrypt(dt1.Tables[0].Rows[0]["Password"].ToString());
                     //ddlDepartment.SelectedValue = dt1.Tables[0].Rows[0]["DepartmentID"].ToString();
                     txtName.Text = dt1.Tables[0].Rows[0]["EmployeeName"].ToString();                    
                     txtMobile.Text = dt1.Tables[0].Rows[0]["Mobile"].ToString();
                     txtEmail.Text = dt1.Tables[0].Rows[0]["Email"].ToString();
-                  //  txtUserName.Text = dt1.Tables[0].Rows[0]["EmployeeCode"].ToString();
+                    txtUserName.Text = dt1.Tables[0].Rows[0]["EmployeeCode"].ToString();
                 }
 
             }
@@ -150,8 +150,8 @@ namespace Evo.Admin
                     Designation = "14",
                     NavisionCustomerID = "",
                     Photo = ImageProfile.ImageUrl,
-                    EmployeeCode = "",
-                    Password = ""//objCommon.Encrypt(txtPassword.Text)
+                    EmployeeCode = txtUserName.Text,
+                    Password = objCommon.Encrypt(txtPassword.Text)
                 };
                 _isInserted = objCommon.UpdateEmployee(objEmployee);
                 if (_isInserted == -1)

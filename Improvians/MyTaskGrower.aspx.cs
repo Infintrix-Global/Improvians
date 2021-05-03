@@ -398,7 +398,7 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetGeneralRequestAssistantGrower", nv);
-            BindData(dt, Gen, "SeededDate");
+            BindData(dt, Gen, "GeneralTaskDate");
         }
 
         private void BindGridDum()
@@ -410,7 +410,7 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
-            BindData(dt, Dum, "SeededDate");
+            BindData(dt, Dum, "DumpDateR");
         }
 
         private void BindGridMov()
@@ -422,7 +422,7 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
-            BindData(dt, Mov, "SeededDate");
+            BindData(dt, Mov, "MoveDate");
         }
 
         private void BindGridPR()
@@ -449,7 +449,7 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetCropReportRequestAssistantGrower", nv);
-            BindData(dt, Crop, "SeededDate");
+            BindData(dt, Crop, "CropHealthReportDate");
         }
 
         private void BindGridIrr()
