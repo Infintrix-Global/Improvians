@@ -121,6 +121,7 @@
     <Content Include="Admin\HelpFAQ.aspx" />
     <Content Include="Admin\HelpDocument.aspx" />
     <Content Include="Admin\HelpContact.aspx" />
+    <Content Include="Admin\images\support-passport-photo.png" />
     <Content Include="Admin\PlantReadyConfiguration.aspx" />
     <Content Include="Admin\js\custom.js" />
     <Content Include="Admin\NotificationPreference.aspx" />
