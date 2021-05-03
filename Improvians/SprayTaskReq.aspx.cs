@@ -143,6 +143,8 @@ namespace Evo
 
             nv.Add("@Nots", txtNotes.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Banchloc", lblBenchLocation.Text);
+            
             result = objCommon.GetDataInsertORUpdate("SP_AddSprayRequest", nv);
 
 

@@ -452,7 +452,7 @@ namespace Evo
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtTrays, ddlFertilizer.SelectedValue, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
+            objTask.AddChemicalRequestDetails(dtTrays, "0",ddlFertilizer.SelectedValue, ChemicalCode, Bench1, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
 
             string message = "Assignment Successful";
             string url = "MyTaskGrower.aspx";

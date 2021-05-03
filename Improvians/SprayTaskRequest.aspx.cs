@@ -190,9 +190,12 @@ namespace Evo
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string FertilizationCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
-                Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?FertilizationCode={0}", FertilizationCode));
+                string TaskRequestKey = gvSpray.DataKeys[rowIndex].Values[1].ToString();
+                
+              //  Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?FertilizationCode={0}", FertilizationCode));
                 //userinput.Visible = true;
 
+                Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?PageType={0}&FertilizationCode={1}&FCID={2}&TaskRequestKey={3}", "ManageTask", FertilizationCode, 0, TaskRequestKey));
 
                 //lblGrowerID.Text = gvSpray.DataKeys[rowIndex].Values[0].ToString();
 

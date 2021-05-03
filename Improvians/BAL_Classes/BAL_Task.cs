@@ -63,8 +63,8 @@ namespace Evo.BAL_Classes
                     objGeneral.AddParameterWithValueToSQLCommand("@BenchIrrigationCoverage", BenchIrrigationCoverage);
                     objGeneral.AddParameterWithValueToSQLCommand("@SprayCoverageperminutes", SprayCoverageperminutes);
                     objGeneral.AddParameterWithValueToSQLCommand("@ResetSprayTaskForDays", ResetSprayTaskForDays);
+               
 
-                    
                     _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddFertilizerDetails");
                 }
             }
@@ -111,7 +111,7 @@ namespace Evo.BAL_Classes
 
 
 
-        public int AddChemicalRequestDetails(DataTable dt, string FertilizationID, int FertilizationCode, string bencLoc, string ResetSprayTaskForDays,string Method, string Comments)
+        public int AddChemicalRequestDetails(DataTable dt, string ChemicalIReqid, string FertilizationID, int FertilizationCode, string bencLoc, string ResetSprayTaskForDays,string Method, string Comments)
         {
             int _isInserted = -1;
             try
@@ -132,7 +132,7 @@ namespace Evo.BAL_Classes
                     objGeneral.AddParameterWithValueToSQLCommand("@Method", Method);
 
                     objGeneral.AddParameterWithValueToSQLCommand("@Comments", Comments);
-
+                    objGeneral.AddParameterWithValueToSQLCommand("@ChemicalIReqid", ChemicalIReqid);
                     _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddChemicalRequestDetails");
                 }
             }

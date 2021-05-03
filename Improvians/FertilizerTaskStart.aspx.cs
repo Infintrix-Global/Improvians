@@ -447,7 +447,7 @@ namespace Evo
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
+                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray1") as Label).Text);
                 //}
 
             }
@@ -461,6 +461,21 @@ namespace Evo
 
         //}
 
+        private string FR_ID
+        {
+            get
+            {
+                if (ViewState["FR_ID"] != null)
+                {
+                    return (string)ViewState["FR_ID"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["FR_ID"] = value;
+            }
+        }
 
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -490,14 +505,22 @@ namespace Evo
                 nv.Add("@FertilizationCode", FertilizationCode.ToString());
                 nv.Add("@FertilizationDate", txtDate.Text);
                 nv.Add("@Jid", Jid);
+                nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                nv.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+              
 
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTaskStartJobbuil", nv);
 
-
+                FR_ID = result.ToString();
 
                 NameValueCollection nv123 = new NameValueCollection();
-                nv123.Add("@Jid", Jid);
-                Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
+                nv123.Add("@Banchloc", lblbench.Text);
+                Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdateBanch", nv123);
+
+
                 //  }
 
                 NameValueCollection nvn = new NameValueCollection();
@@ -542,28 +565,32 @@ namespace Evo
 
 
 
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-               
-                    nv.Add("@Type", "Fertilizer");
-                    nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
-                    nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                    //nv.Add("@WorkOrder", lblwo.Text);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@FertilizationCode", FertilizationCode.ToString());
-                    nv.Add("@FertilizationDate", txtDate.Text);
-                    nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                 long result = 0;
+                 NameValueCollection nv = new NameValueCollection();
 
+                nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                nv.Add("@Type", "Fertilizer");
+                nv.Add("@WorkOrder", (row.FindControl("lblwo1") as Label).Text);
+                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID1") as Label).Text);
+                //nv.Add("@WorkOrder", lblwo.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@FertilizationCode", FertilizationCode.ToString());
+                nv.Add("@FertilizationDate", txtDate.Text);
+                nv.Add("@Jid", Jid);
+                nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv.Add("@Facility", (row.FindControl("lblFacility1") as Label).Text);
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTaskStartJobbuil", nv);
 
-                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
-                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTaskStartJobbuil", nv);
-
-              //  }
-                //  }
+             
 
             }
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text,txtComments.Text);
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text,txtComments.Text);
+
+
 
             string url = "";
             if (Session["Role"].ToString() == "1")

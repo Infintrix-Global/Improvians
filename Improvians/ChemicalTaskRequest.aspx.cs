@@ -103,7 +103,8 @@ namespace Evo
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string ChemicalCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
-                Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}", ChemicalCode));
+                string TaskRequestKey = gvSpray.DataKeys[rowIndex].Values[1].ToString();
+                Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}}&TaskRequestKey={1}", ChemicalCode, TaskRequestKey));
                 //userinput.Visible = true;
 
 
@@ -114,7 +115,10 @@ namespace Evo
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string ChemicalCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
-                Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}", ChemicalCode));
+                string TaskRequestKey = gvSpray.DataKeys[rowIndex].Values[1].ToString();
+
+             //   Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}", ChemicalCode));
+                Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?PageType={0}&ChemicalCode={1}&CCID={2}&TaskRequestKey={3}", "ManageTask", ChemicalCode, 0, TaskRequestKey));
 
 
             }
