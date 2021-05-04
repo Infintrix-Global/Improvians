@@ -123,18 +123,14 @@ namespace Evo.Admin
                 _isInserted = objCommon.UpdateHelpContact(txtName.Text,  txtEmail.Text, txtMobile.Text, lblProfile.Text);
                 if (_isInserted == -1)
                 {
-
                     lblmsg.Text = "Failed to Update Help Contact";
                     lblmsg.ForeColor = System.Drawing.Color.Red;
-
                 }
 
                 else
                 {
-
                     lblmsg.Text = "Help Contact Updated ";
                     lblmsg.ForeColor = System.Drawing.Color.Green;
-
                 }
             }
             catch (Exception ex)

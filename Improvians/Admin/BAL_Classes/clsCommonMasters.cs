@@ -877,6 +877,59 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+        public int InsertHelpFAQ(string Title, string Description)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@Title", Title);
+                objGeneral.AddParameterWithValueToSQLCommand("@Description", Description);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddHelpFAQ");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public int UpdateHelpFAQ(int ID,string Title, string Description)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ID", ID);
+                objGeneral.AddParameterWithValueToSQLCommand("@Title", Title);
+                objGeneral.AddParameterWithValueToSQLCommand("@Description", Description);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_UpdateHelpFAQ");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public int RemoveHelpFAQ(int ID)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ID", ID);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_DeleteHelpFAQ");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
 
     }
 }
