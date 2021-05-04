@@ -29,7 +29,7 @@ namespace Evo
                 BindGridFer();
                 BindGridChem();
                 BindGridIrr();
-                //BindGridCrop();
+                BindGridCrop();
                 BindGridPR();
                 BindGridMov();
                 BindGridDum();
