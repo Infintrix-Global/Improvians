@@ -13,7 +13,6 @@ namespace Evo
 {
     public partial class MyTask1 : System.Web.UI.Page
     {
-        CommonControl objCommonControl = new CommonControl();
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         CommonControl objCommon = new CommonControl();
         // BAL_CommonMasters objCOm = new BAL_CommonMasters();
@@ -44,7 +43,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
-            dt = objCommonControl.GetDataSet("SP_GetGrowerEachTaskCount", nv);
+            dt = objCommon.GetDataSet("SP_GetGrowerEachTaskCount", nv);
             lblPutAway.Text = dt.Tables[0].Rows.Count.ToString();
             lblGerm.Text = dt.Tables[1].Rows.Count.ToString();
             lblFer.Text = dt.Tables[2].Rows.Count.ToString();
@@ -435,7 +434,7 @@ namespace Evo
             nv.Add("@BenchLocation", "");
             nv.Add("@RequestType", "0");
             nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
+            nv.Add("@ToDate", DateTime.Now.ToString("dd/MM/yyyy"));
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
             BindData(dt, PR, "SeededDate");
         }
@@ -459,7 +458,7 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "");
+            nv.Add("@BenchLocation", "0");
             nv.Add("@RequestType", "0");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
@@ -474,7 +473,7 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "");
+            nv.Add("@BenchLocation", "0");
             nv.Add("@RequestType", "0");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
@@ -489,7 +488,7 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "");
+            nv.Add("@BenchLocation", "0");
             nv.Add("@RequestType", "0");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");            
