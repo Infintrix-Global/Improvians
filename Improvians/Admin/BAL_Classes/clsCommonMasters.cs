@@ -931,6 +931,62 @@ namespace Evo.Admin
             return _isInserted;
         }
 
+        public int InsertHelpDocument(string Title, string DocumentLink, string VideoLink)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@Title", Title);
+                objGeneral.AddParameterWithValueToSQLCommand("@DocumentLink", DocumentLink);
+                objGeneral.AddParameterWithValueToSQLCommand("@VideoLink", VideoLink);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddHelpDocument");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public int UpdateHelpDocument(int ID, string Title, string DocumentLink, string VideoLink)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ID", ID);
+                objGeneral.AddParameterWithValueToSQLCommand("@Title", Title);
+                objGeneral.AddParameterWithValueToSQLCommand("@DocumentLink", DocumentLink);
+                objGeneral.AddParameterWithValueToSQLCommand("@VideoLink", VideoLink);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_UpdateHelpDocument");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
+        public int RemoveHelpDocument(int ID)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ID", ID);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_DeleteHelpDocument");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+
     }
 }
 

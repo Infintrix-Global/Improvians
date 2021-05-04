@@ -24,13 +24,13 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-              
+
 
 
                 if (Request.QueryString["GTAID"] != null)
                 {
                     gtaID = Request.QueryString["GTAID"].ToString();
-                 
+
                 }
                 if (Request.QueryString["GTRID"] != null)
                 {
@@ -38,19 +38,19 @@ namespace Evo
 
                 }
 
-               
-            
-          
 
-               if (gtaID=="0")
+
+
+
+                if (gtaID == "0")
                 {
                     PanelViewGJob.Visible = false;
                     userinput.Visible = false;
-                    
+
                 }
                 else
                 {
-                    if (Request.QueryString["IsF"].ToString() == "1")
+                    if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
                     {
 
                         PanelViewGJob.Visible = true;
@@ -62,7 +62,7 @@ namespace Evo
                         userinput.Visible = true;
                     }
                 }
-                
+
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
@@ -111,7 +111,7 @@ namespace Evo
                 userinput.Visible = false;
                 GridViewGDetails.DataSource = dt1;
                 GridViewGDetails.DataBind();
-               // lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
+                // lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
 
             }
         }

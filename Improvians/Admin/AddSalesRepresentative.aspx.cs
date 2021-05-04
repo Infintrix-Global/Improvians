@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Evo.Admin.BAL_Classes;
 using Evo.Admin;
+using System.Web.Configuration;
 
 namespace Evo.Admin
 {
@@ -34,7 +35,7 @@ namespace Evo.Admin
                         Email = txtEmail.Text,
                         Designation = "14",
                         Department = "",
-                        Photo = lblProfile.Text,
+                        Photo = ImageProfile.ImageUrl,
                         NavisionCustomerID =""
                     };
 
@@ -138,7 +139,7 @@ namespace Evo.Admin
                             System.IO.Directory.CreateDirectory(path);
                             FileUpProfile.SaveAs(path + @"\" + Imgname);
 
-                            ImageProfile.ImageUrl = @"~\EmployeeProfile\" + Imgname;
+                            ImageProfile.ImageUrl = WebConfigurationManager.AppSettings["PortalURL"] + @"\EmployeeProfile\" + Imgname;
                             ImageProfile.Visible = true;
                             lblProfile.Visible = true;
                             lblProfile.Text = Imgname;
