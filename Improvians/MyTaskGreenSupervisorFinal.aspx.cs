@@ -171,14 +171,6 @@ namespace Evo
 
                     DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
 
-                    switch (html.Name)
-                    {
-                        case "Put":
-                            dtime = dtime.AddDays(1);
-                            break;
-
-                    }
-
                     if (nowtime > dtime)
                     {
                         html.Attributes.Add("class", "dashboard__box dashboard__box-overdue");
