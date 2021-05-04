@@ -30,7 +30,7 @@
         <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
 
         <div class="data__table">
-            <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+            <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvTask_RowDataBound"
                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvTask_PageIndexChanging"
                 GridLines="None" OnRowCommand="gvTask_RowCommand" DataKeyNames="wo,ID,jid,jobcode,GreenHouseID"
                 ShowHeaderWhenEmpty="True" Width="100%">

@@ -31,7 +31,7 @@
         <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
 
         <div class="data__table">
-            <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+            <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
                 GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,CropHealthReportId,jid,jobcode,GreenHouseID"
                 ShowHeaderWhenEmpty="True" Width="100%">

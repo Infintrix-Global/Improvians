@@ -127,7 +127,7 @@
 
                             <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
-                                    <asp:Label ID="Label19" runat="server" Text='<%# Eval("ChemicalSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    <asp:Label ID="lblChemDate" runat="server" Text='<%# Eval("ChemicalSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
