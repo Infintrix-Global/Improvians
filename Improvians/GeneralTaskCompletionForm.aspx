@@ -37,7 +37,7 @@
                     <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                     <div class="portlet-body">
                         <div class="data__table">
-                            <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                            <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvTask_RowDataBound"
                                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvTask_PageIndexChanging"
                                 GridLines="None" OnRowCommand="gvTask_RowCommand"
                                 ShowHeaderWhenEmpty="True" Width="100%">
@@ -67,8 +67,6 @@
                                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-
                                     <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
@@ -87,8 +85,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-
                                     <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
@@ -97,18 +93,15 @@
                                     <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
 
-                                            <asp:Label ID="Label12" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                            <asp:Label ID="lblGenDate" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-
                                             <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Start" CommandArgument='<%# Eval("GeneralTaskAssignmentId")  %>'></asp:Button>
-
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
 
                                 </Columns>
 

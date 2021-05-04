@@ -64,7 +64,7 @@
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                class="striped" AllowSorting="true" PageSize="10"
+                                class="striped" AllowSorting="true" PageSize="10" OnRowDataBound="gvFer_RowDataBound"
                                 GridLines="None" OnRowCommand="gvFer_RowCommand" DataKeyNames="ID"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>

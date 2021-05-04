@@ -39,7 +39,7 @@
                     <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                     <div class="portlet-body">
                         <div class="data__table">
-                            <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                            <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvGerm_RowDataBound"
                                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
                                 GridLines="None" OnRowCommand="gvGerm_RowCommand" DataKeyNames="PlantReadyId,PlantReadyTaskAssignmentId"
                                 ShowHeaderWhenEmpty="True" Width="100%">

@@ -171,10 +171,21 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
                 Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");
                 HyperLink lnkJobID = (HyperLink)e.Row.FindControl("lnkJobID");
                 lnkJobID.NavigateUrl = "~/JobReports.aspx?JobCode=" + lnkJobID.Text + "&GermNo=" + lblGermNo.Text;
+
+                Label lblGermDate = (Label)e.Row.FindControl("lblGermDate");
+                string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
+
+                DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                if (nowtime > dtime)
+                {
+                    e.Row.CssClass = "overdue";
+                }
             }
         }
     }
