@@ -93,7 +93,7 @@ namespace Evo.Admin
                             ImageProfile.ImageUrl = @"~\EmployeeProfile\" + Imgname;
                             ImageProfile.Visible = true;
                             lblProfile.Visible = true;
-                            lblProfile.Text = Imgname;
+                            lblProfile.Text = ImageProfile.ImageUrl;
 
                             //  IdentityPolicyImageUrl = Imgname + ext;
 
@@ -119,15 +119,8 @@ namespace Evo.Admin
         {
             try
             {
-                int _isInserted = -1;
-                Employee objEmployee = new Employee()
-                {                    
-                    Name = txtName.Text,
-                    Mobile = txtMobile.Text,
-                    Email = txtEmail.Text,                  
-                    Photo = lblProfile.Text
-                };
-                _isInserted = objCommon.UpdateHelpContact(txtName.Text, txtMobile.Text, txtEmail.Text, lblProfile.Text);
+                int _isInserted = -1;               
+                _isInserted = objCommon.UpdateHelpContact(txtName.Text,  txtEmail.Text, txtMobile.Text, lblProfile.Text);
                 if (_isInserted == -1)
                 {
 

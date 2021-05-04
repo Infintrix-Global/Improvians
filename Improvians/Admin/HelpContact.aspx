@@ -27,7 +27,8 @@
                         <span class="ml-2">Choose a file…</span>
                     </span>
 
-                    <input type="submit" name="ctl00$ContentPlaceHolder1$btnProfile" value="Upload" id="ContentPlaceHolder1_btnProfile" class="bttn bttn-primary bttn-action mb-2">
+                    <asp:Button ID="btnProfile" CssClass="bttn bttn-primary bttn-action mb-2" CausesValidation="False"
+                                runat="server" Text="Upload" OnClick="btnProfile_Click" />
                     <span class="d-block" id="ContentPlaceHolder1_Label2" style="color: Red;">(Format supported:jpeg,png,jpg)</span>
                     <asp:Label ID="lblProfile" runat="server" Visible="true"></asp:Label>
                 </label>
