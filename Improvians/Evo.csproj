@@ -304,6 +304,9 @@
     <Content Include="Customer\js\popper.min.js" />
     <Content Include="Customer\js\slick.min.js" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="Documents\sales2.png" />
+    <Content Include="Documents\sales3.png" />
+    <Content Include="Documents\Task &amp; Report Should Be activated.PNG" />
     <Content Include="EmployeeProfile\0-ABCD.png" />
     <Content Include="EmployeeProfile\data-privacy-and-security-features-you-should-know.jpg" />
     <Content Include="EmployeeProfile\sales1.png" />
