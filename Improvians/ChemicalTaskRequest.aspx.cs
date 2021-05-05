@@ -104,7 +104,7 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string ChemicalCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
                 string TaskRequestKey = gvSpray.DataKeys[rowIndex].Values[1].ToString();
-                Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}}&TaskRequestKey={1}", ChemicalCode, TaskRequestKey));
+                Response.Redirect(String.Format("~/ChemicalTaskCompletion.aspx?ChemicalCode={0}&TaskRequestKey={1}", ChemicalCode, TaskRequestKey));
                 //userinput.Visible = true;
 
 

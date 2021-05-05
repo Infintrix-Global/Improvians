@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="FertilizerTaskReq.aspx.cs" Inherits="Evo.FertilizerTaskReq" %>
 
+<%@ Register Assembly="DropDownCheckBoxes" Namespace="Saplin.Controls" TagPrefix="cc1" %>
 <%@ Register TagPrefix="asp" Namespace="Saplin.Controls" Assembly="DropDownCheckBoxes" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -17,16 +19,35 @@
                 <label>Bench Location </label>
                 <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
 
-               <%-- <asp:DropDownCheckBoxes ID="ddlBenchLocation" runat="server" UseSelectAllNode="false" UseSelectAllNode="false"
+                <%-- <asp:DropDownCheckBoxes ID="ddlBenchLocation" runat="server" UseSelectAllNode="false" UseSelectAllNode="false"
                     AutoPostBack="false"
                     RepeatDirection="Horizontal">
                     <Style SelectBoxCssClass="custom__dropdown robotomd" />
                 </asp:DropDownCheckBoxes>--%>
 
+                <asp:UpdatePanel ID="updatepanel4" runat="server">
+                    <ContentTemplate>
+                        <asp:TextBox ID="txtBenchLocationNew" class="input__control robotomd" runat="server"></asp:TextBox>
+                        <asp:PopupControlExtender ID="PopupControlExtender3" runat="server"
+                            Enabled="True" ExtenderControlID="" TargetControlID="txtBenchLocationNew" PopupControlID="Panel6"
+                            OffsetY="22">
+                        </asp:PopupControlExtender>
+                        <asp:Panel ID="Panel6" runat="server" Height="300px" Width="256px"
+                            BorderWidth="2px" Direction="LeftToRight" ScrollBars="Auto"
+                            Style="display: none">
+                            <asp:CheckBoxList ID="ddlBenchLocation" class="custom__dropdown robotomd" runat="server" AutoPostBack="True"
+                                OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged1">
+                            </asp:CheckBoxList>
 
-                <asp:DropDownCheckBoxes ID="ddlBenchLocation" runat="server" UseSelectAllNode="false">
+                        </asp:Panel>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+
+
+                <%--  <asp:DropDownCheckBoxes ID="ddlBenchLocation" runat="server" AddJQueryReference="False" UseSelectAllNode="false">
                     <Style SelectBoxCssClass="custom__dropdown robotomd" />
-                </asp:DropDownCheckBoxes>
+                </asp:DropDownCheckBoxes>--%>
                 <%--   <asp:DropDownCheckBoxes ID="ddlBenchLocation" AutoPostBack="true"   runat="server"></asp:DropDownCheckBoxes>--%>
             </div>
             <div class="col-lg-3 col-md-4 mb-3">
@@ -63,6 +84,38 @@
                 <%-- <asp:Button ID="btnJob" runat="server" Text="JobBuildUp" CssClass="bttn bttn-primary bttn-action" OnClick="btnJob_Click" />--%>
             </div>
         </div>
+        <asp:Panel ID="PanelFertilizationDate" Visible="false" runat="server">
+
+            <div class="dashboard__block dashboard__block--asign">
+                <div id="Div1" runat="server" class="assign__task d-flex">
+
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <asp:RadioButtonList ID="RadioButtonList1" RepeatDirection="Horizontal" Width="800px" runat="server">
+                                <asp:ListItem Text="Earliest Fertilization Date" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Latest Fetilization Date" Value="1"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                           
+                            <asp:TextBox ID="txtFertilizationDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                        </div>
+
+
+                        <div class="col-12">
+                            <asp:Button Text="Fertilization Date" ValidationGroup="e" CausesValidation="true" ID="btiFertilizationDate" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btiFertilizationDate_Click" />
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </asp:Panel>
+
+
 
         <div class="portlet light pt-3">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>

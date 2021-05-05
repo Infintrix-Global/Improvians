@@ -105,7 +105,8 @@ namespace Evo
         public void BindBenchLocation(string ddlMain)
         {
 
-            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            DataTable dt = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataSource = dt;
             ddlBenchLocation.DataTextField = "p2";
             ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
@@ -138,6 +139,7 @@ namespace Evo
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation",txtBenchLocationNew.Text);
             nv.Add("@RequestType", RadioButtonListSourse.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
@@ -169,7 +171,10 @@ namespace Evo
             }
             else
             {
-                dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+                // dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+
+                dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue);
+
             }
 
             gvFer.DataSource = dt;
@@ -576,6 +581,39 @@ namespace Evo
                     e.Row.CssClass = "overdue";
                 }
             }
+        }
+
+        protected void ddlBenchLocation_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            string name = "";
+            string name1 = "";
+            string lID = "";
+            try
+            {
+                for (int i = 0; i < ddlBenchLocation.Items.Count; i++)
+                {
+                    if (ddlBenchLocation.Items[i].Selected)
+                    {
+                        name += ddlBenchLocation.Items[i].Text + ",";
+                        lID += ddlBenchLocation.Items[i].Value + ",";
+                        name1 += "'" + ddlBenchLocation.Items[i].Text + "',";
+                    }
+                }
+                txtBenchLocationNew.Text = name1.Remove(name1.Length - 1, 1);
+                PanelFertilizationDate.Visible = true;
+                BindGridFerReq(0);
+             
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        protected void btiFertilizationDate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
