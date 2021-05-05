@@ -171,7 +171,7 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string Did = gvDump.DataKeys[rowIndex].Values[0].ToString();
                 ChId = gvDump.DataKeys[rowIndex].Values[1].ToString();
-
+                string TaskRequestKey = gvDump.DataKeys[rowIndex].Values[2].ToString();
                 if (ChId == "")
                 {
                     ChId = "0";
@@ -180,7 +180,7 @@ namespace Evo
                 {
                     ChId = ChId;
                 }
-                Response.Redirect(String.Format("~/DumpTaskAssignment.aspx?Did={0}&Chid={1}", Did, ChId));
+                Response.Redirect(String.Format("~/DumpTaskAssignment.aspx?Did={0}&Chid={1}&TaskRequestKey={2}", Did, ChId, TaskRequestKey));
 
             }
 
@@ -191,6 +191,8 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string Did = gvDump.DataKeys[rowIndex].Values[0].ToString();
                 ChId = gvDump.DataKeys[rowIndex].Values[1].ToString();
+                string TaskRequestKey = gvDump.DataKeys[rowIndex].Values[2].ToString();
+
 
                 if (ChId == "")
                 {
@@ -216,7 +218,7 @@ namespace Evo
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
+                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&TaskRequestKey={3}", result, ChId, Did, TaskRequestKey));
                 }
             }
         }

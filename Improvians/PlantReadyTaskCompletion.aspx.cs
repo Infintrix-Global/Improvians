@@ -26,11 +26,15 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["PRAID"] != null)
+                if (Request.QueryString["PRAID"] != "0")
                 {
                     PRAID = Request.QueryString["PRAID"].ToString();
+                    PanelComplitionDetsil.Visible = true;
                 }
-
+                else
+                {
+                    PanelComplitionDetsil.Visible = false;
+                }
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
@@ -90,7 +94,14 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
 
             nv.Add("@Jid", lbljid.Text);
-
+            if (Request.QueryString["PRAID"] != "0")
+            {
+                nv.Add("@Login", "0");
+            }
+            else
+            {
+                nv.Add("@Login", Session["LoginID"].ToString());
+            }
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytViewStart", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();

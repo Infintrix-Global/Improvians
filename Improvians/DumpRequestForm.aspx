@@ -29,7 +29,7 @@
         <div class="data__table">
             <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
-                GridLines="None" OnRowCommand="gvPlantReady_RowCommand"  DataKeyNames="wo,DumpId,jid,jobcode,GreenHouseID"
+                GridLines="None" OnRowCommand="gvPlantReady_RowCommand"  DataKeyNames="wo,DumpId,jid,jobcode,GreenHouseID,TaskRequestKey"
                 ShowHeaderWhenEmpty="True" Width="100%">
                 <Columns>
 

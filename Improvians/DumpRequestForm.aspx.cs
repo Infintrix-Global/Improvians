@@ -253,6 +253,24 @@ namespace Evo
 
             BindGridPlantReady(1);
         }
+
+
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
+
         protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
@@ -263,7 +281,7 @@ namespace Evo
                 HiddenFieldJid.Value = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
                 ViewState["jobcode"] = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
                 ViewState["benchloc"] = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
-
+                TaskRequestKey = gvPlantReady.DataKeys[rowIndex].Values[5].ToString();
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
@@ -288,6 +306,7 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string Did = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
                 //  ChId = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+                TaskRequestKey = gvPlantReady.DataKeys[rowIndex].Values[5].ToString();
 
                 if (ChId == "")
                 {
@@ -312,7 +331,7 @@ namespace Evo
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
+                    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&TaskRequestKey={3}", result, ChId, Did, TaskRequestKey));
                 }
             }
 
@@ -344,6 +363,7 @@ namespace Evo
 
             nv.Add("@jobcode", ViewState["jobcode"].ToString());
             nv.Add("@GreenHouseID", ViewState["benchloc"].ToString());
+            nv.Add("@TaskRequestKey", TaskRequestKey);
 
 
 

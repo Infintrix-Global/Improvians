@@ -24,6 +24,11 @@ namespace Evo
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
+                if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+                }
+
 
                 BindGridGerm();
                 BindDumpView();
@@ -46,6 +51,21 @@ namespace Evo
                 lblCommment.Text = dt1.Rows[0]["CropHealthCommit"].ToString();
             }
 
+        }
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
         }
 
         private string wo
@@ -80,6 +100,21 @@ namespace Evo
             }
         }
 
+        private string Jid
+        {
+            get
+            {
+                if (ViewState["Jid"] != null)
+                {
+                    return (string)ViewState["Jid"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Jid"] = value;
+            }
+        }
 
         public void BindOperatorList()
         {
@@ -96,12 +131,16 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-          
+
             nv.Add("@DId", DId);
             dt = objCommon.GetDataTable("SP_GetSupervisorDumpAssignTask", nv);
-            gvPlantReady.DataSource = dt;
-            gvPlantReady.DataBind();
+            if (dt != null && dt.Rows.Count > 0)
+            {
 
+                gvPlantReady.DataSource = dt;
+                gvPlantReady.DataBind();
+                Jid = dt.Rows[0]["Jid"].ToString();
+            }
 
         }
 
@@ -109,7 +148,7 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@DumpId",DId);
+            nv.Add("@DumpId", DId);
 
             dt = objCommon.GetDataTable("SP_GetDumpRequestView", nv);
 
@@ -138,9 +177,11 @@ namespace Evo
             nv.Add("@Comments", txtNotes.Text);
             nv.Add("@DumpId", DId);
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@QuantityOfTray",txtQuantityofTray.Text);
+            nv.Add("@QuantityOfTray", txtQuantityofTray.Text);
             nv.Add("@DumpDate", txtDumpDate.Text);
-          
+            nv.Add("@TaskRequestKey", TaskRequestKey);
+            nv.Add("@Jid", Jid);
+
             //nv.Add("@jobcode", txtJobNo);
             //nv.Add("@GreenHouseID", txtBenchLocation);
 

@@ -23,9 +23,20 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["Did"] != null)
+                if (Request.QueryString["Did"] != "0")
                 {
                     Did = Request.QueryString["Did"].ToString();
+                    PanelComplition.Visible = true;
+                }
+                else
+                {
+                    PanelComplition.Visible = false;
+                }
+
+
+                if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
                 }
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
@@ -110,12 +121,41 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-           
-            nv.Add("@Jid", lbljid.Text);
+
+            nv.Add("@TaskRequestKey", TaskRequestKey);
+            if (Request.QueryString["Did"] != "0")
+            {
+                nv.Add("@Login", "0");
+            }
+            else
+            {
+                nv.Add("@Login", Session["LoginID"].ToString());
+            }
+
+
+
+
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenttViewComplited", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
           
+        }
+
+
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
         }
 
         public void BindPlantReady()

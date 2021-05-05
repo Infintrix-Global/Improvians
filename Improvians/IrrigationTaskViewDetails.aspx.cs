@@ -150,7 +150,7 @@ namespace Evo
             nv.Add("@TaskRequestKey", TaskRequestKey);
 
 
-            if (Request.QueryString["FCID"] != "0")
+            if (Request.QueryString["ICID"] != "0")
             {
                 nv.Add("@Login", "0");
             }

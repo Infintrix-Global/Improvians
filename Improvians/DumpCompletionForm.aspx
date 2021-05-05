@@ -39,7 +39,7 @@
                             <div class="data__table">
                                 <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
-                                    GridLines="None" OnRowCommand="gvGerm_RowCommand"  DataKeyNames="DumpTaskAssignmentId,DumpId"
+                                    GridLines="None" OnRowCommand="gvGerm_RowCommand"  DataKeyNames="DumpTaskAssignmentId,DumpId,TaskRequestKey"
                                     ShowHeaderWhenEmpty="True" Width="100%">
                                     <Columns>
                                         <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">

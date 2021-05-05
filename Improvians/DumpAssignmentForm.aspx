@@ -31,7 +31,7 @@
                     <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                     <div class="portlet-body">
                         <div class="data__table">
-                            <asp:GridView ID="gvDump" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="DumpId,CropHealth"
+                            <asp:GridView ID="gvDump" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="DumpId,CropHealth,TaskRequestKey"
                                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvDump_PageIndexChanging"
                                 GridLines="None" OnRowCommand="gvDump_RowCommand" OnRowDataBound="gvDump_RowDataBound1"
                                 ShowHeaderWhenEmpty="True" Width="100%">
