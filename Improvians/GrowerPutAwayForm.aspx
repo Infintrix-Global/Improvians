@@ -35,39 +35,40 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Item">
+                                <asp:TemplateField HeaderText="Plant Type">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblItem" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                                        <asp:Label ID="lblDescription" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
+                                <%--   <asp:TemplateField HeaderText="Item">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblItem" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>--%>
 
-
-                                <asp:TemplateField HeaderText="Planned Trays">
+                                <asp:TemplateField HeaderText="Total Trays">
                                     <ItemTemplate>
                                         <asp:Label ID="lblTraysSeeded" runat="server" Text='<%# Eval("trays_plan")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Actual Trays">
+                                <asp:TemplateField HeaderText="Tray Size">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblActualTraySeeded" runat="server" Text='<%# Eval("ActualTraySeeded")  %>'></asp:Label>
+                                        <%--<asp:Label ID="lblActualTraySeeded" runat="server" Text='<%# Eval("ActualTraySeeded")  %>'></asp:Label>--%>
+                                        <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Planned Due Date">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblSeededPlanDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Seeding Date">
+
+                                <asp:TemplateField HeaderText="Seeded Date">
                                     <ItemTemplate>
                                         <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Description">
+                                <asp:TemplateField HeaderText="Planned Due Date">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblDescription" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                        <asp:Label ID="lblSeededPlanDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -75,15 +76,26 @@
                                 <asp:TemplateField HeaderText="Put Away Facility">
                                     <ItemTemplate>
                                         <asp:Label ID="lblloc_seedline" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
-
                                     </ItemTemplate>
                                 </asp:TemplateField>
+
+
                                 <asp:TemplateField HeaderText="Genus Code">
                                     <ItemTemplate>
                                         <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>'></asp:Label>
-
                                     </ItemTemplate>
                                 </asp:TemplateField>
+
+                                <%--<asp:TemplateField HeaderText="Job Source" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblsource" data-head="Job Source" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>--%>
 
                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>

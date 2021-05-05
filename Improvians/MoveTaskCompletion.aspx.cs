@@ -29,6 +29,11 @@ namespace Evo
                     Did = Request.QueryString["Did"].ToString();
                 }
 
+
+
+
+
+
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
@@ -111,9 +116,10 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
 
             nv.Add("@Jid",lbljid.Text);
+            nv.Add("@Login", "0");
             //if (Request.QueryString["Did"] != "0")
             //{
-            //    nv.Add("@Login", "0");
+            //   
             //}
             //else
             //{

@@ -314,6 +314,7 @@ namespace Evo
                         txtDate.Text = Convert.ToDateTime(dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
                     }
                     txtTrays.Text = dt1.Rows[0]["#TraysInspected"].ToString();
+                    txtGcomments.Text = dt1.Rows[0]["Comments"].ToString();
                 }
 
 
