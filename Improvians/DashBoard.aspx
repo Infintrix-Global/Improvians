@@ -73,7 +73,7 @@
                 
         <div class="dashboard__row">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-4">
                     <div class="dashboard__block">
                         <div class="dashboard__links">
                             <a runat="server" id="amytask" href="#" class="dashboard__task">
@@ -94,6 +94,21 @@
                                     
                                 <span>Reports</span>
                             </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-md-4">
+                    <div class="dashboard__block d-flex flex-wrap h-100">
+                        <div class="block__head">
+                            <h2>Task Distribution</h2>
+                        </div>
+
+                        <div class="dashboard__chart dashboard__chart--bar">
+                            <div class="chart__filter mb-4 text-center">
+                                <input name="" type="date" id="" class="todaysDate input__control input__control-auto">
+                            </div>
+
+                            <div id="task-distribution"></div>
                         </div>
                     </div>
                 </div>
@@ -155,5 +170,7 @@
             </div>
         </div>
    </div>
+    
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
 
 </asp:Content>

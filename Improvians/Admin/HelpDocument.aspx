@@ -82,7 +82,7 @@
                                 GridLines="None" ShowHeaderWhenEmpty="True" Width="100%">
                                 <columns>
 
-                            <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="80px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
                                     <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
