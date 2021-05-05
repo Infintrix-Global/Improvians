@@ -337,12 +337,31 @@ namespace Evo
                 nv.Add("@RequestType", lblTaskRequestType.Text);
                 dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobView", nv);
 
+                //if (dt != null && dt.Rows.Count > 0)
+                //{
+                //    if (dt.Rows[0]["WorkDate"].ToString() != "")
+                //    {
+                //        lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
+                //        btnStart.Enabled = true;
+
+                //        btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
+                //    }
+                //}
+                //else
+                //{
+                //    lblTaskStatus.Text = "Pending";
+                //    //  btnStart.Enabled = false;
+
+                //    btnStart.Attributes.Add("class", "bttn bttn-disabled bttn-action my-1 mx-auto d-block w-100");
+                //}
+
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     if (dt.Rows[0]["WorkDate"].ToString() != "")
                     {
+
                         lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
-                        btnStart.Enabled = true;
+
 
                         btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
                     }
@@ -351,9 +370,11 @@ namespace Evo
                 {
                     lblTaskStatus.Text = "Pending";
                     //  btnStart.Enabled = false;
-
+                    btnStart.Enabled = true;
                     btnStart.Attributes.Add("class", "bttn bttn-disabled bttn-action my-1 mx-auto d-block w-100");
                 }
+
+
 
                 //if (lblStatusValues.Text == "1" || lblStatusValues.Text == "2")
                 //{
