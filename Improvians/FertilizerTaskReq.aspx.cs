@@ -104,13 +104,15 @@ namespace Evo
 
         public void BindBenchLocation(string ddlMain)
         {
+
             ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
             ddlBenchLocation.DataTextField = "p2";
             ddlBenchLocation.DataValueField = "p2";
             ddlBenchLocation.DataBind();
-            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-            ddlBenchLocation.Items[0].Selected = false;
-            ddlBenchLocation.ClearSelection();
+
+            //ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            //ddlBenchLocation.Items[0].Selected = false;
+            //ddlBenchLocation.ClearSelection();
         }
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {

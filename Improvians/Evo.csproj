@@ -50,6 +50,9 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="DropDownCheckBoxes, Version=1.1.0.31568, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DropDownCheckBoxes.1.1.0.31568\lib\DropDownCheckBoxes.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
@@ -499,6 +502,7 @@
     <Content Include="sw.js" />
     <Content Include="TrackTaskSeedlinePlanner.aspx" />
     <Content Include="ViewJobDetails.aspx" />
+    <Content Include="WDemoTest.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1375,6 +1379,13 @@
     </Compile>
     <Compile Include="ViewJobDetails.aspx.designer.cs">
       <DependentUpon>ViewJobDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WDemoTest.aspx.cs">
+      <DependentUpon>WDemoTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WDemoTest.aspx.designer.cs">
+      <DependentUpon>WDemoTest.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

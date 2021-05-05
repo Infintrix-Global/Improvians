@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="FertilizerTaskReq.aspx.cs" Inherits="Evo.FertilizerTaskReq" %>
 
+<%@ Register TagPrefix="asp" Namespace="Saplin.Controls" Assembly="DropDownCheckBoxes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -14,7 +15,19 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 mb-3">
                 <label>Bench Location </label>
-                <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <%--  <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+
+               <%-- <asp:DropDownCheckBoxes ID="ddlBenchLocation" runat="server" UseSelectAllNode="false" UseSelectAllNode="false"
+                    AutoPostBack="false"
+                    RepeatDirection="Horizontal">
+                    <Style SelectBoxCssClass="custom__dropdown robotomd" />
+                </asp:DropDownCheckBoxes>--%>
+
+
+                <asp:DropDownCheckBoxes ID="ddlBenchLocation" runat="server" UseSelectAllNode="false">
+                    <Style SelectBoxCssClass="custom__dropdown robotomd" />
+                </asp:DropDownCheckBoxes>
+                <%--   <asp:DropDownCheckBoxes ID="ddlBenchLocation" AutoPostBack="true"   runat="server"></asp:DropDownCheckBoxes>--%>
             </div>
             <div class="col-lg-3 col-md-4 mb-3">
                 <label>Job No </label>
