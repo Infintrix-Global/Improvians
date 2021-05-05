@@ -300,7 +300,8 @@ namespace Evo
                
               
                     Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}",Did));
-                
+            //    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", 0, dtR.Rows[0]["MoveID"].ToString()));
+
             }
 
         }

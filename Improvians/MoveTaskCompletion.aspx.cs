@@ -36,6 +36,7 @@ namespace Evo
                 BindPlantReady();
                 BindViewDumpDetilas(Convert.ToInt32(Request.QueryString["DrId"]));
                 BindGridMoveComplition(Did);
+
             }
         }
 
@@ -110,6 +111,14 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
 
             nv.Add("@Jid",lbljid.Text);
+            //if (Request.QueryString["Did"] != "0")
+            //{
+            //    nv.Add("@Login", "0");
+            //}
+            //else
+            //{
+            //    nv.Add("@Login", Session["LoginID"].ToString());
+            //}
             dt = objCommon.GetDataTable("SP_GetTaskAssignmentMoveViewStart", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();

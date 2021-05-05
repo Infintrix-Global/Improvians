@@ -400,7 +400,7 @@ namespace Evo
                     }
                     if (TaskRequestType == "Irrigation")
                     {
-                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "ManageTask", dt.Rows[0]["IrrigationCode"].ToString(),0, dtR.Rows[0]["TaskRequestKey"].ToString()));
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "ManageTask", dtR.Rows[0]["IrrigationCode"].ToString(),0, dtR.Rows[0]["TaskRequestKey"].ToString()));
 
                     }
 
@@ -408,29 +408,29 @@ namespace Evo
                     if (TaskRequestType == "Plant Ready")
                     {
 
-                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask",0, dt.Rows[0]["PRID"].ToString()));
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask",0, dtR.Rows[0]["PRID"].ToString()));
                     }
 
                     if (TaskRequestType == "Dump")
                     {
-                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask",0, 0, dt.Rows[0]["DumpId"].ToString()));
+                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask",0, 0, dtR.Rows[0]["DumpId"].ToString()));
 
                     }
                     if (TaskRequestType == "Move")
                     {
 
-                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", 0, dt.Rows[0]["MoveID"].ToString()));
+                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", 0, dtR.Rows[0]["MoveID"].ToString()));
 
                     }
                     if (TaskRequestType == "GeneralTask")
                     {
-                        Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", 0, 0, dt.Rows[0]["GeneralId"].ToString()));
+                        Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", 0, 0, dtR.Rows[0]["GeneralId"].ToString()));
 
                     }
                     if (TaskRequestType == "Crop Health Report")
                     {
 
-                        Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", 0, 0, dt.Rows[0]["CropHealthReportId"].ToString()));
+                        Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", 0, 0, dtR.Rows[0]["CropHealthReportId"].ToString()));
 
                     }
                 }
