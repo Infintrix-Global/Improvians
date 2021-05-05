@@ -431,10 +431,10 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "");
+            nv.Add("@BenchLocation", "0");
             nv.Add("@RequestType", "0");
             nv.Add("@FromDate", "");
-            nv.Add("@ToDate", DateTime.Now.ToString("dd/MM/yyyy"));
+            nv.Add("@ToDate", "");
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
             BindData(dt, PR, "SeededDate");
         }

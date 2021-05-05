@@ -110,7 +110,8 @@ namespace Evo
             nv.Add("@BenchLocation", "0");
             nv.Add("@RequestType", "0");
             nv.Add("@FromDate", "");
-            nv.Add("@ToDate", DateTime.Now.ToString("dd/MM/yyyy"));
+            nv.Add("@ToDate", "");
+            //nv.Add("@ToDate", DateTime.Now.ToString("yyyy-MM-dd"));
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequestAssistantGrower", nv);
             BindData(dt, PR, "SeededDate");
         }
