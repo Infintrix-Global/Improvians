@@ -10,27 +10,27 @@
         </h2>
 
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-4 mb-3">
                 <label>Bench Location </label>
 
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                <span class="error_message">
+               <%-- <span class="error_message">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
                         SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                </span>
+                </span>--%>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-4 mb-3">
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-4 mb-3">
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-2">
+        <div class="row align-items-end">
+            <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
                 <label>Job Source </label>
                 <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                     <asp:ListItem Text="---Select---" Value="0"></asp:ListItem>
@@ -38,16 +38,15 @@
                     <asp:ListItem Text="App" Value="App"></asp:ListItem>
                 </asp:DropDownList>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                 <label>From Date</label>
                 <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                 <label>To Date </label>
                 <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
-            <div class="col-lg-4">
-                <br />
+            <div class="col-xl-4 col-12 mb-3">
                 <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
 
