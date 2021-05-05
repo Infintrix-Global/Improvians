@@ -44,19 +44,19 @@
                         GridLines="None" ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
 
-                            <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="80px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
                                     <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="FAQ Title" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2" SortExpression="Title">
+                            <asp:TemplateField HeaderText="FAQ Title" ItemStyle-Width="30%" HeaderStyle-CssClass="autostyle2" >
                                 <ItemTemplate>
                                     <asp:Label ID="Label7" runat="server" Text='<%# Eval("Title")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="FAQ Description" ItemStyle-Width="60%" HeaderStyle-CssClass="autostyle2" SortExpression="Description">
+                            <asp:TemplateField HeaderText="FAQ Description" ItemStyle-Width="60%" HeaderStyle-CssClass="autostyle2" >
                                 <ItemTemplate>
                                     <asp:Label ID="lblFCode" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>
                                 </ItemTemplate>
