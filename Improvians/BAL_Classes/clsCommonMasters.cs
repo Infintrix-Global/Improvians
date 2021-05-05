@@ -357,7 +357,12 @@ public class LoginEntity
 
 
 }
-
+[Serializable]
+public class ChartDetails
+{
+    public string EmployeeName { get; set; }
+    public int TaskHours { get; set; }
+}
 
 
 

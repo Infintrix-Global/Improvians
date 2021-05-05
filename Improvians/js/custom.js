@@ -10,29 +10,45 @@ jQuery(document).ready(function ($) {
         console.log('CLIENT: service worker is not supported.');
     }
 
+   
     var todaysDate = new Date().toLocaleDateString('en-CA');
     $(".todaysDate").val(todaysDate);
 
     if ($("#task-distribution").length > 0) {
         google.charts.load('current', {
             callback: function () {
-                drawTaskDist();
+                $.ajax(
+                    {
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        url: 'Dashboard.aspx/GetTaskDisctributionChartData',
+                        data: '{}',
+                        success: function (response) {
+                            drawTaskDist(response.d); // calling method  
+                        },
+
+                        error: function () {
+                            alert("Error loading data! Please try again.");
+                        }
+                    });
                 $(window).resize(drawTaskDist);
             },
             packages: ['corechart', 'bar']
         });
 
         google.charts.setOnLoadCallback(drawTaskDist);
-        function drawTaskDist() {
-            var taskDistData = google.visualization.arrayToDataTable([
-                ['Profiles', 'Tasks'],
-                ['Assitant Grower', 50],
-                ['Grower', 16],
-                ['Sprayer', 5],
-                ['Irrigator', 0],
-                ['Crew Lead', 15],
-            ]);
+        function drawTaskDist(dataValues) {
+            var taskDistData = new google.visualization.DataTable();
 
+            taskDistData.addColumn('string', 'EmployeeName');
+            taskDistData.addColumn('number', 'TaskHours');
+
+            for (var i = 0; i < dataValues.length; i++) {
+                taskDistData.addRow([dataValues[i].EmployeeName, dataValues[i].TaskHours]);
+            }
+            // Instantiate and draw our chart, passing in some options  
+                     
             var taskDistOptions = {
                 bar: { groupWidth: 30 },
                 legend: { position: 'none' },

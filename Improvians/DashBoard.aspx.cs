@@ -3,7 +3,9 @@ using Evo.Bal;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -113,7 +115,7 @@ namespace Evo
             {
                 Session["Facility"] = ddlFacility.SelectedValue;
             }
-           
+
         }
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -173,7 +175,7 @@ namespace Evo
         public void SetLinkTrackTasks()
         {
 
-            if (Session["Role"].ToString() == "7" || Session["Role"].ToString() =="10")
+            if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
             {
                 TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
             }
@@ -185,10 +187,40 @@ namespace Evo
             }
             else
             {
-               
+
 
             }
         }
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<ChartDetails> GetTaskDisctributionChartData()
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand("SP_GetTaskDisctributionChartData", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    cmd.Parameters.AddWithValue("@SearchDate", DateTime.Now.ToString());
+                    cmd.Parameters.AddWithValue("@LoginUserID", HttpContext.Current.Session["LoginID"].ToString());
 
+                    da.SelectCommand = cmd;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    List<ChartDetails> lstChartDetails = new List<ChartDetails>();
+                    foreach (DataRow dtrow in dt.Rows)
+                    {
+                        ChartDetails details = new ChartDetails();
+                        details.EmployeeName = dtrow[0].ToString();
+                        details.TaskHours = Convert.ToInt32(dtrow[1]);
+
+                        lstChartDetails.Add(details);
+                    }
+                    conn.Close();
+                    return lstChartDetails;
+                }
+            }
+        }
     }
 }
