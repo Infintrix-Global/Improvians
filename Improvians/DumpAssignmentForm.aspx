@@ -43,8 +43,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
-
-
                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -54,8 +52,6 @@
                                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
                                             <asp:Label ID="lblCropHealth" Visible="false" runat="server" Text='<%# Eval("CropHealth")  %>'></asp:Label>
-
-
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -64,7 +60,6 @@
                                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
 
                                     <%-- <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -84,21 +79,17 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-
                                     <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <%--   <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
-
-
+                                    <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
@@ -108,18 +99,11 @@
 
                                     <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-
                                             <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                             <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Assign" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-
-
-
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-
                                 </Columns>
-
 
                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                                 <PagerSettings Mode="NumericFirstLast" />
@@ -127,8 +111,6 @@
                                     No Record Available
                                 </EmptyDataTemplate>
                             </asp:GridView>
-
-
 
                         </div>
                     </div>

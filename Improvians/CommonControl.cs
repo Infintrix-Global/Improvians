@@ -370,52 +370,8 @@ namespace Evo
         }
         #endregion "*** Encrypt & Decrypt ***"
 
+        #region "Push Notification"
 
-        public string SendOTP(string mob, string msg)
-        {
-            string result;
-
-            DataTable dtemp = new DataTable();
-
-            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            string sRandomOTP = GenerateRandomOTP(4, saAllowedCharacters);
-            CommonControl cc = new CommonControl();
-            NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Mobile", mob);
-            nv1.Add("@Otp", sRandomOTP);
-            cc.GetDataInsertORUpdate("SP_UpdatePassword", nv1);
-            String message = HttpUtility.UrlEncode(msg + sRandomOTP);
-            using (var wb = new WebClient())
-            {
-                byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
-                         {
-                             //{ "apikey" , "OHz0QSTl/jg-fmAegzsE9WOm1LM9dAhd4cYyJT4ynw "},
-                             { "apikey" , "INL4Hk01SM0-B3S8qoHDm8UuXoWlLRfe43WPoVwhYu"},
-                             { "numbers" ,"91"+ mob },
-                             { "message" , message},
-                             { "sender" , "TXTLCL"}
-                             });
-                result = sRandomOTP;
-
-            }
-
-            return result;
-        }
-
-        private string GenerateRandomOTP(int iOTPLength, string[] saAllowedCharacters)
-        {
-            string sOTP = String.Empty;
-            string sTempChars = String.Empty;
-            Random rand = new Random();
-            for (int i = 0; i < iOTPLength; i++)
-            {
-                int p = rand.Next(0, saAllowedCharacters.Length);
-                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
-                sOTP += sTempChars;
-            }
-
-            return sOTP;
-        }
 
         public string SendNotification(string NotificationFormat)
         {
@@ -487,5 +443,6 @@ namespace Evo
         {
             public string message_id { get; set; }
         }
+        #endregion
     }
 }

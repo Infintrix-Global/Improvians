@@ -6,23 +6,31 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace Evo
 {
     public partial class MyTaskAssistantGrower : System.Web.UI.Page
     {
-        clsCommonMasters objCommon = new clsCommonMasters();
-        CommonControl objCommonControl = new CommonControl();
+        CommonControl objCommon = new CommonControl();
+        DataTable dt = new DataTable();
+        NameValueCollection nv = new NameValueCollection();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 //  BindDepartment();
-
-                if (!IsPostBack)
-                {
-                    CountTotal();
-                }
+                CountTotal();
+                BindGridGerm();
+                BindGridPutAway();
+                BindGridFer();
+                BindGridChem();
+                BindGridIrr();
+                BindGridCrop();
+                BindGridPR();
+                BindGridMov();
+                BindGridDum();
+                BindGridGen();
             }
         }
         //public void BindDepartment()
@@ -40,9 +48,8 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
-         
-            dt = objCommonControl.GetDataSet("SP_GetAssistantGrowerEachTaskCountNew", nv);
-            
+
+            dt = objCommon.GetDataSet("SP_GetAssistantGrowerEachTaskCountNew", nv);
 
             lblPutAway.Text = dt.Tables[0].Rows.Count.ToString();
             lblGerm.Text = dt.Tables[1].Rows.Count.ToString();
@@ -57,6 +64,175 @@ namespace Evo
             lblGeneralTotal.Text = dt.Tables[9].Rows.Count.ToString();
 
         }
+        private void BindGridGen()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetGeneralRequestAssistantGrower", nv);
+            BindData(dt, Gen, "GeneralTaskDate");
+        }
 
+        private void BindGridDum()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
+            BindData(dt, Dum, "DumpDateR");
+        }
+
+        private void BindGridMov()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
+            BindData(dt, Mov, "MoveDate");
+        }
+
+        private void BindGridPR()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", DateTime.Now.ToString("dd/MM/yyyy"));
+            dt = objCommon.GetDataTable("SP_GetPlantReadyRequestAssistantGrower", nv);
+            BindData(dt, PR, "SeededDate");
+        }
+
+        private void BindGridCrop()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());
+            dt = objCommon.GetDataTable("SP_GetCropReportRequestAssistantGrower", nv);
+            BindData(dt, Crop, "CropHealthReportDate");
+        }
+
+        private void BindGridIrr()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
+            BindData(dt, Irr, "IrrigateSeedDate");
+        }
+
+        private void BindGridChem()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            dt = objCommon.GetDataTable("SP_GetChemicalRequestAssistantGrower", nv);
+            BindData(dt, Chem, "ChemicalSeedDate");
+        }
+
+        private void BindGridFer()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@RequestType", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequestAAssistantGrower", nv);
+            BindData(dt, Fer, "FertilizeSeedDate");
+        }
+
+        private void BindGridPutAway()
+        {
+            dt = new DataTable();
+            nv.Clear();
+
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTasknew", nv);
+            BindData(dt, Put, "SeededDate");
+        }
+
+        public void BindGridGerm()
+        {
+            dt = new DataTable();
+            nv.Clear();
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "");
+            nv.Add("@Week", "");
+            nv.Add("@Status", "");
+            nv.Add("@Jobsource", "");
+            nv.Add("@GermNo", "");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "");
+
+            dt = objCommon.GetDataTable("SP_GetGerminationRequestAssistantGrower", nv);
+            BindData(dt, Ger, "GermDate");
+        }
+
+        private void BindData(DataTable dt, HtmlAnchor html, string dateField)
+        {
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string dtimeString = Convert.ToDateTime(dt.Rows[i][dateField]).ToString("yyyy/MM/dd");
+
+                    DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                    DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                    switch (html.Name)
+                    {
+                        case "Put":
+                            dtime = dtime.AddDays(1);
+                            break;
+
+                    }
+
+                    if (nowtime > dtime)
+                    {
+                        html.Attributes.Add("class", "dashboard__box dashboard__box-overdue");
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+        }
     }
 }

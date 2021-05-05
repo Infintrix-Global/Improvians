@@ -64,7 +64,7 @@
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                class="striped" AllowSorting="true" PageSize="10"
+                                class="striped" AllowSorting="true" PageSize="10" OnRowDataBound="gvFer_RowDataBound"
                                 GridLines="None" OnRowCommand="gvFer_RowCommand" DataKeyNames="ID"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
@@ -114,12 +114,12 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <%--
-                                        <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                                    
+                                        <asp:TemplateField HeaderText="Move Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="lblMoveDate" runat="server" Text='<%# Eval("MoveDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>

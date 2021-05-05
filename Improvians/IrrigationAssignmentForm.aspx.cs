@@ -248,6 +248,18 @@ namespace Evo
                     btnAssign.Visible = false;
                 }
 
+                Label lblGermDate = (Label)e.Row.FindControl("lblSprayDate");
+                string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
+
+                DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                if (nowtime > dtime)
+                {
+                    e.Row.CssClass = "overdue";
+                }
+
                 //GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
                 //GridView GridViewFShow = e.Row.FindControl("GridViewFShow") as GridView;
                 //Label lblIrrigationCode = (Label)e.Row.FindControl("lblIrrigationCode");

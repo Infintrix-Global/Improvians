@@ -21,7 +21,7 @@ namespace Evo
                 BindJobCode();
                 // BindFacility();
                 BindGridPlantReady(0);
-              
+
             }
         }
 
@@ -59,7 +59,6 @@ namespace Evo
             }
         }
 
-
         private string wo
         {
             get
@@ -78,7 +77,6 @@ namespace Evo
 
         public void BindGridPlantReady(int p)
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             // nv.Add("@wo", "");
@@ -90,22 +88,14 @@ namespace Evo
             // nv.Add("@Mode", "7");
             // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
 
-
             dt = objCommon.GetDataTable("SP_GetCropReportRequestAssistantGrower", nv);
-
-
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
-
-
-
 
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
             }
-
-
         }
         private void highlight(int limit)
         {
@@ -129,10 +119,9 @@ namespace Evo
                 }
             }
         }
-     
+
         public void Bindcname()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -143,13 +132,10 @@ namespace Evo
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
-
 
         public void BindJobCode()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -160,10 +146,8 @@ namespace Evo
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
-    
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridPlantReady(1);
@@ -183,7 +167,6 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-
             BindGridPlantReady(1);
         }
         protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -196,15 +179,8 @@ namespace Evo
                 string BatchLoc = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
                 string JobCode = gvPlantReady.DataKeys[rowIndex].Values[3].ToString();
                 Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&CropAT={2}", "'" + BatchLoc + "'", JobCode, Did));
-
-
             }
-
-         
-
         }
-
-
 
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -212,10 +188,22 @@ namespace Evo
             BindGridPlantReady(1);
         }
 
+        protected void gvPlantReady_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lblGermDate = (Label)e.Row.FindControl("lblCropDate");
+                string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
 
+                DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                if (nowtime > dtime)
+                {
+                    e.Row.CssClass = "overdue";
+                }
+            }
+        }
     }
-
 }
-
-
-

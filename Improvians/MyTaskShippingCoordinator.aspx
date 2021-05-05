@@ -30,7 +30,7 @@
             <div class="portlet-body">
                 <div class="data__table">
                     <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                        class="striped" AllowSorting="true"
+                        class="striped" AllowSorting="true" OnRowDataBound="gvGerm_RowDataBound"
                         GridLines="None" OnRowCommand="gvGerm_RowCommand"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
@@ -76,7 +76,7 @@
 
                             <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
-                                    <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

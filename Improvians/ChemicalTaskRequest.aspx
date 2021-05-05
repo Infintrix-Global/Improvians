@@ -16,7 +16,7 @@
                     <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                     <div class="portlet-body">
                         <div class="data__table">
-                            <asp:GridView ID="gvSpray" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                            <asp:GridView ID="gvSpray" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvSpray_RowDataBound"
                                 class="striped" AllowSorting="true" PageSize="10" DataKeyNames="ChemicalCode,TaskRequestKey"
                                 GridLines="None" OnRowCommand="gvSpray_RowCommand" OnPageIndexChanging="gvSpray_PageIndexChanging"
                                 ShowHeaderWhenEmpty="True" Width="100%">
@@ -26,24 +26,18 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblRowNumber" runat="server" Text="<%# Container.DataItemIndex + 1 %>" />
                                             <asp:Label ID="lblFertilizationCode" Visible="false" runat="server" Text='<%#Bind("ChemicalCode") %>'></asp:Label>
-
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Bench Location">
                                         <ItemTemplate>
-
                                             <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("GreenHouseID") %>'></asp:Label>
-
                                         </ItemTemplate>
-
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Method">
                                         <ItemTemplate>
-
                                             <asp:Label ID="lblMethod" runat="server" Text='<%#Bind("Method") %>'></asp:Label>
-
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
@@ -51,19 +45,18 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
                                         </ItemTemplate>
-
                                     </asp:TemplateField>
-
-
 
                                     <asp:TemplateField HeaderText="Tray">
                                         <ItemTemplate>
-
                                             <asp:Label ID="lblTray" runat="server" Text='<%#Bind("totalTrays") %>'></asp:Label>
-
-
                                         </ItemTemplate>
+                                    </asp:TemplateField>
 
+                                     <asp:TemplateField HeaderText="Chemical Date" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblChemicalDate" runat="server" Text='<%# Eval("ChemicalDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                        </ItemTemplate>
                                     </asp:TemplateField>
                                     <%-- <asp:TemplateField HeaderText="SQFT of Bench">
                                             <ItemTemplate>
@@ -73,7 +66,6 @@
                                             </ItemTemplate>
 
                                         </asp:TemplateField>--%>
-
 
                                     <asp:TemplateField HeaderText="" HeaderStyle-Width="21%">
                                         <ItemTemplate>
@@ -90,19 +82,12 @@
                                     No Record Available
                                 </EmptyDataTemplate>
                             </asp:GridView>
-
-
-
                         </div>
                     </div>
-
                 </div>
             </div>
 
         </div>
-
-
-
         <%--   </ContentTemplate>
             </asp:UpdatePanel>--%>
     </div>

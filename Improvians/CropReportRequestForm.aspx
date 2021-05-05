@@ -31,7 +31,7 @@
         <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
 
         <div class="data__table">
-            <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+            <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
                 GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,CropHealthReportId,jid,jobcode,GreenHouseID"
                 ShowHeaderWhenEmpty="True" Width="100%">
@@ -54,9 +54,6 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-
-
-
                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblBenchLoc" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -69,16 +66,18 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-
-
                     <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 
-
-
+                    <asp:TemplateField HeaderText="Crop Health Date" HeaderStyle-CssClass="autostyle2">
+                        <ItemTemplate>
+                            <asp:Label ID="lblCropDate" runat="server" Text='<%# Eval("CropHealthReportDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
                     <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="Label13" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
@@ -87,17 +86,12 @@
 
                     <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
-
-
                             <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-
                             <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                             <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
 
                         </ItemTemplate>
                     </asp:TemplateField>
-
-
                 </Columns>
 
                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />

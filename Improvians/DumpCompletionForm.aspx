@@ -37,7 +37,7 @@
                         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                         <div class="portlet-body">
                             <div class="data__table">
-                                <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvGerm_RowDataBound"
                                     class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
                                     GridLines="None" OnRowCommand="gvGerm_RowCommand"  DataKeyNames="DumpTaskAssignmentId,DumpId,TaskRequestKey"
                                     ShowHeaderWhenEmpty="True" Width="100%">
@@ -49,16 +49,12 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
-
-
                                         <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-
                                                 <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                                 <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
-
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -67,7 +63,6 @@
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
 
                                         <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -87,8 +82,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-
-
                                         <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
@@ -96,11 +89,9 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
 
                                         <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
@@ -110,15 +101,11 @@
 
                                         <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
-
                                                 <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-
                                     </Columns>
-
 
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -126,16 +113,10 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>
-
-
-
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
         </div>
 </asp:Content>

@@ -300,7 +300,17 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Label lblGermDate = (Label)e.Row.FindControl("lblFDate");
+                string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
 
+                DateTime dtime = Convert.ToDateTime(dtimeString);
+
+                DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
+
+                if (nowtime > dtime)
+                {
+                    e.Row.CssClass = "overdue";
+                }
                 //Label lblFertilizationCode = (Label)e.Row.FindControl("lblFertilizationCode");
                 //GridView GridViewFields = e.Row.FindControl("GridViewDetails") as GridView;
                 //GridView GridViewFShow = e.Row.FindControl("GridViewFShow") as GridView;
