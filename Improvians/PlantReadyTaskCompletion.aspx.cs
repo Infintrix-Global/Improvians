@@ -35,6 +35,7 @@ namespace Evo
                 {
                     PanelComplitionDetsil.Visible = false;
                 }
+
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));

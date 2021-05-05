@@ -253,6 +253,12 @@
                             <label>Number Of Trays To Inspect</label>
                             <asp:TextBox ID="txtTrays" TextMode="Number" runat="server" class="input__control robotomd"></asp:TextBox>
                         </div>
+
+                        <div class="col-md-4 col-lg-3 mb-3">
+                            <label>Comments </label>
+                            <asp:TextBox ID="txtGcomments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                        </div>
+
                         <div class="w-100"></div>
                         <div class="col-lg-3">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />

@@ -27,7 +27,26 @@ namespace Evo
                 if (Request.QueryString["Did"] != null)
                 {
                     Did = Request.QueryString["Did"].ToString();
+                    PanelComplitionDetsil.Visible = false;
+                    PanelAdd.Visible = false;
+
                 }
+                else
+                {
+                    if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
+                    {
+
+                        PanelComplitionDetsil.Visible = true;
+                        PanelAdd.Visible = true;
+                    }
+                    else
+                    {
+                        PanelComplitionDetsil.Visible = false;
+                        PanelAdd.Visible = true;
+                    }
+                }
+
+
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
@@ -111,9 +130,10 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
 
             nv.Add("@Jid",lbljid.Text);
+            nv.Add("@Login", "0");
             //if (Request.QueryString["Did"] != "0")
             //{
-            //    nv.Add("@Login", "0");
+            //   
             //}
             //else
             //{
