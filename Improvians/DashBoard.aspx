@@ -36,7 +36,7 @@
                 </div>
             </div>
                     
-            <div class="dashboard__block dashboard__matrix">
+            <div class="dashboard__block dashboard__matrix clear__bottomradius">
                 <div class="dashborad__stats stats--facility-probability">
                     <i class="rxicon-icon-facility-probability"></i>
                 </div>
@@ -99,16 +99,22 @@
                 </div>
                 <div class="col-lg-6 mb-md-4">
                     <div class="dashboard__block d-flex flex-wrap h-100">
-                        <div class="block__head">
+                        <div class="block__head flex-1 w-100">
                             <h2>Task Distribution</h2>
                         </div>
 
-                        <div class="dashboard__chart dashboard__chart--bar">
-                            <div class="chart__filter mb-4 text-center">
-                                <input name="" type="date" id="" class="todaysDate input__control input__control-auto">
+                        <div class="dashboard__chart dashboard__chart--bar flex-1 w-100">
+                            <div class="chart__filter mb-3 text-center">
+                                <label class="robotomd mb-0">Date:</label>
+                                <label class="todaysDateLabel mb-0"></label>
+                                <label class="mb-0">/ Wednesday</label>
                             </div>
 
-                            <div id="task-distribution"></div>
+                            <div class="googleChart" id="task-distribution"></div>
+
+                            <div class="text-center pt-4">
+                                <a href="TaskDistributionChart.aspx" class="bttn bttn-primary bttn-action">View More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
