@@ -27,10 +27,24 @@ namespace Evo
                 if (Request.QueryString["Did"] != null)
                 {
                     Did = Request.QueryString["Did"].ToString();
+                    PanelComplitionDetsil.Visible = false;
+                    PanelAdd.Visible = false;
+
                 }
+                else
+                {
+                    if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
+                    {
 
-
-
+                        PanelComplitionDetsil.Visible = true;
+                        PanelAdd.Visible = true;
+                    }
+                    else
+                    {
+                        PanelComplitionDetsil.Visible = false;
+                        PanelAdd.Visible = true;
+                    }
+                }
 
 
 
