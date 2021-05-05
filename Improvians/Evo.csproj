@@ -501,6 +501,7 @@
     <Content Include="SprayTaskRequest.aspx" />
     <Content Include="SprayTaskViewDetails.aspx" />
     <Content Include="sw.js" />
+    <Content Include="TaskDistributionChart.aspx" />
     <Content Include="TrackTaskSeedlinePlanner.aspx" />
     <Content Include="ViewJobDetails.aspx" />
     <Content Include="WDemoTest.aspx" />
@@ -1366,6 +1367,13 @@
     </Compile>
     <Compile Include="SprayTaskViewDetails.aspx.designer.cs">
       <DependentUpon>SprayTaskViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TaskDistributionChart.aspx.cs">
+      <DependentUpon>TaskDistributionChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TaskDistributionChart.aspx.designer.cs">
+      <DependentUpon>TaskDistributionChart.aspx</DependentUpon>
     </Compile>
     <Compile Include="TrackTaskSeedlinePlanner.aspx.cs">
       <DependentUpon>TrackTaskSeedlinePlanner.aspx</DependentUpon>
