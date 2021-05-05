@@ -180,7 +180,9 @@ namespace Evo
                 result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignment", nv);
 
                 // Session["WorkOrder"] = JobID;
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}", result.ToString(), ChId));
+             //   Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}", result.ToString(), ChId));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}&GTRID={2}&IsF={3}", result, "CreateTask", GTRID, 0));
+
             }
             if (e.CommandName == "Assign")
             {
