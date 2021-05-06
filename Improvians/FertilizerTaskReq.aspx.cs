@@ -24,10 +24,11 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                string Fdate = "", TDate = "";
+                string Fdate = "", TDate = "",FRDate ="";
                 Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(7).ToString("yyyy-MM-dd");
-
+                FRDate = System.DateTime.Now.ToString("yyyy-MM-dd");
+                txtFertilizationDate.Text = FRDate;
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
                 BindSupervisor();
@@ -173,7 +174,7 @@ namespace Evo
             {
                 // dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
 
-                dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue);
+                dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue,"D");
 
             }
 
@@ -548,6 +549,7 @@ namespace Evo
 
         protected void btnSearch_Click1(object sender, EventArgs e)
         {
+            txtFertilizationDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
             BindGridFerReq(1);
         }
 
@@ -585,6 +587,12 @@ namespace Evo
 
         protected void ddlBenchLocation_SelectedIndexChanged1(object sender, EventArgs e)
         {
+            CheckFdateSet();
+        }
+
+
+        public void CheckFdateSet()
+        {
             string name = "";
             string name1 = "";
             string lID = "";
@@ -600,9 +608,11 @@ namespace Evo
                     }
                 }
                 txtBenchLocationNew.Text = name1.Remove(name1.Length - 1, 1);
+
+             //   txtFertilizationDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
                 PanelFertilizationDate.Visible = true;
                 BindGridFerReq(0);
-             
+
             }
             catch (Exception ex)
             {
@@ -611,8 +621,43 @@ namespace Evo
             }
         }
 
+
+
         protected void btiFertilizationDate_Click(object sender, EventArgs e)
         {
+            objTask.UpdateFDate(txtBenchLocationNew.Text, txtFertilizationDate.Text);
+            CheckFdateSet();
+
+        }
+
+      
+
+        protected void RadioButtonListFdateChange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            if(RadioButtonListFdateChange.SelectedValue =="0")
+            {
+                dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue, "A");
+                txtFertilizationDate.Text =Convert.ToDateTime(dt.Rows[0]["FertilizeSeedDate"]).ToString("yyyy-MM-dd");
+            }
+           else if (RadioButtonListFdateChange.SelectedValue == "1")
+            {
+             
+                dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue, "D");
+                txtFertilizationDate.Text = Convert.ToDateTime(dt.Rows[0]["FertilizeSeedDate"]).ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                txtFertilizationDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
+            }
+        }
+
+        protected void btnFCReset_Click(object sender, EventArgs e)
+        {
+           
+            PanelFertilizationDate.Visible = false;
+            txtBenchLocationNew.Text = "";
+            BindGridFerReq(0);
 
         }
     }

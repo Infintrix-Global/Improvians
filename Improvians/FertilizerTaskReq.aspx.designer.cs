@@ -150,15 +150,6 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Panel PanelFertilizationDate;
 
         /// <summary>
-        /// Div1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
-
-        /// <summary>
         /// txtFertilizationDate control.
         /// </summary>
         /// <remarks>
@@ -168,13 +159,22 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtFertilizationDate;
 
         /// <summary>
-        /// RadioButtonList1 control.
+        /// Div1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+
+        /// <summary>
+        /// RadioButtonListFdateChange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListFdateChange;
 
         /// <summary>
         /// btiFertilizationDate control.
@@ -184,6 +184,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btiFertilizationDate;
+
+        /// <summary>
+        /// btnFCReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFCReset;
 
         /// <summary>
         /// lblmsg control.

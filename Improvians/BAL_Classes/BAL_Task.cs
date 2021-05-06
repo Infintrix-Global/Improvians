@@ -478,7 +478,7 @@ namespace Evo.BAL_Classes
 
 
 
-        public DataTable GetManualRequestStartfff(string BenchLocation, string JobCode, string FacilityID, string RequestType)
+        public DataTable GetManualRequestStartfff(string BenchLocation, string JobCode, string FacilityID, string RequestType,string Fid)
         {
             General objGeneral = new General();
 
@@ -506,6 +506,16 @@ namespace Evo.BAL_Classes
                     strQuery += " and GPD.RequestType '" + RequestType + "'";
                 }
 
+                if (Fid == "D")
+                {
+                    strQuery += " order by GPD.FertilizeSeedDate DESC ";
+                }
+                else
+                {
+                    strQuery += "  order by GPD.FertilizeSeedDate ";
+                   
+                }
+
 
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
@@ -515,6 +525,27 @@ namespace Evo.BAL_Classes
                 throw ex;
             }
             return dt;
+        }
+
+
+        public int UpdateFDate(string BenchLocation,string FDate)
+        {
+            int IsId = 0;
+            General objGeneral = new General();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "Update GrowerPutAwayDetailsFertilizationMenual set FertilizeSeedDate ='"+ FDate + "' where GreenHouseID in (" + BenchLocation + ")";
+
+
+               objGeneral.GetExecuteNonQueryByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return IsId;
         }
 
     }

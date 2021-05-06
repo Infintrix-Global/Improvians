@@ -87,21 +87,25 @@
         <asp:Panel ID="PanelFertilizationDate" Visible="false" runat="server">
 
             <div class="dashboard__block dashboard__block--asign">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <label>Fertilization Date </label>
+                        <asp:TextBox ID="txtFertilizationDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+                    </div>
+                </div>
+
+                <br />
                 <div id="Div1" runat="server" class="assign__task d-flex">
 
 
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <label>Fertilization Date </label>
-                            <asp:TextBox ID="txtFertilizationDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
-                        </div>
-                    </div>
+
                     <div class="row">
 
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <asp:RadioButtonList ID="RadioButtonList1" RepeatDirection="Horizontal" Width="800px" runat="server">
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <asp:RadioButtonList ID="RadioButtonListFdateChange" RepeatDirection="Horizontal" Width="800px" OnSelectedIndexChanged="RadioButtonListFdateChange_SelectedIndexChanged" AutoPostBack="true" runat="server">
                                 <asp:ListItem Text="Earliest Fertilization Date" Value="0"></asp:ListItem>
                                 <asp:ListItem Text="Latest Fetilization Date" Value="1"></asp:ListItem>
+                                 <asp:ListItem Text="Today Date" Selected="True" Value="2"></asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
 
@@ -109,7 +113,7 @@
 
                         <div class="col-12">
                             <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btiFertilizationDate" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btiFertilizationDate_Click" />
-
+                               <asp:Button Text="Reset" ID="btnFCReset" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnFCReset_Click" />
 
                         </div>
                     </div>
