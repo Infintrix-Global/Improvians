@@ -165,6 +165,7 @@ h2, .h2 {
     text-align: center;
     outline: none;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 table .bttn {
@@ -1555,6 +1556,20 @@ svg text {
     font-family: 'roboto', sans-serif;
 }
 
+.custom-file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.pip .imageThumb {
+    max-width: 80px;
+    height: auto;
+}
+
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
     .container {
@@ -2028,7 +2043,7 @@ svg text {
     .page__break { page-break-before: always; }
 }
 
-/*
+
 @media print {
     @page {
         size: letter;
@@ -2092,4 +2107,3 @@ svg text {
     .page__us tr.page-break { page-break-after:always; }
     .page__us table { page-break-after:always; }
 }
-*/
