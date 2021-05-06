@@ -25,7 +25,7 @@ namespace Evo
                 BindData();
                 BindPlantReadyAVG();
                 SetLinkTrackTasks();
-                ltrDate.Text = DateTime.Now.Date.ToString();
+                ltrDate.Text = DateTime.Now.Date.ToString("MM/dd/yyyy");
                 ltrDayofWeek.Text = DateTime.Now.DayOfWeek.ToString();
             }
         }

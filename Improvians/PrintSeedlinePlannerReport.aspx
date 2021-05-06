@@ -111,7 +111,7 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
-                                            <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="120px">
+                                            <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("jobcode") %>'></asp:Label>
 
