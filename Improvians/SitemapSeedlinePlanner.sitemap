@@ -4,7 +4,7 @@
 		<siteMapNode url="~/MyTaskSeedlinePlanner.aspx" title="My Tasks"  >
 			<siteMapNode url="~/SeedingPlanForm.aspx" title="Seedline Planning"  />
 		</siteMapNode>
-		<siteMapNode url="~/TrackTaskSeedlinePlanner.aspx" title="Track Task" />
+		<siteMapNode url="~/TrackTaskSeedlinePlanner.aspx" title="Manage Task" />
 		<siteMapNode url="~/JobReports.aspx" title="Job Information" />
 		<siteMapNode url="~/Help.aspx" title="Help"/>
 		<siteMapNode url="~/ReportSeedlinePlanner.aspx" title="Reports" >

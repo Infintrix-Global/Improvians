@@ -19,7 +19,7 @@ namespace Evo
         CommonControl objCommon = new CommonControl();
         List<int> Operators = new List<int> { 3, 5, 11 };
         protected void Page_Init(object sender, EventArgs e)
-        {           
+        {
             if (Session["LoginID"] == null)
             {
                 Response.Redirect("~/Login.aspx");
@@ -77,30 +77,47 @@ namespace Evo
             {
                 dashlink.Attributes.Add("class", "active");
                 lnkmytask.Attributes.Remove("class");
+                lnkcreatetask.Attributes.Remove("class");
+                lnkmanagetask.Attributes.Remove("class");
                 divFacility.Visible = false;
                 divSitemap.Visible = false;
             }
+            else if (activepage.Contains("mytask"))
+            {
+                lnkmytask.Attributes.Add("class", "active");
+                dashlink.Attributes.Remove("class");
+                lnkcreatetask.Attributes.Remove("class");
+                lnkmanagetask.Attributes.Remove("class");
+            }
+            else if (activepage.Contains("createtask"))
+            {
+                lnkcreatetask.Attributes.Add("class", "active");
+                dashlink.Attributes.Remove("class");
+                lnkmytask.Attributes.Remove("class");
+                lnkmanagetask.Attributes.Remove("class");
+            }
+            else if (activepage.Contains("managetask"))
+            {
+                lnkmanagetask.Attributes.Add("class", "active");
+                dashlink.Attributes.Remove("class");
+                lnkcreatetask.Attributes.Remove("class");
+                lnkmytask.Attributes.Remove("class");
+            }
+            if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
+            {
+                lblFacility.Text = "";
+
+            }
             else
             {
-                if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
-                {
-                    lblFacility.Text = "";
-
-                }
-                else
-                {
-                    lblFacility.Text = Session["Facility"].ToString();
-                    dashlink.Attributes.Remove("class");
-                    lnkmytask.Attributes.Add("class", "active");
-                }
+                lblFacility.Text = Session["Facility"].ToString();              
             }
-
 
             checkNotification(1);
 
         }
 
-       
+
 
         protected void checkNotification(int n)
         {
