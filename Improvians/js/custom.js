@@ -81,7 +81,6 @@ jQuery(document).ready(function ($) {
 
     //Dashboard Task Chart Function
     function drawDashTaskDist() {
-        var dataValues = [];
 
         $.ajax({
             type: 'POST',
@@ -90,7 +89,7 @@ jQuery(document).ready(function ($) {
             url: 'Dashboard.aspx/GetTaskDisctributionChartData',
             data: '{}',
             success: function (response) {
-                dataValues = response.d;
+                bindData(response.d);
             },
 
             error: function () {
@@ -98,31 +97,24 @@ jQuery(document).ready(function ($) {
             }
         });
 
-        var taskDistData = new google.visualization.DataTable();
+        function bindData(dataValues) {
+            var taskDistData = new google.visualization.DataTable();
 
-        taskDistData.addColumn('string', 'EmployeeName');
-        taskDistData.addColumn('number', 'TaskHours');
+            taskDistData.addColumn('string', 'EmployeeName');
+            taskDistData.addColumn('number', 'TaskHours');
 
-        for (var i = 0; i < dataValues.length; i++) {
-            taskDistData.addRow([dataValues[i].EmployeeName, dataValues[i].TaskHours]);
+            for (var i = 0; i < dataValues.length; i++) {
+                taskDistData.addRow([dataValues[i].EmployeeName, dataValues[i].TaskHours]);
+            }
+
+            taskDistOptions.height = 250;
+            taskDistOptions.chartArea.left = 100;
+
+            var taskDistChart = new google.visualization.ColumnChart(document.getElementById('task-distribution'));
+                taskDistChart.draw(taskDistData, taskDistOptions);
+
+            makeTitleBold();
         }
-
-        /*
-        var taskDistData = google.visualization.arrayToDataTable([
-            ['Profiles', 'Tasks', 'Task Limit'],
-            ['Assitant Grower', 10, 8],
-            ['Supervisor', 12, 8],
-            ['Sprayer', 5, 8],
-            ['Irrigator', 0, 8],
-            ['Crew Lead', 15, 8],
-        ]);
-        */
-
-        taskDistOptions.height = 250;
-        taskDistOptions.chartArea.left = 100;
-
-        var taskDistChart = new google.visualization.ColumnChart(document.getElementById('task-distribution'));
-        taskDistChart.draw(taskDistData, taskDistOptions);
     }
 
     //Dashboard Task Chart Function
