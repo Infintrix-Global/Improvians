@@ -113,7 +113,6 @@ namespace Evo
         {
             BindJobCode(ddlBenchLocation.SelectedValue);
             BindGridPlantReady(1);
-
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {

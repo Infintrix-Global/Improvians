@@ -12,7 +12,6 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 mb-3">
                 <label>Bench Location </label>
-
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                <%-- <span class="error_message">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
