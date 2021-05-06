@@ -1281,7 +1281,7 @@ input[type="date" i]::-webkit-calendar-picker-indicator { margin-left: 5px; }
     padding: 3px 5px;
 }
 
-/*Performance Log Sheet
+/*Performance Log Sheet*/
 .page__us {
     width: 100%;
     font-size: 14px;
@@ -1318,7 +1318,7 @@ input[type="date" i]::-webkit-calendar-picker-indicator { margin-left: 5px; }
 
 .page__us .data__table tr:nth-child(odd) > th { background: #489d48; color: #ffffff; }
 
-Performance Log Sheet ENDS*/
+/*Performance Log Sheet ENDS*/
 
 /*Help Page STARTS*/
 .section__help {
