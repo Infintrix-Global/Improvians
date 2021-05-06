@@ -185,22 +185,22 @@
                 </li>
 
                 <li>
-                    <a href="#">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>My Task</span>
-                    </a>
-                </li>
-
-                <li>
                     <asp:LinkButton ID="lnkmytask" runat="server" OnClick="lnkmytask_Click">
-                        <i class="rxicon-icon-mytasks"></i>
-                       <span>Create Task</span>
-                       <%-- <span>My Tasks</span>--%>
+                        <i class="rxicon-icon-mytasks"></i>                       
+                        <span>My Task</span>
                     </asp:LinkButton>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a ID="lnkcreatetask" runat="server"  href="CreateTask.aspx">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Create Task</span>
+                        <%-- <span>My Tasks</span>--%>
+                    </a>
+                </li>
+
+                <li>
+                    <a ID="lnkmanagetask" runat="server" href="ManageTaskJobReport.aspx">
                         <i class="fas fa-tasks"></i>
                         <span>Manage Task</span>
                     </a>
@@ -212,7 +212,7 @@
         <script defer="defer" src="js/popper.min.js"></script>
         <script defer="defer" src="js/bootstrap.min.js"></script>
         <script defer="defer" src="js/custom.js"></script>
-          <script defer="defer" src="scripts/CheckBox1.js"></script>
+        <script defer="defer" src="scripts/CheckBox1.js"></script>
 
         <%--<script type="text/javascript" lang="javascript">
             //$(document).ready(function () {
