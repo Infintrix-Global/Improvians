@@ -41,11 +41,23 @@ namespace Evo
                 }
 
 
+                if (Request.QueryString["ICID"] != "0")
+                {
+                    BindGridSprayCompletionDetails(Request.QueryString["CCID"].ToString());
+                    PanlTaskComplition.Visible = true;
+                }
+                else
+                {
+                    PanlTaskComplition.Visible = false;
+                }
+
                 if (Request.QueryString["TaskRequestKey"] != null)
                 {
                     TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
 
                 }
+
+
 
                 BindgvIrrigation();
                 BindGridViewDetailsGerm();
@@ -159,7 +171,7 @@ namespace Evo
                 nv.Add("@Login", Session["LoginID"].ToString());
             }
 
-            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetailsStart", nv);
+            dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskViewDetailsStartView", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
