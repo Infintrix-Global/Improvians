@@ -102,9 +102,10 @@ jQuery(document).ready(function ($) {
 
             taskDistData.addColumn('string', 'EmployeeName');
             taskDistData.addColumn('number', 'TaskHours');
+            taskDistData.addColumn('number', 'TaskLimit');
 
             for (var i = 0; i < dataValues.length; i++) {
-                taskDistData.addRow([dataValues[i].EmployeeName, dataValues[i].TaskHours]);
+                taskDistData.addRow([dataValues[i].EmployeeName, dataValues[i].TaskHours, 8]);
             }
 
             taskDistOptions.height = 250;

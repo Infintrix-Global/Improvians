@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="dropdown-menu" aria-labelledby="account__dropdown">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
                             <a class="dropdown-item" href="Help.aspx">Help</a>
                             <a class="dropdown-item" href="Login.aspx">Log Out</a>
                         </div>
