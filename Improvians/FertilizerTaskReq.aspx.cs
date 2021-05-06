@@ -610,7 +610,7 @@ namespace Evo
                 txtBenchLocationNew.Text = name1.Remove(name1.Length - 1, 1);
 
              //   txtFertilizationDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
-                PanelFertilizationDate.Visible = true;
+              //  PanelFertilizationDate.Visible = true;
                 BindGridFerReq(0);
 
             }
