@@ -53,6 +53,12 @@
     <Reference Include="DropDownCheckBoxes, Version=1.1.0.31568, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DropDownCheckBoxes.1.1.0.31568\lib\DropDownCheckBoxes.dll</HintPath>
     </Reference>
+    <Reference Include="IronPdf, Version=2021.3.1.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPdf.2021.3.1\lib\net45\IronPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPdf.Assets.Rendering.Windows, Version=22.0.0.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPdf.Assets.Rendering.Windows.22.0.0\lib\net40\IronPdf.Assets.Rendering.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
@@ -1464,6 +1470,7 @@
     <Content Include="Customer\fonts\selection.json" />
     <Content Include="Customer\fonts\icons\selection.json" />
     <Content Include="fonts\icons\selection.json" />
+    <Content Include="EmployeeProfile\SeedlinePlannerLog637558604533825926.pdf" />
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
     <Content Include="Upload.ashx" />

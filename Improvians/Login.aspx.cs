@@ -17,6 +17,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
+                txtUserName.Focus();
                 Session.Abandon();
             }
         }

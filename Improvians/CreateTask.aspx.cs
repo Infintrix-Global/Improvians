@@ -38,6 +38,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
+                txtSearchJobNo.Focus();
                 Bindcname();
                 BindBenchLocation(Session["Facility"].ToString());
                 dtTrays.Clear();

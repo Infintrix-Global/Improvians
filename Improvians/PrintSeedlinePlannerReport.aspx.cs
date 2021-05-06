@@ -1,4 +1,5 @@
 ﻿using Evo.BAL_Classes;
+using IronPdf;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
@@ -101,6 +102,18 @@ namespace Evo
         }
         public override void VerifyRenderingInServerForm(Control control)
         {
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+           
+            IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
+            //Choose screen or print CSS media
+            Renderer.PrintOptions.CssMediaType = PdfPrintOptions.PdfCssMediaType.Screen;
+            //Set the width of the resposive virtual browser window in pixels
+            Renderer.PrintOptions.ViewPortWidth = 1280;
+            // Render an HTML document or snippet as a string
+            Renderer.RenderHTMLFileAsPdf("PrintSeedlinePlannerReport.aspx");
         }
     }
 }

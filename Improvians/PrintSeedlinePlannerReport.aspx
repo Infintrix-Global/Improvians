@@ -65,6 +65,7 @@
         <div class="page__us py-4 px-2">
             <div class="container-fluid">
                 <asp:Button ID="btnDownload" runat="server" Text="Download" OnClick="btnDownload_Click" />
+                  <asp:Button ID="Button1" runat="server" Text="Download new" OnClick="Button1_Click" />
                 <div class="row align-items-center">
                     <div class="col-3">
                         <img class="page__logo" alt="Growers Transplanting Logo" src="images/logo-vertical.svg" width="180" height="179" />
