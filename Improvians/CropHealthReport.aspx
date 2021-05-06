@@ -23,7 +23,7 @@
                             var file = e.target;
                             $("<span class=\"pip\">" +
                                 "<img class=\"img-fluid imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-                                "<br/><span class=\"remove\">Remove image</span>" +
+                                "<br/><span class=\"remove small d-block\">Remove image</span>" +
                                 "</span>").insertAfter("#files");
                             $(".remove").click(function () {
                                 $(this).parent(".pip").remove();
@@ -350,18 +350,19 @@
                             </span>
 
                         </div>
-                        <div class="col-lg-3">
-                            <label>&nbsp; </label>
-                            <div id="divLaptop" runat="server" visible="false">
-                                <%--  <asp:FileUpload ID="FileUpload1" runat="server" name="files[]" AllowMultiple="true" Width="100%" Height="45px" />--%>
+                        <div class="col-lg-12">
+
+                            <span class="d-flex align-items-center" id="divLaptop" runat="server" visible="false">
+                                <input type="file" id="files" name="files" multiple class="custom-file-input" />
+                                <label for="files" class="mb-3">       
+                                    <span class="custom-file-bttn bttn bttn-sm bttn-primary">
+                                        <i class="fas fa-upload"></i>
+                                        <span class="ml-2">Upload file</span>
+                                    </span>
+                                </label>
+                            </span>
 
 
-                                <%-- <div class="field" align="left">
-                                        <h3>Upload your images</h3>--%>
-
-                                <input type="file" id="files" name="files" multiple />
-                                <%--  </div>--%>
-                            </div>
                             <asp:Label ID="lblMessage" ForeColor="Green" runat="server" />
                             <div id="divMobile" runat="server" visible="false">
                                 <input type="file" accept="image/*;capture=camera" id="takePictureField" name="takePictureField" multiple />
