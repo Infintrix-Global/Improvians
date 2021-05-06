@@ -75,8 +75,8 @@ namespace Evo
             {
                 // Gmail Address from where you send the mail
                 var fromAddress = "igportalmail@gmail.com";//"infintrix.world@gmail.com";
-                                                       // any address where the email will be sending
-                                                       // var toAddress = "mehulrana1901@gmail.com,urvi.gandhi@infintrixglobal.com,nidhi.mehta@infintrixglobal.com,bhavin.gandhi@infintrixglobal.com,mehul.rana@infintrixglobal.com,naimisha.rohit@infintrixglobal.com";
+                                                           // any address where the email will be sending
+                                                           // var toAddress = "mehulrana1901@gmail.com,urvi.gandhi@infintrixglobal.com,nidhi.mehta@infintrixglobal.com,bhavin.gandhi@infintrixglobal.com,mehul.rana@infintrixglobal.com,naimisha.rohit@infintrixglobal.com";
 
                 var toAddress = Email;
 
@@ -112,7 +112,7 @@ namespace Evo
             }
         }
 
-       
+
 
         public void SendMailForgotPassword(string Email)
         {
@@ -120,8 +120,8 @@ namespace Evo
             {
                 // Gmail Address from where you send the mail
                 var fromAddress = "igportalmail@gmail.com";//"infintrix.world@gmail.com";
-                                                       // any address where the email will be sending
-                                                       // var toAddress = "mehulrana1901@gmail.com,urvi.gandhi@infintrixglobal.com,nidhi.mehta@infintrixglobal.com,bhavin.gandhi@infintrixglobal.com,mehul.rana@infintrixglobal.com,naimisha.rohit@infintrixglobal.com";
+                                                           // any address where the email will be sending
+                                                           // var toAddress = "mehulrana1901@gmail.com,urvi.gandhi@infintrixglobal.com,nidhi.mehta@infintrixglobal.com,bhavin.gandhi@infintrixglobal.com,mehul.rana@infintrixglobal.com,naimisha.rohit@infintrixglobal.com";
 
                 var toAddress = Email;
 
@@ -145,7 +145,7 @@ namespace Evo
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
-                    
+
                     smtp.UseDefaultCredentials = false;
                     smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
                     smtp.Credentials = new NetworkCredential(fromAddress, fromPassword);
@@ -161,9 +161,9 @@ namespace Evo
             }
         }
 
-      
 
-       
+
+
         private string GenerateRandomOTP(int iOTPLength, string[] saAllowedCharacters)
 
         {
@@ -362,6 +362,12 @@ public class ChartDetails
 {
     public string EmployeeName { get; set; }
     public int TaskHours { get; set; }
+}
+public class ReportChartDetails
+{
+    public DateTime WorkDate { get; set; }
+    public int ID { get; set; }
+    public List<ChartDetails> lstChartDetail { get; set; }
 }
 
 
