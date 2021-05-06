@@ -202,9 +202,27 @@ namespace Evo
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter da = new SqlDataAdapter();
-                    cmd.Parameters.AddWithValue("@SearchDate", DateTime.Now.ToString());
-                    cmd.Parameters.AddWithValue("@LoginUserID", HttpContext.Current.Session["LoginID"].ToString());
-
+                    cmd.Parameters.AddWithValue("@WorkDate", DateTime.Now.Date);
+                    cmd.Parameters.AddWithValue("@LoginID", HttpContext.Current.Session["LoginID"].ToString());
+                    cmd.Parameters.AddWithValue("@Facility", HttpContext.Current.Session["Facility"].ToString());
+                    string strRoles = string.Empty;
+                    if (HttpContext.Current.Session["Role"].ToString() == "1")
+                    {
+                        strRoles = "1,2,3,5,11,12";
+                    }
+                    else if (HttpContext.Current.Session["Role"].ToString() == "12")
+                    {
+                        strRoles = "2,3,5,11,12";
+                    }
+                    else if (HttpContext.Current.Session["Role"].ToString() == "2")
+                    {
+                        strRoles = "3,5,11";
+                    }
+                    else 
+                    {
+                        strRoles = HttpContext.Current.Session["Role"].ToString();
+                    }
+                    cmd.Parameters.AddWithValue("@RoleIDs",strRoles) ;
                     da.SelectCommand = cmd;
                     DataTable dt = new DataTable();
                     da.Fill(dt);
