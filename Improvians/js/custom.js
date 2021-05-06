@@ -81,6 +81,33 @@ jQuery(document).ready(function ($) {
 
     //Dashboard Task Chart Function
     function drawDashTaskDist() {
+        var dataValues = [];
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: 'Dashboard.aspx/GetTaskDisctributionChartData',
+            data: '{}',
+            success: function (response) {
+                dataValues = response.d;
+            },
+
+            error: function () {
+                alert("Error loading data! Please try again.");
+            }
+        });
+
+        var taskDistData = new google.visualization.DataTable();
+
+        taskDistData.addColumn('string', 'EmployeeName');
+        taskDistData.addColumn('number', 'TaskHours');
+
+        for (var i = 0; i < dataValues.length; i++) {
+            taskDistData.addRow([dataValues[i].EmployeeName, dataValues[i].TaskHours]);
+        }
+
+        /*
         var taskDistData = google.visualization.arrayToDataTable([
             ['Profiles', 'Tasks', 'Task Limit'],
             ['Assitant Grower', 10, 8],
@@ -89,7 +116,7 @@ jQuery(document).ready(function ($) {
             ['Irrigator', 0, 8],
             ['Crew Lead', 15, 8],
         ]);
-
+        */
 
         taskDistOptions.height = 250;
         taskDistOptions.chartArea.left = 100;

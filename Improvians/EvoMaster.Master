@@ -186,23 +186,23 @@
 
                 <li>
                     <a href="#">
-                        <i class="rxicon-icon-greenhouse-control"></i>
-                        <span>Greenhouse Control</span>
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>My Task</span>
                     </a>
                 </li>
 
                 <li>
                     <asp:LinkButton ID="lnkmytask" runat="server" OnClick="lnkmytask_Click">
                         <i class="rxicon-icon-mytasks"></i>
-                       <span>Tasks & Reports </span>
+                       <span>Create Task</span>
                        <%-- <span>My Tasks</span>--%>
                     </asp:LinkButton>
                 </li>
 
                 <li>
                     <a href="#">
-                        <i class="rxicon-icon-account"></i>
-                        <span>Account</span>
+                        <i class="fas fa-tasks"></i>
+                        <span>Manage Task</span>
                     </a>
                 </li>
             </ul>

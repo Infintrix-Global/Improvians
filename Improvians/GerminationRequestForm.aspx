@@ -43,11 +43,11 @@
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Assigned By </label>
-                <asp:DropDownList ID="ddlAssignedBy" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Customer </label>
-                <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true"  class="custom__dropdown robotomd"></asp:DropDownList>
+                <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
 
         </div>

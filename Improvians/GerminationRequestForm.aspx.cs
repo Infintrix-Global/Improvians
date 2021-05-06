@@ -35,7 +35,7 @@ namespace Evo
                     txtFromDate.Text = Fdate;
                     txtToDate.Text = TDate;
                 }
-                //Bindcname();
+                // Bindcname();
                 //BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode("0");
                 BindGridGerm("0", 0);
@@ -150,7 +150,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", JobCode);
-            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            nv.Add("@CustomerName", !string.IsNullOrWhiteSpace(ddlCustomer.SelectedValue) ? ddlCustomer.SelectedValue : "0");
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@Week", "");
@@ -159,7 +159,7 @@ namespace Evo
             nv.Add("@GermNo", RadioButtonListGno.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
-            nv.Add("@AssignedBy", "");
+            nv.Add("@AssignedBy", !string.IsNullOrWhiteSpace(ddlAssignedBy.SelectedValue) ? ddlAssignedBy.SelectedValue : "");
 
 
             //   dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
@@ -209,7 +209,7 @@ namespace Evo
             ddlCustomer.DataSource = Customers;
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--- Select ---", "0"));
-//            ddlCustomer.Items[0].Selected = false;
+            //            ddlCustomer.Items[0].Selected = false;
         }
 
         private void BindAssignedByList(DataRowCollection Rows)
@@ -719,6 +719,11 @@ namespace Evo
                     return BenchLocation;
                 }
             }
+        }
+
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
     }
 }
