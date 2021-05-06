@@ -106,8 +106,8 @@
                         <div class="dashboard__chart dashboard__chart--bar flex-1 w-100">
                             <div class="chart__filter mb-3 text-center">
                                 <label class="robotomd mb-0">Date:</label>
-                                <label class="todaysDateLabel mb-0"></label>
-                                <label class="mb-0">/ Wednesday</label>
+                                <label class="mb-0"><asp:Literal runat="server" ID="ltrDate" /> </label>
+                                <label class="mb-0">/ <asp:Literal runat="server" ID="ltrDayofWeek" ></asp:Literal></label>
                             </div>
 
                             <div class="googleChart" id="task-distribution"></div>
