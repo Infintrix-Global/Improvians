@@ -2043,7 +2043,7 @@ svg text {
     .page__break { page-break-before: always; }
 }
 
-/*
+
 @media print {
     @page {
         size: letter;
@@ -2107,4 +2107,3 @@ svg text {
     .page__us tr.page-break { page-break-after:always; }
     .page__us table { page-break-after:always; }
 }
-*/
