@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="site__container">
-        <h2 class="mb-3">Track Task</h2>
+        <h2 class="mb-3">Manage Task</h2>
 
         <div class="row">
             <div class="col-lg-2">

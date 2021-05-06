@@ -110,12 +110,8 @@ namespace Evo
             }
             else
             {
-                lblFacility.Text = Session["Facility"].ToString();
-                dashlink.Attributes.Remove("class");
-                lnkmytask.Attributes.Add("class", "active");
+                lblFacility.Text = Session["Facility"].ToString();              
             }
-
-
 
             checkNotification(1);
 

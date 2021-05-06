@@ -178,7 +178,7 @@
         <footer class="floating__footer">
             <ul class="list-inline dark__bg robotomd">
                 <li>
-                    <a class="active" href="Dashboard.aspx" id="dashlink" runat="server">
+                    <a href="Dashboard.aspx" id="dashlink" runat="server">
                         <i class="rxicon-icon-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
