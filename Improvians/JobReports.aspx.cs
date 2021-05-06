@@ -53,7 +53,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 JobCode = Request.QueryString["jobCode"];
-
+                txtSearchJobNo.Focus();
                 if (string.IsNullOrEmpty(JobCode))
                 {
                     divFilter.Visible = true;
