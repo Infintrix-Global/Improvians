@@ -105,13 +105,13 @@
                                         ShowHeaderWhenEmpty="True" Width="100%">
 
                                         <Columns>
-                                            <asp:TemplateField HeaderText="DATE"  HeaderStyle-Width="60px">
+                                           <%-- <asp:TemplateField HeaderText="DATE"  HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="SrNo" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
 
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="60px">
+                                            </asp:TemplateField>--%>
+                                            <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="120px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("jobcode") %>'></asp:Label>
 
@@ -129,11 +129,11 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="60px" HeaderText="LOC">
+                                           <%-- <asp:TemplateField HeaderStyle-Width="60px" HeaderText="LOC">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbl_Seedline" Text='<%# Eval("loc_seedline") %>' runat="server"></asp:Label>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="TRAY SIZE" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("traysize") %>'></asp:Label>
