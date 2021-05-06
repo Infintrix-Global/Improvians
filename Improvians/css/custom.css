@@ -1289,6 +1289,12 @@ input[type="date" i]::-webkit-calendar-picker-indicator { margin-left: 5px; }
     color: #222222;
 }
 
+
+.page__us .printBtns {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .field__blank {
     min-width: 155px;
     border-bottom: 1px solid;
@@ -2063,6 +2069,8 @@ svg text {
         line-height: 16px;
     }
 
+    .page__us .printBtns { display: none; }
+
     .page__us .custom__dropdown, .page__us .filter__control, .page__us .input__control {
         height: 40px;
         line-height: 40px;
@@ -2095,7 +2103,7 @@ svg text {
     }
     
     .page__us .page-break {
-        margin-top: 160px;
+        margin-top: 70px;
         margin-bottom: 84px;
         page-break-after: always;
     }

@@ -64,22 +64,30 @@
 
         <div class="page__us py-4 px-2">
             <div class="container-fluid">
-                <asp:Button ID="btnDownload" runat="server" Text="Download" OnClick="btnDownload_Click" />
-                  <asp:Button ID="Button1" runat="server" Text="Download new" OnClick="Button1_Click" />
-                <div class="row align-items-center">
-                    <div class="col-3">
-                        <img class="page__logo" alt="Growers Transplanting Logo" src="images/logo-vertical.svg" width="180" height="179" />
-                    </div>
-                    <div class="col-6">
-                        <h1 class="h4 robotobold text-center mb-0">Performance Program Log Sheet</h1>
-                    </div>
-                    <div class="col-3"></div>
+
+                <div class="printBtns">
+                    <asp:Button ID="btnDownload" runat="server" Text="Download" OnClick="btnDownload_Click" />
+                    <asp:Button ID="Button1" runat="server" Text="Download new" OnClick="Button1_Click" />
                 </div>
+
+                <div class="page__us--header">
+                    <div class="row align-items-center">
+                        <div class="col-3">
+                            <img class="page__logo" alt="Growers Transplanting Logo" src="images/logo-vertical.svg" width="180" height="179" />
+                        </div>
+                        <div class="col-6">
+                            <h1 class="h4 robotobold text-center mb-0">Performance Program Log Sheet</h1>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+                </div>
+
                 <asp:Panel runat="server" ID="Panel1">
                     <asp:Repeater ID="repReport" runat="server" OnItemDataBound="repReport_ItemDataBound">
                         <ItemTemplate>
-                            <div class="page__us--header">
 
+
+                            <div class="page-break">
                                 <div class="row mt-4">
                                     <div class="d-flex align-items-center mb-1 col-12">
                                         <label class="d-block inline__fields mr-3 mb-0">Deptartment:</label>
@@ -96,8 +104,7 @@
                                         <div class="field__blank"></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-break">
+
                                 <div class="data__table">
                                     <asp:GridView ID="DGJob" runat="server" AutoGenerateColumns="False"
                                         class="striped"
