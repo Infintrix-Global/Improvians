@@ -66,7 +66,7 @@
                                     <div class="chart__filter mb-3 text-center">
                                         <label class="robotomd mb-0">Date:</label>
                                         <label class="mb-0">
-                                            <asp:Literal runat="server" ID="ltrDate" Text='<%# Eval("WorkDate")  %>' />
+                                            <asp:Literal runat="server" ID="ltrDate" Text='<%# Eval("WorkDate","{0:MM/dd/yyyy}")  %>' />
                                         </label>
                                         <label class="mb-0">/
                                             <asp:Literal runat="server" ID="ltrDayofWeek"></asp:Literal></label>
