@@ -307,7 +307,7 @@ header {
 
 .account__dropdown  .dropdown-item {
     font-size: 16px;
-    white-space: normal;
+    white-space: nowrap;
 }
 
 .account__dropdown .dropdown-title {
