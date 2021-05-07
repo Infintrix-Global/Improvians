@@ -20,7 +20,6 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-
                 BindSupervisorList("0", "0", "0");
 
                 BindTaskRequestTypeList("0", "0", "0");
@@ -56,8 +55,6 @@ namespace Evo
             ddlTaskRequestType.DataBind();
             ddlTaskRequestType.Items.Insert(0, new ListItem("--Select--", "0"));
         }
-
-
 
         public void BindSupervisorList(string ddlBench, string jobNo, string Cust)
         {
@@ -164,7 +161,6 @@ namespace Evo
 
         }
 
-
         public void BindCrop(string ddlMain, string jobNo, string Customer)
         {
             DataTable dt = new DataTable();
@@ -190,12 +186,8 @@ namespace Evo
 
         }
 
-
         public void BindGridGerm()
         {
-
-
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
@@ -224,8 +216,6 @@ namespace Evo
             gvGerm.DataBind();
 
         }
-
-
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -292,12 +282,10 @@ namespace Evo
             BindGridGerm();
         }
 
-
         protected void ddlTaskRequestType_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridGerm();
         }
-
 
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -338,12 +326,12 @@ namespace Evo
                     }
                     if (TaskRequestType == "Chemical")
                     {
-                        Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?PageType={0}&ChemicalCode={1}&CCID={2}&TaskRequestKey={3}", "ManageTask", dt.Rows[0]["ChemicalCode"].ToString(), dt.Rows[0]["ChemicalCompletionId"].ToString(),dt.Rows[0]["TaskRequestKey"].ToString()));
+                        Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?PageType={0}&ChemicalCode={1}&CCID={2}&TaskRequestKey={3}", "ManageTask", dt.Rows[0]["ChemicalCode"].ToString(), dt.Rows[0]["ChemicalCompletionId"].ToString(), dt.Rows[0]["TaskRequestKey"].ToString()));
                     }
                     if (TaskRequestType == "Germination")
                     {
-                        
-                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", dt.Rows[0]["ID"].ToString(), dt.Rows[0]["GTRID"].ToString(),1));
+
+                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", dt.Rows[0]["ID"].ToString(), dt.Rows[0]["GTRID"].ToString(), 1));
                     }
                     if (TaskRequestType == "Irrigation")
                     {
@@ -366,7 +354,7 @@ namespace Evo
                     if (TaskRequestType == "Move")
                     {
 
-                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}&IsF={3}", "ManageTask", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString(),1));
+                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}&IsF={3}", "ManageTask", dt.Rows[0]["MoveTaskAssignmentId"].ToString(), dt.Rows[0]["MoveID"].ToString(), 1));
 
                     }
                     if (TaskRequestType == "GeneralTask")
@@ -382,25 +370,25 @@ namespace Evo
                     }
 
                 }
-                else if(dtR != null && dtR.Rows.Count > 0)
+                else if (dtR != null && dtR.Rows.Count > 0)
                 {
                     if (TaskRequestType == "Fertilization")
                     {
-                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?PageType={0}&FertilizationCode={1}&FCID={2}&TaskRequestKey={3}", "ManageTask", dtR.Rows[0]["FertilizationCode"].ToString(),0, dtR.Rows[0]["TaskRequestKey"].ToString()));
-                   
+                        Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?PageType={0}&FertilizationCode={1}&FCID={2}&TaskRequestKey={3}", "ManageTask", dtR.Rows[0]["FertilizationCode"].ToString(), 0, dtR.Rows[0]["TaskRequestKey"].ToString()));
+
                     }
                     if (TaskRequestType == "Chemical")
                     {
                         Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?PageType={0}&ChemicalCode={1}&CCID={2}&TaskRequestKey={3}", "ManageTask", dtR.Rows[0]["ChemicalCode"].ToString(), 0, dtR.Rows[0]["TaskRequestKey"].ToString()));
-                  
+
                     }
                     if (TaskRequestType == "Germination")
                     {
-                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", 0, dtR.Rows[0]["ID"].ToString(),1));
+                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", 0, dtR.Rows[0]["ID"].ToString(), 1));
                     }
                     if (TaskRequestType == "Irrigation")
                     {
-                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "ManageTask", dtR.Rows[0]["IrrigationCode"].ToString(),0, dtR.Rows[0]["TaskRequestKey"].ToString()));
+                        Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "ManageTask", dtR.Rows[0]["IrrigationCode"].ToString(), 0, dtR.Rows[0]["TaskRequestKey"].ToString()));
 
                     }
 
@@ -408,18 +396,18 @@ namespace Evo
                     if (TaskRequestType == "Plant Ready")
                     {
 
-                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask",0, dtR.Rows[0]["PRID"].ToString()));
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask", 0, dtR.Rows[0]["PRID"].ToString()));
                     }
 
                     if (TaskRequestType == "Dump")
                     {
-                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask",0, 0, dtR.Rows[0]["DumpId"].ToString()));
+                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", 0, 0, dtR.Rows[0]["DumpId"].ToString()));
 
                     }
                     if (TaskRequestType == "Move")
                     {
 
-                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", 0, dtR.Rows[0]["MoveID"].ToString(),0));
+                        Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", 0, dtR.Rows[0]["MoveID"].ToString(), 0));
 
                     }
                     if (TaskRequestType == "GeneralTask")
@@ -501,14 +489,6 @@ namespace Evo
             }
         }
 
-
-
-
-
-
-
-
-
         //protected void gvGerm_RowDataBound1(object sender, GridViewRowEventArgs e)
         //{
         //    if (e.Row.RowType == DataControlRowType.DataRow)
@@ -538,7 +518,5 @@ namespace Evo
 
         //    }
         //}
-
-
     }
 }
