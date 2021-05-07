@@ -517,14 +517,14 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "");
+            nv.Add("@BenchLocation", "0");
             nv.Add("@Week", "");
             nv.Add("@Status", "");
             nv.Add("@Jobsource", "");
             nv.Add("@GermNo", "");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "");
+            nv.Add("@AssignedBy", "0");
 
             dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
             BindData(dt, Ger, "GermDate");            
