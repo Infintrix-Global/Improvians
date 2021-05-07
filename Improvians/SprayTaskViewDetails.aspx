@@ -171,6 +171,28 @@
                                 <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
+                        <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet-body">
+                            <div class="data__table">
+                                <asp:DataList ID="CropePhotos" runat="server"  BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
+                                    <ItemTemplate>
+                                        <div>
+
+                                            <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("Imagepath") %>' runat="server" />
+
+
+                                        </div>
+                                    </ItemTemplate>
+
+
+                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Bottom" />
+                                </asp:DataList>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
                     </div>
                 </asp:Panel>
 

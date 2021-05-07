@@ -127,7 +127,7 @@
                             <asp:Button ID="btnAddDateNo" Text="Add No" Visible="false" class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnAddDateNo_Click" />
                         </div>
                          <div class="col-auto align-self-end">
-                            <asp:Button ID="btnUpdateDateno" Text="Update No"  class="submit-bttn bttn bttn-primary" runat="server" OnClick="btnUpdateDateno_Click" />
+                            <asp:Button ID="btnUpdateDateno" Text="Update No"  class="submit-bttn bttn bttn-primary" runat="server" Visible="false" OnClick="btnUpdateDateno_Click" />
                         </div>
                     </div>
                 </div>

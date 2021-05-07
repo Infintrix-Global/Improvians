@@ -59,6 +59,7 @@ namespace Evo
                 txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtDumpDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                txtCropHealthDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
                 if (Request.QueryString["jobCode"] != null)
                 {
@@ -588,7 +589,8 @@ namespace Evo
         {
             ddlAssignments.SelectedValue = "0";
             ddlTaskType.SelectedValue = "0";
-            txtgeneralDate.Text = DateTime.Now.ToString("yyyy/mm/dd");
+            //  txtgeneralDate.Text = DateTime.Now.ToString("yyyy/mm/dd");
+            txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             txtgeneralComment.Text = "";
             txtFrom.Text = "";
             txtTo.Text = "";
@@ -811,10 +813,13 @@ namespace Evo
 
         protected void btnFReset_Click(object sender, EventArgs e)
         {
-            txtFDate.Text = "";
+
+            txtResetSprayTaskForDays.Text = "";
+            txtFComments.Text = "";
             BindFertilizer();
             BindSupervisor();
             txtQty.Text = "";
+            txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
         }
 
@@ -832,7 +837,7 @@ namespace Evo
                 {
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
-                  
+
                     dtTrays.Clear();
                     DataTable dt1 = new DataTable();
                     NameValueCollection nv14 = new NameValueCollection();
@@ -840,9 +845,6 @@ namespace Evo
                     nv14.Add("@Mode", "12");
                     dt1 = objCommon.GetDataTable("GET_Common", nv14);
                     FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
-
-                   
-                    //   }
 
 
                     long result2 = 0;
@@ -935,7 +937,7 @@ namespace Evo
                     nv.Add("@Comments", txtGcomments.Text);
                     nv.Add("@Role", Session["Role"].ToString());
                     nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                 
+
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
                 }
             }
@@ -977,8 +979,11 @@ namespace Evo
             txtTGerTrays.Text = "";
             txtGcomments.Text = "";
             BindSupervisor();
-            irrigation_count.Attributes.Add("class", "request__block-collapse collapse show");
-            btnIrrigation.Attributes.Add("class", "request__block-head");
+            txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            //irrigation_count.Attributes.Add("class", "request__block-collapse collapse show");
+            //btnIrrigation.Attributes.Add("class", "request__block-head");
+            germination_count.Attributes.Add("class", "request__block-collapse collapse show");
+            btngermination.Attributes.Add("class", "request__block-head");
         }
 
 
@@ -1069,9 +1074,12 @@ namespace Evo
         protected void btnirrigationReset_Click1(object sender, EventArgs e)
         {
             txtWaterRequired.Text = "";
+            txtIrrComments.Text = "";
+            txtirrigationResetSprayTaskForDays.Text = "";
             BindSupervisor();
             irrigation_count.Attributes.Add("class", "request__block-collapse collapse show");
             btnIrrigation.Attributes.Add("class", "request__block-head");
+            txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
         }
 
         public void irrigationSubmit(string Assigned)
@@ -1261,7 +1269,8 @@ namespace Evo
         protected void btnplant_readyReset_Click(object sender, EventArgs e)
         {
             BindSupervisor();
-            txtPlantComments.Text = ""; ;
+            txtPlantComments.Text = "";
+            txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             plant_ready_count.Attributes.Add("class", "request__block-collapse collapse show");
             btnPlantReady.Attributes.Add("class", "request__block-head");
         }
@@ -1322,6 +1331,8 @@ namespace Evo
             BindSupervisor();
             BindChemical();
             txtResetChemicalSprayTask.Text = "";
+            txtCComments.Text = "";
+            txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             Chemical_count.Attributes.Add("class", "request__block-collapse collapse show");
             btnChemical.Attributes.Add("class", "request__block-head");
         }
@@ -1370,7 +1381,7 @@ namespace Evo
                     ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
 
 
-                
+
                     // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
                     // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
@@ -1465,7 +1476,7 @@ namespace Evo
             txtMoveComments.Text = "";
             txtMoveDate.Text = "";
             txtMoveNumberOfTrays.Text = "";
-            btnMoveRequest.Attributes.Add("class", "request__block-collapse collapse show");
+//btnMoveRequest.Attributes.Add("class", "request__block-collapse collapse show");
 
         }
         public void MoveSubmit(string Assigned)
@@ -1604,6 +1615,7 @@ namespace Evo
             txtCommentsDump.Text = "";
             txtQuantityofTray.Text = "";
             BindSupervisor();
+            txtDumpDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             dump_request.Attributes.Add("class", "request__block-collapse collapse show");
             btnDump.Attributes.Add("class", "request__block-head");
         }
@@ -1676,7 +1688,7 @@ namespace Evo
 
                 //var getToMail = Session["SelectedAssignment"].ToString();
                 // var getToMail = ddlAssignments.SelectedValue;
-                var getToMail = Assigned;                
+                var getToMail = Assigned;
                 nv.Add("@Uid", getToMail);
                 DataTable dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
                 ReceiverEmail = dt1.Rows[0]["Email"].ToString();
@@ -1817,7 +1829,7 @@ namespace Evo
             if (c == 1)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
-                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&CropAT={2}&PageType={3}", chkSelected, JobCode,0,"CreateTask"));
+                Response.Redirect(String.Format("~/CropHealthReport.aspx?BatchLoc={0}&JobCode={1}&CropAT={2}&PageType={3}", chkSelected, JobCode, 0, "CreateTask"));
             }
             else
             {
@@ -1831,6 +1843,7 @@ namespace Evo
 
         protected void btnCropReset_Click(object sender, EventArgs e)
         {
+            txtCropHealthDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             BindSupervisor();
             txtCropHealthComments.Text = "";
         }
@@ -2215,7 +2228,7 @@ namespace Evo
 
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
-            Clear();
+           // Clear();
             ClearGeneral();
         }
 
@@ -2321,7 +2334,7 @@ namespace Evo
             NameValueCollection nv5 = new NameValueCollection();
             nv5.Add("@DTAID", result.ToString());
             DataTable dt = objCommon.GetDataTable("SP_GetDumpTaskAssignmentSelect", nv5);
-            Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&DrId={1}&PageType={2}", result.ToString(), dt.Rows[0]["DumpId"].ToString(),"CreateTask"));
+            Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&DrId={1}&PageType={2}", result.ToString(), dt.Rows[0]["DumpId"].ToString(), "CreateTask"));
 
         }
 
@@ -2389,7 +2402,7 @@ namespace Evo
             //nv5.Add("@MTAID", result.ToString());
             //DataTable dt = objCommon.GetDataTable("SP_GetMoveTaskAssignmentSelect", nv5);
 
-            Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}&PageType={1}", result,"CreateTask"));
+            Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}&PageType={1}", result, "CreateTask"));
 
 
         }
@@ -2485,7 +2498,7 @@ namespace Evo
                 nv5.Add("@PRTA", result.ToString());
                 DataTable dt = objCommon.GetDataTable("SP_GetPlantReadyTaskAssignmentSelect", nv5);
 
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&PageType={2}", result.ToString(), dt.Rows[0]["PRID"].ToString(),"CreateTask"));
+                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&PageType={2}", result.ToString(), dt.Rows[0]["PRID"].ToString(), "CreateTask"));
             }
             else
             {
@@ -2571,7 +2584,7 @@ namespace Evo
 
                 }
             }
-            Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}&PageType={3}", Batchlocation, JobCOde, IrrigationCode,"CreateTask"));
+            Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}&PageType={3}", Batchlocation, JobCOde, IrrigationCode, "CreateTask"));
 
             //if (c == 1)
             //{
@@ -2608,9 +2621,9 @@ namespace Evo
             string JobCode = "";
 
 
-           int ChemicalCode = 0;
-           string Batchlocation = "";
-           string JobCOde = "";
+            int ChemicalCode = 0;
+            string Batchlocation = "";
+            string JobCOde = "";
             //dtCTrays.Clear();
             //DataTable dt1 = new DataTable();
             //NameValueCollection nv1 = new NameValueCollection();
@@ -2694,7 +2707,7 @@ namespace Evo
 
             //}
 
-            Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}&PageType={3}", Batchlocation, JobCOde, ChemicalCode,"CreateTask"));
+            Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}&PageType={3}", Batchlocation, JobCOde, ChemicalCode, "CreateTask"));
 
 
         }
@@ -2789,7 +2802,7 @@ namespace Evo
             }
 
 
-            Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}&PageType={3}", Batchlocation, JobCOde, FertilizationCode,"CreateTask"));
+            Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}&PageType={3}", Batchlocation, JobCOde, FertilizationCode, "CreateTask"));
 
             //if (c == 1)
             //{
@@ -2866,11 +2879,11 @@ namespace Evo
 
                 NameValueCollection nvR = new NameValueCollection();
                 nvR.Add("@GTAId", result16.ToString());
-               DataTable dtR = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationRequestID", nvR);
-                string GTRID= dtR.Rows[0]["GTRID"].ToString();
+                DataTable dtR = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationRequestID", nvR);
+                string GTRID = dtR.Rows[0]["GTRID"].ToString();
 
 
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}&GTRID={2}&IsF={3}", result16,"CreateTask", GTRID,0));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}&GTRID={2}&IsF={3}", result16, "CreateTask", GTRID, 0));
             }
             else
             {
@@ -2882,7 +2895,7 @@ namespace Evo
 
         protected void chkSelect_CheckedChanged(object sender, EventArgs e)
         {
-         
+
             foreach (GridViewRow row in gvFer.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)

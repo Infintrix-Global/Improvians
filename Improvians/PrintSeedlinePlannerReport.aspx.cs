@@ -106,14 +106,32 @@ namespace Evo
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-           
+            //Response.ClearContent();
+            //Response.AddHeader("content-disposition", attachment);
+            //Response.ContentType = "application/pdf";
+            StringWriter s_tw = new StringWriter();
+            HtmlTextWriter h_textw = new HtmlTextWriter(s_tw);
+            //h_textw.AddStyleAttribute("font-size", "7pt");
+            //h_textw.AddStyleAttribute("color", "Black");
+            Panel1.RenderControl(h_textw);//Name of the Panel  
+            Document doc = new Document();
+            doc = new Document(PageSize.LETTER, 5, 5, 15, 5);
+            //FontFactory.GetFont("Verdana", 80, iTextSharp.text.Color.RED);
+            PdfWriter.GetInstance(doc, Response.OutputStream);
+            doc.Open();
+            StringReader s_tr = new StringReader(s_tw.ToString());
+            HTMLWorker html_worker = new HTMLWorker(doc);
+            html_worker.Parse(s_tr);
+            //doc.Close();
+
+
             IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
             //Choose screen or print CSS media
             Renderer.PrintOptions.CssMediaType = PdfPrintOptions.PdfCssMediaType.Screen;
             //Set the width of the resposive virtual browser window in pixels
             Renderer.PrintOptions.ViewPortWidth = 1280;
             // Render an HTML document or snippet as a string
-            Renderer.RenderHTMLFileAsPdf("PrintSeedlinePlannerReport.aspx");
+            Renderer.RenderHTMLFileAsPdf(h_textw.InnerWriter.ToString());
         }
     }
 }

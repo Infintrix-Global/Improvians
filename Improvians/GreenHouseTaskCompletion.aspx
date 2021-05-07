@@ -21,7 +21,7 @@
                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-                                         <%--   <asp:Label ID="lblGTAID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>--%>
+                                            <%--   <asp:Label ID="lblGTAID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>--%>
                                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             <%--  <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />--%>
@@ -92,7 +92,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-<%--                                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                                    <%--                                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label4" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                         </ItemTemplate>
@@ -110,13 +110,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-<%--                                    <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
+                                    <%--                                    <asp:TemplateField HeaderText="Notes" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label46" runat="server" Text='<%# Eval("Notes")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>--%>
-
-
                                 </Columns>
 
                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -135,7 +133,7 @@
 
         <div class="dashboard__block dashboard__block--asign">
 
-         
+
             <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
                 <br />
                 <h2 class="text-left">Crop Health Report </h2>
@@ -196,12 +194,34 @@
                     </div>
                     <br />
 
-                    <br />
+
 
                     <div class="row">
                         <%-- <label>Commment:</label>--%>
                         <div class="col-lg-12">
                             <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet-body">
+                                <div class="data__table">
+                                    <asp:DataList ID="CropePhotos" runat="server" BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
+                                        <ItemTemplate>
+                                            <div>
+
+                                                <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("Imagepath") %>' runat="server" />
+
+
+                                            </div>
+                                        </ItemTemplate>
+
+
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Bottom" />
+                                    </asp:DataList>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -210,7 +230,7 @@
 
             <asp:Panel ID="Panel1" runat="server">
                 <br />
-                <h2 class="text-left"> Task Request Flow </h2>
+                <h2 class="text-left">Task Request Flow </h2>
                 <br />
                 <div class="portlet-body">
                     <div class="data__table">
@@ -219,37 +239,37 @@
                             GridLines="None"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
-                                
-                            <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
-                                <ItemTemplate>
-                                    <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Assigned By">
-                                <ItemTemplate>
+                                <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
-                                    <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Assigned By">
+                                    <ItemTemplate>
 
-                                </ItemTemplate>
+                                        <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
 
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Assigned To">
-                                <ItemTemplate>
+                                    </ItemTemplate>
 
-                                    <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Assigned To">
+                                    <ItemTemplate>
 
-                                </ItemTemplate>
+                                        <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
 
-                            </asp:TemplateField>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Trays Inspected" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblTraysInspecteda" runat="server" Text='<%# Eval("TraysInspected")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                             
-                             
+
+
 
                                 <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -257,7 +277,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                   <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
                                     </ItemTemplate>
@@ -290,8 +310,7 @@
             <asp:Panel ID="PanelViewGJob" Visible="false" runat="server">
                 <br />
 
-                <h2 class="text-left">
-                         Completion  </h2>
+                <h2 class="text-left">Completion  </h2>
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="GridViewGDetails" runat="server" AutoGenerateColumns="False"
@@ -300,19 +319,19 @@
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
                                 <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
-                                        <ItemTemplate>
-                                            <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+                                    <ItemTemplate>
+                                        <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Completed By">
-                                        <ItemTemplate>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Completed By">
+                                    <ItemTemplate>
 
-                                            <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+                                        <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
 
-                                        </ItemTemplate>
+                                    </ItemTemplate>
 
-                                    </asp:TemplateField>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblInspectionDate" runat="server" Text='<%# Eval("InspectionDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
@@ -356,17 +375,17 @@
                     </div>
                     <br />
 
-                  
+
 
 
                 </div>
             </asp:Panel>
             <br />
             <div id="userinput" runat="server" class="assign__task d-flex">
-             
+
                 <asp:Panel ID="pnlint" runat="server">
-                    <h2 class="text-left">
-                         Completion Form </h2> <br />
+                    <h2 class="text-left">Completion Form </h2>
+                    <br />
                     <div class="row">
                         <div class="col">
                             <label>Germination Count Date </label>

@@ -8,7 +8,7 @@
 
         <div class="data__table">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
-               <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
             <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                 class="striped" AllowSorting="true"
                 GridLines="None" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
@@ -165,15 +165,35 @@
                         <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet-body">
+                            <div class="data__table">
+                                <asp:DataList ID="CropePhotos" runat="server" BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
+                                    <ItemTemplate>
+                                        <div>
+
+                                            <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("Imagepath") %>' runat="server" />
+
+
+                                        </div>
+                                    </ItemTemplate>
+
+
+                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Bottom" />
+                                </asp:DataList>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </asp:Panel>
             <br />
             <form class="web__form pt-2">
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <br />
-                        <h2 class="text-left">
-                           
-                            Task Request Flow</h2>
+                        <h2 class="text-left">Task Request Flow</h2>
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
@@ -240,19 +260,17 @@
                                 </asp:GridView>
 
 
-                              
-                               
+
+
                             </div>
                         </div>
-                    
+
 
                         <asp:Panel ID="PanelComplitionDetsil" Visible="false" runat="server">
                             <br />
                             <%-- <h2 class="text-left">Crop Health Report </h2>--%>
-                            <h2 class="text-left">
-                                
-                                Completion  </h2>
-                           
+                            <h2 class="text-left">Completion  </h2>
+
                             <div class="portlet-body">
                                 <div class="data__table">
                                     <asp:GridView ID="GridMoveComplition" runat="server" AutoGenerateColumns="False"

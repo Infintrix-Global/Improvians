@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <%--<div class="col-lg-6">
                     <div class="dashboard__block">
                         <div class="block__head">
                             <h2>Current Activities</h2>
@@ -172,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--%>
             </div>
         </div>
    </div>

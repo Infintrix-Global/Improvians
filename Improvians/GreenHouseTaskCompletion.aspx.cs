@@ -67,6 +67,7 @@ namespace Evo
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
+                    BindGridCropHealthImage(Request.QueryString["Chid"].ToString());
                 }
                 txtInspectionDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindGridGerm();
@@ -75,6 +76,21 @@ namespace Evo
             }
         }
 
+        public void BindGridCropHealthImage(string ChId)
+        {
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@Chid", ChId);
+            dt1 = objCommon.GetDataTable("SP_GetCropHealthReportImages", nv1);
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                PanelCropHealth.Visible = true;
+                CropePhotos.DataSource = dt1;
+                CropePhotos.DataBind();
+
+
+            }
+        }
 
         public void BindViewDetilas(string GTAID)
         {

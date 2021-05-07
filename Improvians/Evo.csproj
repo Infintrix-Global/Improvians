@@ -483,6 +483,7 @@
     <Content Include="MyTaskSiteMoveTeam.aspx" />
     <Content Include="MyTaskSpray.aspx" />
     <Content Include="offline-fallback.html" />
+    <Content Include="performance-log-sheet.html" />
     <Content Include="PerformanceLogSheet.aspx" />
     <Content Include="PlantReadyAssignmentForm.aspx" />
     <Content Include="PlantReadyCompletionForm.aspx" />
@@ -1470,7 +1471,6 @@
     <Content Include="Customer\fonts\selection.json" />
     <Content Include="Customer\fonts\icons\selection.json" />
     <Content Include="fonts\icons\selection.json" />
-    <Content Include="EmployeeProfile\SeedlinePlannerLog637558604533825926.pdf" />
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
     <Content Include="Upload.ashx" />

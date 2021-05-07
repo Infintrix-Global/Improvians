@@ -69,8 +69,8 @@ namespace Evo
                 CropePhotos.DataSource = dt1;
                 CropePhotos.DataBind();
              
-            }
 
+            }
         }
 
 

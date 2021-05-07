@@ -296,7 +296,7 @@ namespace Evo
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/MyTaskGrower.aspx");
+            Response.Redirect("~/MyTaskSeedlinePlanner.aspx");
         }
         protected void btnSearchReset_Click(object sender, EventArgs e)
         {

@@ -75,7 +75,7 @@ namespace Evo
                     divSalesComment.Visible = true;
                     divTaskRequest.Visible = false;
                 }
-                else if ( Session["Role"].ToString() == "14")// Sales representative
+                else if ( Session["Role"].ToString() == "14" || Session["Role"].ToString() == "7")// Sales representative
                 {
                     divTaskRequest.Visible = false;
                 }
