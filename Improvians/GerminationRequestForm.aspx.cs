@@ -93,8 +93,7 @@ namespace Evo
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        }      
-
+        }
         public void BindAssignByList(string ddlBench, string jobNo, string Cust)
         {
             DataTable dt = new DataTable();

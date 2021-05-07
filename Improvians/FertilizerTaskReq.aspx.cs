@@ -8,6 +8,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Evo.BAL_Classes;
 using Evo.Bal;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Evo
 {
@@ -24,7 +26,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                string Fdate = "", TDate = "",FRDate ="";
+                string Fdate = "", TDate = "", FRDate = "";
                 Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(7).ToString("yyyy-MM-dd");
                 FRDate = System.DateTime.Now.ToString("yyyy-MM-dd");
@@ -132,6 +134,10 @@ namespace Evo
             BindGridFerReq(1);
         }
 
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq(1);
+        }
         public void BindGridFerReq(int p)
         {
             DataTable dt = new DataTable();
@@ -139,8 +145,8 @@ namespace Evo
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-            nv.Add("@BenchLocation",txtBenchLocationNew.Text);
+            //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation", !string.IsNullOrEmpty(txtBenchLocationNew.Text) ? txtBenchLocationNew.Text : "0");
             nv.Add("@RequestType", RadioButtonListSourse.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
@@ -174,7 +180,7 @@ namespace Evo
             {
                 // dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
 
-                dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue,"D");
+                dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue, "D");
 
             }
 
@@ -208,7 +214,7 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 10)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvFer.PageIndex++;
                     gvFer.DataBind();
@@ -528,7 +534,6 @@ namespace Evo
             BindGridFerReq(1);
         }
 
-
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             BindGridFerReq(1);
@@ -557,8 +562,6 @@ namespace Evo
         {
             BindGridFerReq(1);
         }
-
-
 
         protected void gvFer_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -590,7 +593,6 @@ namespace Evo
             CheckFdateSet();
         }
 
-
         public void CheckFdateSet()
         {
             string name = "";
@@ -609,8 +611,8 @@ namespace Evo
                 }
                 txtBenchLocationNew.Text = name1.Remove(name1.Length - 1, 1);
 
-             //   txtFertilizationDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
-              //  PanelFertilizationDate.Visible = true;
+                //   txtFertilizationDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
+                //  PanelFertilizationDate.Visible = true;
                 BindGridFerReq(0);
 
             }
@@ -621,8 +623,6 @@ namespace Evo
             }
         }
 
-
-
         protected void btiFertilizationDate_Click(object sender, EventArgs e)
         {
             objTask.UpdateFDate(txtBenchLocationNew.Text, txtFertilizationDate.Text);
@@ -630,19 +630,17 @@ namespace Evo
 
         }
 
-      
-
         protected void RadioButtonListFdateChange_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            if(RadioButtonListFdateChange.SelectedValue =="0")
+            if (RadioButtonListFdateChange.SelectedValue == "0")
             {
                 dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue, "A");
-                txtFertilizationDate.Text =Convert.ToDateTime(dt.Rows[0]["FertilizeSeedDate"]).ToString("yyyy-MM-dd");
+                txtFertilizationDate.Text = Convert.ToDateTime(dt.Rows[0]["FertilizeSeedDate"]).ToString("yyyy-MM-dd");
             }
-           else if (RadioButtonListFdateChange.SelectedValue == "1")
+            else if (RadioButtonListFdateChange.SelectedValue == "1")
             {
-             
+
                 dt = objTask.GetManualRequestStartfff(txtBenchLocationNew.Text, ddlJobNo.SelectedValue, Session["Facility"].ToString(), RadioButtonListSourse.SelectedValue, "D");
                 txtFertilizationDate.Text = Convert.ToDateTime(dt.Rows[0]["FertilizeSeedDate"]).ToString("yyyy-MM-dd");
             }
@@ -654,11 +652,53 @@ namespace Evo
 
         protected void btnFCReset_Click(object sender, EventArgs e)
         {
-           
+
             PanelFertilizationDate.Visible = false;
             txtBenchLocationNew.Text = "";
             BindGridFerReq(0);
 
+        }
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return customers;
+                }
+            }
+        }
+
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
+            BindGridFerReq(1);
         }
     }
 }

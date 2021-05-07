@@ -485,9 +485,10 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select GTS.jobcode,'' as wo,GTS.itemdescp,GTS.itemno,GTS.TraySize,GPD.Trays as trays_actual,GPD.SeedDate as  SeededDate,GTS.loc_seedline,GPD.FertilizeSeedDate,GPD.RequestType  " +
+                strQuery = "Select GTS.jobcode,'' as wo,GTS.itemdescp,GTS.itemno,GTS.TraySize,GPD.Trays as trays_actual,GPD.SeedDate as  SeededDate,GTS.loc_seedline,GPD.FertilizeSeedDate,GPD.RequestType, GTS.GenusCode ,IsNull(L.EmployeeName,'System') as AssignedBy " +
                             ",GPD.FacilityID,GPD.Trays,'0' as GrowerPutAwayId,GPD.GreenHouseID, cname,'Fertilization Count-' + GPD.DateCountNo as DateCountNo,isnull(FD.FertilizationCode,0) as FertilizationCode,GTS.jid,FD.TaskRequestKey " +
-                            "from gti_jobs_seeds_plan_Manual GTS   inner join GrowerPutAwayDetailsFertilizationMenual GPD on GPD.Jid=GTS.Jid  	 left join FertilizationRequest FD on GPD.Jid=FD.ManualID  WHERE 	GTS.ISActiveSpray=1     and GPD.IsFertilize is null and GPD.IsAssistant in (0,1)  ";
+                            "from gti_jobs_seeds_plan_Manual GTS   inner join GrowerPutAwayDetailsFertilizationMenual GPD on GPD.Jid=GTS.Jid  	 left join FertilizationRequest FD on GPD.Jid=FD.ManualID " +
+                            "left join Login L on L.Id=FD.CreatedBy WHERE 	GTS.ISActiveSpray=1     and GPD.IsFertilize is null and GPD.IsAssistant in (0,1)  ";
 
                 if (FacilityID !="0")
                 {

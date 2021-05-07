@@ -291,21 +291,8 @@
                             </div>
                         </div>
                     </header>
-
-
-
-
-
-
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
-
-
-                    <footer class="admin__footer">
-                        <div class="footer__copyright text-center">
-                            <%-- Designed by <a href="https://www.infintrixglobal.com" target="_blank" title="Infintrix Global Private Limited">Infintrix Global Private Limited</a>--%>
-                        </div>
-                    </footer>
                 </div>
                 <script src="js/jquery.min.js"></script>
                 <script defer="defer" src="js/popper.min.js"></script>
