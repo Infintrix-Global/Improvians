@@ -100,11 +100,11 @@ namespace Evo
                      
                     function drawChart() {         
                     var data = google.visualization.arrayToDataTable([  
-                    ['Task Distribution of Profiles', 'Hours / Day'],");
+                    ['Task Distribution of Profiles', 'Hours / Day','TaskLimit'],");
 
                 foreach (DataRow row in dsChartData.Rows)
                 {
-                    strScript.Append("['" + row[0].ToString() + "'," + row[1].ToString() + "],");
+                    strScript.Append("['" + row[0].ToString() + "'," + row[1].ToString() + ",8],");
                 }
 
                 strScript.Remove(strScript.Length - 1, 1);

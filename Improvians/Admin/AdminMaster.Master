@@ -261,7 +261,13 @@
                                     </li>
                                 </ul>
                             </li>
-
+                              <li>
+                                <a class="current" href="TaskTypeWorkHoursMaster.aspx" title="Task Type Work Hours Master">
+                                    <i class="side-icon fas fa-stopwatch"></i>
+                                    <span class="side-title">Task Type Work Hours</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </aside>
