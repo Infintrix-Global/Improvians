@@ -6,7 +6,7 @@
     <asp:ScriptManager ID="SrciptManager1" runat="server"></asp:ScriptManager>
     <div class="admin__content">
         <div class="container-fluid">
-            <h1 class="text-center text-sm-left">Edit EditCustomer</h1>
+            <h1 class="text-center text-sm-left">Edit Sales Representative</h1>
 
             <hr />
             <!-- BEGIN FORM-->

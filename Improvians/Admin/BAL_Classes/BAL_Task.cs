@@ -67,7 +67,7 @@ namespace Evo.Admin.BAL_Classes
                 General objGeneral = new General();
                 objGeneral.AddParameterWithValueToSQLCommand("@id", eid);
 
-                ds = objGeneral.GetDatasetByCommand_SP("GetTaskTypeDetailById");
+                ds = objGeneral.GetDatasetByCommand_SP("GetTaskTypeWorkHoursDetailById");
             }
             catch (Exception ex)
             {

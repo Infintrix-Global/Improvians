@@ -366,6 +366,7 @@ public class ChartDetails
 public class ReportChartDetails
 {
     public DateTime WorkDate { get; set; }
+    public string DayofWorkDate { get; set; }
     public int ID { get; set; }
     public List<ChartDetails> lstChartDetail { get; set; }
 }

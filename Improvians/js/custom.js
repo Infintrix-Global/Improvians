@@ -70,9 +70,6 @@ jQuery(document).ready(function ($) {
 
             //Dashboard Task Chart Call
             if ($("#task-distribution").length > 0) { drawDashTaskDist(); }
-            if ($("#task-distribution-1").length > 0) { drawTaskDist1(); }
-            if ($("#task-distribution-2").length > 0) { drawTaskDist2(); }
-            if ($("#task-distribution-3").length > 0) { drawTaskDist3(); }
 
             makeTitleBold();
         }
@@ -118,48 +115,4 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    //Dashboard Task Chart Function
-    function drawTaskDist1() {
-        var taskDistData = google.visualization.arrayToDataTable([
-            ['Profiles', 'Tasks', 'Task Limit'],
-            ['Assitant Grower', 3, 8],
-            ['Supervisor', 8, 8],
-            ['Sprayer', 5, 8],
-            ['Irrigator', 13, 8],
-            ['Crew Lead', 6, 8],
-        ]);
-
-        var taskDistChart = new google.visualization.ColumnChart(document.getElementById('task-distribution-1'));
-        taskDistChart.draw(taskDistData, taskDistOptions);
-    }
-
-    //Dashboard Task Chart Function
-    function drawTaskDist2() {
-        var taskDistData = google.visualization.arrayToDataTable([
-            ['Profiles', 'Tasks', 'Task Limit'],
-            ['Assitant Grower', 2, 8],
-            ['Supervisor', 4, 8],
-            ['Sprayer', 6, 8],
-            ['Irrigator', 8, 8],
-            ['Crew Lead', 10, 8],
-        ]);
-
-        var taskDistChart = new google.visualization.ColumnChart(document.getElementById('task-distribution-2'));
-        taskDistChart.draw(taskDistData, taskDistOptions);
-    }
-
-    //Dashboard Task Chart Function
-    function drawTaskDist3() {
-        var taskDistData = google.visualization.arrayToDataTable([
-            ['Profiles', 'Tasks', 'Task Limit'],
-            ['Assitant Grower', 10, 8],
-            ['Supervisor', 12, 8],
-            ['Sprayer', 5, 8],
-            ['Irrigator', 3, 8],
-            ['Crew Lead', 15, 8],
-        ]);
-
-        var taskDistChart = new google.visualization.ColumnChart(document.getElementById('task-distribution-3'));
-        taskDistChart.draw(taskDistData, taskDistOptions);
-    }
 });

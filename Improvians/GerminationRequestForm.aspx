@@ -121,7 +121,7 @@
 
                             <asp:TemplateField HeaderText="Customer" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblCustomer" data-head="Plant Type" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
+                                    <asp:Label ID="lblCustomer" data-head="Customer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

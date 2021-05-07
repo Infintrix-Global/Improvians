@@ -261,7 +261,13 @@
                                     </li>
                                 </ul>
                             </li>
-
+                              <li>
+                                <a class="current" href="TaskTypeWorkHoursMaster.aspx" title="Task Type Work Hours Master">
+                                    <i class="side-icon fas fa-stopwatch"></i>
+                                    <span class="side-title">Task Type Work Hours</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </aside>
@@ -291,21 +297,8 @@
                             </div>
                         </div>
                     </header>
-
-
-
-
-
-
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
-
-
-                    <footer class="admin__footer">
-                        <div class="footer__copyright text-center">
-                            <%-- Designed by <a href="https://www.infintrixglobal.com" target="_blank" title="Infintrix Global Private Limited">Infintrix Global Private Limited</a>--%>
-                        </div>
-                    </footer>
                 </div>
                 <script src="js/jquery.min.js"></script>
                 <script defer="defer" src="js/popper.min.js"></script>

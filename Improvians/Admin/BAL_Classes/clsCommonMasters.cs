@@ -63,7 +63,7 @@ namespace Evo.Admin
             return cipherText;
         }
 
-      
+
         public int InsertEmployee(Employee objEmployee)
         {
             int _isInserted = -1;
@@ -137,8 +137,8 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@ViaApp", obj.IsApp);
                 objGeneral.AddParameterWithValueToSQLCommand("@ViaEmail", obj.IsEmail);
                 objGeneral.AddParameterWithValueToSQLCommand("@TaskName", obj.Task);
-                objGeneral.AddParameterWithValueToSQLCommand("@UserName", obj.User);                
-                objGeneral.AddParameterWithValueToSQLCommand("@LoginID", 5);                
+                objGeneral.AddParameterWithValueToSQLCommand("@UserName", obj.User);
+                objGeneral.AddParameterWithValueToSQLCommand("@LoginID", 5);
 
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("SP_AddNotificationPreference");
             }
@@ -220,6 +220,24 @@ namespace Evo.Admin
                 objGeneral.AddParameterWithValueToSQLCommand("@IsActive", obj.IsActive);
 
                 _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddTaskTypeMaster");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
+        public int InsertTaskTypeWorkHoursMaster(TaskTypeWorkHoursMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+
+                objGeneral.AddParameterWithValueToSQLCommand("@TaskType", obj.TaskType);
+                objGeneral.AddParameterWithValueToSQLCommand("@TaskHours", obj.TaskHours);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("AddTaskTypeWorkHoursMaster");
             }
             catch (Exception ex)
             {
@@ -385,6 +403,24 @@ namespace Evo.Admin
             }
             return _isInserted;
         }
+        public int UpdateTaskTypeWorkHoursMaster(TaskTypeWorkHoursMasters obj)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ID", obj.id);
+                objGeneral.AddParameterWithValueToSQLCommand("@TaskType", obj.TaskType);
+                objGeneral.AddParameterWithValueToSQLCommand("@TaskHours", obj.TaskHours);
+
+                _isInserted = objGeneral.GetExecuteScalarByCommand_SP("UpdateTaskTypeeWorkHours");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
         public int UpdateCropHealth(CropHealthMasters obj)
         {
             int _isInserted = -1;
@@ -467,6 +503,21 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
+        public DataTable GetAllTaskTypeWorkHourList()
+        {
+            try
+            {
+                objGeneral.ClearParameters();
+
+
+                objGeneral.AddParameterWithValueToSQLCommand("@mode", 24);
+                ds = objGeneral.GetDatasetByCommand_SP("GET_Common");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
 
         public DataTable GetAllCropHealthList()
         {
@@ -516,7 +567,7 @@ namespace Evo.Admin
             {
             }
             return dt;
-        }       
+        }
 
         public DataTable GetPlanProductionCrop(string crop)
         {
@@ -808,6 +859,21 @@ namespace Evo.Admin
             }
             return _isDeleted;
         }
+        public int RemoveTaskTypeWorkHours(int employeeID)
+        {
+            int _isDeleted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", employeeID);
+                _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("DeleteTaskTypeWorkHours");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isDeleted;
+        }
 
         public int RemoveCropHealth(int eid)
         {
@@ -895,7 +961,7 @@ namespace Evo.Admin
             return _isInserted;
         }
 
-        public int UpdateHelpFAQ(int ID,string Title, string Description)
+        public int UpdateHelpFAQ(int ID, string Title, string Description)
         {
             int _isInserted = -1;
             try
@@ -1040,6 +1106,15 @@ public class TaskTypeMasters
 {
     public int id { get; set; }
     public string TaskType { get; set; }
+    public bool IsActive { get; set; }
+
+}
+
+public class TaskTypeWorkHoursMasters
+{
+    public int id { get; set; }
+    public string TaskType { get; set; }
+    public int TaskHours { get; set; }
     public bool IsActive { get; set; }
 
 }
