@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col m12">
                 <div class="mb-3">
-                    <h2>Job Information Page</h2>
+                    <h2>Job Information</h2>
                 </div>
 
                 <div class="row align-items-end" id="divFilter" runat="server" visible="false">
