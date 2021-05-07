@@ -8,6 +8,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Evo.BAL_Classes;
 using Evo.Bal;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Evo
 {
@@ -78,7 +80,6 @@ namespace Evo
 
         public void Bindcname()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -89,7 +90,6 @@ namespace Evo
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
         public void BindJobCode(string ddlBench)
@@ -114,7 +114,7 @@ namespace Evo
             ddlBenchLocation.ClearSelection();
         }
 
-      
+
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindJobCode(ddlBenchLocation.SelectedValue);
@@ -131,6 +131,11 @@ namespace Evo
             BindGridFerReq(1);
         }
 
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq(1);
+        }
+
         public void BindGridFerReq(int p)
         {
             DataTable dt = new DataTable();
@@ -143,27 +148,6 @@ namespace Evo
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
 
-            //int c = 0;
-            //string x = "";
-            //foreach (RepeaterItem item in repBench.Items)
-            //{
-            //    CheckBox chkBench = (CheckBox)item.FindControl("chkBench");
-            //    if (chkBench.Checked)
-            //    {
-            //        c = 1;
-            //        x += "'" +((HiddenField)item.FindControl("hdnValue")).Value + "',";
-
-            //    }
-            //}
-            //if (c > 0)
-            //{
-            //    string chkSelected = x.Remove(x.Length - 1, 1);
-            //    nv.Add("@BenchLocation", chkSelected);
-            //}
-            //else
-            //{
-            //    nv.Add("@BenchLocation", "0");
-            //}
             if (Session["Role"].ToString() == "12")
             {
                 dt = objCommon.GetDataTable("SP_GetChemicalRequestAssistantGrower", nv);
@@ -173,8 +157,6 @@ namespace Evo
                 dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
             }
 
-
-           
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
@@ -190,11 +172,7 @@ namespace Evo
             {
                 highlight(dt.Rows.Count);
             }
-
-
         }
-
-
 
         // Show Details
         private void highlight(int limit)
@@ -211,11 +189,11 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 10)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvFer.PageIndex++;
                     gvFer.DataBind();
-                    highlight((limit-10));
+                    highlight((limit - 10));
                 }
             }
         }
@@ -230,15 +208,8 @@ namespace Evo
             // gvJobHistory.DataBind();
         }
 
-
-
-
-
         protected void gvFer_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
-
-
             if (e.CommandName == "Job")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -246,15 +217,12 @@ namespace Evo
                 string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
                 string CCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
                 string TaskRequestKey = gvFer.DataKeys[rowIndex].Values[4].ToString();
-
-                
                 //  Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1},&CCode={2}", BatchLocation, jobCode, CCode));
                 Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestKey={3}", BatchLocation, jobCode, CCode, TaskRequestKey));
             }
 
             if (e.CommandName == "GStart")
             {
-
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string BatchLocation = gvFer.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
@@ -262,8 +230,6 @@ namespace Evo
                 string TaskRequestKey = gvFer.DataKeys[rowIndex].Values[4].ToString();
 
                 Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestKey={3}", BatchLocation, jobCode, CCode, TaskRequestKey));
-         
-
             }
         }
 
@@ -272,8 +238,6 @@ namespace Evo
             gvFer.PageIndex = e.NewPageIndex;
             BindGridFerReq(1);
         }
-
-
 
         protected void chckchanged(object sender, EventArgs e)
         {
@@ -290,7 +254,6 @@ namespace Evo
                     chckrw.Checked = false;
                 }
             }
-
         }
 
         protected void btnManual_Click(object sender, EventArgs e)
@@ -301,17 +264,12 @@ namespace Evo
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             RadioButtonListSourse.Items[0].Selected = false;
-
-
             RadioButtonListSourse.ClearSelection();
             Bindcname();
-           
             BindBenchLocation(Session["Facility"].ToString());
             BindJobCode(ddlBenchLocation.SelectedValue);
-
             BindGridFerReq(1);
         }
-
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -341,13 +299,10 @@ namespace Evo
             BindGridFerReq(1);
         }
 
-
-
         protected void gvFer_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
                 Label lblsource = (Label)e.Row.FindControl("lblsource");
                 if (lblsource.Text == "Manual")
                 {
@@ -356,11 +311,8 @@ namespace Evo
 
                 Label lblGermDate = (Label)e.Row.FindControl("lblChemDate");
                 string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
-
                 DateTime dtime = Convert.ToDateTime(dtimeString);
-
                 DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
-
                 if (nowtime > dtime)
                 {
                     e.Row.CssClass = "overdue";
@@ -371,6 +323,48 @@ namespace Evo
         protected void btnManual_Click1(object sender, EventArgs e)
         {
             Response.Redirect("~/ChemicalReqManual.aspx");
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return customers;
+                }
+            }
+        }
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
+            BindGridFerReq(1);
         }
     }
 }
