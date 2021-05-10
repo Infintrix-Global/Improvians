@@ -218,6 +218,7 @@
     <Content Include="Admin\ViewCustomer.aspx" />
     <Content Include="Admin\ViewPlantProductionProfile.aspx" />
     <Content Include="Admin\ViewEmployee.aspx" />
+    <Content Include="ForgetPassword.aspx" />
     <Content Include="ChemicalJobBuildUp.aspx" />
     <Content Include="ChemicalReqManual.aspx" />
     <Content Include="ChemicalStart.aspx" />
@@ -689,6 +690,13 @@
     <Compile Include="BAL_Classes\clsCommonMasters.cs" />
     <Compile Include="BAL_Classes\General.cs" />
     <Compile Include="BAL_Classes\RandomImage.cs" />
+    <Compile Include="ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChemicalJobBuildUp.aspx.cs">
       <DependentUpon>ChemicalJobBuildUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
