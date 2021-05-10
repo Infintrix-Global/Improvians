@@ -32,7 +32,30 @@ namespace Evo
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/PrintSeedlinePlannerReport.aspx?Date=" + ddlDate.SelectedItem.Text);
+            //Response.Redirect("~/PrintSeedlinePlannerReport.aspx?Date=" + ddlDate.SelectedItem.Text);
+            BindRepeater(ddlDate.SelectedItem.Text);
+
+        }
+
+        private void BindRepeater(string strDate)
+        {
+            string strSQL = " select distinct loc_seedline, CONVERT(date, CreateOn) as CreateOn from gti_jobs_seeds_plan";
+            if (!string.IsNullOrEmpty(strDate) && strDate != "--Select--")
+                strSQL = strSQL + " where CONVERT(date, CreateOn)= '" + strDate + "'";
+            DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
+            repReport.DataSource = dt;
+            repReport.DataBind();
+        }
+
+        protected void repReport_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            GridView DGJob = (GridView)e.Item.FindControl("DGJob");
+            Label lblFacility = (Label)e.Item.FindControl("lblFacility");
+            Label lblDate = (Label)e.Item.FindControl("lblDate");
+            string strSQL = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
+            DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
+            DGJob.DataSource = dt;
+            DGJob.DataBind();
         }
     }
 }
