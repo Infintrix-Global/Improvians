@@ -95,7 +95,7 @@ namespace Evo.Admin
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             DataTable dtSearch1;
-            string sqr = "Select *,STUFF((SELECT  ',' + FacilityName  FROM Facility F join[FacilityEmployeeMap] FM ON  F.FacilityID = FM.FacilityID   where EmployeeID = L.ID        FOR XML PATH('')), 1, 1, '') AS Facility from Login L  inner join Role R on L.RoleID=R.RoleID where L.IsActive=1";
+            string sqr = "Select *,STUFF((SELECT  ',' + FacilityName  FROM Facility F join[FacilityEmployeeMap] FM ON  F.FacilityID = FM.FacilityID   where EmployeeID = L.ID        FOR XML PATH('')), 1, 1, '') AS Facility from Login L  inner join Role R on L.RoleID=R.RoleID where L.IsActive=1 and R.RoleID not in('13','14')";
             if (txtName.Text != "")
             {
                 sqr += "and L.EmployeeName like '%' +'" + txtName.Text + "'+ '%'";
@@ -148,6 +148,7 @@ namespace Evo.Admin
             //txtMobile.Text = "";
             //ddlDepartment.SelectedIndex = 0;
             ddlDesignation.SelectedIndex = 0;
+            GetEmployeeList();
         }
     }
 }
