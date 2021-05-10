@@ -22,7 +22,7 @@
 
                                 <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
-                                        <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                                        <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                                         <asp:Label ID="lbljobcode" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                         <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
@@ -66,36 +66,29 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Planned Due Date">
+                                <asp:TemplateField HeaderText="Plant Due Date">
                                     <ItemTemplate>
                                         <asp:Label ID="lblSeededPlanDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Put Away Facility">
+                               <%-- <asp:TemplateField HeaderText="Put Away Facility">
                                     <ItemTemplate>
                                         <asp:Label ID="lblloc_seedline" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>
+                                </asp:TemplateField>  --%>                             
 
-
-                                <asp:TemplateField HeaderText="Genus Code">
+                                <asp:TemplateField HeaderText="Job Source" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-
-                                <%--<asp:TemplateField HeaderText="Job Source" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblsource" data-head="Job Source" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
+                                        <asp:Label ID="lblsource" data-head="Job Source" runat="server" Text="Navision"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
+                                        <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text="System"></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>--%>
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
