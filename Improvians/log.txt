@@ -3464,3 +3464,24 @@ Parameter name: index
    at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
    at System.Web.HttpResponse.Redirect(String url)
    at Evo.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e) in C:\Users\evo1\source\repos\Improvians\Improvians\Admin\EditProfile.aspx.cs:line 207Thread was being aborted. at 5/10/2021 4:45:04 AM
+*****Error message=****   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Evo.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e) in C:\Users\evo1\source\repos\Improvians\Improvians\Admin\EditProfile.aspx.cs:line 207Thread was being aborted. at 5/10/2021 5:28:58 AM
+*****Error message=****   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Evo.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e) in C:\Users\evo1\source\repos\Improvians\Improvians\Admin\EditProfile.aspx.cs:line 207Thread was being aborted. at 5/10/2021 5:29:34 AM
+*****Error message=****   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Evo.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e) in C:\Users\evo1\source\repos\Improvians\Improvians\Admin\EditProfile.aspx.cs:line 207Thread was being aborted. at 5/10/2021 5:30:24 AM
