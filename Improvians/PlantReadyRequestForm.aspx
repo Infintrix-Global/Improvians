@@ -1,8 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="PlantReadyRequestForm.aspx.cs" Inherits="Evo.PlantReadyRequestForm" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+
     <div class="site__container">
         <h2 class="head__title-icon">
             <img src="./images/dashboard_plant-ready.png" width="137" height="132" alt="Plant Ready">
@@ -10,7 +14,19 @@
         </h2>
 
         <div class="row">
-            <div class="col-lg-3 col-md-4 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Job No</label>
+                <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
+
+                <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                    MinimumPrefixLength="2"
+                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                    TargetControlID="txtSearchJobNo"
+                    ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                </cc1:AutoCompleteExtender>
+
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                 <%-- <span class="error_message">
@@ -18,14 +34,22 @@
                         SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
                 </span>--%>
             </div>
-            <div class="col-lg-3 col-md-4 mb-3">
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-            <div class="col-lg-3 col-md-4 mb-3">
-                <label>Customer </label>
-                <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Assigned By </label>
+                <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Customer </label>
+                <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+
         </div>
 
         <div class="row align-items-end">
@@ -37,18 +61,20 @@
                     <asp:ListItem Text="App" Value="App"></asp:ListItem>
                 </asp:DropDownList>
             </div>
+
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                 <label>From Date</label>
                 <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
+
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                 <label>To Date </label>
                 <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
+
             <div class="col-xl-4 col-12 mb-3">
                 <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
-
                 <%--<asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />--%>
                 <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action" OnClick="btnManual_Click" />
                 <%-- <asp:Button ID="btnJob" runat="server" Text="JobBuildUp" CssClass="bttn bttn-primary bttn-action" OnClick="btnJob_Click" />--%>
