@@ -744,8 +744,8 @@
     <Compile Include="ChemicalTaskViewDetails.aspx.designer.cs">
       <DependentUpon>ChemicalTaskViewDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CommonControl.cs" />
-    <Compile Include="CommonControlNavision.cs" />
+    <Compile Include="BAL_Classes\CommonControl.cs" />
+    <Compile Include="BAL_Classes\CommonControlNavision.cs" />
     <Compile Include="CreateTask.aspx.cs">
       <DependentUpon>CreateTask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
