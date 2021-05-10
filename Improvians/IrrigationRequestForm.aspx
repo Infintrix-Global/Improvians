@@ -1,8 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationRequestForm.aspx.cs" Inherits="Evo.IrrigationRequestForm" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+
     <div class="site__container">
         <h2 class="head__title-icon mb-3">
             <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation">
@@ -10,23 +14,40 @@
         </h2>
 
         <div class="row">
-            <div class="col-lg-3 col-md-4">
-                <label>Bench Location </label>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Job No</label>
+                <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
 
-                <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                <span class="error_message">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
-                        SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                </span>
+                <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                    MinimumPrefixLength="2"
+                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                    TargetControlID="txtSearchJobNo"
+                    ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                </cc1:AutoCompleteExtender>
             </div>
-            <div class="col-lg-3 col-md-4 mb-3 mb-lg-0">
+
+            <%--<div class="col-lg-3 col-md-4">--%>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Bench Location </label>
+                <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+
+                <%--<div class="col-lg-3 col-md-4 mb-3 mb-lg-0">--%>
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-            <div class="col-lg-3 col-md-4 mb-3 mb-lg-0">
-                <label>Customer </label>
-                <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Assigned By </label>
+                <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Customer </label>
+                <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+
         </div>
 
         <div class="row align-items-end">

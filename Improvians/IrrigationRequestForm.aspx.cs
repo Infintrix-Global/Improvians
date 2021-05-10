@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -80,11 +82,8 @@ namespace Evo
             }
         }
 
-
-
         public void Bindcname()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -95,7 +94,6 @@ namespace Evo
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
         public void BindJobCode(string ddlBench)
@@ -135,18 +133,16 @@ namespace Evo
             BindGridIrrigation(1);
         }
 
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridIrrigation(1);
+        }
 
         public void BindGridIrrigation(int p)
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@wo","");
-            //  nv.Add("@JobCode",ddlJobNo.SelectedValue);
-            //  nv.Add("@CustomerName",ddlCustomer.SelectedValue);
-            //   nv.Add("@Facility",ddlFacility.SelectedValue);
-            //  nv.Add("@Mode", "1");
-            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+           
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
@@ -186,16 +182,7 @@ namespace Evo
             }
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
-
-
-            //foreach (GridViewRow row in GridIrrigation.Rows)
-            //{
-            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
-            //    if (checkJob == JobCode)
-            //    {
-            //        row.CssClass = "highlighted";
-            //    }
-            //}
+            
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
@@ -226,7 +213,6 @@ namespace Evo
             }
         }
 
-
         public void BindSupervisorList()
         {
             //NameValueCollection nv = new NameValueCollection();
@@ -256,9 +242,6 @@ namespace Evo
                 ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
             }
         }
-
-
-
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
@@ -295,9 +278,7 @@ namespace Evo
                 //  lblJobID.Text = GridIrrigation.DataKeys[rowIndex].Values[1].ToString();
                 // lblGrowerID.Text= GridIrrigation.DataKeys[rowIndex].Values[2].ToString();
 
-
                 txtNotes.Focus();
-
             }
 
             if (e.CommandName == "Job")
@@ -318,11 +299,8 @@ namespace Evo
                 string IrrigationCode = GridIrrigation.DataKeys[rowIndex].Values[3].ToString();
                 string TaskRequestKey = GridIrrigation.DataKeys[rowIndex].Values[4].ToString();
                 Response.Redirect(String.Format("~/IrrigationStart.aspx?Bench={0}&jobCode={1}&ICode={2}&TaskRequestKey={3}", BatchLocation, jobCode, IrrigationCode, TaskRequestKey));
-
             }
         }
-
-
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -338,7 +316,6 @@ namespace Evo
             {
                 if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 {
-
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
@@ -373,9 +350,6 @@ namespace Evo
                     if (result > 0)
                     {
                         // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-
-
-
                     }
                     else
                     {
@@ -400,7 +374,6 @@ namespace Evo
 
         public void clear()
         {
-
             ddlSupervisor.SelectedIndex = 0;
             txtWaterRequired.Text = "";
             txtNotes.Text = "";
@@ -433,11 +406,7 @@ namespace Evo
                 {
                     tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
                 }
-
             }
-            //   txtIrrigatedNoTrays.Text = tray.ToString();
-
-
         }
 
         protected void chckchanged(object sender, EventArgs e)
@@ -455,7 +424,6 @@ namespace Evo
                     chckrw.Checked = false;
                 }
             }
-
         }
 
         protected void btnManual_Click(object sender, EventArgs e)
@@ -499,6 +467,50 @@ namespace Evo
                     e.Row.CssClass = "overdue";
                 }
             }
+        }
+
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return customers;
+                }
+            }
+        }
+
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
+            BindGridIrrigation(1);
         }
     }
 }

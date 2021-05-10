@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -21,7 +22,6 @@ namespace Evo
                 BindJobCode();
                 // BindFacility();
                 BindGridPlantReady(0);
-
             }
         }
 
@@ -148,6 +148,11 @@ namespace Evo
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //BindJobCode(ddlBenchLocation.SelectedValue);
+            BindGridPlantReady(1);
+        }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridPlantReady(1);
@@ -163,10 +168,20 @@ namespace Evo
             BindGridPlantReady(1);
         }
 
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridPlantReady(1);
+        }
+
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             Bindcname();
             BindJobCode();
+            BindGridPlantReady(1);
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
             BindGridPlantReady(1);
         }
         protected void gvPlantReady_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -204,6 +219,47 @@ namespace Evo
                     e.Row.CssClass = "overdue";
                 }
             }
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return customers;
+                }
+            }
+        }
+
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            BindGridPlantReady(1);
         }
     }
 }

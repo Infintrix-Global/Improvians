@@ -24,7 +24,6 @@
                     TargetControlID="txtSearchJobNo"
                     ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
                 </cc1:AutoCompleteExtender>
-
             </div>
             <%--<div class="col-lg-3 col-md-4">--%>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">

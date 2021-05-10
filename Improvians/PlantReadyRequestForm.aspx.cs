@@ -3,6 +3,7 @@ using Evo.BAL_Classes;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -23,8 +24,6 @@ namespace Evo
                 string Fdate = "", TDate = "";
                 Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(10).ToString("yyyy-MM-dd");
-
-
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
 
@@ -71,10 +70,8 @@ namespace Evo
             }
         }
 
-
         public void Bindcname()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -85,7 +82,6 @@ namespace Evo
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
         public void BindJobCode(string ddlBench)
@@ -123,6 +119,12 @@ namespace Evo
         {
             BindGridPlantReady(1);
         }
+
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridPlantReady(1);
+        }
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             BindGridPlantReady(1);
@@ -131,7 +133,6 @@ namespace Evo
         {
             BindGridPlantReady(1);
         }
-
 
         private string wo
         {
@@ -151,7 +152,6 @@ namespace Evo
 
         public void BindGridPlantReady(int p)
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
@@ -161,7 +161,6 @@ namespace Evo
             nv.Add("@RequestType", RadioButtonListSourse.SelectedValue);
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
-
 
             if (Session["Role"].ToString() == "12")
             {
@@ -186,8 +185,6 @@ namespace Evo
             {
                 highlight(dt.Rows.Count);
             }
-
-
         }
         private void highlight(int limit)
         {
@@ -241,14 +238,10 @@ namespace Evo
             }
         }
 
-
-
         public void BindJobCode()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-
             nv.Add("@Mode", "7");
             dt = objCommon.GetDataTable("GET_Common", nv);
             ddlJobNo.DataSource = dt;
@@ -256,30 +249,7 @@ namespace Evo
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
-
-        //public void BindFacility()
-        //{
-
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-
-        //    nv.Add("@Mode", "9");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlFacility.DataSource = dt;
-        //    ddlFacility.DataTextField = "loc_seedline";
-        //    ddlFacility.DataValueField = "loc_seedline";
-        //    ddlFacility.DataBind();
-        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        //}
-        //protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    BindGridPlantReady(1);
-        //}
-
-
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
@@ -367,7 +337,6 @@ namespace Evo
                 }
                 else
                 {
-
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@OperatorID", Session["LoginID"].ToString());
                     nv.Add("@Notes", "");
@@ -383,12 +352,9 @@ namespace Evo
                     {
                         Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result1, lblPRRId.Text));
                     }
-
                 }
             }
         }
-
-
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -448,9 +414,15 @@ namespace Evo
 
         public void clear()
         {
-
             ddlSupervisor.SelectedIndex = 0;
+        }
 
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
+           // BindGridPlantReady(txtSearchJobNo.Text, 1);
+            BindGridPlantReady(1);
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -487,9 +459,41 @@ namespace Evo
                 }
             }
         }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return customers;
+                }
+            }
+        }
     }
-
 }
-
-
-

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -83,10 +84,9 @@ namespace Evo
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@LoginId", Session["LoginID"].ToString());           
+            nv.Add("@LoginId", Session["LoginID"].ToString());
 
             dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
-
 
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
@@ -96,6 +96,7 @@ namespace Evo
                 highlight(dt.Rows.Count);
             }
         }
+
         private void highlight(int limit)
         {
             var i = gvPlantReady.Rows.Count;
@@ -120,16 +121,7 @@ namespace Evo
         }
         public void BindSupervisorList()
         {
-            //NameValueCollection nv = new NameValueCollection();
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            //ddlSupervisor.DataTextField = "EmployeeName";
-            //ddlSupervisor.DataValueField = "ID";
-            //ddlSupervisor.DataBind();
-            //ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-
             NameValueCollection nv = new NameValueCollection();
-            //if (Session["Role"].ToString() == "1")
-            //{
 
             DataTable dt = new DataTable();
 
@@ -153,16 +145,7 @@ namespace Evo
             ddlDumptAssignment.DataValueField = "ID";
             ddlDumptAssignment.DataBind();
             ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            //}
-            //if (Session["Role"].ToString() == "12")
-            //{
-            //    ddlDumptAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-            //    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            //    ddlDumptAssignment.DataTextField = "EmployeeName";
-            //    ddlDumptAssignment.DataValueField = "ID";
-            //    ddlDumptAssignment.DataBind();
-            //    ddlDumptAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            //}
+
         }
         public void Bindcname()
         {
@@ -178,7 +161,6 @@ namespace Evo
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
-
         public void BindJobCode()
         {
             DataTable dt = new DataTable();
@@ -191,24 +173,9 @@ namespace Evo
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
-        //public void BindFacility()
-        //{
 
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-
-        //    nv.Add("@Mode", "9");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlFacility.DataSource = dt;
-        //    ddlFacility.DataTextField = "loc_seedline";
-        //    ddlFacility.DataValueField = "loc_seedline";
-        //    ddlFacility.DataBind();
-        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        //}
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridPlantReady(1);
@@ -224,11 +191,34 @@ namespace Evo
             BindGridPlantReady(1);
         }
 
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //BindJobCode(ddlBenchLocation.SelectedValue);
+            //Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
+            //BindJobCode(ddlBenchLocation.SelectedValue, "0", "0");
+            //BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0");
+
+            BindGridPlantReady(1);
+        }
+
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridPlantReady(1);
+        }
+
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            BindGridPlantReady(1);
+        }
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindGridPlantReady(1);
+        }
+
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             Bindcname();
             BindJobCode();
-
             BindGridPlantReady(1);
         }
 
@@ -306,16 +296,13 @@ namespace Evo
                 {
                     Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&TaskRequestKey={3}", result, ChId, Did, TaskRequestKey));
                 }
-            }            
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
             NameValueCollection nv = new NameValueCollection();
-            //  nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            //  nv.Add("@GrowerPutAwayId", lblGrowerID.Text);
-            // nv.Add("@WO",wo);                     
 
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
@@ -410,6 +397,41 @@ namespace Evo
                 }
             }
         }
-    }
 
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return customers;
+                }
+            }
+        }
+    }
 }
