@@ -828,7 +828,7 @@ namespace Evo
         {
             string Batchlocation = "";
             int FertilizationCode = 0;
-
+            bool hasValue = false;
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -836,6 +836,7 @@ namespace Evo
 
                 if (chckrw.Checked == true)
                 {
+                    hasValue = true;
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
 
@@ -884,20 +885,28 @@ namespace Evo
 
                 }
             }
+            if (!hasValue)
+            {
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
+
+            }
+            else
+            {
+                objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
 
 
-            objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
+                string message = "Assignment Successful";
+                string url = "CreateTask.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            }
 
-
-            string message = "Assignment Successful";
-            string url = "CreateTask.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
         }
 
@@ -916,6 +925,8 @@ namespace Evo
             long result16 = 0;
 
 
+            bool hasValue = false;
+
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -923,6 +934,7 @@ namespace Evo
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                 if (chckrw.Checked == true)
                 {
+                    hasValue = true;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@Customer", "");
                     nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
@@ -944,27 +956,36 @@ namespace Evo
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
                 }
             }
-
-            if (result16 > 0)
+            if (!hasValue)
             {
-                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                objGeneral.SendMessage(int.Parse(Assigned), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
-                string message = "Assignment Successful";
-                string url = "CreateTask.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                // lblmsg.Text = "Assignment Successful";
-                //  clear();
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
+
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                //  lblmsg.Text = "Assignment Not Successful";
+
+                if (result16 > 0)
+                {
+                    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                    objGeneral.SendMessage(int.Parse(Assigned), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
+                    string message = "Assignment Successful";
+                    string url = "CreateTask.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                    // lblmsg.Text = "Assignment Successful";
+                    //  clear();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                    //  lblmsg.Text = "Assignment Not Successful";
+                }
             }
         }
 
@@ -1091,6 +1112,8 @@ namespace Evo
 
 
 
+            bool hasValue = false;
+
 
             DataTable dt = new DataTable();
             NameValueCollection nv17 = new NameValueCollection();
@@ -1107,6 +1130,7 @@ namespace Evo
                 if (chckrw.Checked == true)
                 {
                     long result16 = 0;
+                    hasValue = true;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", Assigned);
 
@@ -1147,17 +1171,25 @@ namespace Evo
             //    nv1.Add("@TypeOfCode", IrrigationCode.ToString());
             //    objCommon.GetDataInsertORUpdate("SP_AddBatchLocationType", nv1);
             //}
+            if (!hasValue)
+            {
 
-            objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
-            string message = "Assignment Successful";
-            string url = "CreateTask.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
+
+            }
+            else
+            {
+                objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
+                string message = "Assignment Successful";
+                string url = "CreateTask.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            }
         }
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
         {
@@ -1180,6 +1212,8 @@ namespace Evo
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
 
 
+            bool hasValue = false;
+
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -1189,7 +1223,7 @@ namespace Evo
                 {
                     string PlanDate = string.Empty;
 
-
+                    hasValue = true;
                     DataTable dt1 = new DataTable();
                     NameValueCollection nv1 = new NameValueCollection();
 
@@ -1244,17 +1278,27 @@ namespace Evo
 
             }
 
-            objGeneral.SendMessage(int.Parse(Assigned), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
+            if (!hasValue)
+            {
 
-            string message = "Assignment Successful";
-            string url = "CreateTask.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
+
+            }
+            else
+            {
+
+                objGeneral.SendMessage(int.Parse(Assigned), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
+
+                string message = "Assignment Successful";
+                string url = "CreateTask.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            }
         }
         protected void btnSavePlantReady_Click(object sender, EventArgs e)
         {
@@ -1356,6 +1400,7 @@ namespace Evo
             int ChemicalCode = 0;
             string Batchlocation = "";
             // string Assigned = "";
+            bool hasValue = false;
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -1363,6 +1408,7 @@ namespace Evo
                 if (chckrw.Checked == true)
                 {
                     dtCTrays.Clear();
+                    hasValue = true;
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
                     //NameValueCollection nv5 = new NameValueCollection();
@@ -1427,18 +1473,28 @@ namespace Evo
 
                 }
             }
-            objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
 
-            string message = "Assignment Successful";
-            string url = "CreateTask.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            if (!hasValue)
+            {
 
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
+
+            }
+            else
+            {
+
+                objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
+
+                string message = "Assignment Successful";
+                string url = "CreateTask.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            }
         }
 
         public void BindFacility()
@@ -1479,11 +1535,14 @@ namespace Evo
             txtMoveComments.Text = "";
             txtMoveDate.Text = "";
             txtMoveNumberOfTrays.Text = "";
-//btnMoveRequest.Attributes.Add("class", "request__block-collapse collapse show");
+            //btnMoveRequest.Attributes.Add("class", "request__block-collapse collapse show");
 
         }
         public void MoveSubmit(string Assigned)
         {
+            bool hasValue = false;
+
+
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -1491,6 +1550,7 @@ namespace Evo
                 if (chckrw.Checked == true)
                 {
                     long result = 0;
+                    hasValue = true;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", Assigned);
                     nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
@@ -1528,18 +1588,29 @@ namespace Evo
                 }
             }
 
-            objGeneral.SendMessage(int.Parse(Assigned), "New Move Task Assigned", "New Move Task Assigned", "Move");
+            if (!hasValue)
+            {
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
+
+            }
+            else
+            {
 
 
-            string message = "Assignment Successful";
-            string url = "CreateTask.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                objGeneral.SendMessage(int.Parse(Assigned), "New Move Task Assigned", "New Move Task Assigned", "Move");
+
+
+                string message = "Assignment Successful";
+                string url = "CreateTask.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            }
         }
         protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
@@ -1553,6 +1624,8 @@ namespace Evo
 
         public void DumpSubmit(string Assigned)
         {
+            bool hasValue = false;
+
 
 
             DataTable dt = new DataTable();
@@ -1567,6 +1640,7 @@ namespace Evo
                 if (chckrw.Checked == true)
                 {
                     long result = 0;
+                    hasValue = true;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@SupervisorID", Assigned);
 
@@ -1591,18 +1665,28 @@ namespace Evo
                 }
             }
 
-            objGeneral.SendMessage(int.Parse(Assigned), "New Dump Task Assigned", "New Dump Task Assigned", "Dump");
+
+            if (!hasValue)
+            {
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
+
+            }
+            else
+            {
+                objGeneral.SendMessage(int.Parse(Assigned), "New Dump Task Assigned", "New Dump Task Assigned", "Dump");
 
 
-            string message = "Assignment Successful";
-            string url = "CreateTask.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                string message = "Assignment Successful";
+                string url = "CreateTask.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            }
         }
         protected void btnSaveDump_Click(object sender, EventArgs e)
         {
@@ -1625,6 +1709,8 @@ namespace Evo
 
         public void GeneraltaskSubmit(string Assigned)
         {
+            bool hasValue = false;
+          
 
             long result16 = 0;
             DataTable dt = new DataTable();
@@ -1638,6 +1724,7 @@ namespace Evo
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                 if (chckrw.Checked == true)
                 {
+                    hasValue = true;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@Customer", "");
                     nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
@@ -1665,55 +1752,63 @@ namespace Evo
 
 
             }
-
-            if (result16 > 0)
+            if (!hasValue)
             {
-                objGeneral.SendMessage(int.Parse(Assigned), "New General Task Assigned", "New General Task Assigned", "General");
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
-                string CCEmail = "";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
 
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-                string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
-                string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
-                smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
-                // smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
-                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtpClient.EnableSsl = true;
-                MailMessage mail = new MailMessage();
-                mail.Subject = "Crop Health Report";
-                mail.Body = "Crop Health Report Comments:" + "";
-                //Setting From , To and CC
-
-                mail.From = new MailAddress(FromMail);
-
-                NameValueCollection nv = new NameValueCollection();
-
-                //var getToMail = Session["SelectedAssignment"].ToString();
-                // var getToMail = ddlAssignments.SelectedValue;
-                var getToMail = Assigned;
-                nv.Add("@Uid", getToMail);
-                DataTable dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
-                ReceiverEmail = dt1.Rows[0]["Email"].ToString();
-
-                mail.To.Add(new MailAddress(ReceiverEmail));
-
-                nv.Clear();
-                var getCCMail = Session["Role"].ToString();
-                nv.Add("@Uid", getCCMail);
-
-                dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
-                CCEmail = dt1.Rows[0]["Email"].ToString();
-                mail.CC.Add(new MailAddress(CCEmail));
-
-                smtpClient.Send(mail);
-
-                Clear();
-                ClearGeneral();
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                if (result16 > 0)
+                {
+                    objGeneral.SendMessage(int.Parse(Assigned), "New General Task Assigned", "New General Task Assigned", "General");
+
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                    string CCEmail = "";
+
+                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                    string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
+                    string FromEmailPassword = WebConfigurationManager.AppSettings["FromEmailPassword"];
+                    smtpClient.Credentials = new System.Net.NetworkCredential(FromMail, FromEmailPassword);
+                    // smtpClient.UseDefaultCredentials = true; // uncomment if you don't want to use the network credentials
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.EnableSsl = true;
+                    MailMessage mail = new MailMessage();
+                    mail.Subject = "Crop Health Report";
+                    mail.Body = "Crop Health Report Comments:" + "";
+                    //Setting From , To and CC
+
+                    mail.From = new MailAddress(FromMail);
+
+                    NameValueCollection nv = new NameValueCollection();
+
+                    //var getToMail = Session["SelectedAssignment"].ToString();
+                    // var getToMail = ddlAssignments.SelectedValue;
+                    var getToMail = Assigned;
+                    nv.Add("@Uid", getToMail);
+                    DataTable dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
+                    ReceiverEmail = dt1.Rows[0]["Email"].ToString();
+
+                    mail.To.Add(new MailAddress(ReceiverEmail));
+
+                    nv.Clear();
+                    var getCCMail = Session["Role"].ToString();
+                    nv.Add("@Uid", getCCMail);
+
+                    dt1 = objCommon.GetDataTable("getReceiverEmail", nv);
+                    CCEmail = dt1.Rows[0]["Email"].ToString();
+                    mail.CC.Add(new MailAddress(CCEmail));
+
+                    smtpClient.Send(mail);
+
+                    Clear();
+                    ClearGeneral();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                }
             }
         }
         protected void btnSaveGeneral_Click(object sender, EventArgs e)
@@ -1747,7 +1842,8 @@ namespace Evo
         public void CropeSubmit(string Assigned)
         {
 
-
+            bool hasValue = false;
+          
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
             nv1.Add("@Aid", Assigned);
@@ -1756,6 +1852,8 @@ namespace Evo
 
             foreach (GridViewRow row in gvFer.Rows)
             {
+                hasValue = true;
+
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                 if (chckrw.Checked == true)
                 {
@@ -1783,19 +1881,27 @@ namespace Evo
 
                 }
             }
+            if (!hasValue)
+            {
 
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Bench Location');", true);
 
-            objGeneral.SendMessage(int.Parse(Assigned), "New Crop Health Report Assigned", "New Crop Health Report Task Assigned", "Crop Health Report");
+            }
+            else
+            {
 
-            string message = "Assignment Successful";
-            string url = "CreateTask.aspx";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "');";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                objGeneral.SendMessage(int.Parse(Assigned), "New Crop Health Report Assigned", "New Crop Health Report Task Assigned", "Crop Health Report");
+
+                string message = "Assignment Successful";
+                string url = "CreateTask.aspx";
+                string script = "window.onload = function(){ alert('";
+                script += message;
+                script += "');";
+                script += "window.location = '";
+                script += url;
+                script += "'; }";
+                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            }
         }
 
         protected void btnCropHealthSubmit_Click(object sender, EventArgs e)
@@ -2231,7 +2337,7 @@ namespace Evo
 
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
-           // Clear();
+            // Clear();
             ClearGeneral();
         }
 

@@ -8,11 +8,12 @@ using System.Reflection.Metadata;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using Evo.Bal;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
-
+using Evo.BAL_Classes;
 
 namespace Evo
 {
@@ -22,6 +23,7 @@ namespace Evo
         CommonControl objCommon = new CommonControl();
         BAL_CommonMasters objCOm = new BAL_CommonMasters();
         public static DataTable AllData = new DataTable();
+        General objGeneral = new General();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -203,6 +205,22 @@ namespace Evo
             }
         }
 
+        private string KeyValues
+        {
+            get
+            {
+                if (ViewState["KeyValues"] != null)
+                {
+                    return (string)ViewState["KeyValues"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["KeyValues"] = value;
+            }
+        }
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -210,6 +228,15 @@ namespace Evo
             {
                 long _isInserted = 1;
                 int SelectedItems = 0;
+               // int KeyValues = 0;
+
+
+                DataTable dt1 = new DataTable();
+                NameValueCollection nv14 = new NameValueCollection();
+                NameValueCollection nvimg = new NameValueCollection();
+                nv14.Add("@Mode", "25");
+                dt1 = objCommon.GetDataTable("GET_Common", nv14);
+                KeyValues =dt1.Rows[0]["KeyValues"].ToString();
 
 
                 foreach (GridViewRow item in DGJob.Rows)
@@ -271,6 +298,7 @@ namespace Evo
                             nv.Add("@GenusCode", HiddenFieldGenusCode.Value);
                             nv.Add("@Soil",lblSoil.Text);
                             nv.Add("@CreateBy", Session["LoginID"].ToString());
+                            nv.Add("@IsKeyValues", KeyValues.ToString());
                             nv.Add("@mode", "1");
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
 
@@ -282,12 +310,17 @@ namespace Evo
 
 
                     }
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ')", true);
+
+                 //   ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ');", true);
 
 
                 }
 
                 getDataDGJob();
+
+                BindRepeater("");
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "window.print();", true);
             }
             catch (Exception ex)
             {
@@ -345,6 +378,30 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
 
+        }
+
+
+
+
+        private void BindRepeater(string strDate)
+        {
+            string strSQL = " select distinct loc_seedline, CONVERT(date, CreateOn) as CreateOn from gti_jobs_seeds_plan where  IsKeyValues='" + KeyValues + "'";
+            //if (!string.IsNullOrEmpty(strDate) && strDate != "--Select--")
+            //    strSQL = strSQL + " where CONVERT(date, CreateOn)= '" + strDate + "'";
+            DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
+            repReport.DataSource = dt;
+            repReport.DataBind();
+        }
+
+        protected void repReport_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            GridView DGJob = (GridView)e.Item.FindControl("DGJob");
+            Label lblFacility = (Label)e.Item.FindControl("lblFacility");
+            Label lblDate = (Label)e.Item.FindControl("lblDate");
+            string strSQL = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
+            DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
+            DGJob.DataSource = dt;
+            DGJob.DataBind();
         }
     }
 }

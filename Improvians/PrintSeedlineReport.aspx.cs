@@ -35,6 +35,18 @@ namespace Evo
             //Response.Redirect("~/PrintSeedlinePlannerReport.aspx?Date=" + ddlDate.SelectedItem.Text);
             BindRepeater(ddlDate.SelectedItem.Text);
 
+            //string message = "Completion Successful";
+            //string url = "MyTaskGreenSupervisorFinal.aspx";
+            //string script = "window.onload = function(){ alert('";
+            //script += message;
+            //script += "');";
+            //script += "window.location = '";
+            //script += url;
+            //script += "'; }";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "window.print();", true);
         }
 
         private void BindRepeater(string strDate)
