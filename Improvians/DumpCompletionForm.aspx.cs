@@ -194,7 +194,8 @@ namespace Evo
                 
                 // string PRAID = e.CommandArgument.ToString();
                 //  Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
-                Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2},&DrId={2}", PRAID, 0, DRID, TaskRequestKey));
+            //    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", PRAID, 0, DRID, TaskRequestKey));
+                Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", PRAID, 0, DRID, TaskRequestKey));
 
             }
         }

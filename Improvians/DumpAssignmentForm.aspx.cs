@@ -219,6 +219,9 @@ namespace Evo
                 if (result > 0)
                 {
                     Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&TaskRequestKey={3}", result, ChId, Did, TaskRequestKey));
+
+             //       Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", 0, 0, DRID, TaskRequestKey));
+
                 }
             }
         }
