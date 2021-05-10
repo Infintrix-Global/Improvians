@@ -1425,7 +1425,6 @@
     <Content Include="images\Thumbs.db" />
     <Content Include="EvoMaster.Master" />
     <Content Include="Admin\AdminMaster.Master" />
-    <Content Include="Admin\EvoAdmin.csproj" />
     <Content Include="Admin\fonts\fa\fa-brands-400.ttf" />
     <Content Include="Admin\fonts\fa\fa-brands-400.woff2" />
     <Content Include="Admin\fonts\fa\fa-regular-400.ttf" />
