@@ -54,6 +54,7 @@
 		<siteMapNode url="~/JobReports.aspx" title="Job Information"/>
 		<siteMapNode url="~/TaskDistributionChart.aspx" title="Task Distribution" />
 		<siteMapNode url="~/Help.aspx" title="Help"/>
+		<siteMapNode url="~/ChangePassword.aspx" title="Change Password"/>
 		<siteMapNode url="~/ManageTaskJobReport.aspx" title="Manage Task">
 
 			<siteMapNode url="~/ViewJobDetails.aspx" title="View Job"/>
