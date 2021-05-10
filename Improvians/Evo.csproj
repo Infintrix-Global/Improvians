@@ -376,12 +376,10 @@
     <Content Include="images\splash\apple_splash_640.png" />
     <Content Include="images\splash\apple_splash_750.png" />
     <Content Include="images\support-passport-photo.png" />
-    <Content Include="index.html" />
     <Content Include="IrrigationStart.aspx" />
     <Content Include="IrrigationStart1.aspx" />
     <Content Include="IrrigationTaskViewDetails.aspx" />
     <Content Include="JobReports.aspx" />
-    <Content Include="js\custom1.js" />
     <Content Include="js\firebase-messaging.js" />
     <Content Include="js\jquery.uploadify.js" />
     <Content Include="CustomerLogin.aspx" />
@@ -512,7 +510,6 @@
     <Content Include="TaskDistributionChart.aspx" />
     <Content Include="TrackTaskSeedlinePlanner.aspx" />
     <Content Include="ViewJobDetails.aspx" />
-    <Content Include="WDemoTest.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -747,8 +744,8 @@
     <Compile Include="ChemicalTaskViewDetails.aspx.designer.cs">
       <DependentUpon>ChemicalTaskViewDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CommonControl.cs" />
-    <Compile Include="CommonControlNavision.cs" />
+    <Compile Include="BAL_Classes\CommonControl.cs" />
+    <Compile Include="BAL_Classes\CommonControlNavision.cs" />
     <Compile Include="CreateTask.aspx.cs">
       <DependentUpon>CreateTask.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1404,13 +1401,6 @@
     <Compile Include="ViewJobDetails.aspx.designer.cs">
       <DependentUpon>ViewJobDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WDemoTest.aspx.cs">
-      <DependentUpon>WDemoTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WDemoTest.aspx.designer.cs">
-      <DependentUpon>WDemoTest.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\fa\fa-brands-400.ttf" />
@@ -1481,7 +1471,6 @@
     <Content Include="fonts\icons\selection.json" />
     <None Include="packages.config" />
     <Content Include="scripts\uploader.fla" />
-    <Content Include="Upload.ashx" />
     <Content Include="SitemapGrower.sitemap" />
     <Content Include="SitemapSupervisor.sitemap" />
     <Content Include="SitemapOperator.sitemap" />
