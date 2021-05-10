@@ -25,7 +25,7 @@
                         <asp:DropDownList ID="ddlDepartment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>--%>
                     <div class="col m3">
-                        <label>Designation</label>
+                        <label>Role</label>
                         <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                     </div>
 
