@@ -16,8 +16,7 @@ namespace Evo
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-                
+            {                
                 Bindcname();
                 BindJobCode();
                 // BindFacility();
@@ -88,25 +87,12 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             var loginUser = Session["LoginID"].ToString();
             nv.Add("@LoginId", loginUser);
-            // nv.Add("@Mode", "7");
-            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
-
-            //if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "12")
-            //{
+            
                 dt = objCommon.GetDataTable("SP_GetGeneralRequestAssistantGrower", nv);
-            //}
+            
            
             gvTask.DataSource = dt;
             gvTask.DataBind();
-
-            //foreach (GridViewRow row in gvTask.Rows)
-            //{ 
-            //    var checkJob =  (row.FindControl("lbljobID") as Label).Text;
-            //    if(checkJob == JobCode)
-            //    {
-            //        row.CssClass = "highlighted";
-            //    }
-            //}
 
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
@@ -162,7 +148,6 @@ namespace Evo
         }
         public void Bindcname()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -179,7 +164,6 @@ namespace Evo
 
         public void BindJobCode()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -190,24 +174,7 @@ namespace Evo
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
-
-        //public void BindFacility()
-        //{
-
-        //    DataTable dt = new DataTable();
-        //    NameValueCollection nv = new NameValueCollection();
-
-        //    nv.Add("@Mode", "9");
-        //    dt = objCommon.GetDataTable("GET_Common", nv);
-        //    ddlFacility.DataSource = dt;
-        //    ddlFacility.DataTextField = "loc_seedline";
-        //    ddlFacility.DataValueField = "loc_seedline";
-        //    ddlFacility.DataBind();
-        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        //}
+        }      
 
         protected void ddlTaskType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -243,14 +210,12 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-
             BindTaskGrid(1);
         }
         protected void gvTask_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = gvTask.Rows[rowIndex];
-            
+            GridViewRow row = gvTask.Rows[rowIndex];            
 
             if (e.CommandName == "Select")
             {
@@ -268,7 +233,6 @@ namespace Evo
 
                 if (dt != null & dt.Rows.Count > 0)
                 {                   
-
                     txtGeneralDate.Text = Convert.ToDateTime(dt.Rows[0]["GeneralTaskDate"]).ToString("yyyy-MM-dd");
                     txtCommentsGeneral.Text = dt.Rows[0]["Comments"].ToString();
                     //txtGeneralDate.Text = Convert.ToDateTime((row.FindControl("lblGDate") as Label).Text).ToString("yyyy-MM-dd");
@@ -287,14 +251,10 @@ namespace Evo
                         divFrom.Style["display"] = "none";
                         divTo.Style["display"] = "none";
                     }
-                }
-
- 
-                //ddlSupervisor.Focus();
+                }             
             }
             if (e.CommandName == "Start")
             {
-
                 string ChId = "";
                 string Did = gvTask.DataKeys[rowIndex].Values[1].ToString();
 
@@ -307,7 +267,6 @@ namespace Evo
                     ChId = ChId;
                 }
 
-
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Comments", "");
@@ -317,7 +276,6 @@ namespace Evo
                 nv.Add("@GeneralTaskDate", "");
 
                 long result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskStart", nv);
-
 
                 if (result > 0)
                 {
@@ -353,7 +311,6 @@ namespace Evo
                 //NameValueCollection nv = new NameValueCollection();
                 //nv.Add("@GTID", GTID.ToString());
                 //result = objCommon.GetDataInsertORUpdate("SP_DismissGeneralRequest", nv);
-
                 BindTaskGrid(1);
             }
             if (e.CommandName == "Reschedule")
@@ -433,7 +390,6 @@ namespace Evo
                     url = "MyTaskAssistantGrower.aspx";
                 }
 
-
                 string message = "Assignment Successful";
              //   string url = "MyTaskAssistantGrower.aspx";
                 string script = "window.onload = function(){ alert('";
@@ -455,9 +411,7 @@ namespace Evo
 
         public void clear()
         {
-
           //  ddlSupervisor.SelectedIndex = 0;
-
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -490,8 +444,4 @@ namespace Evo
             }
         }
     }
-
 }
-
-
-

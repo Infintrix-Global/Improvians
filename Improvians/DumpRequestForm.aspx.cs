@@ -59,7 +59,6 @@ namespace Evo
             }
         }
 
-
         private string wo
         {
             get
@@ -78,42 +77,24 @@ namespace Evo
 
         public void BindGridPlantReady(int p)
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             // nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@LoginId", Session["LoginID"].ToString());
+            nv.Add("@LoginId", Session["LoginID"].ToString());           
 
-            // nv.Add("@Mode", "7");
-            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+            dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
 
-
-             dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
-            
 
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
-
-
-            //foreach (GridViewRow row in gvPlantReady.Rows)
-            //{
-            //    var checkJob = (row.FindControl("lbljobID") as Label).Text;
-            //    if (checkJob == JobCode)
-            //    {
-            //        row.CssClass = "highlighted";
-            //    }
-            //}
-
 
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
             }
-
-
         }
         private void highlight(int limit)
         {
@@ -129,7 +110,7 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 10)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvPlantReady.PageIndex++;
                     gvPlantReady.DataBind();
@@ -152,18 +133,18 @@ namespace Evo
 
             DataTable dt = new DataTable();
 
-            if (Session["Role"].ToString() == "12" || Session["Role"].ToString()=="1")
+            if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")
             {
 
-                dt= objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
             }
-            else if(Session["Role"].ToString() == "2")
+            else if (Session["Role"].ToString() == "2")
             {
-                dt=objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
+                dt = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
             }
             else
             {
-               // dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+                // dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
             }
 
             ddlDumptAssignment.DataSource = dt;
@@ -185,7 +166,6 @@ namespace Evo
         }
         public void Bindcname()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -196,13 +176,11 @@ namespace Evo
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
 
         public void BindJobCode()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -254,7 +232,6 @@ namespace Evo
             BindGridPlantReady(1);
         }
 
-
         private string TaskRequestKey
         {
             get
@@ -296,8 +273,6 @@ namespace Evo
                     txtDumpDate.Text = Convert.ToDateTime(dt.Rows[0]["DumpDateR"]).ToString("yyyy-MM-dd");
                 }
                 //ddlSupervisor.Focus();
-
-
             }
 
             if (e.CommandName == "StartDump")
@@ -316,8 +291,6 @@ namespace Evo
                 {
                     ChId = ChId;
                 }
-
-
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@Comments", "");
@@ -333,10 +306,8 @@ namespace Evo
                 {
                     Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&TaskRequestKey={3}", result, ChId, Did, TaskRequestKey));
                 }
-            }
-
+            }            
         }
-
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -364,12 +335,7 @@ namespace Evo
             nv.Add("@jobcode", ViewState["jobcode"].ToString());
             nv.Add("@GreenHouseID", ViewState["benchloc"].ToString());
             nv.Add("@TaskRequestKey", TaskRequestKey);
-
-
-
             result = objCommon.GetDataInsertORUpdate("SP_AddDumpRequestManua", nv);
-
-
             NameValueCollection nameValue = new NameValueCollection();
             nameValue.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@jobcode", ViewState["jobcode"].ToString());
@@ -391,8 +357,6 @@ namespace Evo
                 {
                     url = "MyTaskAssistantGrower.aspx";
                 }
-
-
                 string message = "Assignment Successful";
                 //string url = "MyTaskAssistantGrower.aspx";
                 string script = "window.onload = function(){ alert('";
@@ -414,9 +378,7 @@ namespace Evo
 
         public void clear()
         {
-
             //  ddlSupervisor.SelectedIndex = 0;
-
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -451,6 +413,3 @@ namespace Evo
     }
 
 }
-
-
-

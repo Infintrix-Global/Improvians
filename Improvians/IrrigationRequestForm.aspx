@@ -77,7 +77,7 @@
 
                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
-                            <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
+                            <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                             <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
@@ -86,19 +86,17 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
+                    <asp:TemplateField HeaderText="Customer" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
-                            <asp:Label ID="Labeitemno" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                            <asp:Label ID="lblCustomer" data-head="Customer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 
-
-                    <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
+                    <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
-                            <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
+                            <asp:Label ID="lblDescription" data-head="Plant Type" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-
 
                     <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
@@ -106,19 +104,24 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-
-
                     <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <%--  <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
-                            <ItemTemplate>
-                                <asp:Label ID="Label22" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
+                    <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSeededDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPlantDueDate" runat="server" Text=""></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Irrigation Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblIrrDate" runat="server" Text='<%# Eval("IrrigateSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
@@ -131,14 +134,15 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
-                        <ItemTemplate>
-                            <asp:Label ID="lblitemdescp" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Job source" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblsource" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                        <ItemTemplate>
+                            <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -146,9 +150,22 @@
                         <ItemTemplate>
                             <asp:Button ID="btnSelect" runat="server" Text="Job BuildUp" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                             <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-
                         </ItemTemplate>
                     </asp:TemplateField>
+
+                    <%--     <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
+                        <ItemTemplate>
+                            <asp:Label ID="Labeitemno" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+
+                    <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
+                        <ItemTemplate>
+                            <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    --%>
                     <%--  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
 
@@ -170,9 +187,7 @@
         </div>
 
         <div class="text-left dashboard__block my-4">
-
             <div id="userinput" runat="server" visible="false" class="row justify-content-center">
-
                 <div class="row">
 
                     <div class="col-12 col-sm-6 col-lg-3">
@@ -182,18 +197,12 @@
 
                     <%-- <div class="col-12 col-sm-6 col-lg-3">
                                 <label>No. Of Trays to be Irrigated</label>
-
                                 <asp:TextBox ID="txtIrrigatedNoTrays" ReadOnly="true" class="input__control" placeholder="Enter No." runat="server"></asp:TextBox>
-
                             </div>--%>
 
                     <div class="col-12 col-sm-6 col-md-auto">
                         <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
-
-
-
                         <asp:TextBox ID="txtWaterRequired" class="mb-0 input__control input__control-auto" placeholder="" runat="server"></asp:TextBox>
-
                     </div>
 
                     <%-- <div class="col-12  col-sm-6 col-md-auto">
@@ -228,9 +237,7 @@
 
                     <div class="col-12 my-3">
                         <asp:Button Text="Submit" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
-
                         <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
-
                     </div>
                 </div>
 
