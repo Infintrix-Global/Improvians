@@ -529,7 +529,9 @@ namespace Evo
                 //}
 
             }
-            txtTrays.Text = tray.ToString();
+
+
+            txtTrays.Text =(Convert.ToInt32(txtTrays.Text)+ tray).ToString();
 
         }
 

@@ -39,7 +39,7 @@ namespace Evo
             {
                 Session["LoginID"] = int.Parse(_dtLogin.Rows[0]["ID"].ToString());
                 Session["Role"] = _dtLogin.Rows[0]["RoleID"].ToString();
-                Session["Mobile"] = _dtLogin.Rows[0]["EmployeeCode"].ToString();
+                Session["EmployeeCode"] = _dtLogin.Rows[0]["EmployeeCode"].ToString();
                 Session["Email"] = _dtLogin.Rows[0]["Email"].ToString();
                 Session["Photo"] = _dtLogin.Rows[0]["Photo"].ToString();
                 Session["EmployeeName"] = _dtLogin.Rows[0]["EmployeeName"].ToString();

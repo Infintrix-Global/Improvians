@@ -833,6 +833,7 @@ namespace Evo
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+
                 if (chckrw.Checked == true)
                 {
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
@@ -883,6 +884,8 @@ namespace Evo
 
                 }
             }
+
+
             objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
 
 

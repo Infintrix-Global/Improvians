@@ -129,7 +129,7 @@ namespace Evo.Admin
         protected void btnClear_Click(object sender, EventArgs e)
         {
             txtName.Text = "";
-
+            GetEmployeeList();
         }
     }
 }

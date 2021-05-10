@@ -164,11 +164,30 @@ namespace Evo
                 Clear();
                 if (Session["Role"].ToString() == "3" || Session["Role"].ToString() == "5" || Session["Role"].ToString() == "11" || Session["Role"].ToString() == "6")
                 {
-                    Response.Redirect("~/MyTaskShippingCoordinator.aspx");
+                    string message = "Completion Successful";
+                    string url = "MyTaskShippingCoordinator.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                  //  Response.Redirect("~/MyTaskShippingCoordinator.aspx");
                 }
 
                 else if (Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
                 {
+
+                    string message = "Completion Successful";
+                    string url = "MyTaskLogisticManager.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                     Response.Redirect("~/MyTaskLogisticManager.aspx");
                 }
             }

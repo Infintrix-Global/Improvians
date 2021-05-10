@@ -72,6 +72,23 @@ namespace Evo.BAL_Classes
             }
             return _isInserted;
         }
+        public int UpdatePassword(int ID, string Password)
+        {
+            int _isInserted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ID", ID);
+                objGeneral.AddParameterWithValueToSQLCommand("@Password", Password);
+                _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_UpdatePassword");
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isInserted;
+        }
 
         public string GetFCMToken(int ID)
         {

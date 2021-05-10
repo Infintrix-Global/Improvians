@@ -53,15 +53,24 @@ namespace Evo
             //ddlShippingCoordinator.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
             NameValueCollection nv = new NameValueCollection();
-
-            ddlShippingCoordinator.DataSource = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlShippingCoordinator.DataTextField = "EmployeeName";
-            ddlShippingCoordinator.DataValueField = "ID";
-            ddlShippingCoordinator.DataBind();
-            ddlShippingCoordinator.Items.Insert(0, new ListItem("--Select--", "0"));
-
-
+            if (Session["Role"].ToString() == "2")
+            {
+                ddlShippingCoordinator.DataSource = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlShippingCoordinator.DataTextField = "EmployeeName";
+                ddlShippingCoordinator.DataValueField = "ID";
+                ddlShippingCoordinator.DataBind();
+                ddlShippingCoordinator.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
+            if (Session["Role"].ToString() == "12")
+            {
+                ddlShippingCoordinator.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlShippingCoordinator.DataTextField = "EmployeeName";
+                ddlShippingCoordinator.DataValueField = "ID";
+                ddlShippingCoordinator.DataBind();
+                ddlShippingCoordinator.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
         }
 
         public void BindGridMove()

@@ -2067,6 +2067,8 @@ svg text {
     .page__us {
         font-size: 10px;
         line-height: 16px;
+        min-height: 100vh;
+        background: #ffffff;
     }
 
     .page__us .printBtns { display: none; }
@@ -2114,4 +2116,12 @@ svg text {
     
     .page__us tr.page-break { page-break-after:always; }
     .page__us table { page-break-after:always; }
+    .main {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .header__bottom, .site__breadcrumb, header, .floating__footer {
+        display: none;
+    }
+    .has__footer { padding: 0; }
 }
