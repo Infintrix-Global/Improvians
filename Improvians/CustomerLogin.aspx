@@ -103,7 +103,7 @@
                     </label>
 
                     <label>
-                        <a class="bttn-link" href="#" title="Forgot Password?">Forgot Password?</a>
+                        <a class="bttn-link" href="ForgetCustomerPassword.aspx" title="Forgot Password?">Forgot Password?</a>
                     </label>
                     <asp:HiddenField runat="server" ID="token"></asp:HiddenField>
                     <asp:Button ID="btnlogin" class="bttn bttn-primary w-100 bttn-action" runat="server" Text="Login" OnClick="btnlogin_Click" />

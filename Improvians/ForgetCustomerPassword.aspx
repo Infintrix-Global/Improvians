@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Evo.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgetCustomerPassword.aspx.cs" Inherits="Evo.ForgetCustomerPassword" %>
 
 <!DOCTYPE html>
 
@@ -77,8 +77,9 @@
                 <a href="#" class="logo-link logo-link--vertical">
                     <img src="images/logo-vertical.svg" alt="" width="180" height="179" />
                 </a>
-
-                <h1>Login</h1>
+                      <h1>Customer Information Portal</h1>
+                <br />
+                <h2>Forget Password</h2>
 
                 <form class="login__form" runat="server">
                     <asp:Label ID="lblmsg" runat="server" Font-Bold="True"
@@ -91,99 +92,18 @@
 
                     </label>
 
-                    <label>
-                        <h3>Password</h3>
-                        <asp:TextBox ID="txtPassword" TextMode="Password" placeholder="Password" CssClass="input__control input__control-icon password" runat="server"></asp:TextBox>
-
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword"
-                            SetFocusOnError="true" ErrorMessage="Please Enter Password" ForeColor="Red"></asp:RequiredFieldValidator>
-
-
-                    </label>
-
-                    <label>
-                        <a class="bttn-link" href="ForgetPassword.aspx" title="Forgot Password?">Forgot Password?</a>
-                    </label>
-                    <asp:HiddenField runat="server" ID="token"></asp:HiddenField>
-                    <asp:Button ID="btnlogin" class="bttn bttn-primary w-100 bttn-action" runat="server" Text="Login" OnClick="btnlogin_Click" />
+                    <div class="row">
+                        <div class="col-auto">
+                            <asp:Button ID="btnChange" class="bttn bttn-primary bttn-action" runat="server" Text="Send Password" OnClick="btnChange_Click" />
+                        </div>
+                        <div class="col-auto">
+                            <asp:Button Text="Cancel" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClientClick="history.back();" />
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-
-    <!-- PWA Intalll Button -->
-    <div class="pwa">
-        <button class="bttn bttn-primary">
-            <i class="fas fa-plus-circle pr-md-1"></i>
-            <span>Install App</span>
-        </button>
-    </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script defer="defer" src="js/popper.min.js"></script>
-    <script defer="defer" src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
-    <script src="js/firebase-messaging.js"></script>
-    <script>
-
-        TokenElem = document.getElementById("token");
-
-        var config = {
-            apiKey: "AIzaSyDqjI1uzyT7VG2T39BLPALZDkcN3vJDLX8",
-            authDomain: "growerstrans-1172b.firebaseapp.com",
-            projectId: "growerstrans-1172b",
-            storageBucket: "growerstrans-1172b.appspot.com",
-            messagingSenderId: "342218804881",
-            appId: "1:342218804881:web:5ceb489d5eb65407aaf930",
-            measurementId: "G-1FYPTX710Q"
-        };
-        firebase.initializeApp(config);
-
-        const messaging = firebase.messaging();
-        messaging
-            .requestPermission()
-            .then(function () {
-                console.log("Notification permission granted.");
-                // get the token in the form of promise
-                return messaging.getToken()
-            })
-            .then(function (token) {
-                TokenElem.value = token
-                console.log(token);
-            })
-            .catch(function (err) {
-                console.log("Unable to get permission to notify.", err);
-            });
-
-        messaging.onMessage((payload) => {
-            console.log('Message received. ', payload);
-            // ...
-        });
-
-        jQuery(document).ready(function ($) {
-            var installPromptEvent;
-            window.addEventListener('beforeinstallprompt', function (event) {
-                event.preventDefault();
-                installPromptEvent = event;
-                $('.pwa').css('display', 'block');
-            });
-
-            function callInstallPrompt() {
-                if (window.matchMedia('(display-mode: standalone)').matches) {
-                    $(".pwa").remove();
-                } 
-                // We can't fire the dialog before preventing default browser dialog
-                if (installPromptEvent !== undefined) {
-                    installPromptEvent.prompt();
-                }
-            }
-
-            $(".pwa button").on("click", function () {
-                callInstallPrompt();
-            });
-        });
-    </script>
 </body>
 </html>

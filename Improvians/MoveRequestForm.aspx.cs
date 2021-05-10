@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
 namespace Evo
 {
     public partial class MoveRequestForm : System.Web.UI.Page
@@ -81,7 +80,6 @@ namespace Evo
 
         public void BindGridPlantReady(int p)
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             // nv.Add("@wo", "");

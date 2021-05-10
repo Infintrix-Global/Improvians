@@ -60,5 +60,6 @@
 		<siteMapNode url="~/CreateTask.aspx" title="Create Task"  />
 		<siteMapNode url="~/TaskDistributionChart.aspx" title="Task Distribution" />
 		<siteMapNode url="~/Help.aspx" title="Help"/>
+		<siteMapNode url="~/ChangePassword.aspx" title="Change Password"/>
 	</siteMapNode>
 </siteMap>
