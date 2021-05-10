@@ -217,7 +217,7 @@ namespace Evo
                     }
                     else if (HttpContext.Current.Session["Role"].ToString() == "2")
                     {
-                        strRoles = "3,5,11";
+                        strRoles = "2,3,5,11";
                     }
                     else 
                     {
