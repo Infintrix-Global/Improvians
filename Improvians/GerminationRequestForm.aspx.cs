@@ -536,7 +536,7 @@ namespace Evo
                 script += "');";
                 script += "window.location = '";
                 script += url;
-                script += "'; }";
+                script += "'; };";
                 ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 // lblmsg.Text = "Assignment Successful";
                 clear();
