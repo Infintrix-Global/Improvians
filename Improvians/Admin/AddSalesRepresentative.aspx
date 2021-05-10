@@ -95,6 +95,8 @@
                             <asp:TextBox ID="txtPassword" class="input__control input__control-icon " placeholder="Enter your password here" TabIndex="6" runat="server"></asp:TextBox>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Please use one upper case letter, one lower case letter and one number"
+                                    ValidationExpression="^.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$" ForeColor="Red" ControlToValidate="txtPassword" />
                             </span>
                         </label>
                     </div>

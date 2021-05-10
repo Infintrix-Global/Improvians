@@ -86,7 +86,7 @@
                             </span>
                         </label>
                     </div>
-                   <div class="col-md-6 col-xl-5 order-md-1">
+                    <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>User Name<span style="color: red">*</span></h3>
                             <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
@@ -105,6 +105,8 @@
                             <asp:TextBox ID="txtPassword" class="input__control input__control-icon " placeholder="Enter your passord here" TabIndex="6" runat="server"></asp:TextBox>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Please use one upper case letter, one lower case letter and one number"
+                                    ValidationExpression="^.*(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$" ForeColor="Red" ControlToValidate="txtPassword" />
                             </span>
                         </label>
                     </div>
