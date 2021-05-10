@@ -8,7 +8,7 @@
             <h2 class="text-center">Change Password</h2>
             <div class="print__reports text-center mt-5">
                 <div class="card d-inline-block">
-                    <div class="card-body">
+                    <div class="card-body py-5">
                         <div class="row text-left">
                             <div class="col-auto">
                                 <asp:Label ID="lblmsg" runat="server" Font-Bold="True"
@@ -16,17 +16,17 @@
                             </div>
                         </div>
                         <div class="row text-left">
-                            <div class="col-auto">
-                                <label>
+                            <div class="col-12">
+                                <label class="d-block">
                                     <h3>Old Password</h3>
-                                    <asp:TextBox ID="txtOldPassword" TextMode="Password" runat="server" placeholder="Old Password" class="input__control input__control-icon password"></asp:TextBox>
+                                    <asp:TextBox ID="txtOldPassword" TextMode="Password" runat="server" placeholder="Old Password" class="input__control input__control-icon password w-100"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtOldPassword"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Old Password" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </label>
                             </div>
                         </div>
                         <div class="row text-left">
-                            <div class="col-auto">
+                            <div class="col-12">
                                 <label>
                                     <h3>New Password</h3>
                                     <asp:TextBox ID="txtPassword" TextMode="Password" placeholder="New Password" CssClass="input__control input__control-icon password" runat="server"></asp:TextBox>
