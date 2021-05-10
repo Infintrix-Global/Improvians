@@ -339,6 +339,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlgerminationSupervisor;
 
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+
+        /// <summary>
         /// txtGerDate control.
         /// </summary>
         /// <remarks>
@@ -418,6 +427,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFertilizationSupervisor;
+
+        /// <summary>
+        /// RequiredFieldValidatorFA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorFA;
 
         /// <summary>
         /// txtFDate control.
@@ -573,6 +591,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlChemical_supervisor;
 
         /// <summary>
+        /// RequiredFieldValidatorCA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorCA;
+
+        /// <summary>
         /// lbltype control.
         /// </summary>
         /// <remarks>
@@ -726,6 +753,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlirrigationSupervisor;
 
         /// <summary>
+        /// RequiredFieldValidatorIA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorIA;
+
+        /// <summary>
         /// txtWaterRequired control.
         /// </summary>
         /// <remarks>
@@ -814,6 +850,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlplant_readySupervisor;
+
+        /// <summary>
+        /// RequiredFieldValidatorPA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorPA;
 
         /// <summary>
         /// txtPlantDate control.
@@ -1021,6 +1066,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDumptAssignment;
+
+        /// <summary>
+        /// RequiredFieldValidatorDA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorDA;
 
         /// <summary>
         /// txtDumpDate control.
@@ -1300,6 +1354,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCropHealthAssignment;
+
+        /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
         /// txtCropHealthDate control.

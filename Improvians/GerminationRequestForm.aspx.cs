@@ -564,7 +564,9 @@ namespace Evo
             nv.Add("@Role", ddlSupervisor.SelectedValue);
             nv.Add("@ISAG", lblAGD.Text);
             nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
+            nv.Add("@Comments", txtGcomments.Text);
 
+            
             if (Session["Role"].ToString() == "1")
             {
                 result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);

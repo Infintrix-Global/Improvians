@@ -31,20 +31,19 @@ namespace Evo
                     PanelAdd.Visible = false;
 
                 }
+
+                if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
+                {
+
+                    PanelComplitionDetsil.Visible = true;
+                    PanelAdd.Visible = false;
+                }
                 else
                 {
-                    if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
-                    {
-
-                        PanelComplitionDetsil.Visible = true;
-                        PanelAdd.Visible = true;
-                    }
-                    else
-                    {
-                        PanelComplitionDetsil.Visible = false;
-                        PanelAdd.Visible = true;
-                    }
+                    PanelComplitionDetsil.Visible = false;
+                    PanelAdd.Visible = true;
                 }
+
 
 
 
@@ -85,11 +84,11 @@ namespace Evo
             {
 
                 PanelComplitionDetsil.Visible = true;
-             
+
                 PanelAdd.Visible = false;
                 GridMoveComplition.DataSource = dt1;
                 GridMoveComplition.DataBind();
-               
+
             }
 
         }
@@ -145,7 +144,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Jid",lbljid.Text);
+            nv.Add("@Jid", lbljid.Text);
             nv.Add("@Login", "0");
             //if (Request.QueryString["Did"] != "0")
             //{
@@ -158,7 +157,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetTaskAssignmentMoveViewStart", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
-         
+
         }
 
         public void BindPlantReady()
@@ -172,7 +171,7 @@ namespace Evo
             //nv.Add("@Mode", "11");
             nv.Add("@MoveTaskAssignmentId", Did);
             nv.Add("@RoleId", Session["Role"].ToString());
-            
+
             dt = objCommon.GetDataTable("SP_GetOperatorMoveTaskDetails", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
