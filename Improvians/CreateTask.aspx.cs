@@ -1274,6 +1274,9 @@ namespace Evo
                     nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
+
+
+
                 }
 
             }
