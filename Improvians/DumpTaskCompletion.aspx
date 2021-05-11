@@ -8,7 +8,7 @@
 
         <div class="data__table">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
-              <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
             <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                 class="striped" AllowSorting="true"
                 GridLines="None" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
@@ -79,14 +79,11 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                    <%-- <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="Label12" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
-
-
-
+                    </asp:TemplateField>--%>
                 </Columns>
 
                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -168,7 +165,7 @@
                     <div class="col-md-12">
                         <div class="portlet-body">
                             <div class="data__table">
-                                <asp:DataList ID="CropePhotos" runat="server"  BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
+                                <asp:DataList ID="CropePhotos" runat="server" BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
                                     <ItemTemplate>
                                         <div>
 
@@ -278,7 +275,7 @@
 
                                                     </asp:TemplateField>
 
-                                                    
+
                                                     <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblCQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>

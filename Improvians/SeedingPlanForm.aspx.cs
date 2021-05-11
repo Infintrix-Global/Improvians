@@ -320,7 +320,10 @@ namespace Evo
 
                 BindRepeater("");
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "window.print();", true);
+              //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "window.print();", true);
+
+                string Title = Convert.ToDateTime(System.DateTime.Now).ToString("MM-dd-yyyy") + "_Seeding_Log_Sheet";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "document.title='" + Title + "'; window.print();", true);
             }
             catch (Exception ex)
             {

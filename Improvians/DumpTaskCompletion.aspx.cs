@@ -44,7 +44,7 @@ namespace Evo
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                     BindGridCropHealthImage(Request.QueryString["Chid"].ToString());
                 }
-                BindPlantReady();
+                BindPlantReady(Convert.ToInt32(Request.QueryString["DrId"]));
                 BindViewDumpDetilas(Convert.ToInt32(Request.QueryString["DrId"]));
                 BindGridDumpComplition(Did);
             }
@@ -174,7 +174,7 @@ namespace Evo
             }
         }
 
-        public void BindPlantReady()
+        public void BindPlantReady(int Drid)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -183,7 +183,7 @@ namespace Evo
             //nv.Add("@CustomerName", "");
             //nv.Add("@Facility", "");
             //nv.Add("@Mode", "11");
-            nv.Add("@DumpTaskAssignmentId", Did);
+            nv.Add("@DumpTaskAssignmentId", Drid.ToString());
             nv.Add("@RoleId", Session["Role"].ToString());
             
 
@@ -197,7 +197,7 @@ namespace Evo
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPlantReady.PageIndex = e.NewPageIndex;
-            BindPlantReady();
+            BindPlantReady(0);
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

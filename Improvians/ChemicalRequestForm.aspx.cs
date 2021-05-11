@@ -84,6 +84,23 @@ namespace Evo
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
         public void Bindcname()
         {
             DataTable dt = new DataTable();
@@ -298,8 +315,9 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lblID") as Label).Text;
                 var checklocation = (row.FindControl("lblBatchlocation1") as Label).Text;
+                var tKey = gvFer.DataKeys[row.RowIndex].Values[4].ToString();
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;

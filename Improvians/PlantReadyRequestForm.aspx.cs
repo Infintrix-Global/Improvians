@@ -70,6 +70,21 @@ namespace Evo
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+
+            }
+        }
         public void Bindcname()
         {
             DataTable dt = new DataTable();
@@ -194,8 +209,9 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvPlantReady.DataKeys[row.RowIndex].Values[10].ToString();
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;

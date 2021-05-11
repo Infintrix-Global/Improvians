@@ -583,7 +583,6 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@NoOfPasses", "");
                 nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
-
                 nv.Add("@Role", ddlSupervisor.SelectedValue);
                 nv.Add("@ISAG", "0");
                 nv.Add("@jid", Jid);
