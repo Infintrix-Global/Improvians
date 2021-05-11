@@ -13,6 +13,7 @@ using System.IO;
 using System.Globalization;
 using System.Net;
 using Evo.Admin.BAL_Classes;
+using System.Web.UI;
 
 namespace Evo
 {
@@ -444,5 +445,17 @@ namespace Evo
             public string message_id { get; set; }
         }
         #endregion
+
+        public void ShowAlertAndRedirect(string message, string url)
+        {
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; };";
+            Page p = (Page)HttpContext.Current.CurrentHandler;
+            p.ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
     }
 }
