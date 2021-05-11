@@ -2116,6 +2116,9 @@ svg text {
     
     .page__us tr.page-break { page-break-after:always; }
     .page__us table { page-break-after:always; }
+
+    .data__table tr > th:first-child, .data__table tr > td:first-child { position: static; left: auto; }
+
     .main {
         margin: 0 !important;
         padding: 0 !important;
