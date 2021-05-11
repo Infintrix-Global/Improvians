@@ -62,8 +62,6 @@
                                     </div>
                                 </div>
 
-
-
                                 <div class="data__table">
                                     <asp:GridView ID="DGJob" runat="server" AutoGenerateColumns="False"
                                         class="striped"
@@ -141,6 +139,23 @@
 
                                 <asp:Panel ID="PanelView" Visible="false" runat="server">
                                     <div class="page-break">
+                                        <div class="row mt-4">
+                                            <div class="d-flex align-items-center mb-1 col-12">
+                                                <label class="d-block inline__fields mr-3 mb-0">Deptartment:</label>
+                                                <div class="field__blank">SEEDLINE-<asp:Label runat="server" ID="Label1" Text='<%# Eval("loc_seedline") %>' /></div>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-1 col-12">
+                                                <label class="d-block inline__fields mr-3 mb-0">Submit Date:</label>
+                                                <div class="field__blank">
+                                                    <asp:Label runat="server" ID="Label2" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>' />
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-1 col-12">
+                                                <label class="d-block inline__fields mr-3 mb-0">Operator:</label>
+                                                <div class="field__blank"></div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="data__table">
                                             <asp:GridView ID="DGJob1" runat="server" AutoGenerateColumns="False"

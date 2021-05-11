@@ -53,6 +53,7 @@ namespace Evo
                 }
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
+                BenchUp = Bench;
                 BindGridFerReq();
                 BindGridFerDetails("'" + Bench + "'");
                 BindGridFerReqView(Request.QueryString["CCode"].ToString());
@@ -60,7 +61,21 @@ namespace Evo
                 BindSQFTofBench("'" + Bench + "'");
             }
         }
-
+        private string BenchUp
+        {
+            get
+            {
+                if (ViewState["BenchUp"] != null)
+                {
+                    return (string)ViewState["BenchUp"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["BenchUp"] = value;
+            }
+        }
 
         public void BindGridFerReqView(string Foce)
         {
@@ -256,7 +271,7 @@ namespace Evo
                         chkSelected = "'" + Bench + "'";
                     }
 
-
+                    BenchUp = chkSelected;
                     DataTable dt123 = new DataTable();
                     gvJobHistory.DataSource = dt123;
                     gvJobHistory.DataBind();
@@ -311,7 +326,7 @@ namespace Evo
                 }
 
 
-
+                BenchUp = chkSelected;
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
@@ -351,7 +366,7 @@ namespace Evo
             {
 
             }
-
+            BenchUp = chkSelected;
             BindGridFerDetails(chkSelected);
             BindSQFTofBench(chkSelected);
         }
@@ -678,11 +693,11 @@ namespace Evo
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
             objTask.AddChemicalRequestDetails(dtTrays, result.ToString(), ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
 
-            long Mresult12 = 0;
-            NameValueCollection nv123 = new NameValueCollection();
-            nv123.Add("@BanchLocation", lblbench.Text);
-            Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
-
+            //long Mresult12 = 0;
+            //NameValueCollection nv123 = new NameValueCollection();
+            //nv123.Add("@BanchLocation", lblbench.Text);
+            //Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
+            objTask.UpdateIsActiveChemical(BenchUp);
 
             Evo.BAL_Classes.General objGeneral = new General();
             objGeneral.SendMessage(int.Parse(ddlsupervisor.SelectedValue), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");

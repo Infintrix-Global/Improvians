@@ -50,6 +50,7 @@ namespace Evo
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
 
+                BenchUp = Bench;
                 BindGridFerReq();
                 BindGridFerDetails("'" + Bench + "'");
 
@@ -174,6 +175,28 @@ namespace Evo
             }
         }
 
+
+
+
+
+        private string BenchUp
+        {
+            get
+            {
+                if (ViewState["BenchUp"] != null)
+                {
+                    return (string)ViewState["BenchUp"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["BenchUp"] = value;
+            }
+        }
+
+
+
         private string Bench
         {
             get
@@ -271,7 +294,7 @@ namespace Evo
                         chkSelected = "'" + Bench + "'";
                     }
 
-
+                    BenchUp = chkSelected;
                     DataTable dt123 = new DataTable();
                     gvJobHistory.DataSource = dt123;
                     gvJobHistory.DataBind();
@@ -325,7 +348,7 @@ namespace Evo
                     chkSelected = "'" + Bench + "'";
                 }
 
-
+                BenchUp = chkSelected;
 
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
@@ -366,7 +389,7 @@ namespace Evo
             {
 
             }
-
+            BenchUp = chkSelected;
             BindGridFerDetails(chkSelected);
             BindSQFTofBench(chkSelected);
         }
@@ -703,14 +726,16 @@ namespace Evo
                 //  }
 
             }
+
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
             objTask.AddFertilizerRequestDetails(dtTrays, FR_ID, FertilizationCode, lblbench.Text,"", "", "", txtResetSprayTaskForDays.Text);
           
             
             long Mresult12 = 0;
-            NameValueCollection nv123 = new NameValueCollection();
-            nv123.Add("@BanchLocation", lblbench.Text);
-            Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
+            //   NameValueCollection nv123 = new NameValueCollection();
+            //   nv123.Add("@BanchLocation", lblbench.Text);
+            //   Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
+            objTask.UpdateIsActiveDatat(BenchUp);
 
             string url = "";
             if (Session["Role"].ToString() == "1")

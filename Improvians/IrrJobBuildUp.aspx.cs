@@ -34,8 +34,8 @@ namespace Evo
                 {
                     ICode = Request.QueryString["ICode"].ToString();
                 }
-              
 
+                BenchUp = Bench;
 
                 if (Request.QueryString["TaskRequestKey"] != null)
                 {
@@ -51,6 +51,21 @@ namespace Evo
             }
         }
 
+        private string BenchUp
+        {
+            get
+            {
+                if (ViewState["BenchUp"] != null)
+                {
+                    return (string)ViewState["BenchUp"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["BenchUp"] = value;
+            }
+        }
         private string TaskRequestKey
         {
             get
@@ -179,6 +194,7 @@ namespace Evo
                     chkSelected = "'" + Bench + "'";
                 }
 
+                BenchUp = chkSelected;
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
@@ -230,6 +246,7 @@ namespace Evo
                 {
                     chkSelected = "'" + Bench + "'";
                 }
+                BenchUp = chkSelected;
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
@@ -269,6 +286,7 @@ namespace Evo
             {
 
             }
+            BenchUp = chkSelected;
 
             BindGridIrrDetails(chkSelected);
         }
@@ -666,11 +684,11 @@ namespace Evo
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nvn);
             }
 
-            long Mresult12 = 0;
-            NameValueCollection nv123 = new NameValueCollection();
-            nv123.Add("@BanchLocation", lblbench.Text);
-            Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestMenualUpdate", nv123);
-
+            //long Mresult12 = 0;
+            //NameValueCollection nv123 = new NameValueCollection();
+            //nv123.Add("@BanchLocation", lblbench.Text);
+            //Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestMenualUpdate", nv123);
+            objTask.UpdateIsActiveIrrigation(BenchUp);
             string url = "";
             if (Session["Role"].ToString() == "1")
             {
