@@ -87,7 +87,7 @@
                 <div class="data__table">
                     <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
                         class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
-                        GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,SeededDate,GreenHouseID,Trays,itemdescp"
+                        GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,SeededDate,GreenHouseID,Trays,itemdescp,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
 

@@ -247,10 +247,9 @@ namespace Evo
                     {
                         Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                     }
-
                     else
                     {
-                        Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                        Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                     }
 
 
