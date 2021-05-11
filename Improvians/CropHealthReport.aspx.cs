@@ -1983,7 +1983,7 @@ namespace Evo
 
         protected void btnDumpSumbit_Click(object sender, EventArgs e)
         {
-            MoveSubmit(ddlDumptAssignment.SelectedValue);
+            SubmitDump(ddlDumptAssignment.SelectedValue);
         }
 
         protected void btnSaveDump_Click(object sender, EventArgs e)
