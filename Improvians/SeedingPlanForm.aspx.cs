@@ -395,13 +395,33 @@ namespace Evo
 
         protected void repReport_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            int A = 0;
             GridView DGJob = (GridView)e.Item.FindControl("DGJob");
+            GridView DGJob1 = (GridView)e.Item.FindControl("DGJob1");
             Label lblFacility = (Label)e.Item.FindControl("lblFacility");
             Label lblDate = (Label)e.Item.FindControl("lblDate");
-            string strSQL = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
+            Panel PanelView = (Panel)e.Item.FindControl("PanelView");
+            General objGeneral = new General();
+            string strSQL = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             DGJob.DataSource = dt;
             DGJob.DataBind();
+            General objGeneral1 = new General();
+            string strSQLCount = "select  * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
+            DataTable dt12 = objGeneral1.GetDatasetByCommand(strSQLCount);
+
+
+            if (dt12.Rows.Count > 35)
+            {
+                PanelView.Visible = true;
+                General objGeneral2 = new General();
+                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + 35 + "'";
+                DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
+                DGJob1.DataSource = dt1;
+                DGJob1.DataBind();
+
+            }
+
         }
     }
 }

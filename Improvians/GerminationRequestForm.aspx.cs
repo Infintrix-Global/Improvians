@@ -81,7 +81,6 @@ namespace Evo
 
         public void Bindcname()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -110,11 +109,13 @@ namespace Evo
 
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+
             ddlAssignedBy.DataSource = dt;
             ddlAssignedBy.DataTextField = "AssingTo";
             ddlAssignedBy.DataValueField = "AssingTo";
             ddlAssignedBy.DataBind();
             ddlAssignedBy.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlAssignedBy.Items.Insert(1, new ListItem("System", "System"));
         }
         public void Bindcname(string ddlBench, string jobNo, string Core)
         {
@@ -738,7 +739,9 @@ namespace Evo
         {
             txtFromDate.Text = "";
             txtToDate.Text = "";
+            BindBenchLocation(Session["Facility"].ToString(), txtSearchJobNo.Text, "0", "0");
             BindGridGerm(txtSearchJobNo.Text, 1);
+
         }
 
         protected void txtBatchLocation_TextChanged(object sender, EventArgs e)

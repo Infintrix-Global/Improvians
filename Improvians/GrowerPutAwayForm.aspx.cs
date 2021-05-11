@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -20,7 +22,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 BindSupervisorList();
-                BindGridGerm();
+                BindGridGerm("0");
             }
         }
 
@@ -94,37 +96,136 @@ namespace Evo
                 ddlSupervisor.DataBind();
                 ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
             }
-        }
+        }       
 
-
-        public void BindGridGerm()
+        public void BindGridGerm(string JobCode)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Mode", "1");
             nv.Add("@wo", "");
+
+            //nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
+            //nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            //nv.Add("@JobCode", JobCode);
+            //nv.Add("@CustomerName", !string.IsNullOrEmpty(ddlCustomer.SelectedValue) ? ddlCustomer.SelectedValue : "0");
+            //nv.Add("@AssignedBy", ddlAssignedBy.SelectedValue);
+
             dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
-
         }
+
+        //public void BindAssignByList(string ddlBench, string jobNo, string Cust)
+        //{
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
+
+        //    nv.Add("@LoginID", Session["LoginID"].ToString());
+        //    nv.Add("@Facility", Session["Facility"].ToString());
+        //    nv.Add("@BenchLocation", ddlBench);
+        //    nv.Add("@Customer", Cust);
+        //    nv.Add("@JobNo", jobNo);
+        //    nv.Add("@GenusCode", "0");
+        //    nv.Add("@Mode", "4");
+        //    nv.Add("@Type", "PutG");
+
+
+        //    dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+
+        //    ddlAssignedBy.DataSource = dt;
+        //    ddlAssignedBy.DataTextField = "AssingTo";
+        //    ddlAssignedBy.DataValueField = "AssingTo";
+        //    ddlAssignedBy.DataBind();
+        //    ddlAssignedBy.Items.Insert(0, new ListItem("--Select--", "0"));
+        //    ddlAssignedBy.Items.Insert(1, new ListItem("System", "System"));
+        //}
+        //public void Bindcname(string ddlBench, string jobNo, string Core)
+        //{
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
+
+        //    nv.Add("@LoginID", Session["LoginID"].ToString());
+        //    nv.Add("@Facility", Session["Facility"].ToString());
+        //    nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBench) ? ddlBench : "0");
+        //    nv.Add("@Customer", ddlCustomer.SelectedValue);
+        //    nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
+        //    nv.Add("@GenusCode", Core);
+        //    nv.Add("@Mode", "3");
+        //    nv.Add("@Type", "PutG");
+
+        //    dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+        //    ddlCustomer.DataSource = dt;
+        //    ddlCustomer.DataTextField = "Customer";
+        //    ddlCustomer.DataValueField = "Customer";
+        //    ddlCustomer.DataBind();
+        //    ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        //}
+
+        //public void BindJobCode(string ddlBench, string Customer, string Core)
+        //{
+        //    //  ddlJobNo.Items[0].Selected = false;
+        //    ddlJobNo.ClearSelection();
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
+
+        //    nv.Add("@LoginID", Session["LoginID"].ToString());
+        //    nv.Add("@Facility", Session["Facility"].ToString());
+        //    nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBench) ? ddlBench : "0");
+        //    nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
+        //    nv.Add("@JobNo", ddlJobNo.SelectedValue);
+        //    nv.Add("@GenusCode", Core);
+
+        //    nv.Add("@Mode", "2");
+        //    nv.Add("@Type", "PutG");
+
+        //    dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+        //    //   ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+        //    ddlJobNo.DataSource = dt;
+        //    ddlJobNo.DataTextField = "JobNo";
+        //    ddlJobNo.DataValueField = "JobNo";
+        //    ddlJobNo.DataBind();
+
+        //    ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        //}
+
+        //public void BindBenchLocation(string ddlMain, string jobNo, string Customer, string Core)
+        //{
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
+
+        //    nv.Add("@LoginID", Session["LoginID"].ToString());
+        //    nv.Add("@Facility", ddlMain);
+        //   // nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+        //    nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
+        //    nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
+        //    nv.Add("@GenusCode", Core);
+        //    nv.Add("@Mode", "1");
+        //    nv.Add("@Type", "Put");
+
+        //    dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+
+        //    // ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+        //    //ddlBenchLocation.DataSource = dt;
+        //    //ddlBenchLocation.DataTextField = "BenchLocation";
+        //    //ddlBenchLocation.DataValueField = "BenchLocation";
+        //    //ddlBenchLocation.DataBind();
+        //    //ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        //}
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridGerm();
+            BindGridGerm("0");
         }
-
-
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
             if (e.CommandName == "Assign")
             {
-
-                // invoiceSplitJob();
                 PanelAdd.Visible = true;
                 PanelList.Visible = false;
                 string wo_No = e.CommandArgument.ToString();
@@ -136,7 +237,6 @@ namespace Evo
                 nv.Add("@Facility", Session["Facility"].ToString());
                 dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
 
-
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     lblJobID.Text = dt.Rows[0]["JobID"].ToString();
@@ -146,12 +246,8 @@ namespace Evo
                     lblGenusCode.Text = dt.Rows[0]["GenusCode"].ToString();
                     TraySize = dt.Rows[0]["TraySize"].ToString();
                 }
-
                 AddGrowerPutRow(true);
-
             }
-
-
         }
 
 
@@ -159,7 +255,6 @@ namespace Evo
         {
             //  AddNewRowToGridSetInitialInvoice();
             AddGrowerPutRow(true);
-
         }
 
         protected void GridSplitJob_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -171,54 +266,40 @@ namespace Evo
                 Label lblMain = (Label)e.Row.FindControl("lblMain");
                 Label lblLocation = (Label)e.Row.FindControl("lblLocation");
 
-
-                //  NameValueCollection nv = new NameValueCollection();
-                //   nv.Add("@mode", "4");
-                //ddlMain.DataSource = objCommon.GetDataTable("GET_Common", nv); 
                 ddlMain.DataSource = objCOm.GetMainLocation();
                 ddlMain.DataTextField = "l1";
                 ddlMain.DataValueField = "l1";
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
-                // ddlLocation.SelectedValue = "ENC1";
-                //  BindLocation();
+
                 BindLocationNew(ref ddlLocation, PutAwayFacility);
                 ddlMain.SelectedValue = PutAwayFacility;
                 ddlLocation.SelectedValue = lblLocation.Text;
-
             }
         }
 
         protected void ddlMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // BindLocation();
             DropDownList ddlMain = (DropDownList)sender;
             GridViewRow row = (GridViewRow)ddlMain.NamingContainer;
             if (row != null)
             {
-
                 DropDownList ddlLocation = (DropDownList)row.FindControl("ddlLocation");
-                //  NameValueCollection nv = new NameValueCollection();
-                //  nv.Add("@FacilityID", ddlMain.SelectedValue);
-                //   ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
+
                 ddlLocation.DataSource = objCOm.GetLocation(ddlMain.SelectedValue);
                 ddlLocation.DataTextField = "p2";
                 ddlLocation.DataValueField = "p2";
                 ddlLocation.DataBind();
                 ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-
             }
         }
 
         public void BindLocation()
         {
-
-
             foreach (GridViewRow row in GridSplitJob.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
                 {
-
                     DropDownList ddlLocation = (row.Cells[0].FindControl("ddlLocation") as DropDownList);
                     DropDownList ddlMain = (row.Cells[0].FindControl("ddlMain") as DropDownList);
 
@@ -229,39 +310,18 @@ namespace Evo
                     ddlLocation.DataValueField = "GreenHouseID";
                     ddlLocation.DataBind();
                     ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-
-                    //if(A=="")
-                    //{
-                    //    A = "0";
-                    //}
-
-                    //ddlLocation.SelectedValue = A;
-
                 }
-
             }
-
-
-
-
         }
-
-
 
         public void BindLocationNew(ref DropDownList ddlLocation, string ddlMain)
         {
-
-            //   NameValueCollection nv = new NameValueCollection();
-            //    nv.Add("@FacilityID", ddlMain);
-            //ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv);
             ddlLocation.DataSource = objCOm.GetLocation(ddlMain);
             ddlLocation.DataTextField = "p2";
             ddlLocation.DataValueField = "p2";
             ddlLocation.DataBind();
             ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
-
-
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
@@ -270,44 +330,25 @@ namespace Evo
 
         public void CalData()
         {
-
             int Total = 0;
-
             foreach (GridViewRow row in GridSplitJob.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
                 {
-
                     TextBox txtTrays = (row.Cells[0].FindControl("txtTrays") as TextBox);
-
-
-                    //  TexTotal = Total * Convert.ToInt32(ddlTAX.SelectedItem.Text) / 100;
                     if (txtTrays.Text != "")
                     {
                         Total += Convert.ToInt32(txtTrays.Text);
                     }
-
-
                 }
             }
 
             lblRemaining.Text = (Convert.ToInt32(lblSeededTrays.Text) - Total).ToString();
-
-
-            //if (Convert.ToDouble(lblSeededTrays.Text) <  Convert.ToDouble(lblRemaining.Text))
-            //{
-            //   
-            //}
-            //else
-            //{
-
-            //}
-
         }
 
         public void Clear()
         {
-            BindGridGerm();
+            BindGridGerm("0");
             PanelAdd.Visible = false;
             PanelList.Visible = true;
             GridSplitJob.DataSource = null;
@@ -335,72 +376,8 @@ namespace Evo
                 DataTable dtFez = objSP.GetSeedDateData("FERTILIZE", lblGenusCode.Text, TraySize);
                 DataTable dtChemical = objSP.GetSeedDateData("SPRAYING", lblGenusCode.Text, TraySize);
 
-
-
-                //if (dtCem != null && dtCem.Rows.Count > 0)
-                //{
-                //    string IDay = dtCem.Rows[0]["DateShift"].ToString();
-                //    int ivalue = 0;
-                //    if (int.TryParse(IDay, out ivalue))
-                //    {
-                //        ChemicalSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(ivalue)).ToString();
-                //    }
-                //    else
-                //    {
-                //        ChemicalSeedDate = lblSeedDate.Text;
-                //    }
-
-                //}
-                //else
-                //{
-                //    ChemicalSeedDate = lblSeedDate.Text;
-                //}
-
-
-                //if (dtISD != null && dtISD.Rows.Count > 0)
-                //{
-                //    string IDay = dtISD.Rows[0]["DateShift"].ToString();
-                //    int ivalue = 0;
-                //    if (int.TryParse(IDay, out ivalue))
-                //    {
-                //        IrrigateSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(ivalue)).ToString();
-                //    }
-                //    else
-                //    {
-                //        IrrigateSeedDate = lblSeedDate.Text;
-                //    }
-
-                //}
-                //else
-                //{
-                //    IrrigateSeedDate = lblSeedDate.Text;
-                //}
-
-                //if (dtFez != null && dtFez.Rows.Count > 0)
-                //{
-                //    string FDay = dtFez.Rows[0]["DateShift"].ToString();
-                //    int Fvalue = 0;
-                //    if (int.TryParse(FDay, out Fvalue))
-                //    {
-                //        FertilizeSeedDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Fvalue)).ToString();
-                //    }
-                //    else
-                //    {
-                //        FertilizeSeedDate = lblSeedDate.Text;
-                //    }
-
-
-                //}
-                //else
-                //{
-                //    FertilizeSeedDate = lblSeedDate.Text;
-                //}
-
-
-
                 foreach (GridViewRow item in GridSplitJob.Rows)
                 {
-
                     if (item.RowType == DataControlRowType.DataRow)
                     {
                         TextBox txtTrays = (item.Cells[0].FindControl("txtTrays") as TextBox);
@@ -413,20 +390,13 @@ namespace Evo
                         string IrrigateNoCount = string.Empty;
                         string FertilizeNoCount = string.Empty;
                         string ChemicalNoCount = string.Empty;
-
-
-
                         NameValueCollection nvChDate = new NameValueCollection();
 
                         nvChDate.Add("@GreenHouseID", ddlLocation.SelectedValue);
                         DataTable ChFdt = objCommon.GetDataTable("SP_GetFertilizationCheckResetSprayTask", nvChDate);
 
-
                         if (dtFez != null && dtFez.Rows.Count > 0)
                         {
-
-                            //  string A = dtFez.Rows[0]["DateShift"].ToString().Replace("\u0002", "");
-
                             DataColumn col = dtFez.Columns["DateShift"];
 
                             int Fcount = 0;
@@ -453,7 +423,6 @@ namespace Evo
 
                                     if (ReSetSprayDate == "" || DateTime.Parse(FertilizationDate) >= DateTime.Parse(ReSetSprayDate))
                                     {
-
                                         FertilizationDate = FertilizationDate;
                                         FertilizeNoCount = Fcount.ToString();
                                         break;
@@ -463,7 +432,6 @@ namespace Evo
                                         FertilizationDate = ReSetSprayDate;
                                     }
                                 }
-
                             }
                         }
                         else
@@ -488,24 +456,15 @@ namespace Evo
                             {
                                 Ccount++;
                                 string FDay = row[col].ToString().Replace("\u0002", "");
-
                                 ChemicalDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(FDay))).ToString();
-
-
                                 string TodatDate;
                                 string ReSetChemicalDate = "";
-
-
                                 TodatDate = System.DateTime.Now.ToShortDateString();
-
-
 
                                 if (ChChemidt != null && ChChemidt.Rows.Count > 0)
                                 {
                                     ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
                                 }
-
-
                                 if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
                                 {
 
@@ -520,9 +479,7 @@ namespace Evo
                                         ChemicalDate = ReSetChemicalDate;
                                     }
                                 }
-
                             }
-
                         }
                         else
                         {
@@ -539,23 +496,18 @@ namespace Evo
 
                         if (dtISD != null && dtISD.Rows.Count > 0)
                         {
-
                             DataColumn col = dtISD.Columns["DateShift"];
                             int Irrcount = 0;
                             foreach (DataRow row in dtISD.Rows)
                             {
-                                Irrcount++;
-                              
+                                Irrcount++;                              
                                 string IDay = row[col].ToString().Replace("\u0002", "");
-
                                 IrrigateDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(IDay))).ToString();
-
 
                                 string TodatDate1;
                                 string ReSetIrrigateDate = "";
 
                                 TodatDate1 = System.DateTime.Now.ToShortDateString();
-
                                 if (Irrigationdt != null && Irrigationdt.Rows.Count > 0)
                                 {
                                     ReSetIrrigateDate = Convert.ToDateTime(Irrigationdt.Rows[0]["CreatedOn"]).AddDays(Convert.ToInt32(Irrigationdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
@@ -563,11 +515,9 @@ namespace Evo
 
                                 if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate1))
                                 {
-
                                     if (ReSetIrrigateDate == "" || DateTime.Parse(IrrigateDate) >= DateTime.Parse(ReSetIrrigateDate))
                                     {
                                         IrrigateDate = IrrigateDate;
-
                                         IrrigateNoCount = Irrcount.ToString();
                                         break;
                                     }
@@ -576,8 +526,6 @@ namespace Evo
                                         IrrigateDate = ReSetIrrigateDate;
                                     }
                                 }
-
-
                             }
                         }
 
@@ -585,8 +533,6 @@ namespace Evo
                         {
                             IrrigateDate = lblSeedDate.Text;
                         }
-
-
                         long result = 0;
                         NameValueCollection nv = new NameValueCollection();
                         nv.Add("@GrowerPutAwayId", "");
@@ -606,32 +552,20 @@ namespace Evo
                         nv.Add("@IrrigateNoCount", IrrigateNoCount);
                         nv.Add("@FertilizeNoCount", FertilizeNoCount);
                         nv.Add("@ChemicalNoCount", ChemicalNoCount);
-                        nv.Add("@RolId", ddlSupervisor.SelectedValue);
-                        
+                        nv.Add("@RolId", ddlSupervisor.SelectedValue);                        
 
                         if (txtTrays.Text != "")
                         {
                             nv.Add("@mode", "1");
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_AddGrowerPutAwayDetails", nv);
-
-
-                            //NameValueCollection nv11 = new NameValueCollection();
-                            //nv11.Add("@WoId", wo);
-                            //nv11.Add("@JobID", "");
-                            //nv11.Add("@GrowerPutAwayId", _isInserted.ToString());
-                            //nv11.Add("@CreatedBy", Session["LoginID"].ToString());
-                            //int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveFormDetails", nv11);
-
-
+                            
                         }
                         SelectedItems++;
-
                     }
 
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WorkOrder", wo);
                     _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
-
 
                     string message = "Grower Put Away Save  Successful";
                     string url = "GrowerPutAwayForm.aspx";
@@ -643,13 +577,8 @@ namespace Evo
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                     //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
-
                     Clear();
                 }
-
-
-
-
 
             }
             catch (Exception ex)
@@ -701,17 +630,11 @@ namespace Evo
                 GridSplitJob.DataSource = objinvoice;
                 GridSplitJob.DataBind();
                 ViewState["Data"] = objinvoice;
-
-
             }
             catch (Exception ex)
             {
-                //  divMessage.Visible = true;
-                //  divMessageSub.Attributes.Remove("class");
-                // divMessageSub.Attributes.Add("class", "errormsg");
-                //  lblMsg.Text = "Unable to process request. Please verify the details.<br />" + ex;
+                
             }
-
         }
 
         public void GridSplitjob()
@@ -761,9 +684,102 @@ namespace Evo
                 }
             }
         }
+
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+           // BindGridGerm(ddlJobNo.SelectedValue);
+        }
+
+        protected void btnSearchReset_Click(object sender, EventArgs e)
+        {
+            Reset();
+            BindGridGerm("0");
+        }
+
+        public void Reset()
+        {
+            //ddlAssignedBy.SelectedIndex = 0;
+           // ddlBenchLocation.SelectedIndex = 0;
+            //ddlCustomer.SelectedIndex = 0;
+            //ddlJobNo.SelectedIndex = 0;
+            //txtSearchJobNo.Text = "";
+        }
+
+
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            //BindBenchLocation(Session["Facility"].ToString(), txtSearchJobNo.Text, "0", "0");
+         //   BindGridGerm(string.IsNullOrEmpty(txtSearchJobNo.Text) ? ddlJobNo.SelectedValue : txtSearchJobNo.Text);
+        }
+
+        protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Bindcname("0", "0", "0");
+            //BindJobCode("0", "0", "0");
+            //BindAssignByList("0", "0", "0");
+            //BindGridGerm(string.IsNullOrEmpty(txtSearchJobNo.Text) ? ddlJobNo.SelectedValue : txtSearchJobNo.Text);
+        }
+
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           // BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, "0");
+            //BindJobCode("0", ddlCustomer.SelectedValue, "0");
+            //BindAssignByList("0", "0", ddlCustomer.SelectedValue);
+            //BindGridGerm(string.IsNullOrEmpty(txtSearchJobNo.Text) ? ddlJobNo.SelectedValue : txtSearchJobNo.Text);
+        }
+
+        protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Bindcname("0", ddlJobNo.SelectedValue, "0");
+           // BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, "0", "0");
+            //BindAssignByList("0", ddlJobNo.SelectedValue, "0");
+
+            //BindGridGerm(string.IsNullOrEmpty(txtSearchJobNo.Text) ? ddlJobNo.SelectedValue : txtSearchJobNo.Text);
+        }
+
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //BindGridGerm(string.IsNullOrEmpty(txtSearchJobNo.Text) ? ddlJobNo.SelectedValue : txtSearchJobNo.Text);
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                        "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return customers;
+                }
+            }
+        }
     }
 }
-
 
 
 [Serializable]

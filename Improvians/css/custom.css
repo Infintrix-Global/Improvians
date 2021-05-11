@@ -2105,17 +2105,23 @@ svg text {
     }
     
     .page__us .page-break {
-        margin-top: 70px;
+        margin-top: 80px;
         margin-bottom: 84px;
         page-break-after: always;
     }
 
     .page__us .page-break + .page-break {
-        margin-top: 176px;
+        margin-top: 106px;
     }
+    
+    .page__us .page-break .data__table + div .row
+    { padding-top: 136px; }
     
     .page__us tr.page-break { page-break-after:always; }
     .page__us table { page-break-after:always; }
+
+    .data__table tr > th:first-child, .data__table tr > td:first-child { position: static; left: auto; }
+
     .main {
         margin: 0 !important;
         padding: 0 !important;

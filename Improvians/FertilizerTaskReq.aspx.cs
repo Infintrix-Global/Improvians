@@ -76,6 +76,22 @@ namespace Evo
                 // JobCode = value;
             }
         }
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
 
 
         public void Bindcname()
@@ -206,10 +222,13 @@ namespace Evo
             bool check = false;
             foreach (GridViewRow row in gvFer.Rows)
             {
+                
                 var checkJob = (row.FindControl("lblID") as Label).Text;
-                var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;                
+                var tKey = gvFer.DataKeys[row.RowIndex].Values[4].ToString();
+
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskRequestKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;

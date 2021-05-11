@@ -549,5 +549,66 @@ namespace Evo.BAL_Classes
             return IsId;
         }
 
+
+        public int UpdateIsActiveDatat(string BenchLocation)
+        {
+            int IsId = 0;
+            General objGeneral = new General();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "Update GrowerPutAwayDetailsFertilizationMenual set IsFertilize =1 where GreenHouseID in (" + BenchLocation + ")";
+
+
+                objGeneral.GetExecuteNonQueryByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return IsId;
+        }
+
+
+        public int UpdateIsActiveChemical(string BenchLocation)
+        {
+            int IsId = 0;
+            General objGeneral = new General();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = " update GrowerPutAwayDetailsChemicalMenual set IsChemical=1  where GreenHouseID in (" + BenchLocation + ")";
+
+
+                objGeneral.GetExecuteNonQueryByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return IsId;
+        }
+
+        public int UpdateIsActiveIrrigation(string BenchLocation)
+        {
+            int IsId = 0;
+            General objGeneral = new General();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = " update GrowerPutAwayDetailsIrrigationMenual set ISIrrigation=1  where GreenHouseID in (" + BenchLocation + ")";
+
+
+                objGeneral.GetExecuteNonQueryByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return IsId;
+        }
     }
 }

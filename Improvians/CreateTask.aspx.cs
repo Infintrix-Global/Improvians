@@ -56,7 +56,7 @@ namespace Evo
                 txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-                txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+           //     txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtDumpDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtgeneralDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtCropHealthDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -875,13 +875,13 @@ namespace Evo
                     objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
 
 
-                    NameValueCollection nvn = new NameValueCollection();
-                    nvn.Add("@LoginID", Session["LoginID"].ToString());
-                    nvn.Add("@SupervisorID", Assigned);
-                    nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                    nvn.Add("@TaskName", "Fertilizer");
-                    nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+                    //NameValueCollection nvn = new NameValueCollection();
+                    //nvn.Add("@LoginID", Session["LoginID"].ToString());
+                    //nvn.Add("@SupervisorID", Assigned);
+                    //nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    //nvn.Add("@TaskName", "Fertilizer");
+                    //nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    //var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
                 }
             }
