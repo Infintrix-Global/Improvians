@@ -23,7 +23,7 @@
                             <div class="col-12 col-lg-auto">
                                 <label class="d-block">Profiles: </label>
                                 <div class="control__box bg-white">
-                                    <asp:Repeater runat="server" ID="repRoles">
+                                    <asp:Repeater runat="server" ID="repRoles" OnItemDataBound="repRoles_ItemDataBound">
                                         <ItemTemplate>
                                             <div class="custom-control custom-checkbox mr-3">
                                                 <asp:CheckBox runat="server"  class="custom-control custom-checkbox" Checked="true" Text='<%# Bind("EmployeeName")  %>' ID="chkRole" />

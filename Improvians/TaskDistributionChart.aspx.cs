@@ -16,6 +16,7 @@ namespace Evo
     public partial class TaskDistributionChart : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        static string strPreference="";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -28,11 +29,18 @@ namespace Evo
         }
         private void BindRoles()
         {
+            NameValueCollection nv1 = new NameValueCollection();
+            nv1.Add("@UserID", Session["LoginID"].ToString());
+            DataTable dt = objCommon.GetDataTable("SP_GetPreferenceTaskDistribution", nv1);
+            if (dt != null && dt.Rows.Count > 0)
+                strPreference = dt.Rows[0][0].ToString();
+
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@RoleID", Session["Role"].ToString());
-            DataTable dt = objCommon.GetDataTable("SP_GetRoleForAssignement", nv);
+             dt = objCommon.GetDataTable("SP_GetRoleForAssignement", nv);
             repRoles.DataSource = dt;
             repRoles.DataBind();
+          
         }
         private void BindData()
         {
@@ -56,8 +64,8 @@ namespace Evo
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-           
             BindData();
+            SavePreference();
         }
 
         protected void repChart_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -67,6 +75,23 @@ namespace Evo
             HtmlControl chartDivid = (HtmlControl)e.Item.FindControl("divTask");
             BindChart(dr.WorkDate, chartDivid.ClientID, ltScript);
         }
+        private void SavePreference()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            string strEmployeeIDs = string.Empty;
+            foreach (RepeaterItem item in repRoles.Items)
+            {
+                CheckBox chkRole = (CheckBox)item.FindControl("chkRole");
+                if (chkRole.Checked)
+                {
+                    strEmployeeIDs += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
+                }
+            }
+            nv.Add("@PreferredTaskDistributionID", strEmployeeIDs);
+            nv.Add("@UserID", Session["LoginID"].ToString());
+            objCommon.GetDataInsertORUpdate("AddPreferenceTaskDistribution", nv);
+        }
+
         public DataTable GetChartData(string date)
         {
             NameValueCollection nv = new NameValueCollection();
@@ -74,7 +99,7 @@ namespace Evo
             string strEmployeeIDs = string.Empty;
             foreach (RepeaterItem item in repRoles.Items)
             {
-                CheckBox chkRole = (CheckBox)item.FindControl("chkRole");             
+                CheckBox chkRole = (CheckBox)item.FindControl("chkRole");
                 if (chkRole.Checked)
                 {
                     strEmployeeIDs += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
@@ -147,5 +172,12 @@ namespace Evo
             }
         }
 
+        protected void repRoles_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            CheckBox chkRole = e.Item.FindControl("chkRole") as CheckBox;
+            HiddenField hdnValue = e.Item.FindControl("hdnValue") as HiddenField;
+            string[] subs = strPreference.Split(',');
+            chkRole.Checked = subs.Contains(hdnValue.Value);
+        }
     }
 }

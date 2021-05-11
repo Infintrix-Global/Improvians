@@ -180,7 +180,7 @@ namespace Evo
             if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
             {
                 TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
-              //  JobReports.HRef = "JobReports.aspx";
+                //  JobReports.HRef = "JobReports.aspx";
             }
 
             if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
@@ -188,7 +188,7 @@ namespace Evo
 
                 CreateTask.HRef = "CreateTask.aspx";
                 JobReports.HRef = "JobReports.aspx";
-             
+
             }
             else
             {
@@ -203,30 +203,25 @@ namespace Evo
             using (SqlConnection conn = new SqlConnection())
             {
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
-                using (SqlCommand cmd = new SqlCommand("SP_GetTaskDisctributionChartData", conn))
+                string strRoles = string.Empty;
+                using (SqlCommand cmdPreference = new SqlCommand("SP_GetPreferenceTaskDistribution", conn))
+                {
+                    cmdPreference.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    cmdPreference.Parameters.AddWithValue("@UserID", HttpContext.Current.Session["LoginID"].ToString());
+                    da.SelectCommand = cmdPreference;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    if (dt != null && dt.Rows.Count > 0)
+                        strRoles = dt.Rows[0][0].ToString();
+                }
+                using (SqlCommand cmd = new SqlCommand("SP_GetTaskDisctributionChartFilterData", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter da = new SqlDataAdapter();
                     cmd.Parameters.AddWithValue("@WorkDate", DateTime.Now.Date);
-                    cmd.Parameters.AddWithValue("@LoginID", HttpContext.Current.Session["LoginID"].ToString());                    
-                    string strRoles = string.Empty;
-                    if (HttpContext.Current.Session["Role"].ToString() == "1")
-                    {
-                        strRoles = "1,2,3,5,11,12";
-                    }
-                    else if (HttpContext.Current.Session["Role"].ToString() == "12")
-                    {
-                        strRoles = "2,3,5,11,12";
-                    }
-                    else if (HttpContext.Current.Session["Role"].ToString() == "2")
-                    {
-                        strRoles = "2,3,5,11";
-                    }
-                    else 
-                    {
-                        strRoles = HttpContext.Current.Session["Role"].ToString();
-                    }
-                    cmd.Parameters.AddWithValue("@RoleIDs",strRoles) ;
+                    cmd.Parameters.AddWithValue("@LoginID", HttpContext.Current.Session["LoginID"].ToString());
+                    cmd.Parameters.AddWithValue("@RoleIDs", strRoles);
                     da.SelectCommand = cmd;
                     DataTable dt = new DataTable();
                     da.Fill(dt);
