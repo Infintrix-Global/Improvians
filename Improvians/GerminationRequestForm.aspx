@@ -98,13 +98,13 @@
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
 
-                            <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="100px"  HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblBenchLocation" data-head="Bench Location" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Job No." ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                     <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
@@ -131,13 +131,13 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="40px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblTrays" data-head="Total Trays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Tray Size" ItemStyle-Width="40px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblTraySize" data-head="Tray Size" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                 </ItemTemplate>
@@ -155,14 +155,14 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Germination Count Date" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Germination Count Date" ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblGermDate" data-head="Germination Count Date" runat="server" Text='<%# Eval("GermDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
 
-                            <asp:TemplateField HeaderText="Germination Count Type" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Germination Count Type" ItemStyle-Width="70px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblGermNo" data-head="Germination Count Type" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                 </ItemTemplate>
@@ -181,13 +181,13 @@
 
 
 
-                            <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="" HeaderStyle-Width="265px" >
                                 <ItemTemplate>
-                                    <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-                                    <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                    <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                    <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
-                                    <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Reschedule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
-                                    <asp:Button ID="btndismiss" runat="server" Text="Dismiss" OnClientClick="return confirm('Are you sure you want to dismiss this ?'); " CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
+                                    <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1 " CommandName="Reschedule" CommandArgument='<%# Container.DataItemIndex  %>'></asp:Button>
+                                    <asp:Button ID="btndismiss" runat="server" Text="Dismiss" OnClientClick="return confirm('Are you sure you want to dismiss this ?'); " CssClass="bttn bttn-primary bttn-action my-1 " CommandName="Dismiss" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
 
                                 </ItemTemplate>
                             </asp:TemplateField>
