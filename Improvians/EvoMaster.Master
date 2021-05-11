@@ -94,6 +94,7 @@
                                            %>'>
                                             <i id="lblLogo" runat="server" class="fas fa-tasks"></i>
                                             <asp:Label ID="lblID" Text='<%# Eval("ID") %>' runat="server" Visible="false" />
+                                            <asp:HiddenField  ID="taskKey" Value='<%# Eval("TaskRequestKey") %>' runat="server" />
                                             <asp:LinkButton runat="server" class="alert__info" ID="link" OnClick="link_Click">
 
                                                 <span class="d-block">

@@ -117,8 +117,6 @@ namespace Evo
 
         }
 
-
-
         protected void checkNotification(int n)
         {
             var totalCount = 0;
@@ -148,7 +146,6 @@ namespace Evo
                         totalCount += 1;
                     }
                 }
-
             }
 
             lblNotificationCount.Text = totalCount.ToString();
@@ -230,6 +227,7 @@ namespace Evo
             string id = ((Label)row.FindControl("lblID")).Text;
             string job = ((Label)row.FindControl("lblJobId")).Text;
             string benchLoc = ((Label)row.FindControl("lblBenchLoc")).Text;
+            string taskKey = ((HiddenField)row.FindControl("taskKey")).Value;
 
             nv.Add("@Nid", id);
             string TaskName = ((Label)row.FindControl("lblTaskName")).Text;
@@ -243,7 +241,7 @@ namespace Evo
                 {
                     if (TaskName == "Fertilizer")
                     {
-                        Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                        Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job + "&benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                     }
                     if (TaskName == "CropHealthReport")
                     {

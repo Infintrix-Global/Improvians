@@ -149,7 +149,7 @@ namespace Evo
 
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBench) ? ddlBench : "0" );
+            nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBench) ? ddlBench : "0");
             nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
             nv.Add("@JobNo", ddlJobNo.SelectedValue);
             nv.Add("@GenusCode", Core);
@@ -176,8 +176,8 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", ddlMain);
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
-            nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0" );
-            nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0" );
+            nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
+            nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
             nv.Add("@GenusCode", Core);
             nv.Add("@Mode", "1");
             nv.Add("@Type", "Ger");
@@ -193,7 +193,7 @@ namespace Evo
 
 
         }
-       
+
         public void BindJobCode(string ddlBench)
         {
             //  ddlJobNo.Items[0].Selected = false;
@@ -567,7 +567,7 @@ namespace Evo
             nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
             nv.Add("@Comments", txtGcomments.Text);
 
-            
+
             if (Session["Role"].ToString() == "1")
             {
                 result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
@@ -594,42 +594,33 @@ namespace Evo
             //nv.Add("@LoginID", Session["LoginID"].ToString());
             //result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew1", nv);
 
-            if (Session["Role"].ToString() == "1")
-            {
-                Response.Redirect("MyTaskGrower.aspx");
-            }
-            else
-            {
-                Response.Redirect("MyTaskAssistantGrower.aspx");
-            }
+            //if (Session["Role"].ToString() == "1")
+            //{
+            //    Response.Redirect("MyTaskGrower.aspx");
+            //}
+            //else
+            //{
+            //    Response.Redirect("MyTaskAssistantGrower.aspx");
+            //}
 
             if (result > 0)
             {
                 General objGeneral = new General();
                 objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {
-
-                    Response.Redirect("MyTaskGrower.aspx");
+                    url = "MyTaskGrower.aspx";
                 }
                 else
                 {
-                    Response.Redirect("MyTaskAssistantGrower.aspx");
+                    url = "MyTaskAssistantGrower.aspx";
                 }
 
-                //string message = "Assignment Successful";
-                ////  string url = "MyTaskGrower.aspx";
-                //string script = "window.onload = function(){ alert('";
-                //script += message;
-                //script += "');";
-                //script += "window.location = '";
-                //script += url;
-                //script += "'; }";
-                //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                string message = "Assignment Successful";
+                objCommon.ShowAlertAndRedirect(message, url);
 
-                // lblmsg.Text = "Assignment Successful";
                 clear();
             }
             else
@@ -760,7 +751,7 @@ namespace Evo
             //BindJobCode(ddlBenchLocation.SelectedValue);
             Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
             BindJobCode(ddlBenchLocation.SelectedValue, "0", "0");
-            BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0"); 
+            BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0");
             BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
