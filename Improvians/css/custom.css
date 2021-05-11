@@ -2114,6 +2114,9 @@ svg text {
         margin-top: 106px;
     }
     
+    .page__us .page-break .data__table + div .row
+    { padding-top: 136px; }
+    
     .page__us tr.page-break { page-break-after:always; }
     .page__us table { page-break-after:always; }
 
