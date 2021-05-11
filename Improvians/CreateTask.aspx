@@ -119,11 +119,14 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                         <HeaderTemplate>
-                                            <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
+                                            <div class="custom-control custom-checkbox mr-3">
+                                                <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
+                                            </div>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-
-                                            <asp:CheckBox runat="server" OnCheckedChanged="chkSelect_CheckedChanged" AutoPostBack="true" ID="chkSelect"></asp:CheckBox>
+                                            <div class="custom-control custom-checkbox mr-3">
+                                                <asp:CheckBox runat="server" class="custom-control custom-checkbox" Text=" " OnCheckedChanged="chkSelect_CheckedChanged" AutoPostBack="true" ID="chkSelect"></asp:CheckBox>
+                                            </div>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
