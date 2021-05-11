@@ -35,7 +35,7 @@ namespace Evo
                     ICode = Request.QueryString["ICode"].ToString();
                 }
 
-                BenchUp = Bench;
+                BenchUp = "'" + Bench + "'";
 
                 if (Request.QueryString["TaskRequestKey"] != null)
                 {
