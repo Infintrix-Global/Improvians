@@ -408,18 +408,35 @@ namespace Evo
                     result1 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                 }
             }
+            string url = "";
 
-            //string message = "Assignment Successful";
-            //string url = "CropHealthDetails.aspx";
-            //string script = "window.onload = function(){ alert('";
-            //script += message;
-            //script += "');";
-            //script += "window.location = '";
-            //script += url;
-            //script += "'; }";
-            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-            //  Clear();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+            if (Session["Role"].ToString()=="1")
+            {
+                url = "MyTaskGrower.aspx.aspx";
+            }
+            else if(Session["Role"].ToString() == "12")
+            {
+                url = "MyTaskAssistantGrower.aspx";
+            }
+            else if(Session["Role"].ToString() == "2")
+            {
+                url = "MyTaskGreenSupervisorFinal.aspx";
+            }
+            else
+            {
+                url = "MyTaskSpray.aspx";
+            }
+            string message = "Completion Successful";
+          
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            Clear();
+          //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Completion Successful')", true);
 
         }
 

@@ -106,7 +106,6 @@ namespace Evo
                 GridIrrigation.DataSource = dt;
                 GridIrrigation.DataBind();
 
-
                 ChId = dt.Rows[0]["CropHealth"].ToString();
                 if (ChId == "")
                 {

@@ -88,7 +88,7 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField  HeaderStyle-Width="70px" HeaderText="Seedline Facility">
+                                    <asp:TemplateField HeaderStyle-Width="70px" HeaderText="Seedline Facility">
                                         <ItemTemplate>
                                             <asp:Label ID="lblSeedline" runat="server" Text='<%# Eval("loc") %>'></asp:Label>
 
@@ -112,9 +112,9 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Soil">
+                                    <asp:TemplateField HeaderText="Soil">
                                         <ItemTemplate>
-                                              <asp:Label ID="lblSoil" runat="server" Text='<%# Eval("Soil") %>'></asp:Label>
+                                            <asp:Label ID="lblSoil" runat="server" Text='<%# Eval("Soil") %>'></asp:Label>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -125,7 +125,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField  HeaderStyle-Width="100px" HeaderText="Sales Order Trays">
+                                    <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Sales Order Trays">
                                         <ItemTemplate>
                                             <asp:Label ID="lblSO_Tray" runat="server" Text='<%# Eval("sotrays","{0:####}") %>'></asp:Label>
 
@@ -142,21 +142,21 @@
                                         <ItemTemplate>
                                             <%-- <asp:TextBox ID="txtSeedline" runat="server" Text='<%# Eval("loc") %>' Width="50"></asp:TextBox>--%>
                                             <asp:Label ID="lbl_Seedline" Visible="false" Text='<%# Eval("loc") %>' runat="server"></asp:Label>
-                                            <asp:DropDownList ID="ddlBenchLocation"  class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlBenchLocation" class="custom__dropdown robotomd" runat="server"></asp:DropDownList>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderStyle-Width="70px" HeaderText="Work order Trays">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="Txtgtrays" Width="70px"  Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="Txtgtrays" Width="70px" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="150px">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="Txtgplantdt"  TextMode="Date" Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="Txtgplantdt" TextMode="Date" Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField  HeaderStyle-Width="70px" HeaderText="Seeds Allocated">
+                                    <asp:TemplateField HeaderStyle-Width="70px" HeaderText="Seeds Allocated">
                                         <ItemTemplate>
                                             <asp:Label ID="lblAllocated" runat="server" Text='<%# Eval("alloc") %>'></asp:Label>
                                             <asp:HiddenField ID="HiddenFieldsotrays" Value='<%# Eval("sotrays") %>' runat="server" />
@@ -250,11 +250,11 @@
                                 <div class="data__table">
                                     <asp:GridView ID="DGJob" runat="server" AutoGenerateColumns="False"
                                         class="striped"
-                                        GridLines="None" HeaderStyle-BackColor="#489d48"   HeaderStyle-ForeColor="#ffffff"
+                                        GridLines="None" HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
                                         ShowHeaderWhenEmpty="True" Width="100%">
 
                                         <Columns>
-                                           <%-- <asp:TemplateField HeaderText="DATE"  HeaderStyle-Width="60px">
+                                            <%-- <asp:TemplateField HeaderText="DATE"  HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="SrNo" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
 
@@ -278,7 +278,7 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                           <%-- <asp:TemplateField HeaderStyle-Width="60px" HeaderText="LOC">
+                                            <%-- <asp:TemplateField HeaderStyle-Width="60px" HeaderText="LOC">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbl_Seedline" Text='<%# Eval("loc_seedline") %>' runat="server"></asp:Label>
                                                 </ItemTemplate>
@@ -323,24 +323,25 @@
                                 </div>
                             </div>
 
-                            <div class="page__us--footer">
-                                <div class="d-flex align-items-center">
-                                    <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Deliever Sign.</label>
-                                    <div class="field__blank"></div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Line Sign.</label>
-                                    <div class="field__blank"></div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Office Sign.</label>
-                                    <div class="field__blank"></div>
-                                </div>
-                            </div>
+
 
                         </ItemTemplate>
                     </asp:Repeater>
                 </asp:Panel>
+                <div class="page__us--footer">
+                    <div class="d-flex align-items-center">
+                        <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Deliver Sign.</label>
+                        <div class="field__blank"></div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Line Sign.</label>
+                        <div class="field__blank"></div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Office Sign.</label>
+                        <div class="field__blank"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
