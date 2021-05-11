@@ -37,10 +37,16 @@ namespace Evo
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
 
-                Bindcname();
-                BindBenchLocation(Session["Facility"].ToString());
-                BindJobCode(ddlBenchLocation.SelectedValue);
-                BindGridFerReq(0);
+                //Bindcname();
+                //BindBenchLocation(Session["Facility"].ToString());
+                //BindJobCode(ddlBenchLocation.SelectedValue);
+
+                BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
+                BindJobCode("0", "0", "0");
+                Bindcname("0", "0", "0");
+                BindAssignByList("0", "0", "0");
+
+                BindGridFerReq("0", 0);
                 dtTrays.Clear();
             }
         }
@@ -114,34 +120,143 @@ namespace Evo
             ddlBenchLocation.ClearSelection();
         }
 
+        public void BindAssignByList(string ddlBench, string jobNo, string Cust)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", ddlBench);
+            nv.Add("@Customer", Cust);
+            nv.Add("@JobNo", jobNo);
+            nv.Add("@GenusCode", "0");
+            nv.Add("@Mode", "4");
+            nv.Add("@Type", "Chem");
+
+
+            dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+
+            ddlAssignedBy.DataSource = dt;
+            ddlAssignedBy.DataTextField = "AssingTo";
+            ddlAssignedBy.DataValueField = "AssingTo";
+            ddlAssignedBy.DataBind();
+            ddlAssignedBy.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlAssignedBy.Items.Insert(1, new ListItem("System", "System"));
+        }
+
+        public void Bindcname(string ddlBench, string jobNo, string Core)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBench) ? ddlBench : "0");
+            nv.Add("@Customer", !string.IsNullOrEmpty(ddlCustomer.SelectedValue) ? ddlCustomer.SelectedValue : "0");
+            nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
+            nv.Add("@GenusCode", Core);
+            nv.Add("@Mode", "3");
+            nv.Add("@Type", "Chem");
+
+            dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+            ddlCustomer.DataSource = dt;
+            ddlCustomer.DataTextField = "Customer";
+            ddlCustomer.DataValueField = "Customer";
+            ddlCustomer.DataBind();
+            ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindJobCode(string ddlBench, string Customer, string Core)
+        {
+            //  ddlJobNo.Items[0].Selected = false;
+            ddlJobNo.ClearSelection();
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBench) ? ddlBench : "0");
+            nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
+            nv.Add("@JobNo", !string.IsNullOrEmpty(ddlJobNo.SelectedValue) ? ddlJobNo.SelectedValue : "0");
+            nv.Add("@GenusCode", Core);
+
+            nv.Add("@Mode", "2");
+            nv.Add("@Type", "Chem");
+
+            dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+            //   ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataTextField = "JobNo";
+            ddlJobNo.DataValueField = "JobNo";
+            ddlJobNo.DataBind();
+
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindBenchLocation(string ddlMain, string jobNo, string Customer, string Core)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", ddlMain);
+            nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBenchLocation.SelectedValue) ? ddlBenchLocation.SelectedValue : "0");
+            nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
+            nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
+            nv.Add("@GenusCode", Core);
+            nv.Add("@Mode", "1");
+            nv.Add("@Type", "Chem");
+
+            dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
+
+            // ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataSource = dt;
+            ddlBenchLocation.DataTextField = "BenchLocation";
+            ddlBenchLocation.DataValueField = "BenchLocation";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridFerReq(1);
+            Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
+            BindJobCode(ddlBenchLocation.SelectedValue, "0", "0");
+            BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0");
+
+            BindGridFerReq(ddlJobNo.SelectedValue, 1);
 
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq(1);
+            BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, "0");
+            BindJobCode(ddlBenchLocation.SelectedValue, ddlCustomer.SelectedValue, "0");
+            BindAssignByList("0", "0", ddlCustomer.SelectedValue);
+            BindGridFerReq("0", 1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq(1);
+            Bindcname("0", ddlJobNo.SelectedValue, "0");
+            BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, "0", "0");
+            BindAssignByList("0", ddlJobNo.SelectedValue, "0");
+
+            BindGridFerReq(ddlJobNo.SelectedValue, 1);
         }
 
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq(1);
+            BindGridFerReq("0", 1);
         }
 
-        public void BindGridFerReq(int p)
+        public void BindGridFerReq(string JobCode, int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
+            nv.Add("@JobCode", JobCode);
+            nv.Add("@CustomerName", !string.IsNullOrEmpty(ddlCustomer.SelectedValue) ? ddlCustomer.SelectedValue : "0");
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@RequestType", RadioButtonListSourse.SelectedValue);
@@ -236,7 +351,7 @@ namespace Evo
         protected void gvFer_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvFer.PageIndex = e.NewPageIndex;
-            BindGridFerReq(1);
+            BindGridFerReq("0", 1);
         }
 
         protected void chckchanged(object sender, EventArgs e)
@@ -265,15 +380,15 @@ namespace Evo
         {
             RadioButtonListSourse.Items[0].Selected = false;
             RadioButtonListSourse.ClearSelection();
-            Bindcname();
-            BindBenchLocation(Session["Facility"].ToString());
-            BindJobCode(ddlBenchLocation.SelectedValue);
-            BindGridFerReq(1);
+            //Bindcname();
+           // BindBenchLocation(Session["Facility"].ToString());
+           // BindJobCode(ddlBenchLocation.SelectedValue);
+            BindGridFerReq("0", 1);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridFerReq(1);
+            BindGridFerReq("0", 1);
             BindGridFerDetails();
         }
 
@@ -291,12 +406,12 @@ namespace Evo
 
         protected void btnSearch_Click1(object sender, EventArgs e)
         {
-            BindGridFerReq(1);
+            BindGridFerReq("0", 1);
         }
 
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridFerReq(1);
+            BindGridFerReq("0", 1);
         }
 
         protected void gvFer_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -364,7 +479,8 @@ namespace Evo
         {
             txtFromDate.Text = "";
             txtToDate.Text = "";
-            BindGridFerReq(1);
+            BindBenchLocation(Session["Facility"].ToString(), txtSearchJobNo.Text, "0", "0");
+            BindGridFerReq(txtSearchJobNo.Text, 1);
         }
     }
 }
