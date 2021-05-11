@@ -18,6 +18,11 @@ namespace Evo
         {
             if (!IsPostBack)
             {
+             
+                BindBenchLocation("0", "0", "0","0");
+                BindAssignByList("0", "0", "0");
+                Bindcname("0", "0", "0");
+                BindJobCode("0", "0", "0");
                 BindGridGerm("0");
             }
         }
@@ -30,7 +35,7 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@JobCode", JobCode);
-            nv.Add("@CustomerName", !string.IsNullOrEmpty(ddlCustomer.SelectedValue) ? ddlCustomer.SelectedValue : "0");
+            nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@AssignedBy", ddlAssignedBy.SelectedValue);
 
             dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTasknew", nv);
@@ -50,7 +55,7 @@ namespace Evo
             nv.Add("@JobNo", jobNo);
             nv.Add("@GenusCode", "0");
             nv.Add("@Mode", "4");
-            nv.Add("@Type", "Put");
+            nv.Add("@Type", "PutAwy");
 
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
@@ -74,7 +79,7 @@ namespace Evo
             nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
             nv.Add("@GenusCode", Core);
             nv.Add("@Mode", "3");
-            nv.Add("@Type", "Put");
+            nv.Add("@Type", "PutAwy");
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
             ddlCustomer.DataSource = dt;
@@ -100,7 +105,7 @@ namespace Evo
             nv.Add("@GenusCode", Core);
 
             nv.Add("@Mode", "2");
-            nv.Add("@Type", "Put");
+            nv.Add("@Type", "PutAwy");
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
             //   ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
@@ -119,13 +124,13 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
 
             nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@Facility", ddlMain);
+            nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
             nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
             nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
             nv.Add("@GenusCode", Core);
             nv.Add("@Mode", "1");
-            nv.Add("@Type", "Put");
+            nv.Add("@Type", "PutAwy");
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
 
