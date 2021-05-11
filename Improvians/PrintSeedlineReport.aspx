@@ -44,7 +44,6 @@
                     <asp:Repeater ID="repReport" runat="server" OnItemDataBound="repReport_ItemDataBound">
                         <ItemTemplate>
 
-
                             <div class="page-break">
                                 <div class="row mt-4">
                                     <div class="d-flex align-items-center mb-1 col-12">
@@ -139,24 +138,24 @@
                                 </div>
                             </div>
 
-                            <div class="page__us--footer">
-                                <div class="d-flex align-items-center">
-                                    <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Deliever Sign.</label>
-                                    <div class="field__blank"></div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Line Sign.</label>
-                                    <div class="field__blank"></div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Office Sign.</label>
-                                    <div class="field__blank"></div>
-                                </div>
-                            </div>
-
                         </ItemTemplate>
                     </asp:Repeater>
                 </asp:Panel>
+
+                <div class="page__us--footer">
+                    <div class="d-flex align-items-center">
+                        <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Deliver Sign.</label>
+                        <div class="field__blank"></div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Line Sign.</label>
+                        <div class="field__blank"></div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label class="d-block inline__fields inline__fields-signs mr-3 mb-0">Seed Office Sign.</label>
+                        <div class="field__blank"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
