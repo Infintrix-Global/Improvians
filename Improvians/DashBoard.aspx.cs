@@ -180,7 +180,8 @@ namespace Evo
             if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
             {
                 TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
-              //  JobReports.HRef = "JobReports.aspx";
+                //  JobReports.HRef = "JobReports.aspx
+                TrackTasks.HRef = "ManageTaskJobReport.aspx";
             }
 
             if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
@@ -188,7 +189,7 @@ namespace Evo
 
                 CreateTask.HRef = "CreateTask.aspx";
                 JobReports.HRef = "JobReports.aspx";
-             
+                TrackTasks.HRef = "ManageTaskJobReport.aspx";    
             }
             else
             {
