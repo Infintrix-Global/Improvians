@@ -1820,7 +1820,175 @@ namespace Evo
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
             Clear();
-        }      
-     
+        }
+
+
+
+        public void SubmitDump(string Assign)
+        {
+            int IrrigationCode = 0;
+            DataTable dt = new DataTable();
+            NameValueCollection nv11 = new NameValueCollection();
+            nv11.Add("@Mode", "13");
+            dt = objCommon.GetDataTable("GET_Common", nv11);
+            IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+
+
+            if (Chid == "")
+            {
+                long result = 0;
+                long imgresult = 0;
+                string folderPath = "";
+                NameValueCollection nv = new NameValueCollection();
+
+                //if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                //{
+                //    folderPath = Server.MapPath("~/images/");
+                //    FileUpload1.SaveAs(folderPath + Path.GetFileName(FileUpload1.FileName));
+                //}
+                //else
+                //{
+                //    folderPath = "";
+                //}
+                nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
+                nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
+                nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
+                nv.Add("@NoTrays", txtTrays.Text);
+                nv.Add("@PerDamage", percentageDamage.Text);
+                nv.Add("@Date", txtDate.Text);
+                nv.Add("@Filepath", folderPath);
+                nv.Add("@CropHealthCommit", txtcomments.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddCropHealthReport", nv);
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFile file = Request.Files[i];
+                    if (file.ContentLength > 0)
+                    {
+                        string fname = Path.GetFileName(file.FileName);
+                        NameValueCollection nvimg = new NameValueCollection();
+                        folderPath = Server.MapPath("~/images/");
+                        file.SaveAs(folderPath + Path.GetFileName(fname));
+                        nvimg.Add("@chid ", result.ToString());
+                        nvimg.Add("@ImageName", fname);
+                        nvimg.Add("@Imagepath", folderPath);
+                        imgresult = objCommon.GetDataExecuteScaler("InsertCropHealthImage", nvimg);
+                    }
+                }
+
+                foreach (GridViewRow row in gvFer.Rows)
+                {
+                    CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                    if (chckrw.Checked == true)
+                    {
+                        long result11 = 0;
+                        NameValueCollection nv1 = new NameValueCollection();
+                        nv1.Add("@chid", result.ToString());
+                        nv1.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                        nv1.Add("@itemno", (row.FindControl("lblitem") as Label).Text);
+                        nv1.Add("@itemdescp", (row.FindControl("lblitemdesc") as Label).Text);
+                        nv1.Add("@cname", (row.FindControl("lblCustomer") as Label).Text);
+                        nv1.Add("@loc_seedline", Session["Facility"].ToString());
+                        nv1.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                        nv1.Add("@seedsreceived", "");
+                        nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                        nv1.Add("@SoDate", "");
+                        nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                        nv1.Add("@Jid", (row.FindControl("lblj_id") as Label).Text);
+                        nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
+                        nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
+                    }
+
+                }
+
+                if (result > 0)
+                {
+                    Chid = result.ToString();
+                    BindGridCropHealth();
+                    BindSupervisorList();
+                    PanelView.Visible = false;
+                    PanelList.Visible = true;
+                }
+
+            }
+            foreach (GridViewRow row in GridViewView.Rows)
+            {
+
+                long result = 0;
+                ////NameValueCollection nv = new NameValueCollection();
+                ////nv.Add("@SupervisorID", Assign);
+                ////nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                ////nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                ////nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                ////nv.Add("@Facility", Session["Facility"].ToString());
+                ////nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                ////nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                ////nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                ////nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                ////nv.Add("@LoginID", Session["LoginID"].ToString());
+                ////nv.Add("@ChId", Chid);
+                ////nv.Add("@Comments", txtcomments.Text.Trim());
+                ////nv.Add("@SeedDate", (row.FindControl("lblSeededDate1") as Label).Text);
+                ////nv.Add("@PlantDate", txtPlantDate.Text);
+                ////nv.Add("@Comments", txtcomments.Text);
+                ////nv.Add("@Role", Session["Role"].ToString());
+                ////nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+
+                ////result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
+                ///
+
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", Assign);
+
+                nv.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
+                nv.Add("@Customer", (row.FindControl("lblCustomer1") as Label).Text);
+                nv.Add("@Item", (row.FindControl("lblitem1") as Label).Text);
+                nv.Add("@Facility", Session["Facility"].ToString());
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
+                nv.Add("@TotalTray", (row.FindControl("lblTotTray1") as Label).Text);
+                nv.Add("@TraySize", (row.FindControl("lblTraySize1") as Label).Text);
+                nv.Add("@Itemdesc", (row.FindControl("lblitemdesc1") as Label).Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@ChId", Chid);
+                nv.Add("@Comments", txtcomments.Text.Trim());
+                nv.Add("@QuantityOfTray", txtQuantityofTray.Text.Trim());
+                nv.Add("@wo", "0");
+                nv.Add("@DumpDate", txtDumpDate.Text);
+                nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+                nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
+
+            }
+
+
+            long result1 = 0;
+            NameValueCollection nv111 = new NameValueCollection();
+            nv111.Add("@Chid", Chid);
+            result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv111);
+            objGeneral.SendMessage(int.Parse(Assign), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
+
+            //string message = "Assignment Successful";
+            //string url = "MyTaskGrower.aspx";
+            //string script = "window.onload = function(){ alert('";
+            //script += message;
+            //script += "');";
+            //script += "window.location = '";
+            //script += url;
+            //script += "'; }";
+            //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+        }
+
+
+
+        protected void btnDumpSumbit_Click(object sender, EventArgs e)
+        {
+            SubmitDump(ddlDumptAssignment.SelectedValue);
+        }
+
+        protected void btnSaveDump_Click(object sender, EventArgs e)
+        {
+            SubmitDump(Session["LoginID"].ToString());
+        }
     }
 }

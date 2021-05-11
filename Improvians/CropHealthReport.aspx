@@ -819,8 +819,8 @@
                                     <asp:TextBox ID="txtCommentsDump" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>--%>
                                 <div class="mb-3 col-12 align-self-end">
-                                    <asp:Button Text="Assign" ID="btnDumpSumbit" CssClass="bttn bttn-primary bttn-action" runat="server" />
-                                    <asp:Button Text="Save for later"  Visible="false" CausesValidation="true" ID="btnSaveDump" CssClass="submit-bttn bttn bttn-primary" runat="server" />
+                                    <asp:Button Text="Assign" ID="btnDumpSumbit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnDumpSumbit_Click"/>
+                                    <asp:Button Text="Save for later"  Visible="false" CausesValidation="true" ID="btnSaveDump" CssClass="submit-bttn bttn bttn-primary" runat="server"  OnClick="btnSaveDump_Click" />
                                     <asp:Button Text="Reset" ID="btnDumpReset" runat="server" CssClass="bttn bttn-primary bttn-action" />
                                 </div>
                             </div>

@@ -370,6 +370,59 @@ namespace Evo
                     }
                 }
             }
+
+            if (e.CommandName == "Reschedule")
+            {
+                divReschedule.Visible = true;
+                userinput.Visible = false;
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+             
+                lblRescheduleID.Text = gvPlantReady.DataKeys[rowIndex].Values[10].ToString();
+                lblRescheduleJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
+               
+                DateTime oldDate = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6].ToString());
+                lblOldDate.Text = oldDate.ToString();
+                txtNewDate.Text = oldDate.ToString("yyyy-MM-dd");
+                txtNewDate.Focus();
+                // BindGridGerm("0", 1);
+            }
+            if (e.CommandName == "Dismiss")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);              
+                int ID = Convert.ToInt32(gvPlantReady.DataKeys[rowIndex].Values[10].ToString());
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@GrowerPutAwayPlantReadyId", ID.ToString());
+                result = objCommon.GetDataInsertORUpdate("SP_DismissPlantReadyRequest", nv);
+                BindGridPlantReady(1);              
+            }
+        }
+
+        protected void btnReschedule_Click(object sender, EventArgs e)
+        {
+            int ID = Convert.ToInt32(lblRescheduleID.Text);
+            long result = 0;
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@PlantReadyId", ID.ToString());
+            nv.Add("@PlantReadyDate", txtNewDate.Text);
+
+            result = objCommon.GetDataInsertORUpdate("SP_ReschedulePlantReadyRequest", nv);
+            if (result > 0)
+            {
+                string message = "Reschedule Successful";
+                string url = "PlantReadyRequestForm.aspx";
+                objCommon.ShowAlertAndRedirect(message, url);
+                clear();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+            }
+        }
+
+        protected void btnResetReschedule_Click(object sender, EventArgs e)
+        {
+            txtNewDate.Text = "";
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

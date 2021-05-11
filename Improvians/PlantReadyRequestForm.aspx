@@ -87,7 +87,7 @@
                 <div class="data__table">
                     <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
                         class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
-                        GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,SeededDate,GreenHouseID,Trays,itemdescp,TaskRequestKey"
+                        GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,SeededDate,GreenHouseID,Trays,itemdescp,GrowerPutAwayPlantReadyId,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
 
@@ -173,8 +173,8 @@
                                 <ItemTemplate>
                                     <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                     <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-                                    <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
-                                    <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                    <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschedule" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
+                                    <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" OnClientClick="return confirm('Are you sure you want to dismiss this ?'); " CommandName="Dismiss" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
 
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -253,7 +253,31 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div id="divReschedule" runat="server" class="assign__task d-flex" visible="false">
+                <asp:Panel ID="Panel1" runat="server">
+                    <h3>Reschedule Task</h3>
+                    <div class="row">
+                        <div class="col-auto">
+                            <label>Job No.</label><br />
+                            <h4 class="robotobold">
+                                <asp:Label ID="lblRescheduleJobID" runat="server"></asp:Label>
+                                <asp:Label ID="lblRescheduleID" runat="server" Visible="false"></asp:Label>
+                                <asp:Label ID="lblOldDate" runat="server" Visible="false"></asp:Label>
+                            </h4>
+                        </div>
+                        <div class="col mb-3">
+                            <label class="d-block">New Plant Ready Work Date </label>
+                            <asp:TextBox ID="txtNewDate" TextMode="Date" runat="server" class="input__control input__control-auto robotomd"></asp:TextBox>
+                        </div>
+
+                        <div class="col-12">
+                            <asp:Button Text="Submit" ID="btnReschedule" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReschedule_Click" />
+                            <asp:Button Text="Reset" ID="btnRescheduleReset" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnResetReschedule_Click" />
+                        </div>
+                    </div>
+                </asp:Panel>
+            </div>
+        </div>
     </div>
 </asp:Content>
