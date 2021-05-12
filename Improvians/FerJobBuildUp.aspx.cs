@@ -603,6 +603,7 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             int FertilizationCode = 0;
+            string SprayTaskForDaysDate = "";
             if (FCode == "0")
             {
               
@@ -619,7 +620,10 @@ namespace Evo
                 FertilizationCode = Convert.ToInt32(FCode);
             }
 
-
+            if (txtResetSprayTaskForDays.Text != "")
+            {
+                SprayTaskForDaysDate = (Convert.ToDateTime(System.DateTime.Now).AddDays(Convert.ToInt32(txtResetSprayTaskForDays.Text))).ToString();
+            }
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -640,8 +644,10 @@ namespace Evo
                 nv.Add("@Jid",Jid);
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
-                
+                nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
+
+                
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
                 FR_ID = result.ToString();
@@ -716,8 +722,9 @@ namespace Evo
 
                     nv.Add("@TaskRequestKey", TaskRequestKey);
                     nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                     nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
-                    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
+                result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
                    
              //   }    
