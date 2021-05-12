@@ -129,7 +129,7 @@
                                             <asp:Button ID="btnAssign" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action" CommandName="Assign" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
                                             <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-                                            <asp:Button ID="btnView" runat="server" Width="140px" Text="View Job Details" CssClass="bttn bttn-primary bttn-action my-1" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                            <asp:Button ID="btnView" runat="server" Width="140px" CommandName="ViewDetails" Text="View Job Details" CssClass="bttn bttn-primary bttn-action my-1" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>

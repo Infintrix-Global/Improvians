@@ -471,6 +471,7 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             int ChemicalCode = 0;
+            string SprayTaskForDaysDate = "";
 
             if (CCode == "0")
             {
@@ -484,6 +485,18 @@ namespace Evo
             {
                 ChemicalCode = Convert.ToInt32(CCode);
             }
+
+            if (txtResetSprayTaskForDays.Text != "")
+            {
+                SprayTaskForDaysDate = (Convert.ToDateTime(System.DateTime.Now.ToShortDateString()).AddDays(Convert.ToInt32(txtResetSprayTaskForDays.Text))).ToString();
+
+            }
+            else
+            {
+                SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
+
+            }
+
 
             long resultRID = 0;
             foreach (GridViewRow row in gvFer.Rows)
@@ -504,6 +517,7 @@ namespace Evo
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                 nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
                 resultRID = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
 
@@ -545,6 +559,7 @@ namespace Evo
 
                 nv.Add("@Comments", txtComments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
+                nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
 
