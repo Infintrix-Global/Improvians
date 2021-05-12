@@ -32,7 +32,7 @@
                             <asp:Label ID="lblGTR_ID" runat="server" Visible="false" Text=""></asp:Label>
                             <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
-                                GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound" DataKeyNames="ID,GTR_ID"
+                                GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound" DataKeyNames="ID,GTR_ID,TaskRequestKey"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
                                     <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">

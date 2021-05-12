@@ -19,7 +19,6 @@ namespace Evo
                 //  BindJobCode();
                 //  BindFacility();
                 BindGridGerm(0);
-
             }
         }
 
@@ -40,7 +39,21 @@ namespace Evo
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
 
+            }
+        }
 
         //public void Bindcname()
         //{
@@ -130,8 +143,9 @@ namespace Evo
             {
                 //var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvGerm.DataKeys[row.RowIndex].Values[1].ToString();
                 i--;
-                if (checklocation == benchLoc)
+                if (checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
@@ -200,7 +214,7 @@ namespace Evo
                 string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
                 Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "", IrrigationCode, 0, TaskRequestKey));
 
-              //  Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
+                //  Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
             }
         }
 
