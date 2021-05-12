@@ -32,7 +32,6 @@ namespace Evo
                     Bench = Request.QueryString["Bench"].ToString();
                 }
 
-
                 if (Request.QueryString["CCode"] != null)
                 {
                     CCode = Request.QueryString["CCode"].ToString();
@@ -221,7 +220,6 @@ namespace Evo
             }
         }
 
-
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
             // SelectBenchLocation();
@@ -235,11 +233,8 @@ namespace Evo
                 PanelHouse.Visible = false;
                 int P1 = 0;
                 string Q1 = "";
-
                 string YourString = Bench;
-
                 YourString = YourString.Remove(YourString.Length - 1);
-
                 DataTable dt12 = objFer.GetSelectBench(YourString);
                 if (dt12 != null && dt12.Rows.Count > 0)
                 {
@@ -263,7 +258,6 @@ namespace Evo
                         }
                         else
                         {
-
                         }
                     }
                     else
@@ -285,8 +279,6 @@ namespace Evo
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-
-
             }
             else if (RadioBench.SelectedValue == "3")
             {
@@ -325,7 +317,6 @@ namespace Evo
                     chkSelected = "'" + Bench + "'";
                 }
 
-
                 BenchUp = chkSelected;
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
@@ -335,12 +326,8 @@ namespace Evo
             }
             else
             {
-
             }
-
-
         }
-
 
         protected void ListBoxBenchesInHouse_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -349,29 +336,23 @@ namespace Evo
             string chkSelected = "";
             foreach (ListItem item in ListBoxBenchesInHouse.Items)
             {
-
                 if (item.Selected)
                 {
                     c = 1;
                     x += "'" + item.Text + "',";
-
                 }
             }
             if (c > 0)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
-
             }
             else
             {
-
             }
             BenchUp = chkSelected;
             BindGridFerDetails(chkSelected);
             BindSQFTofBench(chkSelected);
         }
-
-
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -387,62 +368,40 @@ namespace Evo
 
                 foreach (ListItem item in ListBoxBenchesInHouse.Items)
                 {
-
                     if (item.Selected)
                     {
                         c = 1;
                         x += "'" + item.Text + "',";
-
                     }
                 }
                 if (c > 0)
                 {
                     chkSelected = x.Remove(x.Length - 1, 1);
-
                 }
                 else
                 {
-
                 }
-
 
             }
             else if (RadioBench.SelectedValue == "3")
             {
-
-
             }
-
             BindGridFerDetails(chkSelected);
-
-
         }
 
         public void SelectBench()
         {
             string YourString = Bench;
-
             // ENC2 - SHADE - 2 - A
             //string input = Bench;
             //string[] array = input.Split('-');
             YourString = YourString.Remove(YourString.Length - 1);
-
             DataTable dt = objFer.GetSelectBench(YourString);
-
             lblBench1.Text = dt.Rows[0]["PositionCode"].ToString();
-
         }
-
-
 
         public void SelectBenchLocation()
         {
-
-
-            // ENC2 - SHADE - 2 - A
-            //string input = Bench;
-            //string[] array = input.Split('-');
-
             string[] words = Regex.Split(Bench, @"\W+");
 
             DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
@@ -454,31 +413,8 @@ namespace Evo
 
         }
 
-
         public void BindGridFerReq()
         {
-            //DataTable dt = new DataTable();
-            //NameValueCollection nv = new NameValueCollection();
-            //nv.Add("@JobCode", JobCode);
-            //nv.Add("@CustomerName", "0");
-            //nv.Add("@Facility", "0");
-            //nv.Add("@BenchLocation", Bench);
-            //nv.Add("@RequestType", "0");
-            //nv.Add("@FromDate", "");
-            //nv.Add("@ToDate", "");
-
-
-
-            //if (Session["Role"].ToString() == "12")
-            //{
-            //    dt = objCommon.GetDataTable("SP_GetChemicalRequestAssistantGrower", nv);
-            //}
-            //else
-            //{
-            //    dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
-            //}
-
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", JobCode);
@@ -487,17 +423,12 @@ namespace Evo
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
-            //   Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
             Jid = dt.Rows[0]["Jid"].ToString();
 
             decimal tray = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
-                //}
-
             }
             txtTrays.Text = tray.ToString();
         }
@@ -511,52 +442,31 @@ namespace Evo
 
             DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
 
-
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
                 dt.AcceptChanges();
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
-
             }
             else if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 gvJobHistory.DataSource = dtManual;
                 gvJobHistory.DataBind();
-
             }
             else
             {
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
-
-
             }
-
 
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
-                //}
-
             }
-
-
-            txtTrays.Text =(Convert.ToInt32(txtTrays.Text)+ tray).ToString();
-
+            txtTrays.Text = (Convert.ToInt32(txtTrays.Text) + tray).ToString();
         }
-
-        //protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gvJobHistory.PageIndex = e.NewPageIndex;
-
-        //}
-
-
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -569,21 +479,15 @@ namespace Evo
                 nv1.Add("@Mode", "16");
                 dt = objCommon.GetDataTable("GET_Common", nv1);
                 ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
-
             }
             else
             {
                 ChemicalCode = Convert.ToInt32(CCode);
             }
 
-
             long resultRID = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
-
-
                 long Mresult = 0;
                 NameValueCollection nv = new NameValueCollection();
 
@@ -603,67 +507,27 @@ namespace Evo
 
                 resultRID = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
 
-
-            
-
                 NameValueCollection nameValue = new NameValueCollection();
                 nameValue.Add("@LoginID", Session["LoginID"].ToString());
                 nameValue.Add("@jobcode", JobCode);
                 nameValue.Add("@GreenHouseID", Bench);
                 nameValue.Add("@TaskName", "Chemical");
 
-
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
-
 
                 NameValueCollection nvn = new NameValueCollection();
                 nvn.Add("@LoginID", Session["LoginID"].ToString());
                 nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
                 nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                 nvn.Add("@TaskName", "Chemical");
+                nv.Add("@TaskRequestKey", TaskRequestKey);
                 nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
-
-
             }
-
-            //dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-            //objTask.AddChemicalRequestDetails(dtTrays, resultRID.ToString(), ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
 
             long result = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
-                //if ((row.FindControl("lblGrowerputawayID") as Label).Text == "0")
-                //{
-                //    long result = 0;
-                //    NameValueCollection nv = new NameValueCollection();
-                //    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                //    nv.Add("@Type", "Chemical");
-                //    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                //    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                //    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                //    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                //    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                //    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                //    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                //    //nv.Add("@WorkOrder", lblwo.Text);
-                //    nv.Add("@LoginID", Session["LoginID"].ToString());
-                //    nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                //    nv.Add("@ChemicalDate", txtDate.Text);
-                //    nv.Add("@Comments", txtComments.Text);
-                //    nv.Add("@Method", ddlMethod.SelectedValue);
-
-                //    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManual", nv);
-                //}
-                //else
-                //{
-
-                //nv.Add("@WorkOrder", lblwo.Text);
-
-
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
@@ -684,19 +548,11 @@ namespace Evo
 
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
 
-
-                // }
-
-           
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
             objTask.AddChemicalRequestDetails(dtTrays, result.ToString(), ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
 
-            //long Mresult12 = 0;
-            //NameValueCollection nv123 = new NameValueCollection();
-            //nv123.Add("@BanchLocation", lblbench.Text);
-            //Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
             objTask.UpdateIsActiveChemical(BenchUp);
 
             Evo.BAL_Classes.General objGeneral = new General();
@@ -728,10 +584,8 @@ namespace Evo
             Clear();
         }
 
-
         public void Clear()
         {
-
             txtSQFT.Text = "";
             txtTrays.Text = "";
 
@@ -741,8 +595,6 @@ namespace Evo
 
         public void BindSQFTofBench(string Bench)
         {
-
-            //  DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
             DataTable dtSQFT = objFer.GetSQFTofBenchNew(Bench);
             if (dtSQFT != null && dtSQFT.Rows.Count > 0)
             {
@@ -753,8 +605,6 @@ namespace Evo
                 txtSQFT.Text = "0.00";
             }
         }
-
-
 
         public void BindChemical()
         {
@@ -784,7 +634,6 @@ namespace Evo
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
-
             RadioBench.Items[0].Selected = false;
             ListBoxBenchesInHouse.Items.Clear();
             //To unselect all Items
@@ -793,14 +642,5 @@ namespace Evo
             PanelBench.Visible = false;
             PanelBenchesInHouse.Visible = false;
         }
-
-
-
-
-
-
-
-
-
     }
 }
