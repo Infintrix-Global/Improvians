@@ -597,7 +597,6 @@ namespace Evo
             NameValueCollection nameValue = new NameValueCollection();
             nameValue.Add("@LoginID", Session["LoginID"].ToString());
             nameValue.Add("@jobcode", lblJobID.Text);
-
             nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
             nameValue.Add("@TaskName", "Germination");
 
