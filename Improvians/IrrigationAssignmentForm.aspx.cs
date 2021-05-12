@@ -65,6 +65,9 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+
+
             dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();

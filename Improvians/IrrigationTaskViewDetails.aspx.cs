@@ -247,7 +247,7 @@ namespace Evo
 
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();
-            lbljid.Text = dt.Rows[0]["jid"].ToString();
+      //      lbljid.Text = dt.Rows[0]["jid"].ToString();
 
         }
 
