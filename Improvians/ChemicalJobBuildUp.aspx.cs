@@ -52,7 +52,7 @@ namespace Evo
                 }
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
-                BenchUp = Bench;
+                BenchUp = "'" + Bench + "'";
                 BindGridFerReq();
                 BindGridFerDetails("'" + Bench + "'");
                 BindGridFerReqView(Request.QueryString["CCode"].ToString());
@@ -569,7 +569,7 @@ namespace Evo
             objTask.AddChemicalRequestDetails(dtTrays, result.ToString(), ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
 
             objTask.UpdateIsActiveChemical(BenchUp);
-
+        //    "'" + Bench + "'"
             Evo.BAL_Classes.General objGeneral = new General();
             objGeneral.SendMessage(int.Parse(ddlsupervisor.SelectedValue), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
             string url = "";

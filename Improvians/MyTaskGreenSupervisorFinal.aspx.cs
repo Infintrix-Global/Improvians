@@ -52,6 +52,7 @@ namespace Evo
             lblGeneralTaskCount.Text = dt.Tables[6].Rows.Count.ToString();
             lblCropHealthReport.Text = dt.Tables[9].Rows.Count.ToString();
 
+
         }
         private void BindGridGen()
         {
