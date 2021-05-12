@@ -58,6 +58,21 @@ namespace Evo
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+
+            }
+        }
 
         public void Bindcname()
         {
@@ -127,8 +142,9 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvGerm.DataKeys[row.RowIndex].Values[0].ToString();
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
@@ -180,7 +196,7 @@ namespace Evo
                 result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignment", nv);
 
                 // Session["WorkOrder"] = JobID;
-             //   Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}", result.ToString(), ChId));
+                //   Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}", result.ToString(), ChId));
                 Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}&GTRID={2}&IsF={3}", result, "CreateTask", GTRID, 0));
 
             }

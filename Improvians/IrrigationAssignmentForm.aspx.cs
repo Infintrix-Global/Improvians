@@ -41,7 +41,21 @@ namespace Evo
         }
 
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
 
+            }
+        }
 
         private string wo
         {
@@ -90,10 +104,13 @@ namespace Evo
             var i = gvGerm.Rows.Count;
             bool check = false;
             foreach (GridViewRow row in gvGerm.Rows)
-            {               
+            {
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+
+                var tKey = gvGerm.DataKeys[row.RowIndex].Values[1].ToString();
+
                 i--;
-                if (checklocation == benchLoc)
+                if (checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
@@ -199,7 +216,7 @@ namespace Evo
                 string IrrigationCode = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
 
-               
+
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
                 nv.Add("@IrrigationCode", IrrigationCode);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
@@ -222,7 +239,7 @@ namespace Evo
 
                 Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "", IrrigationCode, 0, TaskRequestKey));
 
-             //   Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", IrrigationCode));
+                //   Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", IrrigationCode));
             }
 
 
