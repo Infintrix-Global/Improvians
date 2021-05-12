@@ -529,7 +529,7 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             int IrrigationCode = 0;
-
+            string SprayTaskForDaysDate = "";
             foreach (GridViewRow row1 in GridIrrigation.Rows)
             {
                 string IrrigationCode1 = (row1.FindControl("lblIrrigationCode") as Label).Text;
@@ -559,6 +559,16 @@ namespace Evo
                 }
             }
 
+            if (txtResetSprayTaskForDays.Text != "")
+            {
+                SprayTaskForDaysDate = (Convert.ToDateTime(System.DateTime.Now.ToShortDateString()).AddDays(Convert.ToInt32(txtResetSprayTaskForDays.Text))).ToString();
+
+            }
+            else
+            {
+                SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
+
+            }
 
 
             foreach (GridViewRow row in GridIrrigation.Rows)
@@ -587,7 +597,7 @@ namespace Evo
                 nv.Add("@ISAG", "0");
                 nv.Add("@jid", Jid);
                 nv.Add("@TaskRequestKey", TaskRequestKey);
-              
+                nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
 
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
@@ -671,7 +681,8 @@ namespace Evo
                     nv.Add("@ISAG", "0");
                     nv.Add("@jid", (row.FindControl("lblJid") as Label).Text);
                     nv.Add("@TaskRequestKey", TaskRequestKey);
-                    result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
+                    nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
+                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
                // }
                 NameValueCollection nvn = new NameValueCollection();
 
