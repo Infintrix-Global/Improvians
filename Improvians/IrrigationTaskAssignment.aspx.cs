@@ -22,10 +22,30 @@ namespace Evo
                 {
                     IrrigationCode = Request.QueryString["IrrigationCode"].ToString();
                 }
+                if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+                }
 
                 BindGridGerm();
                 BindOperatorList();
                 BindGridIrrDetailsViewReq();
+            }
+        }
+
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
             }
         }
 
@@ -144,12 +164,12 @@ namespace Evo
             nv.Add("@IrrigationCode", IrrigationCode);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@SprayDate", txtSprayDate.Text);
-
+            nv.Add("@TaskRequestKey", TaskRequestKey);
             nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
-            nv.Add("@Comments",txtNotes.Text);
-            nv.Add("@WaterRequired",txtWaterRequired.Text);
-           
-           
+            nv.Add("@Comments", txtNotes.Text);
+            nv.Add("@WaterRequired", txtWaterRequired.Text);
+
+
             result = objCommon.GetDataExecuteScaler("SP_AddIrrigationTaskAssignment", nv);
             if (result > 0)
             {
@@ -187,7 +207,7 @@ namespace Evo
         public void clear()
         {
             ddlOperator.SelectedIndex = 0;
-           // txtNotes.Text = "";
+            // txtNotes.Text = "";
 
 
         }

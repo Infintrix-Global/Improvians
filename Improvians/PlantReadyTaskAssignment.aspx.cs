@@ -24,6 +24,10 @@ namespace Evo
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
+                if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+                }
 
                 BindGridGerm();
                 BindOperatorList();
@@ -79,6 +83,21 @@ namespace Evo
             }
         }
 
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
 
         public void BindOperatorList()
         {
@@ -144,6 +163,8 @@ namespace Evo
             nv.Add("@Notes", txtPlantComments.Text);
             nv.Add("@PRID", PRID);
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@TaskRequestKey", TaskRequestKey);
+
             result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignment", nv);
             if (result > 0)
             {

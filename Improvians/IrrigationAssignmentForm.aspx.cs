@@ -184,7 +184,7 @@ namespace Evo
 
 
 
-                Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?IrrigationCode={0}", IrrigationCode));
+                Response.Redirect(String.Format("~/IrrigationTaskAssignment.aspx?IrrigationCode={0}&TaskRequestKey={1}", IrrigationCode, TaskRequestKey));
 
             }
 
