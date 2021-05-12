@@ -87,7 +87,7 @@
                 <div class="data__table">
                     <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
                         class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
-                        GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,SeededDate,GreenHouseID,Trays,itemdescp,GrowerPutAwayPlantReadyId,TaskRequestKey"
+                        GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,PlantReadySeedDate,GreenHouseID,Trays,itemdescp,GrowerPutAwayPlantReadyId,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
 
@@ -153,7 +153,7 @@
 
                             <asp:TemplateField HeaderText="Plant Ready Work Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPlantDate" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    <asp:Label ID="lblPlantDate" runat="server" Text='<%# Eval("PlantReadySeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

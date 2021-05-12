@@ -41,6 +41,7 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataSet("SP_GetGreenhouseSupervisorEachTaskCount", nv);
             lblGerm.Text = dt.Tables[0].Rows.Count.ToString();
+
             lblIrr.Text = dt.Tables[1].Rows.Count.ToString();
             lblpr.Text = dt.Tables[2].Rows.Count.ToString();
             lblPutAway.Text = dt.Tables[3].Rows.Count.ToString();
@@ -112,6 +113,7 @@ namespace Evo
             dt = new DataTable();
             nv.Clear();
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTask", nv);
             BindData(dt, Irr, "SprayDate");
         }

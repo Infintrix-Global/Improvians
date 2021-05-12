@@ -65,6 +65,9 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+
+
             dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -217,7 +220,7 @@ namespace Evo
                 string IrrigationCode = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
 
-                Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "ManageTask", IrrigationCode, 0, TaskRequestKey));
+                Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "", IrrigationCode, 0, TaskRequestKey));
 
              //   Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", IrrigationCode));
             }

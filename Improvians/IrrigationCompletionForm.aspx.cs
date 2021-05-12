@@ -173,6 +173,9 @@ namespace Evo
 
             if (e.CommandName == "Select")
             {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string IrrigationCode = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
                 //long result = 0;
                 //string WOID = e.CommandArgument.ToString();
                 //NameValueCollection nv = new NameValueCollection();
@@ -187,12 +190,17 @@ namespace Evo
                 //nv.Add("@mode", "1");
                 //result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationTaskAssignment", nv);
                 //Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?WOId={0}&ICom={1}", WOID, 0));
-                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
+                Response.Redirect(String.Format("~/IrrigationTaskCompletion.aspx?IrrigationCode={0}", IrrigationCode));
             }
 
             if (e.CommandName == "ViewDetails")
             {
-                Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string IrrigationCode = gvGerm.DataKeys[rowIndex].Values[0].ToString();
+                string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+                Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?PageType={0}&IrrigationCode={1}&ICID={2}&TaskRequestKey={3}", "", IrrigationCode, 0, TaskRequestKey));
+
+              //  Response.Redirect(String.Format("~/IrrigationTaskViewDetails.aspx?IrrigationCode={0}", e.CommandArgument.ToString()));
             }
         }
 
