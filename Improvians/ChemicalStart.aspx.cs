@@ -33,8 +33,6 @@ namespace Evo
                     Bench = Request.QueryString["Bench"].ToString();
                 }
 
-
-
                 if (Request.QueryString["Start"] != null)
                 {
                     StartButton = Request.QueryString["Start"].ToString();
@@ -53,7 +51,6 @@ namespace Evo
                 BindSQFTofBench("'" + Bench + "'");
             }
         }
-
 
         public void BindGridFerReqView(string Foce)
         {
@@ -135,7 +132,6 @@ namespace Evo
             }
         }
 
-
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
             // SelectBenchLocation();
@@ -149,43 +145,32 @@ namespace Evo
                 PanelHouse.Visible = false;
                 int P1 = 0;
                 string Q1 = "";
-
                 string YourString = Bench;
-
                 YourString = YourString.Remove(YourString.Length - 1);
-
                 DataTable dt12 = objFer.GetSelectBench(YourString);
                 if (dt12 != null && dt12.Rows.Count > 0)
                 {
                     lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
-
-
                     if (dt12 != null && dt12.Rows.Count > 0)
                     {
                         DataColumn col = dt12.Columns["PositionCode"];
                         foreach (DataRow row in dt12.Rows)
                         {
-                            //strJsonData = row[col].ToString();
-
                             P1 = 1;
                             Q1 += "'" + row[col].ToString() + "',";
                         }
                         if (P1 > 0)
                         {
                             chkSelected = Q1.Remove(Q1.Length - 1, 1);
-
                         }
                         else
                         {
-
                         }
                     }
                     else
                     {
                         chkSelected = "'" + Bench + "'";
                     }
-
-
                     DataTable dt123 = new DataTable();
                     gvJobHistory.DataSource = dt123;
                     gvJobHistory.DataBind();
@@ -199,8 +184,6 @@ namespace Evo
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-
-
             }
             else if (RadioBench.SelectedValue == "3")
             {
@@ -227,19 +210,15 @@ namespace Evo
                     if (P > 0)
                     {
                         chkSelected = Q.Remove(Q.Length - 1, 1);
-
                     }
                     else
                     {
-
                     }
                 }
                 else
                 {
                     chkSelected = "'" + Bench + "'";
                 }
-
-
 
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
@@ -249,12 +228,8 @@ namespace Evo
             }
             else
             {
-
             }
-
-
         }
-
 
         protected void ListBoxBenchesInHouse_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -263,7 +238,6 @@ namespace Evo
             string chkSelected = "";
             foreach (ListItem item in ListBoxBenchesInHouse.Items)
             {
-
                 if (item.Selected)
                 {
                     c = 1;
@@ -274,18 +248,13 @@ namespace Evo
             if (c > 0)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
-
             }
             else
             {
-
             }
-
             BindGridFerDetails(chkSelected);
             BindSQFTofBench(chkSelected);
         }
-
-
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -301,103 +270,68 @@ namespace Evo
 
                 foreach (ListItem item in ListBoxBenchesInHouse.Items)
                 {
-
                     if (item.Selected)
                     {
                         c = 1;
                         x += "'" + item.Text + "',";
-
                     }
                 }
                 if (c > 0)
                 {
                     chkSelected = x.Remove(x.Length - 1, 1);
-
                 }
                 else
                 {
-
                 }
-
-
             }
             else if (RadioBench.SelectedValue == "3")
             {
-
-
             }
 
             BindGridFerDetails(chkSelected);
-
-
         }
 
         public void SelectBench()
         {
             string YourString = Bench;
-
             // ENC2 - SHADE - 2 - A
             //string input = Bench;
             //string[] array = input.Split('-');
             YourString = YourString.Remove(YourString.Length - 1);
-
             DataTable dt = objFer.GetSelectBench(YourString);
-
             lblBench1.Text = dt.Rows[0]["PositionCode"].ToString();
 
         }
 
-
-
         public void SelectBenchLocation()
         {
-
-
-            // ENC2 - SHADE - 2 - A
-            //string input = Bench;
-            //string[] array = input.Split('-');
-
             string[] words = Regex.Split(Bench, @"\W+");
-
             DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
 
             ListBoxBenchesInHouse.DataSource = dt;
             ListBoxBenchesInHouse.DataTextField = "PositionCode";
             ListBoxBenchesInHouse.DataValueField = "PositionCode";
             ListBoxBenchesInHouse.DataBind();
-
         }
-
 
         public void BindGridFerReq()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", JobCode);
-
-
             nv.Add("@BenchLocation", Bench);
-
-
-            // dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
-
 
             dt = objCommon.GetDataTable("SP_GetChemicalRequestStart", nv);
 
             gvFer.DataSource = dt;
             gvFer.DataBind();
 
-            //   Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
             Jid = dt.Rows[0]["Jid"].ToString();
 
             decimal tray = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
-                //}
-
             }
             txtTrays.Text = tray.ToString();
         }
@@ -410,8 +344,6 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
             DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
-
-
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
@@ -424,17 +356,12 @@ namespace Evo
             {
                 gvJobHistory.DataSource = dtManual;
                 gvJobHistory.DataBind();
-
             }
             else
             {
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
-
-
             }
-
-
 
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
@@ -448,13 +375,7 @@ namespace Evo
             txtTrays.Text = tray.ToString();
 
         }
-
-        //protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gvJobHistory.PageIndex = e.NewPageIndex;
-
-        //}
-
+       
         private string FR_ID
         {
             get
@@ -479,7 +400,6 @@ namespace Evo
             nv1.Add("@Mode", "16");
             dt = objCommon.GetDataTable("GET_Common", nv1);
             ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
-
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -510,29 +430,14 @@ namespace Evo
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTaskStart", nv);
                 FR_ID = result.ToString();
 
-
-
-
-                //NameValueCollection nv123 = new NameValueCollection();
-                //nv123.Add("@Jid", Jid);
-
-
-                //Mresult = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
-
-
-
-
-                NameValueCollection nvn = new NameValueCollection();
-                nvn.Add("@LoginID", Session["LoginID"].ToString());
-                nvn.Add("@SupervisorID", Session["LoginID"].ToString());
-                nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                nvn.Add("@TaskName", "Chemical");
-                nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
-
-
+                //NameValueCollection nvn = new NameValueCollection();
+                //nvn.Add("@LoginID", Session["LoginID"].ToString());
+                //nvn.Add("@SupervisorID", Session["LoginID"].ToString());
+                //nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                //nvn.Add("@TaskName", "Chemical");
+                //nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                //var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
             }
-
 
 
             foreach (GridViewRow row in gvJobHistory.Rows)
@@ -584,10 +489,6 @@ namespace Evo
                 nv.Add("@SupervisorID", Session["LoginID"].ToString());
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTaskStart", nv);
 
-
-                //  }
-
-
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
@@ -625,10 +526,8 @@ namespace Evo
             Clear();
         }
 
-
         public void Clear()
         {
-
             txtSQFT.Text = "";
             txtTrays.Text = "";
 
@@ -638,8 +537,6 @@ namespace Evo
 
         public void BindSQFTofBench(string Bench)
         {
-
-            //  DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
             DataTable dtSQFT = objFer.GetSQFTofBenchNew(Bench);
             if (dtSQFT != null && dtSQFT.Rows.Count > 0)
             {
@@ -650,8 +547,6 @@ namespace Evo
                 txtSQFT.Text = "0.00";
             }
         }
-
-
 
         public void BindChemical()
         {
@@ -681,7 +576,6 @@ namespace Evo
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
-
             RadioBench.Items[0].Selected = false;
             ListBoxBenchesInHouse.Items.Clear();
             //To unselect all Items
@@ -690,7 +584,5 @@ namespace Evo
             PanelBench.Visible = false;
             PanelBenchesInHouse.Visible = false;
         }
-
-
     }
 }
