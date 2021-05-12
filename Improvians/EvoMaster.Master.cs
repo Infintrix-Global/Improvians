@@ -110,7 +110,7 @@ namespace Evo
             }
             else
             {
-                lblFacility.Text = Session["Facility"].ToString();              
+                lblFacility.Text = Session["Facility"].ToString();
             }
 
             checkNotification(1);
@@ -262,19 +262,19 @@ namespace Evo
                             Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                         case "Chemical":
-                            Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc);
+                            Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                         case "Move":
                             Response.Redirect("MoveReqAsssignment.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                         case "Fertilizer":
-                            Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc);
+                            Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                         case "Irrigation":
-                            Response.Redirect(TaskName + "CompletionForm.aspx?benchLoc=" + benchLoc);
+                            Response.Redirect(TaskName + "CompletionForm.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                         default:
-                            Response.Redirect(TaskName + "CompletionForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                            Response.Redirect(TaskName + "CompletionForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                     }
 
@@ -287,24 +287,22 @@ namespace Evo
                             Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                         case "Chemical":
-                            Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc);
+                            Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                         case "Move":
                             Response.Redirect("MoveRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                         case "Fertilizer":
-                            Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc);
+                            Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                         case "Irrigation":
-                            Response.Redirect(TaskName + "AssignmentForm.aspx?benchLoc=" + benchLoc);
+                            Response.Redirect(TaskName + "AssignmentForm.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                         default:
-                            Response.Redirect(TaskName + "AssignmentForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                            Response.Redirect(TaskName + "AssignmentForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                     }
-
                 }
-
             }
         }
 
