@@ -219,18 +219,6 @@ namespace Evo
 
         }
 
-        public void BindJobCode(string ddlBench)
-        {
-            //  ddlJobNo.Items[0].Selected = false;
-            ddlJobNo.ClearSelection();
-            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
-            ddlJobNo.DataTextField = "Jobcode";
-            ddlJobNo.DataValueField = "Jobcode";
-            ddlJobNo.DataBind();
-
-            ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
-        }
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlBenchLocation.SelectedIndex == 0)
@@ -688,6 +676,7 @@ namespace Evo
             RadioButtonListSourse.ClearSelection();
             RadioButtonListGno.Items[0].Selected = false;
             RadioButtonListGno.ClearSelection();
+            BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
             Bindcname("0", "0", "0");
             // BindJobCode("0");
             BindJobCode("0", "0", "0");

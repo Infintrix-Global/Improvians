@@ -53,6 +53,10 @@
         </div>
 
         <div class="row align-items-end">
+             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Crop </label>
+                <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            </div>
             <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
                 <label>Job Source </label>
                 <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
@@ -62,12 +66,12 @@
                 </asp:DropDownList>
             </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>From Date</label>
                 <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>To Date </label>
                 <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
