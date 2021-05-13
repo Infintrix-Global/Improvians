@@ -328,6 +328,7 @@ namespace Evo
             nvn.Add("@SupervisorID", ddlLogisticManager.SelectedValue);
             nvn.Add("@Jobcode", lblJobID.Text);
             nvn.Add("@TaskName", "Move");
+            nvn.Add("@TaskRequestKey", "");
             nvn.Add("@GreenHouseID", lblBenchlocation.Text);
             var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
