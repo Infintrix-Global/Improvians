@@ -56,6 +56,21 @@ namespace Evo
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+
+            }
+        }
 
 
         public void Bindcname()
@@ -108,11 +123,11 @@ namespace Evo
             gvDump.DataBind();
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
-                highlight(dt.Rows.Count); 
+                highlight(dt.Rows.Count);
             }
 
 
-         }
+        }
         private void highlight(int limit)
         {
             var i = gvDump.Rows.Count;
@@ -121,10 +136,12 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvDump.DataKeys[row.RowIndex].Values[2].ToString();
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
+
                 {
-                    row.CssClass = "highlighted";                   
+                    row.CssClass = "highlighted";
                     check = true;
                 }
                 if (i == 0 && !check && limit >= 10)
@@ -135,7 +152,7 @@ namespace Evo
                 }
             }
         }
-        
+
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridGerm(1);
@@ -220,7 +237,7 @@ namespace Evo
                 {
                     Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&TaskRequestKey={3}", result, ChId, Did, TaskRequestKey));
 
-             //       Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", 0, 0, DRID, TaskRequestKey));
+                    //       Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", 0, 0, DRID, TaskRequestKey));
 
                 }
             }

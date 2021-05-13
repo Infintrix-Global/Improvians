@@ -32,7 +32,7 @@
                     <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                     <div class="portlet-body">
                         <div class="data__table">
-                            <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="PlantReadyId,CropHealth"
+                            <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="PlantReadyId,CropHealth,TaskRequestKey"
                                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
                                 GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound1"
                                 ShowHeaderWhenEmpty="True" Width="100%">

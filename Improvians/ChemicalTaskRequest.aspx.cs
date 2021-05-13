@@ -44,7 +44,21 @@ namespace Evo
         }
 
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
 
+            }
+        }
 
 
         public void BindGridSprayReq(int p)
@@ -80,13 +94,14 @@ namespace Evo
             {
                 //var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvSpray.DataKeys[row.RowIndex].Values[1].ToString();
                 i--;
-                if (checklocation == benchLoc)
+                if (checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 10)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvSpray.PageIndex++;
                     gvSpray.DataBind();
@@ -117,7 +132,7 @@ namespace Evo
                 string ChemicalCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
                 string TaskRequestKey = gvSpray.DataKeys[rowIndex].Values[1].ToString();
 
-             //   Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}", ChemicalCode));
+                //   Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?ChemicalCode={0}", ChemicalCode));
                 Response.Redirect(String.Format("~/ChemicalTaskViewDetails.aspx?PageType={0}&ChemicalCode={1}&CCID={2}&TaskRequestKey={3}", "ManageTask", ChemicalCode, 0, TaskRequestKey));
 
 

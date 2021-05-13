@@ -57,7 +57,21 @@ namespace Evo
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
 
+            }
+        }
 
         public void Bindcname()
         {
@@ -127,8 +141,9 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvGerm.DataKeys[row.RowIndex].Values[2].ToString();
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
@@ -163,7 +178,7 @@ namespace Evo
 
                 GTAID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 lblGTR_ID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&GTRID={1}&IsF={2}", GTAID, lblGTR_ID.Text,0));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&GTRID={1}&IsF={2}", GTAID, lblGTR_ID.Text, 0));
             }
         }
 

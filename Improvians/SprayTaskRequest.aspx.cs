@@ -51,8 +51,21 @@ namespace Evo
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
 
-
+            }
+        }
 
         //public void Bindcname()
         //{
@@ -153,13 +166,15 @@ namespace Evo
             {
                 //var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvSpray.DataKeys[row.RowIndex].Values[1].ToString();
+
                 i--;
-                if (checklocation == benchLoc)
+                if (checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 10)
+                if (i == 0 && !check && limit >= 10)
                 {
                     gvSpray.PageIndex++;
                     gvSpray.DataBind();
@@ -191,8 +206,8 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string FertilizationCode = gvSpray.DataKeys[rowIndex].Values[0].ToString();
                 string TaskRequestKey = gvSpray.DataKeys[rowIndex].Values[1].ToString();
-                
-              //  Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?FertilizationCode={0}", FertilizationCode));
+
+                //  Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?FertilizationCode={0}", FertilizationCode));
                 //userinput.Visible = true;
 
                 Response.Redirect(String.Format("~/SprayTaskViewDetails.aspx?PageType={0}&FertilizationCode={1}&FCID={2}&TaskRequestKey={3}", "ManageTask", FertilizationCode, 0, TaskRequestKey));
