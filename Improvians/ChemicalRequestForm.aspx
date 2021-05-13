@@ -138,19 +138,23 @@
                                     <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPlantDueDate" runat="server" Text=""></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
                             <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblChemDate" runat="server" Text='<%# Eval("ChemicalSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
+
+                            <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDateCountNo" runat="server" Text='<%# Eval("DateCountNo")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Job source" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblsource" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>

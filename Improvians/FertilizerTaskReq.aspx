@@ -188,18 +188,24 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPlantDueDate" runat="server" Text=""></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+
 
                             <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblFertilizeDate" runat="server" Text='<%# Eval("FertilizeSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            
+
+                            <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDateCountNo" runat="server" Text='<%# Eval("DateCountNo")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Job source" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblsource" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
@@ -219,7 +225,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                                <%--     <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                            <%--     <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDateCountNo" runat="server" Text='<%# Eval("DateCountNo")  %>'></asp:Label>
                                 </ItemTemplate>
@@ -236,7 +242,6 @@
                                     <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>--%>
-
                         </Columns>
 
                         <PagerStyle CssClass="paging" HorizontalAlign="Right" />
