@@ -1294,32 +1294,32 @@ namespace Evo
 
                     hasValue = true;
                     DataTable dt1 = new DataTable();
-                    NameValueCollection nv1 = new NameValueCollection();
+                    //NameValueCollection nv1 = new NameValueCollection();
 
-                    string TraySize = (row.FindControl("lblTraySize") as Label).Text;
-                    string GCode = (row.FindControl("lblGenusCode") as Label).Text;
-                    nv1.Add("@TraySize", TraySize);
-                    nv1.Add("@GCode", GCode);
+                    //string TraySize = (row.FindControl("lblTraySize") as Label).Text;
+                    //string GCode = (row.FindControl("lblGenusCode") as Label).Text;
+                    //nv1.Add("@TraySize", TraySize);
+                    //nv1.Add("@GCode", GCode);
 
 
-                    dt1 = objCommon.GetDataTable("spGetDateDhift", nv1);
-                    if (dt1 != null && dt1.Rows.Count > 0)
-                    {
-                        int DF = Convert.ToInt32(dt1.Rows[0]["dateshift"]);
-                        if (DF > 0)
-                        {
-                            PlanDate = (Convert.ToDateTime((row.FindControl("lblSeededDate") as Label).Text).AddDays(DF)).ToString();
-                            txtPlantDate.Text = PlanDate;
-                        }
-                        else
-                        {
-                            txtPlantDate.Text = (row.FindControl("lblSeededDate") as Label).Text;
-                        }
-                    }
-                    else
-                    {
-                        txtPlantDate.Text = (row.FindControl("lblSeededDate") as Label).Text;
-                    }
+                    //dt1 = objCommon.GetDataTable("spGetDateDhift", nv1);
+                    //if (dt1 != null && dt1.Rows.Count > 0)
+                    //{
+                    //    int DF = Convert.ToInt32(dt1.Rows[0]["dateshift"]);
+                    //    if (DF > 0)
+                    //    {
+                    //        PlanDate = (Convert.ToDateTime((row.FindControl("lblSeededDate") as Label).Text).AddDays(DF)).ToString();
+                    //        txtPlantDate.Text = PlanDate;
+                    //    }
+                    //    else
+                    //    {
+                    //        txtPlantDate.Text = (row.FindControl("lblSeededDate") as Label).Text;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    txtPlantDate.Text = (row.FindControl("lblSeededDate") as Label).Text;
+                    //}
 
                     long result = 0;
                     NameValueCollection nv = new NameValueCollection();

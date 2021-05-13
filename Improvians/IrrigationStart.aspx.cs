@@ -105,15 +105,12 @@ namespace Evo
             }
         }
 
-
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
             // SelectBenchLocation();
             string chkSelected = "";
             if (RadioBench.SelectedValue == "1")
             {
-                // Bench
-                //  SelectBench();
                 PanelBench.Visible = true;
                 PanelBenchesInHouse.Visible = false;
                 PanelHouse.Visible = false;
@@ -121,11 +118,8 @@ namespace Evo
                 string Q1 = "";
 
                 string YourString = Bench;
-
                 YourString = YourString.Remove(YourString.Length - 1);
-
                 DataTable dt12 = objFer.GetSelectBench(YourString);
-
 
                 if (dt12 != null && dt12.Rows.Count > 0)
                 {
@@ -147,7 +141,6 @@ namespace Evo
                     }
                     else
                     {
-
                     }
                 }
                 else
@@ -167,8 +160,6 @@ namespace Evo
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-
-
             }
             else if (RadioBench.SelectedValue == "3")
             {
@@ -195,11 +186,9 @@ namespace Evo
                     if (P > 0)
                     {
                         chkSelected = Q.Remove(Q.Length - 1, 1);
-
                     }
                     else
                     {
-
                     }
                 }
                 else
@@ -214,12 +203,8 @@ namespace Evo
             }
             else
             {
-
             }
-
-
         }
-
 
         protected void ListBoxBenchesInHouse_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -239,21 +224,13 @@ namespace Evo
             if (c > 0)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
-
             }
             else
             {
-
             }
 
             BindGridIrrDetails(chkSelected);
         }
-
-
-
-
-
-
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -280,14 +257,10 @@ namespace Evo
                 if (c > 0)
                 {
                     chkSelected = x.Remove(x.Length - 1, 1);
-
                 }
                 else
                 {
-
                 }
-
-
             }
             else if (RadioBench.SelectedValue == "3")
             {
@@ -302,8 +275,7 @@ namespace Evo
                     DataColumn col = dt.Columns["PositionCode"];
                     foreach (DataRow row in dt.Rows)
                     {
-                        //strJsonData = row[col].ToString();
-
+                        //strJsonData = row[col].ToString()
                         P = 1;
                         Q += "'" + row[col].ToString() + "',";
                     }
@@ -312,71 +284,47 @@ namespace Evo
                 if (P > 0)
                 {
                     chkSelected = Q.Remove(Q.Length - 1, 1);
-
                 }
                 else
                 {
 
                 }
-
             }
 
             BindGridIrrDetails(chkSelected);
-
-
         }
 
         public void SelectBench()
         {
             string YourString = Bench;
-
             // ENC2 - SHADE - 2 - A
             //string input = Bench;
             //string[] array = input.Split('-');
             YourString = YourString.Remove(YourString.Length - 1);
-
             DataTable dt = objFer.GetSelectBench(YourString);
-
             lblBench1.Text = dt.Rows[0]["PositionCode"].ToString();
-
         }
 
         public void SelectBenchLocation()
         {
-
-
-            // ENC2 - SHADE - 2 - A
-            //string input = Bench;
-            //string[] array = input.Split('-');
-
             string[] words = Regex.Split(Bench, @"\W+");
-
             DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
 
             ListBoxBenchesInHouse.DataSource = dt;
             ListBoxBenchesInHouse.DataTextField = "PositionCode";
             ListBoxBenchesInHouse.DataValueField = "PositionCode";
             ListBoxBenchesInHouse.DataBind();
-
         }
 
         public void BindGridIrrigation()
         {
-
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@wo","");
-            //  nv.Add("@JobCode",ddlJobNo.SelectedValue);
-            //  nv.Add("@CustomerName",ddlCustomer.SelectedValue);
-            //   nv.Add("@Facility",ddlFacility.SelectedValue);
-            //  nv.Add("@Mode", "1");
-            // dt = objCommon.GetDataTable("SP_GetGTIJobsSeedsPlan", nv);
+
             nv.Add("@JobCode", JobCode);
-      
             nv.Add("@BenchLocation", Bench);
-           
-                dt = objCommon.GetDataTable("SP_GetIrrigationRequesStart", nv);
-         
+            dt = objCommon.GetDataTable("SP_GetIrrigationRequesStart", nv);
+
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
             int tray = 0;
@@ -385,11 +333,8 @@ namespace Evo
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
                 tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
-
             }
         }
-
-
 
         public void BindGridIrrDetailsViewReq()
         {
@@ -405,9 +350,7 @@ namespace Evo
                 txtSprayDate.Text = Convert.ToDateTime(dt.Rows[0]["SprayDate"]).ToString("yyyy-MM-dd");
                 txtWaterRequired.Text = dt.Rows[0]["WaterRequired"].ToString();
             }
-
         }
-
 
         public void BindGridIrrDetails(string BenchLoc)
         {
@@ -418,30 +361,23 @@ namespace Evo
 
             DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
 
-
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
                 dt.AcceptChanges();
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
-
             }
             else if (dtManual != null && dtManual.Rows.Count > 0)
             {
                 gvJobHistory.DataSource = dtManual;
                 gvJobHistory.DataBind();
-
             }
             else
             {
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
-
-
             }
-
-          
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -477,11 +413,8 @@ namespace Evo
                 }
             }
 
-
-
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
-
                 long result = 0;
                 long Mresult = 0;
                 NameValueCollection nv = new NameValueCollection();
@@ -503,26 +436,16 @@ namespace Evo
 
                 nv.Add("@jid", Jid);
 
-
-
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestStart", nv);
-            
+
                 if (result > 0)
                 {
-                    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
 
                 }
                 else
                 {
 
-                    //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                    //  lblmsg.Text = "Assignment Not Successful";
-
-
-
                 }
-
-                //}
             }
 
             foreach (GridViewRow row in gvJobHistory.Rows)
@@ -561,36 +484,32 @@ namespace Evo
                 //else
                 //{
 
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", Session["LoginID"].ToString());
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", Session["LoginID"].ToString());
 
-                    nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                    nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
+                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
 
-                    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                    nv.Add("@IrrigationDuration", "");
+                nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
+                nv.Add("@IrrigationDuration", "");
 
-                    nv.Add("@SprayDate", txtSprayDate.Text.Trim());
-                    nv.Add("@SprayTime", "");
-                    nv.Add("@Nots", txtNotes.Text.Trim());
-                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@NoOfPasses", "");
-                    nv.Add("@jid", (row.FindControl("lbljid") as Label).Text);
-                    nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
-                    result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestStart", nv);
+                nv.Add("@SprayDate", txtSprayDate.Text.Trim());
+                nv.Add("@SprayTime", "");
+                nv.Add("@Nots", txtNotes.Text.Trim());
+                nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@NoOfPasses", "");
+                nv.Add("@jid", (row.FindControl("lbljid") as Label).Text);
+                nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
+                result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestStart", nv);
 
-
-
-               // }
             }
             long Mresult1 = 0;
             NameValueCollection nv123 = new NameValueCollection();
             nv123.Add("@BanchLocation", lblbench.Text);
             Mresult1 = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestMenualUpdate", nv123);
-
 
             string url = "";
             if (Session["Role"].ToString() == "1")
@@ -603,7 +522,6 @@ namespace Evo
             }
 
             string message = "Assignment Successful";
-            // string url = "MyTaskGrower.aspx";
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -611,14 +529,11 @@ namespace Evo
             script += url;
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-            // lblmsg.Text = "Assignment Successful";
             clear();
         }
 
         public void clear()
         {
-
-
             txtWaterRequired.Text = "";
             txtNotes.Text = "";
             //  txtIrrigatedNoTrays.Text = "";
@@ -632,8 +547,6 @@ namespace Evo
             clear();
             Response.Redirect("~/MyTaskGrower.aspx");
         }
-
-
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {

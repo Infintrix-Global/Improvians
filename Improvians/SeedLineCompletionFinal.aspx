@@ -21,14 +21,14 @@
 
         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
 
-        <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" class="data__table" AutoGenerateColumns="False"
+        <asp:GridView ID="gvGerm" runat="server" AllowPaging="True"  AutoGenerateColumns="False"
             AllowSorting="true" PageSize="10" OnRowDataBound="gvGerm_RowDataBound"
             GridLines="None"
             ShowHeaderWhenEmpty="True" Width="100%">
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <table class="w-auto">
+                        <table class="w-auto data__table">
                             <tr>
                                 <th>Job No.</th>
                                 <td>

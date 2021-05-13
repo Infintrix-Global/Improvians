@@ -288,7 +288,7 @@ namespace Evo
                 lblBenchlocation.Text = gvPlantReady.DataKeys[rowIndex].Values[7].ToString();
                 lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
                 lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
-
+                ViewState["tKey"] = gvPlantReady.DataKeys[rowIndex].Values[10].ToString();
 
                 txtPlantDate.Text = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6]).ToString("yyyy-MM-dd");
                 ddlSupervisor.Focus();
@@ -376,10 +376,10 @@ namespace Evo
                 divReschedule.Visible = true;
                 userinput.Visible = false;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-             
+
                 lblRescheduleID.Text = gvPlantReady.DataKeys[rowIndex].Values[10].ToString();
                 lblRescheduleJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
-               
+
                 DateTime oldDate = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6].ToString());
                 lblOldDate.Text = oldDate.ToString();
                 txtNewDate.Text = oldDate.ToString("yyyy-MM-dd");
@@ -388,13 +388,13 @@ namespace Evo
             }
             if (e.CommandName == "Dismiss")
             {
-                int rowIndex = Convert.ToInt32(e.CommandArgument);              
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
                 int ID = Convert.ToInt32(gvPlantReady.DataKeys[rowIndex].Values[10].ToString());
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@GrowerPutAwayPlantReadyId", ID.ToString());
                 result = objCommon.GetDataInsertORUpdate("SP_DismissPlantReadyRequest", nv);
-                BindGridPlantReady(1);              
+                BindGridPlantReady(1);
             }
         }
 
@@ -437,6 +437,8 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@RoleId", Session["Role"].ToString());
             nv.Add("@IsAssistant", lblIsAssistant.Text);
+            nv.Add("@TaskRequestKey", ViewState["tKey"].ToString());
+
 
             result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
 

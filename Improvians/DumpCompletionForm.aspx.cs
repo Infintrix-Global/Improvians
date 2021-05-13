@@ -58,6 +58,21 @@ namespace Evo
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+
+            }
+        }
 
         public void Bindcname()
         {
@@ -143,8 +158,9 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvGerm.DataKeys[row.RowIndex].Values[2].ToString();
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
@@ -191,10 +207,10 @@ namespace Evo
                 string PRAID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 string DRID = gvGerm.DataKeys[rowIndex].Values[1].ToString();
                 string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[2].ToString();
-                
+
                 // string PRAID = e.CommandArgument.ToString();
                 //  Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
-            //    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", PRAID, 0, DRID, TaskRequestKey));
+                //    Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", PRAID, 0, DRID, TaskRequestKey));
                 Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", PRAID, 0, DRID, TaskRequestKey));
 
             }

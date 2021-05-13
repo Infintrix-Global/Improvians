@@ -45,7 +45,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -53,10 +52,7 @@
                                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
-                                         
                                             <asp:Label ID="lblIrrigationCode" runat="server" Text='<%# Eval("IrrigationCode")  %>' Visible="false"></asp:Label>
-
-
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -66,7 +62,6 @@
                                             <asp:Label ID="Labeitemno" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
 
                                     <%--                        <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -79,14 +74,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
                                     <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lbltotTray" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-
 
                                     <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
@@ -99,8 +91,6 @@
                                 <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-
-
 
                                     <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
@@ -120,7 +110,6 @@
                             </ItemTemplate>
                         </asp:TemplateField>--%>
                                 </Columns>
-
 
                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                                 <PagerSettings Mode="NumericFirstLast" />
@@ -173,8 +162,6 @@
                         </div>
                         <br />
 
-
-
                         <div class="data__table data__table-height">
                             <asp:GridView ID="gvJobHistory" runat="server" AutoGenerateColumns="False"
                                 class="striped" AllowSorting="true"
@@ -182,13 +169,11 @@
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
 
-
                                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
 
                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
@@ -210,7 +195,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
                                     <%--                        <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
@@ -229,8 +213,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-
                                     <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
@@ -243,14 +225,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
-
-
                                     <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
 
                                     <%--  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                             <ItemTemplate>
@@ -264,7 +243,6 @@
                         </asp:TemplateField>--%>
                                 </Columns>
 
-
                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />
                                 <PagerSettings Mode="NumericFirstLast" />
                                 <EmptyDataTemplate>
@@ -274,7 +252,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -282,34 +259,23 @@
 
             <div id="userinput" runat="server" class="row justify-content-center">
                 <div class="col-12">
-
-
                     <div class="row">
-
-
-
                         <div class="col-lg-3">
                             <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
-
                             <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-lg-3">
                             <label class="d-block">Spray Date</label>
-
                             <asp:TextBox ID="txtSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
                         </div>
-
-
 
                         <div class="col-lg-3">
                             <label>Minimum Days Until Next Irrigationn</label>
                             <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
                         </div>
                     </div>
                     <br />
                     <div class="row">
-
 
                         <div class="col-lg-3">
                             <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
@@ -317,10 +283,6 @@
                         <div class="col-lg-3">
                         </div>
                     </div>
-
-
-
-
                     <div class="row align-items-center mt-sm-3">
                         <div class="col-12 col-sm-6 col-lg-4">
                         </div>
