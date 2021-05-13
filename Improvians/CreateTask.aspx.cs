@@ -142,29 +142,40 @@ namespace Evo
             nv.Add("@BatchLocation", ddlBench);
             nv.Add("@Mode", "1");
             dt = objCommon.GetDataTable("SP_GeJobNo", nv);
-            DataTable dtNV = objBAL.GetJobsForBenchLocation(ddlBench);
 
 
-            if (dt != null && dt.Rows.Count > 0 && dtNV != null && dtNV.Rows.Count > 0)
-            {
-                dt.Merge(dtNV);
-                dt.AcceptChanges();
-                ddlJobNo.Items.Clear();
-                ddlJobNo.DataSource = dt;
-                ddlJobNo.DataTextField = "Jobcode";
-                ddlJobNo.DataValueField = "Jobcode";
-                ddlJobNo.DataBind();
-                ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
-            }
-            else
-            {
-                ddlJobNo.Items.Clear();
-                ddlJobNo.DataSource = dtNV;
-                ddlJobNo.DataTextField = "Jobcode";
-                ddlJobNo.DataValueField = "Jobcode";
-                ddlJobNo.DataBind();
-                ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
-            }
+            ddlJobNo.Items.Clear();
+            ddlJobNo.DataSource = dt;
+            ddlJobNo.DataTextField = "Jobcode";
+            ddlJobNo.DataValueField = "Jobcode";
+            ddlJobNo.DataBind();
+            ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
+
+
+
+            //   DataTable dtNV = objBAL.GetJobsForBenchLocation(ddlBench);
+
+
+            //if (dt != null && dt.Rows.Count > 0 && dtNV != null && dtNV.Rows.Count > 0)
+            //{
+            //    dt.Merge(dtNV);
+            //    dt.AcceptChanges();
+            //    ddlJobNo.Items.Clear();
+            //    ddlJobNo.DataSource = dt;
+            //    ddlJobNo.DataTextField = "Jobcode";
+            //    ddlJobNo.DataValueField = "Jobcode";
+            //    ddlJobNo.DataBind();
+            //    ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
+            //}
+            //else
+            //{
+            //    ddlJobNo.Items.Clear();
+            //    ddlJobNo.DataSource = dtNV;
+            //    ddlJobNo.DataTextField = "Jobcode";
+            //    ddlJobNo.DataValueField = "Jobcode";
+            //    ddlJobNo.DataBind();
+            //    ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
+            //}
 
 
 
