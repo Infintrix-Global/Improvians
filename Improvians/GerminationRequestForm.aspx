@@ -150,9 +150,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblSeededDate" data-head="Seeded Date" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>
-
-                         
+                            </asp:TemplateField>                         
 
                             <asp:TemplateField HeaderText="Germination Count Date" ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
