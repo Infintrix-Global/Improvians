@@ -45,7 +45,6 @@ namespace Evo.Admin
             ddlCrop.DataTextField = "Crop";
             ddlCrop.DataValueField = "Crop";
             ddlCrop.DataBind();
-            ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
 

@@ -28,7 +28,7 @@
                 <label>Bench Location </label>
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
-               <%-- <asp:TextBox ID="txtBatchLocation" runat="server" OnTextChanged="txtBatchLocation_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
+                <%-- <asp:TextBox ID="txtBatchLocation" runat="server" OnTextChanged="txtBatchLocation_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
                 <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
                     MinimumPrefixLength="2"
                     CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
@@ -53,7 +53,10 @@
         </div>
 
         <div class="row mb-1 mb-md-4 align-items-end">
-
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Crop </label>
+                <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            </div>
 
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job Source </label>
@@ -98,7 +101,7 @@
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
 
-                            <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="100px"  HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="100px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblBenchLocation" data-head="Bench Location" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                 </ItemTemplate>
@@ -149,11 +152,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPlantDueDate" runat="server" Text=""></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                         
 
                             <asp:TemplateField HeaderText="Germination Count Date" ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
@@ -161,6 +160,11 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                               <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPlantDueDate" runat="server" Text=""></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Germination Count Type" ItemStyle-Width="70px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
@@ -181,7 +185,7 @@
 
 
 
-                            <asp:TemplateField HeaderText="" HeaderStyle-Width="265px" >
+                            <asp:TemplateField HeaderText="" HeaderStyle-Width="265px">
                                 <ItemTemplate>
                                     <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                     <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
