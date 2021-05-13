@@ -644,6 +644,15 @@ namespace Evo
                 {
                     e.Row.CssClass = "overdue";
                 }
+                Label lblsource = (Label)e.Row.FindControl("lblsource");
+                if (lblsource.Text == "Manual")
+                {
+                    lblsource.Text = "Navision";
+                }
+                else
+                {
+                    lblsource.Text = "App";
+                }
             }
         }
 
