@@ -319,7 +319,7 @@ namespace Evo
                 lblBenchlocation.Text = gvPlantReady.DataKeys[rowIndex].Values[7].ToString();
                 lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
                 lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
-
+                txtPlantDate.Text = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6]).ToString("yyyy-MM-dd");
                 if (lblPRRId.Text == "0")
                 {
 
