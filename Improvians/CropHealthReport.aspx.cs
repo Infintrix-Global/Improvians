@@ -1596,6 +1596,7 @@ namespace Evo
                 nvn.Add("@SupervisorID", Assign);
                 nvn.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nvn.Add("@TaskName", "Chemical");
+                nvn.Add("@TaskRequestKey", "");
                 nvn.Add("@GreenHouseID",Batchlocation);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
@@ -1785,6 +1786,7 @@ namespace Evo
                 nvn.Add("@SupervisorID", Assign);
                 nvn.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nvn.Add("@TaskName", "Move");
+                nvn.Add("@TaskRequestKey", "");
                 nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse1") as Label).Text);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
