@@ -97,6 +97,7 @@ namespace Evo
                     //}
                     PlanrDDate = Convert.ToInt32(dtpD.Rows[0]["dateshift"]);
                     PlantPDate = Convert.ToInt32(dtpD.Rows[1]["dateshift"]);
+                   
                     PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlantPDate).ToString("MM/dd/yyyy");
                     PlantDueDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
 

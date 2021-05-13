@@ -703,19 +703,19 @@ namespace Evo
                 Label lblGenusCode = (Label)e.Row.FindControl("lblGenusCode");
                 Label lblTraySize = (Label)e.Row.FindControl("lblTraySize");
                 Label lblSeededDate = (Label)e.Row.FindControl("lblSeededDate");
-                Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@Tray_Size", lblTraySize.Text);
-                nv.Add("@GCode", lblGenusCode.Text);
-                dt = objCommon.GetDataTable("spGetDateDhiftCreateTaskPlantNo", nv);
+             //   Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
+                //DataTable dt = new DataTable();
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@Tray_Size", lblTraySize.Text);
+                //nv.Add("@GCode", lblGenusCode.Text);
+                //dt = objCommon.GetDataTable("spGetDateDhiftCreateTaskPlantNo", nv);
 
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    int PlanrDDate = 0;
-                    PlanrDDate = Convert.ToInt32(dt.Rows[0]["dateshift"]);
-                    lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
-                }
+                //if (dt != null && dt.Rows.Count > 0)
+                //{
+                //    int PlanrDDate = 0;
+                //    PlanrDDate = Convert.ToInt32(dt.Rows[0]["dateshift"]);
+                //    lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
+                //}
 
                 Label lblsource = (Label)e.Row.FindControl("lblsource");
                 Label lblGermNo = (Label)e.Row.FindControl("lblGermNo");

@@ -319,7 +319,7 @@ namespace Evo
                 lblBenchlocation.Text = gvPlantReady.DataKeys[rowIndex].Values[7].ToString();
                 lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
                 lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
-
+                txtPlantDate.Text = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6]).ToString("yyyy-MM-dd");
                 if (lblPRRId.Text == "0")
                 {
 
@@ -364,9 +364,10 @@ namespace Evo
 
                     //  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
 
-                    if (result > 0)
+                    if (result1 > 0)
                     {
                         Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result1, lblPRRId.Text));
+                        //Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result.ToString(), dt.Rows[0]["PRID"].ToString()));
                     }
                 }
             }
@@ -465,15 +466,18 @@ namespace Evo
                     url = "MyTaskAssistantGrower.aspx";
                 }
                 string message = "Assignment Successful";
-                //  string url = "MyTaskGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                ////  string url = "MyTaskGrower.aspx";
+                //string script = "window.onload = function(){ alert('";
+                //script += message;
+                //script += "');";
+                //script += "window.location = '";
+                //script += url;
+                //script += "'; }";
+                //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 // lblmsg.Text = "Assignment Successful";
+
+                objCommon.ShowAlertAndRedirect(message, url);
+
                 clear();
             }
             else
