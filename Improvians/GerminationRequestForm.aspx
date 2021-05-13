@@ -107,6 +107,8 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+
+
                             <asp:TemplateField HeaderText="Job No." ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -121,6 +123,7 @@
                                     <asp:HyperLink data-head="Job No." ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
 
                             <asp:TemplateField HeaderText="Customer" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
@@ -145,6 +148,7 @@
                                     <asp:Label ID="lblTraySize" data-head="Tray Size" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
 
                             <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
