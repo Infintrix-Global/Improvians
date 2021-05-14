@@ -1590,8 +1590,10 @@ svg text {
         height: 45px;
         line-height: 45px;
         border-radius: 10px;
+        /*
         padding-left: 20px;
         padding-right: 20px;
+        */
         max-width: 100%;
     }
     .custom__dropdown { background-position: right 20px center; }
