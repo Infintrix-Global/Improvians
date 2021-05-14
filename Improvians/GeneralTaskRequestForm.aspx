@@ -11,8 +11,8 @@
             <img src="./images/dashboard_dump-request.png" width="137" height="132" alt="Plant Ready">
             General Task
         </h2>
-        <div class="row">
-            <div class="col-lg-3 col-md-4">
+           <div class="row">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
 
@@ -22,36 +22,64 @@
                     TargetControlID="txtSearchJobNo"
                     ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
                 </cc1:AutoCompleteExtender>
-            </div>
 
-            <div class="col-lg-3 col-md-4">
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
+
             </div>
-            <div class="col-lg-3 col-md-4">
-                <%--<div class="col-lg-3 col-md-4 mb-3 mb-lg-0">--%>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-        </div>
-
-        <div class="row mb-3 align-items-end">
-            <div class="col-lg-3 col-md-4">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Assigned By </label>
                 <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-
-            <div class="col-lg-3 col-md-4">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
 
-            <%--<div class="col-xl-4 col-12 mb-3">--%>
-            <div class="col-auto">
-                <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" />
-                <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnResetSearch_Click" />
-            </div>
         </div>
+
+        <div class="row mb-1 mb-md-4 align-items-end">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Crop </label>
+                <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            </div>
+
+            <%-- <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Job Source </label>
+                <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                    <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
+                    <asp:ListItem Text="Navision" Value="Manual"></asp:ListItem>
+                    <asp:ListItem Text="App" Value="App"></asp:ListItem>
+                </asp:DropDownList>
+            </div>--%>
+
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>From Date</label>
+                <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>To Date </label>
+                <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
+                <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
+
+            </div>
+
+
+
+        </div>
+
 
         <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
 
@@ -108,11 +136,13 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                  
+                <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
-                            <asp:Label ID="lblPlantDueDate" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+
 
                     <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>

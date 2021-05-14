@@ -327,11 +327,7 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@wo", "");
-            //nv.Add("@JobCode", ddlJobNo.SelectedValue);
-            //nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            //nv.Add("@Facility", Session["Facility"].ToString());
-            //nv.Add("@LoginId", Session["LoginID"].ToString());
+            
 
             nv.Add("@JobCode", JobCode);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
@@ -375,6 +371,8 @@ namespace Evo
                     highlight((limit - 10));
                 }
             }
+
+
         }
 
         public void Bindcname()
