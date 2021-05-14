@@ -89,6 +89,9 @@
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
                 <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnManual_Click" />
             </div>
+
+
+
         </div>
 
         <div class="portlet light pt-1">
@@ -107,6 +110,8 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+
+
                             <asp:TemplateField HeaderText="Job No." ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -121,6 +126,7 @@
                                     <asp:HyperLink data-head="Job No." ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
 
                             <asp:TemplateField HeaderText="Customer" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
@@ -145,6 +151,7 @@
                                     <asp:Label ID="lblTraySize" data-head="Tray Size" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
 
                             <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>

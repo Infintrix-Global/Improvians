@@ -12,8 +12,7 @@
             Chemical
         </h2>
 
-        <div class="row">
-
+         <div class="row">
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
@@ -24,24 +23,19 @@
                     TargetControlID="txtSearchJobNo"
                     ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
                 </cc1:AutoCompleteExtender>
+
             </div>
-            <%--<div class="col-lg-3 col-md-4">--%>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
-
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                <%--     <span class="error_message">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlBenchLocation" ValidationGroup="x"
-                        SetFocusOnError="true" InitialValue="" ErrorMessage="Please Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
-                </span>--%>
-            </div>
-            <%--<div class="col-lg-3 col-md-4 mb-3 mb-lg-0">--%>
-            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
 
+               
+            </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Assigned By </label>
                 <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -52,33 +46,46 @@
             </div>
 
         </div>
-        <%--        <div class="row align-items-end">--%>
-        <div class="row mb-1 mb-md-4 align-items-end">
 
-            <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
+        <div class="row mb-1 mb-md-4 align-items-end">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Crop </label>
+                <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job Source </label>
                 <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
-                    <asp:ListItem Text="---Select---" Value="0"></asp:ListItem>
+                    <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
                     <asp:ListItem Text="Navision" Value="Manual"></asp:ListItem>
                     <asp:ListItem Text="App" Value="App"></asp:ListItem>
                 </asp:DropDownList>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Task Type</label>
+                <asp:DropDownList ID="RadioButtonListGno" runat="server" OnSelectedIndexChanged="RadioButtonListF_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                </asp:DropDownList>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>From Date</label>
                 <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>To Date </label>
                 <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
-            <div class="col-xl-4 col-12 mb-3">
-                <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click1" />
-                <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
-                <%--<asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />--%>
-                <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnManual_Click1" />
-                <%-- <asp:Button ID="btnJob" runat="server" Text="JobBuildUp" CssClass="bttn bttn-primary bttn-action" OnClick="btnJob_Click" />--%>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
+                <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
+                <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnManual_Click" />
             </div>
+
+
+
         </div>
+
 
         <div class="portlet light pt-3">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>

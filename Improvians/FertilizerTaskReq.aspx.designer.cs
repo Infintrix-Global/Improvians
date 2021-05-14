@@ -42,49 +42,13 @@ namespace Evo
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
 
         /// <summary>
-        /// updatepanel4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatepanel4;
-
-        /// <summary>
-        /// txtBenchLocationNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBenchLocationNew;
-
-        /// <summary>
-        /// PopupControlExtender3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PopupControlExtender PopupControlExtender3;
-
-        /// <summary>
-        /// Panel6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel6;
-
-        /// <summary>
         /// ddlBenchLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList ddlBenchLocation;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBenchLocation;
 
         /// <summary>
         /// ddlJobNo control.
@@ -114,6 +78,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
 
         /// <summary>
+        /// ddlCrop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCrop;
+
+        /// <summary>
         /// RadioButtonListSourse control.
         /// </summary>
         /// <remarks>
@@ -121,6 +94,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList RadioButtonListSourse;
+
+        /// <summary>
+        /// RadioButtonListGno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList RadioButtonListGno;
 
         /// <summary>
         /// txtFromDate control.
@@ -166,60 +148,6 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnManual;
-
-        /// <summary>
-        /// PanelFertilizationDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelFertilizationDate;
-
-        /// <summary>
-        /// txtFertilizationDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFertilizationDate;
-
-        /// <summary>
-        /// Div1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
-
-        /// <summary>
-        /// RadioButtonListFdateChange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListFdateChange;
-
-        /// <summary>
-        /// btiFertilizationDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btiFertilizationDate;
-
-        /// <summary>
-        /// btnFCReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFCReset;
 
         /// <summary>
         /// lblmsg control.
