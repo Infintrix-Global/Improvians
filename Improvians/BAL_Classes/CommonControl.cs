@@ -14,6 +14,7 @@ using System.Globalization;
 using System.Net;
 using Evo.Admin.BAL_Classes;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Evo
 {
@@ -456,6 +457,36 @@ namespace Evo
             script += "'; };";
             Page p = (Page)HttpContext.Current.CurrentHandler;
             p.ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
+
+
+        public void GetAllNotifications(string LogId, string facility, Repeater rep, Label lblCount)
+        {
+
+            var totalCount = 0;
+            NameValueCollection nv = new NameValueCollection();
+            DataTable dtSearch1 = new DataTable();
+
+            nv.Add("@LoginID", LogId);
+            nv.Add("@facility", facility);
+
+            dtSearch1 = this.GetDataTable("SP_GetAllNotifications", nv);
+
+            if (dtSearch1 != null)
+            {
+                foreach (DataRow dr in dtSearch1.Rows)
+                {
+                    if ((bool)dr["IsViewed"] == false)
+                    {
+                        totalCount += 1;
+                    }
+                }
+            }
+
+            lblCount.Text = totalCount.ToString();
+
+            rep.DataSource = dtSearch1;
+            rep.DataBind();
         }
     }
 }
