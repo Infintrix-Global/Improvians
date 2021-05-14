@@ -121,7 +121,7 @@ namespace Evo
         {
             var totalCount = 0;
             NameValueCollection nv = new NameValueCollection();
-            DataTable dtSearch1 = new DataTable();
+            //  DataTable dtSearch1 = new DataTable();
             string sqr = "";
             if (n == 2)
             {
@@ -130,34 +130,15 @@ namespace Evo
                 var result = objCommon.GetDataExecuteScaler("SP_ClearAllNotification", nv);
             }
 
-            //sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 And IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
-            nv.Clear();
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@facility", lblFacility.Text == "" ? Session["Facility"].ToString() : lblFacility.Text);
+            //sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 And IsViewed=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";        
 
-            dtSearch1 = objCommon.GetDataTable("SP_GetAllNotifications", nv);
-
-            if (dtSearch1 != null)
-            {
-                foreach (DataRow dr in dtSearch1.Rows)
-                {
-                    if ((bool)dr["IsViewed"] == false)
-                    {
-                        totalCount += 1;
-                    }
-                }
-            }
-
-            lblNotificationCount.Text = totalCount.ToString();
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), lblFacility.Text == "" ? Session["Facility"].ToString() : lblFacility.Text, r1, lblNotificationCount);
 
             //sqr = "Select * FROM NotificationMaster WHERE IsDeleted=0 AND UserID = '" + Session["LoginID"] + "'  order by ID desc";
             //if (!string.IsNullOrEmpty(sqr))
             //{
             //    dtSearch1 = objGeneral.GetDatasetByCommand(sqr);
             //}
-
-            r1.DataSource = dtSearch1;
-            r1.DataBind();
         }
 
         protected void lnkmytask_Click(object sender, EventArgs e)
