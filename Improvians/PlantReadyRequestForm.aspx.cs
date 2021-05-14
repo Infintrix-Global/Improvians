@@ -22,8 +22,8 @@ namespace Evo
             if (!IsPostBack)
             {
                 string Fdate = "", TDate = "";
-                Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
-                TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(10).ToString("yyyy-MM-dd");
+                Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+                TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(7).ToString("yyyy-MM-dd");
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
 
