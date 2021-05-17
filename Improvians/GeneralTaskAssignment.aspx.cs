@@ -100,7 +100,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetSupervisorGeneralAssignTask", nv);
             gvTask.DataSource = dt;
             gvTask.DataBind();
-            if(dt != null && gvTask.Rows.Count != 0)
+            if (dt != null && gvTask.Rows.Count != 0)
             {
                 GridViewRow row = gvTask.Rows[0];
 
@@ -156,12 +156,12 @@ namespace Evo
             nv.Add("@QuantityOfTray", "");
 
             //gvTask.DataKeys[0].Values[1].ToString()
-            
+
             GridViewRow row = gvTask.Rows[0];
 
-           var txtGeneralDate = Convert.ToDateTime((row.FindControl("lblGeneralDates") as Label).Text).ToString("yyyy-MM-dd");
+            var txtGeneralDate = Convert.ToDateTime((row.FindControl("lblGeneralDates") as Label).Text).ToString("yyyy-MM-dd");
 
-              var txtJobNo = (row.FindControl("lblID") as Label).Text;
+            var txtJobNo = (row.FindControl("lblID") as Label).Text;
             var txtBenchLocation = (row.FindControl("lblBenchLocation") as Label).Text;
 
 
@@ -180,6 +180,10 @@ namespace Evo
                 nameValue.Add("@TaskName", "General Task");
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+                var res = (Master.FindControl("r1") as Repeater);
+                var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+                objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
 
                 //lblmsg.Text = "Assignment Successful";
                 clear();

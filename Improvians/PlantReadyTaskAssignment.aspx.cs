@@ -181,6 +181,11 @@ namespace Evo
                 nameValue.Add("@TaskName", "Plant Ready");
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+                var res = (Master.FindControl("r1") as Repeater);
+                var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+                objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
                 //lblmsg.Text = "Assignment Successful";
                 clear();
                 string message = "Assignment Successful";
