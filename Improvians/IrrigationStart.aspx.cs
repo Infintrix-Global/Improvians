@@ -507,6 +507,18 @@ namespace Evo
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestStart", nv);
 
             }
+
+            GridViewRow rowG = GridIrrigation.Rows[0];
+            var txtJobNo = (rowG.FindControl("lbljobID") as Label).Text;
+            var txtBenchLocation = (rowG.FindControl("lblGreenHouse") as Label).Text;
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", txtJobNo);
+            nameValue.Add("@GreenHouseID", txtBenchLocation);
+            nameValue.Add("@TaskName", "Irrigation");
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
             long Mresult1 = 0;
             NameValueCollection nv123 = new NameValueCollection();
             nv123.Add("@BanchLocation", lblbench.Text);

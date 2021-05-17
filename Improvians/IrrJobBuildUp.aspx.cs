@@ -629,7 +629,7 @@ namespace Evo
               
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
                 // }
-               
+
             }
 
             objTask.UpdateIsActiveIrrigation(BenchUp);
@@ -656,6 +656,11 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             // lblmsg.Text = "Assignment Successful";
             clear();
+
+            var res = (Master.FindControl("r1") as Repeater);
+
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
         }
 
         public void clear()

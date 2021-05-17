@@ -569,7 +569,7 @@ namespace Evo
             objTask.AddChemicalRequestDetails(dtTrays, result.ToString(), ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
 
             objTask.UpdateIsActiveChemical(BenchUp);
-        //    "'" + Bench + "'"
+            //    "'" + Bench + "'"
             Evo.BAL_Classes.General objGeneral = new General();
             objGeneral.SendMessage(int.Parse(ddlsupervisor.SelectedValue), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
             string url = "";
@@ -592,6 +592,11 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
             Clear();
+
+            var r1 = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
+
         }
 
         protected void btnReset_Click(object sender, EventArgs e)

@@ -20,8 +20,6 @@ namespace Evo
             }
         }
 
-        
-
         public void BindGridGerm()
         {
             DataTable dt = new DataTable();
@@ -38,17 +36,15 @@ namespace Evo
             BindGridGerm();
         }
 
-       
-
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-           
-            if(e.CommandName=="Assign")
+
+            if (e.CommandName == "Assign")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                            GridViewRow row = gvGerm.Rows[rowIndex];
-                      string benchID = (row.FindControl("ddlBench") as DropDownList).SelectedValue;
-                           string id = (row.FindControl("lblID") as Label).Text;
+                GridViewRow row = gvGerm.Rows[rowIndex];
+                string benchID = (row.FindControl("ddlBench") as DropDownList).SelectedValue;
+                string id = (row.FindControl("lblID") as Label).Text;
                 if (benchID == "0")
                 {
                     lblmsg.Text = "Failed-Please Select Bench Location ";
@@ -103,10 +99,9 @@ namespace Evo
                     script += url;
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
                 }
             }
-         }
+        }
 
         protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -129,13 +124,11 @@ namespace Evo
                         ((DropDownList)e.Row.FindControl("ddlBench")).SelectedValue = ((Label)e.Row.FindControl("lblBench")).Text;
                         ((Button)e.Row.FindControl("btnAssign")).Text = "Verify";
                         ((Button)e.Row.FindControl("btnAssign")).CommandName = "Verify";
-
                     }
                     else
                     {
                         ((Button)e.Row.FindControl("btnAssign")).Text = "Assign";
                         ((Button)e.Row.FindControl("btnAssign")).CommandName = "Assign";
-
                     }
                 }
 
@@ -146,15 +139,14 @@ namespace Evo
                         ((Button)e.Row.FindControl("btnAssign")).Visible = false;
                         ((DropDownList)e.Row.FindControl("ddlBench")).SelectedValue = ((Label)e.Row.FindControl("lblBench")).Text;
                         ((DropDownList)e.Row.FindControl("ddlBench")).Enabled = false;
-                       // ((Button)e.Row.FindControl("btnAssign")).Text = "Verify";
-                       //   ((Button)e.Row.FindControl("btnAssign")).CommandName = "Verify";
+                        // ((Button)e.Row.FindControl("btnAssign")).Text = "Verify";
+                        //   ((Button)e.Row.FindControl("btnAssign")).CommandName = "Verify";
 
                     }
                     else
                     {
-                         ((Button)e.Row.FindControl("btnAssign")).Text = "Assign";
+                        ((Button)e.Row.FindControl("btnAssign")).Text = "Assign";
                         ((Button)e.Row.FindControl("btnAssign")).CommandName = "Assign";
-                       
                     }
                 }
 
@@ -164,14 +156,7 @@ namespace Evo
                     ((DropDownList)e.Row.FindControl("ddlBench")).SelectedValue = ((Label)e.Row.FindControl("lblBench")).Text;
                     ((DropDownList)e.Row.FindControl("ddlBench")).Enabled = false;
                 }
-
-
-
             }
         }
-
-
-
-
     }
 }

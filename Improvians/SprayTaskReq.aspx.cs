@@ -27,7 +27,7 @@ namespace Evo
                 if (Request.QueryString["FertilizationCode"] != null)
                 {
                     FertilizationCode = Request.QueryString["FertilizationCode"].ToString();
-                
+
                 }
 
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -63,7 +63,7 @@ namespace Evo
             nv.Add("@BenchLocation", "0");
             nv.Add("@FertilizationCode", FertilizationCode);
             dt = objCommon.GetDataTable("SP_GetSprayRequestst", nv);
-         
+
             ChId = dt.Rows[0]["CropHealth"].ToString();
             if (ChId == "")
             {
@@ -144,7 +144,7 @@ namespace Evo
             nv.Add("@Nots", txtNotes.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Banchloc", lblBenchLocation.Text);
-            
+
             result = objCommon.GetDataInsertORUpdate("SP_AddSprayRequest", nv);
 
 
@@ -181,7 +181,7 @@ namespace Evo
 
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string message = "Completion Successful";
-               // string url = "SprayTaskRequest.aspx";
+                // string url = "SprayTaskRequest.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -197,13 +197,11 @@ namespace Evo
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('not Completion')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
+
+            var res = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
         }
-
-
-
-
-    
-
 
     }
 }

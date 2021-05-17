@@ -705,6 +705,7 @@ input[type="date" i]::-webkit-calendar-picker-indicator { margin-left: 5px; }
 .dashboard__matrixdetail h3 {
     font-size: 45px;
     margin-bottom: 0px;
+    color: #808080;
 }
 
 .dashboard__matrixdetail span {
@@ -965,17 +966,31 @@ input[type="date" i]::-webkit-calendar-picker-indicator { margin-left: 5px; }
 .login__container form .bttn-action { margin-top: 10px; }
 
 .input__control-icon {
-    background-position: left 24px center;
-    background-size: 21px;
-    background-repeat: no-repeat;
     padding-left: 58px;
 }
 
-.input__control-icon[type="text"] {
+.input__control-iconwrapper {
+    position: relative;
+}
+
+.input__control-iconwrapper::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 58px;
+    height: 100%;
+    background-position: left 24px center;
+    background-size: 21px;
+    background-repeat: no-repeat;
+
+}
+
+.input__control--user::after {
     background-image: url('../images/icons/icon-user.svg');
 }
 
-.input__control-icon[type="password"] {
+.input__control--password::after {
     background-image: url('../images/icons/icon-password.svg');
 }
 
@@ -1845,6 +1860,7 @@ svg text {
 @media only screen and (max-width: 767px) {
     header { position: sticky; top:0; z-index: 5; }
     .input__control-icon { background-position: left 12px center; padding-left: 46px; }
+    .input__control-iconwrapper::after { width: 46px; background-position: left 12px center; }
     .floating__footer { bottom: 0; width: 100%; left: 0; right: 0; }
     .floating__footer ul { border-radius: 0; padding: 0; display: flex; }
     .floating__footer ul li { flex: 1; }

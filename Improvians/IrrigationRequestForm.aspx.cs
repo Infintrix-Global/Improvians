@@ -373,7 +373,7 @@ namespace Evo
             }
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
-            
+
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
@@ -396,7 +396,7 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 10)
+                if (i == 0 && !check && limit >= 10)
                 {
                     GridIrrigation.PageIndex++;
                     GridIrrigation.DataBind();
@@ -436,6 +436,17 @@ namespace Evo
         }
 
      
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            //RadioButtonListSourse.Items[0].Selected = false;
+
+
+            //RadioButtonListSourse.ClearSelection();
+            //Bindcname();
+            //BindBenchLocation(Session["Facility"].ToString());
+            //BindJobCode(ddlBenchLocation.SelectedValue);
+            //BindGridIrrigation(1);
+        }
         protected void GridIrrigation_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
@@ -514,7 +525,7 @@ namespace Evo
                     nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@NoOfPasses", "");
-                    nv.Add("@ResetSprayTaskForDays","");
+                    nv.Add("@ResetSprayTaskForDays", "");
 
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
 
@@ -552,6 +563,11 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             // lblmsg.Text = "Assignment Successful";
             clear();
+
+            var res = (Master.FindControl("r1") as Repeater);
+
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
         }
 
         public void clear()

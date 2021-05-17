@@ -101,7 +101,7 @@
         <div class="text-left dashboard__block my-4">
             <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
                 <br />
-                <h2 class="text-left">Crop Health Report </h2>
+                <h3 class="text-left dark_txt mb-2">Crop Health Report</h3>
 
                 <br />
                 <div class="portlet-body">
@@ -172,13 +172,9 @@
                                 <asp:DataList ID="CropePhotos" runat="server" BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
                                     <ItemTemplate>
                                         <div>
-
                                             <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("Imagepath") %>' runat="server" />
-
-
                                         </div>
                                     </ItemTemplate>
-
 
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Bottom" />
                                 </asp:DataList>
@@ -188,12 +184,10 @@
                     </div>
                 </div>
             </asp:Panel>
-            <br />
             <form class="web__form pt-2">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <br />
-                        <h2 class="text-left">Task Request Flow</h2>
+                        <h3 class="text-left dark_txt mb-2">Task Request Flow</h3>
                         <div class="portlet-body">
                             <div class="data__table">
                                 <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
@@ -258,10 +252,6 @@
                                         No Record Available
                                     </EmptyDataTemplate>
                                 </asp:GridView>
-
-
-
-
                             </div>
                         </div>
 
@@ -269,7 +259,7 @@
                         <asp:Panel ID="PanelComplitionDetsil" Visible="false" runat="server">
                             <br />
                             <%-- <h2 class="text-left">Crop Health Report </h2>--%>
-                            <h2 class="text-left">Completion  </h2>
+                            <h3 class="text-left dark_txt mb-2">Completion</h3>
 
                             <div class="portlet-body">
                                 <div class="data__table">

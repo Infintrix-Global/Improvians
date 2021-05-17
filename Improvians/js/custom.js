@@ -115,4 +115,12 @@ jQuery(document).ready(function ($) {
         }
     }
 
+    if($(".input__control-icon").length > 0) {
+        $(".input__control-icon").each(function(){
+            var thisName = $(this).attr("type");
+            var thisClass = (thisName == 'text') ? 'input__control--user' : 'input__control--password';
+            $(this).wrapAll('<div class="input__control-iconwrapper ' + thisClass + '"></div>');
+        });
+    }
+
 });

@@ -63,12 +63,12 @@ namespace Evo
             dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenDumpTaskCompletionView", nv1);
             if (dt1 != null && dt1.Rows.Count > 0)
             {
-            //    PanelCropHealth.Visible = true;
+                //    PanelCropHealth.Visible = true;
                 PanelAddDump.Visible = false;
                 PanelComplition.Visible = true;
                 GridDumpComplition.DataSource = dt1;
                 GridDumpComplition.DataBind();
-               
+
             }
 
         }
@@ -134,7 +134,7 @@ namespace Evo
                 ViewState["Did"] = value;
             }
         }
-        public void BindViewDumpDetilas(int  RDid)
+        public void BindViewDumpDetilas(int RDid)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -155,7 +155,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenttViewComplited", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
-          
+
         }
 
 
@@ -186,7 +186,7 @@ namespace Evo
             //nv.Add("@Mode", "11");
             nv.Add("@DumpTaskAssignmentId", Drid.ToString());
             nv.Add("@RoleId", Session["Role"].ToString());
-            
+
 
             dt = objCommon.GetDataTable("SP_GetOperatorDumpTaskDetails", nv);
             gvPlantReady.DataSource = dt;
@@ -214,7 +214,7 @@ namespace Evo
             nv.Add("@Comments", txtComment.Text);
             nv.Add("@QuantityOfTray", txtQuantityOfTray.Text);
             nv.Add("@DumpDate", txtDumpDate.Text);
-          
+
 
 
             result = objCommon.GetDataExecuteScaler("SP_AddDumpCompletion", nv);
@@ -231,6 +231,9 @@ namespace Evo
 
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
+            var res = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
 
             if (result > 0)
             {
@@ -297,12 +300,12 @@ namespace Evo
             clear();
             if (Session["Role"].ToString() == "3")
             {
-              //  Response.Redirect("~/PlantReadyCompletionForm.aspx");
+                //  Response.Redirect("~/PlantReadyCompletionForm.aspx");
             }
 
             if (Session["Role"].ToString() == "2")
             {
-               // Response.Redirect("~/PlantReadyAssignmentForm.aspx");
+                // Response.Redirect("~/PlantReadyAssignmentForm.aspx");
             }
         }
     }
