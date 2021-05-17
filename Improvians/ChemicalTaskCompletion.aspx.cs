@@ -146,7 +146,7 @@ namespace Evo
             result = objCommon.GetDataInsertORUpdate("SP_AddChemicalTaskCompletion", nv);
 
 
-            
+
             var txtBenchLocation = lblBenchLocation.Text;
 
             NameValueCollection nameValue = new NameValueCollection();
@@ -157,28 +157,32 @@ namespace Evo
 
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
+            var res = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
             if (result > 0)
             {
                 string url = "";
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 if (Session["Role"].ToString() == "12")
                 {
-                     url = "ChemicalRequestForm.aspx";
+                    url = "ChemicalRequestForm.aspx";
                 }
                 else if (Session["Role"].ToString() == "1")
                 {
-                     url = "ChemicalRequestForm.aspx";
+                    url = "ChemicalRequestForm.aspx";
                 }
                 else if (Session["Role"].ToString() == "2")
                 {
-                     url = "ChemicalTaskRequest.aspx";
+                    url = "ChemicalTaskRequest.aspx";
                 }
                 else
                 {
-                     url = "ChemicalTaskRequest.aspx";
+                    url = "ChemicalTaskRequest.aspx";
                 }
                 string message = "Completion Successful";
-            
+
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -195,12 +199,5 @@ namespace Evo
                 //  lblmsg.Text = "Assignment Not Successful";
             }
         }
-
-
-
-
-
-
-
     }
 }

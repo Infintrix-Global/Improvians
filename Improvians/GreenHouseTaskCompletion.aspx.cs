@@ -260,6 +260,10 @@ namespace Evo
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
+                var res = (Master.FindControl("r1") as Repeater);
+                var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+                objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
                 // lblmsg.Text = "Completion Successful";
                 clear();
 
@@ -483,8 +487,6 @@ namespace Evo
                 nv1.Add("@GTAID", Request.QueryString["GTAID"].ToString());
                 dt1 = objCommon.GetDataTable("SP_GetGerminationTaskCompletionView", nv1);
 
-
-
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {
                     lblTraysInspected.Text = dt1.Rows[0]["#TraysInspected"].ToString();
@@ -492,9 +494,6 @@ namespace Evo
                     lblBadPlants.Text = dt1.Rows[0]["#BadPlants"].ToString();
 
                 }
-
-
-
 
             }
         }

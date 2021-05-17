@@ -42,7 +42,7 @@ namespace Evo
                     BindGridCropHealthImage(Request.QueryString["Chid"].ToString());
                 }
                 BindPlantReady();
-              
+
                 BindViewDetilas(Convert.ToInt32(Request.QueryString["PRID"]));
                 BindSupervisorList();
                 if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
@@ -69,8 +69,6 @@ namespace Evo
                 PanelCropHealth.Visible = true;
                 CropePhotos.DataSource = dt1;
                 CropePhotos.DataBind();
-
-
             }
         }
 
@@ -82,15 +80,12 @@ namespace Evo
             dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadyTaskCompletionView", nv1);
             if (dt1 != null && dt1.Rows.Count > 0)
             {
-             
                 PanelComplitionDetsil.Visible = true;
                 PantReadyAdd.Visible = false;
                 PanelView.Visible = false;
                 GridPlantComplition.DataSource = dt1;
                 GridPlantComplition.DataBind();
-             
             }
-
         }
 
         public void BindSupervisorList()
@@ -122,7 +117,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytViewStart", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
-           
+
         }
         public void BindGridCropHealth(int Chid)
         {
@@ -137,7 +132,6 @@ namespace Evo
                 gvCropHealth.DataBind();
                 lblCommment.Text = dt1.Rows[0]["CropHealthCommit"].ToString();
             }
-
         }
 
         private string wo
@@ -171,7 +165,6 @@ namespace Evo
                 ViewState["PRAID"] = value;
             }
         }
-
 
         public void BindPlantReady()
         {
@@ -230,6 +223,10 @@ namespace Evo
 
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
+            var res = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
             if (result > 0)
             {
                 // lblmsg.Text = "Completion Successful";
@@ -280,8 +277,6 @@ namespace Evo
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
-
-
             }
             else
             {
@@ -297,8 +292,6 @@ namespace Evo
             txtUpdatedReadyDate.Text = "";
             ddlPlantHeight.SelectedValue = "0";
             ddlRootQuality.SelectedValue = "0";
-
-
         }
 
 
@@ -334,7 +327,6 @@ namespace Evo
         }
         public void GeneraltaskSubmit(string Assigned)
         {
-
             long result16 = 0;
             DataTable dt = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
@@ -370,8 +362,6 @@ namespace Evo
                     nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequesMenualDetailsCreateTask", nv);
                 }
-
-
             }
 
             if (result16 > 0)
@@ -412,8 +402,6 @@ namespace Evo
                 mail.CC.Add(new MailAddress(CCEmail));
 
                 smtpClient.Send(mail);
-
-
             }
             else
             {
@@ -460,7 +448,6 @@ namespace Evo
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -475,12 +462,8 @@ namespace Evo
 
         protected void btnGeneral_Task1_Click(object sender, EventArgs e)
         {
-
             general_task_request.Attributes.Add("class", "request__block-collapse collapse show");
-
-
             btnGeneral_Task1.Attributes.Add("class", "request__block-head collapsed");
-
         }
     }
 }

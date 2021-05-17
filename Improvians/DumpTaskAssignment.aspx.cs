@@ -215,6 +215,10 @@ namespace Evo
             {
                 lblmsg.Text = "Assignment Not Successful";
             }
+
+            var res = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
         }
 
         public void clear()

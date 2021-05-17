@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
 namespace Evo
 {
     public partial class IrrigationCompletionForm : System.Web.UI.Page
@@ -28,9 +27,6 @@ namespace Evo
             }
         }
 
-
-
-
         public void BindenchLocation()
         {
             DataTable dt1 = new DataTable();
@@ -38,13 +34,8 @@ namespace Evo
             nv1.Add("@IrrigationCode", IrrigationCode);
             dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
 
-           // lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
-
+            // lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
         }
-
-
-
-
 
         private string wo
         {
@@ -83,7 +74,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@ICode", IrrigationCode);
-       
+
             dt = objCommon.GetDataTable("SP_GetIrrigationTaskAssignmentView", nv);
 
             GridViewViewDetails.DataSource = dt;
@@ -123,8 +114,6 @@ namespace Evo
                 ChId = ChId;
             }
             BindGridCropHealth(Convert.ToInt32(ChId));
-
-
         }
         public void BindGridCropHealth(int Chid)
         {
@@ -152,14 +141,14 @@ namespace Evo
         {
 
             long result = 0;
-       
+
             NameValueCollection nv = new NameValueCollection();
-           // nv.Add("@OperatorID", Session["LoginID"].ToString());
+            // nv.Add("@OperatorID", Session["LoginID"].ToString());
             //nv.Add("@wo", wo);
             nv.Add("@IrrigationCode", IrrigationCode);
-            nv.Add("@SprayDate",txtSprayDate.Text.Trim());
-            nv.Add("@TraysSprayed","");
-            nv.Add("@SprayDuration","");
+            nv.Add("@SprayDate", txtSprayDate.Text.Trim());
+            nv.Add("@TraysSprayed", "");
+            nv.Add("@SprayDuration", "");
             nv.Add("@NoOfPasses", txtNoofPasses.Text.Trim());
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Banchloc", lblBenchLocation.Text);
@@ -185,6 +174,10 @@ namespace Evo
             nameValue.Add("@TaskName", "Irrigation");
 
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+            var res = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
 
             if (result > 0)
             {
@@ -236,8 +229,6 @@ namespace Evo
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
-
-
             }
             else
             {
@@ -254,7 +245,6 @@ namespace Evo
             txtNoofPasses.Text = "";
         }
 
-
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
@@ -262,10 +252,6 @@ namespace Evo
             {
                 Response.Redirect("~/IrrigationCompletionForm.aspx");
             }
-
-
         }
-
-    
     }
 }

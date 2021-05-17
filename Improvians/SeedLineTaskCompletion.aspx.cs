@@ -18,9 +18,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-               
                 BindGridSeedLine();
-              
             }
         }
 
@@ -34,7 +32,7 @@ namespace Evo
             gvGerm.DataBind();
 
             txtRequestedTrays.Text = dt.Rows[0]["#TraysSeeded"].ToString();
-            lblTraySize.Text= dt.Rows[0]["SeedLots"].ToString();
+            lblTraySize.Text = dt.Rows[0]["SeedLots"].ToString();
             lblID.Text = dt.Rows[0]["PTCID"].ToString();
             DataTable dt1 = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
@@ -53,7 +51,6 @@ namespace Evo
             }
             else
             {
-                
                 txtTrays.Visible = true;
             }
         }
@@ -65,7 +62,7 @@ namespace Evo
             nv.Add("@ConfirmTraySize", radtraysize.SelectedValue);
             nv.Add("@ActualTraySeeded", txtActualTrays.Text);
             nv.Add("@JobCompletion", radJobCompletion.SelectedValue);
-            if(radJobCompletion.SelectedValue=="Full")
+            if (radJobCompletion.SelectedValue == "Full")
             {
                 nv.Add("@CompletedTrays", "");
             }
@@ -73,10 +70,10 @@ namespace Evo
             {
                 nv.Add("@CompletedTrays", txtTrays.Text);
             }
-          
+
             nv.Add("@SeededDate", txtSeededDate.Text);
             nv.Add("@PTCID", lblID.Text);
-            if(chkSeedReturn.Checked)
+            if (chkSeedReturn.Checked)
             {
                 nv.Add("@IsSeedReturnComplete", "Yes");
             }
@@ -92,16 +89,13 @@ namespace Evo
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                       
-                            string ID = (row.Cells[0].FindControl("lblID") as Label).Text;
-                            string ActualTray = (row.Cells[1].FindControl("txtActualTray") as TextBox).Text;
-                            string SeedNo= (row.Cells[2].FindControl("lblSeed") as Label).Text;
-                            string Type = (row.Cells[3].FindControl("ddlType") as DropDownList).Text;
-                            string Partial = (row.Cells[4].FindControl("txtPartial") as TextBox).Text;
-                            
-                            objTask.UpdatePTCSeedAllocation(ID, ActualTray, SeedNo, Type, Partial);
+                        string ID = (row.Cells[0].FindControl("lblID") as Label).Text;
+                        string ActualTray = (row.Cells[1].FindControl("txtActualTray") as TextBox).Text;
+                        string SeedNo = (row.Cells[2].FindControl("lblSeed") as Label).Text;
+                        string Type = (row.Cells[3].FindControl("ddlType") as DropDownList).Text;
+                        string Partial = (row.Cells[4].FindControl("txtPartial") as TextBox).Text;
 
-                        
+                        objTask.UpdatePTCSeedAllocation(ID, ActualTray, SeedNo, Type, Partial);
                     }
                 }
                 Clear();
@@ -117,11 +111,10 @@ namespace Evo
                 ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
                 // Response.Redirect("MyTaskProductionPlanner.aspx");
-
             }
         }
 
-            protected void btnReset_Click(object sender, EventArgs e)
+        protected void btnReset_Click(object sender, EventArgs e)
         {
             Clear();
         }
@@ -145,10 +138,8 @@ namespace Evo
                     TextBox txtActual = (row.Cells[1].FindControl("txtActualTray") as TextBox);
                     if (txtActual.Text != "")
                     {
-
                         (row.Cells[2].FindControl("lblSeed") as Label).Text = (Convert.ToInt32(txtActual.Text) * Convert.ToInt32(lblTraySize.Text)).ToString();
                         txtActualTrays.Text = (Convert.ToInt32(txtActual.Text) + Convert.ToInt32(txtActualTrays.Text)).ToString();
-                       
                     }
                 }
             }
