@@ -98,7 +98,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>--%>
 
-                                    <asp:TemplateField HeaderText="Trays inspected" HeaderStyle-CssClass="autostyle2">
+                                    <asp:TemplateField HeaderText="No. of Trays to Inspect" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblinstray" runat="server" Text='<%# Eval("#TraysInspected")  %>'></asp:Label>
                                         </ItemTemplate>
@@ -132,12 +132,9 @@
         </div>
 
         <div class="dashboard__block dashboard__block--asign">
-
-
             <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
-                <br />
-                <h2 class="text-left">Crop Health Report </h2>
-                <br />
+                <h3 class="text-left dark_txt mb-2">Crop Health Report </h3>
+
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
@@ -229,9 +226,9 @@
 
 
             <asp:Panel ID="Panel1" runat="server">
-                <br />
-                <h2 class="text-left">Task Request Flow </h2>
-                <br />
+
+                <h3 class="text-left dark_txt mb-2">Task Request Flow </h3>
+
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="GridViewGermination" runat="server" AutoGenerateColumns="False"
@@ -262,7 +259,7 @@
                                     </ItemTemplate>
 
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Trays Inspected" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="No. of Trays to Inspect" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblTraysInspecteda" runat="server" Text='<%# Eval("TraysInspected")  %>'></asp:Label>
                                     </ItemTemplate>
@@ -295,7 +292,6 @@
                     </div>
                     <br />
 
-                    <br />
 
                     <div class="row">
                         <%-- <label>Commment:</label>--%>
@@ -308,9 +304,7 @@
 
 
             <asp:Panel ID="PanelViewGJob" Visible="false" runat="server">
-                <br />
-
-                <h2 class="text-left">Completion  </h2>
+                <h3 class="text-left dark_txt mb-2">Completion  </h3>
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="GridViewGDetails" runat="server" AutoGenerateColumns="False"
@@ -373,19 +367,12 @@
                         </asp:GridView>
 
                     </div>
-                    <br />
-
-
-
-
-                </div>
             </asp:Panel>
-            <br />
+
             <div id="userinput" runat="server" class="assign__task d-flex">
 
                 <asp:Panel ID="pnlint" runat="server">
-                    <h2 class="text-left">Completion Form </h2>
-                    <br />
+                    <h3 class="text-left dark_txt mb-2">Completion Form </h3>
                     <div class="row">
                         <div class="col">
                             <label>Germination Count Date </label>
