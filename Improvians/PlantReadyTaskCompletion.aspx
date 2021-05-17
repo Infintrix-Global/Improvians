@@ -93,10 +93,8 @@
 
         <div class="text-left dashboard__block my-4">
             <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
-                <br />
-                <h2 class="text-left">Crop Health Report </h2>
+                <h3 class="text-left dark_txt mb-2">Crop Health Report </h3>
 
-                <br />
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
@@ -181,12 +179,9 @@
                     </div>
                 </div>
             </asp:Panel>
-            <br />
             <div class="portlet-body">
-                <br />
-                <h2 class="text-left">
-                  
-                    Task Request Flow</h2>
+                <h3 class="text-left dark_txt mb-2">Task Request Flow</h3>
+
                 <div class="data__table">
 
                     <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
@@ -243,12 +238,9 @@
             </div>
             <br />
             <asp:Panel ID="PanelComplitionDetsil" Visible="false" runat="server">
-                <br />
                 <%-- <h2 class="text-left">Crop Health Report </h2>--%>
-                <h2 class="text-left">
-                   
-                    Completion  </h2>
-                <br />
+                <h3 class="text-left dark_txt mb-2">Completion</h3>
+
                 <div class="portlet-body">
                     <div class="data__table">
                         <asp:GridView ID="GridPlantComplition" runat="server" AutoGenerateColumns="False"

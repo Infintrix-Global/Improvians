@@ -52,7 +52,7 @@
 
         </div>
 
-        <div class="row align-items-end">
+        <div class="row mb-2 mb-md-4 align-items-end">
              <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Crop </label>
                 <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
@@ -182,7 +182,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2" HeaderStyle-Width="265px">
                                 <ItemTemplate>
                                     <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                     <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>

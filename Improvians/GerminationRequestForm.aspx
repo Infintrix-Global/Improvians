@@ -52,7 +52,7 @@
 
         </div>
 
-        <div class="row mb-1 mb-md-4 align-items-end">
+        <div class="row mb-2 mb-md-4 align-items-end">
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Crop </label>
                 <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
