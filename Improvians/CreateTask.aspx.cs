@@ -2522,7 +2522,7 @@ namespace Evo
             //nv5.Add("@MTAID", result.ToString());
             //DataTable dt = objCommon.GetDataTable("SP_GetMoveTaskAssignmentSelect", nv5);
 
-            Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}&PageType={1}", result, "CreateTask"));
+            Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}&PageType={1}&IsF={2}", result, "CreateTask",0));
 
 
         }
@@ -2618,7 +2618,7 @@ namespace Evo
                 nv5.Add("@PRTA", result.ToString());
                 DataTable dt = objCommon.GetDataTable("SP_GetPlantReadyTaskAssignmentSelect", nv5);
 
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&PageType={2}", result.ToString(), dt.Rows[0]["PRID"].ToString(), "CreateTask"));
+                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&PageType={2}&IsF={3}", result.ToString(), dt.Rows[0]["PRID"].ToString(), "CreateTask",0));
             }
             else
             {

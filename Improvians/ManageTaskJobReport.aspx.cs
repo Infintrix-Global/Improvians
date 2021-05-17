@@ -343,7 +343,7 @@ namespace Evo
                     if (TaskRequestType == "Plant Ready")
                     {
 
-                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString()));
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}&IsF={3}", "ManageTask", dt.Rows[0]["PlantReadyTaskAssignmentId"].ToString(), dt.Rows[0]["PRID"].ToString(),1));
                     }
 
                     if (TaskRequestType == "Dump")
@@ -396,7 +396,7 @@ namespace Evo
                     if (TaskRequestType == "Plant Ready")
                     {
 
-                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}", "ManageTask", 0, dtR.Rows[0]["PRID"].ToString()));
+                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PageType={0}&PRAID={1}&PRID={2}&IsF={3}", "ManageTask", 0, dtR.Rows[0]["PlantReadyId"].ToString(),1));
                     }
 
                     if (TaskRequestType == "Dump")

@@ -36,24 +36,42 @@ namespace Evo
                     PanelComplitionDetsil.Visible = false;
                 }
 
+
+
+                if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
+                {
+
+                    PanelComplitionDetsil.Visible = true;
+                    PantReadyAdd.Visible = false;
+                    PanelView.Visible = false;
+                }
+                else
+                {
+                    PanelComplitionDetsil.Visible = false;
+                    PantReadyAdd.Visible = true;
+                    if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
+                    {
+                        PanelView.Visible = true;
+
+                    }
+                    else
+                    {
+                        PanelView.Visible = false;
+                    }
+                }
+
+
+
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                     BindGridCropHealthImage(Request.QueryString["Chid"].ToString());
                 }
-                BindPlantReady();
+                BindPlantReady(Convert.ToInt32(Request.QueryString["PRID"]));
 
                 BindViewDetilas(Convert.ToInt32(Request.QueryString["PRID"]));
                 BindSupervisorList();
-                if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
-                {
-                    PanelView.Visible = true;
-
-                }
-                else
-                {
-                    PanelView.Visible = false;
-                }
+              
                 BindGridPalntReadyComplition(PRAID);
             }
         }
@@ -85,6 +103,10 @@ namespace Evo
                 PanelView.Visible = false;
                 GridPlantComplition.DataSource = dt1;
                 GridPlantComplition.DataBind();
+            }
+            else
+            {
+                PanelComplitionDetsil.Visible = false;
             }
         }
 
@@ -166,7 +188,7 @@ namespace Evo
             }
         }
 
-        public void BindPlantReady()
+        public void BindPlantReady(int PRRID)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -175,9 +197,9 @@ namespace Evo
             //nv.Add("@CustomerName", "");
             //nv.Add("@Facility", "");
             //nv.Add("@Mode", "11");
-            nv.Add("@PRAID", PRAID);
+            nv.Add("@PRAID", PRRID.ToString());
             nv.Add("@RoleId", Session["Role"].ToString());
-            dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTaskByPRAID", nv);
+            dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTaskByPRAIDNew", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
             lbljid.Text = dt.Rows[0]["jid"].ToString();
@@ -190,7 +212,7 @@ namespace Evo
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPlantReady.PageIndex = e.NewPageIndex;
-            BindPlantReady();
+            BindPlantReady(0);
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

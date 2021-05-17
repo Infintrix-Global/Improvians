@@ -249,7 +249,7 @@ namespace Evo
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}&PRID={2}", result, ChId, PRID));
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}&PRID={2}&IsF={3}", result, ChId, PRID,0));
                 }
             }
         }

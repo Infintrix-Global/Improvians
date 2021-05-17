@@ -207,7 +207,7 @@ namespace Evo
                 string PRAID = gvGerm.DataKeys[rowIndex].Values[1].ToString();
                 // string PRAID = e.CommandArgument.ToString();
 
-                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", PRAID, PRID));
+                Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&IsF={2}", PRAID, PRID,0));
             }
         }
 
