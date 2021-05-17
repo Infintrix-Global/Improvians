@@ -11,45 +11,69 @@
             Put Away
         </h2>
 
-        <div class="row mt-4 pt-1">
-            <div class="col-md-4 col-lg-3 col-12 mb-3">
+        <div class="row">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
+
                 <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
                     MinimumPrefixLength="2"
                     CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
                     TargetControlID="txtSearchJobNo"
                     ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
                 </cc1:AutoCompleteExtender>
-            </div>
 
-            <div class="col-md-4 col-lg-3 col-12 mb-3">
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
+
             </div>
 
-            <div class="col-md-4 col-lg-3 col-12 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-        </div>
-
-        <div class="row mb-1 mb-md-4 align-items-end">
-            <div class="col-md-4 col-lg-3 col-12 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Assigned By </label>
                 <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-
-            <div class="col-md-4 col-lg-3 col-12 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
 
-            <div class="col-auto mb-3">
-                <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
-                <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnReset_Click" />
-            </div>
         </div>
+
+        <div class="row mb-1 mb-md-4 align-items-end">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Crop </label>
+                <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            </div>
+
+          
+
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>From Date</label>
+                <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>To Date </label>
+                <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
+                <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
+
+            </div>
+
+
+
+        </div>
+
+
 
         <div class="portlet light pt-3 pb-4">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
