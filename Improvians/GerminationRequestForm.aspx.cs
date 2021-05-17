@@ -639,6 +639,12 @@ namespace Evo
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
+
+            var res = (Master.FindControl("r1") as Repeater);
+
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
         }
 
         public void clear()
@@ -692,7 +698,7 @@ namespace Evo
                 Label lblGenusCode = (Label)e.Row.FindControl("lblGenusCode");
                 Label lblTraySize = (Label)e.Row.FindControl("lblTraySize");
                 Label lblSeededDate = (Label)e.Row.FindControl("lblSeededDate");
-             //   Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
+                //   Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
                 //DataTable dt = new DataTable();
                 //NameValueCollection nv = new NameValueCollection();
                 //nv.Add("@Tray_Size", lblTraySize.Text);

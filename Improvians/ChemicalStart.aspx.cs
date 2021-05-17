@@ -519,6 +519,11 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
             Clear();
+
+            var r1 = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
+
         }
 
         protected void btnReset_Click(object sender, EventArgs e)

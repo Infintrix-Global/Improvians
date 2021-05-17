@@ -45,7 +45,7 @@ namespace Evo
                 BindGridFerReq();
                 BindGridFerDetails("'" + Bench + "'");
 
-              
+
                 BindFertilizer();
                 BindGridFerReqView(Request.QueryString["FCode"].ToString());
                 BindSQFTofBench("'" + Bench + "'");
@@ -69,7 +69,7 @@ namespace Evo
             }
         }
 
-     
+
         private string Jid
         {
             get
@@ -157,7 +157,6 @@ namespace Evo
                 {
                     lblBench1.Text = dt12.Rows[0]["PositionCode"].ToString();
 
-
                     if (dt12 != null && dt12.Rows.Count > 0)
                     {
                         DataColumn col = dt12.Columns["PositionCode"];
@@ -171,7 +170,6 @@ namespace Evo
                         if (P1 > 0)
                         {
                             chkSelected = Q1.Remove(Q1.Length - 1, 1);
-
                         }
                         else
                         {
@@ -182,7 +180,6 @@ namespace Evo
                     {
                         chkSelected = "'" + Bench + "'";
                     }
-
 
                     DataTable dt123 = new DataTable();
                     gvJobHistory.DataSource = dt123;
@@ -197,7 +194,6 @@ namespace Evo
                 PanelBench.Visible = false;
                 PanelBenchesInHouse.Visible = true;
                 PanelHouse.Visible = false;
-
 
             }
             else if (RadioBench.SelectedValue == "3")
@@ -225,7 +221,6 @@ namespace Evo
                     if (P > 0)
                     {
                         chkSelected = Q.Remove(Q.Length - 1, 1);
-
                     }
                     else
                     {
@@ -237,8 +232,6 @@ namespace Evo
                     chkSelected = "'" + Bench + "'";
                 }
 
-
-
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
@@ -249,10 +242,7 @@ namespace Evo
             {
 
             }
-
-
         }
-
 
         protected void ListBoxBenchesInHouse_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -261,18 +251,15 @@ namespace Evo
             string chkSelected = "";
             foreach (ListItem item in ListBoxBenchesInHouse.Items)
             {
-
                 if (item.Selected)
                 {
                     c = 1;
                     x += "'" + item.Text + "',";
-
                 }
             }
             if (c > 0)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
-
             }
             else
             {
@@ -282,8 +269,6 @@ namespace Evo
             BindGridFerDetails(chkSelected);
             BindSQFTofBench(chkSelected);
         }
-
-
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -299,36 +284,25 @@ namespace Evo
 
                 foreach (ListItem item in ListBoxBenchesInHouse.Items)
                 {
-
                     if (item.Selected)
                     {
                         c = 1;
                         x += "'" + item.Text + "',";
-
                     }
                 }
                 if (c > 0)
                 {
                     chkSelected = x.Remove(x.Length - 1, 1);
-
                 }
                 else
                 {
-
                 }
-
-
             }
             else if (RadioBench.SelectedValue == "3")
             {
-
-
             }
 
             BindGridFerDetails(chkSelected);
-
-
-
         }
 
         public void SelectBench()
@@ -343,15 +317,10 @@ namespace Evo
             DataTable dt = objFer.GetSelectBench(YourString);
 
             lblBench1.Text = dt.Rows[0]["PositionCode"].ToString();
-
         }
-
-
 
         public void SelectBenchLocation()
         {
-
-
             // ENC2 - SHADE - 2 - A
             //string input = Bench;
             //string[] array = input.Split('-');
@@ -379,7 +348,6 @@ namespace Evo
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
                 //    Quantity
                 txtQty.Text = dt.Rows[0]["Quantity"].ToString();
-
                 txtComments.Text = dt.Rows[0]["Comments"].ToString();
             }
         }
@@ -389,14 +357,10 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", JobCode);
-
             nv.Add("@BenchLocation", Bench);
-     
-            //  dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
 
-         
-                dt = objCommon.GetDataTable("SP_GetFertilizerRequestGrowerStart", nv);
-          
+            //  dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
+            dt = objCommon.GetDataTable("SP_GetFertilizerRequestGrowerStart", nv);
 
             gvFer.DataSource = dt;
             gvFer.DataBind();
@@ -413,13 +377,9 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
             //  DataTable dtManual = objFer.GetManualFertilizerRequestSelect("", BenchLoc, "");
-
-
             //  dt = objTask.GetCreateTaskRequestSelect(Session["Facility"].ToString(), BenchLoc, "");
 
-            DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'" );
-
-
+            DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
 
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
@@ -433,14 +393,11 @@ namespace Evo
             {
                 gvJobHistory.DataSource = dtManual;
                 gvJobHistory.DataBind();
-
             }
             else
             {
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
-
-
             }
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
@@ -451,15 +408,8 @@ namespace Evo
                 //}
 
             }
-
             txtTrays.Text = tray.ToString();
         }
-
-        //protected void gvJobHistory_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gvJobHistory.PageIndex = e.NewPageIndex;
-
-        //}
 
         private string FR_ID
         {
@@ -477,7 +427,6 @@ namespace Evo
             }
         }
 
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             int FertilizationCode = 0;
@@ -486,7 +435,6 @@ namespace Evo
             nv1.Add("@Mode", "12");
             dt = objCommon.GetDataTable("GET_Common", nv1);
             FertilizationCode = Convert.ToInt32(dt.Rows[0]["FCode"]);
-
 
             foreach (GridViewRow row in gvFer.Rows)
             {
@@ -510,19 +458,14 @@ namespace Evo
                 nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
                 nv.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
-              
 
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTaskStartJobbuil", nv);
-
                 FR_ID = result.ToString();
 
                 //NameValueCollection nv123 = new NameValueCollection();
                 //nv123.Add("@Banchloc", lblbench.Text);
                 //Mresult = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdateBanch", nv123);
-
-
                 //  }
-
                 //NameValueCollection nvn = new NameValueCollection();
                 //nvn.Add("@LoginID", Session["LoginID"].ToString());
                 //nvn.Add("@SupervisorID", Session["LoginID"].ToString());
@@ -530,10 +473,7 @@ namespace Evo
                 //nvn.Add("@TaskName", "Fertilizer");
                 //nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 //var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
-
             }
-
-
 
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
@@ -563,10 +503,8 @@ namespace Evo
                 //else
                 //{
 
-
-
-                 long result = 0;
-                 NameValueCollection nv = new NameValueCollection();
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
 
                 nv.Add("@SupervisorID", Session["LoginID"].ToString());
                 nv.Add("@Type", "Fertilizer");
@@ -584,18 +522,27 @@ namespace Evo
                 nv.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTaskStartJobbuil", nv);
 
-             
-
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text,txtComments.Text);
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text, txtComments.Text);
 
             long Mresult1 = 0;
             NameValueCollection nv123 = new NameValueCollection();
             nv123.Add("@BanchLocation", lblbench.Text);
             Mresult1 = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
 
+            GridViewRow rowG = gvFer.Rows[0];
+            var txtJobNo = (rowG.FindControl("lblID") as Label).Text;
+            var txtBenchLocation = (rowG.FindControl("lblGreenHouse") as Label).Text;
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", txtJobNo);
+            nameValue.Add("@GreenHouseID", txtBenchLocation);
+            nameValue.Add("@TaskName", "Fertilizer");
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
             string url = "";
             if (Session["Role"].ToString() == "1")
             {
@@ -615,14 +562,14 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
-            Clear();
+            Clear();            
+
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Clear();
         }
-
 
         public void Clear()
         {
@@ -637,11 +584,8 @@ namespace Evo
             dtTrays.Clear();
         }
 
-
-
         public void BindSQFTofBench(string Bench)
         {
-
             //  DataTable dtSQFT = objFer.GetSQFTofBench(lblbench.Text);
             DataTable dtSQFT = objFer.GetSQFTofBenchNew(Bench);
             if (dtSQFT != null && dtSQFT.Rows.Count > 0)
@@ -653,8 +597,6 @@ namespace Evo
                 txtSQFT.Text = "0.00";
             }
         }
-
-
 
         //public void BindChemical()
         //{
@@ -678,7 +620,6 @@ namespace Evo
 
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
-
             RadioBench.Items[0].Selected = false;
             ListBoxBenchesInHouse.Items.Clear();
             //To unselect all Items
@@ -687,8 +628,5 @@ namespace Evo
             PanelBench.Visible = false;
             PanelBenchesInHouse.Visible = false;
         }
-
-
-
     }
 }

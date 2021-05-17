@@ -545,7 +545,7 @@ namespace Evo
                 FertilizationCode = Convert.ToInt32(FCode);
             }
 
-            if(txtResetSprayTaskForDays.Text !="")
+            if (txtResetSprayTaskForDays.Text != "")
             {
                 SprayTaskForDaysDate = (Convert.ToDateTime(System.DateTime.Now.ToShortDateString()).AddDays(Convert.ToInt32(txtResetSprayTaskForDays.Text))).ToString();
 
@@ -576,7 +576,7 @@ namespace Evo
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
 
-                
+
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
                 FR_ID = result.ToString();
@@ -680,6 +680,11 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             Clear();
+
+            var res = (Master.FindControl("r1") as Repeater);
+
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
         }
 
         protected void btnReset_Click(object sender, EventArgs e)

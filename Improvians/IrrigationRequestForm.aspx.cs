@@ -158,7 +158,7 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-           
+
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
@@ -187,7 +187,7 @@ namespace Evo
             //{
             //    nv.Add("@BenchLocation", "0");
             //}
-          
+
             if (Session["Role"].ToString() == "12")
             {
                 dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
@@ -198,7 +198,7 @@ namespace Evo
             }
             GridIrrigation.DataSource = dt;
             GridIrrigation.DataBind();
-            
+
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
@@ -221,7 +221,7 @@ namespace Evo
                     row.CssClass = "highlighted";
                     check = true;
                 }
-                if (i == 0 && !check && limit>= 10)
+                if (i == 0 && !check && limit >= 10)
                 {
                     GridIrrigation.PageIndex++;
                     GridIrrigation.DataBind();
@@ -266,7 +266,7 @@ namespace Evo
 
 
             RadioButtonListSourse.ClearSelection();
-            Bindcname();           
+            Bindcname();
             BindBenchLocation(Session["Facility"].ToString());
             BindJobCode(ddlBenchLocation.SelectedValue);
             BindGridIrrigation(1);
@@ -349,7 +349,7 @@ namespace Evo
                     nv.Add("@IrrigationCode", IrrigationCode.ToString());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@NoOfPasses", "");
-                    nv.Add("@ResetSprayTaskForDays","");
+                    nv.Add("@ResetSprayTaskForDays", "");
 
                     result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequest", nv);
 
@@ -387,6 +387,11 @@ namespace Evo
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             // lblmsg.Text = "Assignment Successful";
             clear();
+
+            var res = (Master.FindControl("r1") as Repeater);
+
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
         }
 
         public void clear()

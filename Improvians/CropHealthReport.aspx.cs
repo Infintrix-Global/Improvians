@@ -56,9 +56,9 @@ namespace Evo
                     PanelList.Visible = true;
                     //    BindUnit();
                     //  BindJobCode(ddlBenchLocation.SelectedValue);
-                  
+
                     Facility = Session["Facility"].ToString();
-                 
+
                     dtTrays.Clear();
                 }
 
@@ -78,7 +78,7 @@ namespace Evo
                 {
                     JobCode = Request.QueryString["JobCode"].ToString();
                 }
-            
+
                 if (Request.QueryString["BatchLoc"] != null && Request.QueryString["JobCode"] != null)
                 {
 
@@ -89,7 +89,7 @@ namespace Evo
                 BindFacility();
                 BindSupervisorList();
                 BindFertilizer();
-              
+
                 BindChemical();
                 BinCauseofproblem();
                 BindTypeofproblem();
@@ -243,7 +243,7 @@ namespace Evo
             txtTGerTrays.Text = "10";
             txtFTrays.Text = tray.ToString();
             txtChemicalTrays.Text = tray.ToString();
-         
+
             if (BatchLocd != string.Empty)
                 BindSQFTofBench(BatchLocd);
 
@@ -271,12 +271,12 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", BenchLoc);
-           // dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+            // dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
 
-         //   DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
+            //   DataTable dtManual = objFer.GetManualFertilizerRequestSelect(Session["Facility"].ToString(), BenchLoc, JobNo);
 
             dt = objTask.GetCreateTaskRequestStart(Session["Facility"].ToString(), BenchLoc, JobNo);
-          
+
             DataTable dtManual = objTask.GetManualRequestStart(Session["Facility"].ToString(), BenchLoc, JobNo);
 
             //if (dtManual != null && dtManual.Rows.Count > 0)
@@ -307,7 +307,7 @@ namespace Evo
                 lblJid.Text = dt.Rows[0]["jid"].ToString();
             }
 
-           // lblJid.Text = dt.Rows[0]["jid"].ToString();
+            // lblJid.Text = dt.Rows[0]["jid"].ToString();
             //gvFer.DataSource = dt;
             //gvFer.DataBind();
 
@@ -402,7 +402,7 @@ namespace Evo
                     nv1.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
                     nv1.Add("@SoDate", "");
                     nv1.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                   
+
                     nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                     nv1.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     nv1.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
@@ -411,15 +411,15 @@ namespace Evo
             }
             string url = "";
 
-            if (Session["Role"].ToString()=="1")
+            if (Session["Role"].ToString() == "1")
             {
                 url = "MyTaskGrower.aspx";
             }
-            else if(Session["Role"].ToString() == "12")
+            else if (Session["Role"].ToString() == "12")
             {
                 url = "MyTaskAssistantGrower.aspx";
             }
-            else if(Session["Role"].ToString() == "2")
+            else if (Session["Role"].ToString() == "2")
             {
                 url = "MyTaskGreenSupervisorFinal.aspx";
             }
@@ -428,7 +428,7 @@ namespace Evo
                 url = "MyTaskSpray.aspx";
             }
             string message = "Completion Successful";
-          
+
             string script = "window.onload = function(){ alert('";
             script += message;
             script += "');";
@@ -437,7 +437,7 @@ namespace Evo
             script += "'; }";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             Clear();
-          //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Completion Successful')", true);
+            //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Completion Successful')", true);
 
         }
 
@@ -450,7 +450,7 @@ namespace Evo
             txtDate.Text = "";
             percentageDamage.Text = "";
             dtTrays.Clear();
-           
+
             //ddlJobNo.SelectedIndex = 0;
             //BindGridFerReq();
             gvFer.DataSource = null;
@@ -475,14 +475,14 @@ namespace Evo
 
         }
 
-       
+
         //---------------------------------------------------------------- Tab Details-------
         public void BindSQFTofBench(string benchLoc)
         {
             txtSQFT.Text = "0.00";
             if (!string.IsNullOrEmpty(benchLoc))
             {
-                DataTable dtSQFT = objFer.GetSQFTofBench("'" + benchLoc + "'" );
+                DataTable dtSQFT = objFer.GetSQFTofBench("'" + benchLoc + "'");
                 if (dtSQFT != null && dtSQFT.Rows.Count > 0)
                 {
                     txtSQFT.Text = Convert.ToDecimal(dtSQFT.Rows[0]["Sqft"]).ToString("#,0000.00");
@@ -592,7 +592,7 @@ namespace Evo
             ddlFertilizer.DataValueField = "No_";
             ddlFertilizer.DataBind();
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
-           
+
         }
 
         protected void btnFReset_Click(object sender, EventArgs e)
@@ -725,7 +725,7 @@ namespace Evo
                 nv4.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
                 result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
 
-              
+
                 NameValueCollection nvn = new NameValueCollection();
                 nvn.Add("@LoginID", Session["LoginID"].ToString());
                 nvn.Add("@SupervisorID", Assign);
@@ -756,6 +756,7 @@ namespace Evo
             //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+            updateNotification();
         }
 
         protected void btnFSubmit_Click(object sender, EventArgs e)
@@ -870,7 +871,7 @@ namespace Evo
                 nv.Add("@LoginId", Session["LoginID"].ToString());
                 nv.Add("@Comments", txtcomments.Text);
 
-                result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);               
+                result16 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthGerminationReques", nv);
             }
 
             if (result16 > 0)
@@ -901,6 +902,8 @@ namespace Evo
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
+
+            updateNotification();
         }
 
         protected void btngerminationReset_Click(object sender, EventArgs e)
@@ -918,7 +921,7 @@ namespace Evo
                 // nv.Add("@OperatorID", Session["LoginID"].ToString());
                 //nv.Add("@wo", wo);
                 nv.Add("@Comments", txtcomments.Text.Trim());
-               // nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
+                // nv.Add("@AsssigneeID", ddlAssignments.SelectedValue);
                 nv.Add("@AsssigneeID", Session["SelectedAssignment"].ToString());
                 nv.Add("@TaskType", ddlTaskType.SelectedValue);
                 nv.Add("@MoveFrom", txtFrom.Text.Trim());
@@ -941,7 +944,7 @@ namespace Evo
 
                 mail.From = new MailAddress(FromMail);
                 mail.To.Add(new MailAddress(ReceiverEmail));
-                
+
                 //  Attachment atc = new Attachment(folderPath, "Uploded Picture");
                 //   mail.Attachments.Add(atc);
                 smtpClient.Send(mail);
@@ -1002,7 +1005,7 @@ namespace Evo
                 long imgresult = 0;
                 string folderPath = "";
                 NameValueCollection nv = new NameValueCollection();
-             
+
                 nv.Add("@typeofProblem ", ddlpr.SelectedItem.Text);
                 nv.Add("@Causeofproblem", DropDownListCause.SelectedItem.Text);
                 nv.Add("@Severityofproblem", DropDownListSv.SelectedValue);
@@ -1098,7 +1101,7 @@ namespace Evo
                 nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
                 result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
-                
+
             }
 
 
@@ -1119,6 +1122,8 @@ namespace Evo
             //script += "'; }";
             //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
+            updateNotification();
         }
 
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
@@ -1237,7 +1242,7 @@ namespace Evo
                 nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
 
-                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);                
+                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
 
             }
 
@@ -1258,6 +1263,8 @@ namespace Evo
             //script += "'; }";
             //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
+            updateNotification();
         }
         protected void btnplant_readySubmit_Click(object sender, EventArgs e)
         {
@@ -1309,7 +1316,7 @@ namespace Evo
 
             divcomments.Focus();
         }
-       
+
         public void Submitgeneraltask(string Assign)
         {
             if (Chid == "")
@@ -1423,7 +1430,7 @@ namespace Evo
                 NameValueCollection nv11 = new NameValueCollection();
                 nv11.Add("@Chid", Chid);
                 result1 = objCommon.GetDataInsertORUpdate("SP_UpdateCropHealthReport", nv11);
-                
+
                 /*
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
                 string FromMail = WebConfigurationManager.AppSettings["FromEmail"];
@@ -1471,12 +1478,12 @@ namespace Evo
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
-
+            updateNotification();
         }
 
         protected void btnSaveGeneral_Click(object sender, EventArgs e)
         {
-            
+
             Submitgeneraltask(Session["LoginID"].ToString());
         }
         protected void btnGeneralSubmit_Click(object sender, EventArgs e)
@@ -1597,7 +1604,7 @@ namespace Evo
                 nvn.Add("@Jobcode", (row.FindControl("lblID1") as Label).Text);
                 nvn.Add("@TaskName", "Chemical");
                 nvn.Add("@TaskRequestKey", "");
-                nvn.Add("@GreenHouseID",Batchlocation);
+                nvn.Add("@GreenHouseID", Batchlocation);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
             }
@@ -1622,6 +1629,8 @@ namespace Evo
             //script += "'; }";
             //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
+            updateNotification();
         }
 
         protected void btnChemicalSubmit_Click(object sender, EventArgs e)
@@ -1654,7 +1663,6 @@ namespace Evo
             ddlToGreenHouse.DataBind();
             ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
-
         }
 
         protected void btnChemicalReset_Click(object sender, EventArgs e)
@@ -1666,7 +1674,7 @@ namespace Evo
         {
             BindBench_Location();
         }
-       
+
         protected void btnMoveSubmit_Click(object sender, EventArgs e)
         {
             MoveSubmit(ddlLogisticManager.SelectedValue);
@@ -1820,19 +1828,19 @@ namespace Evo
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
                 //  lblmsg.Text = "Assignment Not Successful";
             }
+
+            updateNotification();
         }
 
         protected void MoveReset_Click(object sender, EventArgs e)
         {
-           
-        }    
+
+        }
 
         protected void btnGeneralReset_Click(object sender, EventArgs e)
         {
             Clear();
         }
-
-
 
         public void SubmitDump(string Assign)
         {
@@ -1842,7 +1850,6 @@ namespace Evo
             nv11.Add("@Mode", "13");
             dt = objCommon.GetDataTable("GET_Common", nv11);
             IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
-
 
             if (Chid == "")
             {
@@ -1875,9 +1882,9 @@ namespace Evo
                     HttpPostedFile file = Request.Files[i];
                     if (file.ContentLength > 0)
                     {
-                       // string folderSavePath = WebConfigurationManager.AppSettings["PortalURL"] + @"\EmployeeProfile\" + Imgname;
+                        // string folderSavePath = WebConfigurationManager.AppSettings["PortalURL"] + @"\EmployeeProfile\" + Imgname;
                         string fname = Path.GetFileName(file.FileName);
-                        string folderSavePath = WebConfigurationManager.AppSettings["PortalURL"] + @"\uploads\" + fname; 
+                        string folderSavePath = WebConfigurationManager.AppSettings["PortalURL"] + @"\uploads\" + fname;
                         NameValueCollection nvimg = new NameValueCollection();
                         folderPath = Server.MapPath("~/uploads/");
 
@@ -1912,7 +1919,6 @@ namespace Evo
                         nv1.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                         result11 = objCommon.GetDataInsertORUpdate("SP_AddCropHealthReportDetails", nv1);
                     }
-
                 }
 
                 if (result > 0)
@@ -1974,7 +1980,6 @@ namespace Evo
 
             }
 
-
             long result1 = 0;
             NameValueCollection nv111 = new NameValueCollection();
             nv111.Add("@Chid", Chid);
@@ -1991,9 +1996,9 @@ namespace Evo
             //script += "'; }";
             //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+
+            updateNotification();
         }
-
-
 
         protected void btnDumpSumbit_Click(object sender, EventArgs e)
         {
@@ -2003,6 +2008,13 @@ namespace Evo
         protected void btnSaveDump_Click(object sender, EventArgs e)
         {
             SubmitDump(Session["LoginID"].ToString());
+        }
+
+        public void updateNotification()
+        {
+            var r1 = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
         }
     }
 }
