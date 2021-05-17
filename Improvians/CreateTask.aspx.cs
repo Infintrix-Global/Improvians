@@ -1189,6 +1189,8 @@ namespace Evo
                         nv.Add("@LoginID", Session["LoginID"].ToString());
                         nv.Add("@Role", Session["Role"].ToString());
                         nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                     
+                        
                         result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
                         objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
@@ -1475,6 +1477,8 @@ namespace Evo
                         // dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
                         // objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
                         //}
+
+
 
                         long result = 0;
                         NameValueCollection nv = new NameValueCollection();

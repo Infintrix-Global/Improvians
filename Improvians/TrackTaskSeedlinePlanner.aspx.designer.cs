@@ -15,13 +15,22 @@ namespace Evo
     {
 
         /// <summary>
-        /// ddlCustomer control.
+        /// ddlFacility control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
+
+        /// <summary>
+        /// ddlCopTYpe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCopTYpe;
 
         /// <summary>
         /// ddlJobNo control.
@@ -33,13 +42,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
 
         /// <summary>
-        /// ddlFacility control.
+        /// ddlCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
 
         /// <summary>
         /// radJSeedlineStatus control.

@@ -23,6 +23,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
+                txtDumpDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 if (Request.QueryString["Did"] != "0")
                 {
                     Did = Request.QueryString["Did"].ToString();

@@ -21,6 +21,8 @@ namespace Evo
                 Bindcname();
                 BindJobCode();
                 BindFacility();
+                BindCropType();
+                BindCropType();
                 BindGridGerm();
             }
         }
@@ -38,6 +40,22 @@ namespace Evo
             ddlCustomer.DataValueField = "cname";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindCropType()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "26");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlCopTYpe.DataSource = dt;
+            ddlCopTYpe.DataTextField = "GenusCode";
+            ddlCopTYpe.DataValueField = "GenusCode";
+            ddlCopTYpe.DataBind();
+            ddlCopTYpe.Items.Insert(0, new ListItem("--Select--", "0"));
 
         }
 
@@ -113,11 +131,12 @@ namespace Evo
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
-
+            nv.Add("@CropTYpe", ddlCopTYpe.SelectedValue);
 
             AllData = objCommon.GetDataTable("SP_GetTrackTaskSeedlinePlanner", nv);
             gvGerm.DataSource = AllData;
             gvGerm.DataBind();
+
 
         }
 
@@ -249,6 +268,11 @@ namespace Evo
             catch (Exception ex)
             {
             }
+        }
+
+        protected void ddlCopTYpe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
         }
     }
 }

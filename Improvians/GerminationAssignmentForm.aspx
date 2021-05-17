@@ -1,30 +1,98 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="GerminationAssignmentForm.aspx.cs" Inherits="Evo.GerminationAssignmentForm" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="site__container">
         <h2 class="head__title-icon">
             <img src="./images/dashboard_germination-count.png" width="137" height="136" alt="Germination Count">
             Germination Count Task
         </h2>
+        <div class="row">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Job No</label>
+                <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
 
-        <div class="filter__row d-flex">
-            <div class="row">
-                <div class="col m3">
-                    <label>Customer </label>
-                    <asp:DropDownList ID="ddlCustomer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
-                <%-- <div class="col m3">
-                        <label>Facility </label>
-                        <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>--%>
-                <div class="col m3">
-                    <label>Job No </label>
-                    <asp:DropDownList ID="ddlJobNo" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                </div>
+                <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                    MinimumPrefixLength="2"
+                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                    TargetControlID="txtSearchJobNo"
+                    ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                </cc1:AutoCompleteExtender>
+
             </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Bench Location </label>
+                <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
+                <%-- <asp:TextBox ID="txtBatchLocation" runat="server" OnTextChanged="txtBatchLocation_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
+                <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
+                    MinimumPrefixLength="2"
+                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                    TargetControlID="txtBatchLocation"
+                    ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
+                </cc1:AutoCompleteExtender>--%>
+            </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Job No </label>
+                <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Assigned By </label>
+                <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Customer </label>
+                <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+
         </div>
+
+        <div class="row mb-1 mb-md-4 align-items-end">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Crop </label>
+                <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Job Source </label>
+                <asp:DropDownList ID="RadioButtonListSourse" runat="server" OnSelectedIndexChanged="RadioButtonListSourse_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                    <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
+                    <asp:ListItem Text="Navision" Value="Manual"></asp:ListItem>
+                    <asp:ListItem Text="App" Value="App"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Germination Count Type </label>
+                <asp:DropDownList ID="RadioButtonListGno" runat="server" OnSelectedIndexChanged="RadioButtonListF_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                    <asp:ListItem Text="---Select---" Value=""></asp:ListItem>
+                    <asp:ListItem Text="Germination 1" Value="Germination 1"></asp:ListItem>
+                    <asp:ListItem Text="Germination 2" Value="Germination 2"></asp:ListItem>
+                    <asp:ListItem Text="Crop Health" Value="Crop Health"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>From Date</label>
+                <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>To Date </label>
+                <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
+                <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
+
+            </div>
+
+
+
+        </div>
+
 
         <div class="row">
             <div class=" col m12">
@@ -45,6 +113,11 @@
                                         </asp:TemplateField>--%>
 
 
+                                    <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblGreenHouseID" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
@@ -64,42 +137,31 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
+                                    <asp:TemplateField HeaderText="Customer" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
+                                            <asp:Label ID="lblCustomer" data-head="Customer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Main Location" HeaderStyle-CssClass="autostyle2">
+                                    <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
+                                            <asp:Label ID="lblDescription" data-head="Plant Type" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Total Trays" ItemStyle-Width="40px" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblTrays" data-head="Total Trays" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                                    <asp:TemplateField HeaderText="Tray Size" ItemStyle-Width="40px" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblGreenHouseID" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
+                                            <asp:Label ID="lblTraySize" data-head="Tray Size" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Total Trays" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label9" runat="server" Text='<%# Eval("Trays")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
 
-                                    <%--<asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label10" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
-
-                                    <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
@@ -113,35 +175,33 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                                    <asp:TemplateField HeaderText="Germination Count Type" ItemStyle-Width="70px" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblGermNo" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
+                                            <asp:Label ID="lblGermNo" data-head="Germination Count Type" runat="server" Text='<%# Eval("GermNo")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
+
+
+                                    <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="Label23" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                            <asp:Label ID="Label17" runat="server" Text='<%# Eval("InspectionDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
+
+                                    <asp:TemplateField HeaderText="Job Source" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblsource" data-head="Job Source" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label12" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Trays inspected" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label13" runat="server" Text='<%# Eval("#TraysInspected")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Due Date" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label17" runat="server" Text='<%# Eval("InspectionDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="" HeaderStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>

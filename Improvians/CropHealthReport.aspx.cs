@@ -1100,6 +1100,9 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+               
+
+
                 result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
             }

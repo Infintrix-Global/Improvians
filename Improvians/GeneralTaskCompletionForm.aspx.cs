@@ -184,9 +184,14 @@ namespace Evo
         {
             if (e.CommandName == "Start")
             {
-                string PRAID = e.CommandArgument.ToString();
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string DRid = gvTask.DataKeys[rowIndex].Values[0].ToString();
+                string Did = gvTask.DataKeys[rowIndex].Values[1].ToString();
+
+                Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}", Did, "0", DRid,0));
+
                 //  Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}", PRAID));
-                Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}", PRAID, 0));
+             //   Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}", PRAID, 0));
 
             }
         }

@@ -279,7 +279,14 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@Mode", "2");
                 nv.Add("@wo", wo_No);
+                nv.Add("@JobCode","0");
+                nv.Add("@CustomerName","0");
                 nv.Add("@Facility", Session["Facility"].ToString());
+                nv.Add("@Crop","0");
+                nv.Add("@FromDate", "");
+                nv.Add("@ToDate", "");
+
+
                 dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
 
                 if (dt != null && dt.Rows.Count > 0)

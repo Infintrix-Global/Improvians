@@ -547,6 +547,8 @@ namespace Evo
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
+               
+
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
 
                 NameValueCollection nvn = new NameValueCollection();
@@ -624,6 +626,7 @@ namespace Evo
                 nv.Add("@jid", (row.FindControl("lblJid") as Label).Text);
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
+              
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
                 // }
 

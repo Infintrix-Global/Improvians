@@ -352,7 +352,28 @@ namespace Evo
 
             }
         }
+
+        protected void dashlink_Click(object sender, EventArgs e)
+        {
+            if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
+            {
+              
+            }
+
+            if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
+            {
+
+                Response.Redirect("JobReports.aspx");
+            }
+            else
+            {
+
+
+            }
+        }
     }
+
+
 
     //[WebMethod]
     //public static void updateNotification(int id)

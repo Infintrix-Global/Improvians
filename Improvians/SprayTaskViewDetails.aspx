@@ -260,6 +260,15 @@
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Comments">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblcomments" runat="server" Text='<%#Bind("comments") %>'></asp:Label>
+
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
                                     <%-- <asp:TemplateField HeaderText="Bench Irrigation Flow Rate [Gallons/min]">
                                             <ItemTemplate>
 
