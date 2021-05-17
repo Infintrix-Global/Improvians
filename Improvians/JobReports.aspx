@@ -293,7 +293,7 @@
                         <ContentTemplate>
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-xl-3 mb-3">
-                                    <label>Description </label>
+                                    <label>Task Type</label>
                                     <asp:DropDownList ID="ddlDescription" DataTextField="Description" DataValueField="Description" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
                                 <div class="col-12 col-sm-6 col-xl-3 mb-3">
@@ -323,7 +323,7 @@
                                                         GridLines="None"
                                                         ShowHeaderWhenEmpty="True" Width="100%">
                                                         <Columns>
-                                                            <asp:TemplateField HeaderText="Description" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                            <asp:TemplateField HeaderText="Task Type" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                                 <ItemTemplate>
 
                                                                     <asp:Label ID="lblD" runat="server" Text='<%# Eval("Description")  %>'></asp:Label>

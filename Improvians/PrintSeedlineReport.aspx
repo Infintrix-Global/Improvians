@@ -224,7 +224,7 @@
                                                         <ItemTemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="60px">
+                                                    <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="120px">
                                                         <ItemTemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>

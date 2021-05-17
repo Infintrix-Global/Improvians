@@ -141,6 +141,7 @@ span:empty { display: none; }
 
 .dash_green_txt { color: #438644; }
 .dash_blue_txt { color: #10739e; }
+.grey_txt { color: #808080; }
 
 
 /*Font Styles*/
@@ -705,7 +706,6 @@ input[type="date" i]::-webkit-calendar-picker-indicator { margin-left: 5px; }
 .dashboard__matrixdetail h3 {
     font-size: 45px;
     margin-bottom: 0px;
-    color: #808080;
 }
 
 .dashboard__matrixdetail span {
