@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+      <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
     <div class="site__container">
         <h2 class="head__title-icon">
             <img src="images/dashboard_general-task.png" width="137" height="132" alt="General Task" />
@@ -108,6 +109,87 @@
         </div>
 
         <div class="text-left dashboard__block my-4">
+
+            <asp:Panel ID="Panel1"  runat="server">
+                <br />
+                <h2 class="text-left">Task Request Flow</h2>
+
+                <br />
+                <div class="portlet-body">
+                    <div class="data__table">
+                        <asp:GridView ID="GridViewDumpView" runat="server" AutoGenerateColumns="False"
+                            class="striped" AllowSorting="true"
+                            GridLines="None"
+                            ShowHeaderWhenEmpty="True" Width="100%">
+                            <Columns>
+
+                                <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Assigned By">
+                                    <ItemTemplate>
+
+                                        <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
+
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Assigned To">
+                                    <ItemTemplate>
+
+                                        <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="MoveFrom" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblGrenHouseToRequest" runat="server" Text='<%# Eval("MoveFrom")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="MoveTo" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTraysRequest" runat="server" Text='<%# Eval("MoveTo")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblMoveDate" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+
+                            </Columns>
+
+                            <PagerStyle CssClass="paging" HorizontalAlign="Right" />
+                            <PagerSettings Mode="NumericFirstLast" />
+                            <EmptyDataTemplate>
+                                No Record Available
+                            </EmptyDataTemplate>
+                        </asp:GridView>
+
+
+
+
+                    </div>
+                </div>
+
+            </asp:Panel>
+
+
+
             <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
                 <br />
                 <h2 class="text-left">Crop Health Report </h2>

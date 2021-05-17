@@ -7,19 +7,28 @@
         <h2 class="mb-3">Manage Task</h2>
 
         <div class="row">
+
             <div class="col-lg-2">
-                <label>Customer </label>
-                <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <label>Seedline Facility </label>
+                <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
+
+            <div class="col-lg-2">
+                <label>Crop Type </label>
+                <asp:DropDownList ID="ddlCopTYpe" AutoPostBack="true" OnSelectedIndexChanged="ddlCopTYpe_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+
             <div class="col-lg-2">
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
 
             <div class="col-lg-2">
-                <label>Seedline Facility </label>
-                <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <label>Customer </label>
+                <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
+
+
 
             <div class="col-lg-2">
                 <label>Seedline Status </label>

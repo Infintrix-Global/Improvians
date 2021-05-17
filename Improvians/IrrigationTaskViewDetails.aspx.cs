@@ -43,7 +43,7 @@ namespace Evo
 
                 if (Request.QueryString["ICID"] != "0")
                 {
-                    BindGridSprayCompletionDetails(Request.QueryString["CCID"].ToString());
+                    BindGridSprayCompletionDetails(Request.QueryString["ICID"].ToString());
                     PanlTaskComplition.Visible = true;
                 }
                 else

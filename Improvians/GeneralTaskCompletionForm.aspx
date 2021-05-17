@@ -39,7 +39,7 @@
                         <div class="data__table">
                             <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvTask_RowDataBound"
                                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvTask_PageIndexChanging"
-                                GridLines="None" OnRowCommand="gvTask_RowCommand"
+                                GridLines="None" OnRowCommand="gvTask_RowCommand" DataKeyNames="ID,GeneralTaskAssignmentId"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
                                     <%--<asp:TemplateField HeaderText="Status" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
@@ -99,7 +99,7 @@
 
                                     <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Start" CommandArgument='<%# Eval("GeneralTaskAssignmentId")  %>'></asp:Button>
+                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="Start" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 

@@ -204,7 +204,7 @@ namespace Improvians
                 long result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskStart", nv);
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}", result, ChId));
+                    Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}", result, ChId, Did,0));
 
                  
                 }

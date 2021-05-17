@@ -507,18 +507,26 @@ namespace Evo
 
                 string ChId = "0";
                 lblID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
-
+                lblJobID.Text = gvGerm.DataKeys[rowIndex].Values[0].ToString();
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-                ;
+                
                 nv.Add("@GTID", lblID.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@Jobcode", lblJobID.Text);
                 result = objCommon.GetDataExecuteScaler("SP_AddGerminatioMyTasknGrowarStart", nv);
 
+
+                NameValueCollection nvR = new NameValueCollection();
+                nvR.Add("@GTAId", result.ToString());
+                DataTable dtR = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationRequestID", nvR);
+                string GTRID = dtR.Rows[0]["GTRID"].ToString();
+
+
                 // Session["WorkOrder"] = JobID;
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}&GTRID={2}&IsF={3}", result.ToString(), ChId, lblID.Text, 0));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}&GTRID={2}&IsF={3}", result.ToString(), ChId, GTRID, 0));
             }
         }
 

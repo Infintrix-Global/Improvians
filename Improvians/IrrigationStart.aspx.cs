@@ -433,9 +433,9 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@NoOfPasses", "");
                 nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
-
+           
                 nv.Add("@jid", Jid);
-
+                
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestStart", nv);
 
                 if (result > 0)
@@ -503,6 +503,7 @@ namespace Evo
                 nv.Add("@NoOfPasses", "");
                 nv.Add("@jid", (row.FindControl("lbljid") as Label).Text);
                 nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
+          
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestStart", nv);
 
             }

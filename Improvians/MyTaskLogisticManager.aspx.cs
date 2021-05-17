@@ -270,11 +270,6 @@ namespace Evo
         }
 
 
-
-
-
-
-
         public void BindGridGerm(string JobCode)
         {
             DataTable dt = new DataTable();

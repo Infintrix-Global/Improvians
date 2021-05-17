@@ -72,7 +72,7 @@ namespace Evo
                 txtInspectionDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindGridGerm();
                 BindGridCalView(Request.QueryString["GTAID"].ToString());
-                BindViewDetilas(Request.QueryString["GTAID"].ToString());
+                BindViewDetilas(gtRID);
             }
         }
 

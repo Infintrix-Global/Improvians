@@ -75,7 +75,7 @@ namespace Evo
                 //amytask.HRef = "SeedingPlanForm.aspx";
                 amytask.HRef = "MyTaskSeedlinePlanner.aspx";
                 ddlFacility.Visible = false;
-                JobReports.HRef = "ReportSeedlinePlanner.aspx";
+              //  JobReports.HRef = "ReportSeedlinePlanner.aspx";
             }
             if (Session["Role"].ToString() == "8")
             {
@@ -88,6 +88,7 @@ namespace Evo
             if (Session["Role"].ToString() == "10")
             {
                 amytask.HRef = "MyTaskProductionPlanner.aspx";
+                JobReports.HRef = "TrackTaskSeedlinePlanner.aspx";
                 ddlFacility.Visible = false;
             }
             if (Session["Role"].ToString() == "11")
@@ -98,6 +99,7 @@ namespace Evo
             {
                 amytask.HRef = "MyTaskAssistantGrower.aspx";
             }
+          
         }
 
         public void BindFacility()
@@ -155,7 +157,8 @@ namespace Evo
             {
                 TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
                 //  JobReports.HRef = "JobReports.aspx
-                TrackTasks.HRef = "ManageTaskJobReport.aspx";
+              //  TrackTasks.HRef = "ReportSeedlinePlanner.aspx";
+                JobReports.HRef = "ReportSeedlinePlanner.aspx";
             }
 
             if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")

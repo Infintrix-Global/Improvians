@@ -95,6 +95,7 @@ namespace Evo
                     //{
                     //    PlantPDate =
                     //}
+
                     PlanrDDate = Convert.ToInt32(dtpD.Rows[0]["dateshift"]);
                     PlantPDate = Convert.ToInt32(dtpD.Rows[1]["dateshift"]);
                    
@@ -396,10 +397,20 @@ namespace Evo
         {
             dt = new DataTable();
             nv.Clear();
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
+        
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Status", "0");
+            nv.Add("@BenchLocation", "0");
+
+            nv.Add("@Jobsource", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "0");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
+
             dt = objCommon.GetDataTable("SP_GetGeneralRequestAssistantGrower", nv);
             BindData(dt, Gen, "GeneralTaskDate");
         }

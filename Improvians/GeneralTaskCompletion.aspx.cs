@@ -32,18 +32,50 @@ namespace Evo
                 if (Request.QueryString["Did"] != null)
                 {
                     Did = Request.QueryString["Did"].ToString();
+                    GeneralAdd.Visible = false;
                 }
+
+                if (Request.QueryString["DrId"] != null)
+                {
+                    DrId = Request.QueryString["DrId"].ToString();
+                }
+
+                if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
+                {
+
+                    PanelComplitionDetsil.Visible = true;
+                    GeneralAdd.Visible = false;
+                }
+                else
+                {
+                    PanelComplitionDetsil.Visible = false;
+                    GeneralAdd.Visible = true;
+                }
+
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
                 BindTask();
+                BindViewDumpDetilas(0);
                 BindGridGeneraComplition(Did);
             }
         }
 
+        public void BindViewDumpDetilas(int RDid)
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
 
+            nv.Add("@Jid", lbljid.Text);
+            nv.Add("@Login", "0");
+         
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmentGeneralViewStart", nv);
+            GridViewDumpView.DataSource = dt;
+            GridViewDumpView.DataBind();
+
+        }
         public void BindGridGeneraComplition(string Did)
         {
             DataTable dt1 = new DataTable();
@@ -58,7 +90,12 @@ namespace Evo
 
                 GridPlantComplition.DataSource = dt1;
                 GridPlantComplition.DataBind();
-                lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
+               
+                //      lblComplitionUser.Text = dt1.Rows[0]["EmployeeName"].ToString();
+            }
+            else
+            {
+                PanelComplitionDetsil.Visible = false;
             }
 
         }
@@ -110,16 +147,36 @@ namespace Evo
             }
         }
 
+        private string DrId
+        {
+            get
+            {
+                if (ViewState["DrId"] != null)
+                {
+                    return (string)ViewState["DrId"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["DrId"] = value;
+            }
+        }
+
+
+
+        
         public void BindTask()
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@GeneralTaskAssignmentId", Did);
+            nv.Add("@GeneralTaskAssignmentId", DrId);
             dtCompletion = objCommon.GetDataTable("SP_GetOperatorGeneralTaskDetails", nv);
             dt = dtCompletion;
             gvTask.DataSource = dt;
             gvTask.DataBind();
+            lbljid.Text = dt.Rows[0]["jid"].ToString();
             DateTime dNow = new DateTime();
             dNow = Convert.ToDateTime(dt.AsEnumerable().Select(r => r.Field<DateTime>("GeneralTaskDate")).FirstOrDefault().ToString("yyyy/MM/dd"));
             txtGeneralDate.Text = (dNow.ToString("yyyy-MM-dd"));
