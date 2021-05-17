@@ -357,7 +357,7 @@ namespace Evo
         {
             if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
             {
-              
+                Response.Redirect("ReportSeedlinePlanner.aspx");
             }
 
             if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
