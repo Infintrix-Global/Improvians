@@ -81,13 +81,13 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="CUSTOMER">
+                                            <asp:TemplateField HeaderText="CUSTOMER" HeaderStyle-Width="180px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCustName" runat="server" Text='<%# Eval("cname") %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="ITEM DESCRIPTION">
+                                            <asp:TemplateField HeaderText="ITEM DESCRIPTION" HeaderStyle-Width="180px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblItem" runat="server" Text='<%# Eval("itemdescp") %>'></asp:Label>
 
@@ -129,7 +129,7 @@
                                                 <ItemTemplate>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="60px">
+                                            <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="120px">
                                                 <ItemTemplate>
                                                 </ItemTemplate>
                                             </asp:TemplateField>

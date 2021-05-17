@@ -105,7 +105,7 @@
             <div id="userinput" runat="server">
                 <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
                     <br />
-                    <h2 class="text-left">Crop Health Report </h2>
+                    <h3 class="text-left dark_txt mb-2">Crop Health Report </h3>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
@@ -190,13 +190,9 @@
                 </div>
                     </div>
                 </asp:Panel>
-                <br />
-                
-                <br />
                 <asp:Panel ID="pnlint" runat="server">
-                      <br />
-                    <h2 class="text-left">
-                         Task Request Flow  </h2>
+                    <h3 class="text-left dark_txt mb-2">Task Request Flow</h3>
+
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewDetails"
@@ -279,10 +275,8 @@
 
                 </asp:Panel>
                   <br />
-             <asp:Panel ID="PanlTaskComplition" runat="server">
-                           <h2 class="text-left">
-                                Completion
-                          </h2>
+                <asp:Panel ID="PanlTaskComplition" runat="server">
+                    <h3 class="text-left dark_txt mb-2">Completion</h3>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewCompletion"
