@@ -214,6 +214,10 @@ namespace Evo
             nameValue.Add("@TaskName", "General Task");
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
+            var res = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
             //SendMailAfterCompletion();
             if (result > 0)
             {
@@ -243,7 +247,7 @@ namespace Evo
 
         private void SendMailAfterCompletion()
         {
-            string table1 =  ConvertDataTableToHTML(dtCompletion);           
+            string table1 = ConvertDataTableToHTML(dtCompletion);
 
             var pathToFile = Path.DirectorySeparatorChar.ToString()
                     + "Admin/EmailTemplates"
@@ -265,15 +269,13 @@ namespace Evo
             dic.Add("#MoveF#", "FirstName");
             dic.Add("#MoveT#", "FirstName");
             dic.Add("#Cms#", "FirstName");
-            
-//            dic.Add("#GDate#", collection.StartDate.ToString("dd/MM/yyyy"));
-            dic.Add("#AssignBy#","");
+
+            //            dic.Add("#GDate#", collection.StartDate.ToString("dd/MM/yyyy"));
+            dic.Add("#AssignBy#", "");
 
 
             string sbody = _emailHelper.getEmailBody(pathToFile, dic);
-  //          objGeneral.SendMail(ToMail, CCMail, "General Task is completed by ", sbody);
-
-
+            //          objGeneral.SendMail(ToMail, CCMail, "General Task is completed by ", sbody);
 
         }
 
