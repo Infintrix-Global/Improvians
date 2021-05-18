@@ -78,7 +78,7 @@
         <div class="data__table">
             <asp:GridView ID="gvMoveReq" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvMoveReq_RowDataBound"
                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvMoveReq_PageIndexChanging"
-                GridLines="None" OnRowCommand="gvMoveReq_RowCommand" DataKeyNames="wo,MoveId,jid,jobcode,GreenHouseID,Trays,itemdescp"
+                GridLines="None" OnRowCommand="gvMoveReq_RowCommand" DataKeyNames="wo,MoveId,jid,jobcode,GreenHouseID,Trays,itemdescp,TaskRequestKey"
                 ShowHeaderWhenEmpty="True" Width="100%">
                 <Columns>
 

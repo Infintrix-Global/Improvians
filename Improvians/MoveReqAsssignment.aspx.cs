@@ -165,8 +165,10 @@ namespace Evo
             if (e.CommandName == "Select")
             {
                 //   int rowIndex = Convert.ToInt32(e.CommandArgument);
-                string MoveID = e.CommandArgument.ToString(); // gvFer.DataKeys[rowIndex].Values[0].ToString();
-
+              //  string MoveID = e.CommandArgument.ToString(); // gvFer.DataKeys[rowIndex].Values[0].ToString();
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string MoveID = gvFer.DataKeys[rowIndex].Values[0].ToString();
+                string TaskRequestKey = gvFer.DataKeys[rowIndex].Values[1].ToString();
                 // userinput.Visible = true;
                 //Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}", MoveID, 0));
 
@@ -208,9 +210,10 @@ namespace Evo
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}", result, ChId, MoveID,0));
+                  //  Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}", result, ChId, MoveID,0));
 
-                  
+                    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}&TaskRequestKey={4}", result, ChId, MoveID, 0, TaskRequestKey));
+
                 }
             }
         }

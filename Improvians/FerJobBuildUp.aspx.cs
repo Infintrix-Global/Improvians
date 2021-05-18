@@ -444,6 +444,9 @@ namespace Evo
             {
                 ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
                 txtQty.Text = dt.Rows[0]["Quantity"].ToString();
+
+                txtComments.Text = dt.Rows[0]["Comments"].ToString();
+                
             }
         }
 
@@ -653,7 +656,9 @@ namespace Evo
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetails(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text);
+            //objTask.AddFertilizerRequestDetails(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text,txtComments.Text);
+
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text, txtComments.Text.Trim());
 
             long Mresult12 = 0;
             //   NameValueCollection nv123 = new NameValueCollection();

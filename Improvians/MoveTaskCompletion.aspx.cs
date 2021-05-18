@@ -44,6 +44,10 @@ namespace Evo
                     PanelAdd.Visible = true;
                 }
 
+                if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+                }
 
 
 
@@ -52,13 +56,28 @@ namespace Evo
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                     BindGridCropHealthImage(Request.QueryString["Chid"].ToString());
                 }
-                BindPlantReady();
+                BindPlantReady(Convert.ToInt32(Request.QueryString["DrId"]));
                 BindViewDumpDetilas(Convert.ToInt32(Request.QueryString["DrId"]));
                 BindGridMoveComplition(Did);
 
             }
         }
 
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
         public void BindGridCropHealthImage(string ChId)
         {
             DataTable dt1 = new DataTable();
@@ -89,6 +108,10 @@ namespace Evo
                 GridMoveComplition.DataSource = dt1;
                 GridMoveComplition.DataBind();
 
+            }
+            else
+            {
+                PanelComplitionDetsil.Visible = false;
             }
 
         }
@@ -144,7 +167,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Jid", lbljid.Text);
+            nv.Add("@TaskRequestKey", TaskRequestKey);
             nv.Add("@Login", "0");
             //if (Request.QueryString["Did"] != "0")
             //{
@@ -154,13 +177,13 @@ namespace Evo
             //{
             //    nv.Add("@Login", Session["LoginID"].ToString());
             //}
-            dt = objCommon.GetDataTable("SP_GetTaskAssignmentMoveViewStart", nv);
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmentMoveViewStart1", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
 
         }
 
-        public void BindPlantReady()
+        public void BindPlantReady(int MoveId)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -169,19 +192,19 @@ namespace Evo
             //nv.Add("@CustomerName", "");
             //nv.Add("@Facility", "");
             //nv.Add("@Mode", "11");
-            nv.Add("@MoveTaskAssignmentId", Did);
+            nv.Add("@MoveId", MoveId.ToString());
             nv.Add("@RoleId", Session["Role"].ToString());
 
-            dt = objCommon.GetDataTable("SP_GetOperatorMoveTaskDetails", nv);
+            dt = objCommon.GetDataTable("SP_GetOperatorMoveTaskDetails1", nv);
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
-            lbljid.Text = dt.Rows[0]["jid"].ToString();
+          //  lbljid.Text = dt.Rows[0]["jid"].ToString();
         }
 
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPlantReady.PageIndex = e.NewPageIndex;
-            BindPlantReady();
+            BindPlantReady(0);
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

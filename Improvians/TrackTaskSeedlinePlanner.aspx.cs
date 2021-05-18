@@ -22,7 +22,7 @@ namespace Evo
                 BindJobCode();
                 BindFacility();
                 BindCropType();
-                BindCropType();
+            
                 BindGridGerm();
             }
         }
@@ -112,7 +112,7 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-         
+            BindCropType();
             Bindcname();
             BindJobCode();
             BindFacility();

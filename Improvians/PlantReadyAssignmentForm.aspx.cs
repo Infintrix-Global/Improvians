@@ -214,7 +214,7 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string PRID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 ChId = gvGerm.DataKeys[rowIndex].Values[1].ToString();
-
+                var TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[2].ToString();
                 if (ChId == "")
                 {
                     ChId = "0";
@@ -249,7 +249,7 @@ namespace Evo
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}&PRID={2}&IsF={3}", result, ChId, PRID,0));
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}&PRID={2}&IsF={3}&TaskRequestKey={4}", result, ChId, PRID,0, TaskRequestKey));
                 }
             }
         }

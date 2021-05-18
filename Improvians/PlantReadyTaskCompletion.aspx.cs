@@ -36,7 +36,10 @@ namespace Evo
                     PanelComplitionDetsil.Visible = false;
                 }
 
-
+                if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+                }
 
                 if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
                 {
@@ -89,7 +92,21 @@ namespace Evo
                 CropePhotos.DataBind();
             }
         }
-
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
         public void BindGridPalntReadyComplition(string PRAID)
         {
             DataTable dt1 = new DataTable();
@@ -127,7 +144,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Jid", lbljid.Text);
+            nv.Add("@TaskRequestKey", TaskRequestKey);
             if (Request.QueryString["PRAID"] != "0")
             {
                 nv.Add("@Login", "0");
@@ -136,7 +153,7 @@ namespace Evo
             {
                 nv.Add("@Login", Session["LoginID"].ToString());
             }
-            dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytViewStart", nv);
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytViewStart1", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
 

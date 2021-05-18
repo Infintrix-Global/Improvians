@@ -65,7 +65,7 @@
                         <div class="data__table">
                             <asp:GridView ID="gvFer" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                 class="striped" AllowSorting="true" PageSize="10" OnRowDataBound="gvFer_RowDataBound"
-                                GridLines="None" OnRowCommand="gvFer_RowCommand" DataKeyNames="ID"
+                                GridLines="None" OnRowCommand="gvFer_RowCommand" DataKeyNames="ID,TaskRequestKey"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
 
@@ -130,7 +130,7 @@
 
                                     <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# Eval("ID")  %>'></asp:Button>
+                                            <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
 
 
                                         </ItemTemplate>

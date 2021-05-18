@@ -86,6 +86,22 @@ namespace Evo
             }
         }
 
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
+
         public void BindGridPlantReady(int p)
         {
             DataTable dt = new DataTable();
@@ -400,6 +416,8 @@ namespace Evo
                 lblBenchlocation.Text = gvMoveReq.DataKeys[rowIndex].Values[4].ToString();
                 lblTotalTrays.Text = gvMoveReq.DataKeys[rowIndex].Values[5].ToString();
                 lblDescription.Text = gvMoveReq.DataKeys[rowIndex].Values[6].ToString();
+
+                TaskRequestKey = gvMoveReq.DataKeys[rowIndex].Values[7].ToString();
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@MoveId", HiddenFieldDid.Value);
@@ -420,10 +438,34 @@ namespace Evo
 
             if (e.CommandName == "StartDump")
             {
-                string ChId = "";
+                string ChId = "0";
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-                string Did = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
-                Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}", Did));
+                string MoveID = gvMoveReq.DataKeys[rowIndex].Values[1].ToString();
+                TaskRequestKey = gvMoveReq.DataKeys[rowIndex].Values[7].ToString();
+                //    Response.Redirect(String.Format("~/MoveCompletionStart.aspx?Did={0}&TaskRequestKey={2}", Did, TaskRequestKey));
+
+
+
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@MoveDate", "");
+                nv.Add("@Comments", "");
+                nv.Add("@QuantityOfTray", "");
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@MoveID", MoveID);
+
+                nv.Add("@OperatorID", Session["LoginID"].ToString());
+
+
+
+                long result = objCommon.GetDataExecuteScaler("SP_AddMoveTaskAssignment", nv);
+
+
+
+
+
+                Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}&TaskRequestKey={4}", result, ChId, MoveID, 0, TaskRequestKey));
+
+
                 //    Response.Redirect(String.Format("~/MoveTaskCompletion.aspx?PageType={0}&Did={1}&DrId={2}", "ManageTask", 0, dtR.Rows[0]["MoveID"].ToString()));
             }
         }
@@ -451,7 +493,8 @@ namespace Evo
             nv.Add("@mvoeId", HiddenFieldDid.Value);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
             nv.Add("@ManualID", HiddenFieldJid.Value);
-
+            nv.Add("@TaskRequestKey", TaskRequestKey);
+            
             result = objCommon.GetDataInsertORUpdate("SP_AddMoveRequestASManua", nv);
 
             NameValueCollection nameValue = new NameValueCollection();

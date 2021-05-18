@@ -144,7 +144,7 @@ namespace Evo
 
                 if (dtFez != null && dtFez.Rows.Count > 0)
                 {
-                    //  string A = dtFez.Rows[0]["DateShift"].ToString().Replace("\u0002", "");
+                  
 
                     DataColumn col = dtFez.Columns["DateShift"];
                     int Fcount = 0;

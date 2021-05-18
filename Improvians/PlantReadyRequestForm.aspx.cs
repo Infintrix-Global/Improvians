@@ -432,6 +432,7 @@ namespace Evo
                 lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
                 lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
                 txtPlantDate.Text = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6]).ToString("yyyy-MM-dd");
+                ViewState["tKey"] = gvPlantReady.DataKeys[rowIndex].Values[10].ToString();
                 if (lblPRRId.Text == "0")
                 {
 
@@ -454,8 +455,10 @@ namespace Evo
                     nv.Add("@Role", Session["Role"].ToString());
                     nv.Add("@SeedDate", "");
                     nv.Add("@Jid", lblJid.Text);
+                    nv.Add("@TaskRequestKey", ViewState["tKey"].ToString());
 
-                    result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTaskStart", nv);
+        
+                    result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTaskStartNew", nv);
                     NameValueCollection nv5 = new NameValueCollection();
 
                     nv5.Add("@PRTA", result.ToString());
