@@ -553,8 +553,8 @@ namespace Evo
 
             NameValueCollection nameValue = new NameValueCollection();
             nameValue.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@jobcode", ViewState["jobcode"].ToString());
-            nv.Add("@GreenHouseID", ViewState["benchloc"].ToString());
+            nameValue.Add("@jobcode", ViewState["jobcode"].ToString());
+            nameValue.Add("@GreenHouseID", ViewState["benchloc"].ToString());
             nameValue.Add("@TaskName", "Dump");
 
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
