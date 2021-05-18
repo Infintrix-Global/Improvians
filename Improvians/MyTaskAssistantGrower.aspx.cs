@@ -130,7 +130,6 @@ namespace Evo
             dt = new DataTable();
             nv.Clear();
             nv.Add("@JobCode", "0");
-            nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@RequestType", "0");

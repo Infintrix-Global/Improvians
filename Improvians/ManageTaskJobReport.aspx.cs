@@ -365,8 +365,8 @@ namespace Evo
                     if (TaskRequestType == "Crop Health Report")
                     {
 
-                        Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", dt.Rows[0]["CropHealthReportTaskAssignmentId"].ToString(), 0, dt.Rows[0]["CropHealthReportId"].ToString()));
-
+                        Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", dt.Rows[0]["CropHealthReportTaskAssignmentId"].ToString(), dt.Rows[0]["chid"].ToString(), dt.Rows[0]["CropHealthReportId"].ToString(), dt.Rows[0]["TaskRequestKey"].ToString()));
+                        
                     }
 
                 }
@@ -418,7 +418,7 @@ namespace Evo
                     if (TaskRequestType == "Crop Health Report")
                     {
 
-                        Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}", "ManageTask", 0, 0, dtR.Rows[0]["CropHealthReportId"].ToString()));
+                        Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", 0, 0, dtR.Rows[0]["CropHealthReportId"].ToString(), dtR.Rows[0]["TaskRequestKey"].ToString()));
 
                     }
                 }
