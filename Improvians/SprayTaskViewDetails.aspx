@@ -24,7 +24,7 @@
                     <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
                     <div class="portlet-body">
                         <div class="data__table">
-                                <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
                             <asp:GridView ID="gvSpray" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                 class="striped" AllowSorting="true" PageSize="10" DataKeyNames="wo,jobcode,GrowerPutAwayId"
                                 GridLines="None" OnRowCommand="gvSpray_RowCommand" OnPageIndexChanging="gvSpray_PageIndexChanging"
@@ -105,12 +105,9 @@
 
         </div>
         <div class="dashboard__block dashboard__block--asign">
-
-
             <div id="userinput" runat="server">
                 <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
-                    <br />
-                    <h2 class="text-left">Crop Health Report </h2>
+                    <h3 class="text-left dark_txt mb-2">Crop Health Report </h3>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="gvCropHealth" runat="server" AutoGenerateColumns="False"
@@ -172,35 +169,31 @@
                             </div>
                         </div>
                         <div class="row">
-                    <div class="col-md-12">
-                        <div class="portlet-body">
-                            <div class="data__table">
-                                <asp:DataList ID="CropePhotos" runat="server"  BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
-                                    <ItemTemplate>
-                                        <div>
+                            <div class="col-md-12">
+                                <div class="portlet-body">
+                                    <div class="data__table">
+                                        <asp:DataList ID="CropePhotos" runat="server" BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
+                                            <ItemTemplate>
+                                                <div>
 
-                                            <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("Imagepath") %>' runat="server" />
-
-
-                                        </div>
-                                    </ItemTemplate>
+                                                    <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("Imagepath") %>' runat="server" />
 
 
-                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Bottom" />
-                                </asp:DataList>
+                                                </div>
+                                            </ItemTemplate>
+
+
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Bottom" />
+                                        </asp:DataList>
+                                    </div>
+
+                                </div>
                             </div>
-
                         </div>
                     </div>
-                </div>
-                    </div>
                 </asp:Panel>
-
-                <br />
                 <asp:Panel ID="pnlint" runat="server">
-                    <h2 class="text-left">
-                     
-                         Task Request Flow</h2>
+                    <h3 class="text-left dark_txt mb-2">Task Request Flow</h3>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewDetails"
@@ -213,7 +206,7 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                      <asp:TemplateField HeaderText="Assigned By">
+                                    <asp:TemplateField HeaderText="Assigned By">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblAassignedTo" runat="server" Text='<%#Bind("Aassignedby") %>'></asp:Label>
@@ -221,7 +214,7 @@
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
-                                      <asp:TemplateField HeaderText="Assigned To">
+                                    <asp:TemplateField HeaderText="Assigned To">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
@@ -260,7 +253,7 @@
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Comments">
+                                    <asp:TemplateField HeaderText="Comments">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblcomments" runat="server" Text='<%#Bind("comments") %>'></asp:Label>
@@ -310,9 +303,7 @@
                 </asp:Panel>
                 <br />
                 <asp:Panel ID="PanlTaskComplition" runat="server">
-                    <h2 class="text-left">
-                     
-                        Completion  </h2>
+                    <h3 class="text-left dark_txt mb-2">Completion</h3>
                     <div class="portlet-body">
                         <div class="data__table">
                             <asp:GridView ID="GridViewCompletion"
@@ -325,7 +316,7 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Completed By">
+                                    <asp:TemplateField HeaderText="Completed By">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
