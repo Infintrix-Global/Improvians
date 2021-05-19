@@ -24,13 +24,13 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlFacility;
 
         /// <summary>
-        /// ddlCustomer control.
+        /// ddlCopTYpe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCopTYpe;
 
         /// <summary>
         /// ddlJobNo control.
@@ -40,6 +40,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlJobNo;
+
+        /// <summary>
+        /// ddlCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
 
         /// <summary>
         /// btnSearchRest control.
