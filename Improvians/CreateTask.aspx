@@ -11,7 +11,39 @@
 
             confirm_value.type = "hidden";
             confirm_value.name = "confirm_value";
-            if (confirm("'Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2+". Are you sure you want to proceed?' ?")) {
+            if (confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2+". Are you sure you want to proceed.?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+
+
+        function ConfirmCem() {
+            var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
+             var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
+             var confirm_value = document.createElement("INPUT");
+
+             confirm_value.type = "hidden";
+             confirm_value.name = "confirm_value";
+            if (confirm("Chemical Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?")) {
+                 confirm_value.value = "Yes";
+             } else {
+                 confirm_value.value = "No";
+             }
+             document.forms[0].appendChild(confirm_value);
+        }
+
+
+        function ConfirmIrr() {
+            var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
+            var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
+            var confirm_value = document.createElement("INPUT");
+
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Irrigation Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?")) {
                 confirm_value.value = "Yes";
             } else {
                 confirm_value.value = "No";
