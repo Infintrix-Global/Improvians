@@ -35,6 +35,22 @@ namespace Evo
                 }
 
 
+
+                if (Request.QueryString["IsF"] != null && Request.QueryString["IsF"].ToString() == "1")
+                {
+
+                    PanelComplition.Visible = true;
+                    PanelAddDump.Visible = false;
+                 
+                }
+                else
+                {
+                    PanelComplition.Visible = false;
+                    PanelAddDump.Visible = true;
+                   
+                }
+
+
                 if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
                 {
                     TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
@@ -69,6 +85,10 @@ namespace Evo
                 GridDumpComplition.DataSource = dt1;
                 GridDumpComplition.DataBind();
 
+            }
+            else
+            {
+                PanelComplition.Visible = false;
             }
 
         }

@@ -10,6 +10,9 @@ jQuery(document).ready(function ($) {
         console.log('CLIENT: service worker is not supported.');
     }
 
+    if ($(".dropdown-showonload").length > 0) {
+        $(".dropdown-showonload .dropdown-toggle").dropdown('toggle');
+    }
    
 
     var todaysDate = new Date().toLocaleDateString('en-CA'),

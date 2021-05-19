@@ -33,7 +33,7 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-
+            nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetHomeDetails", nv);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -125,7 +125,8 @@ namespace Evo
         {
             Session["Facility"] = ddlFacility.SelectedValue;
             var res = (Master.FindControl("r1") as Repeater);
-
+            BindPlantReadyAVG();
+            BindData();
             var lblCount = (Master.FindControl("lblNotificationCount") as Label);
             objCommon.GetAllNotifications(Session["LoginID"].ToString(), ddlFacility.SelectedValue, res, lblCount);
         }
@@ -136,9 +137,12 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "11");
-            dt = objCommon.GetDataTable("GET_Common", nv);
+            //nv.Add("@Mode", "11");
+            //dt = objCommon.GetDataTable("GET_Common", nv);
 
+          
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetPlantReadyAVGRootQty", nv);
             if (dt != null & dt.Rows.Count > 0)
             {
                 lblPlantReadyQuality.Text = dt.Rows[0]["PlantReadyAVG"].ToString();

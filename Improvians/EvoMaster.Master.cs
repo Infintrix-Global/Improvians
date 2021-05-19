@@ -304,8 +304,8 @@ namespace Evo
             var result = objCommon.GetDataExecuteScaler("SP_ClearNotificationById", nv);
             checkNotification(1);
 
-            notificationDiv.Attributes.Add("class", "dropdown-menu dropdown-menu-left dropdown-menu-sm-right show");
-            notificationDiv1.Attributes.Add("class", "dropdown alert__dropdown ml-auto show");
+            //notificationDiv.Attributes.Add("class", "dropdown-menu dropdown-menu-left dropdown-menu-sm-right show");
+            notificationDiv1.Attributes.Add("class", "dropdown alert__dropdown ml-auto dropdown-showonload");
             //DataTable dtSearch1 = new DataTable();
         }
 
