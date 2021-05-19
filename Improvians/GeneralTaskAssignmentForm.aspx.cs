@@ -56,6 +56,22 @@ namespace Improvians
             }
         }
 
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+
+            }
+        }
+
 
         public void Bindcname()
         {
@@ -127,8 +143,9 @@ namespace Improvians
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
+                var tKey = gvTask.DataKeys[row.RowIndex].Values[2].ToString();
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
@@ -174,6 +191,7 @@ namespace Improvians
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             string Did = gvTask.DataKeys[rowIndex].Values[0].ToString();
             string GeneralDate = gvTask.DataKeys[rowIndex].Values[1].ToString();
+            string TaskRequestKey = gvTask.DataKeys[rowIndex].Values[2].ToString();
 
             //ChId = gvTask.DataKeys[rowIndex].Values[1].ToString();
 
@@ -188,7 +206,7 @@ namespace Improvians
 
             if (e.CommandName == "Assign")
             {
-                Response.Redirect(String.Format("~/GeneralTaskAssignment.aspx?Did={0}&Chid={1}", Did, ChId));
+                Response.Redirect(String.Format("~/GeneralTaskAssignment.aspx?Did={0}&Chid={1}&TaskRequestKey={2}", Did, ChId, TaskRequestKey));
             }
 
 
@@ -204,7 +222,7 @@ namespace Improvians
                 long result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskStart", nv);
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}", result, ChId, Did,0));
+                    Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}&TaskRequestKey={4}", result, ChId, Did,0, TaskRequestKey));
 
                  
                 }

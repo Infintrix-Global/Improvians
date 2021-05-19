@@ -57,6 +57,11 @@ namespace Evo
                 {
                     BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
                 }
+
+                if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+                }
                 BindTask();
                 BindViewDumpDetilas(0);
                 BindGridGeneraComplition(Did);
@@ -164,8 +169,23 @@ namespace Evo
         }
 
 
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
 
-        
+
         public void BindTask()
         {
             DataTable dt = new DataTable();
