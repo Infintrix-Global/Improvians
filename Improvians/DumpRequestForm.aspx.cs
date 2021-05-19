@@ -35,7 +35,7 @@ namespace Evo
                 BindCrop();
                 BindAssignByList("0", "0", "0");
                 // BindFacility();
-                BindGridPlantReady("0",0);
+                BindGridPlantReady("0", 0);
                 BindSupervisorList();
             }
         }
@@ -448,7 +448,7 @@ namespace Evo
         }
 
 
-       
+
         private string TaskRequestKey
         {
             get
@@ -572,16 +572,9 @@ namespace Evo
                 {
                     url = "MyTaskAssistantGrower.aspx";
                 }
+
                 string message = "Assignment Successful";
-                //string url = "MyTaskAssistantGrower.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                // lblmsg.Text = "Assignment Successful";
+                objCommon.ShowAlertAndRedirect(message, url);
                 clear();
             }
             else
@@ -610,7 +603,7 @@ namespace Evo
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPlantReady.PageIndex = e.NewPageIndex;
-            BindGridPlantReady("0",1);
+            BindGridPlantReady("0", 1);
         }
 
         protected void gvPlantReady_RowDataBound(object sender, GridViewRowEventArgs e)

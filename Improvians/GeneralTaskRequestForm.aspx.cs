@@ -30,7 +30,7 @@ namespace Evo
                 Bindcname("0", "0", "0");
                 BindCrop();
                 BindAssignByList("0", "0", "0");
-                BindTaskGrid("0",0);
+                BindTaskGrid("0", 0);
                 BindSupervisorList();
             }
         }
@@ -464,7 +464,7 @@ namespace Evo
             }
 
         }
-    
+
         protected void gvTask_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -565,7 +565,7 @@ namespace Evo
                 //NameValueCollection nv = new NameValueCollection();
                 //nv.Add("@GTID", GTID.ToString());
                 //result = objCommon.GetDataInsertORUpdate("SP_DismissGeneralRequest", nv);
-                BindTaskGrid("0",1);
+                BindTaskGrid("0", 1);
             }
             if (e.CommandName == "Reschedule")
             {
@@ -585,7 +585,7 @@ namespace Evo
                 //txtNewDate.Text = Germdt.ToString("yyyy-MM-dd");
 
                 //txtNewDate.Focus();
-                BindTaskGrid("0",1);
+                BindTaskGrid("0", 1);
             }
         }
 
@@ -617,7 +617,7 @@ namespace Evo
             nv.Add("@GeneralDate", txtGeneralDate.Text);
             nv.Add("@TaskRequestKey", TaskRequestKey);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
-            
+
             result = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequestManual", nv);
 
             if (result > 0)
@@ -645,13 +645,7 @@ namespace Evo
                 }
 
                 string message = "Assignment Successful";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                objCommon.ShowAlertAndRedirect(message, url);
                 clear();
             }
             else
@@ -679,7 +673,7 @@ namespace Evo
         protected void gvTask_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTask.PageIndex = e.NewPageIndex;
-            BindTaskGrid("0",1);
+            BindTaskGrid("0", 1);
         }
 
         protected void gvTask_RowDataBound(object sender, GridViewRowEventArgs e)
