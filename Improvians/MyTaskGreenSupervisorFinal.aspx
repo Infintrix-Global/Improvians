@@ -19,7 +19,6 @@
 
                     </div>
                     <h3 class="dashboard__box-title robotomd">Put-Away</h3>
-                    <p>Request a put away location for a job</p>
                 </div>
             </a>
             <a runat="server" id="Ger" href="GerminationAssignmentForm.aspx" class="dashboard__box">
@@ -31,7 +30,6 @@
                         <asp:Label ID="lblGerm" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">Germination Count</h3>
-                    <p>A list of germination count tasks to complete</p>
                 </div>
             </a>
             <a runat="server" id="Fer" href="SprayTaskRequest.aspx" class="dashboard__box">
@@ -43,7 +41,6 @@
                         <asp:Label ID="lblFer" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">Fertilization</h3>
-                    <p>Request a spray job</p>
                 </div>
             </a>
             <a runat="server" id="Chem" href="ChemicalTaskRequest.aspx" class="dashboard__box">
@@ -55,7 +52,6 @@
                         <asp:Label ID="lblChemical" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">Chemical</h3>
-                    <p>Request a spray job</p>
                 </div>
             </a>
             <a runat="server" id="Irr" href="IrrigationAssignmentForm.aspx" class="dashboard__box">
@@ -67,7 +63,6 @@
                         <asp:Label ID="lblIrr" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">Irrigation</h3>
-                    <p>A list of irrigation tasks to complete</p>
                 </div>
             </a>
             <a runat="server" id="Crop" href="CropReportRequestForm.aspx" class="dashboard__box">
@@ -79,7 +74,6 @@
                         <asp:Label ID="lblCropHealthReport" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">Crop Health Report</h3>
-                    <p>Assign Crop Health Report Request</p>
                 </div>
             </a>
             <a runat="server" id="PR" href="PlantReadyAssignmentForm.aspx" class="dashboard__box">
@@ -91,7 +85,6 @@
                         <asp:Label ID="lblpr" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">Plant Ready</h3>
-                    <p>A list of plant ready reporting tasks to complete</p>
                 </div>
             </a>
             <a runat="server" id="Mov" href="MoveRequestForm.aspx" class="dashboard__box">
@@ -103,7 +96,6 @@
                         <asp:Label ID="lblMove" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">Move Request</h3>
-                    <p>Review and assign move tasks</p>
                 </div>
             </a>
             <a runat="server" id="Dum" href="DumpAssignmentForm.aspx" class="dashboard__box">
@@ -115,7 +107,6 @@
                         <asp:Label ID="lblDumpCount" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">Dump</h3>
-                    <p>Review and Assign Dump Tasks</p>
                 </div>
             </a>
             <a runat="server" id="Gen" href="GeneralTaskAssignmentForm.aspx" class="dashboard__box">
@@ -127,7 +118,6 @@
                         <asp:Label ID="lblGeneralTaskCount" runat="server" Text="0"></asp:Label>
                     </div>
                     <h3 class="dashboard__box-title robotomd">General Task</h3>
-                    <p>Review and Assign Tasks</p>
                 </div>
             </a>
         </div>
