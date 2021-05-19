@@ -68,10 +68,18 @@ namespace Evo
         {
             dt = new DataTable();
             nv.Clear();
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Status", "0");
+            nv.Add("@BenchLocation", "0");
+
+            nv.Add("@Jobsource", "");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
             dt = objCommon.GetDataTable("SP_GetGeneralRequestAssistantGrower", nv);
             BindData(dt, Gen, "GeneralTaskDate");
         }
@@ -80,10 +88,18 @@ namespace Evo
         {
             dt = new DataTable();
             nv.Clear();
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Status", "0");
+            nv.Add("@BenchLocation", "0");
+
+            nv.Add("@Jobsource", "");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "0");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
             dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
             BindData(dt, Dum, "DumpDateR");
         }
@@ -92,9 +108,18 @@ namespace Evo
         {
             dt = new DataTable();
             nv.Clear();
+         
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
+
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@Jobsource", "");
+
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
             nv.Add("@LoginId", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
             BindData(dt, Mov, "MoveDate");
@@ -107,10 +132,13 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "0");
             nv.Add("@RequestType", "0");
+            nv.Add("@BenchLocation", "0");
+
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
             //nv.Add("@ToDate", DateTime.Now.ToString("yyyy-MM-dd"));
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequestAssistantGrower", nv);
             BindData(dt, PR, "SeededDate");
@@ -123,7 +151,14 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@Status", "0");
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@Jobsource", "0");
             nv.Add("@LoginId", Session["LoginID"].ToString());
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
             dt = objCommon.GetDataTable("SP_GetCropReportRequestAssistantGrower", nv);
             BindData(dt, Crop, "CropHealthReportDate");
         }
@@ -135,10 +170,14 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@Status", "0");
             nv.Add("@BenchLocation", "0");
-            nv.Add("@RequestType", "0");
+            nv.Add("@Jobsource", "");
+            nv.Add("@GermNo", "0");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
             dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
             BindData(dt, Irr, "IrrigateSeedDate");
         }
@@ -150,10 +189,14 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@Status", "0");
             nv.Add("@BenchLocation", "0");
-            nv.Add("@RequestType", "0");
+            nv.Add("@Jobsource", "");
+            nv.Add("@GermNo", "0");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
             dt = objCommon.GetDataTable("SP_GetChemicalRequestAssistantGrower", nv);
             BindData(dt, Chem, "ChemicalSeedDate");
         }
@@ -165,10 +208,14 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@Status", "0");
             nv.Add("@BenchLocation", "0");
-            nv.Add("@RequestType", "0");
+            nv.Add("@Jobsource", "");
+            nv.Add("@GermNo", "0");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
             dt = objCommon.GetDataTable("SP_GetFertilizerRequestAAssistantGrower", nv);
             BindData(dt, Fer, "FertilizeSeedDate");
         }
@@ -180,6 +227,17 @@ namespace Evo
 
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Status", "0");
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@Jobsource", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
+
+
             dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTasknew", nv);
             BindData(dt, Put, "SeededDate");
         }
@@ -192,13 +250,14 @@ namespace Evo
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@BenchLocation", "0");
-            nv.Add("@Week", "");
+
             nv.Add("@Status", "");
             nv.Add("@Jobsource", "");
             nv.Add("@GermNo", "");
             nv.Add("@FromDate", "");
             nv.Add("@ToDate", "");
             nv.Add("@AssignedBy", "0");
+            nv.Add("@Crop", "0");
 
             dt = objCommon.GetDataTable("SP_GetGerminationRequestAssistantGrower", nv);
             BindData(dt, Ger, "GermDate");

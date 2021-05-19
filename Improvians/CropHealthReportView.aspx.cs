@@ -27,25 +27,42 @@ namespace Evo
                 {
                     Did = Request.QueryString["Did"].ToString();
                 }
+                if (Request.QueryString["TaskRequestKey"] != "0" && Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
+                }
 
-             
-                BindPlantReady();
+                BindPlantReady(Convert.ToInt32(Request.QueryString["DrId"]));
                 BindViewDumpDetilas(Convert.ToInt32(Request.QueryString["DrId"]));
                 BindGridCropHealth(Convert.ToInt32(Request.QueryString["Chid"]));
-                BindGridCropHealthImage();
+                BindGridCropHealthImage(Convert.ToInt32(Request.QueryString["Chid"]));
             }
         }
 
 
 
 
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
 
-    
         public void BindGridCropHealth(int Chid)
         {
             DataTable dt1 = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Chid", lblChid.Text);
+            nv1.Add("@Chid", Chid.ToString());
             dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
             if (dt1 != null && dt1.Rows.Count > 0)
             {
@@ -57,11 +74,11 @@ namespace Evo
 
         }
 
-        public void BindGridCropHealthImage()
+        public void BindGridCropHealthImage(int Chid)
         {
             DataTable dt1 = new DataTable();
             NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Chid", lblChid.Text);
+            nv1.Add("@Chid", Chid.ToString());
             dt1 = objCommon.GetDataTable("SP_GetCropHealthReportImages", nv1);
             if (dt1 != null && dt1.Rows.Count > 0)
             {
@@ -113,14 +130,14 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Jid", lbljid.Text);
+            nv.Add("@TaskRequestKey", TaskRequestKey);
             dt = objCommon.GetDataTable("[SP_GetTaskAssignmenttCropHealthReportRequest]", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
 
         }
 
-        public void BindPlantReady()
+        public void BindPlantReady(int CropR)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -129,15 +146,15 @@ namespace Evo
             //nv.Add("@CustomerName", "");
             //nv.Add("@Facility", "");
             //nv.Add("@Mode", "11");
-            nv.Add("@CropHealthReportTaskAssignmentId", Did);
+            nv.Add("@CropHealthReportId", CropR.ToString());
             nv.Add("@RoleId", Session["Role"].ToString());
 
 
-            dt = objCommon.GetDataTable("SP_GetCropHealthReportTaskAssignment", nv);
+            dt = objCommon.GetDataTable("SP_GetCropHealthReportTaskAssignment1", nv);
             gvCorpHelthDetails.DataSource = dt;
             gvCorpHelthDetails.DataBind();
-            lbljid.Text = dt.Rows[0]["jid"].ToString();
-            lblChid.Text = dt.Rows[0]["chid"].ToString();
+          //  lbljid.Text = dt.Rows[0]["jid"].ToString();
+           // lblChid.Text = dt.Rows[0]["chid"].ToString();
         }
 
       
