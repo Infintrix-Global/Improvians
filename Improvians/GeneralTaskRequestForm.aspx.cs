@@ -383,7 +383,7 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
-                var tKey = gvTask.DataKeys[row.RowIndex].Values[4].ToString();
+                var tKey = gvTask.DataKeys[row.RowIndex].Values[5].ToString();
                 i--;
                 if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
                 {

@@ -96,9 +96,7 @@
 
         <div class="text-left dashboard__block my-4">
             <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
-                <br />
-                <h2 class="text-left">Crop Health Report </h2>
-
+                <h3 class="text-left dark_txt mb-2">Crop Health Report </h3>
                 <br />
                 <div class="portlet-body">
                     <div class="data__table">
@@ -156,7 +154,6 @@
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="col-lg-12">
                         <asp:Label ID="lblCommment" runat="server" Text=""></asp:Label>
                     </div>
@@ -168,28 +165,20 @@
                                 <asp:DataList ID="CropePhotos" runat="server" BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
                                     <ItemTemplate>
                                         <div>
-
                                             <asp:Image Width="100" Height="150" ID="Image1" ImageUrl='<%# Bind("Imagepath") %>' runat="server" />
-
-
                                         </div>
                                     </ItemTemplate>
-
-
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Bottom" />
                                 </asp:DataList>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </asp:Panel>
-            <br />
             <form class="web__form pt-2">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <br />
-                        <h2 class="text-left">Task Request Flow</h2>
+                        <h3 class="text-left dark_txt mb-2">Task Request Flow</h3>
 
                         <div class="portlet-body">
                             <div class="data__table">
@@ -252,7 +241,7 @@
 
                                 <br />
                                 <asp:Panel ID="PanelComplition" Visible="false" runat="server">
-                                    <h2 class="text-left">Completion  </h2>
+                                    <h3 class="text-left dark_txt mb-2">Completion</h3>
                                     <div class="portlet-body">
                                         <div class="data__table">
                                             <asp:GridView ID="GridDumpComplition" runat="server" AutoGenerateColumns="False"
@@ -295,9 +284,6 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
-
-
-
                                                 </Columns>
 
                                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -315,12 +301,8 @@
                         <asp:Panel ID="PanelAddDump" runat="server">
 
                             <div class="row">
-
-
-
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <label class="d-block">Dump Date</label>
-
                                     <asp:TextBox ID="txtDumpDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                                 </div>
 
@@ -334,12 +316,7 @@
                                     <asp:TextBox ID="txtComment" TextMode="MultiLine" class="input__control" runat="server"></asp:TextBox>
                                 </div>
 
-
-
                                 <div class="col-12 my-3">
-
-
-
                                     <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" class="ml-2 submit-bttn bttn bttn-primary" runat="server" Text="Submit" />
                                     <asp:Button ID="btnReset" OnClick="btnReset_Click" class="submit-bttn bttn bttn-primary" runat="server" Text="Reset" />
 
