@@ -348,7 +348,7 @@ namespace Evo
 
                     if (TaskRequestType == "Dump")
                     {
-                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", dt.Rows[0]["DumpTaskAssignmentId"].ToString(), 0, dt.Rows[0]["DumpId"].ToString(), dt.Rows[0]["TaskRequestKey"].ToString()));
+                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}&IsF={5}", "ManageTask", dt.Rows[0]["DumpTaskAssignmentId"].ToString(), 0, dt.Rows[0]["DumpId"].ToString(), dt.Rows[0]["TaskRequestKey"].ToString(),1));
 
                     }
                     if (TaskRequestType == "Move")
@@ -401,7 +401,7 @@ namespace Evo
 
                     if (TaskRequestType == "Dump")
                     {
-                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", 0, 0, dtR.Rows[0]["DumpId"].ToString(), dtR.Rows[0]["TaskRequestKey"].ToString()));
+                        Response.Redirect(String.Format("~/DumpTaskCompletion.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}&IsF={5}", "ManageTask", 0, 0, dtR.Rows[0]["DumpId"].ToString(), dtR.Rows[0]["TaskRequestKey"].ToString(),1));
 
                     }
                     if (TaskRequestType == "Move")
