@@ -158,7 +158,7 @@
                             <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                    <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2" HeaderStyle-Width="265px">
                         <ItemTemplate>
                             <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                             <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action" CommandName="StartDump" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
