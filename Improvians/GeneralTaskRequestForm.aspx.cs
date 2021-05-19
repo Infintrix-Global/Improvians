@@ -85,21 +85,37 @@ namespace Evo
             }
         }
 
-        //private string TaskKey
-        //{
-        //    get
-        //    {
-        //        if (Request.QueryString["Tkey"] != null)
-        //        {
-        //            return Request.QueryString["Tkey"].ToString();
-        //        }
-        //        return "";
-        //    }
-        //    set
-        //    {
+        private string TaskKey
+        {
+            get
+            {
+                if (Request.QueryString["Tkey"] != null)
+                {
+                    return Request.QueryString["Tkey"].ToString();
+                }
+                return "";
+            }
+            set
+            {
 
-        //    }
-        //}
+            }
+        }
+
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
 
         public void BindCrop()
         {
@@ -367,9 +383,9 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lbljobID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
-               // var tKey = gvTask.DataKeys[row.RowIndex].Values[4].ToString();
+                var tKey = gvTask.DataKeys[row.RowIndex].Values[4].ToString();
                 i--;
-                if (checkJob == JobCode && checklocation == benchLoc/* && tKey == TaskKey*/)
+                if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
                 {
                     row.CssClass = "highlighted";
                     check = true;
@@ -453,6 +469,7 @@ namespace Evo
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvTask.Rows[rowIndex];
+            TaskRequestKey = gvTask.DataKeys[rowIndex].Values[5].ToString();
 
             if (e.CommandName == "Select")
             {
@@ -598,8 +615,9 @@ namespace Evo
 
             nv.Add("@ManualID", HiddenFieldJid.Value);
             nv.Add("@GeneralDate", txtGeneralDate.Text);
+            nv.Add("@TaskRequestKey", TaskRequestKey);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
-
+            
             result = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequestManual", nv);
 
             if (result > 0)
@@ -627,7 +645,6 @@ namespace Evo
                 }
 
                 string message = "Assignment Successful";
-                //   string url = "MyTaskAssistantGrower.aspx";
                 string script = "window.onload = function(){ alert('";
                 script += message;
                 script += "');";
@@ -635,7 +652,6 @@ namespace Evo
                 script += url;
                 script += "'; }";
                 ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                // lblmsg.Text = "Assignment Successful";
                 clear();
             }
             else

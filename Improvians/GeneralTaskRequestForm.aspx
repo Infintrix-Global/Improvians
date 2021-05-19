@@ -86,7 +86,7 @@
         <div class="data__table">
             <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvTask_RowDataBound"
                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvTask_PageIndexChanging"
-                GridLines="None" OnRowCommand="gvTask_RowCommand" DataKeyNames="wo,ID,jid,jobcode,GreenHouseID"
+                GridLines="None" OnRowCommand="gvTask_RowCommand" DataKeyNames="wo,ID,jid,jobcode,GreenHouseID,TaskRequestKey"
                 ShowHeaderWhenEmpty="True" Width="100%">
                 <Columns>
                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
