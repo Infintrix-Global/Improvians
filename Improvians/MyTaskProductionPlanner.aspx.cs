@@ -20,9 +20,26 @@ namespace Evo
             {
                 Bindcname();
                 BindJobCode();
+                BindCropType();
                 BindFacility();
                 BindGridGerm();
             }
+        }
+
+        public void BindCropType()
+        {
+
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@Mode", "26");
+            dt = objCommon.GetDataTable("GET_Common", nv);
+            ddlCopTYpe.DataSource = dt;
+            ddlCopTYpe.DataTextField = "GenusCode";
+            ddlCopTYpe.DataValueField = "GenusCode";
+            ddlCopTYpe.DataBind();
+            ddlCopTYpe.Items.Insert(0, new ListItem("--Select--", "0"));
+
         }
 
         public void Bindcname()
@@ -31,7 +48,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "8");
+            nv.Add("@Mode", "27");
             dt = objCommon.GetDataTable("GET_Common", nv);
             ddlCustomer.DataSource = dt;
             ddlCustomer.DataTextField = "cname";
@@ -95,12 +112,16 @@ namespace Evo
         {
             BindGridGerm();
         }
-
+        protected void ddlCopTYpe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridGerm();
+        }
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             Bindcname();
             BindJobCode();
             BindFacility();
+            BindCropType();
             BindGridGerm();
         }
 
@@ -112,6 +133,8 @@ namespace Evo
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@CropType", ddlCopTYpe.SelectedValue);
+            
             dt = objCommon.GetDataTable("SP_GetProductionPlannerTask", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
@@ -209,5 +232,7 @@ namespace Evo
             clear();
             Response.Redirect("~/MyTaskProductionPlanner.aspx");
         }
+
+    
     }
 }
