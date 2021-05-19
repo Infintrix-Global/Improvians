@@ -818,6 +818,9 @@ namespace Evo
 
         public void FertilizationSubmit(string Assigned)
         {
+           
+
+
             string Batchlocation = "";
             int FertilizationCode = 0;
             bool hasValue = false;
@@ -858,7 +861,62 @@ namespace Evo
                         SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
                     }
 
-                    if (DateTime.Parse(TodatDate) >= DateTime.Parse(SprayTaskForDaysDate))
+                    if (DateTime.Parse(SprayTaskForDaysDate) > DateTime.Parse(TodatDate))
+                    {
+
+
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CallConfirmBox", "Confirm();", true);
+
+                        string confirmValue = Request.Form["confirm_value"];
+                        if (confirmValue == "Yes")
+                        {
+                            long result2 = 0;
+                            NameValueCollection nv4 = new NameValueCollection();
+                            nv4.Add("@SupervisorID", Assigned);
+                            nv4.Add("@Type", "Fertilizer");
+                            nv4.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                            nv4.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                            nv4.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                            nv4.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                            nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                            nv4.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                            nv4.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                            nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                            //nv.Add("@WorkOrder", lblwo.Text);
+                            nv4.Add("@LoginID", Session["LoginID"].ToString());
+                            nv4.Add("@FertilizationCode", FertilizationCode.ToString());
+                            nv4.Add("@FertilizationDate", txtFDate.Text);
+                            nv4.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                            nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                            result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
+
+
+                            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
+
+                            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+
+                            objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
+
+
+                            string message = "Assignment Successful";
+                            string url = "CreateTask.aspx";
+                            string script = "window.onload = function(){ alert('";
+                            script += message;
+                            script += "');";
+                            script += "window.location = '";
+                            script += url;
+                            script += "'; }";
+                            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                        }
+                        else
+                        {
+                          //  this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked NO!')", true);
+                        }
+
+                      
+
+                    }
+                    else
                     {
                         long result2 = 0;
                         NameValueCollection nv4 = new NameValueCollection();
@@ -897,15 +955,8 @@ namespace Evo
                         script += url;
                         script += "'; }";
                         ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
                     }
-                    else
-                    {
-
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Minimum Days validation is applied for this bench location');", true);
-                        break;
-
-                    }
+                  
 
 
 
@@ -1857,6 +1908,9 @@ namespace Evo
                 if (chckheader.Checked == true)
                 {
                     chckrw.Checked = true;
+
+                  
+
                 }
                 else
                 {
@@ -3024,6 +3078,22 @@ namespace Evo
                         string Trays = (row.FindControl("lblTotTray") as Label).Text;
                         txtFTrays.Text = Trays;
                         txtChemicalTrays.Text = Trays;
+
+
+                        NameValueCollection nv11 = new NameValueCollection();
+                        nv11.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                        DataTable dtSDate = objCommon.GetDataTable("SP_GetFertilizerRequestResetTaskForDaysCheck", nv11);
+
+                        if (dtSDate != null && dtSDate.Rows.Count > 0)
+                        {
+                            //  SprayTaskForDaysDate = Convert.ToDateTime(dtSDate.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                            lblDateOfShip.Value = Convert.ToDateTime(dtSDate.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                            lblDayOfShip.Value = dtSDate.Rows[0]["ResetSprayTaskForDays"].ToString();
+                        }
+                        else
+                        {
+                            // SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
+                        }
                     }
                 }
             }

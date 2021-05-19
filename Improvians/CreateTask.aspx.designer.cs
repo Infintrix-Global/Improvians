@@ -24,6 +24,24 @@ namespace Evo
         protected global::System.Web.UI.ScriptManager sc1;
 
         /// <summary>
+        /// lblDayOfShip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblDayOfShip;
+
+        /// <summary>
+        /// lblDateOfShip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblDateOfShip;
+
+        /// <summary>
         /// txtSearchJobNo control.
         /// </summary>
         /// <remarks>

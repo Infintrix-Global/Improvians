@@ -33,7 +33,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "8");
+            nv.Add("@Mode", "27");
             dt = objCommon.GetDataTable("GET_Common", nv);
             ddlCustomer.DataSource = dt;
             ddlCustomer.DataTextField = "cname";

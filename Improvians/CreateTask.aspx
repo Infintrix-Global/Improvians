@@ -2,9 +2,30 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script type = "text/javascript">
+        function Confirm() {
+            var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
+            var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
+            var confirm_value = document.createElement("INPUT");
+
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("'Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2+". Are you sure you want to proceed?' ?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <asp:HiddenField ID="lblDayOfShip" runat="server" />
+    <asp:HiddenField ID="lblDateOfShip" runat="server" />
+   
+    
     <div class="site__container">
         <h2 class="head__title-icon mb-4"><%--img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">--%> Create Task </h2>
 

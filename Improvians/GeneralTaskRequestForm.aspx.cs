@@ -129,7 +129,7 @@ namespace Evo
             nv.Add("@JobNo", ddlJobNo.SelectedValue);
             nv.Add("@GenusCode", "0");
             nv.Add("@Mode", "6");
-            nv.Add("@Type", "Dum");
+            nv.Add("@Type", "Gen");
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
             ddlCrop.DataSource = dt;
@@ -151,7 +151,7 @@ namespace Evo
             nv.Add("@JobNo", jobNo);
             nv.Add("@GenusCode", ddlCrop.SelectedValue);
             nv.Add("@Mode", "4");
-            nv.Add("@Type", "Dum");
+            nv.Add("@Type", "Gen");
 
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
@@ -175,7 +175,7 @@ namespace Evo
             nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
             nv.Add("@GenusCode", !string.IsNullOrEmpty(Code) ? Code : "0");
             nv.Add("@Mode", "3");
-            nv.Add("@Type", "Dum");
+            nv.Add("@Type", "Gen");
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
             ddlCustomer.DataSource = dt;
@@ -201,7 +201,7 @@ namespace Evo
             nv.Add("@GenusCode", !string.IsNullOrEmpty(Code) ? Code : "0");
 
             nv.Add("@Mode", "2");
-            nv.Add("@Type", "Dum");
+            nv.Add("@Type", "Gen");
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
             //   ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
@@ -226,7 +226,7 @@ namespace Evo
             nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
             nv.Add("@GenusCode", !string.IsNullOrEmpty(Code) ? Code : "0");
             nv.Add("@Mode", "1");
-            nv.Add("@Type", "Dum");
+            nv.Add("@Type", "Gen");
 
             dt = objCommon.GetDataTable("SP_TaskFilterSearch", nv);
 
