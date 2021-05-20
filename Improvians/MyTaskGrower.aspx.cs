@@ -433,10 +433,9 @@ namespace Evo
             nv.Add("@CustomerName", "0");
             nv.Add("@Status", "0");
             nv.Add("@BenchLocation", "0");
-
-            nv.Add("@Jobsource", "");
+            nv.Add("@Jobsource", "0");
             nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "0");
+            nv.Add("@ToDate", "");
             nv.Add("@AssignedBy", "0");
             nv.Add("@Crop", "0");
             dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
