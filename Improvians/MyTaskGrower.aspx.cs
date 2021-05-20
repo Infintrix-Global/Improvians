@@ -94,23 +94,20 @@ namespace Evo
                       string TodatDate;
                     TodatDate = System.DateTime.Now.ToShortDateString();
 
-                    //for (int i = 0; i < dt.Rows.Count; i++)
-                    //{
-                    //    PlantPDate =
-                    //}
+                  
 
                     PlanrDDate = Convert.ToInt32(dtpD.Rows[0]["dateshift"]);
                     PlantPDate = Convert.ToInt32(dtpD.Rows[1]["dateshift"]);
                    
                     PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlantPDate).ToString("MM/dd/yyyy");
-                    PlantDueDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
+                  //  PlantDueDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
 
                 }
                 else
                 {
 
                     PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"]).ToString();
-                    PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"]).ToString();
+                  //  PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"]).ToString();
 
                 }
                 string GreenHouseID = (AllData.Rows[i]["GreenHouseID"].ToString());
@@ -124,6 +121,7 @@ namespace Evo
                 string itemdescp = AllData.Rows[i]["itemdescp"].ToString();
                 string GenusCode = AllData.Rows[i]["GenusCode"].ToString();
                 string germcount = AllData.Rows[i]["germcount"].ToString();
+                string DueDate = AllData.Rows[i]["DueDate"].ToString();
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 // nv.Add("@jid", _isInserted.ToString());
@@ -139,7 +137,7 @@ namespace Evo
                 nv.Add("@Seeddate", seeddate);
                 nv.Add("@germcount", germcount);
                 nv.Add("@GenusCode", GenusCode);
-                nv.Add("@PlantDueDate", PlantDueDate);
+                nv.Add("@PlantDueDate", DueDate);
                 nv.Add("@PlantReadyDate", PlantReadyDate);
 
                 _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);

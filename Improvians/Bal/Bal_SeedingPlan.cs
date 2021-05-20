@@ -108,9 +108,9 @@ namespace Evo.Bal
             {
 
                 strQuery = "select distinct  t.[Job No_] as jobcode,'' as wo,0 as GrowerPutAwayId, j.[Bill-to Name] as cname , j.[Item Description] as itemdescp, j.[Item No_] as itemno" +
-                    " ,t.[Genus Code] GenusCode,t.[Posting Date] seeddate ,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int ) as Trays,j.[Variant Code] as TraySize, j.[Shortcut Property 1 Value] germcount" +
+                    " ,t.[Genus Code] GenusCode,t.[Posting Date] seeddate , j.[Delivery Date] as DueDate,t.[Location Code] as FacilityID,t.[Position Code] as GreenHouseID,CAST(sum(t.Quantity) AS int ) as Trays,j.[Variant Code] as TraySize, j.[Shortcut Property 1 Value] germcount" +
                     "  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j  where j.No_ = t.[Job No_] and j.[Job Status] = 2 and t.[Activity Code] = 'PUTAWAY INSIDE'  " +
-                    " group by t.[Job No_], j.[Bill-to Name], j.[Item Description],t.[Genus Code], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date],j.[Shortcut Property 1 Value] " +
+                    " group by t.[Job No_], j.[Bill-to Name], j.[Item Description],t.[Genus Code], t.[Location Code],j.[Item No_],t.[Position Code],t.[Location Code],j.[Variant Code],t.[Posting Date],j.[Shortcut Property 1 Value], j.[Delivery Date] " +
                     "  HAVING CAST(sum(t.Quantity) AS int )  > 0 ";
 
 
