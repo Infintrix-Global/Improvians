@@ -916,5 +916,32 @@
                 </div>
             </div>
         </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="bttn bttn-primary" data-toggle="modal" data-target="#confirmModal">
+            Assign
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirmModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="bttn bttn-primary">Proceed</button>
+                        <button type="button"  data-dismiss="modal" class="bttn bttn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Ends -->
+
     </div>
 </asp:Content>
