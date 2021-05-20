@@ -848,118 +848,44 @@ namespace Evo
 
 
 
-                    NameValueCollection nv11 = new NameValueCollection();
-                    nv11.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
-                    DataTable dtSDate = objCommon.GetDataTable("SP_GetFertilizerRequestResetTaskForDaysCheck", nv11);
 
-                    if (dtSDate != null && dtSDate.Rows.Count > 0)
-                    {
-                        SprayTaskForDaysDate = Convert.ToDateTime(dtSDate.Rows[0]["ResetTaskForDays"]).ToShortDateString();
-
-                        lblDateOfShip.Value = Convert.ToDateTime(dtSDate.Rows[0]["CreatedOn"]).ToShortDateString();
-                        lblDayOfShip.Value = dtSDate.Rows[0]["ResetSprayTaskForDays"].ToString();
-                    }
-                    else
-                    {
-                        SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
-                    }
-
-                    if (DateTime.Parse(SprayTaskForDaysDate) > DateTime.Parse(TodatDate))
-                    {
-                      
-
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CallConfirmBox", "Confirm();", true);
-
-                        string confirmValue = Request.Form["confirm_value"];
-                        if (confirmValue == "Yes")
-                        {
-                            long result2 = 0;
-                            NameValueCollection nv4 = new NameValueCollection();
-                            nv4.Add("@SupervisorID", Assigned);
-                            nv4.Add("@Type", "Fertilizer");
-                            nv4.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                            nv4.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                            nv4.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                            nv4.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                            nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                            nv4.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                            nv4.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                            nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                            //nv.Add("@WorkOrder", lblwo.Text);
-                            nv4.Add("@LoginID", Session["LoginID"].ToString());
-                            nv4.Add("@FertilizationCode", FertilizationCode.ToString());
-                            nv4.Add("@FertilizationDate", txtFDate.Text);
-                            nv4.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                            nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                            result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
+                    long result2 = 0;
+                    NameValueCollection nv4 = new NameValueCollection();
+                    nv4.Add("@SupervisorID", Assigned);
+                    nv4.Add("@Type", "Fertilizer");
+                    nv4.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv4.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv4.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv4.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv4.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv4.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    //nv.Add("@WorkOrder", lblwo.Text);
+                    nv4.Add("@LoginID", Session["LoginID"].ToString());
+                    nv4.Add("@FertilizationCode", FertilizationCode.ToString());
+                    nv4.Add("@FertilizationDate", txtFDate.Text);
+                    nv4.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                    nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
 
 
-                            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
+                    dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-                            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
 
-                            objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
-
-
-                            string message = "Assignment Successful";
-                            string url = "CreateTask.aspx";
-                            string script = "window.onload = function(){ alert('";
-                            script += message;
-                            script += "');";
-                            script += "window.location = '";
-                            script += url;
-                            script += "'; }";
-                            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                        }
-                        else
-                        {
-                            //  this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked NO!')", true);
-                        }
+                    objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
 
 
-
-                    }
-                    else
-                    {
-                        long result2 = 0;
-                        NameValueCollection nv4 = new NameValueCollection();
-                        nv4.Add("@SupervisorID", Assigned);
-                        nv4.Add("@Type", "Fertilizer");
-                        nv4.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                        nv4.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                        nv4.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                        nv4.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                        nv4.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                        nv4.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                        nv4.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv4.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                        //nv.Add("@WorkOrder", lblwo.Text);
-                        nv4.Add("@LoginID", Session["LoginID"].ToString());
-                        nv4.Add("@FertilizationCode", FertilizationCode.ToString());
-                        nv4.Add("@FertilizationDate", txtFDate.Text);
-                        nv4.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                        nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                        result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
-
-
-                        dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
-
-                        objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
-
-                        objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
-
-
-                        string message = "Assignment Successful";
-                        string url = "CreateTask.aspx";
-                        string script = "window.onload = function(){ alert('";
-                        script += message;
-                        script += "');";
-                        script += "window.location = '";
-                        script += url;
-                        script += "'; }";
-                        ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                    }
-
+                    string message = "Assignment Successful";
+                    string url = "CreateTask.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
 
 
@@ -1201,122 +1127,49 @@ namespace Evo
                     string TodatDate;
                     string ReSetSprayDate = "";
 
-                    TodatDate = System.DateTime.Now.ToShortDateString();
-
-                    NameValueCollection nv11 = new NameValueCollection();
-                    nv11.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
-                    DataTable dtSDate = objCommon.GetDataTable("SP_GetIrrigationIdResetTaskForDaysCheck", nv11);
-
-                    if (dtSDate != null && dtSDate.Rows.Count > 0)
-                    {
-                        SprayTaskForDaysDate = Convert.ToDateTime(dtSDate.Rows[0]["ResetTaskForDays"]).ToShortDateString();
-
-                        lblDateOfShip.Value = Convert.ToDateTime(dtSDate.Rows[0]["CreatedOn"]).ToShortDateString();
-                        lblDayOfShip.Value = dtSDate.Rows[0]["ResetSprayTaskForDays"].ToString();
-                    }
-                    else
-                    {
-                        SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
-                    }
-
-                    if (DateTime.Parse(SprayTaskForDaysDate) > DateTime.Parse(TodatDate))
-                    {
 
 
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CallConfirmBox", "ConfirmIrr();", true);
 
-                        string confirmValue = Request.Form["confirm_value"];
-                        if (confirmValue == "Yes")
-                        {
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", Assigned);
 
-                            NameValueCollection nv = new NameValueCollection();
-                            nv.Add("@SupervisorID", Assigned);
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
 
-                            nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                            nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                            nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                            nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                            nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                            nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                            nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                            nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    nv.Add("@IrrigationCode", IrrigationCode.ToString());
+                    // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@IrrigatedNoTrays", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
+                    nv.Add("@IrrigationDuration", "");
+                    nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
+                    //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
+                    nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
 
-                            nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                            // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                            nv.Add("@IrrigatedNoTrays", (row.FindControl("lblTotTray") as Label).Text);
-                            nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                            nv.Add("@IrrigationDuration", "");
-                            nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
-                            //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                            nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-
-                            nv.Add("@Nots", txtIrrComments.Text.Trim());
-                            nv.Add("@LoginID", Session["LoginID"].ToString());
-                            nv.Add("@Role", Session["Role"].ToString());
-                            nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Nots", txtIrrComments.Text.Trim());
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@Role", Session["Role"].ToString());
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
 
-                            result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
+                    result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
-                            objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
-                            string message = "Assignment Successful";
-                            string url = "CreateTask.aspx";
-                            string script = "window.onload = function(){ alert('";
-                            script += message;
-                            script += "');";
-                            script += "window.location = '";
-                            script += url;
-                            script += "'; }";
-                            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                        }
-                        else
-                        {
-                            //  this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked NO!')", true);
-                        }
-                    }
-                    else
-                    {
-                        NameValueCollection nv = new NameValueCollection();
-                        nv.Add("@SupervisorID", Assigned);
+                    objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
+                    string message = "Assignment Successful";
+                    string url = "CreateTask.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
-                        nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                        nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                        nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                        nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                        nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                        nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                        nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-
-                        nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                        // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                        nv.Add("@IrrigatedNoTrays", (row.FindControl("lblTotTray") as Label).Text);
-                        nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                        nv.Add("@IrrigationDuration", "");
-                        nv.Add("@SprayDate", txtirrigationSprayDate.Text.Trim());
-                        //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                        nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-
-                        nv.Add("@Nots", txtIrrComments.Text.Trim());
-                        nv.Add("@LoginID", Session["LoginID"].ToString());
-                        nv.Add("@Role", Session["Role"].ToString());
-                        nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-
-
-                        result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
-
-                        objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
-                        string message = "Assignment Successful";
-                        string url = "CreateTask.aspx";
-                        string script = "window.onload = function(){ alert('";
-                        script += message;
-                        script += "');";
-                        script += "window.location = '";
-                        script += url;
-                        script += "'; }";
-                        ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
-                    }
                 }
             }
 
@@ -1567,134 +1420,56 @@ namespace Evo
                     dt1 = objCommon.GetDataTable("GET_Common", nv1);
                     ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
 
-                    NameValueCollection nv11 = new NameValueCollection();
-                    nv11.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
-                    DataTable dtSDate = objCommon.GetDataTable("SP_GetChemicalRequestResetTaskForDaysCheck", nv11);
-
-                    if (dtSDate != null && dtSDate.Rows.Count > 0)
-                    {
-                        SprayTaskForDaysDate = Convert.ToDateTime(dtSDate.Rows[0]["ResetTaskForDays"]).ToShortDateString();
-
-                        lblDateOfShip.Value = Convert.ToDateTime(dtSDate.Rows[0]["CreatedOn"]).ToShortDateString();
-                        lblDayOfShip.Value = dtSDate.Rows[0]["ResetSprayTaskForDays"].ToString();
-                    }
-                    else
-                    {
-                        SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
-                    }
-
-                    if (DateTime.Parse(SprayTaskForDaysDate) > DateTime.Parse(TodatDate))
-                    {
 
 
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CallConfirmBox", "ConfirmCem();", true);
 
-                        string confirmValue = Request.Form["confirm_value"];
-                        if (confirmValue == "Yes")
-                        {
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", Assigned);
+                    nv.Add("@Type", "Chemical");
+                    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                    //nv.Add("@WorkOrder", lblwo.Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@ChemicalCode", ChemicalCode.ToString());
+                    nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
+                    nv.Add("@Comments", txtCComments.Text);
+                    nv.Add("@Method", ddlMethod.SelectedValue);
+                    nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
 
-                            long result = 0;
-                            NameValueCollection nv = new NameValueCollection();
-                            nv.Add("@SupervisorID", Assigned);
-                            nv.Add("@Type", "Chemical");
-                            nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                            nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                            nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                            nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                            nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                            nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                            nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                            nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                            //nv.Add("@WorkOrder", lblwo.Text);
-                            nv.Add("@LoginID", Session["LoginID"].ToString());
-                            nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                            nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                            nv.Add("@Comments", txtCComments.Text);
-                            nv.Add("@Method", ddlMethod.SelectedValue);
-                            nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                            nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                            result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
-
-                            //NameValueCollection nvn = new NameValueCollection();
-                            //nvn.Add("@LoginID", Session["LoginID"].ToString());
-                            //nvn.Add("@SupervisorID", Assigned);
-                            //nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                            //nvn.Add("@TaskName", "Chemical");
-                            //nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                            //var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+                    //NameValueCollection nvn = new NameValueCollection();
+                    //nvn.Add("@LoginID", Session["LoginID"].ToString());
+                    //nvn.Add("@SupervisorID", Assigned);
+                    //nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                    //nvn.Add("@TaskName", "Chemical");
+                    //nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    //var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
 
-                            dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                            objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), ddlChemical.SelectedItem.Text, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+                    dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
+                    objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), ddlChemical.SelectedItem.Text, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
 
-                            objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
+                    objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
 
-                            string message = "Assignment Successful";
-                            string url = "CreateTask.aspx";
-                            string script = "window.onload = function(){ alert('";
-                            script += message;
-                            script += "');";
-                            script += "window.location = '";
-                            script += url;
-                            script += "'; }";
-                            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
-                        }
-                        else
-                        {
-                            //  this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You clicked NO!')", true);
-                        }
-                    }
-                    else
-                    {
-                        long result = 0;
-                        NameValueCollection nv = new NameValueCollection();
-                        nv.Add("@SupervisorID", Assigned);
-                        nv.Add("@Type", "Chemical");
-                        nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                        nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                        nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                        nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                        nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                        nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                        nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                        nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                        //nv.Add("@WorkOrder", lblwo.Text);
-                        nv.Add("@LoginID", Session["LoginID"].ToString());
-                        nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                        nv.Add("@ChemicalDate", txtChemicalSprayDate.Text);
-                        nv.Add("@Comments", txtCComments.Text);
-                        nv.Add("@Method", ddlMethod.SelectedValue);
-                        nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                        nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                        result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
-
-                        //NameValueCollection nvn = new NameValueCollection();
-                        //nvn.Add("@LoginID", Session["LoginID"].ToString());
-                        //nvn.Add("@SupervisorID", Assigned);
-                        //nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                        //nvn.Add("@TaskName", "Chemical");
-                        //nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                        //var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
-
-
-                        dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                        objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), ddlChemical.SelectedItem.Text, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
-
-                        objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
-
-                        string message = "Assignment Successful";
-                        string url = "CreateTask.aspx";
-                        string script = "window.onload = function(){ alert('";
-                        script += message;
-                        script += "');";
-                        script += "window.location = '";
-                        script += url;
-                        script += "'; }";
-                        ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
-                    }
+                    string message = "Assignment Successful";
+                    string url = "CreateTask.aspx";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "');";
+                    script += "window.location = '";
+                    script += url;
+                    script += "'; }";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
                 }
+
             }
 
             if (!hasValue)
@@ -3184,14 +2959,71 @@ namespace Evo
                 if (row.RowType == DataControlRowType.DataRow)
                 {
                     CheckBox chkRow = (row.Cells[0].FindControl("chkSelect") as CheckBox);
+                    string TodatDate = System.DateTime.Now.ToShortDateString();
                     if (chkRow.Checked)
                     {
                         string Trays = (row.FindControl("lblTotTray") as Label).Text;
                         txtFTrays.Text = Trays;
                         txtChemicalTrays.Text = Trays;
 
+                        NameValueCollection nv11 = new NameValueCollection();
+                        nv11.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                        DataTable dtSDate = objCommon.GetDataTable("SP_GetFertilizerRequestResetTaskForDaysCheck", nv11);
 
-                      
+                        if (dtSDate != null && dtSDate.Rows.Count > 0)
+                        {
+
+                            SprayTaskForDaysDate.Value = Convert.ToDateTime(dtSDate.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                            ToDaydate.Value = TodatDate;
+                            lblDateOfShip.Value = Convert.ToDateTime(dtSDate.Rows[0]["CreatedOn"]).ToShortDateString();
+                            lblDayOfShip.Value = dtSDate.Rows[0]["ResetSprayTaskForDays"].ToString();
+                        }
+                        else
+                        {
+                            SprayTaskForDaysDate.Value = "";
+                            ToDaydate.Value = "";
+                            // SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
+                        }
+
+
+
+
+                        NameValueCollection nv111 = new NameValueCollection();
+                        nv111.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                        DataTable dtSDate1 = objCommon.GetDataTable("SP_GetIrrigationIdResetTaskForDaysCheck", nv111);
+
+                        if (dtSDate1 != null && dtSDate1.Rows.Count > 0)
+                        {
+                            SprayTaskForDaysDate.Value = Convert.ToDateTime(dtSDate1.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                            ToDaydate.Value = TodatDate;
+                            lblDateOfShip.Value = Convert.ToDateTime(dtSDate1.Rows[0]["CreatedOn"]).ToShortDateString();
+                            lblDayOfShip.Value = dtSDate1.Rows[0]["ResetSprayTaskForDays"].ToString();
+                        }
+                        else
+                        {
+                            SprayTaskForDaysDate.Value = "";
+                            ToDaydate.Value = "";
+                            // SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
+                        }
+
+
+                        NameValueCollection nvC11 = new NameValueCollection();
+                        nvC11.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                        DataTable dtSDateC = objCommon.GetDataTable("SP_GetChemicalRequestResetTaskForDaysCheck", nvC11);
+
+                        if (dtSDateC != null && dtSDateC.Rows.Count > 0)
+                        {
+                            SprayTaskForDaysDate.Value = Convert.ToDateTime(dtSDateC.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                            ToDaydate.Value = TodatDate;
+                            lblDateOfShip.Value = Convert.ToDateTime(dtSDateC.Rows[0]["CreatedOn"]).ToShortDateString();
+                            lblDayOfShip.Value = dtSDateC.Rows[0]["ResetSprayTaskForDays"].ToString();
+                        }
+                        else
+                        {
+                            SprayTaskForDaysDate.Value = "";
+                            ToDaydate.Value = "";
+                        }
+
 
 
                     }

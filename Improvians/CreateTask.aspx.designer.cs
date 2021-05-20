@@ -42,6 +42,24 @@ namespace Evo
         protected global::System.Web.UI.WebControls.HiddenField lblDateOfShip;
 
         /// <summary>
+        /// SprayTaskForDaysDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField SprayTaskForDaysDate;
+
+        /// <summary>
+        /// ToDaydate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ToDaydate;
+
+        /// <summary>
         /// txtSearchJobNo control.
         /// </summary>
         /// <remarks>

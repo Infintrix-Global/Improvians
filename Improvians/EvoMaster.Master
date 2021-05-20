@@ -205,10 +205,12 @@
 
 
                 <li>
-                    <a id="lnkmanagetask" runat="server" href="ManageTaskJobReport.aspx">
+                  <%--  <a id="lnkmanagetask" runat="server" href="ManageTaskJobReport.aspx">--%>
+                      <asp:LinkButton ID="lnkmanagetask" runat="server" OnClick="lnkmanagetask_Click">
                         <i class="fas fa-tasks"></i>
                         <span>Manage Task</span>
-                    </a>
+                             </asp:LinkButton>
+                   <%-- </a>--%>
                 </li>
             </ul>
         </footer>

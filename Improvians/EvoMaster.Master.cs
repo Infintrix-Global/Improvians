@@ -73,12 +73,16 @@ namespace Evo
             }
 
             String activepage = Request.RawUrl.ToLower();
-            if (activepage.Contains("JobReports"))
+            if (activepage.Contains("jobreports"))
             {
                 dashlink.Attributes.Add("class", "active");
                 lnkmytask.Attributes.Remove("class");
                 lnkcreatetask.Attributes.Remove("class");
                 lnkmanagetask.Attributes.Remove("class");
+            }
+            else if (activepage.Contains("dashboard"))
+            {
+              
                 divFacility.Visible = false;
                 divSitemap.Visible = false;
             }
@@ -364,6 +368,25 @@ namespace Evo
             {
 
                 Response.Redirect("JobReports.aspx");
+            }
+            else
+            {
+
+
+            }
+        }
+
+        protected void lnkmanagetask_Click(object sender, EventArgs e)
+        {
+            if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
+            {
+                Response.Redirect("TrackTaskSeedlinePlanner.aspx");
+            }
+
+            if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
+            {
+
+                Response.Redirect("ManageTaskJobReport.aspx");
             }
             else
             {

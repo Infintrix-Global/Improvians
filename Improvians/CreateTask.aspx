@@ -3,61 +3,53 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <script type = "text/javascript">
+    <script type="text/javascript">
+
         function Confirm() {
             var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
             var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-            var confirm_value = document.createElement("INPUT");
+            var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
+            var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
+            if (txttoSDate > txtToday)
+                return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+            else
+                return true;
 
-            confirm_value.type = "hidden";
-            confirm_value.name = "confirm_value";
-            if (confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2+". Are you sure you want to proceed.?")) {
-                confirm_value.value = "Yes";
-            } else {
-                confirm_value.value = "No";
-            }
-            document.forms[0].appendChild(confirm_value);
         }
 
-
-        function ConfirmCem() {
-            var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
-             var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-             var confirm_value = document.createElement("INPUT");
-
-             confirm_value.type = "hidden";
-             confirm_value.name = "confirm_value";
-            if (confirm("Chemical Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?")) {
-                 confirm_value.value = "Yes";
-             } else {
-                 confirm_value.value = "No";
-             }
-             document.forms[0].appendChild(confirm_value);
-        }
-
-
-        function ConfirmIrr() {
+        function ConfirmChemica() {
             var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
             var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-            var confirm_value = document.createElement("INPUT");
+            var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
+            var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
+            if (txttoSDate > txtToday)
+                return confirm("Chemical Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+            else
+                return true;
 
-            confirm_value.type = "hidden";
-            confirm_value.name = "confirm_value";
-            if (confirm("Irrigation Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?")) {
-                confirm_value.value = "Yes";
-            } else {
-                confirm_value.value = "No";
-            }
-            document.forms[0].appendChild(confirm_value);
         }
+
+        function ConfirmIrrigation() {
+            var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
+            var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
+            var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
+            var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
+            if (txttoSDate > txtToday)
+                return confirm("Irrigation Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+            else
+                return true;
+
+        }
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <asp:HiddenField ID="lblDayOfShip" runat="server" />
     <asp:HiddenField ID="lblDateOfShip" runat="server" />
-   
-    
+    <asp:HiddenField ID="SprayTaskForDaysDate" runat="server" />
+    <asp:HiddenField ID="ToDaydate" runat="server" />
+
     <div class="site__container">
         <h2 class="head__title-icon mb-4"><%--img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">--%> Create Task </h2>
 
@@ -452,7 +444,7 @@
                 <div id="fertilization_count" runat="server" class="collapse dashboard__block request__block-collapse mb-4" data-parent="#task_request-group">
                     <div class="request__body">
                         <h2 class="text-left mb-3">Fertilization</h2>
-                         <div class="row">
+                        <div class="row">
                             <div class="col-lg-4 col-xl-3 mb-3">
                                 <label class="d-block">Assignment</label>
                                 <asp:DropDownList ID="ddlFertilizationSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -503,9 +495,9 @@
 
                             <div class="col-12">
                                 <div class="bttn-group">
-                                    <asp:Button Text="Assign" CausesValidation="true" ValidationGroup="FA" ID="btnFSubmit" CssClass="bttn bttn-primary bttn-action mb-3" runat="server" OnClick="btnFSubmit_Click" />
-                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveFLSubmit" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClick="btnSaveFLSubmit_Click" />
-                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartFertilization" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClick="btnStartFertilization_Click" />
+                                    <asp:Button Text="Assign" CausesValidation="true" ValidationGroup="FA" ID="btnFSubmit" CssClass="bttn bttn-primary bttn-action mb-3" runat="server" OnClientClick="return Confirm();" OnClick="btnFSubmit_Click" />
+                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveFLSubmit" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClientClick="return Confirm();" OnClick="btnSaveFLSubmit_Click" />
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartFertilization" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClientClick="return Confirm();" OnClick="btnStartFertilization_Click" />
                                     <asp:Button Text="Reset" ID="btnFReset" runat="server" CssClass="bttn bttn-primary bttn-action mb-3" OnClick="btnFReset_Click" />
                                 </div>
                             </div>
@@ -575,9 +567,9 @@
                                 <div class="w-100"></div>
                                 <div class="col-auto">
                                     <div class="bttn-group">
-                                        <asp:Button Text="Assign" CausesValidation="true" ValidationGroup="CA" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mb-3" runat="server" OnClick="btnChemicalSubmit_Click" />
-                                        <asp:Button Text="Save for later" CausesValidation="true" ID="btnChemicalSFLSubmit" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClick="btnChemicalSFLSubmit_Click" />
-                                        <asp:Button Text="Start" CausesValidation="true" ID="btnStartChemical" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClick="btnStartChemical_Click" />
+                                        <asp:Button Text="Assign" CausesValidation="true" ValidationGroup="CA" ID="btnChemicalSubmit" CssClass="bttn bttn-primary bttn-action mb-3" runat="server" OnClientClick="return ConfirmChemica();" OnClick="btnChemicalSubmit_Click" />
+                                        <asp:Button Text="Save for later" CausesValidation="true" ID="btnChemicalSFLSubmit" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClientClick="return ConfirmChemica();" OnClick="btnChemicalSFLSubmit_Click" />
+                                        <asp:Button Text="Start" CausesValidation="true" ID="btnStartChemical" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClientClick="return ConfirmChemica();" OnClick="btnStartChemical_Click" />
                                         <asp:Button Text="Reset" ID="btnChemicalReset" runat="server" CssClass="bttn bttn-primary bttn-action mb-3" OnClick="btnChemicalReset_Click" />
                                     </div>
                                 </div>
@@ -623,10 +615,10 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="bttn-group">
-                                    <asp:Button Text="Assign" ID="btnirrigationSubmit" ValidationGroup="IA" CssClass="bttn bttn-primary bttn-action mb-3" runat="server" OnClick="btnirrigationSubmit_Click" />
-                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveirrigation" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClick="btnSaveirrigation_Click" />
-                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartirrigation" CssClass="submit-bttn bttn bttn-primary mb-3" runat="server" OnClick="btnStartirrigation_Click" />
-                                    <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="bttn bttn-primary bttn-action mb-3" OnClick="btnirrigationReset_Click1" />
+                                    <asp:Button Text="Assign" ID="btnirrigationSubmit" ValidationGroup="IA" CssClass="bttn bttn-primary bttn-action mb-3" runat="server" OnClientClick="return ConfirmIrrigation();" OnClick="btnirrigationSubmit_Click" />
+                                    <asp:Button Text="Save for later" CausesValidation="true" ID="btnSaveirrigation" CssClass="submit-bttn bttn bttn-primary mb-3" OnClientClick="return ConfirmIrrigation();" runat="server" OnClick="btnSaveirrigation_Click" />
+                                    <asp:Button Text="Start" CausesValidation="true" ID="btnStartirrigation" CssClass="submit-bttn bttn bttn-primary mb-3" OnClientClick="return ConfirmIrrigation();" runat="server" OnClick="btnStartirrigation_Click" />
+                                    <asp:Button Text="Reset" ID="btnirrigationReset" runat="server" CssClass="bttn bttn-primary bttn-action mb-3" OnClientClick="return ConfirmIrrigation();" OnClick="btnirrigationReset_Click1" />
                                 </div>
                             </div>
                         </div>
