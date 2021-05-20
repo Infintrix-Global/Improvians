@@ -3000,8 +3000,8 @@ namespace Evo
                         {
                             if (dtSDate1.Rows[0]["ResetTaskForDays"].ToString() != "")
                             {
-                                SprayTaskForDaysDateCem.Value = Convert.ToDateTime(dtSDate1.Rows[0]["ResetTaskForDays"]).ToShortDateString();
-                                ToDaydateCem.Value = TodatDate;
+                                SprayTaskForDaysDateirr.Value = Convert.ToDateTime(dtSDate1.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                                ToDaydateIrr.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDate1.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDate1.Rows[0]["ResetSprayTaskForDays"].ToString();
                             }
@@ -3022,10 +3022,14 @@ namespace Evo
                         {
                             if (dtSDateC.Rows[0]["ResetTaskForDays"].ToString() != "")
                             {
-                                SprayTaskForDaysDateirr.Value = Convert.ToDateTime(dtSDateC.Rows[0]["ResetTaskForDays"]).ToShortDateString();
-                                ToDaydateIrr.Value = TodatDate;
+
+                                SprayTaskForDaysDateCem.Value = Convert.ToDateTime(dtSDateC.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                                ToDaydateCem.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDateC.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDateC.Rows[0]["ResetSprayTaskForDays"].ToString();
+
+
+                              
                             }
                         }
                         else
