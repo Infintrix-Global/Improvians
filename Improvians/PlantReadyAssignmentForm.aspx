@@ -62,11 +62,11 @@
             </div>
 
 
-            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+           <%-- <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Task Type</label>
                 <asp:DropDownList ID="RadioButtonListGno" runat="server" OnSelectedIndexChanged="RadioButtonListF_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                 </asp:DropDownList>
-            </div>
+            </div>--%>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>From Date</label>
                 <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
@@ -161,7 +161,11 @@
                                             <asp:Label ID="Label13" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
+                                      <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Button ID="btnSelect" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>

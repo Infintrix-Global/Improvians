@@ -96,15 +96,6 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList RadioButtonListSourse;
 
         /// <summary>
-        /// RadioButtonListGno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RadioButtonListGno;
-
-        /// <summary>
         /// txtFromDate control.
         /// </summary>
         /// <remarks>

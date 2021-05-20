@@ -75,7 +75,7 @@ namespace Evo
                 //amytask.HRef = "SeedingPlanForm.aspx";
                 amytask.HRef = "MyTaskSeedlinePlanner.aspx";
                 ddlFacility.Visible = false;
-              //  JobReports.HRef = "ReportSeedlinePlanner.aspx";
+                //  JobReports.HRef = "ReportSeedlinePlanner.aspx";
             }
             if (Session["Role"].ToString() == "8")
             {
@@ -99,7 +99,7 @@ namespace Evo
             {
                 amytask.HRef = "MyTaskAssistantGrower.aspx";
             }
-          
+
         }
 
         public void BindFacility()
@@ -140,7 +140,7 @@ namespace Evo
             //nv.Add("@Mode", "11");
             //dt = objCommon.GetDataTable("GET_Common", nv);
 
-          
+
             nv.Add("@Facility", Session["Facility"].ToString());
             dt = objCommon.GetDataTable("SP_GetPlantReadyAVGRootQty", nv);
             if (dt != null & dt.Rows.Count > 0)
@@ -161,7 +161,7 @@ namespace Evo
             {
                 TrackTasks.HRef = "TrackTaskSeedlinePlanner.aspx";
                 //  JobReports.HRef = "JobReports.aspx
-              //  TrackTasks.HRef = "ReportSeedlinePlanner.aspx";
+                //  TrackTasks.HRef = "ReportSeedlinePlanner.aspx";
                 JobReports.HRef = "ReportSeedlinePlanner.aspx";
             }
 
@@ -177,6 +177,14 @@ namespace Evo
 
 
             }
+
+            if (Session["Role"].ToString() == "5" || Session["Role"].ToString() == "3" || Session["Role"].ToString() == "11")
+            {
+
+                JobReports.HRef = "JobReports.aspx";
+            }
+
+
         }
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]

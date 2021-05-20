@@ -72,6 +72,20 @@ namespace Evo
                 }
             }
 
+
+
+            if (Session["Role"].ToString() == "5" || Session["Role"].ToString() == "3" || Session["Role"].ToString() == "11")
+            {
+
+                lnkmanagetask.Visible = false;
+                lnkcreatetask.Visible = false;
+            }
+            else
+            {
+                lnkmanagetask.Visible = true;
+                lnkcreatetask.Visible = true;
+            }
+
             String activepage = Request.RawUrl.ToLower();
             if (activepage.Contains("jobreports"))
             {
@@ -82,7 +96,7 @@ namespace Evo
             }
             else if (activepage.Contains("dashboard"))
             {
-              
+
                 divFacility.Visible = false;
                 divSitemap.Visible = false;
             }
@@ -364,7 +378,7 @@ namespace Evo
                 Response.Redirect("ReportSeedlinePlanner.aspx");
             }
 
-            if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
+            if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12" || Session["Role"].ToString() == "5" || Session["Role"].ToString() == "3" || Session["Role"].ToString() == "11")
             {
 
                 Response.Redirect("JobReports.aspx");
@@ -374,6 +388,7 @@ namespace Evo
 
 
             }
+
         }
 
         protected void lnkmanagetask_Click(object sender, EventArgs e)
