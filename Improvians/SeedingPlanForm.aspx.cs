@@ -401,9 +401,11 @@ namespace Evo
             int A = 0;
             GridView DGJob = (GridView)e.Item.FindControl("DGJob");
             GridView DGJob1 = (GridView)e.Item.FindControl("DGJob1");
+            GridView DGJob2 = (GridView)e.Item.FindControl("DGJob2");
             Label lblFacility = (Label)e.Item.FindControl("lblFacility");
             Label lblDate = (Label)e.Item.FindControl("lblDate");
             Panel PanelView = (Panel)e.Item.FindControl("PanelView");
+            Panel PanelView1 = (Panel)e.Item.FindControl("PanelView1");
             General objGeneral = new General();
             string strSQL = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
@@ -425,6 +427,16 @@ namespace Evo
 
             }
 
+            if (dt12.Rows.Count > 70)
+            {
+                PanelView1.Visible = true;
+                General objGeneral2 = new General();
+                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + 70 + "'";
+                DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
+                DGJob2.DataSource = dt1;
+                DGJob2.DataBind();
+
+            }
         }
     }
 }
