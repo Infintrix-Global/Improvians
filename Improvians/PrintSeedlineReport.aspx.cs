@@ -81,11 +81,11 @@ namespace Evo
             DataTable dt12 = objGeneral1.GetDatasetByCommand(strSQLCount);
 
 
-            if (dt12.Rows.Count > 35)
+            if (dt12.Rows.Count > 35 && dt12.Rows.Count < 70)
             {
                 PanelView.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '"+35+"'";
+                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '"+35+ "' and ID < '" + 70 + "'";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob1.DataSource = dt1;
                 DGJob1.DataBind();

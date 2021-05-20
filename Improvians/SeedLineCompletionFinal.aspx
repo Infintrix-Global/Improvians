@@ -150,12 +150,8 @@
                         <div class="col col-sm-6 col-md-4 col-lg-3 col-xl-auto">
                             <label class="d-block">No Of Trays To Be Seeded</label>
                             <asp:Label ID="lblTrays" runat="server" Visible="false"></asp:Label>
-                            <asp:TextBox ID="txtTrays" runat="server" TextMode="Number" class="input__control input__control-auto"></asp:TextBox>
-                            <span class="error_message d-block">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTrays" ValidationGroup="e"
-                                    SetFocusOnError="true" ErrorMessage="Please Enter # Trays" ForeColor="Red">
-                                </asp:RequiredFieldValidator>
-                            </span>
+                            <asp:Label ID="txtTrays" runat="server" Text=""></asp:Label>
+                           
                         </div>
 
                         <div class="col-12 mt-3">
@@ -259,7 +255,7 @@
                             <label>Remaining Trays:</label>
                             <asp:TextBox ID="txtSeedsAllocated" ReadOnly="true" runat="server" class="input__control robotomd"></asp:TextBox>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg mb-3">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-auto mb-3">
                             <label>Job Completion:</label>
 
                             <span class="custom-control custom-radio pt-2">
