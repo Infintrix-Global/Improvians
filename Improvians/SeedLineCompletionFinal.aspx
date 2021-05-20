@@ -150,7 +150,7 @@
                         <div class="col col-sm-6 col-md-4 col-lg-3 col-xl-auto">
                             <label class="d-block">No Of Trays To Be Seeded</label>
                             <asp:Label ID="lblTrays" runat="server" Visible="false"></asp:Label>
-                            <asp:Label ID="txtTrays" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="txtTrays" class="pt-2" runat="server" Text=""></asp:Label>
                            
                         </div>
 
