@@ -20,8 +20,8 @@
         function ConfirmChemica() {
             var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
             var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-            var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
-            var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
+            var txtToday = document.getElementById('<%= ToDaydateCem.ClientID %>').value;
+            var txttoSDate = document.getElementById('<%= SprayTaskForDaysDateCem.ClientID %>').value;
             if (txttoSDate > txtToday)
                 return confirm("Chemical Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
             else
@@ -32,8 +32,8 @@
         function ConfirmIrrigation() {
             var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
             var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-            var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
-            var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
+            var txtToday = document.getElementById('<%= ToDaydateIrr.ClientID %>').value;
+            var txttoSDate = document.getElementById('<%= SprayTaskForDaysDateirr.ClientID %>').value;
             if (txttoSDate > txtToday)
                 return confirm("Irrigation Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
             else
@@ -50,6 +50,11 @@
     <asp:HiddenField ID="SprayTaskForDaysDate" runat="server" />
     <asp:HiddenField ID="ToDaydate" runat="server" />
 
+     <asp:HiddenField ID="SprayTaskForDaysDateCem" runat="server" />
+    <asp:HiddenField ID="ToDaydateCem" runat="server" />
+
+     <asp:HiddenField ID="SprayTaskForDaysDateirr" runat="server" />
+    <asp:HiddenField ID="ToDaydateIrr" runat="server" />
     <div class="site__container">
         <h2 class="head__title-icon mb-4"><%--img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">--%> Create Task </h2>
 
@@ -235,12 +240,16 @@
 
                                     <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblPlantReadyDate" runat="server" Text=""></asp:Label>
+                                        
+                                                  <asp:Label ID="lblPlantReadyDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblPlantDueDate" runat="server" Text=""></asp:Label>
+                                           
+                                               <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
+
+                                            
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -944,4 +953,5 @@
         <!-- Modal Ends -->
 
     </div>
+
 </asp:Content>

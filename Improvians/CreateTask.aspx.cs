@@ -877,6 +877,8 @@ namespace Evo
                     objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
 
 
+
+
                     string message = "Assignment Successful";
                     string url = "CreateTask.aspx";
                     string script = "window.onload = function(){ alert('";
@@ -2303,8 +2305,8 @@ namespace Evo
 
                 Label lblTraySize = (Label)e.Row.FindControl("lblTraySize");
                 Label lblSeededDate = (Label)e.Row.FindControl("lblSeededDate");
-                Label lblPlantReadyDate = (Label)e.Row.FindControl("lblPlantReadyDate");
-                Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
+             //   Label lblPlantReadyDate = (Label)e.Row.FindControl("lblPlantReadyDate");
+              //  Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
@@ -2322,8 +2324,8 @@ namespace Evo
                     //}
                     PlanrDDate = Convert.ToInt32(dt.Rows[0]["dateshift"]);
                     PlantPDate = Convert.ToInt32(dt.Rows[1]["dateshift"]);
-                    lblPlantReadyDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlantPDate).ToString("MM/dd/yyyy");
-                    lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
+                 //   lblPlantReadyDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlantPDate).ToString("MM/dd/yyyy");
+                  //  lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
 
                 }
 
@@ -2998,16 +3000,16 @@ namespace Evo
                         {
                             if (dtSDate1.Rows[0]["ResetTaskForDays"].ToString() != "")
                             {
-                                SprayTaskForDaysDate.Value = Convert.ToDateTime(dtSDate1.Rows[0]["ResetTaskForDays"]).ToShortDateString();
-                                ToDaydate.Value = TodatDate;
+                                SprayTaskForDaysDateirr.Value = Convert.ToDateTime(dtSDate1.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                                ToDaydateIrr.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDate1.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDate1.Rows[0]["ResetSprayTaskForDays"].ToString();
                             }
                         }
                         else
                         {
-                            SprayTaskForDaysDate.Value = "";
-                            ToDaydate.Value = "";
+                           // SprayTaskForDaysDate.Value = "";
+                           // ToDaydate.Value = "";
                             // SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
                         }
 
@@ -3020,16 +3022,20 @@ namespace Evo
                         {
                             if (dtSDateC.Rows[0]["ResetTaskForDays"].ToString() != "")
                             {
-                                SprayTaskForDaysDate.Value = Convert.ToDateTime(dtSDateC.Rows[0]["ResetTaskForDays"]).ToShortDateString();
-                                ToDaydate.Value = TodatDate;
+
+                                SprayTaskForDaysDateCem.Value = Convert.ToDateTime(dtSDateC.Rows[0]["ResetTaskForDays"]).ToShortDateString();
+                                ToDaydateCem.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDateC.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDateC.Rows[0]["ResetSprayTaskForDays"].ToString();
+
+
+                              
                             }
                         }
                         else
                         {
-                            SprayTaskForDaysDate.Value = "";
-                            ToDaydate.Value = "";
+                          //  SprayTaskForDaysDate.Value = "";
+                          //  ToDaydate.Value = "";
                         }
 
 

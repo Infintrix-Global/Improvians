@@ -268,7 +268,7 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, GPD.Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode" +
+                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, GPD.Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode,GTS.plan_date,GTS.due_date" +
                             "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo " +
 
                             "where ";
@@ -376,7 +376,7 @@ namespace Evo.BAL_Classes
             try
             {
                 strQuery = "Select GJSPM.jobcode,'0' as wo,GJSPM.jid as GrowerPutAwayId,GJSPM.cname,GJSPM.itemdescp,GJSPM.itemno,  " +
-                            " GJSPM.loc_seedline as FacilityID,GJSPM.GreenHouseID, GJSPM.Trays,GJSPM.TraySize,GJSPM.SeedDate as SeededDate,GJSPM.GenusCode from [gti_jobs_seeds_plan_Manual] GJSPM where 1=1 ";
+                            " GJSPM.loc_seedline as FacilityID,GJSPM.GreenHouseID, GJSPM.Trays,GJSPM.TraySize,GJSPM.SeedDate as SeededDate,GJSPM.GenusCode,GJSPM.PlantReadyDate as plan_date,GJSPM.PlantDueDate as due_date from [gti_jobs_seeds_plan_Manual] GJSPM where 1=1 ";
 
                 if (!string.IsNullOrEmpty(FacilityLocation)  )
                 {

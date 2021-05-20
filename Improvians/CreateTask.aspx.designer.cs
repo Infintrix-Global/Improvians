@@ -60,6 +60,42 @@ namespace Evo
         protected global::System.Web.UI.WebControls.HiddenField ToDaydate;
 
         /// <summary>
+        /// SprayTaskForDaysDateCem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField SprayTaskForDaysDateCem;
+
+        /// <summary>
+        /// ToDaydateCem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ToDaydateCem;
+
+        /// <summary>
+        /// SprayTaskForDaysDateirr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField SprayTaskForDaysDateirr;
+
+        /// <summary>
+        /// ToDaydateIrr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ToDaydateIrr;
+
+        /// <summary>
         /// txtSearchJobNo control.
         /// </summary>
         /// <remarks>
