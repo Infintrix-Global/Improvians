@@ -816,7 +816,7 @@ namespace Evo
 
         }
 
-        public void FertilizationSubmit(string Assigned)
+        public void FertilizationSubmit(string Assigned,int IsF)
         {
 
 
@@ -889,7 +889,22 @@ namespace Evo
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
 
+                    if (IsF == 1)
+                    {
+                       string BenchUp = "'" + Batchlocation + "'";
+                        objTask.UpdateIsActiveDatat(BenchUp);
+                    }
+                    //string message1 = "$('#confirmModal').modal('show')";
+                    //string script1 = "window.onload = function(){";
+                    //script1 += message1;
+                    //script1 += "'; }";
+                    //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script1, true);
 
+
+
+
+
+                    //$('#confirmModal').modal('show');
 
                     //NameValueCollection nvn = new NameValueCollection();
                     //nvn.Add("@LoginID", Session["LoginID"].ToString());
@@ -917,12 +932,17 @@ namespace Evo
 
         protected void btnFSubmit_Click(object sender, EventArgs e)
         {
-            FertilizationSubmit(ddlFertilizationSupervisor.SelectedValue);
+            FertilizationSubmit(ddlFertilizationSupervisor.SelectedValue,0);
         }
 
         protected void btnSaveFLSubmit_Click(object sender, EventArgs e)
         {
-            FertilizationSubmit(Session["LoginID"].ToString());
+            FertilizationSubmit(Session["LoginID"].ToString(),0);
+        }
+
+        protected void btnChekFSubmit_Click(object sender, EventArgs e)
+        {
+            FertilizationSubmit(Session["LoginID"].ToString(), 1);
         }
 
         public void GerminationSubmit(string Assigned)
@@ -2980,6 +3000,8 @@ namespace Evo
                                 ToDaydate.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDate.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDate.Rows[0]["ResetSprayTaskForDays"].ToString();
+                                FerDate.Value = dtSDate.Rows[0]["FertilizationDate"].ToString();
+                                
                             }
                         }
                         else
@@ -2990,7 +3012,20 @@ namespace Evo
                         }
 
 
+                        NameValueCollection nvGP = new NameValueCollection();
+                        nvGP.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                        DataTable dtGPDate = objCommon.GetDataTable("SP_GetFertilizerGrowerPutAwayCheck", nvGP);
 
+                        if (dtGPDate != null && dtGPDate.Rows.Count > 0)
+                        {
+                         
+                                FerDate.Value = Convert.ToDateTime(dtGPDate.Rows[0]["FertilizeSeedDate"]).ToString("yyyy-MM-dd"); 
+
+                        }
+                        else
+                        {
+                          
+                        }
 
                         NameValueCollection nv111 = new NameValueCollection();
                         nv111.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
@@ -3004,6 +3039,8 @@ namespace Evo
                                 ToDaydateIrr.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDate1.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDate1.Rows[0]["ResetSprayTaskForDays"].ToString();
+
+                                IrrDate.Value = dtSDate.Rows[0]["SprayDate"].ToString();
                             }
                         }
                         else
@@ -3027,9 +3064,10 @@ namespace Evo
                                 ToDaydateCem.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDateC.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDateC.Rows[0]["ResetSprayTaskForDays"].ToString();
+                                CemDate.Value = dtSDate.Rows[0]["ChemicalDate"].ToString();
+                                
 
 
-                              
                             }
                         }
                         else
@@ -3051,5 +3089,7 @@ namespace Evo
             var lblCount = (Master.FindControl("lblNotificationCount") as Label);
             objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
         }
+
+     
     }
 }

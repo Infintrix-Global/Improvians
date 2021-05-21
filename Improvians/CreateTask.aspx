@@ -6,16 +6,36 @@
     <script type="text/javascript">
 
         function Confirm() {
-            var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
-            var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-            var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
-            var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
-            if (txttoSDate > txtToday)
-                return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
-            else
-                return true;
-
+            //var value = ConfirmFerDateCheck();
+            ////alert('value ' + value);
+            //if (value ==  true) {
+                var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
+                //alert('txt1' + txt1);
+                var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
+                var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
+                var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
+                if (txttoSDate > txtToday)
+                    return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+                else
+                    return true;
+          //  }
         }
+
+        //Fertilizer Date Check
+        function ConfirmFerDateCheck() {
+            var Fer_Date = document.getElementById('<%= FerDate.ClientID %>').value;
+             var txt2 = document.getElementById('<%= txtFDate.ClientID %>').value;
+            //alert('txt2' + txt2);
+            //alert('Fer_Date' + Fer_Date);
+            if (Fer_Date == txt2) {
+                $('#confirmModal').modal('show');
+                return false;
+            }//return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+             else
+                 return true;
+
+         }
+
 
         function ConfirmChemica() {
             var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
@@ -29,6 +49,21 @@
 
         }
 
+
+
+        //Chemica Date Check
+        function ConfirmCheDateCheck() {
+            var Cem_Date = document.getElementById('<%= CemDate.ClientID %>').value;
+            var txt2 = document.getElementById('<%= txtChemicalSprayDate.ClientID %>').value;
+
+            if (Cem_Date == txt2)
+                return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+            else
+                return true;
+
+        }
+
+
         function ConfirmIrrigation() {
             var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
             var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
@@ -41,6 +76,19 @@
 
         }
 
+        //Irrigation Date Check
+        function ConfirmIrrigationDateCheck() {
+            var Irr_Date = document.getElementById('<%= IrrDate.ClientID %>').value;
+            var txt2 = document.getElementById('<%= txtirrigationSprayDate.ClientID %>').value;
+
+            if (Irr_Date == txt2)
+                return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+            else
+                return true;
+
+        }
+
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -52,9 +100,13 @@
 
      <asp:HiddenField ID="SprayTaskForDaysDateCem" runat="server" />
     <asp:HiddenField ID="ToDaydateCem" runat="server" />
-
+     
      <asp:HiddenField ID="SprayTaskForDaysDateirr" runat="server" />
     <asp:HiddenField ID="ToDaydateIrr" runat="server" />
+
+     <asp:HiddenField ID="FerDate" runat="server" />
+       <asp:HiddenField ID="CemDate" runat="server" />
+       <asp:HiddenField ID="IrrDate" runat="server" />
     <div class="site__container">
         <h2 class="head__title-icon mb-4"><%--img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">--%> Create Task </h2>
 
@@ -927,9 +979,9 @@
         </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="bttn bttn-primary" data-toggle="modal" data-target="#confirmModal">
+      <%--  <button type="button" class="bttn bttn-primary"  data-toggle="modal" data-target="#confirmModal">
             Assign
-        </button>
+        </button>--%>
 
         <!-- Modal -->
         <div class="modal fade" id="confirmModal">
@@ -944,7 +996,11 @@
                         Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="bttn bttn-primary">Proceed</button>
+                        <%--<button type="button" class="bttn bttn-primary">Proceed</button>
+                        --%>
+                        <asp:Button ID="btnChekFSubmit" runat="server" OnClick="btnChekFSubmit_Click" class="bttn bttn-primary" Text="Proceed" />
+
+
                         <button type="button"  data-dismiss="modal" class="bttn bttn-secondary">Cancel</button>
                     </div>
                 </div>

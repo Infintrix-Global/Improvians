@@ -472,13 +472,14 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@RequestType", "0");
             nv.Add("@BenchLocation", "0");
-           
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
             nv.Add("@Crop", "0");
+            nv.Add("@Status", "");
+            nv.Add("@Jobsource", "0");
+            nv.Add("@GermNo", "0");
+            nv.Add("@FromDate","");
+            nv.Add("@ToDate","");
+            nv.Add("@AssignedBy", "0");
 
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
             BindData(dt, PR, "SeededDate");
