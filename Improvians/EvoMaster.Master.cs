@@ -72,11 +72,8 @@ namespace Evo
                 }
             }
 
-
-
             if (Session["Role"].ToString() == "5" || Session["Role"].ToString() == "3" || Session["Role"].ToString() == "11")
             {
-
                 lnkmanagetask.Visible = false;
                 lnkcreatetask.Visible = false;
             }
@@ -132,7 +129,6 @@ namespace Evo
             }
 
             checkNotification(1);
-
         }
 
         protected void checkNotification(int n)
@@ -238,6 +234,17 @@ namespace Evo
                 TaskName = TaskName.Replace(" ", "");
                 if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")   // for grower and assistant grower
                 {
+                    if (TaskName == "PutAway")
+                    {
+                        if (Session["Role"].ToString() == "12")
+                        {
+                            Response.Redirect("MyTaskLogisticManager.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                        }
+                        else
+                        {
+                            Response.Redirect("GrowerPutAwayForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
+                        }
+                    }
                     if (TaskName == "Fertilizer")
                     {
                         Response.Redirect("FertilizerTaskReq.aspx?jobId=" + job + "&benchLoc=" + benchLoc + "&Tkey=" + taskKey);
@@ -251,12 +258,14 @@ namespace Evo
                         Response.Redirect(TaskName + "RequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                     }
 
-
                 }
                 else if (Operators.Contains(Convert.ToInt32(Session["Role"])))
                 {
                     switch (TaskName)
                     {
+                        case "PutAway":
+                            Response.Redirect("MyTaskShippingCoordinator.aspx?jobId=" + job + "&benchLoc=" + benchLoc + "&Tkey=" + taskKey);
+                            break;
                         case "CropHealthReport":
                             Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
@@ -282,6 +291,9 @@ namespace Evo
                 {
                     switch (TaskName)
                     {
+                        case "PutAway":
+                            Response.Redirect("MyTaskLogisticManager.aspx?jobId=" + job + "&benchLoc=" + benchLoc + "&Tkey=" + taskKey);
+                            break;
                         case "CropHealthReport":
                             Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
@@ -367,7 +379,6 @@ namespace Evo
                 default:
                     control.Attributes["class"] = "imgicon-putaway";
                     break;
-
             }
         }
 
@@ -386,9 +397,7 @@ namespace Evo
             else
             {
 
-
             }
-
         }
 
         protected void lnkmanagetask_Click(object sender, EventArgs e)

@@ -94,8 +94,19 @@ namespace Evo
             nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
             nv.Add("@CreateBy", Session["LoginID"].ToString());
             result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv);
+
             if (result > 0)
             {
+                GridViewRow row = gvMove.Rows[0];
+                NameValueCollection nvn = new NameValueCollection();
+                nvn.Add("@LoginID", Session["LoginID"].ToString());
+                nvn.Add("@SupervisorID", ddlShippingCoordinator.SelectedValue);
+                nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                nvn.Add("@TaskName", "PutAway");
+                nv.Add("@TaskRequestKey", "");
+                nvn.Add("@GreenHouseID", (row.FindControl("GreenHouseID") as Label).Text);
+                var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
                 //  lblmsg.Text = "Assignment Successful";
                 Clear();
                 string message = "Assignment Successful";

@@ -18,15 +18,12 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-
                 string Fdate = "", TDate = "";
                 Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
 
                 txtFromDate.Text = Fdate;
                 txtToDate.Text = TDate;
-
-              
 
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
@@ -36,8 +33,6 @@ namespace Evo
                 BindGridGerm("0");
             }
         }
-
-
 
         public void BindCrop()
         {
@@ -74,8 +69,6 @@ namespace Evo
             nv.Add("@GenusCode", ddlCrop.SelectedValue);
             nv.Add("@Mode", "4");
             nv.Add("@Type", "PutAwy");
-
-
             dt = objCommon.GetDataTable("SP_TaskFilterSearchSupervisor", nv);
 
             ddlAssignedBy.DataSource = dt;
@@ -133,7 +126,6 @@ namespace Evo
             ddlJobNo.DataBind();
 
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
         public void BindBenchLocation(string ddlMain, string jobNo, string Customer, string Code)
@@ -158,11 +150,7 @@ namespace Evo
             ddlBenchLocation.DataValueField = "BenchLocation";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-
-
         }
-
-
 
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -198,9 +186,6 @@ namespace Evo
                 BindCrop();
             BindGridGerm(ddlJobNo.SelectedValue);
         }
-
-
-
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -241,7 +226,6 @@ namespace Evo
             txtToDate.Text = "";
             BindBenchLocation(Session["Facility"].ToString(), txtSearchJobNo.Text, "0", "0");
             BindGridGerm(txtSearchJobNo.Text);
-
         }
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
@@ -255,7 +239,6 @@ namespace Evo
             BindJobCode("0", "0", "0");
             BindCrop();
             BindGridGerm("0");
-
         }
 
         protected void txtBatchLocation_TextChanged(object sender, EventArgs e)
@@ -268,7 +251,6 @@ namespace Evo
             BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0");
             BindGridGerm(ddlJobNo.SelectedValue);
         }
-
 
         public void BindGridGerm(string JobCode)
         {
@@ -291,8 +273,6 @@ namespace Evo
             gvGerm.DataBind();
         }
 
-      
-
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Assign")
@@ -311,7 +291,6 @@ namespace Evo
                 long result = objCommon.GetDataInsertORUpdate("SP_AddAssign_Task_Shipping_Coordinator", nv1);
 
                 Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
-
             }
         }
 
@@ -349,7 +328,6 @@ namespace Evo
             }
         }
 
-     
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
@@ -364,9 +342,6 @@ namespace Evo
             ddlJobNo.SelectedIndex = 0;
             txtSearchJobNo.Text = "";
         }
-
-
-      
 
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
