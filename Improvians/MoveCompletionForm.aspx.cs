@@ -181,13 +181,7 @@ namespace Evo
                 {
                     string message = "Completion Successful";
                     string url = "MyTaskShippingCoordinator.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                    objCommon.ShowAlertAndRedirect(message, url);
                     //  Response.Redirect("~/MyTaskShippingCoordinator.aspx");
                 }
 
@@ -196,25 +190,13 @@ namespace Evo
 
                     string message = "Completion Successful";
                     string url = "MyTaskLogisticManager.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                    Response.Redirect("~/MyTaskLogisticManager.aspx");
+                    objCommon.ShowAlertAndRedirect(message, url);
                 }
             }
             else
             {
                 lblmsg.Text = "Completion Not Successful";
             }
-            //}
-            //else
-            //{
-
-            //    lblerrmsg.Text = "Number of Trays exceed Remaining trays";
 
 
         }
@@ -296,8 +278,6 @@ namespace Evo
                 //   dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
 
                 lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
-
-
             }
         }
 

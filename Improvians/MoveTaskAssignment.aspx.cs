@@ -125,13 +125,8 @@ namespace Evo
 
                 string message = "Assignment Successful";
                 string url = "MyTaskLogisticManager.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+                objCommon.ShowAlertAndRedirect(message, url);
             }
             else
             {

@@ -673,15 +673,11 @@ namespace Evo
                     nv1.Add("@WorkOrder", wo);
                     _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
 
-                    string message = "Grower Put Away Save  Successful";
-                    string url = "GrowerPutAwayForm.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                   // string message = "Grower Put Away Save  Successful";
+                    string url = "MyTaskGrower.aspx";
+                  
+                    string message = "Assignment Successful";
+                    objCommon.ShowAlertAndRedirect(message, url);
                     //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
                     Clear();
                 }
