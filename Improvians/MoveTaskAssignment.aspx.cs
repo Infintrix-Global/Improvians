@@ -102,7 +102,7 @@ namespace Evo
                 NameValueCollection nameValue = new NameValueCollection();
                 nameValue.Add("@LoginID", Session["LoginID"].ToString());
                 nameValue.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
-                nameValue.Add("@GreenHouseID", (row.FindControl("GreenHouseID") as Label).Text);
+                nameValue.Add("@GreenHouseID", (row.FindControl("lblGreenHouseName") as Label).Text);
                 nameValue.Add("@TaskName", "PutAway");
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
@@ -113,7 +113,7 @@ namespace Evo
                 nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                 nvn.Add("@TaskName", "PutAway");
                 nv.Add("@TaskRequestKey", "");
-                nvn.Add("@GreenHouseID", (row.FindControl("GreenHouseID") as Label).Text);
+                nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouseName") as Label).Text);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
                 //  lblmsg.Text = "Assignment Successful";
