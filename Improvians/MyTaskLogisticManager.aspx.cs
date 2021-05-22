@@ -30,7 +30,41 @@ namespace Evo
                 Bindcname("0", "0", "0");
                 BindCrop();
                 BindAssignByList("0", "0", "0");
-                BindGridGerm("0");
+                BindGridGerm("0", 0);
+            }
+        }
+
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
             }
         }
 
@@ -161,7 +195,7 @@ namespace Evo
             BindAssignByList("0", "0", ddlCustomer.SelectedValue);
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
-            BindGridGerm("0");
+            BindGridGerm("0", 1);
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -172,7 +206,7 @@ namespace Evo
             BindAssignByList("0", "0", ddlCustomer.SelectedValue);
             if (ddlCrop.SelectedIndex == 0)
                 BindCrop();
-            BindGridGerm("0");
+            BindGridGerm("0", 1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,12 +218,12 @@ namespace Evo
             BindAssignByList("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             if (ddlCrop.SelectedIndex == 0)
                 BindCrop();
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -203,12 +237,12 @@ namespace Evo
                 BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0");
             if (ddlCrop.SelectedIndex == 0)
                 BindCrop();
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         //protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
@@ -225,7 +259,7 @@ namespace Evo
             txtFromDate.Text = "";
             txtToDate.Text = "";
             BindBenchLocation(Session["Facility"].ToString(), txtSearchJobNo.Text, "0", "0");
-            BindGridGerm(txtSearchJobNo.Text);
+            BindGridGerm(txtSearchJobNo.Text, 1);
         }
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
@@ -238,7 +272,7 @@ namespace Evo
             // BindJobCode("0");
             BindJobCode("0", "0", "0");
             BindCrop();
-            BindGridGerm("0");
+            BindGridGerm("0", 1);
         }
 
         protected void txtBatchLocation_TextChanged(object sender, EventArgs e)
@@ -249,10 +283,10 @@ namespace Evo
             Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
             BindJobCode(ddlBenchLocation.SelectedValue, "0", "0");
             BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0");
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
-        public void BindGridGerm(string JobCode)
+        public void BindGridGerm(string JobCode, int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -271,6 +305,35 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTasknew", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
+            if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
+            {
+                highlight(dt.Rows.Count);
+            }
+        }
+
+        private void highlight(int limit)
+        {
+            var i = gvGerm.Rows.Count;
+            bool check = false;
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                var checklocation = (row.FindControl("lblBenchLocation") as Label).Text;
+                //var tKey = gvGerm.DataKeys[row.RowIndex].Values[0].ToString();
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
+                {
+                    row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check && limit >= 10)
+                {
+                    gvGerm.PageIndex++;
+                    gvGerm.DataBind();
+                    highlight((limit - 10));
+                }
+            }
         }
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -297,7 +360,7 @@ namespace Evo
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -331,7 +394,7 @@ namespace Evo
         protected void btnReset_Click(object sender, EventArgs e)
         {
             clear();
-            BindGridGerm("0");
+            BindGridGerm("0", 1);
         }
 
         public void clear()
