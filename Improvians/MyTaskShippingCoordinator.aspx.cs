@@ -16,12 +16,47 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                BindGridGerm();
+                BindGridGerm(0);
                 
             }
         }
 
-        public void BindGridGerm()
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+
+        public void BindGridGerm(int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -33,7 +68,36 @@ namespace Evo
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
+            if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
+            {
+                highlight(dt.Rows.Count);
+            }
         }
+
+        private void highlight(int limit)
+        {
+            var i = gvGerm.Rows.Count;
+            bool check = false;
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lblID") as Label).Text;
+                 var checklocation = (row.FindControl("lblGreenHouseName") as Label).Text;
+                //var tKey = gvGerm.DataKeys[row.RowIndex].Values[0].ToString();
+                i--;
+                if (checkJob == JobCode && checklocation == benchLoc)
+                {
+                    row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check && limit >= 10)
+                {
+                    gvGerm.PageIndex++;
+                    gvGerm.DataBind();
+                    highlight((limit - 10));
+                }
+            }
+        }
+
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
