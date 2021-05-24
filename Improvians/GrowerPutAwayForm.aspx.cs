@@ -673,9 +673,9 @@ namespace Evo
                     nv1.Add("@WorkOrder", wo);
                     _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
 
-                   // string message = "Grower Put Away Save  Successful";
+                    // string message = "Grower Put Away Save  Successful";
                     string url = "MyTaskGrower.aspx";
-                  
+
                     string message = "Assignment Successful";
                     objCommon.ShowAlertAndRedirect(message, url);
                     //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
