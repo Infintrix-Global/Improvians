@@ -712,8 +712,6 @@ namespace Evo
             }
             else
             {
-
-
                 nv.Add("@RoleID", "3");
                 dt = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
 
@@ -942,9 +940,13 @@ namespace Evo
 
         protected void btnChekFSubmit_Click(object sender, EventArgs e)
         {
-            FertilizationSubmit(Session["LoginID"].ToString(), 1);
+            FertilizationSubmit(ddlFertilizationSupervisor.SelectedValue, 1);
         }
 
+        protected void btnChekFCancel_Click(object sender, EventArgs e)
+        {
+            FertilizationSubmit(ddlFertilizationSupervisor.SelectedValue, 0);
+        }
         public void GerminationSubmit(string Assigned)
         {
             long result16 = 0;
@@ -1125,7 +1127,7 @@ namespace Evo
             txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
         }
 
-        public void irrigationSubmit(string Assigned)
+        public void irrigationSubmit(string Assigned,int FID)
         {
             int IrrigationCode = 0;
             string SprayTaskForDaysDate = "";
@@ -1148,8 +1150,9 @@ namespace Evo
 
                     string TodatDate;
                     string ReSetSprayDate = "";
+                    string Batchlocation ="";
 
-
+                    Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
 
                     NameValueCollection nv = new NameValueCollection();
@@ -1191,7 +1194,12 @@ namespace Evo
                     script += url;
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-
+                    if(FID ==1)
+                    {
+                       string  BenchUp = "'" + Batchlocation + "'";
+                        objTask.UpdateIsActiveIrrigation(BenchUp);
+                    }
+                   
                 }
             }
 
@@ -1215,14 +1223,23 @@ namespace Evo
         }
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
         {
-            irrigationSubmit(ddlirrigationSupervisor.SelectedValue);
+            irrigationSubmit(ddlirrigationSupervisor.SelectedValue,0);
         }
 
         protected void btnSaveirrigation_Click(object sender, EventArgs e)
         {
-            irrigationSubmit(Session["LoginID"].ToString());
+            irrigationSubmit(Session["LoginID"].ToString(),0);
         }
 
+        protected void btnChekIrrigationCancel_Click_Click(object sender, EventArgs e)
+        {
+            irrigationSubmit(ddlirrigationSupervisor.SelectedValue, 0);
+        }
+
+        protected void btnChekIrrigationSubmit_Click_Click(object sender, EventArgs e)
+        {
+            irrigationSubmit(ddlirrigationSupervisor.SelectedValue, 1);
+        }
         public void PlantReadySubmit(string Assigned)
         {
             int IrrigationCode = 0;
@@ -1369,7 +1386,10 @@ namespace Evo
         {
 
             Bench1 = txtBatchLocation.Text;
-            BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
+            // BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
+            gvFer.DataSource = null;
+            gvFer.DataBind();
+
             // BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
         }
 
@@ -1395,14 +1415,24 @@ namespace Evo
         protected void btnChemicalSubmit_Click(object sender, EventArgs e)
         {
 
-            SubmitChemical(ddlChemical_supervisor.SelectedValue);
+            SubmitChemical(ddlChemical_supervisor.SelectedValue,0);
         }
 
         protected void btnChemicalSFLSubmit_Click(object sender, EventArgs e)
         {
-            SubmitChemical(Session["LoginID"].ToString());
+            SubmitChemical(Session["LoginID"].ToString(),0);
         }
-        public void SubmitChemical(string Assigned)
+
+        protected void btnChekCemSubmit_Click(object sender, EventArgs e)
+        {
+            SubmitChemical(ddlChemical_supervisor.SelectedValue, 1);
+        }
+
+        protected void btnChekCemCancel_Click(object sender, EventArgs e)
+        {
+            SubmitChemical(ddlChemical_supervisor.SelectedValue, 0);
+        }
+        public void SubmitChemical(string Assigned,int Fid)
         {
             int ChemicalCode = 0;
             string Batchlocation = "";
@@ -1490,6 +1520,12 @@ namespace Evo
                     script += url;
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+
+                    if (Fid == 1)
+                    {
+                       string  BenchUp = "'" + Batchlocation + "'";
+                        objTask.UpdateIsActiveChemical(BenchUp);
+                    }
                 }
 
             }
@@ -3051,6 +3087,23 @@ namespace Evo
                         }
 
 
+                        NameValueCollection nvirrGP = new NameValueCollection();
+                        nvirrGP.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                        DataTable dtirrGPDate = objCommon.GetDataTable("SP_GetIrrigationGrowerPutAwayCheck", nvirrGP);
+
+                        if (dtirrGPDate != null && dtirrGPDate.Rows.Count > 0)
+                        {
+
+                            IrrDate.Value = Convert.ToDateTime(dtirrGPDate.Rows[0]["IrrigateSeedDate"]).ToString("yyyy-MM-dd");
+
+                        }
+                        else
+                        {
+
+                        }
+
+
+
                         NameValueCollection nvC11 = new NameValueCollection();
                         nvC11.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
                         DataTable dtSDateC = objCommon.GetDataTable("SP_GetChemicalRequestResetTaskForDaysCheck", nvC11);
@@ -3077,7 +3130,20 @@ namespace Evo
                         }
 
 
+                        NameValueCollection nvCGP = new NameValueCollection();
+                        nvCGP.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                        DataTable dtCGPDate = objCommon.GetDataTable("SP_GetChemicalGrowerPutAwayCheck", nvCGP);
 
+                        if (dtCGPDate != null && dtCGPDate.Rows.Count > 0)
+                        {
+
+                            CemDate.Value = Convert.ToDateTime(dtCGPDate.Rows[0]["ChemicalSeedDate"]).ToString("yyyy-MM-dd");
+
+                        }
+                        else
+                        {
+
+                        }
                     }
                 }
             }
@@ -3090,6 +3156,7 @@ namespace Evo
             objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
         }
 
-     
+       
+
     }
 }
