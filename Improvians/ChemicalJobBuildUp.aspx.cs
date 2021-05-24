@@ -532,9 +532,9 @@ namespace Evo
                 NameValueCollection nvn = new NameValueCollection();
                 nvn.Add("@LoginID", Session["LoginID"].ToString());
                 nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                nvn.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
                 nvn.Add("@TaskName", "Chemical");
-                nv.Add("@TaskRequestKey", TaskRequestKey);
+                nvn.Add("@TaskRequestKey", TaskRequestKey);
                 nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
             }
