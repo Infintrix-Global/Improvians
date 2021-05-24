@@ -136,6 +136,7 @@
     <Content Include="Admin\PlantReadyConfiguration.aspx" />
     <Content Include="Admin\js\custom.js" />
     <Content Include="Admin\NotificationPreference.aspx" />
+    <Content Include="Admin\PullData.aspx" />
     <Content Include="Admin\TaskTypeWorkHoursMaster.aspx" />
     <Content Include="Admin\TaskTypeMaster.aspx" />
     <Content Include="Admin\css\all.min.css" />
@@ -610,6 +611,13 @@
     </Compile>
     <Compile Include="Admin\NotificationPreference.aspx.designer.cs">
       <DependentUpon>NotificationPreference.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PullData.aspx.cs">
+      <DependentUpon>PullData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PullData.aspx.designer.cs">
+      <DependentUpon>PullData.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\TaskTypeWorkHoursMaster.aspx.cs">
       <DependentUpon>TaskTypeWorkHoursMaster.aspx</DependentUpon>
