@@ -10,10 +10,10 @@
 
         <div class="row">
 
-            <div class="col-lg-2">
+<%--            <div class="col-lg-2">
                 <label>Seedline Facility </label>
                 <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-            </div>
+            </div>--%>
 
             <div class="col-lg-2">
                 <label>Crop Type </label>

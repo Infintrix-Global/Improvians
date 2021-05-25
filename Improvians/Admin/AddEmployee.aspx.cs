@@ -104,14 +104,23 @@ namespace Evo.Admin
                     lblmsg.ForeColor = System.Drawing.Color.Green;
                     if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12")
                     {
+                        string Facility = "";
                         foreach (RepeaterItem item in repFacility.Items)
                         {
                             CheckBox chkFacility = (CheckBox)item.FindControl("chkFacility");
                             if (chkFacility.Checked)
                             {
-                                objCommon.AddEmployeeFacility(_isInserted, ((HiddenField)item.FindControl("hdnValue")).Value);
+                                
+                                Facility += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
                             }
                         }
+
+                        if (Facility != "")
+                        {
+                            Facility = Facility.Remove(Facility.Length - 1);
+                        }
+
+                        objCommon.AddEmployeeFacility(_isInserted, Facility);
                     }
                     else
                     {

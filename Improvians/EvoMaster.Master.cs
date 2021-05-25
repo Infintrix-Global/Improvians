@@ -118,7 +118,7 @@ namespace Evo
                 lnkcreatetask.Attributes.Remove("class");
                 lnkmytask.Attributes.Remove("class");
             }
-            if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
+            if (Session["Role"].ToString() == "7")
             {
                 lblFacility.Text = "";
 
@@ -127,7 +127,7 @@ namespace Evo
             {
                 lblFacility.Text = Session["Facility"].ToString();
             }
-
+          //  lblFacility.Text = Session["Facility"].ToString();
             checkNotification(1);
         }
 
