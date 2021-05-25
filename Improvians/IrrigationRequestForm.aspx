@@ -29,8 +29,6 @@
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-
-
             </div>
 
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
@@ -45,7 +43,6 @@
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-
         </div>
 
         <div class="row mb-1 mb-md-4 align-items-end">
@@ -63,12 +60,12 @@
                 </asp:DropDownList>
             </div>
 
-
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Task Type</label>
                 <asp:DropDownList ID="RadioButtonListGno" runat="server" OnSelectedIndexChanged="RadioButtonListF_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                 </asp:DropDownList>
             </div>
+
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>From Date</label>
                 <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
@@ -82,11 +79,7 @@
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
                 <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnManual_Click" />
             </div>
-
-
-
         </div>
-
 
         <div class="data__table">
             <asp:GridView ID="GridIrrigation" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="GridIrrigation_RowDataBound"
@@ -94,7 +87,6 @@
                 GridLines="None" OnRowCommand="GridIrrigation_RowCommand" DataKeyNames="GreenHouseID,jobcode,GrowerPutAwayId,IrrigationCode,TaskRequestKey"
                 ShowHeaderWhenEmpty="True" Width="100%">
                 <Columns>
-
                     <%--                        <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                             <HeaderTemplate>
                                 <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
@@ -117,7 +109,6 @@
                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
-
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -151,17 +142,15 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-
+                    <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Irrigation Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblIrrDate" runat="server" Text='<%# Eval("IrrigateSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
-                        <ItemTemplate>
-                            <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -256,7 +245,6 @@
                     </div>
                     <div class="col-auto">
                         <label class="d-block">Spray Date</label>
-
                         <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                     </div>
                     <%--  <div class="col-auto">
@@ -268,7 +256,6 @@
 
                 <div class="row align-items-center mt-sm-3">
                     <div class="col-12 col-sm-6 col-lg-4">
-
                         <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
                     </div>
 
@@ -277,7 +264,6 @@
                         <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

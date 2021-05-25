@@ -14,7 +14,7 @@
         </h2>
 
         <div class="row">
-             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
 
@@ -26,21 +26,21 @@
                 </cc1:AutoCompleteExtender>
             </div>
 
-             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <%--<div class="col-lg-3 col-md-4 mb-3 mb-lg-0">--%>
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Assigned By </label>
                 <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
 
-             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
@@ -69,7 +69,7 @@
                 <label>To Date </label>
                 <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
-             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action mr-2" OnClick="btnSearch_Click" />
                 <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnResetSearch_Click" />
             </div>
@@ -81,7 +81,6 @@
                 GridLines="None" OnRowCommand="gvMoveReq_RowCommand" DataKeyNames="wo,MoveId,jid,jobcode,GreenHouseID,Trays,itemdescp,TaskRequestKey"
                 ShowHeaderWhenEmpty="True" Width="100%">
                 <Columns>
-
                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblGreenHouseID" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -91,11 +90,9 @@
                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
-
                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
-
                         </ItemTemplate>
                     </asp:TemplateField>
 

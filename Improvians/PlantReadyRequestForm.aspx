@@ -49,11 +49,10 @@
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-
         </div>
 
         <div class="row mb-2 mb-md-4 align-items-end">
-             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Crop </label>
                 <asp:DropDownList ID="ddlCrop" runat="server" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlCrop_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </div>
@@ -71,7 +70,7 @@
                 <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
 
-             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>To Date </label>
                 <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
@@ -149,7 +148,11 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
+                            <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Plant Ready Work Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
@@ -157,14 +160,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
-                            <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                         <%--    <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                            <%--    <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDateCountNo" runat="server" Text='<%# Eval("DateCountNo")  %>'></asp:Label>
                                 </ItemTemplate>
@@ -188,7 +184,6 @@
                                     <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                     <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschedule" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
                                     <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" OnClientClick="return confirm('Are you sure you want to dismiss this ?'); " CommandName="Dismiss" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
-
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -245,21 +240,16 @@
 
                         <div class="mb-3 mb-md-0 col-12 col-md-auto">
                             <label>Comments </label>
-
                             <asp:TextBox ID="txtPlantComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-
                         </div>
                         <div class="col-12 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-
                             <h3 class="robotobold"></h3>
                             <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
                             <asp:Label ID="lblPRRId" Visible="false" runat="server"></asp:Label>
                             <asp:Label ID="lblJid" Visible="false" runat="server"></asp:Label>
                             <asp:Label ID="lblIsAssistant" Visible="false" runat="server"></asp:Label>
-
                         </div>
                         <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
-
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
                         </div>
