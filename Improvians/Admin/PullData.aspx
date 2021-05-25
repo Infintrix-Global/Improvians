@@ -20,7 +20,7 @@
 
 
                             <div class="col-12 text-center order-md-1">
-                                <asp:Button ID="btAdd" runat="server" Text="Reset and Pull Data" TabIndex="10" class="submit-bttn bttn bttn-primary" OnClick="btAdd_Click" />
+                                <asp:Button ID="btAdd" runat="server" Text="Reset and Pull Data"  class="submit-bttn bttn bttn-primary" OnClick="btAdd_Click" />
 
                               
                             </div>

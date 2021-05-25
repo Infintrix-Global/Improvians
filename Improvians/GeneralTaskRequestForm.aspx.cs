@@ -400,26 +400,20 @@ namespace Evo
         }
         public void BindSupervisorList()
         {
-
             NameValueCollection nv = new NameValueCollection();
-            if (Session["Role"].ToString() == "1")
-            {
-                ddlGeneralAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlGeneralAssignment.DataTextField = "EmployeeName";
-                ddlGeneralAssignment.DataValueField = "ID";
-                ddlGeneralAssignment.DataBind();
-                ddlGeneralAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
-            if (Session["Role"].ToString() == "12")
-            {
-                ddlGeneralAssignment.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlGeneralAssignment.DataTextField = "EmployeeName";
-                ddlGeneralAssignment.DataValueField = "ID";
-                ddlGeneralAssignment.DataBind();
-                ddlGeneralAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+
+            ddlGeneralAssignment.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlGeneralAssignment.DataTextField = "EmployeeName";
+            ddlGeneralAssignment.DataValueField = "ID";
+            ddlGeneralAssignment.DataBind();
+            ddlGeneralAssignment.Items.Insert(0, new ListItem("--Select--", "0"));
+
         }
         public void Bindcname()
         {
@@ -511,7 +505,7 @@ namespace Evo
             {
                 string ChId = "";
                 string Did = gvTask.DataKeys[rowIndex].Values[1].ToString();
-
+                string TaskRequestKey = gvTask.DataKeys[rowIndex].Values[1].ToString();
                 if (ChId == "")
                 {
                     ChId = "0";
@@ -533,7 +527,7 @@ namespace Evo
 
                 if (result > 0)
                 {
-                    Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}", result, ChId, Did));
+                    Response.Redirect(String.Format("~/GeneralTaskCompletion.aspx?Did={0}&Chid={1}&DrId={2}&IsF={3}&TaskRequestKey={4}", result, ChId, Did, 0, TaskRequestKey));
                 }
 
                 //    userinput.Visible = true;

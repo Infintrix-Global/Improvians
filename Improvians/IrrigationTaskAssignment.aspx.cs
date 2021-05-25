@@ -100,7 +100,12 @@ namespace Evo
         public void BindOperatorList()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlOperator.DataSource = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+            ddlOperator.DataSource = dt;
             ddlOperator.DataTextField = "EmployeeName";
             ddlOperator.DataValueField = "ID";
             ddlOperator.DataBind();

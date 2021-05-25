@@ -494,27 +494,32 @@ namespace Evo
         {
 
 
+            //NameValueCollection nv = new NameValueCollection();
+
+            //DataTable dt = new DataTable();
+            //if (Session["Role"].ToString() == "1")
+            //{
+            //    dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+            //    //   dt = objCommon.GetDataTable("SP_GetRoleForGrowerNew", nv);
+
+            //}
+            //else if (Session["Role"].ToString() == "12")
+            //{
+            //    dt = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+            //}
+            //else
+            //{
+
+
+            //    nv.Add("@RoleID", "3");
+            //    dt = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+
+            //}
             NameValueCollection nv = new NameValueCollection();
-
             DataTable dt = new DataTable();
-            if (Session["Role"].ToString() == "1")
-            {
-                dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //   dt = objCommon.GetDataTable("SP_GetRoleForGrowerNew", nv);
-
-            }
-            else if (Session["Role"].ToString() == "12")
-            {
-                dt = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-            }
-            else
-            {
-
-
-                nv.Add("@RoleID", "3");
-                dt = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
-
-            }
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv); ;
 
 
             ddlgerminationSupervisor.DataSource = dt;

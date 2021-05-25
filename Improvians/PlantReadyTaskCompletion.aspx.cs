@@ -399,6 +399,7 @@ namespace Evo
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtgeneralComment.Text);
                     nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@GrowerputawayID", "0");
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequesMenualDetailsCreateTask", nv);
                 }
             }

@@ -21,6 +21,7 @@ namespace Evo.Admin
             if (!IsPostBack)
             {
                 BindFacility();
+                BindFacilitySelect();
                 BindRole();
                 string eid = Session["EmployeeID"].ToString();
                 int x = Convert.ToInt32(eid);
@@ -33,6 +34,17 @@ namespace Evo.Admin
             repFacility.DataSource = objCommon.GetFacilityMaster();
             repFacility.DataBind();
             //ddlFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+        public void BindFacilitySelect()
+        {
+
+
+            ddlFacility.DataSource = objCommon.GetFacilityMaster();
+            ddlFacility.DataTextField = "FacilityName";
+            ddlFacility.DataValueField = "FacilityID";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         public void BindRole()
@@ -145,18 +157,44 @@ namespace Evo.Admin
                     txtEmail.Text = dt1.Tables[0].Rows[0]["Email"].ToString();
                     txtUserName.Text = dt1.Tables[0].Rows[0]["EmployeeCode"].ToString();
                 }
-                if (dt1.Tables[1].Rows.Count > 0)
+
+
+                if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12")
                 {
-                    foreach (DataRow dr in dt1.Tables[1].Rows)
+                    BindFacility();
+                    ddlFacility.Visible = false;
+                    repFacility.Visible = true;
+
+                    if (dt1.Tables[1].Rows.Count > 0)
                     {
-                        foreach (RepeaterItem item in repFacility.Items)
+                        foreach (DataRow dr in dt1.Tables[1].Rows)
                         {
-                            if (((HiddenField)item.FindControl("hdnValue")).Value == dr["FacilityID"].ToString())
-                                ((CheckBox)item.FindControl("chkFacility")).Checked = true;
+                            foreach (RepeaterItem item in repFacility.Items)
+                            {
+                                if (((HiddenField)item.FindControl("hdnValue")).Value == dr["FacilityID"].ToString())
+                                    ((CheckBox)item.FindControl("chkFacility")).Checked = true;
+                            }
+                            //chkDepartment.SelectedValue = dr["DepartmentID"].ToString();
                         }
-                        //chkDepartment.SelectedValue = dr["DepartmentID"].ToString();
                     }
                 }
+                else
+                {
+                    if (dt1.Tables[1].Rows.Count > 0)
+                    {
+                        BindFacilitySelect();
+                        repFacility.Visible = false;
+                        ddlFacility.Visible = true;
+
+                        ddlFacility.SelectedValue = dt1.Tables[1].Rows[0]["FacilityID"].ToString();
+                    }
+
+                }
+
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -180,7 +218,7 @@ namespace Evo.Admin
                     Photo = lblProfile.Text,
                     EmployeeCode = txtUserName.Text,
                     Password = objCommon.Encrypt(txtPassword.Text),
-                    NavisionCustomerID =""
+                    NavisionCustomerID = ""
                 };
                 _isInserted = objCommon.UpdateEmployee(objEmployee);
                 if (_isInserted == -1)
@@ -196,13 +234,20 @@ namespace Evo.Admin
 
                     lblmsg.Text = "Employee Updated ";
                     lblmsg.ForeColor = System.Drawing.Color.Green;
-                    foreach (RepeaterItem item in repFacility.Items)
+                    if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12")
                     {
-                        CheckBox chkFacility = (CheckBox)item.FindControl("chkFacility");
-                        if (chkFacility.Checked)
+                        foreach (RepeaterItem item in repFacility.Items)
                         {
-                            objCommon.AddEmployeeFacility(Convert.ToInt32(Session["EmployeeID"].ToString()), ((HiddenField)item.FindControl("hdnValue")).Value);
+                            CheckBox chkFacility = (CheckBox)item.FindControl("chkFacility");
+                            if (chkFacility.Checked)
+                            {
+                                objCommon.AddEmployeeFacility(Convert.ToInt32(Session["EmployeeID"].ToString()), ((HiddenField)item.FindControl("hdnValue")).Value);
+                            }
                         }
+                    }
+                    else
+                    {
+                        objCommon.AddEmployeeFacility(_isInserted, ddlFacility.SelectedValue);
                     }
                     Response.Redirect("~/Admin/ViewEmployee.aspx");
 

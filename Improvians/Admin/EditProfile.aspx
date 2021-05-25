@@ -131,6 +131,8 @@
                                     <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("FacilityID")%>' />
                                 </ItemTemplate>
                             </asp:Repeater>
+
+                               <asp:DropDownList ID="ddlFacility"  runat="server" class="custom__dropdown robotomd" ></asp:DropDownList>
                         </div>
                     </div>
 

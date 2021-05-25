@@ -700,22 +700,26 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
 
             DataTable dt = new DataTable();
-            if (Session["Role"].ToString() == "1")
-            {
-                dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //   dt = objCommon.GetDataTable("SP_GetRoleForGrowerNew", nv);
+            //if (Session["Role"].ToString() == "1")
+            //{
+            //    dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
+            //    //   dt = objCommon.GetDataTable("SP_GetRoleForGrowerNew", nv);
 
-            }
-            else if (Session["Role"].ToString() == "12")
-            {
-                dt = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-            }
-            else
-            {
-                nv.Add("@RoleID", "3");
-                dt = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
+            //}
+            //else if (Session["Role"].ToString() == "12")
+            //{
+            //    dt = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
+            //}
+            //else
+            //{
+            //    nv.Add("@RoleID", "3");
+            //    dt = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
 
-            }
+            //}
+
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv); ;
 
 
             ddlgerminationSupervisor.DataSource = dt;
@@ -814,7 +818,7 @@ namespace Evo
 
         }
 
-        public void FertilizationSubmit(string Assigned,int IsF)
+        public void FertilizationSubmit(string Assigned, int IsF)
         {
 
 
@@ -864,7 +868,9 @@ namespace Evo
                     nv4.Add("@FertilizationCode", FertilizationCode.ToString());
                     nv4.Add("@FertilizationDate", txtFDate.Text);
                     nv4.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                    nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                  //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv4.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                  //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
 
 
@@ -889,7 +895,7 @@ namespace Evo
 
                     if (IsF == 1)
                     {
-                       string BenchUp = "'" + Batchlocation + "'";
+                        string BenchUp = "'" + Batchlocation + "'";
                         objTask.UpdateIsActiveDatat(BenchUp);
                     }
                     //string message1 = "$('#confirmModal').modal('show')";
@@ -930,12 +936,12 @@ namespace Evo
 
         protected void btnFSubmit_Click(object sender, EventArgs e)
         {
-            FertilizationSubmit(ddlFertilizationSupervisor.SelectedValue,0);
+            FertilizationSubmit(ddlFertilizationSupervisor.SelectedValue, 0);
         }
 
         protected void btnSaveFLSubmit_Click(object sender, EventArgs e)
         {
-            FertilizationSubmit(Session["LoginID"].ToString(),0);
+            FertilizationSubmit(Session["LoginID"].ToString(), 0);
         }
 
         protected void btnChekFSubmit_Click(object sender, EventArgs e)
@@ -974,8 +980,9 @@ namespace Evo
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtGcomments.Text);
                     nv.Add("@Role", Session["Role"].ToString());
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-
+                  //  nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                   // nv.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequesMenualDetailsCreateTask", nv);
                 }
             }
@@ -1127,7 +1134,7 @@ namespace Evo
             txtirrigationSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
         }
 
-        public void irrigationSubmit(string Assigned,int FID)
+        public void irrigationSubmit(string Assigned, int FID)
         {
             int IrrigationCode = 0;
             string SprayTaskForDaysDate = "";
@@ -1150,7 +1157,7 @@ namespace Evo
 
                     string TodatDate;
                     string ReSetSprayDate = "";
-                    string Batchlocation ="";
+                    string Batchlocation = "";
 
                     Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
 
@@ -1179,8 +1186,9 @@ namespace Evo
                     nv.Add("@Nots", txtIrrComments.Text.Trim());
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@Role", Session["Role"].ToString());
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-
+                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                    //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
                     result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
 
@@ -1194,12 +1202,12 @@ namespace Evo
                     script += url;
                     script += "'; }";
                     ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                    if(FID ==1)
+                    if (FID == 1)
                     {
-                       string  BenchUp = "'" + Batchlocation + "'";
+                        string BenchUp = "'" + Batchlocation + "'";
                         objTask.UpdateIsActiveIrrigation(BenchUp);
                     }
-                   
+
                 }
             }
 
@@ -1223,12 +1231,12 @@ namespace Evo
         }
         protected void btnirrigationSubmit_Click(object sender, EventArgs e)
         {
-            irrigationSubmit(ddlirrigationSupervisor.SelectedValue,0);
+            irrigationSubmit(ddlirrigationSupervisor.SelectedValue, 0);
         }
 
         protected void btnSaveirrigation_Click(object sender, EventArgs e)
         {
-            irrigationSubmit(Session["LoginID"].ToString(),0);
+            irrigationSubmit(Session["LoginID"].ToString(), 0);
         }
 
         protected void btnChekIrrigationCancel_Click_Click(object sender, EventArgs e)
@@ -1306,8 +1314,9 @@ namespace Evo
                     nv.Add("@PlantDate", txtPlantDate.Text);
                     nv.Add("@Role", Session["Role"].ToString());
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
-
+                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                    //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
                 }
 
@@ -1415,12 +1424,12 @@ namespace Evo
         protected void btnChemicalSubmit_Click(object sender, EventArgs e)
         {
 
-            SubmitChemical(ddlChemical_supervisor.SelectedValue,0);
+            SubmitChemical(ddlChemical_supervisor.SelectedValue, 0);
         }
 
         protected void btnChemicalSFLSubmit_Click(object sender, EventArgs e)
         {
-            SubmitChemical(Session["LoginID"].ToString(),0);
+            SubmitChemical(Session["LoginID"].ToString(), 0);
         }
 
         protected void btnChekCemSubmit_Click(object sender, EventArgs e)
@@ -1432,7 +1441,7 @@ namespace Evo
         {
             SubmitChemical(ddlChemical_supervisor.SelectedValue, 0);
         }
-        public void SubmitChemical(string Assigned,int Fid)
+        public void SubmitChemical(string Assigned, int Fid)
         {
             int ChemicalCode = 0;
             string Batchlocation = "";
@@ -1494,7 +1503,9 @@ namespace Evo
                     nv.Add("@Comments", txtCComments.Text);
                     nv.Add("@Method", ddlMethod.SelectedValue);
                     nv.Add("@seedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                    //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
 
                     //NameValueCollection nvn = new NameValueCollection();
@@ -1523,7 +1534,7 @@ namespace Evo
 
                     if (Fid == 1)
                     {
-                       string  BenchUp = "'" + Batchlocation + "'";
+                        string BenchUp = "'" + Batchlocation + "'";
                         objTask.UpdateIsActiveChemical(BenchUp);
                     }
                 }
@@ -1612,7 +1623,9 @@ namespace Evo
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     nv.Add("@ChId", "0");
                     nv.Add("@Comments", txtMoveComments.Text.Trim());
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                    //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
 
                     NameValueCollection nvn = new NameValueCollection();
@@ -1691,7 +1704,9 @@ namespace Evo
                     nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@DumpDate", txtDumpDate.Text);
                     nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                    //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
                 }
             }
@@ -1750,6 +1765,8 @@ namespace Evo
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
                 if (chckrw.Checked == true)
                 {
+                   
+
                     hasValue = true;
                     NameValueCollection nv = new NameValueCollection();
                     nv.Add("@Customer", "");
@@ -1772,7 +1789,8 @@ namespace Evo
 
                     nv.Add("@LoginId", Session["LoginID"].ToString());
                     nv.Add("@Comments", txtgeneralComment.Text);
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                    nv.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result16 = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequesMenualDetailsCreateTask", nv);
                 }
             }
@@ -1899,7 +1917,9 @@ namespace Evo
                     nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@CropDate", txtDumpDate.Text);
                     nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
-                    nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                    //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddCropReportRequestManuaCreateTask", nv);
 
                 }
@@ -2361,8 +2381,8 @@ namespace Evo
 
                 Label lblTraySize = (Label)e.Row.FindControl("lblTraySize");
                 Label lblSeededDate = (Label)e.Row.FindControl("lblSeededDate");
-             //   Label lblPlantReadyDate = (Label)e.Row.FindControl("lblPlantReadyDate");
-              //  Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
+                //   Label lblPlantReadyDate = (Label)e.Row.FindControl("lblPlantReadyDate");
+                //  Label lblPlantDueDate = (Label)e.Row.FindControl("lblPlantDueDate");
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
@@ -2380,8 +2400,8 @@ namespace Evo
                     //}
                     PlanrDDate = Convert.ToInt32(dt.Rows[0]["dateshift"]);
                     PlantPDate = Convert.ToInt32(dt.Rows[1]["dateshift"]);
-                 //   lblPlantReadyDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlantPDate).ToString("MM/dd/yyyy");
-                  //  lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
+                    //   lblPlantReadyDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlantPDate).ToString("MM/dd/yyyy");
+                    //  lblPlantDueDate.Text = Convert.ToDateTime(lblSeededDate.Text).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
 
                 }
 
@@ -2443,7 +2463,9 @@ namespace Evo
                         nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                         nv.Add("@DumpDate", txtDumpDate.Text);
                         nv.Add("@RoleId", "0");
-                        nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                        //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                         result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTaskStart", nv);
 
                     }
@@ -2508,7 +2530,9 @@ namespace Evo
                         nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                         nv.Add("@ChId", "0");
                         nv.Add("@Comments", txtMoveComments.Text.Trim());
-                        nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                        //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                         result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTaskStart", nv);
 
 
@@ -2605,7 +2629,9 @@ namespace Evo
                         nv.Add("@PlantDate", txtPlantDate.Text);
                         nv.Add("@Role", Session["Role"].ToString());
                         nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                        nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                        //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
                         result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTaskStart", nv);
                     }
@@ -2988,7 +3014,9 @@ namespace Evo
                         nv.Add("@TraysInspected", txtTGerTrays.Text);
                         nv.Add("@LoginId", Session["LoginID"].ToString());
                         nv.Add("@Comments", txtGcomments.Text);
-                        nv.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
+                        //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                         result16 = objCommon.GetDataExecuteScaler("SP_AddGerminationRequesMenualDetailsCreateTaskStart", nv);
                     }
                 }
@@ -3037,7 +3065,7 @@ namespace Evo
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDate.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDate.Rows[0]["ResetSprayTaskForDays"].ToString();
                                 FerDate.Value = dtSDate.Rows[0]["FertilizationDate"].ToString();
-                                
+
                             }
                         }
                         else
@@ -3054,13 +3082,13 @@ namespace Evo
 
                         if (dtGPDate != null && dtGPDate.Rows.Count > 0)
                         {
-                         
-                                FerDate.Value = Convert.ToDateTime(dtGPDate.Rows[0]["FertilizeSeedDate"]).ToString("yyyy-MM-dd"); 
+
+                            FerDate.Value = Convert.ToDateTime(dtGPDate.Rows[0]["FertilizeSeedDate"]).ToString("yyyy-MM-dd");
 
                         }
                         else
                         {
-                          
+
                         }
 
                         NameValueCollection nv111 = new NameValueCollection();
@@ -3081,8 +3109,8 @@ namespace Evo
                         }
                         else
                         {
-                           // SprayTaskForDaysDate.Value = "";
-                           // ToDaydate.Value = "";
+                            // SprayTaskForDaysDate.Value = "";
+                            // ToDaydate.Value = "";
                             // SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
                         }
 
@@ -3118,15 +3146,15 @@ namespace Evo
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDateC.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDateC.Rows[0]["ResetSprayTaskForDays"].ToString();
                                 CemDate.Value = dtSDate.Rows[0]["ChemicalDate"].ToString();
-                                
+
 
 
                             }
                         }
                         else
                         {
-                          //  SprayTaskForDaysDate.Value = "";
-                          //  ToDaydate.Value = "";
+                            //  SprayTaskForDaysDate.Value = "";
+                            //  ToDaydate.Value = "";
                         }
 
 
@@ -3156,7 +3184,7 @@ namespace Evo
             objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
         }
 
-       
+
 
     }
 }

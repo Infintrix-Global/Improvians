@@ -135,24 +135,18 @@ namespace Evo
         public void BindSupervisor()
         {
             NameValueCollection nv = new NameValueCollection();
-            if (Session["Role"].ToString() == "1")
-            {
-                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlLogisticManager.DataTextField = "EmployeeName";
-                ddlLogisticManager.DataValueField = "ID";
-                ddlLogisticManager.DataBind();
-                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
-            if (Session["Role"].ToString() == "12")
-            {
-                ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlLogisticManager.DataTextField = "EmployeeName";
-                ddlLogisticManager.DataValueField = "ID";
-                ddlLogisticManager.DataBind();
-                ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+            ddlLogisticManager.DataSource = dt;
+            //ddlLogisticManager.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlLogisticManager.DataTextField = "EmployeeName";
+            ddlLogisticManager.DataValueField = "ID";
+            ddlLogisticManager.DataBind();
+            ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+
         }
 
 

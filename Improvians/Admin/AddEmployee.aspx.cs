@@ -18,11 +18,12 @@ namespace Evo.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {                
+            {
                 BindRole();
-                BindFacility();
+                //  BindFacility();
+                BindFacilitySelect();
             }
-        }      
+        }
 
         public void BindRole()
         {
@@ -37,6 +38,19 @@ namespace Evo.Admin
         {
             repFacility.DataSource = objCommon.GetFacilityMaster();
             repFacility.DataBind();
+
+
+        }
+
+        public void BindFacilitySelect()
+        {
+
+
+            ddlFacility.DataSource = objCommon.GetFacilityMaster();
+            ddlFacility.DataTextField = "FacilityName";
+            ddlFacility.DataValueField = "FacilityID";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         protected void btAdd_Click(object sender, EventArgs e)
@@ -46,48 +60,50 @@ namespace Evo.Admin
                 DataTable dtCheckEmail = new DataTable();
                 //if ((dtCheckEmail = objCommon.CheckEmailExists(txtEmail.Text.Trim())).Rows.Count == 0)
                 //{
-                    int _isInserted = -1;
-                  
-                    Employee objEmployee = new Employee()
+                int _isInserted = -1;
+
+                Employee objEmployee = new Employee()
+                {
+
+                    Name = txtName.Text,
+                    Mobile = txtMobile.Text,
+                    Password = objCommon.Encrypt(txtPassword.Text),
+                    EmployeeCode = txtUserName.Text,
+                    Email = txtEmail.Text,
+                    Designation = ddlDesignation.SelectedValue,
+                    Department = "",
+                    Photo = lblProfile.Text,
+                    NavisionCustomerID = ""
+                };
+
+                _isInserted = objCommon.InsertEmployee(objEmployee);
+
+                if (_isInserted == -1)
+                {
+
+                    lblmsg.Text = "Failed to Add Employee";
+                    lblmsg.ForeColor = System.Drawing.Color.Red;
+
+                }
+                //else if (_isInserted == 0)
+                //{
+
+                //    lblmsg.Text = "Mobile Number Exists";
+                //    lblmsg.ForeColor = System.Drawing.Color.Red;
+                //}
+                else if (_isInserted == -2)
+                {
+
+                    lblmsg.Text = "User Name Exists";
+                    lblmsg.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+
+                    lblmsg.Text = "Employee Added ";
+                    lblmsg.ForeColor = System.Drawing.Color.Green;
+                    if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12")
                     {
-
-                        Name = txtName.Text,
-                        Mobile = txtMobile.Text,
-                        Password = objCommon.Encrypt(txtPassword.Text),
-                        EmployeeCode=txtUserName.Text,
-                        Email = txtEmail.Text,
-                        Designation = ddlDesignation.SelectedValue,
-                        Department = "",
-                        Photo = lblProfile.Text,
-                        NavisionCustomerID =""
-                    };
-
-                    _isInserted = objCommon.InsertEmployee(objEmployee);
-
-                    if (_isInserted == -1)
-                    {
-
-                        lblmsg.Text = "Failed to Add Employee";
-                        lblmsg.ForeColor = System.Drawing.Color.Red;
-
-                    }
-                    //else if (_isInserted == 0)
-                    //{
-
-                    //    lblmsg.Text = "Mobile Number Exists";
-                    //    lblmsg.ForeColor = System.Drawing.Color.Red;
-                    //}
-                    else if (_isInserted == -2)
-                    {
-
-                        lblmsg.Text = "User Name Exists";
-                        lblmsg.ForeColor = System.Drawing.Color.Red;
-                    }
-                    else
-                    {
-
-                        lblmsg.Text = "Employee Added ";
-                        lblmsg.ForeColor = System.Drawing.Color.Green;
                         foreach (RepeaterItem item in repFacility.Items)
                         {
                             CheckBox chkFacility = (CheckBox)item.FindControl("chkFacility");
@@ -96,10 +112,15 @@ namespace Evo.Admin
                                 objCommon.AddEmployeeFacility(_isInserted, ((HiddenField)item.FindControl("hdnValue")).Value);
                             }
                         }
-                        // objCommon.AddEmployeeFacility(_isInserted, ddlFacility.SelectedValue);
-                        Response.Redirect("~/Admin/ViewEmployee.aspx");
-                        btclear_Click(sender, e);
                     }
+                    else
+                    {
+                        objCommon.AddEmployeeFacility(_isInserted,ddlFacility.SelectedValue);
+                    }
+                    // objCommon.AddEmployeeFacility(_isInserted, ddlFacility.SelectedValue);
+                    Response.Redirect("~/Admin/ViewEmployee.aspx");
+                    btclear_Click(sender, e);
+                }
                 //}
                 //else
                 //{
@@ -193,5 +214,20 @@ namespace Evo.Admin
             }
         }
 
+        protected void ddlDesignation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12")
+            {
+                BindFacility();
+                ddlFacility.Visible = false;
+                repFacility.Visible = true;
+            }
+            else
+            {
+                BindFacilitySelect();
+                repFacility.Visible = false;
+                ddlFacility.Visible = true;
+            }
+        }
     }
 }

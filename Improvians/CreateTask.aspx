@@ -267,6 +267,7 @@
                                             <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
+                                            <asp:Label ID="lblJIdPU" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 

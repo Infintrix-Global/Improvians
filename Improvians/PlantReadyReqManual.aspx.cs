@@ -60,7 +60,12 @@ namespace Evo
         public void BindSupervisorList()
         {
             NameValueCollection nv = new NameValueCollection();
-            ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+            ddlSupervisor.DataSource = dt;
             ddlSupervisor.DataTextField = "EmployeeName";
             ddlSupervisor.DataValueField = "ID";
             ddlSupervisor.DataBind();

@@ -31,7 +31,7 @@ namespace Evo
                 Bindcname("0", "0", "0");
                 BindCrop();
                 BindAssignByList("0", "0", "0");
-                BindGridIrrigation("0",0);
+                BindGridIrrigation("0", 0);
                 BindSupervisorList();
             }
         }
@@ -361,7 +361,7 @@ namespace Evo
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
             nv.Add("@AssignedBy", ddlAssignedBy.SelectedValue);
-          
+
 
             if (Session["Role"].ToString() == "12")
             {
@@ -415,27 +415,21 @@ namespace Evo
             //ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
             NameValueCollection nv = new NameValueCollection();
-            if (Session["Role"].ToString() == "1")
-            {
-                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
-            if (Session["Role"].ToString() == "12")
-            {
-                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+            ddlSupervisor.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlSupervisor.DataTextField = "EmployeeName";
+            ddlSupervisor.DataValueField = "ID";
+            ddlSupervisor.DataBind();
+            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
         }
 
-     
+
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             //RadioButtonListSourse.Items[0].Selected = false;
@@ -590,7 +584,7 @@ namespace Evo
         protected void GridIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridIrrigation.PageIndex = e.NewPageIndex;
-            BindGridIrrigation("0",1);
+            BindGridIrrigation("0", 1);
         }
 
         protected void btnAssign_Click(object sender, EventArgs e)
@@ -629,7 +623,7 @@ namespace Evo
             Response.Redirect("~/IrrigationReqManual.aspx");
         }
 
-       
+
 
         protected void GridIrrigation_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -696,6 +690,6 @@ namespace Evo
             }
         }
 
-      
+
     }
 }

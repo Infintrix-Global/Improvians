@@ -25,10 +25,13 @@ namespace Evo.Admin
         BAL_CommonMasters objCOm = new BAL_CommonMasters();
         public static DataTable AllData = new DataTable();
         General objGeneral = new General();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
         }
+
 
         protected void btAdd_Click(object sender, EventArgs e)
         {
