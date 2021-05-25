@@ -37,6 +37,8 @@ namespace Evo
 
         public static DataTable dtCTrays = new DataTable()
         { Columns = { "Fertilizer", "Tray", "SQFT" } };
+
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Session["LoginID"] == null)
@@ -48,6 +50,8 @@ namespace Evo
                 this.Page.MasterPageFile = "~/Customer/CustomerMaster.master";
             }
         }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -239,12 +243,16 @@ namespace Evo
         }
         public void BindJobCode(string ddlBench)
         {
+
+
             ddlJobNo.Items.Clear();
             ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", ""));
+
+
         }
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -453,6 +461,7 @@ namespace Evo
 
             }
         }
+
         #region DATASET HELPER  
         private bool ColumnEqual(object A, object B)
         {
@@ -508,6 +517,8 @@ namespace Evo
             string sqr = "Select L.ID,EmployeeName,Mobile,Email,Photo from Login L join CustomerSalesMapping C on L.ID=C.SalesID where C.CustomerID=" + Session["LoginID"].ToString();
             return objGen.GetDatasetByCommand(sqr);
         }
+
+
 
     }
 }

@@ -15,7 +15,7 @@
         </h2>
         <%-- <asp:UpdatePanel ID="up1" runat="server">
                 <ContentTemplate>--%>
-          <div class="row">
+        <div class="row">
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
@@ -71,7 +71,6 @@
                 </asp:DropDownList>
             </div>
 
-
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Task Type</label>
                 <asp:DropDownList ID="RadioButtonListGno" runat="server" OnSelectedIndexChanged="RadioButtonListF_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
@@ -90,16 +89,7 @@
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
                 <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnManual_Click" />
             </div>
-
-
-
         </div>
-
-
-
-
-
-        
 
         <div class="portlet light pt-3">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
@@ -149,14 +139,11 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
                             <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-
 
                             <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>

@@ -94,34 +94,20 @@ namespace Evo
         public void BindSupervisor()
         {
 
-            //NameValueCollection nv = new NameValueCollection();
-            //nv.Add("@RoleID", "11");
-            //ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleWiseEmployee", nv); ;
-            //ddlsupervisor.DataTextField = "EmployeeName";
-            //ddlsupervisor.DataValueField = "ID";
-            //ddlsupervisor.DataBind();
-            //ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-
 
             NameValueCollection nv = new NameValueCollection();
-            if (Session["Role"].ToString() == "1")
-            {
-                ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlsupervisor.DataTextField = "EmployeeName";
-                ddlsupervisor.DataValueField = "ID";
-                ddlsupervisor.DataBind();
-                ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
-            if (Session["Role"].ToString() == "12")
-            {
-                ddlsupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlsupervisor.DataTextField = "EmployeeName";
-                ddlsupervisor.DataValueField = "ID";
-                ddlsupervisor.DataBind();
-                ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv); ;
+
+            ddlsupervisor.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlsupervisor.DataTextField = "EmployeeName";
+            ddlsupervisor.DataValueField = "ID";
+            ddlsupervisor.DataBind();
+            ddlsupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
         }
 
         private string TaskRequestKey
@@ -532,9 +518,9 @@ namespace Evo
                 NameValueCollection nvn = new NameValueCollection();
                 nvn.Add("@LoginID", Session["LoginID"].ToString());
                 nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                nvn.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
                 nvn.Add("@TaskName", "Chemical");
-                nv.Add("@TaskRequestKey", TaskRequestKey);
+                nvn.Add("@TaskRequestKey", TaskRequestKey);
                 nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
             }

@@ -151,22 +151,13 @@ namespace Evo
         }
         public void BindSupervisorList()
         {
+           
             NameValueCollection nv = new NameValueCollection();
             DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
 
-            if (Session["Role"].ToString() == "12" || Session["Role"].ToString() == "1")
-            {
-
-                dt = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-            }
-            else if (Session["Role"].ToString() == "2")
-            {
-                dt = objCommon.GetDataTable("SP_GetRoleForSupervisor", nv);
-            }
-            else
-            {
-
-            }
             ddlLogisticManager.DataSource = dt;
             //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
             ddlLogisticManager.DataTextField = "EmployeeName";

@@ -24,21 +24,55 @@ namespace Evo
             {
                 string Fdate = "", TDate = "";
 
-             
-                    Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
-                    TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
 
-                    txtFromDate.Text = Fdate;
-                    txtToDate.Text = TDate;
-                
-             
+                Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+                TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
+
+                txtFromDate.Text = Fdate;
+                txtToDate.Text = TDate;
+
+
                 BindJobCode("0", "0", "0");
                 Bindcname("0", "0", "0");
                 BindCrop();
-             
-                BindGridGerm("0");
+
+                BindGridGerm("0", 0);
                 BindSupervisorList();
 
+            }
+        }
+
+        private string JobCode
+        {
+            get
+            {
+                if (Request.QueryString["jobId"] != null)
+                {
+                    return Request.QueryString["jobId"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
+            }
+        }
+
+        private string benchLoc
+        {
+            get
+            {
+                if (Request.QueryString["benchLoc"] != null)
+                {
+                    return Request.QueryString["benchLoc"].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                // JobCode = Request.QueryString["jobId"].ToString();
+                // JobCode = value;
             }
         }
 
@@ -57,7 +91,6 @@ namespace Evo
                 ViewState["PutAwayFacility"] = value;
             }
         }
-
 
         private string wo
         {
@@ -114,7 +147,6 @@ namespace Evo
             ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
- 
         public void Bindcname(string ddlBench, string jobNo, string Core)
         {
             DataTable dt = new DataTable();
@@ -135,7 +167,6 @@ namespace Evo
             ddlCustomer.DataValueField = "Customer";
             ddlCustomer.DataBind();
             ddlCustomer.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
         public void BindJobCode(string ddlBench, string Customer, string Core)
@@ -163,10 +194,8 @@ namespace Evo
             ddlJobNo.DataBind();
 
             ddlJobNo.Items.Insert(0, new ListItem("--Select--", "0"));
-
         }
 
-     
         public void BindJobCode(string ddlBench)
         {
             //  ddlJobNo.Items[0].Selected = false;
@@ -181,90 +210,99 @@ namespace Evo
         }
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
+
             BindJobCode("0", ddlCustomer.SelectedValue, "0");
-          
+
             Bindcname("0", ddlJobNo.SelectedValue, "0");
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
             BindJobCode("0", ddlCustomer.SelectedValue, "0");
-         
+
             BindCrop();
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             Bindcname("0", ddlJobNo.SelectedValue, "0");
-         
+
             BindCrop();
-      
-            BindGridGerm(ddlJobNo.SelectedValue);
+
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
-
-
-
-
-
-
-
 
         public void BindSupervisorList()
         {
             NameValueCollection nv = new NameValueCollection();
-            if (Session["Role"].ToString() == "1")
-            {
-                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
-            if (Session["Role"].ToString() == "12")
-            {
-                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
-        }       
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
 
-        public void BindGridGerm(string JobCode)
+            ddlSupervisor.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlSupervisor.DataTextField = "EmployeeName";
+            ddlSupervisor.DataValueField = "ID";
+            ddlSupervisor.DataBind();
+            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        }
+
+        public void BindGridGerm(string JobCode, int p)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@Mode", "1");
             nv.Add("@wo", "");
-
-         
             nv.Add("@Facility", Session["Facility"].ToString());
-         
+
             nv.Add("@JobCode", JobCode);
             nv.Add("@CustomerName", !string.IsNullOrEmpty(ddlCustomer.SelectedValue) ? ddlCustomer.SelectedValue : "0");
-     
-        
+
             nv.Add("@Crop", ddlCrop.SelectedValue);
-          
-            
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
-           
+
             dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
+
+            if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
+            {
+                highlight(dt.Rows.Count);
+            }
         }
 
-        
+        private void highlight(int limit)
+        {
+            var i = gvGerm.Rows.Count;
+            bool check = false;
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                var checkJob = (row.FindControl("lbljobcode") as Label).Text;
+                // var checklocation = (row.FindControl("lblBenchLocation") as Label).Text;
+                //var tKey = gvGerm.DataKeys[row.RowIndex].Values[0].ToString();
+                i--;
+                if (checkJob == JobCode/* && checklocation == benchLoc*/)
+                {
+                    row.CssClass = "highlighted";
+                    check = true;
+                }
+                if (i == 0 && !check && limit >= 10)
+                {
+                    gvGerm.PageIndex++;
+                    gvGerm.DataBind();
+                    highlight((limit - 10));
+                }
+            }
+        }
+
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridGerm("0");
+            BindGridGerm("0", 1);
         }
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -279,10 +317,10 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@Mode", "2");
                 nv.Add("@wo", wo_No);
-                nv.Add("@JobCode","0");
-                nv.Add("@CustomerName","0");
+                nv.Add("@JobCode", "0");
+                nv.Add("@CustomerName", "0");
                 nv.Add("@Facility", Session["Facility"].ToString());
-                nv.Add("@Crop","0");
+                nv.Add("@Crop", "0");
                 nv.Add("@FromDate", "");
                 nv.Add("@ToDate", "");
 
@@ -301,7 +339,6 @@ namespace Evo
                 AddGrowerPutRow(true);
             }
         }
-
 
         protected void ButtonAddGridInvoice_Click(object sender, EventArgs e)
         {
@@ -400,7 +437,7 @@ namespace Evo
 
         public void Clear()
         {
-            BindGridGerm("0");
+            BindGridGerm("0", 1);
             PanelAdd.Visible = false;
             PanelList.Visible = true;
             GridSplitJob.DataSource = null;
@@ -552,7 +589,7 @@ namespace Evo
                             int Irrcount = 0;
                             foreach (DataRow row in dtISD.Rows)
                             {
-                                Irrcount++;                              
+                                Irrcount++;
                                 string IDay = row[col].ToString().Replace("\u0002", "");
                                 IrrigateDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(IDay))).ToString();
 
@@ -604,30 +641,37 @@ namespace Evo
                         nv.Add("@IrrigateNoCount", IrrigateNoCount);
                         nv.Add("@FertilizeNoCount", FertilizeNoCount);
                         nv.Add("@ChemicalNoCount", ChemicalNoCount);
-                        nv.Add("@RolId", ddlSupervisor.SelectedValue);                        
+                        nv.Add("@RolId", ddlSupervisor.SelectedValue);
 
                         if (txtTrays.Text != "")
                         {
                             nv.Add("@mode", "1");
                             _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_AddGrowerPutAwayDetails", nv);
-                            
+
+                            NameValueCollection nameValue = new NameValueCollection();
+                            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                            nameValue.Add("@jobcode", lblJobID.Text);
+                            nameValue.Add("@GreenHouseID", ddlLocation.SelectedValue);
+                            nameValue.Add("@TaskName", "PutAway");
+
+                            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
                         }
                         SelectedItems++;
                     }
+
+                    var res = (Master.FindControl("r1") as Repeater);
+                    var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+                    objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
 
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WorkOrder", wo);
                     _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
 
-                    string message = "Grower Put Away Save  Successful";
-                    string url = "GrowerPutAwayForm.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                    // string message = "Grower Put Away Save  Successful";
+                    string url = "MyTaskGrower.aspx";
+
+                    string message = "Assignment Successful";
+                    objCommon.ShowAlertAndRedirect(message, url);
                     //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);
                     Clear();
                 }
@@ -661,7 +705,6 @@ namespace Evo
                 string unit = "", ddlTAX1 = "", ddlStatusVal = "", hdnWOEmployeeIDVal = "";
                 string MainId = "", LocationId = "";
 
-
                 List<GrowerputDetils> objinvoice = new List<GrowerputDetils>();
 
                 foreach (GridViewRow item in GridSplitJob.Rows)
@@ -673,7 +716,6 @@ namespace Evo
                     TextBox txtTrays = (TextBox)item.FindControl("txtTrays");
 
                     AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text);
-
                 }
                 if (AddBlankRow)
                     AddGrowerput(ref objinvoice, 1, "", "", "");
@@ -685,7 +727,7 @@ namespace Evo
             }
             catch (Exception ex)
             {
-                
+
             }
         }
 
@@ -693,7 +735,6 @@ namespace Evo
         {
             GridSplitJob.DataSource = ViewState["Data"];
             GridSplitJob.DataBind();
-
         }
 
         private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, string FacilityID, string GreenHouseID, string Trays)
@@ -739,27 +780,24 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-         
+
             Bindcname("0", "0", "0");
             // BindJobCode("0");
             BindJobCode("0", "0", "0");
             BindCrop();
-            BindGridGerm("0");
+            BindGridGerm("0", 1);
 
         }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
-       
 
         protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
         {
             txtFromDate.Text = "";
             txtToDate.Text = "";
-          
-            BindGridGerm(txtSearchJobNo.Text);
-
+            BindGridGerm(txtSearchJobNo.Text, 1);
         }
 
         protected void txtBatchLocation_TextChanged(object sender, EventArgs e)
@@ -769,19 +807,13 @@ namespace Evo
             //BindJobCode(ddlBenchLocation.SelectedValue);
             Bindcname("0", "0", "0");
             BindJobCode("0", "0", "0");
-        
-            BindGridGerm(ddlJobNo.SelectedValue);
+            BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
-
-
-
-
-
 
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
         public static List<string> SearchCustomers(string prefixText, int count)
-     {
+        {
             using (SqlConnection conn = new SqlConnection())
             {
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
@@ -821,10 +853,8 @@ namespace Evo
 public class GrowerputDetils
 {
     public int ID { get; set; }
-
     public int RowNumber { get; set; }
     public string FacilityID { get; set; }
     public string GreenHouseID { get; set; }
-
     public string Trays { get; set; }
 }

@@ -105,7 +105,7 @@
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>Role</h3>
-                            <asp:DropDownList ID="ddlDesignation" runat="server" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDesignation" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDesignation_SelectedIndexChanged" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Designation" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>
@@ -116,12 +116,15 @@
                             <h3>Facility</h3>
                         </label>
                         <div>
-                            <asp:Repeater ID="repFacility" runat="server">
+                           <asp:Repeater ID="repFacility" runat="server">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkFacility" Text='<%#Bind("FacilityName")%>' CssClass="custom-control custom-checkbox" runat="server"></asp:CheckBox>
                                     <asp:HiddenField runat="server" ID="hdnValue" Value='<%#Bind("FacilityID")%>' />
                                 </ItemTemplate>
                             </asp:Repeater>
+
+                             <asp:DropDownList ID="ddlFacility"  runat="server" class="custom__dropdown robotomd" ></asp:DropDownList>
+
                         </div>
                     </div>
 

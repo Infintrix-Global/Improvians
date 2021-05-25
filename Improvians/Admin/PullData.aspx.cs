@@ -1,67 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Collections.Specialized;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Reflection.Metadata;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Evo.Bal;
-using System.Web.UI.HtmlControls;
 
-namespace Evo
+using Evo.Bal;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using Evo.BAL_Classes;
+
+
+namespace Evo.Admin
 {
-    public partial class MyTask1 : System.Web.UI.Page
+    public partial class PullData : System.Web.UI.Page
     {
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         CommonControl objCommon = new CommonControl();
-        // BAL_CommonMasters objCOm = new BAL_CommonMasters();
+        BAL_CommonMasters objCOm = new BAL_CommonMasters();
         public static DataTable AllData = new DataTable();
-        DataTable dt = new DataTable();
-        NameValueCollection nv = new NameValueCollection();
-
-
+        General objGeneral = new General();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                CountTotal();
-                BindGridGerm();
-                BindGridPutAway();
-                BindGridFer();
-                BindGridChem();
-                BindGridIrr();
-                BindGridCrop();
-                BindGridPR();
-                BindGridMov();
-                BindGridDum();
-                BindGridGen();
-            }
+
+
         }
 
-        public void CountTotal()
-        {
-            DataSet dt = new DataSet();
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@LoginId", Session["LoginID"].ToString());
-            dt = objCommon.GetDataSet("SP_GetGrowerEachTaskCount", nv);
-            lblPutAway.Text = dt.Tables[0].Rows.Count.ToString();
-            lblGerm.Text = dt.Tables[1].Rows.Count.ToString();
-            lblFer.Text = dt.Tables[2].Rows.Count.ToString();
-            lblIrr.Text = dt.Tables[3].Rows.Count.ToString();
-            lblpr.Text = dt.Tables[4].Rows.Count.ToString();
-            lblCropHealthReport.Text = dt.Tables[6].Rows.Count.ToString();
 
-            lblChemical.Text = dt.Tables[7].Rows.Count.ToString();
-            lblDumpTotal.Text = dt.Tables[8].Rows.Count.ToString();
-            lblMove.Text = dt.Tables[9].Rows.Count.ToString();
-            lblGeneralTotal.Text = dt.Tables[10].Rows.Count.ToString();
-            //lnkMove.Text = dt.Tables[5].Rows.Count.ToString();
-        }
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void btAdd_Click(object sender, EventArgs e)
         {
+            long _isInserted3 = 0;
+            NameValueCollection nvReset = new NameValueCollection();
+            _isInserted3 = objCommon.GetDataInsertORUpdate("SP_AddResetData", nvReset);
+
+
             long _isInserted = 1;
             long _isIGCodeInserted = 1;
             long _isFCdeInserted = 1;
@@ -91,23 +69,23 @@ namespace Evo
                 {
                     int PlantPDate = 0;
                     int PlanrDDate = 0;
-                      string TodatDate;
+                    string TodatDate;
                     TodatDate = System.DateTime.Now.ToShortDateString();
 
-                  
+
 
                     PlanrDDate = Convert.ToInt32(dtpD.Rows[0]["dateshift"]);
                     PlantPDate = Convert.ToInt32(dtpD.Rows[1]["dateshift"]);
-                   
+
                     PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlantPDate).ToString("MM/dd/yyyy");
-                  //  PlantDueDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
+                    //  PlantDueDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"].ToString()).AddDays(PlanrDDate).ToString("MM/dd/yyyy");
 
                 }
                 else
                 {
 
                     PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"]).ToString();
-                  //  PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"]).ToString();
+                    //  PlantReadyDate = Convert.ToDateTime(AllData.Rows[i]["seeddate"]).ToString();
 
                 }
                 string GreenHouseID = (AllData.Rows[i]["GreenHouseID"].ToString());
@@ -152,7 +130,7 @@ namespace Evo
 
                 if (dtFez != null && dtFez.Rows.Count > 0)
                 {
-                  
+
 
                     DataColumn col = dtFez.Columns["DateShift"];
                     int Fcount = 0;
@@ -398,244 +376,7 @@ namespace Evo
 
             }
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ')", true);
-            CountTotal();
-        }
-
-        private void BindGridGen()
-        {
-            dt = new DataTable();
-            nv.Clear();
-        
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@LoginId", Session["LoginID"].ToString());
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Status", "0");
-            nv.Add("@BenchLocation", "0");
-
-            nv.Add("@Jobsource", "");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
-            nv.Add("@Crop", "0");
-
-            dt = objCommon.GetDataTable("SP_GetGeneralRequestAssistantGrower", nv);
-            BindData(dt, Gen, "GeneralTaskDate");
-        }
-
-        private void BindGridDum()
-        {
-            dt = new DataTable();
-            nv.Clear();
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@LoginId", Session["LoginID"].ToString());
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Status", "0");
-            nv.Add("@BenchLocation", "0");
-            nv.Add("@Jobsource", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
-            nv.Add("@Crop", "0");
-            dt = objCommon.GetDataTable("SP_GetDumpRequestAssistantGrower", nv);
-            BindData(dt, Dum, "DumpDateR");
-        }
-
-        private void BindGridMov()
-        {
-            dt = new DataTable();
-            nv.Clear();
-        
-
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", Session["Facility"].ToString());
          
-            nv.Add("@BenchLocation", "0");
-            nv.Add("@Jobsource", "");
-
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
-            nv.Add("@Crop", "0");
-            nv.Add("@LoginId", Session["LoginID"].ToString());
-
-            dt = objCommon.GetDataTable("SP_GetMoveRequestAssistantGrower", nv);
-            BindData(dt, Mov, "MoveDate");
-        }
-
-        private void BindGridPR()
-        {
-            dt = new DataTable();
-            nv.Clear();
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "0");
-            nv.Add("@Crop", "0");
-            nv.Add("@Status", "");
-            nv.Add("@Jobsource", "0");
-            nv.Add("@GermNo", "0");
-            nv.Add("@FromDate","");
-            nv.Add("@ToDate","");
-            nv.Add("@AssignedBy", "0");
-
-            dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
-            BindData(dt, PR, "SeededDate");
-        }
-
-        private void BindGridCrop()
-        {
-            dt = new DataTable();
-            nv.Clear();
-            //nv.Add("@JobCode", "0");
-            //nv.Add("@CustomerName", "0");
-            //nv.Add("@Facility", Session["Facility"].ToString());
-         
-
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@Status", "0");
-            nv.Add("@BenchLocation", "0");
-            nv.Add("@Jobsource", "");
-            nv.Add("@LoginId", Session["LoginID"].ToString());
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
-            nv.Add("@Crop", "0");
-            dt = objCommon.GetDataTable("SP_GetCropReportRequestAssistantGrower", nv);
-            BindData(dt, Crop, "CropHealthReportDate");
-        }
-
-        private void BindGridIrr()
-        {
-            dt = new DataTable();
-            nv.Clear();
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@Status", "0");
-            nv.Add("@BenchLocation", "0");
-            nv.Add("@Jobsource", "");
-            nv.Add("@GermNo", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
-            nv.Add("@Crop", "0");
-            dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
-            BindData(dt, Irr, "IrrigateSeedDate");
-        }
-
-        private void BindGridChem()
-        {
-            dt = new DataTable();
-            nv.Clear();
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@Status", "0");
-            nv.Add("@BenchLocation", "0");
-            nv.Add("@Jobsource", "");
-            nv.Add("@GermNo", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
-            nv.Add("@Crop", "0");
-            dt = objCommon.GetDataTable("SP_GetChemicalRequest", nv);
-            BindData(dt, Chem, "ChemicalSeedDate");
-        }
-
-        private void BindGridFer()
-        {
-            dt = new DataTable();
-            nv.Clear();            
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@Status", "0");
-            nv.Add("@BenchLocation", "0");
-            nv.Add("@Jobsource", "");
-            nv.Add("@GermNo", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
-            nv.Add("@Crop", "0");
-
-            dt = objCommon.GetDataTable("SP_GetFertilizerRequest", nv);
-            BindData(dt, Fer, "FertilizeSeedDate");
-        }        
-
-        private void BindGridPutAway()
-        {
-            dt = new DataTable();
-            nv.Clear();
-            nv.Add("@Mode", "1");
-            nv.Add("@wo", "");
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@Crop", "0");
-
-       
-            dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
-            BindData(dt, Put, "SeededDate");
-        }       
-
-        public void BindGridGerm()
-        {
-            dt = new DataTable();
-            nv.Clear();
-            nv.Add("@JobCode", "0");
-            nv.Add("@CustomerName", "0");
-            nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "0");
-    
-            nv.Add("@Status", "");
-            nv.Add("@Jobsource", "");
-            nv.Add("@GermNo", "");
-            nv.Add("@FromDate", "");
-            nv.Add("@ToDate", "");
-            nv.Add("@AssignedBy", "0");
-            nv.Add("@Crop", "0");
-
-
-       dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
-            BindData(dt, Ger, "GermDate");            
-        }
-
-        private void BindData(DataTable dt, HtmlAnchor html, string dateField)
-        {
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    string dtimeString = Convert.ToDateTime(dt.Rows[i][dateField]).ToString("yyyy/MM/dd");
-
-                    DateTime dtime = Convert.ToDateTime(dtimeString);
-
-                    DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
-
-                    switch (html.Name)
-                    {
-                        case "Put" : dtime = dtime.AddDays(1);
-                            break;
-
-                    }
-
-                    if (nowtime > dtime)
-                    {
-                        html.Attributes.Add("class", "dashboard__box dashboard__box-overdue");
-                    }
-                    else
-                    {
-
-                    }
-                }
-            }
         }
     }
 }

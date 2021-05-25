@@ -11,7 +11,7 @@
         <%--</div>--%>
 
         <div class="col-lg-2">
-            <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" CssClass="bttn bttn-primary bttn-action" />
+            <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" Visible="false" CssClass="bttn bttn-primary bttn-action" />
         </div>
         <%--</div>--%>
         <div class="row">

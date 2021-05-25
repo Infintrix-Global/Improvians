@@ -52,6 +52,8 @@ namespace Evo
                     GeneralAdd.Visible = true;
                 }
 
+             
+
 
                 if (Request.QueryString["Chid"] != "0" && Request.QueryString["Chid"] != null)
                 {
@@ -67,16 +69,16 @@ namespace Evo
                 BindGridGeneraComplition(Did);
             }
         }
-
+      
         public void BindViewDumpDetilas(int RDid)
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Jid", lbljid.Text);
-            nv.Add("@Login", "0");
+           
+            nv.Add("@TaskRequestKey", TaskRequestKey);
          
-            dt = objCommon.GetDataTable("SP_GetTaskAssignmentGeneralViewStart", nv);
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmentGeneralViewStart1", nv);
             GridViewDumpView.DataSource = dt;
             GridViewDumpView.DataBind();
 

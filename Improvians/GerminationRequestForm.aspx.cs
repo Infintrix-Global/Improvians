@@ -366,24 +366,18 @@ namespace Evo
         public void BindSupervisorList()
         {
             NameValueCollection nv = new NameValueCollection();
-            if (Session["Role"].ToString() == "1")
-            {
-                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
-            if (Session["Role"].ToString() == "12")
-            {
-                ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetRoleForAssistantGrower", nv);
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+            ddlSupervisor.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlSupervisor.DataTextField = "EmployeeName";
+            ddlSupervisor.DataValueField = "ID";
+            ddlSupervisor.DataBind();
+            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
         }
 
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -512,7 +506,7 @@ namespace Evo
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@OperatorID", Session["LoginID"].ToString());
-                
+
                 nv.Add("@GTID", lblID.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@Jobcode", lblJobID.Text);

@@ -138,6 +138,21 @@ namespace Evo
             nv.Add("@CreateBy", Session["LoginID"].ToString());
             result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
 
+            GridViewRow row = gvMove.Rows[0];
+            var txtJobNo = (row.FindControl("lblID") as Label).Text;
+            var txtBenchLocation = (row.FindControl("lblGreenHouseName") as Label).Text;
+
+            NameValueCollection nameValue = new NameValueCollection();
+            nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            nameValue.Add("@jobcode", txtJobNo);
+            nameValue.Add("@GreenHouseID", txtBenchLocation);
+            nameValue.Add("@TaskName", "PutAway");
+
+            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+            var res = (Master.FindControl("r1") as Repeater);
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
 
             if (result > 0)
             {
@@ -166,14 +181,8 @@ namespace Evo
                 {
                     string message = "Completion Successful";
                     string url = "MyTaskShippingCoordinator.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                  //  Response.Redirect("~/MyTaskShippingCoordinator.aspx");
+                    objCommon.ShowAlertAndRedirect(message, url);
+                    //  Response.Redirect("~/MyTaskShippingCoordinator.aspx");
                 }
 
                 else if (Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
@@ -181,25 +190,13 @@ namespace Evo
 
                     string message = "Completion Successful";
                     string url = "MyTaskLogisticManager.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                    Response.Redirect("~/MyTaskLogisticManager.aspx");
+                    objCommon.ShowAlertAndRedirect(message, url);
                 }
             }
             else
             {
                 lblmsg.Text = "Completion Not Successful";
             }
-            //}
-            //else
-            //{
-
-            //    lblerrmsg.Text = "Number of Trays exceed Remaining trays";
 
 
         }
@@ -281,15 +278,13 @@ namespace Evo
                 //   dt = objCommon.GetDataTable("SP_GetGrowerPutAwayLogisticManagerAssignedJobByMoveID", nv);
 
                 lblTraysRequest.Text = (Convert.ToInt32(lblTray.Text) - Convert.ToInt32(dt.Rows[0]["TraysMovedTotal"])).ToString();
-
-
             }
         }
 
         protected void txtBarcode_TextChanged(object sender, EventArgs e)
         {
 
-            if(txtPutAwayLocation.Text.Trim() != txtBarcode.Text.Trim())
+            if (txtPutAwayLocation.Text.Trim() != txtBarcode.Text.Trim())
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ShowAlert", "alert('Barcode does not match with Bench Location.');", true);
                 txtBarcode.Text = "";
