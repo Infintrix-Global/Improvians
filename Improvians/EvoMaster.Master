@@ -54,7 +54,8 @@
     <link rel="preload" href="fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
-
+    
+    <link rel="stylesheet" href="css/sumoselect.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
@@ -215,11 +216,12 @@
             </ul>
         </footer>
 
-        <script src="js/jquery.min.js"></script>
-        <script defer="defer" src="js/popper.min.js"></script>
-        <script defer="defer" src="js/bootstrap.min.js"></script>
-        <script defer="defer" src="js/custom.js"></script>
-        <script defer="defer" src="scripts/CheckBox1.js"></script>
+        <script src="js/jquery.min.js"></script>        
+        <script src="js/jquery.sumoselect.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="scripts/CheckBox1.js"></script>
 
         <%--<script type="text/javascript" lang="javascript">
             //$(document).ready(function () {
