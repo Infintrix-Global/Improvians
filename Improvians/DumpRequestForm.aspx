@@ -29,8 +29,6 @@
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-
-
             </div>
 
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
@@ -45,7 +43,6 @@
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-
         </div>
 
         <div class="row mb-1 mb-md-4 align-items-end">
@@ -63,7 +60,6 @@
                 </asp:DropDownList>
             </div>--%>
 
-
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>From Date</label>
                 <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
@@ -75,14 +71,8 @@
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
-
             </div>
-
-
-
         </div>
-
-
 
         <div class="data__table">
             <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
@@ -90,7 +80,6 @@
                 GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,DumpId,jid,jobcode,GreenHouseID,TaskRequestKey"
                 ShowHeaderWhenEmpty="True" Width="100%">
                 <Columns>
-
                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblBenchLoc" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -104,7 +93,6 @@
                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
-
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -138,7 +126,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                    <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                         </ItemTemplate>

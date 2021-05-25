@@ -3065,7 +3065,7 @@ namespace Evo
                                 ToDaydate.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDate.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDate.Rows[0]["ResetSprayTaskForDays"].ToString();
-                                FerDate.Value = dtSDate.Rows[0]["FertilizationDate"].ToString();
+                              //  FerDate.Value = dtSDate.Rows[0]["FertilizationDate"].ToString();
 
                             }
                         }
@@ -3105,7 +3105,7 @@ namespace Evo
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDate1.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDate1.Rows[0]["ResetSprayTaskForDays"].ToString();
 
-                                IrrDate.Value = dtSDate.Rows[0]["SprayDate"].ToString();
+                             //   IrrDate.Value = dtSDate1.Rows[0]["SprayDate"].ToString();
                             }
                         }
                         else
@@ -3146,7 +3146,7 @@ namespace Evo
                                 ToDaydateCem.Value = TodatDate;
                                 lblDateOfShip.Value = Convert.ToDateTime(dtSDateC.Rows[0]["CreatedOn"]).ToShortDateString();
                                 lblDayOfShip.Value = dtSDateC.Rows[0]["ResetSprayTaskForDays"].ToString();
-                                CemDate.Value = dtSDate.Rows[0]["ChemicalDate"].ToString();
+                               // CemDate.Value = dtSDateC.Rows[0]["ChemicalDate"].ToString();
 
 
 
