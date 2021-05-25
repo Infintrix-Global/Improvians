@@ -74,12 +74,12 @@ namespace Evo
 
                 BindJobCode("");
 
-                if (Session["Role"].ToString() == "13" ) //Customer
+                if (Session["Role"].ToString() == "13") //Customer
                 {
                     divSalesComment.Visible = true;
                     divTaskRequest.Visible = false;
                 }
-                else if ( Session["Role"].ToString() == "14" || Session["Role"].ToString() == "7")// Sales representative
+                else if (Session["Role"].ToString() == "14" || Session["Role"].ToString() == "7")// Sales representative
                 {
                     divTaskRequest.Visible = false;
                 }
@@ -155,7 +155,7 @@ namespace Evo
             ddlAssignedTo.Items.Insert(0, new ListItem("--- Select ---", ""));
         }
 
-        public void BindGridJobHistory()
+        public DataView BindGridJobHistory()
         {
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobID", JobCode);
@@ -185,11 +185,104 @@ namespace Evo
             // dataView.Sort = " EndingDate  ASC ";
             GV4.DataSource = dataView;
             GV4.DataBind();
+            return dataView;
         }
 
         protected void ddlDescription_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataView dataView = BindGridJobHistory();
+            if (ddlBench.SelectedIndex == 0)
+            {
+                ddlBench.DataSource = dataView.ToTable(true, "GreenhouseID");
+                ddlBench.DataBind();
+                ddlBench.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            if (ddlAssignedBy.SelectedIndex == 0)
+            {
+                ddlAssignedBy.DataSource = dataView.ToTable(true, "AssignedBy");
+                ddlAssignedBy.DataBind();
+                ddlAssignedBy.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            if (ddlAssignedTo.SelectedIndex == 0)
+            {
+                ddlAssignedTo.DataSource = dataView.ToTable(true, "AssignedTo");
+                ddlAssignedTo.DataBind();
+                ddlAssignedTo.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+        }
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            ddlAssignedBy.SelectedIndex = 0;
+            ddlDescription.SelectedIndex = 0;
+            ddlAssignedTo.SelectedIndex = 0;
+            ddlBench.SelectedIndex = 0;
             BindGridJobHistory();
+        }
+        protected void ddlGreenhouse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataView dataView = BindGridJobHistory();
+            if (ddlDescription.SelectedIndex == 0)
+            {
+                ddlDescription.DataSource = dataView.ToTable(true, "Description");
+                ddlDescription.DataBind();
+                ddlDescription.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            if (ddlAssignedBy.SelectedIndex == 0)
+            {
+                ddlAssignedBy.DataSource = dataView.ToTable(true, "AssignedBy");
+                ddlAssignedBy.DataBind();
+                ddlAssignedBy.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            if (ddlAssignedTo.SelectedIndex == 0)
+            {
+                ddlAssignedTo.DataSource = dataView.ToTable(true, "AssignedTo");
+                ddlAssignedTo.DataBind();
+                ddlAssignedTo.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+        }
+        protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataView dataView = BindGridJobHistory();
+            if (ddlDescription.SelectedIndex == 0)
+            {
+                ddlDescription.DataSource = dataView.ToTable(true, "Description");
+                ddlDescription.DataBind();
+                ddlDescription.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            if (ddlBench.SelectedIndex == 0)
+            {
+                ddlBench.DataSource = dataView.ToTable(true, "GreenhouseID");
+                ddlBench.DataBind();
+                ddlBench.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            if (ddlAssignedTo.SelectedIndex == 0)
+            {
+                ddlAssignedTo.DataSource = dataView.ToTable(true, "AssignedTo");
+                ddlAssignedTo.DataBind();
+                ddlAssignedTo.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+        }
+        protected void ddlAssignedTo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataView dataView = BindGridJobHistory();
+            if (ddlDescription.SelectedIndex == 0)
+            {
+                ddlDescription.DataSource = dataView.ToTable(true, "Description");
+                ddlDescription.DataBind();
+                ddlDescription.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            if (ddlBench.SelectedIndex == 0)
+            {
+                ddlBench.DataSource = dataView.ToTable(true, "GreenhouseID");
+                ddlBench.DataBind();
+                ddlBench.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
+            if (ddlAssignedBy.SelectedIndex == 0)
+            {
+                ddlAssignedBy.DataSource = dataView.ToTable(true, "AssignedBy");
+                ddlAssignedBy.DataBind();
+                ddlAssignedBy.Items.Insert(0, new ListItem("--- Select ---", ""));
+            }
         }
 
         public void FillDGHeader01()
@@ -490,6 +583,7 @@ namespace Evo
             }
             return dt;
         }
+
         #endregion
 
         protected void btnSend_Click(object sender, EventArgs e)

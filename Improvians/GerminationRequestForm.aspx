@@ -89,9 +89,6 @@
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
                 <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnManual_Click" />
             </div>
-
-
-
         </div>
 
         <div class="portlet light pt-1">
@@ -110,8 +107,6 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
-
                             <asp:TemplateField HeaderText="Job No." ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
@@ -126,7 +121,6 @@
                                     <asp:HyperLink data-head="Job No." ID="lnkJobID" runat="server" Text='<%# Eval("jobcode")  %>'></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
 
                             <asp:TemplateField HeaderText="Customer" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
@@ -152,22 +146,21 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
                             <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblSeededDate" data-head="Seeded Date" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>                         
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Germination Count Date" ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblGermDate" data-head="Germination Count Date" runat="server" Text='<%# Eval("GermDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                               <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -177,19 +170,17 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
                             <asp:TemplateField HeaderText="Job Source" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblsource" data-head="Job Source" runat="server" Text='<%# Eval("RequestType")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-
 
                             <asp:TemplateField HeaderText="" HeaderStyle-Width="265px">
                                 <ItemTemplate>
@@ -201,8 +192,6 @@
 
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-
                         </Columns>
 
                         <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -273,8 +262,6 @@
                         <div class="col-lg-3">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
-
-
                         </div>
                     </div>
                 </asp:Panel>
@@ -308,9 +295,6 @@
                         <div class="col-12">
                             <asp:Button Text="Submit" ID="btnReschedule" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReschedule_Click" />
                             <asp:Button Text="Reset" ID="btnRescheduleReset" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnResetReschedule_Click" />
-
-
-
                         </div>
                     </div>
                 </asp:Panel>

@@ -899,7 +899,7 @@ namespace Evo.Admin
 
                 objGeneral.AddParameterWithValueToSQLCommand("@EmployeeID", employeeID);
                 objGeneral.AddParameterWithValueToSQLCommand("@FacilityID", FacilityID);
-                _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddEmployeeFacility");
+                _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddEmployeeFacilityNew");
             }
             catch (Exception ex)
             {

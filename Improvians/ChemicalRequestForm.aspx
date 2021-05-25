@@ -12,7 +12,7 @@
             Chemical
         </h2>
 
-         <div class="row">
+        <div class="row">
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
@@ -28,8 +28,6 @@
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
                 <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-
-               
             </div>
 
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
@@ -44,7 +42,6 @@
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-
         </div>
 
         <div class="row mb-1 mb-md-4 align-items-end">
@@ -61,7 +58,6 @@
                     <asp:ListItem Text="App" Value="App"></asp:ListItem>
                 </asp:DropDownList>
             </div>
-
 
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Task Type</label>
@@ -82,10 +78,7 @@
                 <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnManual_Click" />
             </div>
 
-
-
         </div>
-
 
         <div class="portlet light pt-3">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
@@ -146,18 +139,17 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-
-                            <asp:TemplateField HeaderText="Chemical Date" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblChemDate" runat="server" Text='<%# Eval("ChemicalSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="Chemical Date" HeaderStyle-CssClass="autostyle2">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblChemDate" runat="server" Text='<%# Eval("ChemicalSeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
@@ -182,7 +174,6 @@
                                     <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
 
                             <%--  <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
