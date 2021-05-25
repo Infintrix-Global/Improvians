@@ -531,7 +531,7 @@ h2:not(.mb-3) + .breadcrumb {
     margin-right: 7.5px;
 }
 
-.custom__dropdown, .filter__control, .input__control {
+.custom__dropdown, .filter__control, .input__control, .SumoSelect > .SelectBox {
     font-size: 16px;
     width: 100%;
     height: 60px;
@@ -541,6 +541,14 @@ h2:not(.mb-3) + .breadcrumb {
     border: 1.5px solid #c8e0c9;
     outline: none;
 }
+
+.SumoSelect { width: 100%; }
+
+.SumoSelect > .CaptionCont > label { display: none; }
+
+.SumoSelect > .CaptionCont > span.placeholder { font-style: normal; color: #2a2a2a; }
+.SumoSelect.open > .optWrapper { top: 45px; }
+.SumoSelect > .optWrapper > .options li label { margin-bottom: 0; }
 
 .input__control-auto {
     width: auto;
@@ -557,7 +565,7 @@ textarea.input__control {
     width: 260px;
 }
 
-.custom__dropdown {
+.custom__dropdown, .SumoSelect > .SelectBox {
     background-color: #ffffff;
     color: #2a2a2a;
     -webkit-appearance: none;
@@ -1601,17 +1609,13 @@ svg text {
 
 @media only screen and (max-width: 1839px) {
     .has__footer { padding-bottom: 140px; }
-    .custom__dropdown, .filter__control, .input__control {
+    .custom__dropdown, .filter__control, .input__control, .SumoSelect > .SelectBox {
         height: 45px;
         line-height: 45px;
         border-radius: 10px;
-        /*
-        padding-left: 20px;
-        padding-right: 20px;
-        */
         max-width: 100%;
     }
-    .custom__dropdown { background-position: right 20px center; }
+    .custom__dropdown, .SumoSelect > .SelectBox { background-position: right 20px center; }
     .bttn { border-radius: 10px; padding: 9px 22px; }
     .header__tabs ul { margin: 4px auto; }
     .dashboard__block { border-radius: 15px; }
