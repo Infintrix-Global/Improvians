@@ -127,7 +127,7 @@ jQuery(document).ready(function ($) {
     }
 
     if ($('.SlectBox').length > 0) {
-        $('.SlectBox').SumoSelect();
+        $('.SlectBox').SumoSelect({ placeholder: '--- Select ---' });
     }
 
 });
