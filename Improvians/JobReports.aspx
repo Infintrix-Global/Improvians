@@ -292,21 +292,24 @@
                     <asp:UpdatePanel runat="server" ID="upJobLog">
                         <ContentTemplate>
                             <div class="row">
-                                <div class="col-12 col-sm-6 col-xl-3 mb-3">
+                                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                                     <label>Task Type</label>
                                     <asp:DropDownList ID="ddlDescription" DataTextField="Description" DataValueField="Description" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
-                                <div class="col-12 col-sm-6 col-xl-3 mb-3">
+                                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                                     <label>Bench Location</label>
-                                    <asp:DropDownList ID="ddlBench" runat="server" DataTextField="GreenhouseID" DataValueField="GreenhouseID" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlBench" runat="server" DataTextField="GreenhouseID" DataValueField="GreenhouseID" AutoPostBack="true" OnSelectedIndexChanged="ddlGreenhouse_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
-                                <div class="col-12 col-sm-6 col-xl-3 mb-3">
+                                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                                     <label>Assigned By</label>
-                                    <asp:DropDownList ID="ddlAssignedBy" runat="server" DataTextField="AssignedBy" DataValueField="AssignedBy" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlAssignedBy" runat="server" DataTextField="AssignedBy" DataValueField="AssignedBy" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
-                                <div class="col-12 col-sm-6 col-xl-3 mb-3">
+                                <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                                     <label>Assigned To</label>
-                                    <asp:DropDownList ID="ddlAssignedTo" runat="server" DataTextField="AssignedTo" DataValueField="AssignedTo" AutoPostBack="true" OnSelectedIndexChanged="ddlDescription_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlAssignedTo" runat="server" DataTextField="AssignedTo" DataValueField="AssignedTo" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedTo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div class="col-xl-2 col-md-4 col-sm-6 mb-3 align-self-end">
+                                    <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnReset_Click" />
                                 </div>
                             </div>
                             <br />
@@ -467,7 +470,7 @@
                 </asp:RequiredFieldValidator><br />
                 <asp:Button ID="btnSend" runat="server" CssClass="bttn bttn-primary" Text="Send" OnClick="btnSend_Click" />
             </div>
-           
+
         </asp:Panel>
     </div>
 </asp:Content>

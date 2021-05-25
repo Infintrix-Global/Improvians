@@ -89,7 +89,10 @@ namespace Evo
             ddlFacility.DataValueField = "loc_seedline";
             ddlFacility.DataBind();
             ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            if (Session["Role"].ToString() == "10")
+            {
+                ddlFacility.SelectedItem.Text = Session["Facility"].ToString();
+            }
         }
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)

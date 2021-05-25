@@ -180,11 +180,12 @@ namespace Evo.Admin
                 }
                 else
                 {
+                    repFacility.Visible = false;
+                    ddlFacility.Visible = true;
                     if (dt1.Tables[1].Rows.Count > 0)
                     {
                         BindFacilitySelect();
-                        repFacility.Visible = false;
-                        ddlFacility.Visible = true;
+                       
 
                         ddlFacility.SelectedValue = dt1.Tables[1].Rows[0]["FacilityID"].ToString();
                     }
@@ -236,18 +237,27 @@ namespace Evo.Admin
                     lblmsg.ForeColor = System.Drawing.Color.Green;
                     if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12")
                     {
+                        string Facility = "";
                         foreach (RepeaterItem item in repFacility.Items)
                         {
                             CheckBox chkFacility = (CheckBox)item.FindControl("chkFacility");
                             if (chkFacility.Checked)
                             {
-                                objCommon.AddEmployeeFacility(Convert.ToInt32(Session["EmployeeID"].ToString()), ((HiddenField)item.FindControl("hdnValue")).Value);
+                                // objCommon.AddEmployeeFacility(Convert.ToInt32(Session["EmployeeID"].ToString()), ((HiddenField)item.FindControl("hdnValue")).Value);
+                                Facility += ((HiddenField)item.FindControl("hdnValue")).Value + ",";
                             }
                         }
+
+                        if (Facility != "")
+                        {
+                            Facility = Facility.Remove(Facility.Length - 1);
+                        }
+
+                        objCommon.AddEmployeeFacility(Convert.ToInt32(Session["EmployeeID"].ToString()), Facility);
                     }
                     else
                     {
-                        objCommon.AddEmployeeFacility(_isInserted, ddlFacility.SelectedValue);
+                        objCommon.AddEmployeeFacility(Convert.ToInt32(Session["EmployeeID"].ToString()), ddlFacility.SelectedValue);
                     }
                     Response.Redirect("~/Admin/ViewEmployee.aspx");
 
