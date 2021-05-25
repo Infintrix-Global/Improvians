@@ -131,6 +131,16 @@ namespace Evo
         public void BindGridGerm()
         {
 
+            string Facility1 = "";
+            if (Session["Role"].ToString() == "10")
+            {
+                Facility1 = Session["Facility"].ToString();
+              
+            }
+            else
+            {
+                Facility1 = ddlFacility.SelectedValue;
+            }
 
 
             DataTable dt = new DataTable();
@@ -138,7 +148,7 @@ namespace Evo
             // nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Facility1);
             nv.Add("@CropTYpe", ddlCopTYpe.SelectedValue);
 
             AllData = objCommon.GetDataTable("SP_GetTrackTaskSeedlinePlanner", nv);
