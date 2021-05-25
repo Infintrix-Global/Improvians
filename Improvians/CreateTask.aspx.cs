@@ -1357,6 +1357,7 @@ namespace Evo
         {
             BindSupervisor();
             txtPlantComments.Text = "";
+            txtPlantDate.Text = "";
             //  txtPlantDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
             plant_ready_count.Attributes.Add("class", "request__block-collapse collapse show");
             btnPlantReady.Attributes.Add("class", "request__block-head");
