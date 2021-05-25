@@ -198,7 +198,17 @@
                                                 <asp:Label ID="lblSeed" runat="server" Text=""></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Unit">
+                                            <ItemTemplate>
+                                                 <asp:DropDownList ID="ddlUnit" runat="server" class="custom__dropdown robotomd">
+                                                    <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
+                                                    <asp:ListItem Text="Pounds " Value="Pounds "></asp:ListItem>
+                                                    <asp:ListItem Text="oz" Value="oz"></asp:ListItem>
+                                                 
+                                                </asp:DropDownList>
 
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Initial Seed Lot Weight(lb)">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtInitialSeedLotWeight" class="input__control" runat="server" Text=""></asp:TextBox>
