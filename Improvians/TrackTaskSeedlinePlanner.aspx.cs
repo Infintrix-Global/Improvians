@@ -89,7 +89,10 @@ namespace Evo
             ddlFacility.DataValueField = "loc_seedline";
             ddlFacility.DataBind();
             ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
-
+            if (Session["Role"].ToString() == "10")
+            {
+                ddlFacility.SelectedItem.Text = Session["Facility"].ToString();
+            }
         }
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,7 +133,7 @@ namespace Evo
             // nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@CropTYpe", ddlCopTYpe.SelectedValue);
 
             AllData = objCommon.GetDataTable("SP_GetTrackTaskSeedlinePlanner", nv);

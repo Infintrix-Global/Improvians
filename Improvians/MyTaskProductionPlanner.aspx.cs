@@ -21,7 +21,7 @@ namespace Evo
                 Bindcname();
                 BindJobCode();
                 BindCropType();
-                BindFacility();
+               // BindFacility();
                 BindGridGerm();
             }
         }
@@ -82,21 +82,21 @@ namespace Evo
 
         }
 
-        public void BindFacility()
-        {
+        //public void BindFacility()
+        //{
 
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
+        //    DataTable dt = new DataTable();
+        //    NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "9");
-            dt = objCommon.GetDataTable("GET_Common", nv);
-            ddlFacility.DataSource = dt;
-            ddlFacility.DataTextField = "loc_seedline";
-            ddlFacility.DataValueField = "loc_seedline";
-            ddlFacility.DataBind();
-            ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
+        //    nv.Add("@Mode", "9");
+        //    dt = objCommon.GetDataTable("GET_Common", nv);
+        //    ddlFacility.DataSource = dt;
+        //    ddlFacility.DataTextField = "loc_seedline";
+        //    ddlFacility.DataValueField = "loc_seedline";
+        //    ddlFacility.DataBind();
+        //    ddlFacility.Items.Insert(0, new ListItem("--Select--", "0"));
 
-        }
+        //}
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -120,7 +120,7 @@ namespace Evo
         {
             Bindcname();
             BindJobCode();
-            BindFacility();
+          //  BindFacility();
             BindCropType();
             BindGridGerm();
         }

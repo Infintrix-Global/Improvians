@@ -18692,3 +18692,10 @@ Parameter name: index
    at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
    at System.Web.HttpResponse.Redirect(String url)
    at Evo.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e) in E:\GEM\Mehul\Improvians\Admin\EditProfile.aspx.cs:line 261Thread was being aborted. at 5/25/2021 3:30:32 AM
+*****Error message=****   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Evo.Admin.EditProfile.btnUpdate_Click(Object sender, EventArgs e) in E:\GEM\Mehul\Improvians\Admin\EditProfile.aspx.cs:line 262Thread was being aborted. at 5/25/2021 3:58:29 AM

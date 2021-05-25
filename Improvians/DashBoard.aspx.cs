@@ -74,7 +74,7 @@ namespace Evo
             {
                 //amytask.HRef = "SeedingPlanForm.aspx";
                 amytask.HRef = "MyTaskSeedlinePlanner.aspx";
-               // ddlFacility.Visible = false;
+                 ddlFacility.Visible = false;
                 //  JobReports.HRef = "ReportSeedlinePlanner.aspx";
             }
             if (Session["Role"].ToString() == "8")
