@@ -130,7 +130,7 @@ namespace Evo
             // nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@CropTYpe", ddlCopTYpe.SelectedValue);
 
             AllData = objCommon.GetDataTable("SP_GetTrackTaskSeedlinePlanner", nv);

@@ -118,16 +118,16 @@ namespace Evo
                 lnkcreatetask.Attributes.Remove("class");
                 lnkmytask.Attributes.Remove("class");
             }
-            if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
-            {
-                lblFacility.Text = "";
+            //if (Session["Role"].ToString() == "7" || Session["Role"].ToString() == "10")
+            //{
+            //    lblFacility.Text = "";
 
-            }
-            else
-            {
-                lblFacility.Text = Session["Facility"].ToString();
-            }
-
+            //}
+            //else
+            //{
+            //    lblFacility.Text = Session["Facility"].ToString();
+            //}
+            lblFacility.Text = Session["Facility"].ToString();
             checkNotification(1);
         }
 
