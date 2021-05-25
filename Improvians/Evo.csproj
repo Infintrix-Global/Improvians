@@ -219,6 +219,7 @@
     <Content Include="Admin\ViewCustomer.aspx" />
     <Content Include="Admin\ViewPlantProductionProfile.aspx" />
     <Content Include="Admin\ViewEmployee.aspx" />
+    <Content Include="css\sumoselect.css" />
     <Content Include="ForgetCustomerPassword.aspx" />
     <Content Include="ForgetPassword.aspx" />
     <Content Include="ChemicalJobBuildUp.aspx" />
@@ -385,6 +386,7 @@
     <Content Include="IrrigationTaskViewDetails.aspx" />
     <Content Include="JobReports.aspx" />
     <Content Include="js\firebase-messaging.js" />
+    <Content Include="js\jquery.sumoselect.min.js" />
     <Content Include="js\jquery.uploadify.js" />
     <Content Include="CustomerLogin.aspx" />
     <Content Include="ManageTaskJobReport.aspx" />
