@@ -92,6 +92,11 @@ namespace Evo
             if (Session["Role"].ToString() == "10")
             {
                 ddlFacility.SelectedItem.Text = Session["Facility"].ToString();
+                FID.Visible = false;
+            }
+            else
+            {
+                FID.Visible = true;
             }
         }
 
