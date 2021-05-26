@@ -541,8 +541,10 @@ h2:not(.mb-3) + .breadcrumb {
     border: 1.5px solid #c8e0c9;
     outline: none;
 }
-
-.SumoSelect { width: 100%; }
+select.SelectBox { visibility: hidden; }
+.SumoSelect {
+    width: 100%;
+}
 
 .SumoSelect > .CaptionCont > label { display: none; }
 
