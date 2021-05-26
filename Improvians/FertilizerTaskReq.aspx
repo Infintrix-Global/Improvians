@@ -174,7 +174,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="" HeaderStyle-Width="265px" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="" HeaderStyle-Width="250px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                     <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
