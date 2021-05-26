@@ -238,7 +238,7 @@ namespace Evo
                 long _isInserted = 1;
                 int SelectedItems = 0;
                 // int KeyValues = 0;
-
+                List<string> SelectedItemsFacility = new List<string>();
 
                 DataTable dt1 = new DataTable();
                 NameValueCollection nv14 = new NameValueCollection();
@@ -254,40 +254,42 @@ namespace Evo
                     if (item.RowType == DataControlRowType.DataRow)
                     {
                         Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
-                        DataTable dt11 = new DataTable();
-                        NameValueCollection nv15 = new NameValueCollection();
 
-                        nv15.Add("@Facility", lblSeedline.Text);
-                        nv15.Add("@ID", "0");
-                        dt11 = objCommon.GetDataTable("SP_GetRoleForAssignementSeedLineSupervisorFacility", nv15);
-                        if (dt11 != null && dt11.Rows.Count > 0)
+                        Label lblAllocated = (item.Cells[0].FindControl("lblAllocated") as Label);
+                        // Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
+                        Label lbljobcode = (item.Cells[0].FindControl("lbljobcode") as Label);
+                        Label lblItem = (item.Cells[0].FindControl("lblItem") as Label);
+                        Label lblCustName = (item.Cells[0].FindControl("lblCustName") as Label);
+                        Label lblSODate = (item.Cells[0].FindControl("lblSODate") as Label);
+                        Label lblSOTrays = (item.Cells[0].FindControl("lblSO_Tray") as Label);
+                        Label lblTraySize = (item.Cells[0].FindControl("lblTraySize") as Label);
+                        Label lblSoil = (item.Cells[0].FindControl("lblSoil") as Label);
+                        TextBox Txtgtrays = (item.Cells[0].FindControl("Txtgtrays") as TextBox);
+                        TextBox Txtgplantdt = (item.Cells[0].FindControl("Txtgplantdt") as TextBox);
+                        DropDownList ddlBenchLocation = (item.Cells[0].FindControl("ddlBenchLocation") as DropDownList);
+                        HiddenField HiddenFielditm = (item.Cells[0].FindControl("HiddenFielditm") as HiddenField);
+                        HiddenField HiddenFieldcusno = (item.Cells[0].FindControl("HiddenFieldcusno") as HiddenField);
+                        HiddenField HiddenFieldsotrays = (item.Cells[0].FindControl("HiddenFieldsotrays") as HiddenField);
+                        HiddenField HiddenFieldsodate = (item.Cells[0].FindControl("HiddenFieldsodate") as HiddenField);
+                        HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
+                        HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
+                        HiddenField HiddenFieldGenusCode = (item.Cells[0].FindControl("HiddenFieldGenusCode") as HiddenField);
+                        CheckBox chckrw = (item.Cells[0].FindControl("chkSelect") as CheckBox);
+                        if (chckrw.Checked == true)
                         {
-                            Label lblAllocated = (item.Cells[0].FindControl("lblAllocated") as Label);
-                            // Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
-                            Label lbljobcode = (item.Cells[0].FindControl("lbljobcode") as Label);
-                            Label lblItem = (item.Cells[0].FindControl("lblItem") as Label);
-                            Label lblCustName = (item.Cells[0].FindControl("lblCustName") as Label);
-                            Label lblSODate = (item.Cells[0].FindControl("lblSODate") as Label);
-                            Label lblSOTrays = (item.Cells[0].FindControl("lblSO_Tray") as Label);
-                            Label lblTraySize = (item.Cells[0].FindControl("lblTraySize") as Label);
-                            Label lblSoil = (item.Cells[0].FindControl("lblSoil") as Label);
-                            TextBox Txtgtrays = (item.Cells[0].FindControl("Txtgtrays") as TextBox);
-                            TextBox Txtgplantdt = (item.Cells[0].FindControl("Txtgplantdt") as TextBox);
-                            DropDownList ddlBenchLocation = (item.Cells[0].FindControl("ddlBenchLocation") as DropDownList);
-                            HiddenField HiddenFielditm = (item.Cells[0].FindControl("HiddenFielditm") as HiddenField);
-                            HiddenField HiddenFieldcusno = (item.Cells[0].FindControl("HiddenFieldcusno") as HiddenField);
-                            HiddenField HiddenFieldsotrays = (item.Cells[0].FindControl("HiddenFieldsotrays") as HiddenField);
-                            HiddenField HiddenFieldsodate = (item.Cells[0].FindControl("HiddenFieldsodate") as HiddenField);
-                            HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
-                            HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
-                            HiddenField HiddenFieldGenusCode = (item.Cells[0].FindControl("HiddenFieldGenusCode") as HiddenField);
-                            CheckBox chckrw = (item.Cells[0].FindControl("chkSelect") as CheckBox);
-                            if (chckrw.Checked == true)
+
+
+                            string lblSOTrays1 = lblSOTrays.Text;
+                            if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
                             {
 
+                                DataTable dt11 = new DataTable();
+                                NameValueCollection nv15 = new NameValueCollection();
 
-                                string lblSOTrays1 = lblSOTrays.Text;
-                                if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
+                                nv15.Add("@Facility", lblSeedline.Text);
+                                nv15.Add("@ID", "0");
+                                dt11 = objCommon.GetDataTable("SP_GetRoleForAssignementSeedLineSupervisorFacility", nv15);
+                                if (dt11 != null && dt11.Rows.Count > 0)
                                 {
 
                                     String tim = System.DateTime.Now.ToString("HH:mm:ss");
@@ -322,30 +324,54 @@ namespace Evo
                                     nv.Add("@mode", "1");
                                     _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
 
-                                    _isInserted = 1;
+                                }
+                                else
+                                {
+                                    if (!SelectedItemsFacility.Contains(lblSeedline.Text))
+                                        SelectedItemsFacility.Add(lblSeedline.Text);
+
                                 }
 
+                                _isInserted = 1;
                             }
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seedline supervisor not available for "+ lblSeedline.Text + " facility')", true);
+
                         }
 
-                    
+
+
 
                         SelectedItems++;
 
 
                     }
 
+
+                   
+
                     //   ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ');", true);
 
 
                 }
 
+
+                if (SelectedItemsFacility.Count > 0)
+                {
+
+
+                    var FD = string.Join(",", SelectedItemsFacility.ToArray());
+                    
+
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seedline supervisor not available for " + string.Join(",", SelectedItemsFacility) + " facility');", true);
+
+                }
+                else
+                {
+
+                }
+
                 getDataDGJob();
 
+             
                 BindRepeater("");
 
                 //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "window.print();", true);
