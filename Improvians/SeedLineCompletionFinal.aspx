@@ -199,17 +199,17 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         
-                                        <asp:TemplateField HeaderText="Initial Seed Lot Weight">
+                                        <asp:TemplateField HeaderStyle-Width="18%" HeaderText="Initial Seed Lot Weight">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtInitialSeedLotWeightLB" Width="125px" class="input__control" placeholder="Lb"  runat="server" Text=""></asp:TextBox>
-                                                <asp:TextBox ID="txtInitialSeedLotWeightOZ" Width="125px" class="input__control" placeholder="Oz"  runat="server" Text=""></asp:TextBox>
+                                                <asp:TextBox ID="txtInitialSeedLotWeightLB" Width="90px" class="input__control" placeholder="Lb"  runat="server" Text=""></asp:TextBox>
+                                                <asp:TextBox ID="txtInitialSeedLotWeightOZ" Width="90px" class="input__control" placeholder="Oz"  runat="server" Text=""></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Final Seed Lot Weight">
+                                        <asp:TemplateField HeaderStyle-Width="18%" HeaderText="Final Seed Lot Weight">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtFinalSeedLotWeightLB" Width="125px" class="input__control" runat="server" placeholder="Lb" Text=""></asp:TextBox>
-                                                  <asp:TextBox ID="txtFinalSeedLotWeightOZ" Width="125px" class="input__control" runat="server" placeholder="Oz" Text=""></asp:TextBox>
+                                                <asp:TextBox ID="txtFinalSeedLotWeightLB" Width="90px" class="input__control" runat="server" placeholder="Lb" Text=""></asp:TextBox>
+                                                  <asp:TextBox ID="txtFinalSeedLotWeightOZ" Width="90px" class="input__control" runat="server" placeholder="Oz" Text=""></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                        <%--  <asp:TemplateField HeaderText="Unit">

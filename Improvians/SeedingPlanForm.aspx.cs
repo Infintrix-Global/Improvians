@@ -86,7 +86,7 @@ namespace Evo
         }
         public void getDataDGJob()
         {
-            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim(), ddlSeedlineLocation.SelectedValue, ddlItem.SelectedValue, ddlSeedAllocated.SelectedValue, ddlTraySize.SelectedValue,ddlCustomer.SelectedValue);
+            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim(), ddlSeedlineLocation.SelectedValue, ddlItem.SelectedValue, ddlSeedAllocated.SelectedValue, ddlTraySize.SelectedValue, ddlCustomer.SelectedValue);
 
             if (AllData != null && AllData.Rows.Count > 0)
             {
@@ -98,12 +98,12 @@ namespace Evo
                 DataTable dtOnlyLeftWO = new DataTable();
                 if (dt11 != null && dt11.Rows.Count > 0)
                 {
-                   var rows  = (from a in AllData.AsEnumerable()
-                                    join b in dt11.AsEnumerable()
-                                    on a["WO"].ToString() equals b["WO"].ToString()
-                                    into g
-                                    where g.Count() == 0
-                                    select a);
+                    var rows = (from a in AllData.AsEnumerable()
+                                join b in dt11.AsEnumerable()
+                                on a["WO"].ToString() equals b["WO"].ToString()
+                                into g
+                                where g.Count() == 0
+                                select a);
                     if (rows.Any())
                         dtOnlyLeftWO = rows.CopyToDataTable();
 
@@ -237,7 +237,7 @@ namespace Evo
             {
                 long _isInserted = 1;
                 int SelectedItems = 0;
-               // int KeyValues = 0;
+                // int KeyValues = 0;
 
 
                 DataTable dt1 = new DataTable();
@@ -245,7 +245,7 @@ namespace Evo
                 NameValueCollection nvimg = new NameValueCollection();
                 nv14.Add("@Mode", "25");
                 dt1 = objCommon.GetDataTable("GET_Common", nv14);
-                KeyValues =dt1.Rows[0]["KeyValues"].ToString();
+                KeyValues = dt1.Rows[0]["KeyValues"].ToString();
 
 
                 foreach (GridViewRow item in DGJob.Rows)
@@ -253,80 +253,93 @@ namespace Evo
 
                     if (item.RowType == DataControlRowType.DataRow)
                     {
+                        Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
+                        DataTable dt11 = new DataTable();
+                        NameValueCollection nv15 = new NameValueCollection();
 
-
-
-                        Label lblAllocated = (item.Cells[0].FindControl("lblAllocated") as Label);
-                        // Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
-                        Label lbljobcode = (item.Cells[0].FindControl("lbljobcode") as Label);
-                        Label lblItem = (item.Cells[0].FindControl("lblItem") as Label);
-                        Label lblCustName = (item.Cells[0].FindControl("lblCustName") as Label);
-                        Label lblSODate = (item.Cells[0].FindControl("lblSODate") as Label);
-                        Label lblSOTrays = (item.Cells[0].FindControl("lblSO_Tray") as Label);
-                        Label lblTraySize = (item.Cells[0].FindControl("lblTraySize") as Label);
-                        Label lblSoil = (item.Cells[0].FindControl("lblSoil") as Label);
-                        TextBox Txtgtrays = (item.Cells[0].FindControl("Txtgtrays") as TextBox);
-                        TextBox Txtgplantdt = (item.Cells[0].FindControl("Txtgplantdt") as TextBox);
-                        DropDownList ddlBenchLocation = (item.Cells[0].FindControl("ddlBenchLocation") as DropDownList);
-                        HiddenField HiddenFielditm = (item.Cells[0].FindControl("HiddenFielditm") as HiddenField);
-                        HiddenField HiddenFieldcusno = (item.Cells[0].FindControl("HiddenFieldcusno") as HiddenField);
-                        HiddenField HiddenFieldsotrays = (item.Cells[0].FindControl("HiddenFieldsotrays") as HiddenField);
-                        HiddenField HiddenFieldsodate = (item.Cells[0].FindControl("HiddenFieldsodate") as HiddenField);
-                        HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
-                        HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
-                        HiddenField HiddenFieldGenusCode = (item.Cells[0].FindControl("HiddenFieldGenusCode") as HiddenField);
-                        CheckBox chckrw = (item.Cells[0].FindControl("chkSelect") as CheckBox);
-                        if (chckrw.Checked == true)
+                        nv15.Add("@Facility", lblSeedline.Text);
+                        nv15.Add("@ID", "0");
+                        dt11 = objCommon.GetDataTable("SP_GetRoleForAssignementSeedLineSupervisorFacility", nv15);
+                        if (dt11 != null && dt11.Rows.Count > 0)
                         {
-
-
-                            string lblSOTrays1 = lblSOTrays.Text;
-                            if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
+                            Label lblAllocated = (item.Cells[0].FindControl("lblAllocated") as Label);
+                            // Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
+                            Label lbljobcode = (item.Cells[0].FindControl("lbljobcode") as Label);
+                            Label lblItem = (item.Cells[0].FindControl("lblItem") as Label);
+                            Label lblCustName = (item.Cells[0].FindControl("lblCustName") as Label);
+                            Label lblSODate = (item.Cells[0].FindControl("lblSODate") as Label);
+                            Label lblSOTrays = (item.Cells[0].FindControl("lblSO_Tray") as Label);
+                            Label lblTraySize = (item.Cells[0].FindControl("lblTraySize") as Label);
+                            Label lblSoil = (item.Cells[0].FindControl("lblSoil") as Label);
+                            TextBox Txtgtrays = (item.Cells[0].FindControl("Txtgtrays") as TextBox);
+                            TextBox Txtgplantdt = (item.Cells[0].FindControl("Txtgplantdt") as TextBox);
+                            DropDownList ddlBenchLocation = (item.Cells[0].FindControl("ddlBenchLocation") as DropDownList);
+                            HiddenField HiddenFielditm = (item.Cells[0].FindControl("HiddenFielditm") as HiddenField);
+                            HiddenField HiddenFieldcusno = (item.Cells[0].FindControl("HiddenFieldcusno") as HiddenField);
+                            HiddenField HiddenFieldsotrays = (item.Cells[0].FindControl("HiddenFieldsotrays") as HiddenField);
+                            HiddenField HiddenFieldsodate = (item.Cells[0].FindControl("HiddenFieldsodate") as HiddenField);
+                            HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
+                            HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
+                            HiddenField HiddenFieldGenusCode = (item.Cells[0].FindControl("HiddenFieldGenusCode") as HiddenField);
+                            CheckBox chckrw = (item.Cells[0].FindControl("chkSelect") as CheckBox);
+                            if (chckrw.Checked == true)
                             {
 
-                                String tim = System.DateTime.Now.ToString("HH:mm:ss");
 
-                                long result = 0;
-                                NameValueCollection nv = new NameValueCollection();
-                                nv.Add("@jid", _isInserted.ToString());
-                                nv.Add("@jstatus", "0");
-                                nv.Add("@jobcode", lbljobcode.Text.Trim());
-                                nv.Add("@itemno", HiddenFielditm.Value);
-                                nv.Add("@itemdescp", lblItem.Text);
-                                nv.Add("@cname", lblCustName.Text);
-                                nv.Add("@cusno", HiddenFieldcusno.Value);
-                                nv.Add("@loc_seedline", ddlBenchLocation.SelectedValue);
-                                nv.Add("@trays_plan", lblSOTrays.Text);
-                                nv.Add("@trays_actual", Txtgtrays.Text);
-                                nv.Add("@seedsreceived", "0");
-                                nv.Add("@plan_date", Txtgplantdt.Text);
-                                nv.Add("@actual_date", HiddenFieldsodate.Value);
-                                nv.Add("@due_date", HiddenFieldduedate.Value);
-                                nv.Add("@cmt", "");
-                                nv.Add("@moduser", Session["LoginID"].ToString());
-                                nv.Add("@modtime", tim);
-                                nv.Add("@modified_date", "");
-                                nv.Add("@SoDate", lblSODate.Text);
-                                nv.Add("@TraySize", lblTraySize.Text);
-                                nv.Add("@wo", HiddenFieldwo.Value);
-                                nv.Add("@GenusCode", HiddenFieldGenusCode.Value);
-                                nv.Add("@Soil", lblSoil.Text);
-                                nv.Add("@CreateBy", Session["LoginID"].ToString());
-                                nv.Add("@IsKeyValues", KeyValues.ToString());
-                                nv.Add("@mode", "1");
-                                _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
+                                string lblSOTrays1 = lblSOTrays.Text;
+                                if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
+                                {
 
-                                _isInserted = 1;
+                                    String tim = System.DateTime.Now.ToString("HH:mm:ss");
+
+                                    long result = 0;
+                                    NameValueCollection nv = new NameValueCollection();
+                                    nv.Add("@jid", _isInserted.ToString());
+                                    nv.Add("@jstatus", "0");
+                                    nv.Add("@jobcode", lbljobcode.Text.Trim());
+                                    nv.Add("@itemno", HiddenFielditm.Value);
+                                    nv.Add("@itemdescp", lblItem.Text);
+                                    nv.Add("@cname", lblCustName.Text);
+                                    nv.Add("@cusno", HiddenFieldcusno.Value);
+                                    nv.Add("@loc_seedline", ddlBenchLocation.SelectedValue);
+                                    nv.Add("@trays_plan", lblSOTrays.Text);
+                                    nv.Add("@trays_actual", Txtgtrays.Text);
+                                    nv.Add("@seedsreceived", "0");
+                                    nv.Add("@plan_date", Txtgplantdt.Text);
+                                    nv.Add("@actual_date", HiddenFieldsodate.Value);
+                                    nv.Add("@due_date", HiddenFieldduedate.Value);
+                                    nv.Add("@cmt", "");
+                                    nv.Add("@moduser", Session["LoginID"].ToString());
+                                    nv.Add("@modtime", tim);
+                                    nv.Add("@modified_date", "");
+                                    nv.Add("@SoDate", lblSODate.Text);
+                                    nv.Add("@TraySize", lblTraySize.Text);
+                                    nv.Add("@wo", HiddenFieldwo.Value);
+                                    nv.Add("@GenusCode", HiddenFieldGenusCode.Value);
+                                    nv.Add("@Soil", lblSoil.Text);
+                                    nv.Add("@CreateBy", Session["LoginID"].ToString());
+                                    nv.Add("@IsKeyValues", KeyValues.ToString());
+                                    nv.Add("@mode", "1");
+                                    _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
+
+                                    _isInserted = 1;
+                                }
+
                             }
-
                         }
+                        else
+                        {
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Seedline supervisor not available for "+ lblSeedline.Text + " facility')", true);
+                        }
+
+                    
 
                         SelectedItems++;
 
 
                     }
 
-                 //   ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ');", true);
+                    //   ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ');", true);
 
 
                 }
@@ -335,7 +348,7 @@ namespace Evo
 
                 BindRepeater("");
 
-              //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "window.print();", true);
+                //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "window.print();", true);
 
                 string Title = Convert.ToDateTime(System.DateTime.Now).ToString("MM-dd-yyyy") + "_Seeding_Log_Sheet";
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "printScript", "document.title='" + Title + "'; window.print();", true);
@@ -391,16 +404,32 @@ namespace Evo
             {
 
                 Label lbl_Seedline = (Label)e.Row.FindControl("lbl_Seedline");
+                Label lblAllocated = (Label)e.Row.FindControl("lblAllocated");
                 DropDownList ddlBenchLocation = (DropDownList)e.Row.FindControl("ddlBenchLocation");
+                CheckBox chkSelect = (CheckBox)e.Row.FindControl("chkSelect");
+
+                if (lblAllocated.Text == "No")
+                {
+                    chkSelect.Visible = false;
+                }
+                else
+                {
+                    chkSelect.Visible = true;
+                }
+
+
 
                 ddlBenchLocation.DataSource = objCOm.GetMainLocation();
-
                 ddlBenchLocation.DataTextField = "l1";
                 ddlBenchLocation.DataValueField = "l1";
                 ddlBenchLocation.DataBind();
                 ddlBenchLocation.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
                 ddlBenchLocation.SelectedValue = lbl_Seedline.Text;
+
+
             }
+
+
 
         }
         protected void Reset_Click(object sender, EventArgs e)

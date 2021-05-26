@@ -92,7 +92,7 @@
                                     <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
                                         <HeaderTemplate>
                                             <div class="custom-control custom-checkbox mr-3">
-                                                <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
+                                                <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " Checked="true" AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
                                             </div>
                                         </HeaderTemplate>
                                         <ItemTemplate>
