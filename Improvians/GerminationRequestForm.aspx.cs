@@ -616,8 +616,8 @@ namespace Evo
             //    Response.Redirect("MyTaskAssistantGrower.aspx");
             //}
 
-            if (result > 0)
-            {
+            //if (result > 0)
+           // {
                 General objGeneral = new General();
                 objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
                 //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
@@ -635,12 +635,12 @@ namespace Evo
                 objCommon.ShowAlertAndRedirect(message, url);
 
                 clear();
-            }
-            else
-            {
-                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-                //  lblmsg.Text = "Assignment Not Successful";
-            }
+            //}
+            //else
+            //{
+            //   // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+            //    //  lblmsg.Text = "Assignment Not Successful";
+            //}
 
             var res = (Master.FindControl("r1") as Repeater);
 
