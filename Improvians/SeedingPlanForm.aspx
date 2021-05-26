@@ -13,61 +13,62 @@
         <div class="col-lg-2">
             <asp:Button ID="Reset" runat="server" Text="Reset All Data" OnClick="Reset_Click" Visible="false" CssClass="bttn bttn-primary bttn-action" />
         </div>
-        <%--</div>--%>
+
+
+
         <div class="row">
-            <div class="col-lg-2">
-                <label>From Date </label>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Seedline Facility</label>
+                <asp:DropDownList ID="ddlSeedlineLocation" OnSelectedIndexChanged="ddlSeedlineLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
 
-                <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="form-control" placeholder="From Date"
-                    ClientIDMode="Static"></asp:TextBox>
             </div>
-
-            <div class="col-lg-2">
-                <label>To Date </label>
-                <asp:TextBox ID="txtToDate" runat="server" TextMode="Date" class="form-control" placeholder="To Date"
-                    ClientIDMode="Static"></asp:TextBox>
-            </div>
-            <div class="col-lg-2">
-                <label>Seedline Location</label>
-                <asp:DropDownList ID="ddlSeedlineLocation" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-            </div>
-            <div class="col-lg-2">
-                <label>Seeds Allocated </label>
-                <asp:DropDownList ID="ddlSeedAllocated" runat="server" class="custom__dropdown robotomd">
-                </asp:DropDownList>
-            </div>
-            <div class="col-lg-2">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Item</label>
-                <asp:DropDownList ID="ddlItem" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <asp:DropDownList ID="ddlItem" runat="server" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
-            <div class="col-lg-2">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Customer </label>
+                <asp:DropDownList ID="ddlCustomer" runat="server" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Tray Size</label>
-                <asp:DropDownList ID="ddlTraySize" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <asp:DropDownList ID="ddlTraySize" runat="server" OnSelectedIndexChanged="ddlTraySize_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Seeds Allocated </label>
+                <asp:DropDownList ID="ddlSeedAllocated" runat="server" OnSelectedIndexChanged="ddlSeedAllocated_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
+                </asp:DropDownList>
+
+            </div>
+
 
         </div>
-        <br />
-        <div class="row">
-            <div class="col-lg-10">
-                <asp:Label ID="lblTotal" ForeColor="#488949" runat="server" Text=""></asp:Label>
+        <div class="row mb-1 mb-md-4 align-items-end">
 
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>From Date</label>
+                <asp:TextBox ID="txtFromDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
-
-            <div class="col-lg-2">
-
-
-
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>To Date </label>
+                <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <asp:Button ID="btnSearch" OnClick="btnSearch_Click" runat="server" Text="Search" CssClass="bttn bttn-primary bttn-action"></asp:Button>
                 <asp:Button ID="btnSearchReset" OnClick="btnSearchReset_Click" runat="server" Text="Reset" CssClass="bttn bttn-primary bttn-action"></asp:Button>
-            </div>
 
+            </div>
 
         </div>
 
 
 
-        <br />
-
+        <div class="row">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <asp:Label ID="lblTotal" ForeColor="#488949" runat="server" Text=""></asp:Label>
+            </div>
+        </div>
         <div class="row">
             <div class=" col m12">
                 <div class="portlet light ">
@@ -82,10 +83,22 @@
                                 ShowHeaderWhenEmpty="True" Width="100%">
 
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sr. No.">
+                                    <%--<asp:TemplateField HeaderText="Sr. No.">
                                         <ItemTemplate>
                                             <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
+                                        </ItemTemplate>
+                                    </asp:TemplateField>--%>
+                                    <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                        <HeaderTemplate>
+                                            <div class="custom-control custom-checkbox mr-3">
+                                                <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " AutoPostBack="true" OnCheckedChanged="chckchanged1" runat="server" />
+                                            </div>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <div class="custom-control custom-checkbox mr-3">
+                                                <asp:CheckBox runat="server" class="custom-control custom-checkbox" Text=" " Checked="true" ID="chkSelect"></asp:CheckBox>
+                                            </div>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderStyle-Width="70px" HeaderText="Seedline Facility">
@@ -147,12 +160,12 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderStyle-Width="70px" HeaderText="Work order Trays">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="Txtgtrays" Width="70px" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="Txtgtrays" class="input__control robotomd" Width="100px" Text='<%# Eval("wotrays","{0:####}") %>' runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="150px">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="Txtgplantdt" TextMode="Date" Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' Width="150px" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="Txtgplantdt" TextMode="Date" class="input__control robotomd" Text='<%# Eval("wodate","{0:yyyy-MM-dd}") %>' runat="server"></asp:TextBox>
 
                                         </ItemTemplate>
                                     </asp:TemplateField>

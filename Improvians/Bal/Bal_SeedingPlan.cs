@@ -14,7 +14,7 @@ namespace Evo.Bal
 
 
         private string strQuery = string.Empty;
-        public DataTable GetDataSeedingPlan(string FromDate, string ToDate, string loc, string item, string SeedAllocation, string traysize)
+        public DataTable GetDataSeedingPlan(string FromDate, string ToDate, string loc, string item, string SeedAllocation, string traysize,string cname)
         {
             Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
@@ -50,8 +50,10 @@ namespace Evo.Bal
                     strQuery += " And j.[Job Status]= " + "'" + SeedAllocation + "'";
                 if (traysize != "0")
                     strQuery += " And  j.[Variant Code]= " + "'" + traysize + "'";
-
-                strQuery += " order by alloc desc, loc desc, sodate";
+                if (cname != "0")
+                    strQuery += " And  j.[Bill-to Name]= " + "'" + cname + "'";
+                 strQuery += " order by alloc desc, loc desc, sodate";
+               // strQuery += " order by sodate";
                 objGeneral.AddParameterWithValueToSQLCommand("@FromDate", FromDate);
                 objGeneral.AddParameterWithValueToSQLCommand("@ToDate", ToDate);
                 dt = objGeneral.GetDatasetByCommand(strQuery);
@@ -201,6 +203,33 @@ namespace Evo.Bal
             }
             return dt;
         }
+
+
+        public DataTable GetCustomer(string FromDate, string ToDate)
+        {
+            Evo_General objGeneral = new Evo_General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "select  distinct  j.[Bill-to Name] cname  ";
+                strQuery += "from [GTI$IA Job Activity Scheme Line] b, [GTI$IA Job Production Scheme Line] p, ";
+                strQuery += "[GTI$Job] j left outer join [GTI$IA Work Order Header] w on j.No_ = w.[Job No_] ";
+                strQuery += "where b.[Job No_] = p.[Job No_] And b.[Job No_] = j.No_ And b.[Item Category] = 'SEED' and p.[Production Phase] = 'SEEDING' And ";
+                strQuery += "p.[Starting Date] between @FromDate and @ToDate and b.[Actual Date] < '1/1/2000' and j.[Job Status] in (1,9) ";
+                strQuery += "and b.[Job No_] not in (select jobcode from gti_jobs_seeds_plan) ";
+                strQuery += "order by  j.[Bill-to Name]";
+                objGeneral.AddParameterWithValueToSQLCommand("@FromDate", FromDate);
+                objGeneral.AddParameterWithValueToSQLCommand("@ToDate", ToDate);
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+
         public DataTable GetTraysize(string FromDate, string ToDate)
         {
             Evo_General objGeneral = new Evo_General();

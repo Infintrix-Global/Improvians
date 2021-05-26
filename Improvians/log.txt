@@ -18954,3 +18954,24 @@ Parameter name: index
    at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
    at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
    at Evo.CommonControl.GetDataTable(String storedProcedure, NameValueCollection nv) in E:\GEM\Mehul\Improvians\BAL_Classes\CommonControl.cs:line 232Procedure or function 'SP_GetSupervisorDumpTask' expects parameter '@JobCode', which was not supplied. at 5/25/2021 5:49:44 AM
+*****Error message=****System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'alloc desc'.
+Invalid column name 'loc desc'.
+   at Evo.Bal.Bal_SeedingPlan.GetDataSeedingPlan(String FromDate, String ToDate, String loc, String item, String SeedAllocation, String traysize, String cname)
+   at Evo.SeedingPlanForm.getDataDGJob()
+   at Evo.SeedingPlanForm.Page_Load(Object sender, EventArgs e)
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+ClientConnectionId:f570ca75-7dbe-4dd4-8fd4-12895eeeeca4
+Error Number:207,State:1,Class:16
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.seedingplanform_aspx.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) at 5/26/2021 2:28:50 AM

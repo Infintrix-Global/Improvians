@@ -198,29 +198,31 @@
                                                 <asp:Label ID="lblSeed" runat="server" Text=""></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Unit">
+                                        
+                                        <asp:TemplateField HeaderText="Initial Seed Lot Weight">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtInitialSeedLotWeightLB" Width="125px" class="input__control" placeholder="Lb"  runat="server" Text=""></asp:TextBox>
+                                                <asp:TextBox ID="txtInitialSeedLotWeightOZ" Width="125px" class="input__control" placeholder="Oz"  runat="server" Text=""></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Final Seed Lot Weight">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtFinalSeedLotWeightLB" Width="125px" class="input__control" runat="server" placeholder="Lb" Text=""></asp:TextBox>
+                                                  <asp:TextBox ID="txtFinalSeedLotWeightOZ" Width="125px" class="input__control" runat="server" placeholder="Oz" Text=""></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                       <%--  <asp:TemplateField HeaderText="Unit">
                                             <ItemTemplate>
                                                  <asp:DropDownList ID="ddlUnit" runat="server" class="custom__dropdown robotomd">
                                                     <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
                                                     <asp:ListItem Text="Pounds " Value="Pounds "></asp:ListItem>
-                                                    <asp:ListItem Text="oz" Value="oz"></asp:ListItem>
+                                                    <asp:ListItem Text="Oz" Value="Oz"></asp:ListItem>
                                                  
                                                 </asp:DropDownList>
 
                                             </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Initial Seed Lot Weight(lb)">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtInitialSeedLotWeight" class="input__control" runat="server" Text=""></asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Final Seed Lot Weight(lb)">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtFinalSeedLotWeight" class="input__control" runat="server" Text=""></asp:TextBox>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
+                                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="Lot Comments">
                                             <ItemTemplate>
                                                 <asp:DropDownList ID="ddlLotComments" runat="server" class="custom__dropdown robotomd">

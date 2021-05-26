@@ -126,8 +126,8 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    if ($('.SlectBox').length > 0) {
-        $('.SlectBox').SumoSelect({ placeholder: '--- Select ---' });
+    if ($('.SelectBox').length > 0) {
+        $('.SelectBox').SumoSelect({ placeholder: '--- Select ---' });
     }
 
 });

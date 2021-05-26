@@ -31,7 +31,7 @@
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
                 <%--<asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
-                <asp:ListBox ID="lstBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="lstBenchLocation_SelectedIndexChanged" runat="server" CssClass="SlectBox custom__dropdown robotomd"></asp:ListBox>
+                <asp:ListBox ID="lstBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="lstBenchLocation_SelectedIndexChanged" runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
                 <%-- <asp:TextBox ID="txtBatchLocation" runat="server" OnTextChanged="txtBatchLocation_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
                 <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
                     MinimumPrefixLength="2"
@@ -101,12 +101,12 @@
                         GridLines="None" OnRowCommand="gvFer_RowCommand" OnPageIndexChanging="gvFer_PageIndexChanging"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
-                            <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="160px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblGreenHouseID" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="Job No." ItemStyle-Width="60px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                     <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
@@ -174,10 +174,10 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
+                            <asp:TemplateField HeaderText="" HeaderStyle-Width="265px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnSelect" runat="server" Text="Job Build Up" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-                                    <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                    <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                    <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

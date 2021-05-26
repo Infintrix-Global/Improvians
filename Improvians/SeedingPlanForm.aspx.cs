@@ -39,9 +39,18 @@ namespace Evo
                 BindSeedlineLocation();
                 BindTraySize();
                 BindSeedAllocation();
-
+                BindCustomer();
                 getDataDGJob();
             }
+        }
+
+        public void BindCustomer()
+        {
+            ddlCustomer.DataSource = objSP.GetCustomer(txtFromDate.Text.Trim(), txtToDate.Text.Trim());
+            ddlCustomer.DataTextField = "cname";
+            ddlCustomer.DataValueField = "cname";
+            ddlCustomer.DataBind();
+            ddlCustomer.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
         }
 
         public void BindSeedlineLocation()
@@ -77,7 +86,7 @@ namespace Evo
         }
         public void getDataDGJob()
         {
-            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim(), ddlSeedlineLocation.SelectedValue, ddlItem.SelectedValue, ddlSeedAllocated.SelectedValue, ddlTraySize.SelectedValue);
+            AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim(), ddlSeedlineLocation.SelectedValue, ddlItem.SelectedValue, ddlSeedAllocated.SelectedValue, ddlTraySize.SelectedValue,ddlCustomer.SelectedValue);
 
             if (AllData != null && AllData.Rows.Count > 0)
             {
@@ -246,6 +255,7 @@ namespace Evo
                     {
 
 
+
                         Label lblAllocated = (item.Cells[0].FindControl("lblAllocated") as Label);
                         // Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
                         Label lbljobcode = (item.Cells[0].FindControl("lbljobcode") as Label);
@@ -265,46 +275,51 @@ namespace Evo
                         HiddenField HiddenFieldduedate = (item.Cells[0].FindControl("HiddenFieldduedate") as HiddenField);
                         HiddenField HiddenFieldwo = (item.Cells[0].FindControl("HiddenFieldwo") as HiddenField);
                         HiddenField HiddenFieldGenusCode = (item.Cells[0].FindControl("HiddenFieldGenusCode") as HiddenField);
-
-                        string lblSOTrays1 = lblSOTrays.Text;
-                        if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
+                        CheckBox chckrw = (item.Cells[0].FindControl("chkSelect") as CheckBox);
+                        if (chckrw.Checked == true)
                         {
 
-                            String tim = System.DateTime.Now.ToString("HH:mm:ss");
 
-                            long result = 0;
-                            NameValueCollection nv = new NameValueCollection();
-                            nv.Add("@jid", _isInserted.ToString());
-                            nv.Add("@jstatus", "0");
-                            nv.Add("@jobcode", lbljobcode.Text.Trim());
-                            nv.Add("@itemno", HiddenFielditm.Value);
-                            nv.Add("@itemdescp", lblItem.Text);
-                            nv.Add("@cname", lblCustName.Text);
-                            nv.Add("@cusno", HiddenFieldcusno.Value);
-                            nv.Add("@loc_seedline", ddlBenchLocation.SelectedValue);
-                            nv.Add("@trays_plan", lblSOTrays.Text);
-                            nv.Add("@trays_actual", Txtgtrays.Text);
-                            nv.Add("@seedsreceived", "0");
-                            nv.Add("@plan_date", Txtgplantdt.Text);
-                            nv.Add("@actual_date", HiddenFieldsodate.Value);
-                            nv.Add("@due_date", HiddenFieldduedate.Value);
-                            nv.Add("@cmt", "");
-                            nv.Add("@moduser", Session["LoginID"].ToString());
-                            nv.Add("@modtime", tim);
-                            nv.Add("@modified_date", "");
-                            nv.Add("@SoDate", lblSODate.Text);
-                            nv.Add("@TraySize", lblTraySize.Text);
-                            nv.Add("@wo", HiddenFieldwo.Value);
-                            nv.Add("@GenusCode", HiddenFieldGenusCode.Value);
-                            nv.Add("@Soil",lblSoil.Text);
-                            nv.Add("@CreateBy", Session["LoginID"].ToString());
-                            nv.Add("@IsKeyValues", KeyValues.ToString());
-                            nv.Add("@mode", "1");
-                            _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
+                            string lblSOTrays1 = lblSOTrays.Text;
+                            if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")
+                            {
 
-                            _isInserted = 1;
+                                String tim = System.DateTime.Now.ToString("HH:mm:ss");
+
+                                long result = 0;
+                                NameValueCollection nv = new NameValueCollection();
+                                nv.Add("@jid", _isInserted.ToString());
+                                nv.Add("@jstatus", "0");
+                                nv.Add("@jobcode", lbljobcode.Text.Trim());
+                                nv.Add("@itemno", HiddenFielditm.Value);
+                                nv.Add("@itemdescp", lblItem.Text);
+                                nv.Add("@cname", lblCustName.Text);
+                                nv.Add("@cusno", HiddenFieldcusno.Value);
+                                nv.Add("@loc_seedline", ddlBenchLocation.SelectedValue);
+                                nv.Add("@trays_plan", lblSOTrays.Text);
+                                nv.Add("@trays_actual", Txtgtrays.Text);
+                                nv.Add("@seedsreceived", "0");
+                                nv.Add("@plan_date", Txtgplantdt.Text);
+                                nv.Add("@actual_date", HiddenFieldsodate.Value);
+                                nv.Add("@due_date", HiddenFieldduedate.Value);
+                                nv.Add("@cmt", "");
+                                nv.Add("@moduser", Session["LoginID"].ToString());
+                                nv.Add("@modtime", tim);
+                                nv.Add("@modified_date", "");
+                                nv.Add("@SoDate", lblSODate.Text);
+                                nv.Add("@TraySize", lblTraySize.Text);
+                                nv.Add("@wo", HiddenFieldwo.Value);
+                                nv.Add("@GenusCode", HiddenFieldGenusCode.Value);
+                                nv.Add("@Soil", lblSoil.Text);
+                                nv.Add("@CreateBy", Session["LoginID"].ToString());
+                                nv.Add("@IsKeyValues", KeyValues.ToString());
+                                nv.Add("@mode", "1");
+                                _isInserted = objCommon.GetDataExecuteScalerRetObj("SP_Addgti_jobs_Seeding_Plan", nv);
+
+                                _isInserted = 1;
+                            }
+
                         }
-
 
                         SelectedItems++;
 
@@ -334,6 +349,33 @@ namespace Evo
         {
             Response.Redirect("~/MyTaskSeedlinePlanner.aspx");
         }
+
+
+        protected void chckchanged1(object sender, EventArgs e)
+        {
+            CheckBox chckheader = (CheckBox)DGJob.HeaderRow.FindControl("CheckBoxall");
+            foreach (GridViewRow row in DGJob.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckheader.Checked == true)
+                {
+                    chckrw.Checked = true;
+
+                }
+                else
+                {
+                    chckrw.Checked = false;
+                }
+            }
+
+        }
+
+
+
+
+
+
+
         protected void btnSearchReset_Click(object sender, EventArgs e)
         {
             ddlTraySize.SelectedIndex = 0;
@@ -438,6 +480,31 @@ namespace Evo
                 DGJob2.DataBind();
 
             }
+        }
+
+        protected void ddlSeedlineLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getDataDGJob();
+        }
+
+        protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getDataDGJob();
+        }
+
+        protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getDataDGJob();
+        }
+
+        protected void ddlTraySize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getDataDGJob();
+        }
+
+        protected void ddlSeedAllocated_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getDataDGJob();
         }
     }
 }

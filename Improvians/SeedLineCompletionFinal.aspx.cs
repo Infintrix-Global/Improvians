@@ -190,11 +190,13 @@ namespace Evo
                         string SeedNo = (row.Cells[3].FindControl("lblSeed") as Label).Text;
                         //  string Type = (row.Cells[4].FindControl("ddlType") as DropDownList).Text;
                         //  string Partial = (row.Cells[5].FindControl("txtPartial") as TextBox).Text;
-                        string InitialSeedLotWeight = (row.Cells[5].FindControl("txtInitialSeedLotWeight") as TextBox).Text;
-                        string FinalSeedLotWeight = (row.Cells[5].FindControl("txtFinalSeedLotWeight") as TextBox).Text;
+                        string InitialSeedLotWeightLb = (row.FindControl("txtInitialSeedLotWeightLB") as TextBox).Text;
+                        string InitialSeedLotWeightOZ = (row.FindControl("txtInitialSeedLotWeightOZ") as TextBox).Text;
+                        string FinalSeedLotWeightLb = (row.FindControl("txtFinalSeedLotWeightLB") as TextBox).Text;
+                        string FinalSeedLotWeightOz = (row.FindControl("txtFinalSeedLotWeightOZ") as TextBox).Text;
                         string LotComments = (row.FindControl("ddlLotComments") as DropDownList).SelectedValue;
-                        string Unit = (row.FindControl("ddlUnit") as DropDownList).SelectedValue;
-                        objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, "", "", InitialSeedLotWeight, FinalSeedLotWeight, LotComments, Unit);
+                       
+                        objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, "", "", InitialSeedLotWeightLb, InitialSeedLotWeightOZ, FinalSeedLotWeightLb, FinalSeedLotWeightOz, LotComments);
 
                     }
                 }
