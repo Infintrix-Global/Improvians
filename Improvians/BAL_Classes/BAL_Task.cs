@@ -144,7 +144,7 @@ namespace Evo.BAL_Classes
         }
 
 
-        public int AddPTCSeedAllocation(string STCID, string LotID, string ActualSeed, string SeedNo, string Type, string Partial,string InitialSeedLotWeight, string FinalSeedLotWeight,string LotComments,string Unit)
+        public int AddPTCSeedAllocation(string STCID, string LotID, string ActualSeed, string SeedNo, string Type, string Partial,string InitialSeedLotWeightLb,string InitialSeedLotWeightOz, string FinalSeedLotWeightLb,string FinalSeedLotWeightOz, string LotComments)
         {
             int _isInserted = -1;
             try
@@ -156,12 +156,12 @@ namespace Evo.BAL_Classes
                 objGeneral.AddParameterWithValueToSQLCommand("@SeedNo", SeedNo);
                 objGeneral.AddParameterWithValueToSQLCommand("@Type", Type);
                 objGeneral.AddParameterWithValueToSQLCommand("@Partial", Partial);
-                objGeneral.AddParameterWithValueToSQLCommand("@InitialSeedLotWeight", InitialSeedLotWeight);
-                objGeneral.AddParameterWithValueToSQLCommand("@FinalSeedLotWeight", FinalSeedLotWeight);
+                objGeneral.AddParameterWithValueToSQLCommand("@FinalSeedLotWeightLb", InitialSeedLotWeightLb);
+                objGeneral.AddParameterWithValueToSQLCommand("@FinalSeedLotWeightOz", InitialSeedLotWeightOz);
+                objGeneral.AddParameterWithValueToSQLCommand("@InitialSeedLotWeightLb", FinalSeedLotWeightLb);
+                objGeneral.AddParameterWithValueToSQLCommand("@InitialSeedLotWeightOz", FinalSeedLotWeightOz);
                 objGeneral.AddParameterWithValueToSQLCommand("@LotComments", LotComments);
-                objGeneral.AddParameterWithValueToSQLCommand("@Unit", Unit);
-
-
+                
 
                 _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddPTCLotMap");
                 
