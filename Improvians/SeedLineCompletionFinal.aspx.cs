@@ -193,8 +193,8 @@ namespace Evo
                         string InitialSeedLotWeight = (row.Cells[5].FindControl("txtInitialSeedLotWeight") as TextBox).Text;
                         string FinalSeedLotWeight = (row.Cells[5].FindControl("txtFinalSeedLotWeight") as TextBox).Text;
                         string LotComments = (row.FindControl("ddlLotComments") as DropDownList).SelectedValue;
-
-                        objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, "", "", InitialSeedLotWeight, FinalSeedLotWeight, LotComments);
+                        string Unit = (row.FindControl("ddlUnit") as DropDownList).SelectedValue;
+                        objTask.AddPTCSeedAllocation(result.ToString(), ID, ActualTray, SeedNo, "", "", InitialSeedLotWeight, FinalSeedLotWeight, LotComments, Unit);
 
                     }
                 }
