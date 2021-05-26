@@ -8,7 +8,6 @@
 				<siteMapNode url="~/ChemicalStart.aspx" title="Chemical"  />
 				<siteMapNode url="~/ChemicalTaskCompletion.aspx" title="Completion"  />
 			</siteMapNode>
-			<siteMapNode url="~/GrowerPutAwayForm.aspx" title="Put Away Location Assignment" />
 			<siteMapNode url="~/GerminationRequestForm.aspx" title="Germination Count Task">
 				<siteMapNode url="~/GreenHouseTaskCompletion.aspx" title="Completion"/>
 			</siteMapNode>
