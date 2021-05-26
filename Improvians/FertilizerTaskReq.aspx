@@ -176,7 +176,7 @@
 
                             <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnSelect" runat="server" Text="Job Build Up" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
+                                    <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="Job" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                     <asp:Button ID="btnStart" runat="server" Text="Start" CssClass="bttn bttn-primary bttn-action my-1 mx-auto d-block w-100" CommandName="GStart" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
                                 </ItemTemplate>
                             </asp:TemplateField>
