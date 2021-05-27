@@ -265,7 +265,16 @@ namespace Evo
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
 
-            dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
+
+            if (Session["Role"].ToString() == "12")
+            {
+                dt = objCommon.GetDataTable("SP_GetAssistantGrowerPutAway", nv);
+            }
+            else
+            {
+                dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
+            }
+         //   dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
