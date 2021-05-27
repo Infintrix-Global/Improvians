@@ -617,9 +617,6 @@ namespace Evo
                     var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
 
-
-
-
                 }
             }
 

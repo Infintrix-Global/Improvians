@@ -3,6 +3,44 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+
+        function checkAll(objRef) {
+            var GridView = document.getElementById('<%=gvPlantReady.ClientID %>');
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+                //Get the Cell To find out ColumnIndex       
+                if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
+                    if (objRef.checked) {
+                        inputList[i].checked = true;
+                    }
+                    else {
+                        inputList[i].checked = false;
+                    }
+                }
+            }
+        }
+        function Check_Click(objRef) {
+            //Get the reference of GridView
+            var GridView = document.getElementById('<%=gvPlantReady.ClientID %>');
+            //Get all input elements in Gridview
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+                //The First element is the Header Checkbox
+                var headerCheckBox = inputList[0];
+                //Based on all or none checkboxes
+                //are checked check/uncheck Header Checkbox
+                var checked = false;
+                if (inputList[i].type == "checkbox" && inputList[i] != headerCheckBox) {
+                    if (!inputList[i].checked) {
+                        break;
+                    }
+                }
+            }
+            headerCheckBox.checked = checked;
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -76,6 +114,7 @@
             </div>
 
             <div class="col-xl-4 col-12 mb-3">
+                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSelect_Click" />
                 <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearch_Click" />
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnResetSearch_Click" />
                 <%--<asp:Button ID="btnAssign" runat="server" OnClick="btnAssign_Click" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" ValidationGroup="x" />--%>
@@ -93,7 +132,18 @@
                         GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,PlantReadySeedDate,GreenHouseID,Trays,itemdescp,GrowerPutAwayPlantReadyId,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
-
+                            <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2">
+                                <HeaderTemplate>
+                                    <div class="custom-control custom-checkbox mr-3">
+                                        <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " onclick="checkAll(this);" runat="server" />
+                                    </div>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <div class="custom-control custom-checkbox mr-3">
+                                        <asp:CheckBox runat="server" class="custom-control custom-checkbox" Text=" " onclick="Check_Click(this)" ID="chkSelect"></asp:CheckBox>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblGreenHouseID" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -201,7 +251,7 @@
 
             <div id="userinput" runat="server" visible="false" class="row justify-content-center">
                 <div class="col-12">
-                    <div class="row">
+                    <div class="row" runat="server" id="divLabel">
                         <div class="col-6 col-sm-4 col-lg-3">
                             <label>Job No.</label><br />
                             <h4 class="robotobold">
@@ -251,6 +301,7 @@
                         </div>
                         <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
+                            <asp:Button Text="Submit" ID="btnMSubmit" Visible="false" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnMSubmit_Click" />
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
                         </div>
                     </div>

@@ -139,7 +139,7 @@
                         GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound" DataKeyNames="jobcode,ID,IsAG,GermDate,GreenHouseID,itemdescp,Trays,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
-                             <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                             <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" >
                                         <HeaderTemplate>
                                             <div class="custom-control custom-checkbox mr-3">
                                                 <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " onclick = "checkAll(this);" runat="server" />
@@ -273,7 +273,7 @@
                             <label>Bench location</label><br />
                             <h4 class="robotobold">
                                 <asp:Label ID="lblBenchlocation" runat="server"></asp:Label>
-                            </h4>
+                            </h4>userinput
                         </div>
                         <div class="col-6 col-sm-4 col-lg-3">
                             <label>Total Trays</label><br />

@@ -382,7 +382,11 @@ namespace Evo
         {
             if (e.CommandName == "Select")
             {
+                divLabel.Visible = true;
                 userinput.Visible = true;
+                divReschedule.Visible = false;
+                btnMSubmit.Visible = false;
+                btnSubmit.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
                 lblGrowerID.Text = gvPlantReady.DataKeys[rowIndex].Values[2].ToString();
@@ -392,7 +396,7 @@ namespace Evo
                 lblBenchlocation.Text = gvPlantReady.DataKeys[rowIndex].Values[7].ToString();
                 lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
                 lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
-                ViewState["tKey"] = gvPlantReady.DataKeys[rowIndex].Values[10].ToString();
+                ViewState["tKey"] = gvPlantReady.DataKeys[rowIndex].Values[11].ToString();
 
                 txtPlantDate.Text = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6]).ToString("yyyy-MM-dd");
                 ddlSupervisor.Focus();
@@ -424,7 +428,7 @@ namespace Evo
                 lblTotalTrays.Text = gvPlantReady.DataKeys[rowIndex].Values[8].ToString();
                 lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
                 txtPlantDate.Text = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6]).ToString("yyyy-MM-dd");
-                ViewState["tKey"] = gvPlantReady.DataKeys[rowIndex].Values[10].ToString();
+                ViewState["tKey"] = gvPlantReady.DataKeys[rowIndex].Values[11].ToString();
                 if (lblPRRId.Text == "0")
                 {
 
@@ -533,6 +537,74 @@ namespace Evo
             txtNewDate.Text = "";
         }
 
+
+        protected void btnMSubmit_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvPlantReady.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+                    string Jid = gvPlantReady.DataKeys[row.RowIndex].Values[4].ToString();
+                    string TaskRequestKey = gvPlantReady.DataKeys[row.RowIndex].Values[11].ToString();
+                    string PRid = gvPlantReady.DataKeys[row.RowIndex].Values[3].ToString();
+                    string IsAssistant = gvPlantReady.DataKeys[row.RowIndex].Values[5].ToString();
+
+                    string GreenHouseID = gvPlantReady.DataKeys[row.RowIndex].Values[7].ToString();
+                    string jobcode = gvPlantReady.DataKeys[row.RowIndex].Values[1].ToString();
+
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+                    nv.Add("@ManualID", Jid);
+                    nv.Add("@Comments", txtPlantComments.Text);
+                    nv.Add("@PRid", PRid);
+                    nv.Add("@PlantDate", txtPlantDate.Text);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@RoleId", Session["Role"].ToString());
+                    nv.Add("@IsAssistant", IsAssistant);
+                    nv.Add("@TaskRequestKey", TaskRequestKey);
+                    nv.Add("@jobcode", jobcode);
+                    nv.Add("@GreenHouseID", GreenHouseID);
+
+
+                    result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
+
+                    NameValueCollection nameValue = new NameValueCollection();
+                    nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                    nameValue.Add("@jobcode", jobcode);
+                    nameValue.Add("@GreenHouseID", GreenHouseID);
+                    nameValue.Add("@TaskName", "Plant Ready");
+
+                    var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+                }
+            }
+
+            string url = "";
+            if (Session["Role"].ToString() == "1")
+            {
+                url = "MyTaskGrower.aspx";
+            }
+            else
+            {
+                url = "MyTaskAssistantGrower.aspx";
+            }
+            string message = "Assignment Successful";
+
+
+            objCommon.ShowAlertAndRedirect(message, url);
+
+            Evo.BAL_Classes.General objGeneral = new General();
+            objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
+            var res = (Master.FindControl("r1") as Repeater);
+
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+            clear();
+        }
+
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
@@ -546,7 +618,8 @@ namespace Evo
             nv.Add("@RoleId", Session["Role"].ToString());
             nv.Add("@IsAssistant", lblIsAssistant.Text);
             nv.Add("@TaskRequestKey", ViewState["tKey"].ToString());
-
+            nv.Add("@jobcode", lblJobID.Text);
+            nv.Add("@GreenHouseID", lblBenchlocation.Text);
 
             result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
 
@@ -573,15 +646,7 @@ namespace Evo
                     url = "MyTaskAssistantGrower.aspx";
                 }
                 string message = "Assignment Successful";
-                ////  string url = "MyTaskGrower.aspx";
-                //string script = "window.onload = function(){ alert('";
-                //script += message;
-                //script += "');";
-                //script += "window.location = '";
-                //script += url;
-                //script += "'; }";
-                //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                // lblmsg.Text = "Assignment Successful";
+
 
                 objCommon.ShowAlertAndRedirect(message, url);
 
@@ -692,5 +757,20 @@ namespace Evo
                 }
             }
         }
+
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            userinput.Visible = true;
+            divReschedule.Visible = false;
+            divLabel.Visible = false;
+
+            btnMSubmit.Visible = true;
+            btnSubmit.Visible = false;
+
+
+            txtPlantDate.Focus();
+        }
+
+
     }
 }
