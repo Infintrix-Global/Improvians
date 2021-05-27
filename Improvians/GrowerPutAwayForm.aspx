@@ -142,7 +142,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text="System"></asp:Label>
+                                        <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
@@ -183,8 +183,8 @@
                                 <asp:Label ID="lblRemaining" runat="server"></asp:Label>
                             </div>
                         </div>
-                        <div class="data__table">
-                            <asp:GridView ID="GridSplitJob" runat="server" ShowFooter="true" OnRowDeleting="GridSplitJob_RowDeleting"
+                        <div class="data__table mt-3">
+                            <asp:GridView ID="GridSplitJob" CssClass="w-auto" runat="server" ShowFooter="true" OnRowDeleting="GridSplitJob_RowDeleting"
                                 AutoGenerateColumns="false" OnRowDataBound="GridSplitJob_RowDataBound">
                                 <Columns>
                                     <asp:BoundField DataField="RowNumber" HeaderText="NO." />
@@ -203,10 +203,10 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Trays">
+                                    <asp:TemplateField HeaderText="Trays" HeaderStyle-Width="170">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
-                                            <span class="error_message">
+                                            <span class="error_message d-block">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ErrorMessage="Please Enter Trays" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                                             </span>
                                         </ItemTemplate>

@@ -311,6 +311,7 @@
                         <div class="w-100"></div>
                         <div class="col-lg-3">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
+                              <asp:Button Text="Submit" ID="btnMSubmit" Visible="false" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnMSubmit_Click" />
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                         </div>
                     </div>
