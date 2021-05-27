@@ -312,7 +312,7 @@ namespace Evo.BAL_Classes
                             "where GPD.IsActive=1 ";
                 if (!string.IsNullOrEmpty(FacilityLocation))
                 {
-                    strQuery += "  FacilityID ='" + FacilityLocation + "'";
+                    strQuery += " and FacilityID ='" + FacilityLocation + "'";
                 }
                 if (!string.IsNullOrEmpty(BenchLocation))
                 {
