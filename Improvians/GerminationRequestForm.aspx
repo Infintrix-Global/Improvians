@@ -2,6 +2,44 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+
+        function checkAll(objRef) {
+            var GridView = document.getElementById('<%=gvGerm.ClientID %>');
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+                //Get the Cell To find out ColumnIndex       
+                if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
+                    if (objRef.checked) {
+                        inputList[i].checked = true;
+                    }
+                    else {
+                        inputList[i].checked = false;
+                    }
+                }
+            }
+        }
+        function Check_Click(objRef) {
+            //Get the reference of GridView
+            var GridView = document.getElementById('<%=gvGerm.ClientID %>');
+            //Get all input elements in Gridview
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+                //The First element is the Header Checkbox
+                var headerCheckBox = inputList[0];
+                //Based on all or none checkboxes
+                //are checked check/uncheck Header Checkbox
+                var checked = false;
+                if (inputList[i].type == "checkbox" && inputList[i] != headerCheckBox) {
+                    if (!inputList[i].checked) {                        
+                        break;
+                    }
+                }
+            }
+            headerCheckBox.checked = checked;
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -84,7 +122,8 @@
                 <label>To Date </label>
                 <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
-            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-12 pt-3 mb-3">
+                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSelect_Click" />
                 <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
                 <asp:Button ID="btnManual" runat="server" Visible="false" Text="Manual Request" CssClass="bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnManual_Click" />
@@ -100,7 +139,18 @@
                         GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound" DataKeyNames="jobcode,ID,IsAG,GermDate,GreenHouseID,itemdescp,Trays,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
-
+                             <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
+                                        <HeaderTemplate>
+                                            <div class="custom-control custom-checkbox mr-3">
+                                                <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " onclick = "checkAll(this);" runat="server" />
+                                            </div>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <div class="custom-control custom-checkbox mr-3">
+                                                <asp:CheckBox runat="server" class="custom-control custom-checkbox" Text=" " onclick = "Check_Click(this)" ID="chkSelect"></asp:CheckBox>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                             <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="100px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblBenchLocation" data-head="Bench Location" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -209,7 +259,7 @@
                 <asp:Panel ID="pnlint" runat="server">
                     <h3>Assign Task</h3>
 
-                    <div class="row">
+                    <div class="row" runat="server" id="divLabel">
                         <div class="col-6 col-sm-4 col-lg-3">
                             <label>Job No.</label><br />
                             <h4 class="robotobold">

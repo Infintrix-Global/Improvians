@@ -384,6 +384,7 @@ namespace Evo
         {
             if (e.CommandName == "Select")
             {
+                divLabel.Visible = true;
                 userinput.Visible = true;
                 divReschedule.Visible = false;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -599,28 +600,12 @@ namespace Evo
 
             var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
-            //NameValueCollection nv = new NameValueCollection();
-            //nv.Add("@OperatorID", ddlSupervisor.SelectedValue);
-            //nv.Add("@Notes","");
-            //nv.Add("@WorkOrderID", "");
-            //nv.Add("@GTRID", lblID.Text);
-            //nv.Add("@LoginID", Session["LoginID"].ToString());
-            //result = objCommon.GetDataExecuteScaler("SP_AddGerminationAssignmentNew1", nv);
 
-            //if (Session["Role"].ToString() == "1")
-            //{
-            //    Response.Redirect("MyTaskGrower.aspx");
-            //}
-            //else
-            //{
-            //    Response.Redirect("MyTaskAssistantGrower.aspx");
-            //}
-
-            //if (result > 0)
-           // {
+            if (result > 0)
+            {
                 General objGeneral = new General();
                 objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {
@@ -635,18 +620,16 @@ namespace Evo
                 objCommon.ShowAlertAndRedirect(message, url);
 
                 clear();
-            //}
-            //else
-            //{
-            //   // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
-            //    //  lblmsg.Text = "Assignment Not Successful";
-            //}
+                var res = (Master.FindControl("r1") as Repeater);
 
-            var res = (Master.FindControl("r1") as Repeater);
-
-            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
-            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
-
+                var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+                objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment not Successful')", true);
+                lblmsg.Text = "Assignment Not Successful";
+            }
         }
 
         public void clear()
@@ -852,6 +835,29 @@ namespace Evo
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGridGerm(ddlJobNo.SelectedValue, 1);
+        }
+
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            userinput.Visible = true;
+            divReschedule.Visible = false;
+            divLabel.Visible = false;
+            //DataTable dt1 = new DataTable();
+            //NameValueCollection nv1 = new NameValueCollection();
+            //nv1.Add("@GTRId", lblID.Text);
+            //dt1 = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskViewNew", nv1);
+
+            //if (dt1 != null && dt1.Rows.Count > 0)
+            //{
+            //    if (dt1.Rows[0]["InspectionDueDate"].ToString() != "")
+            //    {
+            //        txtDate.Text = Convert.ToDateTime(dt1.Rows[0]["InspectionDueDate"]).ToString("yyyy-MM-dd");
+            //    }
+            //    txtTrays.Text = dt1.Rows[0]["#TraysInspected"].ToString();
+            //    txtGcomments.Text = dt1.Rows[0]["Comments"].ToString();
+            //}
+
+            txtDate.Focus();
         }
     }
 }
