@@ -387,6 +387,8 @@ namespace Evo
                 divLabel.Visible = true;
                 userinput.Visible = true;
                 divReschedule.Visible = false;
+                btnMSubmit.Visible = false;
+                btnSubmit.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
                 //string facName = (row.FindControl("lblFacility") as Label).Text;
@@ -568,6 +570,87 @@ namespace Evo
         {
             txtNewDate.Text = "";
         }
+
+        protected void btnMSubmit_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvGerm.Rows)
+            {
+                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
+                if (chckrw.Checked == true)
+                {
+
+                    string IGD = gvGerm.DataKeys[row.RowIndex].Values[1].ToString();
+                    string TaskRequestKey = gvGerm.DataKeys[row.RowIndex].Values[7].ToString();
+                    string AGD = gvGerm.DataKeys[row.RowIndex].Values[2].ToString();
+
+                    string GreenHouseID = gvGerm.DataKeys[row.RowIndex].Values[4].ToString();
+                    string jobcode = gvGerm.DataKeys[row.RowIndex].Values[0].ToString();
+
+                    long result = 0;
+                    NameValueCollection nv = new NameValueCollection();
+                    nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+                    nv.Add("@InspectionDueDate", txtDate.Text);
+                    nv.Add("@#TraysInspected", txtTrays.Text);
+                    nv.Add("@ID", IGD);
+                    nv.Add("@LoginID", Session["LoginID"].ToString());
+                    nv.Add("@Role", ddlSupervisor.SelectedValue);
+                    nv.Add("@ISAG", AGD);
+                    nv.Add("@TaskRequestKey", TaskRequestKey);
+                    nv.Add("@Comments", txtGcomments.Text);
+
+
+                    if (Session["Role"].ToString() == "1")
+                    {
+                        result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
+                    }
+                    else
+                    {
+                        result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequestAS", nv);
+                    }
+
+                    NameValueCollection nameValue = new NameValueCollection();
+                    nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                    nameValue.Add("@jobcode", jobcode);
+                    nameValue.Add("@GreenHouseID", GreenHouseID);
+                    nameValue.Add("@TaskName", "Germination");
+
+                    var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+
+
+
+
+                }
+            }
+
+            string url = "";
+            if (Session["Role"].ToString() == "1")
+            {
+                url = "MyTaskGrower.aspx";
+            }
+            else
+            {
+                url = "MyTaskAssistantGrower.aspx";
+            }
+
+            string message = "Assignment Successful";
+            objCommon.ShowAlertAndRedirect(message, url);
+
+            General objGeneral = new General();
+            objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
+
+
+
+            clear();
+            var res = (Master.FindControl("r1") as Repeater);
+
+            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
+        }
+
+
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
@@ -842,6 +925,9 @@ namespace Evo
             userinput.Visible = true;
             divReschedule.Visible = false;
             divLabel.Visible = false;
+
+            btnMSubmit.Visible = true;
+            btnSubmit.Visible = false;
             //DataTable dt1 = new DataTable();
             //NameValueCollection nv1 = new NameValueCollection();
             //nv1.Add("@GTRId", lblID.Text);
@@ -859,5 +945,7 @@ namespace Evo
 
             txtDate.Focus();
         }
+
+
     }
 }
