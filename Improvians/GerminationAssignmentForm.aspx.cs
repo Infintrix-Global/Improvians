@@ -346,9 +346,14 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
 
-                Wo = (row.FindControl("lblWo") as Label).Text;
-                GTRID = (row.FindControl("lblID") as Label).Text;
-                ChId = (row.FindControl("lblChid") as Label).Text;
+                Wo = gvGerm.DataKeys[rowIndex].Values[2].ToString();
+                GTRID = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+
+                ChId = gvGerm.DataKeys[rowIndex].Values[3].ToString();
+
+                //Wo = (row.FindControl("lblWo") as Label).Text;
+                //GTRID = (row.FindControl("lblID") as Label).Text;
+                //ChId = (row.FindControl("lblChid") as Label).Text;
                 if (ChId == "")
                 {
                     ChId = "0";
@@ -375,8 +380,11 @@ namespace Evo
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gvGerm.Rows[rowIndex];
-                GTRID = (row.FindControl("lblID") as Label).Text;
-                ChId = (row.FindControl("lblChid") as Label).Text;
+
+                Wo = gvGerm.DataKeys[rowIndex].Values[2].ToString();
+                GTRID = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+
+                ChId = gvGerm.DataKeys[rowIndex].Values[3].ToString();
                 if (ChId == "")
                 {
                     ChId = "0";
