@@ -554,7 +554,7 @@ namespace Evo
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
             objTask.AddChemicalRequestDetails(dtTrays, result.ToString(), ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
 
-            objTask.UpdateIsActiveChemical(BenchUp);
+            objTask.UpdateIsActiveChemicalRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
             //    "'" + Bench + "'"
             Evo.BAL_Classes.General objGeneral = new General();
             objGeneral.SendMessage(int.Parse(ddlsupervisor.SelectedValue), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
