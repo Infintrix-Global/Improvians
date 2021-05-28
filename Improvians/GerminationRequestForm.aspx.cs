@@ -685,7 +685,7 @@ namespace Evo
             {
                 General objGeneral = new General();
                 objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+               // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {
