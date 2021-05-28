@@ -121,8 +121,8 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@Mode", "8");
-            dt = objCommon.GetDataTable("GET_Common", nv);
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetCustomer", nv);
             ddlCustomer.DataSource = dt;
             ddlCustomer.DataTextField = "cname";
             ddlCustomer.DataValueField = "cname";
