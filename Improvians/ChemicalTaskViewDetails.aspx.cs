@@ -127,12 +127,9 @@ namespace Evo
             string ChId = "";
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobCode", "0");
-            nv.Add("@TraySize", "0");
-            nv.Add("@itemno", "0");
-            nv.Add("@BenchLocation", "0");
+         
             nv.Add("@ChemicalCode", ChemicalCode);
-            dt = objCommon.GetDataTable("SP_GetChemicalDetailsRequest", nv);
+            dt = objCommon.GetDataTable("SP_GetChemicalBenchLocationView", nv);
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
             lbljid.Text = dt.Rows[0]["jid"].ToString();

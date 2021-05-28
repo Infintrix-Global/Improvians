@@ -138,15 +138,12 @@ namespace Evo
             string ChId = "";
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@JobCode","0");
-            nv.Add("@TraySize", "0");
-            nv.Add("@itemno","0");
-            nv.Add("@BenchLocation","0");
+           
             nv.Add("@FertilizationCode", FertilizationCode);
-            dt = objCommon.GetDataTable("SP_GetSprayRequestst", nv);
+            dt = objCommon.GetDataTable("SP_GetFertilizerBenchLocationView", nv);
             gvSpray.DataSource = dt;
             gvSpray.DataBind();
-            lbljid.Text = dt.Rows[0]["jid"].ToString();
+        
             ChId = dt.Rows[0]["CropHealth"].ToString();
             if (ChId == "")
             {
