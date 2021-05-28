@@ -645,6 +645,9 @@ namespace Evo
             }
 
             objTask.UpdateIsActiveIrrigation(BenchUp);
+
+
+            objTask.UpdateIsActiveFerRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
             string url = "";
             if (Session["Role"].ToString() == "1")
             {
