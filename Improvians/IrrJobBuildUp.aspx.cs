@@ -476,34 +476,51 @@ namespace Evo
         {
             int IrrigationCode = 0;
             string SprayTaskForDaysDate = "";
-            foreach (GridViewRow row1 in GridIrrigation.Rows)
+            //foreach (GridViewRow row1 in GridIrrigation.Rows)
+            //{
+            //    string IrrigationCode1 = (row1.FindControl("lblIrrigationCode") as Label).Text;
+            //    if (IrrigationCode1 != "")
+            //    {
+            //        IrrigationCode = Convert.ToInt32(IrrigationCode1);
+            //        if (IrrigationCode == 0)
+            //        {
+            //            DataTable dt = new DataTable();
+            //            NameValueCollection nv1 = new NameValueCollection();
+            //            nv1.Add("@Mode", "13");
+            //            dt = objCommon.GetDataTable("GET_Common", nv1);
+            //            IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+            //        }
+            //        else
+            //        {
+            //            IrrigationCode = IrrigationCode;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        DataTable dt = new DataTable();
+            //        NameValueCollection nv1 = new NameValueCollection();
+            //        nv1.Add("@Mode", "13");
+            //        dt = objCommon.GetDataTable("GET_Common", nv1);
+            //        IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
+            //    }
+            //}
+
+
+            if (ICode == "0")
             {
-                string IrrigationCode1 = (row1.FindControl("lblIrrigationCode") as Label).Text;
-                if (IrrigationCode1 != "")
-                {
-                    IrrigationCode = Convert.ToInt32(IrrigationCode1);
-                    if (IrrigationCode == 0)
-                    {
-                        DataTable dt = new DataTable();
-                        NameValueCollection nv1 = new NameValueCollection();
-                        nv1.Add("@Mode", "13");
-                        dt = objCommon.GetDataTable("GET_Common", nv1);
-                        IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
-                    }
-                    else
-                    {
-                        IrrigationCode = IrrigationCode;
-                    }
-                }
-                else
-                {
-                    DataTable dt = new DataTable();
-                    NameValueCollection nv1 = new NameValueCollection();
-                    nv1.Add("@Mode", "13");
-                    dt = objCommon.GetDataTable("GET_Common", nv1);
-                    IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
-                }
+                DataTable dt = new DataTable();
+                NameValueCollection nv1 = new NameValueCollection();
+                nv1.Add("@Mode", "13");
+                dt = objCommon.GetDataTable("GET_Common", nv1);
+                IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
             }
+            else
+            {
+                IrrigationCode = Convert.ToInt32(ICode);
+            }
+
+
+
 
             if (txtResetSprayTaskForDays.Text != "")
             {
@@ -559,6 +576,7 @@ namespace Evo
                 }
                 else
                 {
+
                 }
             }
 

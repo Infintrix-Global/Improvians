@@ -217,7 +217,7 @@
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <FooterTemplate>
-                                            <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" CausesValidation="false" Text="Add Put Away Location" CssClass="bttn bttn-primary bttn-action w-auto" />
+                                            <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" ValidationGroup="e" CausesValidation="false" Text="Add Put Away Location" CssClass="bttn bttn-primary bttn-action w-auto" />
                                         </FooterTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -229,7 +229,7 @@
                                 <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                             </div>
                             <div class="col-12 col-md-auto col-lg-4 mb-3">
-                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" OnClick="btnSubmit_Click" runat="server" />
+                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" ValidationGroup="e" OnClick="btnSubmit_Click" runat="server" />
                                 <asp:Button Text="Reset" ID="btnReset" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnReset_Click" runat="server" />
                             </div>
                             <div class="col-12">
