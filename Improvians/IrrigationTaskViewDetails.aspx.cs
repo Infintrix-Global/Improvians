@@ -236,14 +236,9 @@ namespace Evo
             nv.Add("@IrrigationCode", IrrigationCode);
             nv.Add("@RoleId", Session["Role"].ToString());
            
-            if (Session["Role"].ToString() == "2" | Session["Role"].ToString() == "12" | Session["Role"].ToString() == "1")
-            {
-                dt = objCommon.GetDataTable("SP_GetSupervisorIrrigationTaskByIrrigationCode", nv);
-            }
-            else
-            {
-                dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode", nv);
-            }
+          
+                dt = objCommon.GetDataTable("SP_GetOperatorIrrigationTaskByIrrigationCode1", nv);
+         
 
             gvIrrigation.DataSource = dt;
             gvIrrigation.DataBind();

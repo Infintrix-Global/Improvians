@@ -75,12 +75,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
-                        <ItemTemplate>
-                            <asp:Label ID="Label12" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
+                
 
 
                 </Columns>
