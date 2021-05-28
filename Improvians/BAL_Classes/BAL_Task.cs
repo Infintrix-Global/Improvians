@@ -575,6 +575,32 @@ namespace Evo.BAL_Classes
             return IsId;
         }
 
+        public int UpdateIsActiveFerRole(string BenchLocation, int RoleId)
+        {
+            int IsId = 0;
+            General objGeneral = new General();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                if (RoleId == 1)
+                {
+                    strQuery = " update GrowerPutAwayDetailsFertilizationMenual set IsFertilize=1  where GreenHouseID in (" + BenchLocation + ")";
+                }
+                else
+                {
+                    strQuery = " update GrowerPutAwayDetailsFertilizationMenual set IsFertilize=2  where GreenHouseID in (" + BenchLocation + ")";
+                }
+
+                objGeneral.GetExecuteNonQueryByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return IsId;
+        }
+
 
         public int UpdateIsActiveChemical(string BenchLocation)
         {
@@ -641,5 +667,32 @@ namespace Evo.BAL_Classes
             }
             return IsId;
         }
+
+        public int UpdateIsActiveIrrigationRole(string BenchLocation, int RoleId)
+        {
+            int IsId = 0;
+            General objGeneral = new General();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                if (RoleId == 1)
+                {
+                    strQuery = " update GrowerPutAwayDetailsIrrigationMenual set ISIrrigation=1  where GreenHouseID in (" + BenchLocation + ")";
+                }
+                else
+                {
+                    strQuery = " update GrowerPutAwayDetailsIrrigationMenual set ISIrrigation=2  where GreenHouseID in (" + BenchLocation + ")";
+                }
+
+                objGeneral.GetExecuteNonQueryByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return IsId;
+        }
+
     }
 }
