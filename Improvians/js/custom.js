@@ -130,4 +130,10 @@ jQuery(document).ready(function ($) {
         $('.SelectBox').SumoSelect({ placeholder: '--- Select ---' });
     }
 
+    //If date field
+    if ($('.jsDatePicker').length > 0) {
+        $('.jsDatePicker').datepicker();
+    }
+
+
 });
