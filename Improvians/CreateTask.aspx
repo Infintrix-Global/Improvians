@@ -314,14 +314,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-                                    <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-
-                                            <asp:Label ID="lblPlantReadyDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                       <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
@@ -329,6 +322,14 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Plant Ready Date" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblPlantReadyDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                 
 
                                 </Columns>
 
