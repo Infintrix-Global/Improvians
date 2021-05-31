@@ -54,6 +54,8 @@
     <link rel="preload" href="fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
     
     <link rel="stylesheet" href="css/sumoselect.css">
     <link rel="stylesheet" href="css/all.min.css">
@@ -157,7 +159,7 @@
             </div>
         </header>
 
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
+
         <div class="site__container site__breadcrumb" runat="server" id="divSitemap">
             <a href="javascript:history.back()" title="Go Back" class="bttn bttn-icon bttn-back"><i class="fas fa-angle-left"></i></a>
             <asp:SiteMapPath ID="SiteMapPath1" runat="server" CurrentNodeStyle-CssClass="active" CssClass="breadcrumb"></asp:SiteMapPath>
@@ -172,8 +174,13 @@
             </h4>
         </div>
         <div class="main">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+           <%--   <asp:ScriptManager ID="sc" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel runat="server" ID="upMain">
+                <ContentTemplate>--%>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+              <%--  </ContentTemplate>
+            </asp:UpdatePanel>--%>
         </div>
 
 
@@ -189,7 +196,7 @@
                 </li>
 
                 <li>
-                    <a id="lnkcreatetask"  runat="server" href="CreateTask.aspx">
+                    <a id="lnkcreatetask" runat="server" href="CreateTask.aspx">
                         <i class="fas fa-clipboard-list"></i>
                         <span>Create Task</span>
                         <%-- <span>My Tasks</span>--%>
@@ -197,26 +204,27 @@
                 </li>
 
                 <li>
-                      <asp:LinkButton ID="dashlink" runat="server" OnClick="dashlink_Click">
+                    <asp:LinkButton ID="dashlink" runat="server" OnClick="dashlink_Click">
                   
                         <i class="rxicon-icon-dashboard"></i>
                         <span>Reports</span>
-                     </asp:LinkButton>
+                    </asp:LinkButton>
                 </li>
 
 
                 <li>
-                  <%--  <a id="lnkmanagetask" runat="server" href="ManageTaskJobReport.aspx">--%>
-                      <asp:LinkButton ID="lnkmanagetask" runat="server" OnClick="lnkmanagetask_Click">
+                    <%--  <a id="lnkmanagetask" runat="server" href="ManageTaskJobReport.aspx">--%>
+                    <asp:LinkButton ID="lnkmanagetask" runat="server" OnClick="lnkmanagetask_Click">
                         <i class="fas fa-tasks"></i>
                         <span>Manage Task</span>
-                             </asp:LinkButton>
-                   <%-- </a>--%>
+                    </asp:LinkButton>
+                    <%-- </a>--%>
                 </li>
             </ul>
         </footer>
 
-        <script src="js/jquery.min.js"></script>        
+        <script src="js/jquery.min.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <script src="js/jquery.sumoselect.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
