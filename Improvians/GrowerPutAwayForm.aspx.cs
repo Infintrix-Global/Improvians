@@ -528,7 +528,9 @@ namespace Evo
 
                                 if (ChFdt != null && ChFdt.Rows.Count > 0)
                                 {
-                                    ReSetSprayDate = Convert.ToDateTime(ChFdt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChFdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                                    var add = ChFdt.Rows[0]["ResetSprayTaskForDays"].ToString();
+                                    add = string.IsNullOrEmpty(add) ? "0" : add;
+                                    ReSetSprayDate = (Convert.ToDateTime(ChFdt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(add))).ToString();
                                 }
 
                                 if (DateTime.Parse(FertilizationDate) >= DateTime.Parse(TodatDate))
@@ -576,7 +578,9 @@ namespace Evo
 
                                 if (ChChemidt != null && ChChemidt.Rows.Count > 0)
                                 {
-                                    ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                                    var add = ChChemidt.Rows[0]["ResetSprayTaskForDays"].ToString();
+                                    add = string.IsNullOrEmpty(add) ? "0" : add;
+                                    ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(add)).ToString();
                                 }
                                 if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
                                 {
@@ -623,7 +627,9 @@ namespace Evo
                                 TodatDate1 = System.DateTime.Now.ToShortDateString();
                                 if (Irrigationdt != null && Irrigationdt.Rows.Count > 0)
                                 {
-                                    ReSetIrrigateDate = Convert.ToDateTime(Irrigationdt.Rows[0]["CreatedOn"]).AddDays(Convert.ToInt32(Irrigationdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                                    var add = Irrigationdt.Rows[0]["ResetSprayTaskForDays"].ToString();
+                                    add = string.IsNullOrEmpty(add) ? "0" : add; 
+                                    ReSetIrrigateDate = Convert.ToDateTime(Irrigationdt.Rows[0]["CreatedOn"]).AddDays(Convert.ToInt32(add)).ToString();
                                 }
 
                                 if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate1))

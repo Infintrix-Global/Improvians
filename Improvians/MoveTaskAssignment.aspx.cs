@@ -112,7 +112,7 @@ namespace Evo
                 nvn.Add("@SupervisorID", ddlShippingCoordinator.SelectedValue);
                 nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
                 nvn.Add("@TaskName", "PutAway");
-                nv.Add("@TaskRequestKey", "");
+                nvn.Add("@TaskRequestKey", "");
                 nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouseName") as Label).Text);
                 var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
 
