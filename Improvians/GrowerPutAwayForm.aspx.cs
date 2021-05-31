@@ -24,6 +24,11 @@ namespace Evo
             {
                 string Fdate = "", TDate = "";
 
+                if (Request.QueryString["WO"] != null)
+                {
+                    wo = Request.QueryString["WO"].ToString();
+                    GetPuAwyDataShow(wo);
+                }
 
                 Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
@@ -318,36 +323,46 @@ namespace Evo
         {
             if (e.CommandName == "Assign")
             {
-                PanelAdd.Visible = true;
-                PanelList.Visible = false;
                 string wo_No = e.CommandArgument.ToString();
                 wo = wo_No;
-                DataTable dt = new DataTable();
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@Mode", "2");
-                nv.Add("@wo", wo_No);
-                nv.Add("@JobCode", "0");
-                nv.Add("@CustomerName", "0");
-                nv.Add("@Facility", Session["Facility"].ToString());
-                nv.Add("@Crop", "0");
-                nv.Add("@FromDate", "");
-                nv.Add("@ToDate", "");
-
-
-                dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
-
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    lblJobID.Text = dt.Rows[0]["JobID"].ToString();
-                    lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeededDate"]).ToString("MM-dd-yyyy");
-                    lblSeededTrays.Text = dt.Rows[0]["ActualTraySeeded"].ToString();
-                    PutAwayFacility = dt.Rows[0]["loc_seedline"].ToString();
-                    lblGenusCode.Text = dt.Rows[0]["GenusCode"].ToString();
-                    TraySize = dt.Rows[0]["TraySize"].ToString();
-                }
-                AddGrowerPutRow(true);
+                GetPuAwyDataShow(wo_No);
             }
         }
+
+
+
+        public void GetPuAwyDataShow(string WO)
+        {
+            PanelAdd.Visible = true;
+            PanelList.Visible = false;
+       
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@Mode", "2");
+            nv.Add("@wo", WO);
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@Crop", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+
+
+            dt = objCommon.GetDataTable("SP_GetGrowerPutAway", nv);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                lblJobID.Text = dt.Rows[0]["JobID"].ToString();
+                lblSeedDate.Text = Convert.ToDateTime(dt.Rows[0]["SeededDate"]).ToString("MM-dd-yyyy");
+                lblSeededTrays.Text = dt.Rows[0]["ActualTraySeeded"].ToString();
+                PutAwayFacility = dt.Rows[0]["loc_seedline"].ToString();
+                lblGenusCode.Text = dt.Rows[0]["GenusCode"].ToString();
+                TraySize = dt.Rows[0]["TraySize"].ToString();
+            }
+            AddGrowerPutRow(true);
+        }
+
+
 
         protected void ButtonAddGridInvoice_Click(object sender, EventArgs e)
         {
@@ -675,10 +690,16 @@ namespace Evo
                     NameValueCollection nv1 = new NameValueCollection();
                     nv1.Add("@WorkOrder", wo);
                     _isInserted = objCommon.GetDataInsertORUpdate("SP_UpdateGrowerPutAwayDetails", nv1);
-
+                    string url = "";
                     // string message = "Grower Put Away Save  Successful";
-                    string url = "MyTaskGrower.aspx";
-
+                    if (Session["Role"].ToString() == "12")
+                    {
+                         url = "MyTaskAssistantGrower.aspx";
+                    }
+                    else
+                    {
+                        url = "MyTaskGrower.aspx";
+                    }
                     string message = "Assignment Successful";
                     objCommon.ShowAlertAndRedirect(message, url);
                     //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Grower Put Away Save  Successful')", true);

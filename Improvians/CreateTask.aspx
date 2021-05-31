@@ -224,7 +224,7 @@
                     </asp:Panel>
                     <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
 
-                        <asp:ListBox Class="SelectBox custom__dropdown robotomd" ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged"  runat="server"></asp:ListBox>
+                        <asp:ListBox Height="150px" ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged"  runat="server"></asp:ListBox>
                     </asp:Panel>
                     <asp:Panel ID="PanelHouse" Visible="false" runat="server">
                     </asp:Panel>

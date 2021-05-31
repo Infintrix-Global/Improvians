@@ -302,7 +302,16 @@ namespace Evo
             nv.Add("@ToDate", txtToDate.Text);
             nv.Add("@AssignedBy", ddlAssignedBy.SelectedValue);
 
-            dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTasknew", nv);
+            if (Session["Role"].ToString() == "12")
+            {
+                dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTaskAssistantGrower", nv);
+            }
+            else
+            {
+                dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTasknew", nv);
+            }
+         
+
             gvGerm.DataSource = dt;
             gvGerm.DataBind();
 
@@ -355,6 +364,11 @@ namespace Evo
 
                 Response.Redirect(String.Format("~/MoveCompletionForm.aspx?GrowerPutAwayId={0}", GrowerPutAwayId));
             }
+            if (e.CommandName == "PutAwyAssign")
+            {
+                string WO = e.CommandArgument.ToString();
+                Response.Redirect(String.Format("~/GrowerPutAwayForm.aspx?WO={0}", WO));
+            }
         }
 
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -367,8 +381,24 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Label lblBenchLocation = (Label)e.Row.FindControl("lblBenchLocation");
                 Button btnAssign = (Button)e.Row.FindControl("btnAssign");
                 Button btnSelect = (Button)e.Row.FindControl("btnSelect");
+                Button btnPutAwyStart = (Button)e.Row.FindControl("btnPutAwyStart");
+
+                
+                if (lblBenchLocation.Text!="")
+                {
+                    btnAssign.Visible = true;
+                    btnSelect.Visible = true;
+                    btnPutAwyStart.Visible = false;
+                }
+                else
+                {
+                    btnAssign.Visible = false;
+                    btnSelect.Visible = false;
+                    btnPutAwyStart.Visible = true;
+                }
 
                 int RoleId = Convert.ToInt32(Session["Role"]);
                 if (RoleId == 11 || RoleId == 3 || RoleId == 5)

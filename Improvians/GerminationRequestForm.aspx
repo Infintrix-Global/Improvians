@@ -273,7 +273,7 @@
                             <label>Bench location</label><br />
                             <h4 class="robotobold">
                                 <asp:Label ID="lblBenchlocation" runat="server"></asp:Label>
-                            </h4>userinput
+                            </h4>
                         </div>
                         <div class="col-6 col-sm-4 col-lg-3">
                             <label>Total Trays</label><br />
