@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="sc" runat="server"></asp:ScriptManager>
     <div class="main__header">
         <div class="site__container">
             <h2>Manage Task</h2>
