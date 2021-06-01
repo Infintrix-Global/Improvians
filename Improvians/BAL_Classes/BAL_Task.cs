@@ -288,7 +288,11 @@ namespace Evo.BAL_Classes
                 {
                     strQuery += " and cname ='" + CustName + "'";
                 }
+
+                strQuery += " Order by GPD.GreenHouseID ";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
+
+
             }
             catch (Exception ex)
             {
@@ -399,7 +403,7 @@ namespace Evo.BAL_Classes
                 {
                     strQuery += " and GJSPM.cname ='" + CustName + "'";
                 }
-
+                strQuery += " Order by GJSPM.GreenHouseID ";
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }

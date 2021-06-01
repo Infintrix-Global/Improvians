@@ -205,7 +205,7 @@ namespace Evo
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 string PRID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 string PRAID = gvGerm.DataKeys[rowIndex].Values[1].ToString();
-                string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[1].ToString();
+                string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[2].ToString();
                 // string PRAID = e.CommandArgument.ToString();
 
                 Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&IsF={2}&TaskRequestKey={3}", PRAID, PRID,0, TaskRequestKey));

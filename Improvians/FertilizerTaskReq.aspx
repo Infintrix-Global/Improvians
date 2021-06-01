@@ -32,6 +32,7 @@
                 <label>Bench Location </label>
                 <%--<asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
                 <asp:ListBox ID="lstBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="lstBenchLocation_SelectedIndexChanged" runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+             
                 <%-- <asp:TextBox ID="txtBatchLocation" runat="server" OnTextChanged="txtBatchLocation_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
                 <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
                     MinimumPrefixLength="2"
@@ -45,10 +46,12 @@
                 <label>Job No </label>
                 <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
+
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Assigned By </label>
                 <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
+
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Customer </label>
                 <asp:DropDownList ID="ddlCustomer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
