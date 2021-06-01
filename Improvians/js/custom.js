@@ -131,9 +131,15 @@ jQuery(document).ready(function ($) {
     }
 
     //If date field
-    if ($('.jsDatePicker').length > 0) {
-        $('.jsDatePicker').datepicker();
+    function initDatePicker() {
+        if ($('.jsDatePicker').length > 0) {
+            $('.jsDatePicker').datepicker();
+            $(".jsDatePicker").keypress(function (event) { event.preventDefault(); });
+           
+        }
     }
+   
+    initDatePicker();
 
 
 });
