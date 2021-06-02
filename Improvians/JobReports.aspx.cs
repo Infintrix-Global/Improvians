@@ -92,7 +92,6 @@ namespace Evo
             FillDGHeader01();
             BindJobHistoryDropdown();
             BindGridJobHistory();
-            string chkSelected = "";
             DataTable dt5 = new DataTable();
             DataTable dt6 = new DataTable();
             NameValueCollection nv = new NameValueCollection();
@@ -359,10 +358,13 @@ namespace Evo
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            PanelView.Visible = true;
-            JobCode = txtSearchJobNo.Text.Trim();
-            lblJobNo.Text = JobCode;
-            BindGridOne();
+            if (!string.IsNullOrEmpty(txtSearchJobNo.Text.Trim()) && txtSearchJobNo.Text.Trim().Length == 8)
+            {
+                PanelView.Visible = true;
+                JobCode = txtSearchJobNo.Text.Trim();
+                lblJobNo.Text = JobCode;
+                BindGridOne();
+            }
         }
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
@@ -385,7 +387,7 @@ namespace Evo
                 BindGridOne();
             }
             BindJobCode("");
-            BindGridOne();
+         //   BindGridOne();
             PanelView.Visible = false;
         }
         [System.Web.Script.Services.ScriptMethod()]
@@ -404,7 +406,7 @@ namespace Evo
                     if (string.IsNullOrEmpty(Facility))
                         cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where  jobcode like '%" + prefixText + "%' order by jobcode";
                     else
-                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "' order by jobcode";
+                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;

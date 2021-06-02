@@ -461,7 +461,7 @@ namespace Evo
                     if (dt.Rows[0]["WorkDate"].ToString() != "")
                     {
 
-                        lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM-dd-yyyy");
+                        lblTaskStatus.Text = Convert.ToDateTime(dt.Rows[0]["WorkDate"]).ToString("MM/dd/yyyy");
 
 
                         btnStart.Attributes.Add("class", "bttn bttn-primary bttn-action my-1 mx-auto d-block w-100");
