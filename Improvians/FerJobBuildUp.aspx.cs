@@ -571,8 +571,6 @@ namespace Evo
                 nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
-
-
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
                 FR_ID = result.ToString();
@@ -586,6 +584,13 @@ namespace Evo
                 nv.Add("@TaskName", "Fertilizer");
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nv);
+
+
+                NameValueCollection nvkey = new NameValueCollection();
+                nvkey.Add("@Id", FR_ID);
+                nvkey.Add("@Mode", "1");
+                DataTable dtkey = objCommon.GetDataTable("SP_GetTaskRequest", nvkey);
+                TaskRequestKey = dtkey.Rows[0]["TaskRequestKey"].ToString();
 
                 NameValueCollection nvn = new NameValueCollection();
                 nvn.Add("@LoginID", Session["LoginID"].ToString());

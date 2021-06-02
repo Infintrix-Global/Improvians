@@ -90,7 +90,7 @@ namespace Evo
             if (dt != null && dt.Rows.Count > 0)
             {
                 txtNotes.Text = dt.Rows[0]["Nots"].ToString();
-                txtResetSprayTaskForDays.Text = dt.Rows[0]["ResetSprayTaskForDays"].ToString();
+             //   txtResetSprayTaskForDays.Text = dt.Rows[0]["ResetSprayTaskForDays"].ToString();
                 txtSprayDate.Text = Convert.ToDateTime(dt.Rows[0]["SprayDate"]).ToString("yyyy-MM-dd");
                 txtWaterRequired.Text = dt.Rows[0]["WaterRequired"].ToString();
             }
@@ -170,7 +170,7 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@SprayDate", txtSprayDate.Text);
             nv.Add("@TaskRequestKey", TaskRequestKey);
-            nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
+            nv.Add("@ResetSprayTaskForDays", "0");
             nv.Add("@Comments", txtNotes.Text);
             nv.Add("@WaterRequired", txtWaterRequired.Text);
 
