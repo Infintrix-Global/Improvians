@@ -788,6 +788,13 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+            string Fdate = "", TDate = "";
+            Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+            TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
+
+            txtFromDate.Text = Fdate;
+            txtToDate.Text = TDate;
+
             RadioButtonListSourse.Items[0].Selected = false;
             RadioButtonListSourse.ClearSelection();
             RadioButtonListGno.Items[0].Selected = false;
