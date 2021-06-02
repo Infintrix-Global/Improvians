@@ -376,6 +376,8 @@ namespace Evo
                 divFilter1.Visible = true;
                 JobCode = "";
                 BindBenchLocation(Session["Facility"].ToString());
+                BindJobCode("");
+                PanelView.Visible = false;
             }
             else
             {
@@ -383,10 +385,7 @@ namespace Evo
                 lblJobNo.Text = JobCode;
                 PanelView.Visible = true;
                 BindGridOne();
-            }
-            BindJobCode("");
-         //   BindGridOne();
-            PanelView.Visible = false;
+            }           
         }
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
@@ -397,9 +396,6 @@ namespace Evo
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
-                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
-                    //" AND t.[Job No_] like '" + prefixText + "%'";
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
                     if (string.IsNullOrEmpty(Facility))
                         cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where  jobcode like '" + prefixText + "%' order by jobcode";
