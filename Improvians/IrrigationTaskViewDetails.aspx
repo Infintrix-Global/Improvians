@@ -212,7 +212,11 @@
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
-
+                                      <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label12" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Bench Location">
                                         <ItemTemplate>
                                             <asp:Label ID="lblGreenHouseID" runat="server" Text='<%#Bind("BenchLocation") %>'></asp:Label>
@@ -220,11 +224,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Spray Date" HeaderStyle-CssClass="autostyle2">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label12" runat="server" Text='<%# Eval("SprayDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                  
                                     <asp:TemplateField HeaderText="No of Passes" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label13" runat="server" Text='<%# Eval("WaterRequired")  %>'></asp:Label>
@@ -277,7 +277,7 @@
 
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Spray Date">
+                                <asp:TemplateField HeaderText="Completion  Date">
                                     <ItemTemplate>
 
                                         <asp:Label ID="lblSprayDate" runat="server" Text='<%#Bind("SprayDate","{0:MM/dd/yyyy}") %>'></asp:Label>

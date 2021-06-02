@@ -258,6 +258,13 @@
 
                                     </ItemTemplate>
 
+                                     <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblInspectionDueDatea" runat="server" Text='<%# Eval("InspectionDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="No. of Trays to Inspect" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -268,12 +275,7 @@
 
 
 
-                                <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblInspectionDueDatea" runat="server" Text='<%# Eval("InspectionDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-
+                               
                                 <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
@@ -326,7 +328,7 @@
                                     </ItemTemplate>
 
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="Completion Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblInspectionDate" runat="server" Text='<%# Eval("InspectionDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>

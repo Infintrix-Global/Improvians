@@ -209,11 +209,12 @@
                                 </ItemTemplate>
 
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Plant Ready Work Date">
+                            <asp:TemplateField HeaderText="Work Date">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("PlanDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Comments">
                                 <ItemTemplate>
                                     <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>

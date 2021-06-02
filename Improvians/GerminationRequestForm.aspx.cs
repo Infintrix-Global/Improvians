@@ -525,6 +525,7 @@ namespace Evo
                 GridViewRow row = gvGerm.Rows[rowIndex];
 
                 string ChId = "0";
+                string TaskRequestKey = "";
                 lblID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
                 lblJobID.Text = gvGerm.DataKeys[rowIndex].Values[0].ToString();
 
@@ -543,9 +544,14 @@ namespace Evo
                 DataTable dtR = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationRequestID", nvR);
                 string GTRID = dtR.Rows[0]["GTRID"].ToString();
 
+                NameValueCollection nvkey = new NameValueCollection();
+                nvkey.Add("@GTRID", GTRID);
+                DataTable dtkey = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationRequestID", nvkey);
+                TaskRequestKey = dtkey.Rows[0]["TaskRequestKey"].ToString();
+
 
                 // Session["WorkOrder"] = JobID;
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}&GTRID={2}&IsF={3}", result.ToString(), ChId, GTRID, 0));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}&GTRID={2}&IsF={3}&TaskRequestKey={4}", result.ToString(), ChId, GTRID, 0, TaskRequestKey));
             }
         }
 

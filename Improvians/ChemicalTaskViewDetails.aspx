@@ -198,7 +198,7 @@
                             <asp:GridView ID="GridViewDetails"
                                 AutoGenerateColumns="false" runat="server">
                                 <Columns>
-
+                                    
                                     <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
                                         <ItemTemplate>
                                             <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
@@ -217,6 +217,14 @@
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="Work Date">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblWorkDate" runat="server" Text='<%#Bind("CreateDate","{0:MM/dd/yyyy}") %>'></asp:Label>
 
                                         </ItemTemplate>
 
@@ -299,7 +307,7 @@
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Spray Date">
+                                    <asp:TemplateField HeaderText="Completion Date">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblSprayDate" runat="server" Text='<%#Bind("SprayDate","{0:MM/dd/yyyy}") %>'></asp:Label>
