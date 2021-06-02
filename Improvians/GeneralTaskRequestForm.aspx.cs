@@ -326,6 +326,13 @@ namespace Evo
         {
             //  RadioButtonListSourse.Items[0].Selected = false;
             //  RadioButtonListSourse.ClearSelection();
+            string Fdate = "", TDate = "";
+            Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+            TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
+
+            txtFromDate.Text = Fdate;
+            txtToDate.Text = TDate;
+
 
             BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
             Bindcname("0", "0", "0");

@@ -62,6 +62,8 @@ namespace Evo
                 // JobCode = Request.QueryString["jobId"].ToString();
                 // JobCode = value;
             }
+
+
         }
 
         private string benchLoc
@@ -116,6 +118,8 @@ namespace Evo
             ddlCrop.DataValueField = "GenusCode";
             ddlCrop.DataBind();
             ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+
         }
 
         public void BindAssignByList(string ddlBench, string jobNo, string Cust)
@@ -141,6 +145,8 @@ namespace Evo
             ddlAssignedBy.DataBind();
             ddlAssignedBy.Items.Insert(0, new ListItem("--Select--", "0"));
             ddlAssignedBy.Items.Insert(1, new ListItem("System", "System"));
+
+
         }
         public void Bindcname(string ddlBench, string jobNo, string Code)
         {
@@ -221,6 +227,8 @@ namespace Evo
 
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlBenchLocation.SelectedIndex == -1)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -229,9 +237,12 @@ namespace Evo
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             BindGridGerm("0", 1);
+
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlBenchLocation.SelectedIndex == -1)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -244,6 +255,8 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             if (ddlBenchLocation.SelectedIndex == -1)
@@ -255,11 +268,15 @@ namespace Evo
         }
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             BindGridGerm("0", 1);
         }
 
         protected void RadioButtonListF_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             BindGridGerm("0", 1);
         }
 
@@ -840,6 +857,8 @@ namespace Evo
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtToDate.Text = "";
+            txtFromDate.Text = "";
             //BindJobCode(ddlBenchLocation.SelectedValue);
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname(getBenchLocation(), "0", "0");

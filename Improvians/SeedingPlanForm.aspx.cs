@@ -417,11 +417,19 @@ namespace Evo
 
         protected void btnSearchReset_Click(object sender, EventArgs e)
         {
-            ddlTraySize.SelectedIndex = 0;
-            ddlItem.SelectedIndex = 0;
-            ddlSeedAllocated.SelectedIndex = 0;
-            ddlTraySize.SelectedIndex = 0;
+         string   Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+          string  TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(10).ToString("yyyy-MM-dd");
+            //    Fdate = DateAdd(DateInterval.Day, -7, Now.Date);
+            //  TDate = DateAdd(DateInterval.Day, 10, Now.Date);
+            txtFromDate.Text = Fdate;
+            txtToDate.Text = TDate;
+            BindItem();
+            BindSeedlineLocation();
+            BindTraySize();
+            BindSeedAllocation();
+            BindCustomer();
             getDataDGJob();
+           // getDataDGJob();
         }
 
         protected void DGJob_RowDataBound(object sender, GridViewRowEventArgs e)
