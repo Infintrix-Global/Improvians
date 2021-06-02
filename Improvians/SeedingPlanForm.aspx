@@ -273,6 +273,12 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
+                                            <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="60px">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblplan_date" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}") %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("jobcode") %>'></asp:Label>
@@ -369,6 +375,12 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
+                                                    <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="60px">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblplan_date1" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}") %>'></asp:Label>
+
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lbljobcode1" runat="server" Text='<%# Eval("jobcode") %>'></asp:Label>
@@ -468,6 +480,12 @@
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
+                                                    <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="60px">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblplan_date2" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}") %>'></asp:Label>
+
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lbljobcode2" runat="server" Text='<%# Eval("jobcode") %>'></asp:Label>

@@ -20,14 +20,16 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                BindSupervisorList("0", "0", "0");
 
+                BindSupervisorList("0", "0", "0");
                 BindTaskRequestTypeList("0", "0", "0");
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
                 Bindcname("0", "0", "0");
                 BindCrop("0", "0", "0");
                 BindGridGerm();
+
+
             }
         }
 
@@ -201,6 +203,7 @@ namespace Evo
             nv.Add("@WorkDateForm", txtFromDate.Text);
             nv.Add("@WorkDateTo", txtToDate.Text);
             nv.Add("@GenusCode", ddlCrop.SelectedValue);
+
             if (Session["Role"].ToString() == "2")
             {
 
@@ -441,12 +444,16 @@ namespace Evo
                 Label lblBenchLocation = (Label)e.Row.FindControl("lblBenchLocation");
                 Label lblJobNo = (Label)e.Row.FindControl("lblJobNo");
                 Label lblTaskRequestType = (Label)e.Row.FindControl("lblTaskRequestType");
+                Label lblTaskRequestKey = (Label)e.Row.FindControl("lblTaskRequestKey");
+
+
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@BenchLocation", lblBenchLocation.Text);
                 nv.Add("@JobNo", lblJobNo.Text);
                 nv.Add("@RequestType", lblTaskRequestType.Text);
+                nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
                 dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobView", nv);
 
                 if (dt != null && dt.Rows.Count > 0)

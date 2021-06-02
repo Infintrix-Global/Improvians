@@ -261,6 +261,8 @@ namespace Evo
                 ddlAssignedTo.DataBind();
                 ddlAssignedTo.Items.Insert(0, new ListItem("--- Select ---", ""));
             }
+
+
         }
         protected void ddlAssignedTo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -400,9 +402,9 @@ namespace Evo
                     //" AND t.[Job No_] like '" + prefixText + "%'";
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
                     if (string.IsNullOrEmpty(Facility))
-                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where  jobcode like '" + prefixText + "%' order by jobcode";
+                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where  jobcode like '%" + prefixText + "%' order by jobcode";
                     else
-                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode";
+                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "' order by jobcode";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;
