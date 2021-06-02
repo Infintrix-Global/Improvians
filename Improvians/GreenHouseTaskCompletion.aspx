@@ -257,15 +257,15 @@
                                         <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
 
                                     </ItemTemplate>
-
-                                     <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblInspectionDueDatea" runat="server" Text='<%# Eval("InspectionDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
 
-                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="No. of Trays to Inspect" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblTraysInspecteda" runat="server" Text='<%# Eval("TraysInspected")  %>'></asp:Label>
@@ -275,7 +275,7 @@
 
 
 
-                               
+
                                 <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
