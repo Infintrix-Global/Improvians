@@ -33,8 +33,8 @@ namespace Evo
                     Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                     TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
 
-                    txtFromDate.Text = Fdate;
-                    txtToDate.Text = TDate;
+                   // txtFromDate.Text = Fdate;
+                   // txtToDate.Text = TDate;
                 }
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
@@ -563,7 +563,7 @@ namespace Evo
 
                 NameValueCollection nvkey = new NameValueCollection();
                 nvkey.Add("@GTRID", GTRID);
-                DataTable dtkey = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationRequestID", nvkey);
+                DataTable dtkey = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskRequsrKey", nvkey);
                 TaskRequestKey = dtkey.Rows[0]["TaskRequestKey"].ToString();
 
 

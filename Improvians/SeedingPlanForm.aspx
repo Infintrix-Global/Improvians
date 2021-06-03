@@ -262,7 +262,7 @@
 
                                 <div class="data__table">
                                     <asp:GridView ID="DGJob" runat="server" AutoGenerateColumns="False"
-                                        class="striped"
+                                        class="striped" OnRowDataBound="DGJob_RowDataBound1"
                                         GridLines="None" HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
                                         ShowHeaderWhenEmpty="True" Width="100%">
 
@@ -276,22 +276,27 @@
                                             <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblplan_date" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}") %>'></asp:Label>
+                                                    <asp:Label ID="lblCreateDate" Visible="false" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
+                                                    <asp:Label ID="lbldue_date" Visible="false" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}") %>'></asp:Label>
+
+
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbljobcode" runat="server" Text='<%# Eval("jobcode") %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="CUSTOMER">
+                                            <asp:TemplateField HeaderText="CUSTOMER" HeaderStyle-Width="180px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCustName" runat="server" Text='<%# Eval("cname") %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="ITEM DESCRIPTION">
+                                            <asp:TemplateField HeaderText="ITEM DESCRIPTION" HeaderStyle-Width="180px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblItem" runat="server" Text='<%# Eval("itemdescp") %>'></asp:Label>
 
@@ -317,7 +322,7 @@
                                                     <asp:Label ID="lblSoil" runat="server" Text='<%# Eval("Soil") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="GOING OUT" HeaderStyle-Width="60px">
+                                            <%-- <asp:TemplateField HeaderText="GOING OUT" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -328,12 +333,24 @@
                                             <asp:TemplateField HeaderText="GH-SIGNATURE" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                 </ItemTemplate>
+                                            </asp:TemplateField>--%>
+                                            <asp:TemplateField HeaderText="Days Early/Late" HeaderStyle-Width="60px">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDaysEarly" runat="server" Text=""></asp:Label>
+                                                </ItemTemplate>
                                             </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Greenhouse Days" HeaderStyle-Width="60px">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblGreenhouseDays" runat="server" Text=""></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="SEEDLINE SIGNATURE" HeaderStyle-Width="60px">
                                                 <ItemTemplate>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="60px">
+                                            <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="120px">
                                                 <ItemTemplate>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -364,7 +381,7 @@
 
                                         <div class="data__table">
                                             <asp:GridView ID="DGJob1" runat="server" AutoGenerateColumns="False"
-                                                class="striped"
+                                                class="striped" OnRowDataBound="DGJob1_RowDataBound"
                                                 GridLines="None" HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
                                                 ShowHeaderWhenEmpty="True" Width="100%">
 
@@ -378,6 +395,8 @@
                                                     <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblplan_date1" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}") %>'></asp:Label>
+                                                            <asp:Label ID="lblCreateDate1" Visible="false" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
+                                                            <asp:Label ID="lbldue_date1" Visible="false" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}") %>'></asp:Label>
 
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -419,7 +438,7 @@
                                                             <asp:Label ID="lblSoil1" runat="server" Text='<%# Eval("Soil") %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="GOING OUT" HeaderStyle-Width="60px">
+                                                    <%--   <asp:TemplateField HeaderText="GOING OUT" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -430,12 +449,25 @@
                                                     <asp:TemplateField HeaderText="GH-SIGNATURE" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
                                                         </ItemTemplate>
+                                                    </asp:TemplateField>--%>
+                                                    <asp:TemplateField HeaderText="Days Early/Late" HeaderStyle-Width="60px">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblDaysEarly1" runat="server" Text=""></asp:Label>
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Greenhouse Days" HeaderStyle-Width="60px">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblGreenhouseDays1" runat="server" Text=""></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
                                                     <asp:TemplateField HeaderText="SEEDLINE SIGNATURE" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="60px">
+
+                                                    <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="120px">
                                                         <ItemTemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -469,7 +501,7 @@
 
                                         <div class="data__table">
                                             <asp:GridView ID="DGJob2" runat="server" AutoGenerateColumns="False"
-                                                class="striped"
+                                                class="striped" OnRowDataBound="DGJob2_RowDataBound"
                                                 GridLines="None" HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
                                                 ShowHeaderWhenEmpty="True" Width="100%">
 
@@ -483,6 +515,8 @@
                                                     <asp:TemplateField HeaderText="Scheduled Seed Date" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblplan_date2" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}") %>'></asp:Label>
+                                                            <asp:Label ID="lblCreateDate2" Visible="false" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
+                                                            <asp:Label ID="lbldue_date2" Visible="false" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}") %>'></asp:Label>
 
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -524,7 +558,7 @@
                                                             <asp:Label ID="lblSoil2" runat="server" Text='<%# Eval("Soil") %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="GOING OUT" HeaderStyle-Width="60px">
+                                                    <%-- <asp:TemplateField HeaderText="GOING OUT" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -534,6 +568,17 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="GH-SIGNATURE" HeaderStyle-Width="60px">
                                                         <ItemTemplate>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
+                                                     <asp:TemplateField HeaderText="Days Early/Late" HeaderStyle-Width="60px">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblDaysEarly2" runat="server" Text=""></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Greenhouse Days" HeaderStyle-Width="60px">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblGreenhouseDays2" runat="server" Text=""></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="SEEDLINE SIGNATURE" HeaderStyle-Width="60px">

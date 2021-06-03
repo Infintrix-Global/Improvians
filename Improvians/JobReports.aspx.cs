@@ -28,7 +28,7 @@ namespace Evo
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         Evo_General objGeneral = new Evo_General();
         General objGen = new General();
-
+        clsCommonMasters objCom = new clsCommonMasters();
         static string ReceiverEmail = "";
 
 
@@ -323,9 +323,12 @@ namespace Evo
         }
         public void BindBenchLocation(string ddlMain)
         {
-            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
-            ddlBenchLocation.DataTextField = "p2";
-            ddlBenchLocation.DataValueField = "p2";
+            DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
+
+            // ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataSource = dtNV;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
 
@@ -339,8 +342,19 @@ namespace Evo
         {
 
 
+          //  ddlJobNo.Items.Clear();
+          //  ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+
+            DataTable dt = new DataTable();
+
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@BatchLocation", ddlBench);
+            nv.Add("@Mode", "1");
+            dt = objCommon.GetDataTable("SP_GeJobNo", nv);
             ddlJobNo.Items.Clear();
-            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+
+            ddlJobNo.DataSource = dt;
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
