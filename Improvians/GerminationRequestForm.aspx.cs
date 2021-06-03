@@ -778,6 +778,36 @@ namespace Evo
         {
             gvGerm.PageIndex = e.NewPageIndex;
             BindGridGerm("0", 1);
+
+            //List<int> list = new List<int>();
+            //if (ViewState["SelectedRecords"] != null)
+            //{
+            //    list = (List<int>)ViewState["SelectedRecords"];
+            //}
+            //foreach (GridViewRow row in gvGerm.Rows)
+            //{
+            //    CheckBox chk = (CheckBox)row.FindControl("chkSelect");
+            //    var selectedKey =
+            //    int.Parse(gvGerm.DataKeys[row.RowIndex].Values[1].ToString());
+              
+            //    if (chk.Checked)
+            //    {
+            //        if (!list.Contains(selectedKey))
+            //        {
+            //            list.Add(selectedKey);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (list.Contains(selectedKey))
+            //        {
+            //            list.Remove(selectedKey);
+            //        }
+            //    }
+            //}
+            //ViewState["SelectedRecords"] = list;
+            //gvGerm.PageIndex = e.NewPageIndex;
+            //this.BindGridGerm("0", 1);
         }
 
         protected void btnManual_Click(object sender, EventArgs e)

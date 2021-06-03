@@ -83,7 +83,7 @@
 
                                                 <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                         <asp:Label ID="lblTaskRequestKey" runat="server" Text='<%# Eval("TaskRequestKey")  %>'></asp:Label>
+                                                         <asp:Label ID="lblTaskRequestKey" Visible="false" runat="server" Text='<%# Eval("TaskRequestKey")  %>'></asp:Label>
                                                         <asp:Label ID="lblBenchLocation" runat="server" Text='<%# Eval("BenchLocation")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>

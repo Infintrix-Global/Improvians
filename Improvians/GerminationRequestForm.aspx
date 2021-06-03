@@ -133,9 +133,9 @@
         <div class="portlet light pt-1">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
             <div class="portlet-body">
-                <div class="data__table data__mobile">
-                    <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                        class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvGerm_PageIndexChanging"
+                <div class="data__table data__mobile data__table-height">
+                    <asp:GridView ID="gvGerm" runat="server" AutoGenerateColumns="False"
+                        class="striped" AllowSorting="true" 
                         GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound" DataKeyNames="jobcode,ID,IsAG,GermDate,GreenHouseID,itemdescp,Trays,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
