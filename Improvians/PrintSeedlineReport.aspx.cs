@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -74,30 +75,49 @@ namespace Evo
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             DGJob.DataSource = dt;
             DGJob.DataBind();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                A = Convert.ToInt32(dt.Rows[i]["Id"]);
+            }
 
 
             General objGeneral1 = new General();
             string strSQLCount = "select  * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
             DataTable dt12 = objGeneral1.GetDatasetByCommand(strSQLCount);
-
+           
 
             if (dt12.Rows.Count > 35 && dt12.Rows.Count < 70)
             {
                 PanelView.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '"+35+ "' and ID < '" + 70 + "'";
+                string strSQL1 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '"+A+ "'";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob1.DataSource = dt1;
                 DGJob1.DataBind();
+
 
             }
 
 
             if (dt12.Rows.Count > 70)
             {
+                PanelView.Visible = true;
+                General objGeneral21 = new General();
+                string strSQL11 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "' ";
+                DataTable dt11 = objGeneral21.GetDatasetByCommand(strSQL11);
+                DGJob1.DataSource = dt11;
+                DGJob1.DataBind();
+
+                for (int i = 0; i < dt11.Rows.Count; i++)
+                {
+                    A = Convert.ToInt32(dt11.Rows[i]["Id"]);
+                }
+
+
+
                 PanelView1.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + 70 + "'";
+                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "'";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob2.DataSource = dt1;
                 DGJob2.DataBind();
@@ -210,6 +230,22 @@ namespace Evo
                     e.Row.CssClass = "overdue";
                 }
             }
+        }
+
+        protected void btnExportToExcel_Click(object sender, EventArgs e)
+        {
+            BindRepeater(ddlDate.SelectedItem.Text);
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=RepeaterExport.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            repReport.RenderControl(hw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
         }
     }
 }

@@ -17,6 +17,7 @@
                         </div>
                         <div class="col-auto align-self-end">
                             <asp:Button ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" OnClick="btnSubmit_Click" runat="server" Text="Print" />
+                            <asp:Button ID="btnExportToExcel" CssClass="bttn bttn-primary bttn-action" Visible="false" OnClick="btnExportToExcel_Click" runat="server" Text="Excel" />
                         </div>
                     </div>
                 </div>
@@ -280,7 +281,7 @@
                                 </asp:Panel>
 
 
-                                <asp:Panel ID="PaneView1" Visible="false" runat="server">
+                                <asp:Panel ID="PanelView1" Visible="false" runat="server">
                                     <div class="page-break">
                                         <div class="row mt-4">
                                             <div class="d-flex align-items-center mb-1 col-12">

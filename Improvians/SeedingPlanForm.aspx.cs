@@ -516,6 +516,12 @@ namespace Evo
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             DGJob.DataSource = dt;
             DGJob.DataBind();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                A = Convert.ToInt32(dt.Rows[i]["Id"]);
+            }
+
+
             General objGeneral1 = new General();
             string strSQLCount = "select  * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
             DataTable dt12 = objGeneral1.GetDatasetByCommand(strSQLCount);
@@ -525,24 +531,40 @@ namespace Evo
             {
                 PanelView.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + 35 + "' and ID < '" + 70 + "'";
+                string strSQL1 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "'";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob1.DataSource = dt1;
                 DGJob1.DataBind();
+
 
             }
 
 
             if (dt12.Rows.Count > 70)
             {
+                PanelView.Visible = true;
+                General objGeneral21 = new General();
+                string strSQL11 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "' ";
+                DataTable dt11 = objGeneral21.GetDatasetByCommand(strSQL11);
+                DGJob1.DataSource = dt11;
+                DGJob1.DataBind();
+
+                for (int i = 0; i < dt11.Rows.Count; i++)
+                {
+                    A = Convert.ToInt32(dt11.Rows[i]["Id"]);
+                }
+
+
+
                 PanelView1.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + 70 + "'";
+                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "'";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob2.DataSource = dt1;
                 DGJob2.DataBind();
 
             }
+
         }
 
         protected void ddlSeedlineLocation_SelectedIndexChanged(object sender, EventArgs e)
