@@ -243,16 +243,26 @@ namespace Evo
         {
             BindRepeater(ddlDate.SelectedItem.Text);
 
-            Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment;filename=RepeaterExport.xls");
-            Response.Charset = "";
-            Response.ContentType = "application/vnd.ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-            repReport.RenderControl(hw);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
+            //Response.Clear();
+            //Response.Buffer = true;
+            //Response.AddHeader("content-disposition", "attachment;filename=RepeaterExport.xls");
+            //Response.Charset = "";
+            //Response.ContentType = "application/vnd.ms-excel";
+            //StringWriter sw = new StringWriter();
+            //HtmlTextWriter hw = new HtmlTextWriter(sw);
+            //repReport.RenderControl(hw);
+            //Response.Output.Write(sw.ToString());
+            //Response.Flush();
+            //Response.End();
+
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=gvtoexcel.xls");
+            Response.ContentType = "application/excel";
+            System.IO.StringWriter sw = new System.IO.StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            repReport.RenderControl(htw);
+            Response.Write(sw.ToString());
             Response.End();
         }
 
