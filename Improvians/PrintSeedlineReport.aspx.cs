@@ -255,9 +255,9 @@ namespace Evo
             //Response.Flush();
             //Response.End();
 
-
+            string Title = Convert.ToDateTime(System.DateTime.Now).ToString("MM-dd-yyyy") + "_Seeding_Log_Sheet";
             Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=gvtoexcel.xls");
+            Response.AddHeader("content-disposition", "attachment; filename="+ Title + ".xls");
             Response.ContentType = "application/excel";
             System.IO.StringWriter sw = new System.IO.StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
