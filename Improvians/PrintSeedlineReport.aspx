@@ -66,7 +66,7 @@
                                 <div class="data__table">
                                     <asp:GridView ID="DGJob" runat="server" AutoGenerateColumns="False"
                                         class="striped" OnRowDataBound="DGJob_RowDataBound"
-                                        GridLines="None" HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
+                                         HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
                                         ShowHeaderWhenEmpty="True" Width="100%">
 
                                         <Columns>
@@ -186,7 +186,7 @@
                                         <div class="data__table">
                                             <asp:GridView ID="DGJob1" runat="server" AutoGenerateColumns="False"
                                                 class="striped" OnRowDataBound="DGJob1_RowDataBound"
-                                                GridLines="None" HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
+                                                HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
                                                 ShowHeaderWhenEmpty="True" Width="100%">
 
                                                 <Columns>
@@ -309,7 +309,7 @@
                                         <div class="data__table">
                                             <asp:GridView ID="DGJob2" runat="server" AutoGenerateColumns="False"
                                                 class="striped" OnRowDataBound="DGJob2_RowDataBound"
-                                                GridLines="None" HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
+                                                HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
                                                 ShowHeaderWhenEmpty="True" Width="100%">
 
                                                 <Columns>
@@ -432,84 +432,5 @@
 
 
 
-    <div class="d-none d-print-block">
-        <asp:GridView ID="DGJobExcel" runat="server" AutoGenerateColumns="False"
-            class="striped" OnRowDataBound="DGJobExcel_RowDataBound"
-            GridLines="None" HeaderStyle-BackColor="#489d48" HeaderStyle-ForeColor="#ffffff"
-            ShowHeaderWhenEmpty="True" Width="100%">
-
-            <Columns>
-                <asp:TemplateField HeaderText="DATE" HeaderStyle-Width="60px">
-                    <ItemTemplate>
-                        <asp:Label ID="SrNo" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
-
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderStyle-Width="60px" HeaderText="LOC">
-                    <ItemTemplate>
-                        <asp:Label ID="lbl_Seedline" Text='<%# Eval("loc_seedline") %>' runat="server"></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="SCHEDULED SEED DATE" HeaderStyle-Width="60px">
-                    <ItemTemplate>
-                        <asp:Label ID="lblplan_dateEx" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}") %>'></asp:Label>
-                        <asp:Label ID="lblCreateDateEx" Visible="false" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
-                        <asp:Label ID="lbldue_dateEx" Visible="false" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}") %>'></asp:Label>
-
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="JOB" HeaderStyle-Width="60px">
-                    <ItemTemplate>
-                        <asp:Label ID="lbljobcodeEx" runat="server" Text='<%# Eval("jobcode") %>'></asp:Label>
-
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="CUSTOMER">
-                    <ItemTemplate>
-                        <asp:Label ID="lblCustNameEx" runat="server" Text='<%# Eval("cname") %>'></asp:Label>
-
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="ITEM DESCRIPTION">
-                    <ItemTemplate>
-                        <asp:Label ID="lblItemEx" runat="server" Text='<%# Eval("itemdescp") %>'></asp:Label>
-
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <asp:TemplateField HeaderText="TRAY SIZE" HeaderStyle-Width="60px">
-                    <ItemTemplate>
-                        <asp:Label ID="lblTraySizeEx" runat="server" Text='<%# Eval("traysize") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="QTY" HeaderStyle-Width="60px">
-                    <ItemTemplate>
-                        <asp:Label ID="lblTraysEx" runat="server" Text='<%# Eval("trays_actual") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="SOIL" HeaderStyle-Width="60px">
-                    <ItemTemplate>
-                        <asp:Label ID="lblSoilEx" runat="server" Text='<%# Eval("Soil") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <asp:TemplateField HeaderText="DAY EARLY/LATE" HeaderStyle-Width="60px">
-                    <ItemTemplate>
-                        <asp:Label ID="lblDaysEarlyEx" runat="server" Text=""></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <asp:TemplateField HeaderText="GREENHOUSE DAYS" HeaderStyle-Width="60px">
-                    <ItemTemplate>
-                        <asp:Label ID="lblGreenhouseDaysEx" runat="server" Text=""></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <asp:TemplateField HeaderText="COMMENTS" HeaderStyle-Width="120px">
-                    <ItemTemplate>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
-    </div>
+    
 </asp:Content>

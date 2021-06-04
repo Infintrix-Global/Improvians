@@ -233,16 +233,6 @@ namespace Evo
         }
 
 
-        private void BindRepeaterExcel(string strDate)
-        {
-            string strSQL = " select * from gti_jobs_seeds_plan";
-            if (!string.IsNullOrEmpty(strDate) && strDate != "--Select--")
-                strSQL = strSQL + " where CONVERT(date, CreateOn)= '" + strDate + "'";
-            DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
-            DGJobExcel.DataSource = dt;
-            DGJobExcel.DataBind();
-        }
-
         public override void VerifyRenderingInServerForm(Control control)
         {
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
@@ -260,45 +250,12 @@ namespace Evo
             Response.ContentType = "application/vnd.ms-excel";
             StringWriter sw = new StringWriter();
             HtmlTextWriter hw = new HtmlTextWriter(sw);
-            DGJobExcel.RenderControl(hw);
+            repReport.RenderControl(hw);
             Response.Output.Write(sw.ToString());
             Response.Flush();
             Response.End();
         }
 
-        protected void DGJobExcel_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-
-                Label lblplan_date = (Label)e.Row.FindControl("lblplan_dateEx");
-                Label lblDaysEarly = (Label)e.Row.FindControl("lblDaysEarlyEx");
-                Label lblGreenhouseDays = (Label)e.Row.FindControl("lblGreenhouseDaysEx");
-                Label lblCreateDate = (Label)e.Row.FindControl("lblCreateDateEx");
-                Label lbldue_date = (Label)e.Row.FindControl("lbldue_dateEx");
-
-
-
-                string dtimeString = Convert.ToDateTime(lblCreateDate.Text).ToString("yyyy/MM/dd");
-                DateTime dtCreateDate = Convert.ToDateTime(dtimeString);
-
-                DateTime dtplan_date = Convert.ToDateTime(Convert.ToDateTime(lblplan_date.Text).ToString("yyyy/MM/dd"));
-                DateTime dtdue_date = Convert.ToDateTime(Convert.ToDateTime(lbldue_date.Text).ToString("yyyy/MM/dd"));
-
-                TimeSpan objTimeSpan = dtplan_date - dtCreateDate;
-                double Days = Convert.ToDouble(objTimeSpan.TotalDays);
-
-
-                TimeSpan objTimeDue = dtdue_date - dtplan_date;
-                double DueDays = Convert.ToDouble(objTimeDue.TotalDays);
-
-                lblDaysEarly.Text = Days.ToString();
-                lblGreenhouseDays.Text = DueDays.ToString();
-                if (dtplan_date < dtCreateDate)
-                {
-                    e.Row.CssClass = "overdue";
-                }
-            }
-        }
+     
     }
 }
