@@ -489,4 +489,10 @@ namespace Evo
             rep.DataBind();
         }
     }
+    public class Job
+    {
+        public int ID;
+        public string JobID;
+
+    }
 }

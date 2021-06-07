@@ -22,6 +22,7 @@ namespace Evo
         List<string> BenchLocations = new List<string>();
         List<string> Customers = new List<string>();
         List<string> AssignedBys = new List<string>();
+        static List<Job> lstJob = new List<Job>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,8 +34,8 @@ namespace Evo
                     Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                     TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
 
-                   // txtFromDate.Text = Fdate;
-                   // txtToDate.Text = TDate;
+                    // txtFromDate.Text = Fdate;
+                    // txtToDate.Text = TDate;
                 }
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
@@ -220,7 +221,7 @@ namespace Evo
             ddlBenchLocation.DataTextField = "BenchLocation";
             ddlBenchLocation.DataValueField = "BenchLocation";
             ddlBenchLocation.DataBind();
-         //   ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            //   ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
 
         }
@@ -241,6 +242,7 @@ namespace Evo
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             txtFromDate.Text = "";
             txtToDate.Text = "";
             if (ddlBenchLocation.SelectedIndex == -1)
@@ -255,6 +257,7 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             txtFromDate.Text = "";
             txtToDate.Text = "";
             if (ddlCustomer.SelectedIndex == 0)
@@ -268,6 +271,7 @@ namespace Evo
         }
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             txtFromDate.Text = "";
             txtToDate.Text = "";
             BindGridGerm("0", 1);
@@ -275,6 +279,7 @@ namespace Evo
 
         protected void RadioButtonListF_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             txtFromDate.Text = "";
             txtToDate.Text = "";
             BindGridGerm("0", 1);
@@ -496,6 +501,9 @@ namespace Evo
                 }
 
                 txtDate.Focus();
+                lstJob.Clear();
+                lstJob.Add(new Job { ID = Convert.ToInt32(lblID.Text), JobID = lblJobID.Text });
+
             }
 
             if (e.CommandName == "Dismiss")
@@ -696,41 +704,44 @@ namespace Evo
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            nv.Add("@InspectionDueDate", txtDate.Text);
-            nv.Add("@#TraysInspected", txtTrays.Text);
-            nv.Add("@ID", lblID.Text);
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@Role", ddlSupervisor.SelectedValue);
-            nv.Add("@ISAG", lblAGD.Text);
-            nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
-            nv.Add("@Comments", txtGcomments.Text);
-
-
-            if (Session["Role"].ToString() == "1")
+            foreach (Job item in lstJob)
             {
-                result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+                nv.Add("@InspectionDueDate", txtDate.Text);
+                nv.Add("@#TraysInspected", txtTrays.Text);
+                nv.Add("@ID", item.ID.ToString());
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@Role", ddlSupervisor.SelectedValue);
+                nv.Add("@ISAG", lblAGD.Text);
+                nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
+                nv.Add("@Comments", txtGcomments.Text);
+
+
+                if (Session["Role"].ToString() == "1")
+                {
+                    result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequest", nv);
+                }
+                else
+                {
+                    result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequestAS", nv);
+                }
+
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                nameValue.Add("@jobcode", item.JobID);
+                nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
+                nameValue.Add("@TaskName", "Germination");
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
             }
-            else
-            {
-                result = objCommon.GetDataInsertORUpdate("SP_AddGerminationRequestAS", nv);
-            }
-
-            NameValueCollection nameValue = new NameValueCollection();
-            nameValue.Add("@LoginID", Session["LoginID"].ToString());
-            nameValue.Add("@jobcode", lblJobID.Text);
-            nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
-            nameValue.Add("@TaskName", "Germination");
-
-            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
-
 
             if (result > 0)
             {
+                lstJob.Clear();
                 General objGeneral = new General();
                 objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
-               // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 string url = "";
                 if (Session["Role"].ToString() == "1")
                 {
@@ -789,7 +800,7 @@ namespace Evo
             //    CheckBox chk = (CheckBox)row.FindControl("chkSelect");
             //    var selectedKey =
             //    int.Parse(gvGerm.DataKeys[row.RowIndex].Values[1].ToString());
-              
+
             //    if (chk.Checked)
             //    {
             //        if (!list.Contains(selectedKey))
@@ -842,6 +853,13 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Label lID = (Label)e.Row.FindControl("lblID");
+                CheckBox chkSelect = (CheckBox)e.Row.FindControl("chkSelect");
+
+                Job item = lstJob.Find(x => x.ID == Convert.ToInt32(lID.Text));
+                if (lstJob.Contains(item))
+                    chkSelect.Checked = true;
+
                 Label lblGenusCode = (Label)e.Row.FindControl("lblGenusCode");
                 Label lblTraySize = (Label)e.Row.FindControl("lblTraySize");
                 Label lblSeededDate = (Label)e.Row.FindControl("lblSeededDate");
@@ -889,11 +907,13 @@ namespace Evo
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             txtToDate.Text = "";
             txtFromDate.Text = "";
             //BindJobCode(ddlBenchLocation.SelectedValue);
@@ -998,6 +1018,7 @@ namespace Evo
 
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
@@ -1025,8 +1046,34 @@ namespace Evo
             //}
 
             txtDate.Focus();
+
         }
 
+        protected void chkSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkSelect = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkSelect.NamingContainer;
+            if (row != null)
+            {
+                Label lID = (Label)row.FindControl("lblID");
+                Label lJobID = (Label)row.FindControl("lbljobID");
 
+                if (chkSelect.Checked)
+                {
+                    lstJob.Add(new Job { ID = Convert.ToInt32(lID.Text), JobID = lJobID.Text });
+                }
+                else
+                {
+                    Job item = lstJob.Find(x => x.ID == Convert.ToInt32(lID.Text));
+                    if (item != null)
+                        lstJob.Remove(item);
+                }
+
+            }
+            lblmsg.Text = lstJob.Count.ToString() + " records selected";
+        }
+        protected void CheckBoxall_CheckedChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
