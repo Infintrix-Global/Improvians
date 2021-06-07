@@ -427,7 +427,7 @@ namespace Evo
                 nv.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
 
                 nv.Add("@SupervisorID", Session["LoginID"].ToString());
-                result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTaskStart", nv);
+                result = objCommon.GetDataExecuteScaler("4444Start", nv);
                 FR_ID = result.ToString();
 
                 //NameValueCollection nvn = new NameValueCollection();
