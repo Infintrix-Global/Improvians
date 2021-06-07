@@ -21,6 +21,7 @@ namespace Evo
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+
             {
                 string Fdate = "", TDate = "";
 
@@ -42,7 +43,7 @@ namespace Evo
                 BindCrop();
 
                 BindGridGerm("0", 0);
-                BindSupervisorList();
+                BindSupervisorList(Session["Facility"].ToString());
 
             }
         }
@@ -238,20 +239,35 @@ namespace Evo
             BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
-        public void BindSupervisorList()
+        public void BindSupervisorList(string Fid)
         {
+           
+            if (Fid =="")
+            {
+                Fid = Session["Facility"].ToString();   
+            }
+            else
+            {
+                // Fid = "'" + Session["Facility"].ToString() + "," + Fid + "'" ;
+
+                Fid = Session["Facility"].ToString() + "," + Fid;
+            }
+
+          
+
             NameValueCollection nv = new NameValueCollection();
             DataTable dt = new DataTable();
             nv.Add("@RoleID", Session["Role"].ToString());
-            nv.Add("@Facility", Session["Facility"].ToString());
-            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
-
+            nv.Add("@Facility", Fid);
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+          
             ddlSupervisor.DataSource = dt;
             //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
             ddlSupervisor.DataTextField = "EmployeeName";
             ddlSupervisor.DataValueField = "ID";
             ddlSupervisor.DataBind();
             ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
 
         }
 
@@ -370,8 +386,27 @@ namespace Evo
             AddGrowerPutRow(true);
         }
 
+        private string Fid
+        {
+            get
+            {
+                if (ViewState["Fid"] != null)
+                {
+                    return (string)ViewState["Fid"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["Fid"] = value;
+            }
+        }
+
         protected void GridSplitJob_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+
+            string Fid = "";
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 DropDownList ddlMain = (DropDownList)e.Row.FindControl("ddlMain");
@@ -388,15 +423,24 @@ namespace Evo
                 BindLocationNew(ref ddlLocation, PutAwayFacility);
                 ddlMain.SelectedValue = PutAwayFacility;
                 ddlLocation.SelectedValue = lblLocation.Text;
+
+               // Fid += "'" + ddlMain.SelectedValue + "',";
+
             }
+
+
         }
 
         protected void ddlMain_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string Fid1 = "";
             DropDownList ddlMain = (DropDownList)sender;
             GridViewRow row = (GridViewRow)ddlMain.NamingContainer;
             if (row != null)
             {
+
+                Fid +=  ddlMain.SelectedValue + ",";
+              
                 DropDownList ddlLocation = (DropDownList)row.FindControl("ddlLocation");
 
                 ddlLocation.DataSource = objCOm.GetLocation(ddlMain.SelectedValue);
@@ -405,6 +449,9 @@ namespace Evo
                 ddlLocation.DataBind();
                 ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
             }
+
+            Fid1 = Fid.Remove(Fid.Length - 1, 1);
+            BindSupervisorList(Fid);
         }
 
         public void BindLocation()

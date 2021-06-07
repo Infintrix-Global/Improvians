@@ -641,9 +641,7 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@FertilizationCode", FertilizationCode.ToString());
                 nv.Add("@FertilizationDate", txtDate.Text);
-
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
-
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);

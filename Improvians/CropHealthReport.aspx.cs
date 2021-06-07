@@ -707,6 +707,16 @@ namespace Evo
                 //result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv4);
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
 
+                string Countbanch = "", TaskRequestKey = "";
+                DataTable dt15 = new DataTable();
+                NameValueCollection nv15 = new NameValueCollection();
+                nv15.Add("@Mode", "1");
+                nv15.Add("@GreenHouseID", Batchlocation);
+                dt15 = objCommon.GetDataTable("SP_GetTaskRequestKeyBanchlocation", nv15);
+                Countbanch = dt15.Rows[0]["Countbanch"].ToString();
+
+
+                TaskRequestKey = Batchlocation + "_" + "Fertilization" + "_" + Countbanch;
 
                 //  NameValueCollection nv4 = new NameValueCollection();
 
@@ -728,6 +738,8 @@ namespace Evo
                 nv4.Add("@FertilizationDate", txtFDate.Text);
                 nv4.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv4.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                nv4.Add("@TaskRequestKey", TaskRequestKey);
+                nv4.Add("@ResetTaskForDays", "");
                 result2 = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTask", nv4);
 
 
@@ -1078,6 +1090,22 @@ namespace Evo
             foreach (GridViewRow row in GridViewView.Rows)
             {
 
+
+                string Countbanch = "";
+                string  Batchlocation1 = "";
+                string TaskRequestKey = "";
+
+                Batchlocation1 = (row.FindControl("lblGreenHouse1") as Label).Text;
+                DataTable dt15 = new DataTable();
+                NameValueCollection nv15 = new NameValueCollection();
+                nv15.Add("@Mode", "3");
+                nv15.Add("@GreenHouseID", Batchlocation1);
+                dt15 = objCommon.GetDataTable("SP_GetTaskRequestKeyBanchlocation", nv15);
+                Countbanch = dt15.Rows[0]["Countbanch"].ToString();
+
+                TaskRequestKey = Batchlocation1 + "_" + "Irrigation" + "_" + Countbanch;
+
+
                 long result16 = 0;
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", Assign);
@@ -1105,7 +1133,8 @@ namespace Evo
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
-               
+                nv.Add("@TaskRequestKey", TaskRequestKey);
+                nv.Add("@ResetTaskForDays", "");
 
 
                 result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
@@ -1583,6 +1612,23 @@ namespace Evo
             long result3 = 0;
             foreach (GridViewRow row in GridViewView.Rows)
             {
+
+
+                string TaskRequestKey = "";
+                string Countbanch = "";
+                string Batchlocation1 = "";
+                Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
+                DataTable dt15 = new DataTable();
+                NameValueCollection nv15 = new NameValueCollection();
+                nv15.Add("@Mode", "2");
+                nv15.Add("@GreenHouseID", Batchlocation1);
+                dt15 = objCommon.GetDataTable("SP_GetTaskRequestKeyBanchlocation", nv15);
+                Countbanch = dt15.Rows[0]["Countbanch"].ToString();
+
+                TaskRequestKey = Batchlocation1 + "_" + "Chemical" + "_" + Countbanch;
+
+
+
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", Assign);
                 nv.Add("@Type", "Chemical");
@@ -1602,6 +1648,9 @@ namespace Evo
                 nv.Add("@Method", ddlMethod.SelectedValue);
                 nv.Add("@seedDate", (row.FindControl("lblSeededDate1") as Label).Text);
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                nv.Add("@TaskRequestKey", TaskRequestKey);
+                nv.Add("@ResetTaskForDays", "");
+
 
                 result3 = objCommon.GetDataExecuteScaler("SP_AddChemicalRequestManualCreateTask", nv);
                 Batchlocation = (row.FindControl("lblGreenHouse1") as Label).Text;
