@@ -475,7 +475,7 @@ namespace Evo
             nv.Add("@JobCode", "0");
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", "0");
+            nv.Add("@BenchLocation", "");
             nv.Add("@Crop", "0");
             nv.Add("@Status", "");
             nv.Add("@Jobsource", "0");
@@ -501,7 +501,7 @@ namespace Evo
             nv.Add("@CustomerName", "0");
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@Status", "0");
-            nv.Add("@BenchLocation", "0");
+            nv.Add("@BenchLocation", "");
             nv.Add("@Jobsource", "");
             nv.Add("@LoginId", Session["LoginID"].ToString());
             nv.Add("@FromDate", "");
