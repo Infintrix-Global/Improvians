@@ -16,7 +16,8 @@
                             </asp:DropDownList>
                         </div>
                         <div class="col-auto align-self-end">
-                            <asp:Button ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" OnClick="btnSubmit_Click" runat="server" Text="Print" />
+                               <label class="d-block text-center">Download</label>
+                            <asp:Button ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" OnClick="btnSubmit_Click" runat="server" Text="PDF" />
                             <asp:Button ID="btnExportToExcel" CssClass="bttn bttn-primary bttn-action" OnClick="btnExportToExcel_Click" runat="server" Text="Excel" />
                         </div>
                     </div>
