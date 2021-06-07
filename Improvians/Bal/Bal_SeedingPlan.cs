@@ -139,6 +139,7 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
+
                 strQuery = "select  distinct  w.[Location Code] loc ";
                 strQuery += "from [GTI$IA Job Activity Scheme Line] b, [GTI$IA Job Production Scheme Line] p, ";
                 strQuery += "[GTI$Job] j left outer join [GTI$IA Work Order Header] w on j.No_ = w.[Job No_] ";
@@ -149,6 +150,8 @@ namespace Evo.Bal
                 objGeneral.AddParameterWithValueToSQLCommand("@FromDate", FromDate);
                 objGeneral.AddParameterWithValueToSQLCommand("@ToDate", ToDate);
                 dt = objGeneral.GetDatasetByCommand(strQuery);
+
+
             }
             catch (Exception ex)
             {

@@ -1,6 +1,7 @@
 ﻿using Evo.Bal;
 using Evo.BAL_Classes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
@@ -19,6 +20,8 @@ namespace Evo
         BAL_CommonMasters objBAL = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+
             if (!IsPostBack)
             {
                 string Fdate = "", TDate = "", FRDate = "";
@@ -26,8 +29,9 @@ namespace Evo
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
                 FRDate = System.DateTime.Now.ToString("yyyy-MM-dd");
                 // txtFertilizationDate.Text = FRDate;
-             //   txtFromDate.Text = Fdate;
-              //  txtToDate.Text = TDate;
+                //   txtFromDate.Text = Fdate;
+                //  txtToDate.Text = TDate;
+
 
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
@@ -37,6 +41,7 @@ namespace Evo
                 BindCrop();
                 BindGridPlantReady("0", 0);
                 BindSupervisorList();
+              
             }
         }
 
@@ -262,6 +267,9 @@ namespace Evo
 
         public void BindGridPlantReady(string JobCode, int p)
         {
+          
+
+
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", JobCode);
@@ -284,6 +292,7 @@ namespace Evo
             {
                 dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
             }
+         
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 
@@ -684,10 +693,15 @@ namespace Evo
             Response.Redirect("~/MyTaskGrower.aspx");
         }
 
+
+
         protected void gvPlantReady_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            //  gvPlantReady.PageIndex = e.NewPageIndex;
             gvPlantReady.PageIndex = e.NewPageIndex;
-            BindGridPlantReady("0", 1);
+            gvPlantReady.DataBind();
+            BindGridPlantReady("0", 0);
+
         }
 
         protected void btnManual_Click(object sender, EventArgs e)
