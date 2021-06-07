@@ -417,11 +417,19 @@ namespace Evo
 
         protected void btnSearchReset_Click(object sender, EventArgs e)
         {
-            ddlTraySize.SelectedIndex = 0;
-            ddlItem.SelectedIndex = 0;
-            ddlSeedAllocated.SelectedIndex = 0;
-            ddlTraySize.SelectedIndex = 0;
+         string   Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+          string  TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(10).ToString("yyyy-MM-dd");
+            //    Fdate = DateAdd(DateInterval.Day, -7, Now.Date);
+            //  TDate = DateAdd(DateInterval.Day, 10, Now.Date);
+            txtFromDate.Text = Fdate;
+            txtToDate.Text = TDate;
+            BindItem();
+            BindSeedlineLocation();
+            BindTraySize();
+            BindSeedAllocation();
+            BindCustomer();
             getDataDGJob();
+           // getDataDGJob();
         }
 
         protected void DGJob_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -508,6 +516,12 @@ namespace Evo
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             DGJob.DataSource = dt;
             DGJob.DataBind();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                A = Convert.ToInt32(dt.Rows[i]["Id"]);
+            }
+
+
             General objGeneral1 = new General();
             string strSQLCount = "select  * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
             DataTable dt12 = objGeneral1.GetDatasetByCommand(strSQLCount);
@@ -517,24 +531,40 @@ namespace Evo
             {
                 PanelView.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + 35 + "' and ID < '" + 70 + "'";
+                string strSQL1 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "'";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob1.DataSource = dt1;
                 DGJob1.DataBind();
+
 
             }
 
 
             if (dt12.Rows.Count > 70)
             {
+                PanelView.Visible = true;
+                General objGeneral21 = new General();
+                string strSQL11 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "' ";
+                DataTable dt11 = objGeneral21.GetDatasetByCommand(strSQL11);
+                DGJob1.DataSource = dt11;
+                DGJob1.DataBind();
+
+                for (int i = 0; i < dt11.Rows.Count; i++)
+                {
+                    A = Convert.ToInt32(dt11.Rows[i]["Id"]);
+                }
+
+
+
                 PanelView1.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + 70 + "'";
+                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "'";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob2.DataSource = dt1;
                 DGJob2.DataBind();
 
             }
+
         }
 
         protected void ddlSeedlineLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -560,6 +590,111 @@ namespace Evo
         protected void ddlSeedAllocated_SelectedIndexChanged(object sender, EventArgs e)
         {
             getDataDGJob();
+        }
+
+        protected void DGJob_RowDataBound1(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblplan_date = (Label)e.Row.FindControl("lblplan_date");
+                Label lblDaysEarly = (Label)e.Row.FindControl("lblDaysEarly");
+                Label lblGreenhouseDays = (Label)e.Row.FindControl("lblGreenhouseDays");
+                Label lblCreateDate = (Label)e.Row.FindControl("lblCreateDate");
+                Label lbldue_date = (Label)e.Row.FindControl("lbldue_date");
+
+
+
+                string dtimeString = Convert.ToDateTime(lblCreateDate.Text).ToString("yyyy/MM/dd");
+                DateTime dtCreateDate = Convert.ToDateTime(dtimeString);
+
+                DateTime dtplan_date = Convert.ToDateTime(Convert.ToDateTime(lblplan_date.Text).ToString("yyyy/MM/dd"));
+                DateTime dtdue_date = Convert.ToDateTime(Convert.ToDateTime(lbldue_date.Text).ToString("yyyy/MM/dd"));
+
+                TimeSpan objTimeSpan = dtplan_date - dtCreateDate;
+                double Days = Convert.ToDouble(objTimeSpan.TotalDays);
+
+
+                TimeSpan objTimeDue = dtdue_date - dtplan_date;
+                double DueDays = Convert.ToDouble(objTimeDue.TotalDays);
+
+                lblDaysEarly.Text = Days.ToString();
+                lblGreenhouseDays.Text = DueDays.ToString();
+                if (dtplan_date < dtCreateDate)
+                {
+                    e.Row.CssClass = "overdue";
+                }
+            }
+        }
+
+        protected void DGJob1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblplan_date = (Label)e.Row.FindControl("lblplan_date1");
+                Label lblDaysEarly = (Label)e.Row.FindControl("lblDaysEarly1");
+                Label lblGreenhouseDays = (Label)e.Row.FindControl("lblGreenhouseDays1");
+                Label lblCreateDate = (Label)e.Row.FindControl("lblCreateDate1");
+                Label lbldue_date = (Label)e.Row.FindControl("lbldue_date1");
+
+
+
+                string dtimeString = Convert.ToDateTime(lblCreateDate.Text).ToString("yyyy/MM/dd");
+                DateTime dtCreateDate = Convert.ToDateTime(dtimeString);
+
+                DateTime dtplan_date = Convert.ToDateTime(Convert.ToDateTime(lblplan_date.Text).ToString("yyyy/MM/dd"));
+                DateTime dtdue_date = Convert.ToDateTime(Convert.ToDateTime(lbldue_date.Text).ToString("yyyy/MM/dd"));
+
+                TimeSpan objTimeSpan = dtplan_date - dtCreateDate;
+                double Days = Convert.ToDouble(objTimeSpan.TotalDays);
+
+
+                TimeSpan objTimeDue = dtdue_date - dtplan_date;
+                double DueDays = Convert.ToDouble(objTimeDue.TotalDays);
+
+                lblDaysEarly.Text = Days.ToString();
+                lblGreenhouseDays.Text = DueDays.ToString();
+                if (dtplan_date < dtCreateDate)
+                {
+                    e.Row.CssClass = "overdue";
+                }
+            }
+        }
+
+        protected void DGJob2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblplan_date = (Label)e.Row.FindControl("lblplan_date2");
+                Label lblDaysEarly = (Label)e.Row.FindControl("lblDaysEarly2");
+                Label lblGreenhouseDays = (Label)e.Row.FindControl("lblGreenhouseDays2");
+                Label lblCreateDate = (Label)e.Row.FindControl("lblCreateDate2");
+                Label lbldue_date = (Label)e.Row.FindControl("lbldue_date2");
+
+
+
+                string dtimeString = Convert.ToDateTime(lblCreateDate.Text).ToString("yyyy/MM/dd");
+                DateTime dtCreateDate = Convert.ToDateTime(dtimeString);
+
+                DateTime dtplan_date = Convert.ToDateTime(Convert.ToDateTime(lblplan_date.Text).ToString("yyyy/MM/dd"));
+                DateTime dtdue_date = Convert.ToDateTime(Convert.ToDateTime(lbldue_date.Text).ToString("yyyy/MM/dd"));
+
+                TimeSpan objTimeSpan = dtplan_date - dtCreateDate;
+                double Days = Convert.ToDouble(objTimeSpan.TotalDays);
+
+
+                TimeSpan objTimeDue = dtdue_date - dtplan_date;
+                double DueDays = Convert.ToDouble(objTimeDue.TotalDays);
+
+                lblDaysEarly.Text = Days.ToString();
+                lblGreenhouseDays.Text = DueDays.ToString();
+                if (dtplan_date < dtCreateDate)
+                {
+                    e.Row.CssClass = "overdue";
+                }
+            }
         }
     }
 }

@@ -166,7 +166,7 @@ namespace Evo
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string Wo = "";
-            string GTAID = "";
+            string GTAID = "", TaskRequestKey="";
             long result = 0;
             if (e.CommandName == "Start")
             {
@@ -178,7 +178,9 @@ namespace Evo
 
                 GTAID = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 lblGTR_ID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&GTRID={1}&IsF={2}", GTAID, lblGTR_ID.Text, 0));
+                TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[2].ToString();
+              
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&GTRID={1}&IsF={2}&TaskRequestKey={3}", GTAID, lblGTR_ID.Text, 0, TaskRequestKey));
             }
         }
 

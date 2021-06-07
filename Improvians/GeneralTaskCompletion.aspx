@@ -142,7 +142,11 @@
                                     </ItemTemplate>
 
                                 </asp:TemplateField>
-
+                                   <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblMoveDate" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="MoveFrom" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -155,11 +159,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblMoveDate" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                             
 
                                 <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -282,7 +282,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="Completion Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblUpdatedReadyDate" runat="server" Text='<%# Eval("GeneralTaskDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>

@@ -197,11 +197,11 @@
 
 
 
-                        <div class="col-lg-3">
+                       <%-- <div class="col-lg-3">
                             <label>Minimum Days Until Next Irrigationn</label>
                             <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
 
-                        </div>
+                        </div>--%>
                     </div>
                     <br />
                     <div class="row">

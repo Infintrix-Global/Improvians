@@ -20,14 +20,16 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                BindSupervisorList("0", "0", "0");
 
+                BindSupervisorList("0", "0", "0");
                 BindTaskRequestTypeList("0", "0", "0");
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
                 Bindcname("0", "0", "0");
                 BindCrop("0", "0", "0");
                 BindGridGerm();
+
+
             }
         }
 
@@ -201,15 +203,16 @@ namespace Evo
             nv.Add("@WorkDateForm", txtFromDate.Text);
             nv.Add("@WorkDateTo", txtToDate.Text);
             nv.Add("@GenusCode", ddlCrop.SelectedValue);
-            if (Session["Role"].ToString() == "2")
-            {
 
-                AllData = objCommon.GetDataTable("GetManageTaskJobSupervisorHistory", nv);
-            }
-            else
-            {
+            //if (Session["Role"].ToString() == "2")
+            //{
+
+            //    AllData = objCommon.GetDataTable("GetManageTaskJobSupervisorHistory", nv);
+            //}
+            //else
+            //{
                 AllData = objCommon.GetDataTable("GetManageTaskJobHistory", nv);
-            }
+           // }
 
 
             gvGerm.DataSource = AllData;
@@ -331,7 +334,7 @@ namespace Evo
                     if (TaskRequestType == "Germination")
                     {
 
-                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", dt.Rows[0]["ID"].ToString(), dt.Rows[0]["GTRID"].ToString(), 1));
+                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}&TaskRequestKey={4}", "ManageTask", dt.Rows[0]["ID"].ToString(), dt.Rows[0]["GTRID"].ToString(), 1, dt.Rows[0]["TaskRequestKey"].ToString()));
                     }
                     if (TaskRequestType == "Irrigation")
                     {
@@ -384,7 +387,7 @@ namespace Evo
                     }
                     if (TaskRequestType == "Germination")
                     {
-                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}", "ManageTask", 0, dtR.Rows[0]["ID"].ToString(), 1));
+                        Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?PageType={0}&GTAID={1}&GTRID={2}&IsF={3}&TaskRequestKey={4}", "ManageTask", 0, dtR.Rows[0]["ID"].ToString(), 1, dtR.Rows[0]["TaskRequestKey"].ToString()));
                     }
                     if (TaskRequestType == "Irrigation")
                     {
@@ -441,12 +444,16 @@ namespace Evo
                 Label lblBenchLocation = (Label)e.Row.FindControl("lblBenchLocation");
                 Label lblJobNo = (Label)e.Row.FindControl("lblJobNo");
                 Label lblTaskRequestType = (Label)e.Row.FindControl("lblTaskRequestType");
+                Label lblTaskRequestKey = (Label)e.Row.FindControl("lblTaskRequestKey");
+
+
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@BenchLocation", lblBenchLocation.Text);
                 nv.Add("@JobNo", lblJobNo.Text);
                 nv.Add("@RequestType", lblTaskRequestType.Text);
+                nv.Add("@TaskRequestKey", lblTaskRequestKey.Text);
                 dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobView", nv);
 
                 if (dt != null && dt.Rows.Count > 0)

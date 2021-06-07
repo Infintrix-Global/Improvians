@@ -39,7 +39,11 @@ namespace Evo
                 }
 
 
+                if (Request.QueryString["TaskRequestKey"] != null)
+                {
+                    TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
 
+                }
 
 
                 if (gtaID == "0")
@@ -76,6 +80,23 @@ namespace Evo
             }
         }
 
+
+        private string TaskRequestKey
+        {
+            get
+            {
+                if (ViewState["TaskRequestKey"] != null)
+                {
+                    return (string)ViewState["TaskRequestKey"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TaskRequestKey"] = value;
+            }
+        }
+
         public void BindGridCropHealthImage(string ChId)
         {
             DataTable dt1 = new DataTable();
@@ -96,19 +117,20 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
+            nv.Add("@TaskRequestKey", TaskRequestKey);
 
-            if (gtaID == "0")
-            {
-                nv.Add("@Login", Session["LoginID"].ToString());
-                nv.Add("@GTRid", gtRID);
-            }
-            else
-            {
-                nv.Add("@Login", "0");
-                nv.Add("@GTRid", gtRID);
-            }
-            dt = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskRequestView", nv);
-
+            //if (gtaID == "0")
+            //{
+            //    nv.Add("@Login", Session["LoginID"].ToString());
+            //    nv.Add("@GTRid", gtRID);
+            //}
+            //else
+            //{
+            //    nv.Add("@Login", "0");
+            //    nv.Add("@GTRid", gtRID);
+            //}
+            dt = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskRequestView1", nv);
+           
 
             GridViewGermination.DataSource = dt;
             GridViewGermination.DataBind();

@@ -33,8 +33,8 @@ namespace Evo
                     Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                     TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
 
-                    txtFromDate.Text = Fdate;
-                    txtToDate.Text = TDate;
+                   // txtFromDate.Text = Fdate;
+                   // txtToDate.Text = TDate;
                 }
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
@@ -62,6 +62,8 @@ namespace Evo
                 // JobCode = Request.QueryString["jobId"].ToString();
                 // JobCode = value;
             }
+
+
         }
 
         private string benchLoc
@@ -116,6 +118,8 @@ namespace Evo
             ddlCrop.DataValueField = "GenusCode";
             ddlCrop.DataBind();
             ddlCrop.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+
         }
 
         public void BindAssignByList(string ddlBench, string jobNo, string Cust)
@@ -141,6 +145,8 @@ namespace Evo
             ddlAssignedBy.DataBind();
             ddlAssignedBy.Items.Insert(0, new ListItem("--Select--", "0"));
             ddlAssignedBy.Items.Insert(1, new ListItem("System", "System"));
+
+
         }
         public void Bindcname(string ddlBench, string jobNo, string Code)
         {
@@ -221,6 +227,8 @@ namespace Evo
 
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlBenchLocation.SelectedIndex == -1)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -229,9 +237,12 @@ namespace Evo
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             BindGridGerm("0", 1);
+
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlBenchLocation.SelectedIndex == -1)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -244,6 +255,8 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             if (ddlBenchLocation.SelectedIndex == -1)
@@ -255,11 +268,15 @@ namespace Evo
         }
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             BindGridGerm("0", 1);
         }
 
         protected void RadioButtonListF_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             BindGridGerm("0", 1);
         }
 
@@ -525,6 +542,7 @@ namespace Evo
                 GridViewRow row = gvGerm.Rows[rowIndex];
 
                 string ChId = "0";
+                string TaskRequestKey = "";
                 lblID.Text = gvGerm.DataKeys[rowIndex].Values[1].ToString();
                 lblJobID.Text = gvGerm.DataKeys[rowIndex].Values[0].ToString();
 
@@ -543,9 +561,14 @@ namespace Evo
                 DataTable dtR = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationRequestID", nvR);
                 string GTRID = dtR.Rows[0]["GTRID"].ToString();
 
+                NameValueCollection nvkey = new NameValueCollection();
+                nvkey.Add("@GTRID", GTRID);
+                DataTable dtkey = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskRequsrKey", nvkey);
+                TaskRequestKey = dtkey.Rows[0]["TaskRequestKey"].ToString();
+
 
                 // Session["WorkOrder"] = JobID;
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}&GTRID={2}&IsF={3}", result.ToString(), ChId, GTRID, 0));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}&GTRID={2}&IsF={3}&TaskRequestKey={4}", result.ToString(), ChId, GTRID, 0, TaskRequestKey));
             }
         }
 
@@ -755,6 +778,36 @@ namespace Evo
         {
             gvGerm.PageIndex = e.NewPageIndex;
             BindGridGerm("0", 1);
+
+            //List<int> list = new List<int>();
+            //if (ViewState["SelectedRecords"] != null)
+            //{
+            //    list = (List<int>)ViewState["SelectedRecords"];
+            //}
+            //foreach (GridViewRow row in gvGerm.Rows)
+            //{
+            //    CheckBox chk = (CheckBox)row.FindControl("chkSelect");
+            //    var selectedKey =
+            //    int.Parse(gvGerm.DataKeys[row.RowIndex].Values[1].ToString());
+              
+            //    if (chk.Checked)
+            //    {
+            //        if (!list.Contains(selectedKey))
+            //        {
+            //            list.Add(selectedKey);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (list.Contains(selectedKey))
+            //        {
+            //            list.Remove(selectedKey);
+            //        }
+            //    }
+            //}
+            //ViewState["SelectedRecords"] = list;
+            //gvGerm.PageIndex = e.NewPageIndex;
+            //this.BindGridGerm("0", 1);
         }
 
         protected void btnManual_Click(object sender, EventArgs e)
@@ -765,6 +818,13 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+            string Fdate = "", TDate = "";
+            Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+            TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
+
+            txtFromDate.Text = Fdate;
+            txtToDate.Text = TDate;
+
             RadioButtonListSourse.Items[0].Selected = false;
             RadioButtonListSourse.ClearSelection();
             RadioButtonListGno.Items[0].Selected = false;
@@ -834,6 +894,8 @@ namespace Evo
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtToDate.Text = "";
+            txtFromDate.Text = "";
             //BindJobCode(ddlBenchLocation.SelectedValue);
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname(getBenchLocation(), "0", "0");

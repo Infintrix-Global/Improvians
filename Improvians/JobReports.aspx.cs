@@ -28,7 +28,7 @@ namespace Evo
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         Evo_General objGeneral = new Evo_General();
         General objGen = new General();
-
+        clsCommonMasters objCom = new clsCommonMasters();
         static string ReceiverEmail = "";
 
 
@@ -260,6 +260,8 @@ namespace Evo
                 ddlAssignedTo.DataBind();
                 ddlAssignedTo.Items.Insert(0, new ListItem("--- Select ---", ""));
             }
+
+
         }
         protected void ddlAssignedTo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -321,9 +323,12 @@ namespace Evo
         }
         public void BindBenchLocation(string ddlMain)
         {
-            ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
-            ddlBenchLocation.DataTextField = "p2";
-            ddlBenchLocation.DataValueField = "p2";
+            DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
+
+            // ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
+            ddlBenchLocation.DataSource = dtNV;
+            ddlBenchLocation.DataTextField = "GreenHouseID";
+            ddlBenchLocation.DataValueField = "GreenHouseID";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
 
@@ -337,8 +342,19 @@ namespace Evo
         {
 
 
+          //  ddlJobNo.Items.Clear();
+          //  ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+
+            DataTable dt = new DataTable();
+
+            NameValueCollection nv = new NameValueCollection();
+
+            nv.Add("@BatchLocation", ddlBench);
+            nv.Add("@Mode", "1");
+            dt = objCommon.GetDataTable("SP_GeJobNo", nv);
             ddlJobNo.Items.Clear();
-            ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+
+            ddlJobNo.DataSource = dt;
             ddlJobNo.DataTextField = "Jobcode";
             ddlJobNo.DataValueField = "Jobcode";
             ddlJobNo.DataBind();
@@ -398,7 +414,7 @@ namespace Evo
                 {
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
                     if (string.IsNullOrEmpty(Facility))
-                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where  jobcode like '" + prefixText + "%' order by jobcode";
+                        cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where  jobcode like '%" + prefixText + "%' order by jobcode";
                     else
                         cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode";
 

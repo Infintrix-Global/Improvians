@@ -257,9 +257,16 @@
                                         <asp:Label ID="lblAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
 
                                     </ItemTemplate>
-
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="No. of Trays to Inspect" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblInspectionDueDatea" runat="server" Text='<%# Eval("InspectionDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+
+
+                                <asp:TemplateField HeaderText="No of Trays Inspected" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblTraysInspecteda" runat="server" Text='<%# Eval("TraysInspected")  %>'></asp:Label>
                                     </ItemTemplate>
@@ -268,11 +275,6 @@
 
 
 
-                                <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblInspectionDueDatea" runat="server" Text='<%# Eval("InspectionDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -326,13 +328,13 @@
                                     </ItemTemplate>
 
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Date" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="Completion Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblInspectionDate" runat="server" Text='<%# Eval("InspectionDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="#TraysInspected" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="No of Trays Inspected" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblTraysInspected" runat="server" Text=""></asp:Label>
                                     </ItemTemplate>
@@ -343,7 +345,7 @@
                                         <asp:Label ID="lblGermination" runat="server" Text=""></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="#BadPlants" HeaderStyle-CssClass="autostyle2">
+                                <asp:TemplateField HeaderText="Bad Plants" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
                                         <asp:Label ID="lblBadPlants" runat="server" Text=""></asp:Label>
                                     </ItemTemplate>

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 /*Fonts*/
 @font-face {
@@ -1119,7 +1119,7 @@ input[type="date" i]::-webkit-calendar-picker-indicator { margin-left: 5px; }
     box-shadow: 0px 0px 4px 1px #e01c1c;
 }
 
-.data__table tr.overdue:nth-child(odd) > td, .data__table .overdue td {
+.data__table tr.overdue:nth-child(odd) > td, .data__table .overdue td, .page__us .data__table tr.overdue:nth-child(even) td  {
     background-color: #fff4f4;
 }
 

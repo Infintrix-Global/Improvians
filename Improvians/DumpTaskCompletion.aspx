@@ -209,6 +209,14 @@
                                             </ItemTemplate>
 
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblQuantityOfTray" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
@@ -216,11 +224,8 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("DumpDateR","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
@@ -263,7 +268,11 @@
                                                         </ItemTemplate>
 
                                                     </asp:TemplateField>
-
+                                                    <asp:TemplateField HeaderText="Completion Date" HeaderStyle-CssClass="autostyle2">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblCDumpDate" runat="server" Text='<%# Eval("DumpDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>
@@ -272,11 +281,7 @@
                                                     </asp:TemplateField>
 
 
-                                                    <asp:TemplateField HeaderText="Dump Date" HeaderStyle-CssClass="autostyle2">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblCDumpDate" runat="server" Text='<%# Eval("DumpDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+
 
                                                     <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                                                         <ItemTemplate>

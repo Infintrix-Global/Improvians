@@ -47,6 +47,9 @@ namespace Evo
             nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@LoginId", Session["LoginID"].ToString());
             dt = objCommon.GetDataSet("SP_GetGrowerEachTaskCount", nv);
+
+
+
             lblPutAway.Text = dt.Tables[0].Rows.Count.ToString();
             lblGerm.Text = dt.Tables[1].Rows.Count.ToString();
             lblFer.Text = dt.Tables[2].Rows.Count.ToString();

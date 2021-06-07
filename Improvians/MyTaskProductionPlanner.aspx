@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="MyTaskProductionPlanner.aspx.cs" Inherits="Evo.MyTaskProductionPlanner" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+ <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="site__container">
         <h2 class="head__title-icon mb-4">My Task</h2>
 
@@ -14,20 +15,33 @@
                 <label>Seedline Facility </label>
                 <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>--%>
+             <div class="col-lg-2">
+
+                <label>Job No</label>
+                <asp:TextBox ID="txtSearchJobNo" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" runat="server" class="input__control robotomd"></asp:TextBox>
+
+
+                <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                    MinimumPrefixLength="2"
+                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                    TargetControlID="txtSearchJobNo"
+                    ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                </cc1:AutoCompleteExtender>
+            </div>
 
             <div class="col-lg-2">
                 <label>Crop Type </label>
-                <asp:DropDownList ID="ddlCopTYpe" AutoPostBack="true" OnSelectedIndexChanged="ddlCopTYpe_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <asp:DropDownList ID="ddlCopTYpe" AutoPostBack="true" DataTextField="GenusCode" DataValueField="GenusCode" OnSelectedIndexChanged="ddlCopTYpe_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
 
             <div class="col-lg-2">
                 <label>Job No </label>
-                <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" DataTextField="Jobcode" DataValueField="Jobcode" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
 
             <div class="col-lg-2">
                 <label>Customer </label>
-                <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                <asp:DropDownList ID="ddlCustomer" DataTextField="cname" DataValueField="cname" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
             </div>
 
 

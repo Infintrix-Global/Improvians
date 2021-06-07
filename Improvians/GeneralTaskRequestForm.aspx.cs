@@ -22,8 +22,8 @@ namespace Evo
                 Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
 
-                txtFromDate.Text = Fdate;
-                txtToDate.Text = TDate;
+                //txtFromDate.Text = Fdate;
+                //txtToDate.Text = TDate;
 
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
@@ -244,6 +244,8 @@ namespace Evo
 
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlBenchLocation.SelectedIndex == 0)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -255,6 +257,8 @@ namespace Evo
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlBenchLocation.SelectedIndex == 0)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -267,6 +271,8 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             if (ddlBenchLocation.SelectedIndex == 0)
@@ -287,6 +293,8 @@ namespace Evo
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             //BindJobCode(ddlBenchLocation.SelectedValue);
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
@@ -301,6 +309,8 @@ namespace Evo
 
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtFromDate.Text = "";
+            txtToDate.Text = "";
             BindTaskGrid(ddlJobNo.SelectedValue, 1);
         }
 
@@ -326,6 +336,13 @@ namespace Evo
         {
             //  RadioButtonListSourse.Items[0].Selected = false;
             //  RadioButtonListSourse.ClearSelection();
+            string Fdate = "", TDate = "";
+            Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+            TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
+
+            txtFromDate.Text = Fdate;
+            txtToDate.Text = TDate;
+
 
             BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
             Bindcname("0", "0", "0");

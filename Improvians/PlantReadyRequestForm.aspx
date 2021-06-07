@@ -126,9 +126,9 @@
         <%-- <h4 class="mt-3 mt-md-4">Data Showed as per Filter:</h4>--%>
         <div class="row">
             <div class=" col m12">
-                <div class="data__table">
-                    <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
-                        class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
+                <div class="data__table data__mobile">
+                    <asp:GridView ID="gvPlantReady" runat="server"  AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
+                        class="striped" AllowSorting="true"   PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging" AllowPaging="True"
                         GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,PlantReadySeedDate,GreenHouseID,Trays,itemdescp,GrowerPutAwayPlantReadyId,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
@@ -140,7 +140,7 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <div class="custom-control custom-checkbox mr-3">
-                                        <asp:CheckBox runat="server" class="custom-control custom-checkbox" Text=" " onclick="Check_Click(this)" ID="chkSelect"></asp:CheckBox>
+                                        <asp:CheckBox runat="server" class="custom-control custom-checkbox"  Text=" " onclick="Check_Click(this)" ID="chkSelect"></asp:CheckBox>
                                     </div>
                                 </ItemTemplate>
                             </asp:TemplateField>

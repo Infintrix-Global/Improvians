@@ -125,7 +125,7 @@
                                         </asp:TemplateField>--%>
 
 
-                                        <asp:TemplateField HeaderText="Crop Health Report Date" HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Work Date" HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDumpDate" runat="server" Text='<%# Eval("CropHealthReportDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                             </ItemTemplate>

@@ -23,8 +23,8 @@ namespace Evo
                 string Fdate = "", TDate = "";
                 Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(7).ToString("yyyy-MM-dd");
-                txtFromDate.Text = Fdate;
-                txtToDate.Text = TDate;
+               // txtFromDate.Text = Fdate;
+               // txtToDate.Text = TDate;
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
                 Bindcname("0", "0", "0");

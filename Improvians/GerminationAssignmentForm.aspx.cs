@@ -339,7 +339,7 @@ namespace Evo
         {
             string Wo = "";
             string GTRID = "";
-            string ChId = "";
+            string ChId = "", TaskRequestKey="";
             long result = 0;
             if (e.CommandName == "Start")
             {
@@ -350,7 +350,7 @@ namespace Evo
                 GTRID = gvGerm.DataKeys[rowIndex].Values[1].ToString();
 
                 ChId = gvGerm.DataKeys[rowIndex].Values[3].ToString();
-
+                TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 //Wo = (row.FindControl("lblWo") as Label).Text;
                 //GTRID = (row.FindControl("lblID") as Label).Text;
                 //ChId = (row.FindControl("lblChid") as Label).Text;
@@ -373,7 +373,7 @@ namespace Evo
 
                 // Session["WorkOrder"] = JobID;
                 //   Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&Chid={1}", result.ToString(), ChId));
-                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}&GTRID={2}&IsF={3}", result, "CreateTask", GTRID, 0));
+                Response.Redirect(String.Format("~/GreenHouseTaskCompletion.aspx?GTAID={0}&PageType={1}&GTRID={2}&IsF={3}&TaskRequestKey={4}", result, "CreateTask", GTRID, 0, TaskRequestKey));
 
             }
             if (e.CommandName == "Assign")

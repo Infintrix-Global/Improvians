@@ -515,6 +515,14 @@ namespace Evo
 
                 var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
+
+                NameValueCollection nvkey = new NameValueCollection();
+                nvkey.Add("@Id", resultRID.ToString());
+                nvkey.Add("@Mode", "2");
+                DataTable dtkey = objCommon.GetDataTable("SP_GetTaskRequest", nvkey);
+                TaskRequestKey = dtkey.Rows[0]["TaskRequestKey"].ToString();
+
+
                 NameValueCollection nvn = new NameValueCollection();
                 nvn.Add("@LoginID", Session["LoginID"].ToString());
                 nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
