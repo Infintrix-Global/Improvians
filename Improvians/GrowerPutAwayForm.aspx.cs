@@ -242,16 +242,16 @@ namespace Evo
         public void BindSupervisorList(string Fid)
         {
            
-            if (Fid =="")
-            {
-                Fid = Session["Facility"].ToString();   
-            }
-            else
-            {
-                // Fid = "'" + Session["Facility"].ToString() + "," + Fid + "'" ;
+            //if (Fid =="")
+            //{
+            //    Fid = Session["Facility"].ToString();   
+            //}
+            //else
+            //{
+            //    // Fid = "'" + Session["Facility"].ToString() + "," + Fid + "'" ;
 
-                Fid = Session["Facility"].ToString() + "," + Fid;
-            }
+            //    Fid = Session["Facility"].ToString() + "," + Fid;
+            //}
 
           
 
@@ -439,7 +439,7 @@ namespace Evo
             if (row != null)
             {
 
-                Fid +=  ddlMain.SelectedValue + ",";
+                Fid = ddlMain.SelectedValue;
               
                 DropDownList ddlLocation = (DropDownList)row.FindControl("ddlLocation");
 
@@ -450,7 +450,7 @@ namespace Evo
                 ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
             }
 
-            Fid1 = Fid.Remove(Fid.Length - 1, 1);
+           // Fid1 = Fid.Remove(Fid.Length - 1, 1);
             BindSupervisorList(Fid);
         }
 

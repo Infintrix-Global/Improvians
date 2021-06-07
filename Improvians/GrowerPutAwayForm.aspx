@@ -195,10 +195,10 @@
                                             <asp:DropDownList ID="ddlMain" OnSelectedIndexChanged="ddlMain_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown w-auto robotomd" runat="server"></asp:DropDownList>
 
                                             <asp:Label ID="lblMain" Visible="false" runat="server" Text='<%# Eval("FacilityID")%>'></asp:Label>
-                                            <span class="error_message d-block">
+                                           <%-- <span class="error_message d-block">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlMain" ValidationGroup="e"
                                                     SetFocusOnError="true" InitialValue="0" ErrorMessage="Select Facility" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
+                                            </span>--%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Bench Location">
@@ -206,16 +206,16 @@
                                             <asp:DropDownList ID="ddlLocation" class="custom__dropdown w-auto robotomd" runat="server"></asp:DropDownList>
                                             <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
                                             <span class="error_message d-block">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator32" runat="server" ControlToValidate="ddlLocation" ValidationGroup="e"
-                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="Select Bench Location" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlLocation" ValidationGroup="e"
+                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Trays" HeaderStyle-Width="170">
+                                    <asp:TemplateField HeaderText="Trays" HeaderStyle-Width="190">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
-                                            <span class="error_message d-block">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ControlToValidate="txtTrays" ErrorMessage="Please Enter Trays" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                            <span class="error_message">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ErrorMessage="*" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                                             </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
