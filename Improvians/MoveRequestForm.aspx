@@ -28,7 +28,9 @@
 
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
-                <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                 <asp:ListBox ID="ddlBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+                
+                
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <%--<div class="col-lg-3 col-md-4 mb-3 mb-lg-0">--%>
