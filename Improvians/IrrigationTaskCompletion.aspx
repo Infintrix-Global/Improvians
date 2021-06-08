@@ -221,8 +221,8 @@
                     <div class="row">
 
                         <div class="col-12 col-sm-5 col-md-4 col-lg-3">
-                            <label class="d-block">Spray completion date </label>
-
+                            <label class="d-block">Spray Completion Date </label>
+                            
                             <asp:TextBox ID="txtSprayDate" TextMode="Date" class="input__control" runat="server"></asp:TextBox>
                         </div>
 

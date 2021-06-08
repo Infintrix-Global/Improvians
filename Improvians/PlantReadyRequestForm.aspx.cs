@@ -18,6 +18,7 @@ namespace Evo
     {
         CommonControl objCommon = new CommonControl();
         BAL_CommonMasters objBAL = new BAL_CommonMasters();
+        static List<Job> lstJob = new List<Job>();
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -96,6 +97,7 @@ namespace Evo
         }
         public void BindBenchLocation(string ddlMain, string jobNo, string Customer, string Code)
         {
+            lstJob.Clear();
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -121,6 +123,7 @@ namespace Evo
         }
         public void BindCrop()
         {
+            lstJob.Clear();
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -143,6 +146,7 @@ namespace Evo
 
         public void BindAssignByList(string ddlBench, string jobNo, string Cust)
         {
+            lstJob.Clear();
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -167,6 +171,7 @@ namespace Evo
         }
         public void Bindcname(string ddlBench, string jobNo, string Code)
         {
+            lstJob.Clear();
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
@@ -189,6 +194,7 @@ namespace Evo
         }
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             string selectedValues = getBenchLocation();
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname(selectedValues, "0", "0");
@@ -202,6 +208,7 @@ namespace Evo
         }
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             if (ddlBenchLocation.SelectedIndex == -1)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -213,6 +220,7 @@ namespace Evo
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             if (ddlBenchLocation.SelectedIndex == -1)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -225,7 +233,7 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            lstJob.Clear();
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             if (ddlBenchLocation.SelectedIndex == -1)
@@ -238,15 +246,18 @@ namespace Evo
 
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridPlantReady(ddlJobNo.SelectedValue, 1);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridPlantReady(ddlJobNo.SelectedValue, 1);
         }
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridPlantReady("0", 1);
         }
 
@@ -431,7 +442,7 @@ namespace Evo
                 divLabel.Visible = true;
                 userinput.Visible = true;
                 divReschedule.Visible = false;
-                btnMSubmit.Visible = false;
+               // btnMSubmit.Visible = false;
                 btnSubmit.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
@@ -459,6 +470,10 @@ namespace Evo
                     txtPlantDate.Text = Convert.ToDateTime(dt.Rows[0]["PlanDate"]).ToString("yyyy-MM-dd");
                     // txtDumpDate.Text = Convert.ToDateTime(dt.Rows[0]["DumpDateR"]).ToString("yyyy-MM-dd");
                 }
+
+                lstJob.Clear();
+                lstJob.Add(new Job { ID = Convert.ToInt32(lblPRRId.Text), JobID = lblJid.Text, TaskRequestKey = ViewState["tKey"].ToString(), AGD = lblIsAssistant.Text, GreenHouseID = lblBenchlocation.Text, jobcode = lblJobID.Text });
+
             }
 
             if (e.CommandName == "GStart")
@@ -584,101 +599,38 @@ namespace Evo
         }
 
 
-        protected void btnMSubmit_Click(object sender, EventArgs e)
-        {
-            foreach (GridViewRow row in gvPlantReady.Rows)
-            {
-                CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
-                if (chckrw.Checked == true)
-                {
-                    string Jid = gvPlantReady.DataKeys[row.RowIndex].Values[4].ToString();
-                    string TaskRequestKey = gvPlantReady.DataKeys[row.RowIndex].Values[11].ToString();
-                    string PRid = gvPlantReady.DataKeys[row.RowIndex].Values[3].ToString();
-                    string IsAssistant = gvPlantReady.DataKeys[row.RowIndex].Values[5].ToString();
-
-                    string GreenHouseID = gvPlantReady.DataKeys[row.RowIndex].Values[7].ToString();
-                    string jobcode = gvPlantReady.DataKeys[row.RowIndex].Values[1].ToString();
-
-                    long result = 0;
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-                    nv.Add("@ManualID", Jid);
-                    nv.Add("@Comments", txtPlantComments.Text);
-                    nv.Add("@PRid", PRid);
-                    nv.Add("@PlantDate", txtPlantDate.Text);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@RoleId", Session["Role"].ToString());
-                    nv.Add("@IsAssistant", IsAssistant);
-                    nv.Add("@TaskRequestKey", TaskRequestKey);
-                    nv.Add("@jobcode", jobcode);
-                    nv.Add("@GreenHouseID", GreenHouseID);
-
-
-                    result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
-
-                    NameValueCollection nameValue = new NameValueCollection();
-                    nameValue.Add("@LoginID", Session["LoginID"].ToString());
-                    nameValue.Add("@jobcode", jobcode);
-                    nameValue.Add("@GreenHouseID", GreenHouseID);
-                    nameValue.Add("@TaskName", "Plant Ready");
-
-                    var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
-
-                }
-            }
-
-            string url = "";
-            if (Session["Role"].ToString() == "1")
-            {
-                url = "MyTaskGrower.aspx";
-            }
-            else
-            {
-                url = "MyTaskAssistantGrower.aspx";
-            }
-            string message = "Assignment Successful";
-
-
-            objCommon.ShowAlertAndRedirect(message, url);
-
-            Evo.BAL_Classes.General objGeneral = new General();
-            objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
-            var res = (Master.FindControl("r1") as Repeater);
-
-            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
-            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
-            clear();
-        }
-
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
-            nv.Add("@ManualID", lblJid.Text);
-            nv.Add("@Comments", txtPlantComments.Text);
-            nv.Add("@PRid", lblPRRId.Text);
-            nv.Add("@PlantDate", txtPlantDate.Text);
-            nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@RoleId", Session["Role"].ToString());
-            nv.Add("@IsAssistant", lblIsAssistant.Text);
-            nv.Add("@TaskRequestKey", ViewState["tKey"].ToString());
-            nv.Add("@jobcode", lblJobID.Text);
-            nv.Add("@GreenHouseID", lblBenchlocation.Text);
+            foreach (Job item in lstJob)
+            {
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
+                nv.Add("@ManualID", item.JobID);
+                nv.Add("@Comments", txtPlantComments.Text);
+                nv.Add("@PRid",item.ID.ToString());
+                nv.Add("@PlantDate", txtPlantDate.Text);
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@RoleId", Session["Role"].ToString());
+                nv.Add("@IsAssistant", item.AGD);
+                nv.Add("@TaskRequestKey",item.TaskRequestKey);
+                nv.Add("@jobcode", item.jobcode);
+                nv.Add("@GreenHouseID", item.GreenHouseID);
 
-            result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
+                result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
 
-            NameValueCollection nameValue = new NameValueCollection();
-            nameValue.Add("@LoginID", Session["LoginID"].ToString());
-            nameValue.Add("@jobcode", lblJobID.Text);
-            nameValue.Add("@GreenHouseID", lblBenchlocation.Text);
-            nameValue.Add("@TaskName", "Plant Ready");
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                nameValue.Add("@jobcode", item.jobcode);
+                nameValue.Add("@GreenHouseID", item.GreenHouseID);
+                nameValue.Add("@TaskName", "Plant Ready");
 
-            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
-
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+            }
             if (result > 0)
             {
+                lstJob.Clear();
                 // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
                 Evo.BAL_Classes.General objGeneral = new General();
                 objGeneral.SendMessage(int.Parse(ddlSupervisor.SelectedValue), "New Plant Ready Task Assigned", "New Plant Ready Task Assigned", "Plant Ready");
@@ -750,6 +702,15 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+
+                Label lbljid = (Label)e.Row.FindControl("lbljid");
+                CheckBox chkSelect = (CheckBox)e.Row.FindControl("chkSelect");
+
+                Job item = lstJob.Find(x => x.JobID ==lbljid.Text);
+                if (lstJob.Contains(item))
+                    chkSelect.Checked = true;
+
+
                 Label lblGermDate = (Label)e.Row.FindControl("lblPlantDate");
                 string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
 
@@ -815,13 +776,38 @@ namespace Evo
             divReschedule.Visible = false;
             divLabel.Visible = false;
 
-            btnMSubmit.Visible = true;
-            btnSubmit.Visible = false;
+          //  btnMSubmit.Visible = true;
+            btnSubmit.Visible = true;
 
 
             txtPlantDate.Focus();
         }
 
+        protected void chkSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkSelect = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkSelect.NamingContainer;
+            if (row != null)
+            {
+                Label lID = (Label)row.FindControl("lblPRRID");
+                Label lJobID = (Label)row.FindControl("lbljid");
+                Label lblBenchLocation = (Label)row.FindControl("lblGreenHouseID");
+                Label lblIsAG = (Label)row.FindControl("lblIsAssistant");
+                Label lblTaskRequestKey = (Label)row.FindControl("lblTaskRequestKey");
+                Label lbljobcode = (Label)row.FindControl("lbljobcode1");
+                if (chkSelect.Checked)
+                {
+                    lstJob.Add(new Job { ID = Convert.ToInt32(lID.Text), JobID = lJobID.Text, TaskRequestKey = lblTaskRequestKey.Text, AGD = lblIsAG.Text, GreenHouseID = lblBenchLocation.Text, jobcode = lbljobcode.Text });
+                }
+                else
+                {
+                    Job item = lstJob.Find(x => x.ID == Convert.ToInt32(lID.Text));
+                    if (item != null)
+                        lstJob.Remove(item);
+                }
 
+            }
+          //  lblmsg.Text = lstJob.Count.ToString() + " records selected";
+        }
     }
 }

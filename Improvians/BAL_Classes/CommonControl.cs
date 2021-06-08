@@ -493,6 +493,12 @@ namespace Evo
     {
         public int ID;
         public string JobID;
-
+        public string TaskRequestKey;
+        public string AGD;
+        public string GreenHouseID;
+        public string jobcode;
+        
     }
+
+   
 }

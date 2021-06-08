@@ -31,7 +31,7 @@
                 //are checked check/uncheck Header Checkbox
                 var checked = false;
                 if (inputList[i].type == "checkbox" && inputList[i] != headerCheckBox) {
-                    if (!inputList[i].checked) {                        
+                    if (!inputList[i].checked) {
                         break;
                     }
                 }
@@ -64,8 +64,8 @@
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
-                 <asp:ListBox ID="ddlBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
-              
+                <asp:ListBox ID="ddlBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+
                 <%-- <asp:TextBox ID="txtBatchLocation" runat="server" OnTextChanged="txtBatchLocation_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
                 <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
                     MinimumPrefixLength="2"
@@ -139,18 +139,18 @@
                         GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound" DataKeyNames="jobcode,ID,IsAG,GermDate,GreenHouseID,itemdescp,Trays,TaskRequestKey"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
-                             <asp:TemplateField HeaderText="Select" ItemStyle-Width="20px" HeaderStyle-CssClass="autostyle2" >
-                                        <HeaderTemplate>
-                                            <div class="custom-control custom-checkbox mr-3">
-                                                <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " AutoPostBack="true" OnCheckedChanged="CheckBoxall_CheckedChanged" onclick = "checkAll(this);" runat="server" />
-                                            </div>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <div class="custom-control custom-checkbox mr-3">
-                                                <asp:CheckBox runat="server" class="custom-control custom-checkbox" Text=" " AutoPostBack="true" OnCheckedChanged="chkSelect_CheckedChanged" onclick = "Check_Click(this)" ID="chkSelect"></asp:CheckBox>
-                                            </div>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Select" ItemStyle-Width="20px" HeaderStyle-CssClass="autostyle2">
+                                <HeaderTemplate>
+                                    <div class="custom-control custom-checkbox mr-3">
+                                        <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " AutoPostBack="true" OnCheckedChanged="CheckBoxall_CheckedChanged" onclick="checkAll(this);" runat="server" />
+                                    </div>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <div class="custom-control custom-checkbox mr-3">
+                                        <asp:CheckBox runat="server" class="custom-control custom-checkbox" Text=" " AutoPostBack="true" OnCheckedChanged="chkSelect_CheckedChanged" onclick="Check_Click(this)" ID="chkSelect"></asp:CheckBox>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="100px" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblBenchLocation" data-head="Bench Location" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -164,7 +164,7 @@
 
                                     <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblIsAG" runat="server" Text='<%# Eval("IsAG")  %>' Visible="false"></asp:Label>
-
+                                    <asp:Label ID="lblTaskRequestKey" runat="server" Text='<%# Eval("TaskRequestKey")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblGrowerID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lbljobID" runat="server" Text='<%# Eval("jobcode")  %>' Visible="false"></asp:Label>
@@ -311,7 +311,7 @@
                         <div class="w-100"></div>
                         <div class="col-lg-3">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
-                              <asp:Button Text="Submit" ID="btnMSubmit" Visible="false" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnMSubmit_Click" />
+                            <%--     <asp:Button Text="Submit" ID="btnMSubmit" Visible="false" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnMSubmit_Click" />--%>
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnReset_Click" />
                         </div>
                     </div>

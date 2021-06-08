@@ -148,17 +148,9 @@ namespace Evo
 
                 //lblmsg.Text = "Assignment Successful";
                 clear();
-
                 string message = "Assignment Successful";
                 string url = "MyTaskGreenSupervisorFinal.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                objCommon.ShowAlertAndRedirect(message, url);
             }
             else
             {

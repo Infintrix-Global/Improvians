@@ -92,7 +92,21 @@ namespace Evo
         {
             dt = new DataTable();
             nv.Clear();
+           /// nv.Add("@LoginID", Session["LoginID"].ToString());
+
+
             nv.Add("@LoginID", Session["LoginID"].ToString());
+            nv.Add("@JobCode", "0");
+            nv.Add("@CustomerName", "0");
+            nv.Add("@Facility", Session["Facility"].ToString());
+            nv.Add("@BenchLocation", "0");
+            nv.Add("@Crop", "0");
+            nv.Add("@Status", "");
+            nv.Add("@Jobsource", "");
+            nv.Add("@GermNo", "0");
+            nv.Add("@FromDate", "");
+            nv.Add("@ToDate", "");
+            nv.Add("@AssignedBy", "0");
             dt = objCommon.GetDataTable("SP_GetSupervisorPlantReadyTask", nv);
             BindData(dt, PR, "PlanDate");
         }

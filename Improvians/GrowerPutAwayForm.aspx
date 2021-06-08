@@ -201,11 +201,11 @@
                                             </span>--%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Bench Location">
+                                    <asp:TemplateField HeaderText="Bench Location" HeaderStyle-Width="250px">
                                         <ItemTemplate>
-                                            <asp:DropDownList ID="ddlLocation" class="custom__dropdown w-auto robotomd" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" Width="180px" runat="server"></asp:DropDownList>
                                             <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
-                                            <span class="error_message d-block">
+                                            <span class="error_message ">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlLocation" ValidationGroup="e"
                                                     SetFocusOnError="true" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </span>
@@ -213,7 +213,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Trays" HeaderStyle-Width="190">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" Width="130px" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
                                             <span class="error_message">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ErrorMessage="*" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                                             </span>

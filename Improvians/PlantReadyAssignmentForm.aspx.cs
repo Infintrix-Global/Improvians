@@ -23,8 +23,8 @@ namespace Evo
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
                 FRDate = System.DateTime.Now.ToString("yyyy-MM-dd");
                 // txtFertilizationDate.Text = FRDate;
-                txtFromDate.Text = Fdate;
-                txtToDate.Text = TDate;
+             //   txtFromDate.Text = Fdate;
+               // txtToDate.Text = TDate;
               //  BindTaskType();
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");

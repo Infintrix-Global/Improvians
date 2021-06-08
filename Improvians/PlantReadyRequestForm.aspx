@@ -142,7 +142,7 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <div class="custom-control custom-checkbox mr-3">
-                                        <asp:CheckBox runat="server" class="custom-control custom-checkbox"  Text=" " onclick="Check_Click(this)" ID="chkSelect"></asp:CheckBox>
+                                        <asp:CheckBox runat="server" class="custom-control custom-checkbox"  AutoPostBack="true" OnCheckedChanged="chkSelect_CheckedChanged" Text=" " onclick="Check_Click(this)" ID="chkSelect"></asp:CheckBox>
                                     </div>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -156,9 +156,12 @@
                                 <ItemTemplate>
                                     <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                     <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
-
+                                     <asp:Label ID="lbljid" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
+                                    <asp:Label ID="lblIsAssistant" runat="server" Text='<%# Eval("IsAssistant")  %>' Visible="false"></asp:Label>
+                                       <asp:Label ID="lblPRRID" runat="server" Text='<%# Eval("PRRID")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
-                                    <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
+                                    <asp:Label ID="lblTaskRequestKey" Visible="false" runat="server" Text='<%# Eval("TaskRequestKey")  %>'></asp:Label>
+                                     <asp:Label ID="lbljobcode1" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                     <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
                                 </ItemTemplate>
@@ -301,9 +304,10 @@
                             <asp:Label ID="lblJid" Visible="false" runat="server"></asp:Label>
                             <asp:Label ID="lblIsAssistant" Visible="false" runat="server"></asp:Label>
                         </div>
-                        <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
+                        <div class="w-100"></div>
+                        <div class="col-lg-3">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
-                            <asp:Button Text="Submit" ID="btnMSubmit" Visible="false" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnMSubmit_Click" />
+                        <%--    <asp:Button Text="Submit" ID="btnMSubmit" Visible="false" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnMSubmit_Click" />--%>
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
                         </div>
                     </div>

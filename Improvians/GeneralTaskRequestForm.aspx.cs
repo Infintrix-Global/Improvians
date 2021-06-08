@@ -502,7 +502,10 @@ namespace Evo
                     txtCommentsGeneral.Text = dt.Rows[0]["Comments"].ToString();
                     //txtGeneralDate.Text = Convert.ToDateTime((row.FindControl("lblGDate") as Label).Text).ToString("yyyy-MM-dd");
                     //txtCommentsGeneral.Text = (row.FindControl("lblComs") as Label).Text;
-                    ddlTaskType.SelectedValue = dt.Rows[0]["id1"].ToString();
+                    if (dt.Rows[0]["id1"].ToString() != "")
+                    {
+                        ddlTaskType.SelectedValue = dt.Rows[0]["id1"].ToString();
+                    }
                     txtFrom.Text = dt.Rows[0]["MoveFrom"].ToString();
                     txtTo.Text = dt.Rows[0]["MoveTo"].ToString();
 
