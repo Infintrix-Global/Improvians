@@ -136,11 +136,11 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                  <%--  <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblTaskType" runat="server" Text='<%# Eval("TaskType")  %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>--%>
 
                     <%-- <asp:TemplateField HeaderText="Move From" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
@@ -154,11 +154,11 @@
                         </ItemTemplate>
                     </asp:TemplateField>--%>
 
-                    <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+<%--                    <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblComs" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>--%>
 
                     <asp:TemplateField HeaderText="Job Source" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
