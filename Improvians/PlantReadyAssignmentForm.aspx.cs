@@ -13,6 +13,7 @@ namespace Evo
     public partial class PlantReadyAssignmentForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        static List<Job> lstJob = new List<Job>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,9 +24,9 @@ namespace Evo
                 TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
                 FRDate = System.DateTime.Now.ToString("yyyy-MM-dd");
                 // txtFertilizationDate.Text = FRDate;
-             //   txtFromDate.Text = Fdate;
-               // txtToDate.Text = TDate;
-              //  BindTaskType();
+                //   txtFromDate.Text = Fdate;
+                // txtToDate.Text = TDate;
+                //  BindTaskType();
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
                 Bindcname("0", "0", "0");
@@ -224,6 +225,7 @@ namespace Evo
 
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             if (ddlBenchLocation.SelectedIndex == 0)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -235,6 +237,7 @@ namespace Evo
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             if (ddlBenchLocation.SelectedIndex == 0)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
@@ -247,6 +250,7 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             if (ddlBenchLocation.SelectedIndex == 0)
@@ -262,11 +266,13 @@ namespace Evo
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             //BindJobCode(ddlBenchLocation.SelectedValue);
             if (ddlCustomer.SelectedIndex == 0)
                 Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
@@ -281,20 +287,24 @@ namespace Evo
 
         protected void ddlAssignedBy_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridGerm("0", 1);
         }
 
         protected void RadioButtonListF_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             BindGridGerm("0", 1);
         }
         protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             txtFromDate.Text = "";
             txtToDate.Text = "";
             BindBenchLocation(Session["Facility"].ToString(), txtSearchJobNo.Text, "0", "0");
@@ -304,10 +314,11 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+            lstJob.Clear();
             RadioButtonListSourse.Items[0].Selected = false;
             RadioButtonListSourse.ClearSelection();
-           // RadioButtonListGno.Items[0].Selected = false;
-           // RadioButtonListGno.ClearSelection();
+            // RadioButtonListGno.Items[0].Selected = false;
+            // RadioButtonListGno.ClearSelection();
             BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
             Bindcname("0", "0", "0");
             // BindJobCode("0");
@@ -319,6 +330,7 @@ namespace Evo
 
         protected void txtBatchLocation_TextChanged(object sender, EventArgs e)
         {
+            lstJob.Clear();
             txtFromDate.Text = "";
             txtToDate.Text = "";
             //BindJobCode(ddlBenchLocation.SelectedValue);
@@ -351,7 +363,7 @@ namespace Evo
             gvGerm.DataBind();
 
 
-           
+
 
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
@@ -382,7 +394,7 @@ namespace Evo
                 }
             }
         }
-      
+
         protected void gvGerm_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string JobID = "";
@@ -460,7 +472,7 @@ namespace Evo
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridGerm("0",1);
+            BindGridGerm("0", 1);
         }
 
         protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -484,6 +496,15 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Label lblPlantReadyId = (Label)e.Row.FindControl("lblPlantReadyId");
+                CheckBox chkSelect = (CheckBox)e.Row.FindControl("chkSelect");
+
+                Job item = lstJob.Find(x => x.ID == Convert.ToInt32(lblPlantReadyId.Text));
+                if (lstJob.Contains(item))
+                    chkSelect.Checked = true;
+
+
+
                 Button btnAssign = (Button)e.Row.FindControl("btnAssign");
                 Button btnSelect = (Button)e.Row.FindControl("btnSelect");
 
@@ -543,6 +564,107 @@ namespace Evo
                     return customers;
                 }
             }
+        }
+
+        public void BindOperatorList()
+        {
+            NameValueCollection nv = new NameValueCollection();
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+            ddlOperator.DataSource = dt;
+            ddlOperator.DataTextField = "EmployeeName";
+            ddlOperator.DataValueField = "ID";
+            ddlOperator.DataBind();
+            ddlOperator.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            BindOperatorList();
+            AddDetails.Visible = true;
+        }
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            long result = 0;
+            foreach (Job item in lstJob)
+            {
+                NameValueCollection nv = new NameValueCollection();
+                nv.Add("@OperatorID", ddlOperator.SelectedValue);
+                nv.Add("@Notes", txtPlantComments.Text);
+                nv.Add("@PRID", item.ID.ToString());
+                nv.Add("@LoginID", Session["LoginID"].ToString());
+                nv.Add("@TaskRequestKey", item.TaskRequestKey);
+
+                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignment", nv);
+
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                nameValue.Add("@jobcode", item.jobcode);
+                nameValue.Add("@GreenHouseID", item.GreenHouseID);
+                nameValue.Add("@TaskName", "Plant Ready");
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+            }
+            if (result > 0)
+            {
+                lstJob.Clear();
+                var res = (Master.FindControl("r1") as Repeater);
+                var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+                objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
+                //lblmsg.Text = "Assignment Successful";
+                clear();
+                string message = "Assignment Successful";
+                string url = "PlantReadyAssignmentForm.aspx";
+
+                objCommon.ShowAlertAndRedirect(message, url);
+            }
+            else
+            {
+                lblmsg.Text = "Assignment Not Successful";
+            }
+        }
+
+        public void clear()
+        {
+            ddlOperator.SelectedIndex = 0;
+            txtPlantComments.Text = "";
+
+
+        }
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            clear();
+            Response.Redirect("~/PlantReadyAssignmentForm.aspx");
+        }
+        protected void chkSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkSelect = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)chkSelect.NamingContainer;
+            if (row != null)
+            {
+                Label lID = (Label)row.FindControl("lblPlantReadyId");
+
+                Label lblBenchLocation = (Label)row.FindControl("lblGreenHouseID");
+
+                Label lblTaskRequestKey = (Label)row.FindControl("lblTaskRequestKey");
+                Label lbljobcode = (Label)row.FindControl("lbljobID");
+                if (chkSelect.Checked)
+                {
+                    lstJob.Add(new Job { ID = Convert.ToInt32(lID.Text), TaskRequestKey = lblTaskRequestKey.Text, GreenHouseID = lblBenchLocation.Text, jobcode = lbljobcode.Text });
+                }
+                else
+                {
+                    Job item = lstJob.Find(x => x.ID == Convert.ToInt32(lID.Text));
+                    if (item != null)
+                        lstJob.Remove(item);
+                }
+
+            }
+             lblmsg.Text = lstJob.Count.ToString() + " records selected";
         }
     }
 }

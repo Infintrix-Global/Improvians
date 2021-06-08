@@ -807,7 +807,7 @@ namespace Evo
                 }
 
             }
-          //  lblmsg.Text = lstJob.Count.ToString() + " records selected";
+             lblmsg.Text = lstJob.Count.ToString() + " records selected";
         }
     }
 }

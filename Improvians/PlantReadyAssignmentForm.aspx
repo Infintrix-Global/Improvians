@@ -2,6 +2,43 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+
+        function checkAll(objRef) {
+            var GridView = document.getElementById('<%=gvGerm.ClientID %>');
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+                //Get the Cell To find out ColumnIndex       
+                if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
+                    if (objRef.checked) {
+                        inputList[i].checked = true;
+                    }
+                    else {
+                        inputList[i].checked = false;
+                    }
+                }
+            }
+        }
+        function Check_Click(objRef) {
+            //Get the reference of GridView
+            var GridView = document.getElementById('<%=gvGerm.ClientID %>');
+            //Get all input elements in Gridview
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+                //The First element is the Header Checkbox
+                var headerCheckBox = inputList[0];
+                //Based on all or none checkboxes
+                //are checked check/uncheck Header Checkbox
+                var checked = false;
+                if (inputList[i].type == "checkbox" && inputList[i] != headerCheckBox) {
+                    if (!inputList[i].checked) {
+                        break;
+                    }
+                }
+            }
+            headerCheckBox.checked = checked;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -75,7 +112,8 @@
                 <label>To Date </label>
                 <asp:TextBox ID="txtToDate" TextMode="Date" runat="server" class="input__control robotomd"></asp:TextBox>
             </div>
-            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+            <div class="col-xl-4 col-12 mb-3">
+                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSelect_Click" />
                 <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
                 <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
 
@@ -97,7 +135,18 @@
                                 GridLines="None" OnRowCommand="gvGerm_RowCommand" OnRowDataBound="gvGerm_RowDataBound1"
                                 ShowHeaderWhenEmpty="True" Width="100%">
                                 <Columns>
-
+                                    <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2">
+                                        <HeaderTemplate>
+                                            <div class="custom-control custom-checkbox mr-3">
+                                                <asp:CheckBox ID="CheckBoxall" class="custom-control custom-checkbox" Text=" " onclick="checkAll(this);" runat="server" />
+                                            </div>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <div class="custom-control custom-checkbox mr-3">
+                                                <asp:CheckBox runat="server" class="custom-control custom-checkbox" AutoPostBack="true" OnCheckedChanged="chkSelect_CheckedChanged" Text=" " onclick="Check_Click(this)" ID="chkSelect"></asp:CheckBox>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblGreenHouseID" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -107,7 +156,8 @@
                                     <asp:TemplateField HeaderText="Job No." ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
-
+                                             <asp:Label ID="lblPlantReadyId" runat="server" Text='<%# Eval("PlantReadyId")  %>' Visible="false"></asp:Label>
+                                             <asp:Label ID="lblTaskRequestKey" runat="server" Text='<%# Eval("TaskRequestKey")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lblWo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
@@ -152,7 +202,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                   <%-- <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                    <%-- <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
@@ -181,6 +231,42 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div runat="server" id="AddDetails" visible="false" class="dashboard__block dashboard__block--asign">
+            <h3>Assign Task</h3>
+            
+            <br />
+
+            <div id="userinput" runat="server" class="assign__task d-flex">
+                <asp:Panel ID="pnlint" runat="server">
+                    <div class="row">
+                        <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                            <label>Plant Ready Operator </label>
+                            <asp:DropDownList ID="ddlOperator" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        </div>
+                        <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                            <label class="d-block">Plant Ready Work Date</label>
+                            <asp:TextBox ID="txtPlantDate" TextMode="Date" runat="server" CssClass="input__control"></asp:TextBox>
+                        </div>
+
+                        <div class="mb-3 mb-md-0 col-12 col-md-auto">
+                            <label>Comments </label>
+
+                            <asp:TextBox ID="txtPlantComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="mb-3 mb-md-0 col-12 col-md-auto align-self-end">
+
+                        <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnSubmit_Click" />
+                        <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
+                    </div>
+                </asp:Panel>
             </div>
         </div>
     </div>
