@@ -734,7 +734,10 @@ namespace Evo
 
                         if (ChFdt != null && ChFdt.Rows.Count > 0)
                         {
-                            ReSetSprayDate = Convert.ToDateTime(ChFdt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChFdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            if (ChFdt.Rows[0]["ResetSprayTaskForDays"].ToString() != "")
+                            {
+                                ReSetSprayDate = Convert.ToDateTime(ChFdt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChFdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            }
                         }
 
                         if (DateTime.Parse(FertilizationDate) >= DateTime.Parse(TodatDate))
