@@ -1511,6 +1511,7 @@
     <Content Include="SitemapSeedlinePlanner.sitemap" />
     <Content Include="SitemapSeedlineSupervisor.sitemap" />
     <Content Include="SitemapCustomer.sitemap" />
+    <Content Include="SitemapDefault.sitemap" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
