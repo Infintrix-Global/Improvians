@@ -45,7 +45,7 @@
 
                                             <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
-                                          
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -213,14 +213,7 @@
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
-                                      <asp:TemplateField HeaderText="Work Date">
-                                        <ItemTemplate>
 
-                                            <asp:Label ID="lblWorkDate" runat="server" Text='<%#Bind("CreateDate","{0:MM/dd/yyyy}") %>'></asp:Label>
-
-                                        </ItemTemplate>
-
-                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Assigned To">
                                         <ItemTemplate>
 
@@ -230,6 +223,14 @@
 
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Work Date">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblWorkDate" runat="server" Text='<%#Bind("CreateDate","{0:MM/dd/yyyy}") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Fertilizer">
                                         <ItemTemplate>
                                             <asp:Label ID="lblFertilizer" runat="server" Text='<%#Bind("Fertilizer") %>'></asp:Label>
@@ -331,7 +332,7 @@
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
-                                  
+
 
                                     <asp:TemplateField HeaderText="Completion  Date">
                                         <ItemTemplate>
