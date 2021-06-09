@@ -20,7 +20,7 @@ namespace Evo
             if (!IsPostBack)
             {
                 string Fdate = "", TDate = "";
-
+                lstJob.Clear();
                 if (string.IsNullOrWhiteSpace(JobCode) && string.IsNullOrWhiteSpace(benchLoc))
                 {
                     Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");

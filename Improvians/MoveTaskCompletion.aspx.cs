@@ -28,7 +28,7 @@ namespace Evo
                 {
                     Did = Request.QueryString["Did"].ToString();
                     PanelComplitionDetsil.Visible = false;
-                    PanelAdd.Visible = false;
+                     PanelAdd.Visible = false;
 
                 }
 
@@ -104,13 +104,14 @@ namespace Evo
 
                 PanelComplitionDetsil.Visible = true;
 
-                PanelAdd.Visible = false;
+              //  PanelAdd.Visible = false;
                 GridMoveComplition.DataSource = dt1;
                 GridMoveComplition.DataBind();
 
             }
             else
             {
+             
                 PanelComplitionDetsil.Visible = false;
             }
 
