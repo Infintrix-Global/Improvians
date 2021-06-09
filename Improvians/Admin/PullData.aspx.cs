@@ -122,9 +122,8 @@ namespace Evo.Admin
 
                 DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);
 
-                // DataTable dtFez = objSP.GetSeedDataCheck(jobcode, "FERTILIZE");
+                
                 NameValueCollection nvChDate = new NameValueCollection();
-
                 nvChDate.Add("@GreenHouseID", GreenHouseID);
                 DataTable ChFdt = objCommon.GetDataTable("SP_GetFertilizationCheckResetSprayTask", nvChDate);
 
@@ -193,6 +192,10 @@ namespace Evo.Admin
                         //}
                     }
                 }
+            
+                
+                
+                
                 DataTable dtChemical = objSP.GetSeedDateDatanew("SPRAYING", GenusCode, TraySize);
 
                 NameValueCollection nvChemChDate = new NameValueCollection();
