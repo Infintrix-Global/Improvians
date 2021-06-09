@@ -658,6 +658,7 @@ namespace Evo
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
+            txtBatchLocation.Text = "";
             BindJobCode(ddlBenchLocation.SelectedValue);
 
             if (ddlBenchLocation.SelectedValue == "")
@@ -1486,6 +1487,10 @@ namespace Evo
         {
             txtBatchLocation.Text = "";
             Bench1 = txtBatchLocation.Text;
+
+            gvFer.DataSource = null;
+            gvFer.DataBind();
+           
         }
 
         protected void btlSearchBenchLocation_Click(object sender, EventArgs e)
@@ -1495,15 +1500,19 @@ namespace Evo
             // BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
             gvFer.DataSource = null;
             gvFer.DataBind();
-
-            // BindGridFerReq("'" + Bench1 + "'", txtSearchJobNo.Text);
+            txtSearchJobNo.Text = "";
+            BindJobCode(Bench1);
+            BindGridFerReq("'" + Bench1 + "'","");
         }
 
         protected void Button4_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
             //  txtSearchJobNo.Text = "JB";
-            BindGridFerReq("", txtSearchJobNo.Text);
+
+           // BindGridFerReq("", txtSearchJobNo.Text);
+            gvFer.DataSource = null;
+            gvFer.DataBind();
         }
 
         protected void btnChemicalReset_Click(object sender, EventArgs e)
@@ -2468,7 +2477,7 @@ namespace Evo
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
 
                     //cmd.CommandText = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Position Code]  like '%" + prefixText + "%' and s.[Location Code]='" + Facility + "' ";
-                    cmd.CommandText = "Select* from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "' and GreenHouseId  like '%" + prefixText + "%'";
+                    cmd.CommandText = "Select distinct GreenHouseID from  gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "' and GreenHouseId  like '%" + prefixText + "%' order by GreenHouseID";
 
                     // Select* from gti_jobs_seeds_plan_Manual where loc_seedline = 'ENC2' and GreenHouseId = 'ENC2-H02-05-B'
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);

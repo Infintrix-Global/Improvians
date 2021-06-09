@@ -15,7 +15,7 @@
                 <div class="row align-items-end" id="divFilter" runat="server" visible="false">
 
                     <div class="col-sm-auto mb-3">
-                        <label>Job No</label>
+                        <label class="d-block">Job No</label>
                         <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
 
                         <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
@@ -30,6 +30,24 @@
                         <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btnSearchRest_Click" />
 
                     </div>
+                </div>
+                <div class="row align-items-end" id="divbatch" runat="server" visible="false">
+
+                    <div class="col-sm-auto mb-3">
+                        <label class="d-block">Bench Location </label>
+                        <asp:TextBox ID="txtBatchLocation" runat="server" class="input__control robotomd"></asp:TextBox>
+                        <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
+                            MinimumPrefixLength="2"
+                            CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                            TargetControlID="txtBatchLocation"
+                            ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
+                        </cc1:AutoCompleteExtender>
+                    </div>
+                    <div class="col-auto mb-3">
+                        <asp:Button Text="Search" ID="btlSearchBenchLocation" runat="server" CssClass="bttn bttn-primary bttn-action" OnClick="btlSearchBenchLocation_Click" />
+                        <asp:Button Text="Reset" ID="btnResetBenchLocation" runat="server" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnResetBenchLocation_Click" />
+                    </div>
+
                 </div>
                 <div class="row" id="divFilter1" runat="server" visible="false">
                     <div class="col-sm-auto mb-3">

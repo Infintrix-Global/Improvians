@@ -62,6 +62,7 @@ namespace Evo
                 {
                     divFilter.Visible = true;
                     divFilter1.Visible = true;
+                    divbatch.Visible = true;
                     BindBenchLocation(Session["Facility"].ToString());
                 }
                 else
@@ -336,6 +337,7 @@ namespace Evo
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
+            txtBatchLocation.Text = "";
             BindJobCode(ddlBenchLocation.SelectedValue);
         }
         public void BindJobCode(string ddlBench)
@@ -369,6 +371,37 @@ namespace Evo
             lblJobNo.Text = JobCode;
             BindGridOne();
         }
+        protected void btlSearchBenchLocation_Click(object sender, EventArgs e)
+        {
+            txtSearchJobNo.Text = "";
+         
+            BindJobCode(txtBatchLocation.Text);
+        }
+
+        protected void btnResetBenchLocation_Click(object sender, EventArgs e)
+        {
+            txtSearchJobNo.Text = "";
+            txtBatchLocation.Text = "";
+            JobCode = Request.QueryString["jobCode"];
+
+            if (string.IsNullOrEmpty(JobCode))
+            {
+                divFilter.Visible = true;
+                divFilter1.Visible = true;
+                divbatch.Visible = true;
+                JobCode = "";
+                BindBenchLocation(Session["Facility"].ToString());
+                BindJobCode("");
+                PanelView.Visible = false;
+            }
+            else
+            {
+                divJobNo.Visible = true;
+                lblJobNo.Text = JobCode;
+                PanelView.Visible = true;
+                BindGridOne();
+            }
+        }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -381,6 +414,7 @@ namespace Evo
             }
         }
 
+
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
@@ -390,6 +424,7 @@ namespace Evo
             {
                 divFilter.Visible = true;
                 divFilter1.Visible = true;
+                divbatch.Visible = true;
                 JobCode = "";
                 BindBenchLocation(Session["Facility"].ToString());
                 BindJobCode("");
@@ -403,6 +438,7 @@ namespace Evo
                 BindGridOne();
             }           
         }
+
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
         public static List<string> SearchCustomers(string prefixText, int count)
@@ -626,7 +662,47 @@ namespace Evo
             return objGen.GetDatasetByCommand(sqr);
         }
 
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchBenchLocation(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+
+                //conn.ConnectionString = ConfigurationManager.ConnectionStrings["EvoNavision"].ConnectionString;
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+
+                    //cmd.CommandText = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Position Code]  like '%" + prefixText + "%' and s.[Location Code]='" + Facility + "' ";
+                    cmd.CommandText = "Select distinct GreenHouseID from  gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "' and GreenHouseId  like '%" + prefixText + "%' order by GreenHouseID";
+
+                    // Select* from gti_jobs_seeds_plan_Manual where loc_seedline = 'ENC2' and GreenHouseId = 'ENC2-H02-05-B'
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
 
 
+                    List<string> BenchLocation = new List<string>();
+
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            BenchLocation.Add(sdr["GreenHouseId"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return BenchLocation;
+                }
+            }
+        }
+
+
+       
     }
 }
