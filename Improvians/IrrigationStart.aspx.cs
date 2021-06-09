@@ -378,6 +378,8 @@ namespace Evo
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
             }
+
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

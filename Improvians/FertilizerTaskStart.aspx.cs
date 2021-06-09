@@ -367,6 +367,13 @@ namespace Evo
 
             Jid = dt.Rows[0]["Jid"].ToString();
             Pid = dt.Rows[0]["GrowerPutAwayId"].ToString();
+
+            decimal tray = 0;
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
+            }
+            txtTrays.Text = tray.ToString();
         }
 
         public void BindGridFerDetails(string BenchLoc)
@@ -408,7 +415,7 @@ namespace Evo
                 //}
 
             }
-            txtTrays.Text = tray.ToString();
+            txtTrays.Text = Convert.ToDecimal(txtTrays.Text) + tray.ToString();
         }
 
         private string FR_ID
