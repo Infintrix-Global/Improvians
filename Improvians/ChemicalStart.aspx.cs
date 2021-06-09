@@ -372,7 +372,7 @@ namespace Evo
                 //}
 
             }
-            txtTrays.Text = Convert.ToDecimal (txtTrays.Text)+tray.ToString();
+            txtTrays.Text = (Convert.ToDecimal (txtTrays.Text)+ tray).ToString();
 
         }
        
