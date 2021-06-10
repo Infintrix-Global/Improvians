@@ -291,7 +291,7 @@
 
 
 
-                                            <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                                            <asp:TemplateField HeaderText="Quantity of Tray" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblTaskType" runat="server" Text='<%# Eval("QuantityOfTray")  %>'></asp:Label>
                                                 </ItemTemplate>

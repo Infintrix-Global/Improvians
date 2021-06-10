@@ -72,8 +72,6 @@ namespace Evo.Admin
                     string TodatDate;
                     TodatDate = System.DateTime.Now.ToShortDateString();
 
-
-
                     PlanrDDate = Convert.ToInt32(dtpD.Rows[0]["dateshift"]);
                     PlantPDate = Convert.ToInt32(dtpD.Rows[1]["dateshift"]);
 

@@ -32,7 +32,7 @@
                                     <span>days from seeding</span>
                                 </div>
 
-                                <div class="form-group">
+                                <div runat="server" visible="false" class="form-group">
                                     <label class="mr-2 d-block robotomd">Third Germination</label>
                                     <asp:TextBox ID="txtGerm3" class="input__control input__control-auto input__control-sm text-center mr-2" Text="0" Width="50px" runat="server"></asp:TextBox>
                                     <span>days from seeding</span>

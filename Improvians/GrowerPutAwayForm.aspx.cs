@@ -43,7 +43,7 @@ namespace Evo
                 BindCrop();
 
                 BindGridGerm("0", 0);
-                BindSupervisorList(Session["Facility"].ToString());
+              //  BindSupervisorList(Session["Facility"].ToString());
 
             }
         }
@@ -239,38 +239,7 @@ namespace Evo
             BindGridGerm(ddlJobNo.SelectedValue, 1);
         }
 
-        public void BindSupervisorList(string Fid)
-        {
-           
-            //if (Fid =="")
-            //{
-            //    Fid = Session["Facility"].ToString();   
-            //}
-            //else
-            //{
-            //    // Fid = "'" + Session["Facility"].ToString() + "," + Fid + "'" ;
-
-            //    Fid = Session["Facility"].ToString() + "," + Fid;
-            //}
-
-          
-
-            NameValueCollection nv = new NameValueCollection();
-            DataTable dt = new DataTable();
-            nv.Add("@RoleID", Session["Role"].ToString());
-            nv.Add("@Facility", Fid);
-            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
-          
-            ddlSupervisor.DataSource = dt;
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlSupervisor.DataTextField = "EmployeeName";
-            ddlSupervisor.DataValueField = "ID";
-            ddlSupervisor.DataBind();
-            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-
-
-        }
-
+      
         public void BindGridGerm(string JobCode, int p)
         {
             DataTable dt = new DataTable();
@@ -414,6 +383,10 @@ namespace Evo
                 Label lblMain = (Label)e.Row.FindControl("lblMain");
                 Label lblLocation = (Label)e.Row.FindControl("lblLocation");
 
+
+                DropDownList ddlSupervisor = (DropDownList)e.Row.FindControl("ddlSupervisor");
+                Label lblSupervisor = (Label)e.Row.FindControl("lblSupervisor");
+
                 ddlMain.DataSource = objCOm.GetMainLocation();
                 ddlMain.DataTextField = "l1";
                 ddlMain.DataValueField = "l1";
@@ -421,10 +394,11 @@ namespace Evo
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
                 BindLocationNew(ref ddlLocation, PutAwayFacility);
+                BindSupervisorListNew(ref ddlSupervisor,PutAwayFacility);
                 ddlMain.SelectedValue = PutAwayFacility;
                 ddlLocation.SelectedValue = lblLocation.Text;
-
-               // Fid += "'" + ddlMain.SelectedValue + "',";
+                ddlSupervisor.SelectedValue = lblSupervisor.Text;
+                // Fid += "'" + ddlMain.SelectedValue + "',";
 
             }
 
@@ -442,16 +416,31 @@ namespace Evo
                 Fid = ddlMain.SelectedValue;
               
                 DropDownList ddlLocation = (DropDownList)row.FindControl("ddlLocation");
+                DropDownList ddlSupervisor = (DropDownList)row.FindControl("ddlSupervisor");
 
                 ddlLocation.DataSource = objCOm.GetLocation(ddlMain.SelectedValue);
                 ddlLocation.DataTextField = "p2";
                 ddlLocation.DataValueField = "p2";
                 ddlLocation.DataBind();
                 ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+
+
+                NameValueCollection nv = new NameValueCollection();
+                DataTable dt = new DataTable();
+                nv.Add("@RoleID", Session["Role"].ToString());
+                nv.Add("@Facility", ddlMain.SelectedValue);
+                dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                ddlSupervisor.DataSource = dt;
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlSupervisor.DataTextField = "EmployeeName";
+                ddlSupervisor.DataValueField = "ID";
+                ddlSupervisor.DataBind();
+                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
             }
 
            // Fid1 = Fid.Remove(Fid.Length - 1, 1);
-            BindSupervisorList(Fid);
+           // BindSupervisorList(Fid);
         }
 
         public void BindLocation()
@@ -481,6 +470,26 @@ namespace Evo
             ddlLocation.DataValueField = "p2";
             ddlLocation.DataBind();
             ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+        public void BindSupervisorListNew(ref DropDownList ddlSupervisor, string ddlMain)
+        {
+
+
+            NameValueCollection nv = new NameValueCollection();
+            DataTable dt = new DataTable();
+            nv.Add("@RoleID", Session["Role"].ToString());
+            nv.Add("@Facility", ddlMain);
+            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+            ddlSupervisor.DataSource = dt;
+            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+            ddlSupervisor.DataTextField = "EmployeeName";
+            ddlSupervisor.DataValueField = "ID";
+            ddlSupervisor.DataBind();
+            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
         }
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)
@@ -543,6 +552,7 @@ namespace Evo
                         TextBox txtTrays = (item.Cells[0].FindControl("txtTrays") as TextBox);
                         DropDownList ddlMain = (item.Cells[0].FindControl("ddlMain") as DropDownList);
                         DropDownList ddlLocation = (item.Cells[0].FindControl("ddlLocation") as DropDownList);
+                        DropDownList ddlSupervisor = (item.Cells[0].FindControl("ddlSupervisor") as DropDownList);
                         //-------------
                         string FertilizationDate = string.Empty;
                         string ChemicalDate = string.Empty;
@@ -785,7 +795,7 @@ namespace Evo
         {
             try
             {
-                string unit = "", ddlTAX1 = "", ddlStatusVal = "", hdnWOEmployeeIDVal = "";
+                string unit = "", ddlTAX1 = "", ddlStatusVal = "", hdnWOEmployeeIDVal = "", SupervisorID;
                 string MainId = "", LocationId = "";
 
                 List<GrowerputDetils> objinvoice = new List<GrowerputDetils>();
@@ -797,11 +807,12 @@ namespace Evo
                     MainId = ((DropDownList)item.FindControl("ddlMain")).SelectedValue;
                     LocationId = ((DropDownList)item.FindControl("ddlLocation")).SelectedValue;
                     TextBox txtTrays = (TextBox)item.FindControl("txtTrays");
+                    SupervisorID = ((DropDownList)item.FindControl("ddlSupervisor")).SelectedValue;
 
-                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text);
+                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID);
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice, 1, "", "", "");
+                    AddGrowerput(ref objinvoice, 1, "", "", "","");
 
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;
@@ -820,7 +831,7 @@ namespace Evo
             GridSplitJob.DataBind();
         }
 
-        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, string FacilityID, string GreenHouseID, string Trays)
+        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, string FacilityID, string GreenHouseID, string Trays,string SupervisorID)
 
         {
             GrowerputDetils objInv = new GrowerputDetils();
@@ -830,7 +841,7 @@ namespace Evo
 
             objInv.GreenHouseID = GreenHouseID;
             objInv.Trays = Trays;
-
+            objInv.SupervisorID = SupervisorID;
             objGP.Add(objInv);
             ViewState["ojbpro"] = objGP;
         }
@@ -940,4 +951,6 @@ public class GrowerputDetils
     public string FacilityID { get; set; }
     public string GreenHouseID { get; set; }
     public string Trays { get; set; }
+    public string SupervisorID { get; set; }
+    
 }
