@@ -393,9 +393,9 @@ namespace Evo
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
-                BindLocationNew(ref ddlLocation, PutAwayFacility);
-                BindSupervisorListNew(ref ddlSupervisor,PutAwayFacility);
-                ddlMain.SelectedValue = PutAwayFacility;
+                BindLocationNew(ref ddlLocation, lblMain.Text);
+                BindSupervisorListNew(ref ddlSupervisor, lblMain.Text);
+                ddlMain.SelectedValue = lblMain.Text;
                 ddlLocation.SelectedValue = lblLocation.Text;
                 ddlSupervisor.SelectedValue = lblSupervisor.Text;
                 // Fid += "'" + ddlMain.SelectedValue + "',";
@@ -812,7 +812,7 @@ namespace Evo
                     AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID);
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice, 1, "", "", "","");
+                    AddGrowerput(ref objinvoice, 1,PutAwayFacility, "", "","");
 
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;

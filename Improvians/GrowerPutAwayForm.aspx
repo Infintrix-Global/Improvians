@@ -222,7 +222,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Trays" HeaderStyle-Width="300">
+                                     <asp:TemplateField HeaderText="Assignment" HeaderStyle-Width="300">
                                         <ItemTemplate>
                                            <asp:DropDownList ID="ddlSupervisor" class="custom__dropdown robotomd" Width="250px" runat="server"></asp:DropDownList>
                                             <asp:Label ID="lblSupervisor" Visible="false" runat="server" Text='<%# Eval("SupervisorID")%>'></asp:Label>
@@ -233,7 +233,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="#">
+                                    <asp:TemplateField HeaderText="#" ItemStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
                                             <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action d-block ml-auto" />
                                         </ItemTemplate>
