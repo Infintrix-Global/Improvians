@@ -305,12 +305,14 @@ namespace Evo
                 string BatchLocation = gvGerm.DataKeys[rowIndex].Values[0].ToString();
                 string jobCode = gvGerm.DataKeys[rowIndex].Values[1].ToString();
                 string TaskRequestType = gvGerm.DataKeys[rowIndex].Values[2].ToString();
+                string TaskRequestKey = gvGerm.DataKeys[rowIndex].Values[3].ToString();
 
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@BenchLocation", BatchLocation);
                 nv.Add("@JobNo", jobCode);
                 nv.Add("@RequestType", TaskRequestType);
+                nv.Add("@TaskRequestKey", TaskRequestKey);
                 dt = objCommon.GetDataTable("GetManageTaskJobHistoryjobViewDetsils", nv);
 
 
