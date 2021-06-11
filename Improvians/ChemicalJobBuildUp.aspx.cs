@@ -633,7 +633,10 @@ namespace Evo
 
                         if (ChChemidt != null && ChChemidt.Rows.Count > 0)
                         {
-                            ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            if (ChChemidt.Rows[0]["ResetSprayTaskForDays"].ToString() != "")
+                            {
+                                ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            }
                         }
 
                         if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
@@ -699,7 +702,10 @@ namespace Evo
 
                         if (ChChemidt != null && ChChemidt.Rows.Count > 0)
                         {
-                            ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            if (ChChemidt.Rows[0]["ResetSprayTaskForDays"].ToString() != "")
+                            {
+                                ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            }
                         }
 
                         if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
