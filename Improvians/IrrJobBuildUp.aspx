@@ -44,6 +44,8 @@
                                             <asp:Label ID="lbljobID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
                                             <%--    <asp:Label ID="lblIsAssistant" runat="server" Text='<%# Eval("IsAssistant")  %>' Visible="false"></asp:Label>--%>
+                                            <asp:Label ID="lblJidF" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
+                                            <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                                             <asp:Label ID="lblIrrigationCode" runat="server" Text='<%# Eval("IrrigationCode")  %>' Visible="false"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -54,11 +56,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <%--                        <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
+
                                     <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
@@ -73,19 +71,15 @@
 
                                     <asp:TemplateField HeaderText="Tray Size" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="Label11" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
+                                            <asp:Label ID="lblTraySize" runat="server" Text='<%# Eval("TraySize")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <%--  <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
-                            <ItemTemplate>
-                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
 
                                     <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Label13" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                            <asp:Label ID="lblSeededDate1" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -169,12 +163,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-                                    <%--                        <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
                                     <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
@@ -192,28 +180,16 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <%-- <asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
-                                            <ItemTemplate>
-                                                <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>--%>
+
                                     <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                            <asp:Label ID="lblSeededDate11" Visible="false" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                            <asp:Label ID="lblGenusCodeH" Visible="false" runat="server" Text='<%# Eval("GenusCode")  %>'></asp:Label>
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-                                    <%--  <asp:TemplateField HeaderText="" HeaderStyle-CssClass="autostyle2">
-                            <ItemTemplate>
-
-
-                                <asp:Button ID="btnSelect" runat="server" Text="Assign" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Select" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'></asp:Button>
-                                <asp:Button ID="btnReschdule" runat="server" Text="Reschedule" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Reschdule" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
-                                <asp:Button ID="btndismiss" runat="server" Text="Dismiss" CssClass="bttn bttn-primary bttn-action my-1" CommandName="Dismiss" CommandArgument='<%# Eval("wo")  %>'></asp:Button>
-
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
                                 </Columns>
 
                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />

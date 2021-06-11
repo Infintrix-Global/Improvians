@@ -20,6 +20,7 @@ namespace Evo
         BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
         clsCommonMasters objMaster = new clsCommonMasters();
+        Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -565,6 +566,8 @@ namespace Evo
 
             objTask.UpdateIsActiveChemicalRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
             //    "'" + Bench + "'"
+
+            AddJobNextDate();
             Evo.BAL_Classes.General objGeneral = new General();
             objGeneral.SendMessage(int.Parse(ddlsupervisor.SelectedValue), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
             string url = "";
@@ -593,6 +596,148 @@ namespace Evo
             objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
 
         }
+
+        public void AddJobNextDate()
+        {
+            long _isInserted = 1;
+            long _isIGCodeInserted = 1;
+            long _isFCdeInserted = 1;
+            int SelectedItems = 0;
+            foreach (GridViewRow row in gvFer.Rows)
+            {
+                DataTable dtChemical = objSP.GetSeedDateDatanew("SPRAYING", (row.FindControl("lblGenusCode") as Label).Text, (row.FindControl("lblTraySize") as Label).Text);
+
+                NameValueCollection nvChemChDate = new NameValueCollection();
+
+                nvChemChDate.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                DataTable ChChemidt = objCommon.GetDataTable("SP_GetChemicalCheckResetSprayTask", nvChemChDate);
+
+                if (dtChemical != null && dtChemical.Rows.Count > 0)
+                {
+                    DataColumn col = dtChemical.Columns["DateShift"];
+                    int Ccount = 0;
+                    foreach (DataRow row1 in dtChemical.Rows)
+                    {
+                        Ccount++;
+                        string seeddate = (row.FindControl("lblSeededDate1") as Label).Text;
+                        string ChemicalDate = string.Empty;
+                        string FDay = row1[col].ToString().Replace("\u0002", "");
+
+                        ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(FDay))).ToString();
+                        string TodatDate;
+                        string ReSetChemicalDate = "";
+                        string DateCountNo = "0";
+
+                        TodatDate = System.DateTime.Now.ToShortDateString();
+                        DateCountNo = Ccount.ToString();
+
+                        if (ChChemidt != null && ChChemidt.Rows.Count > 0)
+                        {
+                            ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                        }
+
+                        if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
+                        {
+                            if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
+                            {
+                                ChemicalDate = ChemicalDate;
+
+                                NameValueCollection nv11 = new NameValueCollection();
+                                nv11.Add("@GrowerPutAwayId", "");
+                                nv11.Add("@wo", "");
+                                nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
+                                nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                                nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
+                                nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                                nv11.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+
+                                nv11.Add("@SeedDate", seeddate);
+                                nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                                nv11.Add("@Supervisor", "0");
+                                nv11.Add("@ID", "");
+                                nv11.Add("@ChemicalSeedDate", ChemicalDate);
+                                nv11.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
+                                nv11.Add("@DateCountNo", DateCountNo);
+
+                                _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsChemicalMenual", nv11);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //-----------------------------------------
+
+            foreach (GridViewRow row in gvJobHistory.Rows)
+            {
+                DataTable dtChemical = objSP.GetSeedDateDatanew("SPRAYING", (row.FindControl("lblGenusCodeH") as Label).Text, (row.FindControl("lblTraySize") as Label).Text);
+
+                NameValueCollection nvChemChDate = new NameValueCollection();
+
+                nvChemChDate.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                DataTable ChChemidt = objCommon.GetDataTable("SP_GetChemicalCheckResetSprayTask", nvChemChDate);
+
+                if (dtChemical != null && dtChemical.Rows.Count > 0)
+                {
+                    DataColumn col = dtChemical.Columns["DateShift"];
+                    int Ccount = 0;
+                    foreach (DataRow row1 in dtChemical.Rows)
+                    {
+                        Ccount++;
+                        string seeddate = (row.FindControl("lblSeededDate11") as Label).Text;
+                        string ChemicalDate = string.Empty;
+                        string FDay = row1[col].ToString().Replace("\u0002", "");
+
+                        ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(FDay))).ToString();
+                        string TodatDate;
+                        string ReSetChemicalDate = "";
+                        string DateCountNo = "0";
+
+                        TodatDate = System.DateTime.Now.ToShortDateString();
+                        DateCountNo = Ccount.ToString();
+
+                        if (ChChemidt != null && ChChemidt.Rows.Count > 0)
+                        {
+                            ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                        }
+
+                        if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
+                        {
+                            if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
+                            {
+                                ChemicalDate = ChemicalDate;
+
+                                NameValueCollection nv11 = new NameValueCollection();
+                                nv11.Add("@GrowerPutAwayId", "");
+                                nv11.Add("@wo", "");
+                                nv11.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                                nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                                nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
+                                nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                                nv11.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+
+                                nv11.Add("@SeedDate", seeddate);
+                                nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                                nv11.Add("@Supervisor", "0");
+                                nv11.Add("@ID", "");
+                                nv11.Add("@ChemicalSeedDate", ChemicalDate);
+                                nv11.Add("@GenusCode", (row.FindControl("lblGenusCodeH") as Label).Text);
+                                nv11.Add("@DateCountNo", DateCountNo);
+
+                                _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsChemicalMenual", nv11);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+
+
 
         protected void btnReset_Click(object sender, EventArgs e)
         {

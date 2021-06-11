@@ -237,7 +237,8 @@
                                         <ItemTemplate>
                                             <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action d-block ml-auto" />
                                         </ItemTemplate>
-                                        <FooterStyle HorizontalAlign="Right" />
+                               <%--         <FooterStyle HorizontalAlign="Right" />--%>
+
                                         <FooterTemplate>
                                             <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" ValidationGroup="e" CausesValidation="false" Text="Add Put Away Location" CssClass="bttn bttn-primary bttn-action w-auto" />
                                         </FooterTemplate>

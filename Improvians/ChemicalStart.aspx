@@ -28,15 +28,7 @@
                         GridLines="None"
                         ShowHeaderWhenEmpty="True" Width="100%">
                         <Columns>
-                            <%--  <asp:TemplateField HeaderText="Select" HeaderStyle-CssClass="autostyle2" ItemStyle-Width="5%">
-                                    <HeaderTemplate>
-                                        <asp:CheckBox ID="CheckBoxall" AutoPostBack="true" OnCheckedChanged="chckchanged" runat="server" />
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
 
-                                        <asp:CheckBox runat="server" ID="chkSelect"></asp:CheckBox>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
                             <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblGreenHouse" runat="server" Text='<%# Eval("GreenHouseID")  %>'></asp:Label>
@@ -51,7 +43,8 @@
                                     <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                     <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
-                                    
+                                    <asp:Label ID="lblJidF" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
+                                    <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
@@ -155,7 +148,7 @@
                                     <asp:Label ID="lblID1" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                     <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
-                                       <asp:Label ID="lblJid" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
+                                    <asp:Label ID="lblJid" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
@@ -163,6 +156,7 @@
                                     <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblitem" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
@@ -195,7 +189,8 @@
 
                             <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblSeededDate1" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    <asp:Label ID="lblSeededDate1" Visible="false" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
