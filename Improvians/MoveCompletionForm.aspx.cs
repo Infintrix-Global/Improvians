@@ -325,5 +325,25 @@ namespace Evo
                 txtBarcode.Text = "";
             }
         }
+
+        protected void txtDumpTrays_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDumpTrays.Text != "")
+            {
+                if (Convert.ToInt32(txtDumpTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
+                {
+                    lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtDumpTrays.Text)).ToString();
+
+                }
+                else
+                {
+                    txtDumpTrays.Text = "";
+
+                    // lblRemainingTrays.Text = TraysRequest;
+                }
+
+
+            }
+        }
     }
 }

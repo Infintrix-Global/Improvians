@@ -147,7 +147,7 @@
 
                            <div class="col">
                             <label># Dump Trays</label>
-                            <asp:TextBox ID="txtDumpTrays" TextMode="Number"  runat="server" CssClass="input__control"></asp:TextBox>
+                            <asp:TextBox ID="txtDumpTrays" TextMode="Number" OnTextChanged="txtDumpTrays_TextChanged" AutoPostBack="true"  runat="server" CssClass="input__control"></asp:TextBox>
                         </div>
 
                         <div class="col">
