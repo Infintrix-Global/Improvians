@@ -77,7 +77,7 @@
                         <ul class="list-unstyled">
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a class="current" href="#" title="Employee">
+                                <a href="#" title="Employee">
                                     <i class="side-icon fas fa-users"></i>
                                     <span class="side-title">Employee</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -104,7 +104,7 @@
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a class="current" href="#" title="Customer">
+                                <a  href="#" title="Customer">
                                     <i class="side-icon fas fa-user"></i>
                                     <span class="side-title">Customer</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -130,7 +130,7 @@
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a class="current" href="#" title="Sales Representative">
+                                <a href="#" title="Sales Representative">
                                     <i class="side-icon fas fa-user-tie"></i>
                                     <span class="side-title">Sales Representative</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -155,7 +155,7 @@
                                 </ul>
                             </li>
                             <li class="has__dropdown">
-                                <a class="current" href="ViewPlantProductionProfile.aspx" title="Plant Production Profile">
+                                <a href="ViewPlantProductionProfile.aspx" title="Plant Production Profile">
                                     <i class="side-icon fas fa-seedling"></i>
                                     <span class="side-title">Plant Production Profile</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -185,7 +185,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a class="current" href="NotificationPreference.aspx" title="Notification Preference">
+                                <a href="NotificationPreference.aspx" title="Notification Preference">
                                     <i class="side-icon fas fa-comment-dots"></i>
                                     <span class="side-title">Notification Preference</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -193,7 +193,7 @@
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
+                                <a href="production-plant-profile.html" title="Form's Dropdown">
                                     <i class="side-icon fas fa-file-invoice"></i>
                                     <span class="side-title">Form's Dropdown</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -222,14 +222,13 @@
                                             <span class="side-title">Crop Health Report</span>
                                             <i class="side-control fas fa-angle-right"></i>
 
-
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
+                                <a href="production-plant-profile.html" title="Form's Dropdown">
                                     <i class="side-icon fas fa-question-circle"></i>
                                     <span class="side-title">Help Management</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -252,7 +251,7 @@
                                             <i class="side-control fas fa-angle-right"></i>
                                         </a>
                                     </li>
-                                     <li>
+                                    <li>
                                         <a class="" href="HelpFAQ.aspx" title="FAQ">
                                             <i class="side-icon far fa-list-alt"></i>
                                             <span class="side-title">FAQ</span>
@@ -261,15 +260,34 @@
                                     </li>
                                 </ul>
                             </li>
-                              <li>
-                                <a class="current" href="TaskTypeWorkHoursMaster.aspx" title="Task Type Work Hours Master">
+                            <li>
+                                <a href="TaskTypeWorkHoursMaster.aspx" title="Task Type Work Hours Master">
                                     <i class="side-icon fas fa-stopwatch"></i>
                                     <span class="side-title">Task Type Work Hours</span>
                                     <i class="side-control fas fa-angle-right"></i>
                                 </a>
                             </li>
-                             <li>
-                                <a class="current" href="PullData.aspx" title="Reset and Pull Data">
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="" href="production-plant-profile.html" title="Automation Controls">
+                                    <i class="side-icon fas fa-cogs"></i>
+                                    <span class="side-title">Automation Controls</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <!-- Here need "dropdown__list" class -->
+                                    <li>
+                                        <a class="current" href="AutomationBenchControls.aspx" title="Benches">
+                                            <i class="side-icon fas fa-bars"></i>
+                                            <span class="side-title">Benches</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="PullData.aspx" title="Reset and Pull Data">
                                     <i class="side-icon fas fa-stopwatch"></i>
                                     <span class="side-title">Reset and Pull Data</span>
                                     <i class="side-control fas fa-angle-right"></i>

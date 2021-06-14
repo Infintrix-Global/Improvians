@@ -76,6 +76,22 @@ namespace Evo
         }
 
 
+        private string TraysTotal
+        {
+            get
+            {
+                if (ViewState["TraysTotal"] != null)
+                {
+                    return (string)ViewState["TraysTotal"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TraysTotal"] = value;
+            }
+        }
+
         public void BindToLocation()
         {
             //NameValueCollection nv = new NameValueCollection();
@@ -104,11 +120,12 @@ namespace Evo
             {
 
                 lblRemainingTrays.Text = dt.Tables[0].Rows[0]["Trays"].ToString();
-
+                TraysTotal = dt.Tables[0].Rows[0]["Trays"].ToString();
             }
             else
             {
                 lblRemainingTrays.Text = (Convert.ToInt32(dt.Tables[0].Rows[0]["Trays"].ToString()) - Convert.ToInt32(dt.Tables[1].Rows[0]["CompletedTrays"].ToString())).ToString();
+                TraysTotal = lblRemainingTrays.Text;
             }
         }
 
@@ -123,79 +140,97 @@ namespace Evo
             //if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblRemainingTrays.Text))
             //{
 
-
-
-            long result = 0;
-            NameValueCollection nv = new NameValueCollection();
-            //nv.Add("@MoveID", MoveID);
-            nv.Add("GrowerPutAwayId", GrowerPutAwayId);
-            nv.Add("MoveAssignID", lblMoveAssignID.Text);
-            //nv.Add("@Wo",wo);
-            nv.Add("@MoveDate", txtMoveDate.Text.Trim());
-            nv.Add("@Put_Away_Location", txtPutAwayLocation.Text.Trim());
-            nv.Add("@TraysMoved", txtTrays.Text.Trim());
-            nv.Add("@Barcode", txtBarcode.Text.Trim());
-            nv.Add("@CreateBy", Session["LoginID"].ToString());
-            result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
-
-            GridViewRow row = gvMove.Rows[0];
-            var txtJobNo = (row.FindControl("lblID") as Label).Text;
-            var txtBenchLocation = (row.FindControl("lblGreenHouseName") as Label).Text;
-
-            NameValueCollection nameValue = new NameValueCollection();
-            nameValue.Add("@LoginID", Session["LoginID"].ToString());
-            nameValue.Add("@jobcode", txtJobNo);
-            nameValue.Add("@GreenHouseID", txtBenchLocation);
-            nameValue.Add("@TaskName", "PutAway");
-
-            var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
-
-            var res = (Master.FindControl("r1") as Repeater);
-            var lblCount = (Master.FindControl("lblNotificationCount") as Label);
-            objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
-
-            if (result > 0)
+            int TotalTrays = 0;
+            int DumpTrays = 0;
+            if (txtDumpTrays.Text == "0")
             {
-                lblmsg.Text = "Completion Successful";
+                DumpTrays = 0;
+            }
+            else
+            {
+                DumpTrays = Convert.ToInt32(txtDumpTrays.Text);
+            }
 
-                if (lblRemainingTrays.Text == "0")
+            TotalTrays = Convert.ToInt32(txtTrays.Text) + DumpTrays;
+
+            if (Convert.ToInt32(TraysTotal) == TotalTrays)
+            {
+                long result = 0;
+                NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@MoveID", MoveID);
+                nv.Add("GrowerPutAwayId", GrowerPutAwayId);
+                nv.Add("MoveAssignID", lblMoveAssignID.Text);
+                //nv.Add("@Wo",wo);
+                nv.Add("@MoveDate", txtMoveDate.Text.Trim());
+                nv.Add("@Put_Away_Location", txtPutAwayLocation.Text.Trim());
+                nv.Add("@TraysMoved", txtTrays.Text.Trim());
+                nv.Add("@Barcode", txtBarcode.Text.Trim());
+                nv.Add("@CreateBy", Session["LoginID"].ToString());
+                result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
+
+                GridViewRow row = gvMove.Rows[0];
+                var txtJobNo = (row.FindControl("lblID") as Label).Text;
+                var txtBenchLocation = (row.FindControl("lblGreenHouseName") as Label).Text;
+
+                NameValueCollection nameValue = new NameValueCollection();
+                nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                nameValue.Add("@jobcode", txtJobNo);
+                nameValue.Add("@GreenHouseID", txtBenchLocation);
+                nameValue.Add("@TaskName", "PutAway");
+
+                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+                var res = (Master.FindControl("r1") as Repeater);
+                var lblCount = (Master.FindControl("lblNotificationCount") as Label);
+                objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
+
+                if (result > 0)
                 {
+                    lblmsg.Text = "Completion Successful";
 
-                    NameValueCollection nv1 = new NameValueCollection();
-                    //nv1.Add("@WoId", wo);
-                    //nv1.Add("@JobID", "");
-                    //nv1.Add("@MoveID", result.ToString());
-                    //nv1.Add("@GrowerPutAwayId","");
-                    nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
-                    nv1.Add("MoveAssignID", lblMoveAssignID.Text);
-                    nv1.Add("@CreatedBy", Session["LoginID"].ToString());
+                    if (lblRemainingTrays.Text == "0")
+                    {
 
-                    int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveForm", nv1);
+                        NameValueCollection nv1 = new NameValueCollection();
+                        //nv1.Add("@WoId", wo);
+                        //nv1.Add("@JobID", "");
+                        //nv1.Add("@MoveID", result.ToString());
+                        //nv1.Add("@GrowerPutAwayId","");
+                        nv1.Add("@GrowerPutAwayId", GrowerPutAwayId);
+                        nv1.Add("MoveAssignID", lblMoveAssignID.Text);
+                        nv1.Add("@CreatedBy", Session["LoginID"].ToString());
+
+                        int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveForm", nv1);
 
 
+                    }
+
+
+                    Clear();
+                    if (Session["Role"].ToString() == "3" || Session["Role"].ToString() == "5" || Session["Role"].ToString() == "11" || Session["Role"].ToString() == "6")
+                    {
+                        string message = "Completion Successful";
+                        string url = "MyTaskShippingCoordinator.aspx";
+                        objCommon.ShowAlertAndRedirect(message, url);
+                        //  Response.Redirect("~/MyTaskShippingCoordinator.aspx");
+                    }
+
+                    else if (Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
+                    {
+
+                        string message = "Completion Successful";
+                        string url = "MyTaskLogisticManager.aspx";
+                        objCommon.ShowAlertAndRedirect(message, url);
+                    }
                 }
-
-
-                Clear();
-                if (Session["Role"].ToString() == "3" || Session["Role"].ToString() == "5" || Session["Role"].ToString() == "11" || Session["Role"].ToString() == "6")
+                else
                 {
-                    string message = "Completion Successful";
-                    string url = "MyTaskShippingCoordinator.aspx";
-                    objCommon.ShowAlertAndRedirect(message, url);
-                    //  Response.Redirect("~/MyTaskShippingCoordinator.aspx");
-                }
-
-                else if (Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
-                {
-
-                    string message = "Completion Successful";
-                    string url = "MyTaskLogisticManager.aspx";
-                    objCommon.ShowAlertAndRedirect(message, url);
+                    lblmsg.Text = "Completion Not Successful";
                 }
             }
             else
             {
-                lblmsg.Text = "Completion Not Successful";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Trays Moved + Dump Trays is not equal to requested Trays moved by Grower')", true);
             }
 
 

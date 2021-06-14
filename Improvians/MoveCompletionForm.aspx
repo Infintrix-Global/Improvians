@@ -131,6 +131,7 @@
                             <label>Bench Location</label>
                             <asp:TextBox ID="txtPutAwayLocation" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                         </div>
+
                         <div class="col">
                             <label># Trays Moved</label>
                             <asp:TextBox ID="txtTrays" TextMode="Number" OnTextChanged="txtTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
@@ -141,6 +142,14 @@
                                     SetFocusOnError="true" ErrorMessage="Please Enter Trays Moved" ForeColor="Red"></asp:RequiredFieldValidator>
                             </span>
                         </div>
+
+
+
+                           <div class="col">
+                            <label># Dump Trays</label>
+                            <asp:TextBox ID="txtDumpTrays" TextMode="Number"  runat="server" CssClass="input__control"></asp:TextBox>
+                        </div>
+
                         <div class="col">
                             <label>Barcode of Putaway Location</label>
                             <asp:TextBox ID="txtBarcode" runat="server" OnTextChanged="txtBarcode_TextChanged" AutoPostBack="true" CssClass="input__control"></asp:TextBox>
@@ -151,6 +160,7 @@
                                     SetFocusOnError="true" ErrorMessage="Please Enter Barcode" ForeColor="Red"></asp:RequiredFieldValidator>
                             </span>
                         </div>
+
                         <div class="col-auto align-self-center">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" ValidationGroup="md" OnClick="btnSubmit_Click" />
                         </div>

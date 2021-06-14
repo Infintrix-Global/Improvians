@@ -567,7 +567,8 @@ namespace Evo
                     foreach (DataRow row1 in dtISD.Rows)
                     {
                         string IrrigateDate = string.Empty;
-                        string IDay = row1[col].ToString().Replace("\u0002", "");
+                        //string IDay = row1[col].ToString().Replace("\u0002", "");
+                        string IDay = row1[col].ToString();
                         string seeddate = (row.FindControl("lblSeededDate1") as Label).Text;
                         IrrigateDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(IDay))).ToString();
                         Irrcount++;
@@ -647,7 +648,8 @@ namespace Evo
                     foreach (DataRow row1 in dtISD.Rows)
                     {
                         string IrrigateDate = string.Empty;
-                        string IDay = row1[col].ToString().Replace("\u0002", "");
+                        //string IDay = row1[col].ToString().Replace("\u0002", "");
+                        string IDay = row1[col].ToString();
                         string seeddate = (row.FindControl("lblSeededDate1") as Label).Text;
                         IrrigateDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(IDay))).ToString();
                         Irrcount++;

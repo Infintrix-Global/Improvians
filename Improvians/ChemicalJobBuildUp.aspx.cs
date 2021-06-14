@@ -621,7 +621,8 @@ namespace Evo
                         Ccount++;
                         string seeddate = (row.FindControl("lblSeededDate1") as Label).Text;
                         string ChemicalDate = string.Empty;
-                        string FDay = row1[col].ToString().Replace("\u0002", "");
+                        // string FDay = row1[col].ToString().Replace("\u0002", "");
+                        string FDay = row1[col].ToString();
 
                         ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(FDay))).ToString();
                         string TodatDate;
@@ -690,8 +691,8 @@ namespace Evo
                         Ccount++;
                         string seeddate = (row.FindControl("lblSeededDate11") as Label).Text;
                         string ChemicalDate = string.Empty;
-                        string FDay = row1[col].ToString().Replace("\u0002", "");
-
+                        //string FDay = row1[col].ToString().Replace("\u0002", "");
+                        string FDay = row1[col].ToString();
                         ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(FDay))).ToString();
                         string TodatDate;
                         string ReSetChemicalDate = "";

@@ -581,8 +581,8 @@ namespace Evo
                     {
                         Fcount++;
                         string seeddate = (row.FindControl("lblSeededDate1") as Label).Text;
-                        string AD = row1[col].ToString().Replace("\u0002", "");
-
+                        //string AD = row1[col].ToString().Replace("\u0002", "");
+                        string AD = row1[col].ToString();
                         FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(AD))).ToString();
                         string TodatDate;
                         string ReSetSprayDate = "";
@@ -651,8 +651,8 @@ namespace Evo
                     {
                         Fcount++;
                         string seeddate = (row.FindControl("lblSeededDate1") as Label).Text;
-                        string AD = row1[col].ToString().Replace("\u0002", "");
-
+                        //string AD = row1[col].ToString().Replace("\u0002", "");
+                        string AD = row1[col].ToString();
                         FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(AD))).ToString();
                         string TodatDate;
                         string ReSetSprayDate = "";

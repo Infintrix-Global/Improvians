@@ -29,9 +29,25 @@ namespace Evo.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
+            if (!IsPostBack)
+            {
+                BindGridSyncPullDataHistory();
+            }
         }
 
+        public void BindGridSyncPullDataHistory()
+        {
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+            nv.Add("@ID", "");
+
+            dt = objCommon.GetDataTable("SP_GetSyncPullDataHistory", nv);
+
+            gvSyncUpData.DataSource = dt;
+            gvSyncUpData.DataBind();
+
+
+        }
 
         protected void btAdd_Click(object sender, EventArgs e)
         {
@@ -120,7 +136,7 @@ namespace Evo.Admin
 
                 DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);
 
-                
+
                 NameValueCollection nvChDate = new NameValueCollection();
                 nvChDate.Add("@GreenHouseID", GreenHouseID);
                 DataTable ChFdt = objCommon.GetDataTable("SP_GetFertilizationCheckResetSprayTask", nvChDate);
@@ -190,10 +206,10 @@ namespace Evo.Admin
                         //}
                     }
                 }
-            
-                
-                
-                
+
+
+
+
                 DataTable dtChemical = objSP.GetSeedDateDatanew("SPRAYING", GenusCode, TraySize);
 
                 NameValueCollection nvChemChDate = new NameValueCollection();
@@ -380,16 +396,15 @@ namespace Evo.Admin
 
             }
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ')", true);
-         
+
         }
 
         protected void btnPullData_Click(object sender, EventArgs e)
         {
-            long _isInserted3 = 0;
-            NameValueCollection nvReset = new NameValueCollection();
-            _isInserted3 = objCommon.GetDataInsertORUpdate("SP_AddResetData", nvReset);
 
 
+
+            long _isInsertedLog = 1;
             long _isInserted = 1;
             long _isIGCodeInserted = 1;
             long _isFCdeInserted = 1;
@@ -418,7 +433,7 @@ namespace Evo.Admin
             {
                 var rows = (from a in RData.AsEnumerable()
                             join b in PData.AsEnumerable()
-                            on a["jobcode"].ToString() equals b["jobcode"].ToString() 
+                            on a["jobcode"].ToString() equals b["jobcode"].ToString()
                             into g
                             where g.Count() == 0
                             select a);
@@ -497,6 +512,8 @@ namespace Evo.Admin
 
                 _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_Manual", nv);
 
+
+
                 DataTable dtFez = objSP.GetSeedDateDatanew("FERTILIZE", GenusCode, TraySize);
 
 
@@ -514,8 +531,8 @@ namespace Evo.Admin
                     {
                         Fcount++;
 
-                        string AD = row[col].ToString().Replace("\u0002", "");
-
+                        // string AD = row[col].ToString().Replace("\u0002", "");
+                        string AD = row[col].ToString();
                         FertilizationDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(AD))).ToString();
                         string TodatDate;
                         string ReSetSprayDate = "";
@@ -559,14 +576,7 @@ namespace Evo.Admin
                             }
                         }
 
-                        //if (Convert.ToDateTime(TodatDate) >= Convert.ToDateTime(FertilizationDate))
-                        //{
-                        //    if (ReSetSprayDate == "" || Convert.ToDateTime(ReSetSprayDate) >= Convert.ToDateTime(FertilizationDate))
-                        //    {
-                        //        FertilizationDate = row[col].ToString();
-                        //        break;
-                        //    }
-                        //}
+
                     }
                 }
 
@@ -588,7 +598,9 @@ namespace Evo.Admin
                     {
                         Ccount++;
                         string ChemicalDate = string.Empty;
-                        string FDay = row[col].ToString().Replace("\u0002", "");
+                        //  string FDay = row[col].ToString().Replace("\u0002", "");
+                        string FDay = row[col].ToString();
+
 
                         ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(FDay))).ToString();
                         string TodatDate;
@@ -655,7 +667,8 @@ namespace Evo.Admin
                     foreach (DataRow row in dtISD.Rows)
                     {
                         string IrrigateDate = string.Empty;
-                        string IDay = row[col].ToString().Replace("\u0002", "");
+                        // string IDay = row[col].ToString().Replace("\u0002", "");
+                        string IDay = row[col].ToString();
 
                         IrrigateDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(IDay))).ToString();
                         Irrcount++;
@@ -755,6 +768,12 @@ namespace Evo.Admin
                 SelectedItems++;
 
             }
+
+
+            NameValueCollection nvLog = new NameValueCollection();
+            nvLog.Add("@Login", Session["LoginID"].ToString());
+            _isInsertedLog = objCommon.GetDataExecuteScaler("SP_AddSyncPullDataHistory", nvLog);
+
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ')", true);
         }
 
@@ -771,7 +790,7 @@ namespace Evo.Admin
             {
                 SeedDate = dt.Rows[0]["SeedDate"].ToString();
             }
-           
+
 
 
             RData = objSP.GetDataSeedingPlanManual(SeedDate);
@@ -799,6 +818,20 @@ namespace Evo.Admin
             }
 
             DataTable dt13 = AllData;
+
+        }
+
+        protected void gvSyncUpData_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void gvSyncUpData_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            string SyncDate = Convert .ToDateTime (gvSyncUpData.DataKeys[rowIndex].Values[0]).ToString("dd-MM-yyyy");
+            Response.Redirect(String.Format("SyncUpViewData.aspx?SyncDate={0}", SyncDate));
+
 
         }
     }

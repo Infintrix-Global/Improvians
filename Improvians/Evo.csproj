@@ -123,6 +123,7 @@
     <Content Include="Admin\AddSalesRepresentative.aspx" />
     <Content Include="Admin\AddEmployee.aspx" />
     <Content Include="Admin\AdminDashBoard.aspx" />
+    <Content Include="Admin\AutomationBenchControls.aspx" />
     <Content Include="Admin\CropHealthMaster.aspx" />
     <Content Include="Admin\css\custom.css" />
     <Content Include="Admin\EditSalesRepresentative.aspx" />
@@ -137,6 +138,7 @@
     <Content Include="Admin\js\custom.js" />
     <Content Include="Admin\NotificationPreference.aspx" />
     <Content Include="Admin\PullData.aspx" />
+    <Content Include="Admin\SyncUpViewData.aspx" />
     <Content Include="Admin\TaskTypeWorkHoursMaster.aspx" />
     <Content Include="Admin\TaskTypeMaster.aspx" />
     <Content Include="Admin\css\all.min.css" />
@@ -554,6 +556,13 @@
     <Compile Include="Admin\AdminMaster.Master.designer.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AutomationBenchControls.aspx.cs">
+      <DependentUpon>AutomationBenchControls.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AutomationBenchControls.aspx.designer.cs">
+      <DependentUpon>AutomationBenchControls.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\BAL_Classes\BAL_Task.cs" />
     <Compile Include="Admin\BAL_Classes\clsCommonMasters.cs" />
     <Compile Include="Admin\BAL_Classes\EmailHelper.cs" />
@@ -620,6 +629,13 @@
     </Compile>
     <Compile Include="Admin\PullData.aspx.designer.cs">
       <DependentUpon>PullData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SyncUpViewData.aspx.cs">
+      <DependentUpon>SyncUpViewData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SyncUpViewData.aspx.designer.cs">
+      <DependentUpon>SyncUpViewData.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\TaskTypeWorkHoursMaster.aspx.cs">
       <DependentUpon>TaskTypeWorkHoursMaster.aspx</DependentUpon>
