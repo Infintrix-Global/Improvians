@@ -159,7 +159,7 @@ namespace Evo.Admin
                 }
 
 
-                if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12")
+                if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12" || ddlDesignation.SelectedValue == "15" || ddlDesignation.SelectedValue == "16")
                 {
                     BindFacility();
                     ddlFacility.Visible = false;
@@ -185,7 +185,7 @@ namespace Evo.Admin
                     if (dt1.Tables[1].Rows.Count > 0)
                     {
                         BindFacilitySelect();
-                       
+
 
                         ddlFacility.SelectedValue = dt1.Tables[1].Rows[0]["FacilityID"].ToString();
                     }
