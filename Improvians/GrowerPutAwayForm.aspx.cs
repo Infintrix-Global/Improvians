@@ -728,7 +728,7 @@ namespace Evo
                         nv.Add("@IrrigateNoCount", IrrigateNoCount);
                         nv.Add("@FertilizeNoCount", FertilizeNoCount);
                         nv.Add("@ChemicalNoCount", ChemicalNoCount);
-                        nv.Add("@RolId", ddlSupervisor.SelectedValue);
+                        nv.Add("@RolId", Session["Role"].ToString());
 
                         if (txtTrays.Text != "")
                         {

@@ -480,6 +480,7 @@
     <Content Include="MyTaskGreenSupervisor.aspx" />
     <Content Include="MyTaskGreenSupervisorFinal.aspx" />
     <Content Include="MyTaskAssistantGrower.aspx" />
+    <Content Include="MyTaskHeadGrower.aspx" />
     <Content Include="MyTaskSeedlinePlanner.aspx" />
     <Content Include="MyTaskGrower.aspx" />
     <Content Include="MyTaskLogisticManager.aspx" />
@@ -1232,6 +1233,13 @@
     </Compile>
     <Compile Include="MyTaskAssistantGrower.aspx.designer.cs">
       <DependentUpon>MyTaskAssistantGrower.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyTaskHeadGrower.aspx.cs">
+      <DependentUpon>MyTaskHeadGrower.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyTaskHeadGrower.aspx.designer.cs">
+      <DependentUpon>MyTaskHeadGrower.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyTaskSeedlinePlanner.aspx.cs">
       <DependentUpon>MyTaskSeedlinePlanner.aspx</DependentUpon>
