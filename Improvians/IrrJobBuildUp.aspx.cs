@@ -17,6 +17,7 @@ namespace Evo
         CommonControl objCommon = new CommonControl();
         BAL_Fertilizer objFer = new BAL_Fertilizer();
         BAL_Task objTask = new BAL_Task();
+        Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -366,25 +367,7 @@ namespace Evo
 
         public void BindGridIrrigation()
         {
-            //DataTable dt = new DataTable();
-            //NameValueCollection nv = new NameValueCollection();
 
-            //nv.Add("@JobCode", JobCode);
-            //nv.Add("@CustomerName", "0");
-            //nv.Add("@Facility", "0");
-            //nv.Add("@BenchLocation", Bench);
-            //nv.Add("@RequestType", "0");
-            //nv.Add("@FromDate", "");
-            //nv.Add("@ToDate", "");
-
-            //if (Session["Role"].ToString() == "12")
-            //{
-            //    dt = objCommon.GetDataTable("SP_GetIrrigationRequestAssistantGrower", nv);
-            //}
-            //else
-            //{
-            //    dt = objCommon.GetDataTable("SP_GetIrrigationRequest", nv);
-            //}
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@JobCode", JobCode);
@@ -404,12 +387,7 @@ namespace Evo
 
         public void BindSupervisorList()
         {
-            //NameValueCollection nv = new NameValueCollection();
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            //ddlSupervisor.DataTextField = "EmployeeName";
-            //ddlSupervisor.DataValueField = "ID";
-            //ddlSupervisor.DataBind();
-            //ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
 
             NameValueCollection nv = new NameValueCollection();
             DataTable dt = new DataTable();
@@ -476,34 +454,6 @@ namespace Evo
         {
             int IrrigationCode = 0;
             string SprayTaskForDaysDate = "";
-            //foreach (GridViewRow row1 in GridIrrigation.Rows)
-            //{
-            //    string IrrigationCode1 = (row1.FindControl("lblIrrigationCode") as Label).Text;
-            //    if (IrrigationCode1 != "")
-            //    {
-            //        IrrigationCode = Convert.ToInt32(IrrigationCode1);
-            //        if (IrrigationCode == 0)
-            //        {
-            //            DataTable dt = new DataTable();
-            //            NameValueCollection nv1 = new NameValueCollection();
-            //            nv1.Add("@Mode", "13");
-            //            dt = objCommon.GetDataTable("GET_Common", nv1);
-            //            IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
-            //        }
-            //        else
-            //        {
-            //            IrrigationCode = IrrigationCode;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        DataTable dt = new DataTable();
-            //        NameValueCollection nv1 = new NameValueCollection();
-            //        nv1.Add("@Mode", "13");
-            //        dt = objCommon.GetDataTable("GET_Common", nv1);
-            //        IrrigationCode = Convert.ToInt32(dt.Rows[0]["ICode"]);
-            //    }
-            //}
 
 
             if (ICode == "0")
@@ -518,8 +468,6 @@ namespace Evo
             {
                 IrrigationCode = Convert.ToInt32(ICode);
             }
-
-
 
 
             if (txtResetSprayTaskForDays.Text != "")
@@ -559,7 +507,6 @@ namespace Evo
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
 
-
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
 
                 NameValueCollection nvn = new NameValueCollection();
@@ -582,38 +529,7 @@ namespace Evo
 
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
-                //if ((row.FindControl("lblGrowerputawayID") as Label).Text == "0")
-                //{
-                //    long result = 0;
-                //    NameValueCollection nv = new NameValueCollection();
-                //    nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
 
-                //    nv.Add("@Jobcode", (row.FindControl("lbljobID") as Label).Text);
-                //    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                //    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                //    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                //    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                //    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                //    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-
-                //    nv.Add("@IrrigationCode", IrrigationCode.ToString());
-                //    // nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                //    nv.Add("@IrrigatedNoTrays", (row.FindControl("lbltotTray") as Label).Text);
-                //    nv.Add("@WaterRequired", txtWaterRequired.Text.Trim());
-                //    nv.Add("@IrrigationDuration", "");
-                //    nv.Add("@SprayDate", txtSprayDate.Text.Trim());
-                //    //nv.Add("@SprayTime", txtSprayTime.Text.Trim());
-                //    nv.Add("@Nots", txtNotes.Text.Trim());
-                //    nv.Add("@LoginID", Session["LoginID"].ToString());
-                //    nv.Add("@Role", ddlSupervisor.SelectedValue);
-                //    nv.Add("@ISAG", "0");
-                //    nv.Add("@jid", Jid);
-
-                //    result = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualNew", nv);
-                //}
-                //else
-                //{
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
@@ -640,14 +556,12 @@ namespace Evo
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
 
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
-                // }
 
             }
 
-            objTask.UpdateIsActiveIrrigation(BenchUp);
-
-
+          
             objTask.UpdateIsActiveFerRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
+            AddJobNextDate();
             string url = "";
             if (Session["Role"].ToString() == "1")
             {
@@ -677,6 +591,179 @@ namespace Evo
             var lblCount = (Master.FindControl("lblNotificationCount") as Label);
             objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), res, lblCount);
         }
+
+
+        public void AddJobNextDate()
+        {
+            long _isInserted = 1;
+            long _isIGCodeInserted = 1;
+            long _isFCdeInserted = 1;
+            int SelectedItems = 0;
+
+            foreach (GridViewRow row in GridIrrigation.Rows)
+            {
+                DataTable dtISD = objSP.GetSeedDateDatanew("IRRIGATE", (row.FindControl("lblGenusCode") as Label).Text, (row.FindControl("lblTraySize") as Label).Text);
+
+                int IrrigateCode = 0;
+                DataTable dtIG = new DataTable();
+                NameValueCollection nv1IG = new NameValueCollection();
+                nv1IG.Add("@Mode", "13");
+                dtIG = objCommon.GetDataTable("GET_Common", nv1IG);
+                IrrigateCode = Convert.ToInt32(dtIG.Rows[0]["ICode"]);
+
+                NameValueCollection nvIRRChDate = new NameValueCollection();
+
+                nvIRRChDate.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                DataTable Irrigationdt = objCommon.GetDataTable("SP_GetIrrigationResetSprayTask", nvIRRChDate);
+
+                if (dtISD != null && dtISD.Rows.Count > 0)
+                {
+                    int Irrcount = 0;
+                    DataColumn col = dtISD.Columns["DateShift"];
+                    foreach (DataRow row1 in dtISD.Rows)
+                    {
+                        string IrrigateDate = string.Empty;
+                        string IDay = row1[col].ToString().Replace("\u0002", "");
+                        string seeddate = (row.FindControl("lblSeededDate1") as Label).Text;
+                        IrrigateDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(IDay))).ToString();
+                        Irrcount++;
+                        string DateCountNo = "0";
+                        string TodatDate1;
+                        string ReSetIrrigateDate = "";
+
+                        DateCountNo = Irrcount.ToString();
+                        TodatDate1 = System.DateTime.Now.ToShortDateString();
+
+                        if (Irrigationdt != null && Irrigationdt.Rows.Count > 0 && Irrigationdt.Rows[0]["ResetSprayTaskForDays"] != System.DBNull.Value)
+                        {
+                            if (Irrigationdt.Rows[0]["ResetSprayTaskForDays"].ToString() != "")
+                            {
+                                ReSetIrrigateDate = Convert.ToDateTime(Irrigationdt.Rows[0]["CreatedOn"]).AddDays(Convert.ToInt32(Irrigationdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            }
+                        }
+
+                        if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate1))
+                        {
+
+                            if (ReSetIrrigateDate == "" || DateTime.Parse(IrrigateDate) >= DateTime.Parse(ReSetIrrigateDate))
+                            {
+                                IrrigateDate = IrrigateDate;
+
+                                NameValueCollection nv11 = new NameValueCollection();
+
+                                nv11.Add("@GrowerPutAwayIrrigatId", "");
+                                nv11.Add("@wo", "");
+                                nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
+                                nv11.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
+                                nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
+                                nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                                nv11.Add("@Trays", (row.FindControl("lbltotTray") as Label).Text);
+
+                                nv11.Add("@SeedDate", seeddate);
+                                nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                                nv11.Add("@Supervisor", "0");
+                                nv11.Add("@IrrigateSeedDate", IrrigateDate);
+                                nv11.Add("@FertilizeSeedDate", "");
+                                nv11.Add("@ID", "");
+                                nv11.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
+                                nv11.Add("@DateCountNo", DateCountNo);
+
+                                _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsIrrigationMenual", nv11);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
+            }
+
+
+            foreach (GridViewRow row in gvJobHistory.Rows)
+            {
+
+                DataTable dtISD = objSP.GetSeedDateDatanew("IRRIGATE", (row.FindControl("lblGenusCodeH") as Label).Text, (row.FindControl("lblTraySize") as Label).Text);
+
+                int IrrigateCode = 0;
+                DataTable dtIG = new DataTable();
+                NameValueCollection nv1IG = new NameValueCollection();
+                nv1IG.Add("@Mode", "13");
+                dtIG = objCommon.GetDataTable("GET_Common", nv1IG);
+                IrrigateCode = Convert.ToInt32(dtIG.Rows[0]["ICode"]);
+
+                NameValueCollection nvIRRChDate = new NameValueCollection();
+
+                nvIRRChDate.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                DataTable Irrigationdt = objCommon.GetDataTable("SP_GetIrrigationResetSprayTask", nvIRRChDate);
+
+                if (dtISD != null && dtISD.Rows.Count > 0)
+                {
+                    int Irrcount = 0;
+                    DataColumn col = dtISD.Columns["DateShift"];
+                    foreach (DataRow row1 in dtISD.Rows)
+                    {
+                        string IrrigateDate = string.Empty;
+                        string IDay = row1[col].ToString().Replace("\u0002", "");
+                        string seeddate = (row.FindControl("lblSeededDate11") as Label).Text;
+                        IrrigateDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(IDay))).ToString();
+                        Irrcount++;
+                        string DateCountNo = "0";
+                        string TodatDate1;
+                        string ReSetIrrigateDate = "";
+
+                        DateCountNo = Irrcount.ToString();
+                        TodatDate1 = System.DateTime.Now.ToShortDateString();
+
+                        if (Irrigationdt != null && Irrigationdt.Rows.Count > 0 && Irrigationdt.Rows[0]["ResetSprayTaskForDays"] != System.DBNull.Value)
+                        {
+                            if (Irrigationdt.Rows[0]["ResetSprayTaskForDays"].ToString() != "")
+                            {
+                                ReSetIrrigateDate = Convert.ToDateTime(Irrigationdt.Rows[0]["CreatedOn"]).AddDays(Convert.ToInt32(Irrigationdt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                            }
+                        }
+
+                        if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate1))
+                        {
+
+                            if (ReSetIrrigateDate == "" || DateTime.Parse(IrrigateDate) >= DateTime.Parse(ReSetIrrigateDate))
+                            {
+                                IrrigateDate = IrrigateDate;
+
+                                NameValueCollection nv11 = new NameValueCollection();
+
+                                nv11.Add("@GrowerPutAwayIrrigatId", "");
+                                nv11.Add("@wo", "");
+                                nv11.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                                nv11.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
+                                nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
+                                nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                                nv11.Add("@Trays", (row.FindControl("lbltotTray") as Label).Text);
+
+                                nv11.Add("@SeedDate", seeddate);
+                                nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                                nv11.Add("@Supervisor", "0");
+                                nv11.Add("@IrrigateSeedDate", IrrigateDate);
+                                nv11.Add("@FertilizeSeedDate", "");
+                                nv11.Add("@ID", "");
+                                nv11.Add("@GenusCode", (row.FindControl("lblGenusCodeH") as Label).Text);
+                                nv11.Add("@DateCountNo", DateCountNo);
+
+                                _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsIrrigationMenual", nv11);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+
+
+
+
+
 
         public void clear()
         {

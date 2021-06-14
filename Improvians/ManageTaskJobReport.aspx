@@ -77,7 +77,7 @@
                                     <ContentTemplate>
                                         <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowCommand="gvGerm_RowCommand"
                                             class="striped" AllowSorting="true" OnPageIndexChanging="gvGerm_PageIndexChanging" PageSize="15"
-                                            GridLines="None" DataKeyNames="BenchLocation,JobNo,TaskRequestType" OnRowDataBound="gvGerm_RowDataBound"
+                                            GridLines="None" DataKeyNames="BenchLocation,JobNo,TaskRequestType,TaskRequestKey" OnRowDataBound="gvGerm_RowDataBound"
                                             ShowHeaderWhenEmpty="True" Width="100%">
                                             <Columns>
 

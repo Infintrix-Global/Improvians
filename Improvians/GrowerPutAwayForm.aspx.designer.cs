@@ -195,24 +195,6 @@ namespace Evo
         protected global::System.Web.UI.WebControls.GridView GridSplitJob;
 
         /// <summary>
-        /// lblfacsupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblfacsupervisor;
-
-        /// <summary>
-        /// ddlSupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupervisor;
-
-        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>

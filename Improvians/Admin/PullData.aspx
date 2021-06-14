@@ -22,7 +22,10 @@
                             <div class="col-12 text-center order-md-1">
                                 <asp:Button ID="btAdd" runat="server" Text="Reset and Pull Data"  class="submit-bttn bttn bttn-primary" OnClick="btAdd_Click" />
 
-                              
+                               <asp:Button ID="btnPullData" runat="server" Text="Sync up Data"  class="submit-bttn bttn bttn-primary" OnClick="btnPullData_Click" />
+
+                                <asp:Button ID="Button1" runat="server" Text="Pull Data Test" Visible="false"  class="submit-bttn bttn bttn-primary" OnClick="Button1_Click" />
+
                             </div>
 
                         </div>

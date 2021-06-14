@@ -32,7 +32,7 @@
                                     <span>days from seeding</span>
                                 </div>
 
-                                <div class="form-group">
+                                <div runat="server" visible="false" class="form-group">
                                     <label class="mr-2 d-block robotomd">Third Germination</label>
                                     <asp:TextBox ID="txtGerm3" class="input__control input__control-auto input__control-sm text-center mr-2" Text="0" Width="50px" runat="server"></asp:TextBox>
                                     <span>days from seeding</span>
@@ -66,11 +66,11 @@
                                                     <asp:TextBox ID="txtGerm2" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("Germination2")%>' Width="50px" runat="server"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Germination 3" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                                           <%-- <asp:TemplateField HeaderText="Germination 3" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtGerm3" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("Germination3")%>' Width="50px" runat="server"></asp:TextBox>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>                                          
+                                            </asp:TemplateField>  --%>                                        
                                         </Columns>
                                     </asp:GridView>
                                 </div>

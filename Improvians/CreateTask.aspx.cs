@@ -3174,7 +3174,8 @@ namespace Evo
 
         protected void chkSelect_CheckedChanged(object sender, EventArgs e)
         {
-
+            string Trays1 = "";
+            int Trays = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
@@ -3183,11 +3184,11 @@ namespace Evo
                     string TodatDate = System.DateTime.Now.ToShortDateString();
                     if (chkRow.Checked)
                     {
-                        string Trays = (row.FindControl("lblTotTray") as Label).Text;
-                        txtFTrays.Text = Trays;
-                        txtChemicalTrays.Text = Trays;
+                        Trays1 = (row.FindControl("lblTotTray") as Label).Text;
 
-                        NameValueCollection nv11 = new NameValueCollection();
+                        Trays = Trays + Convert.ToInt32(Trays1);
+
+                         NameValueCollection nv11 = new NameValueCollection();
                         nv11.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
                         DataTable dtSDate = objCommon.GetDataTable("SP_GetFertilizerRequestResetTaskForDaysCheck", nv11);
 
@@ -3310,6 +3311,9 @@ namespace Evo
                     }
                 }
             }
+
+            txtFTrays.Text = Trays.ToString();
+            txtChemicalTrays.Text = Trays.ToString();
         }
 
         public void updateNotification()

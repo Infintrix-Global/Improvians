@@ -57,10 +57,16 @@ namespace Evo.Admin
                 string Crop = ((Label)row.FindControl("lblCrop")).Text;
                 TextBox Germ1 = ((TextBox)row.FindControl("txtGerm1"));
                 TextBox Germ2 = ((TextBox)row.FindControl("txtGerm2"));
-                TextBox Germ3 = ((TextBox)row.FindControl("txtGerm3"));
-                if (Germ1.Text != txtGerm1.Text || Germ2.Text != txtGerm2.Text|| Germ3.Text != txtGerm3.Text)
+                // TextBox Germ3 = ((TextBox)row.FindControl("txtGerm3"));
+                //if (Germ1.Text != txtGerm1.Text || Germ2.Text != txtGerm2.Text|| Germ3.Text != txtGerm3.Text)
+                // {
+                ////     long result = objCommon.AddPlantProductionCrop(Crop, Convert.ToInt32(Germ1.Text), Convert.ToInt32(Germ2.Text), Convert.ToInt32(Germ3.Text));
+                //  }
+
+
+                if (Germ1.Text != txtGerm1.Text || Germ2.Text != txtGerm2.Text)
                 {
-                    long result = objCommon.AddPlantProductionCrop(Crop, Convert.ToInt32(Germ1.Text), Convert.ToInt32(Germ2.Text), Convert.ToInt32(Germ3.Text));
+                    long result = objCommon.AddPlantProductionCrop(Crop, Convert.ToInt32(Germ1.Text), Convert.ToInt32(Germ2.Text),0);
                 }
             }
         }

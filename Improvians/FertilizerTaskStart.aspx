@@ -49,7 +49,8 @@
                                     <%--  <asp:Label ID="Label4" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>--%>
                                     <asp:Label ID="lblID" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                     <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
-
+                                    <asp:Label ID="lblJidF" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
+                                    <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                 </ItemTemplate>
@@ -171,7 +172,7 @@
                                     <asp:Label ID="lblID1" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                     <asp:Label ID="lblwo1" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblGrowerputawayID1" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
-                                       <asp:Label ID="lblJid" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
+                                    <asp:Label ID="lblJid" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -205,16 +206,15 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <%--<asp:TemplateField HeaderText="Seeded Date" HeaderStyle-CssClass="autostyle2">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label12" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
-
+                         
                             <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
-                                       <asp:Label ID="lblSeededDate1" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
+                                    <asp:Label ID="lblSeededDate1" Visible="false" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     <asp:Label ID="lblitemdesc" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+
+
+                                    <asp:Label ID="lblGenusCodeH" Visible="false" runat="server" Text='<%# Eval("GenusCode")  %>'></asp:Label>
+
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -349,15 +349,15 @@
                             </span>
                         </div>
 
-                            <div class="col-sm-6 col-lg col-xl-3 mb-3">
-                                <label>Minimum Days Until Next Fertilization</label>
-                                <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                            </div>
-                             <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-                                <label>Comments</label>
-                                <asp:TextBox ID="txtComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
-                            </div>
-                    
+                        <div class="col-sm-6 col-lg col-xl-3 mb-3">
+                            <label>Minimum Days Until Next Fertilization</label>
+                            <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <label>Comments</label>
+                            <asp:TextBox ID="txtComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                        </div>
+
 
                         <div class="col-12">
                             <asp:Button Text="Submit" ValidationGroup="e" CausesValidation="true" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action mr-2" runat="server" OnClick="btnSubmit_Click" />
