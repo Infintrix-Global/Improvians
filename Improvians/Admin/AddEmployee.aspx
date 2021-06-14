@@ -42,7 +42,7 @@
                     <div class="col-md-6 col-xl-5">
                         <label>
                             <h3>Employee Name<span style="color: red">*</span></h3>
-                            <asp:TextBox ID="txtName" class="input__control input__control-icon username" placeholder="Enter your employee name" TabIndex="3" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtName" class="input__control input__control-icon username" placeholder="Enter your employee name" TabIndex="1" runat="server"></asp:TextBox>
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtName" ValidationGroup="e"
                                     SetFocusOnError="true" ErrorMessage="Please Enter Name" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -55,7 +55,7 @@
 
                         <label>
                             <h3>Email ID<span style="color: red">*</span></h3>
-                            <asp:TextBox ID="txtEmail" class="input__control input__control-icon email" placeholder="Enter your email here" TabIndex="4" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtEmail" class="input__control input__control-icon email" placeholder="Enter your email here" TabIndex="2" runat="server"></asp:TextBox>
                             <asp:Label ID="lblStatus" runat="server" ForeColor="red"></asp:Label>
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmail" ValidationGroup="e"
@@ -69,7 +69,7 @@
                         <label>
                             <h3>Mobile Number</h3>
 
-                            <asp:TextBox ID="txtMobile" runat="server" class="input__control input__control-icon phone" placeholder="Enter your mobile No. here" TabIndex="2"></asp:TextBox>
+                            <asp:TextBox ID="txtMobile" runat="server" class="input__control input__control-icon phone" placeholder="Enter your mobile No. here" TabIndex="3"></asp:TextBox>
 
                             <span class="error_message">
                                 <%--  <asp:RequiredFieldValidator ID="RequiredMobile" runat="server" ControlToValidate="txtMobile" ErrorMessage="Please Enter Mobile Number" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>--%>
@@ -80,7 +80,7 @@
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>User Name<span style="color: red">*</span></h3>
-                            <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="5" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtUserName" class="input__control input__control-icon " placeholder="Enter your user name here" TabIndex="4" runat="server"></asp:TextBox>
 
                             <span class="error_message">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtUserName" ErrorMessage="Please Enter UserName" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
@@ -93,7 +93,7 @@
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>Password<span style="color: red">*</span></h3>
-                            <asp:TextBox ID="txtPassword" class="input__control input__control-icon " placeholder="Enter your password here" TabIndex="6" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" class="input__control input__control-icon " placeholder="Enter your password here" TabIndex="5" runat="server"></asp:TextBox>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Please Enter Password" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Please use one upper case letter, one lower case letter and one number"
@@ -105,7 +105,7 @@
                     <div class="col-md-6 col-xl-5 order-md-1">
                         <label>
                             <h3>Role</h3>
-                            <asp:DropDownList ID="ddlDesignation" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDesignation_SelectedIndexChanged" class="custom__dropdown robotomd" TabIndex="7"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDesignation" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDesignation_SelectedIndexChanged" class="custom__dropdown robotomd" TabIndex="6"></asp:DropDownList>
                             <span class="error_message">-    
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlDesignation" InitialValue="0" ErrorMessage="Please Select Designation" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
                             </span>
@@ -123,7 +123,7 @@
                                 </ItemTemplate>
                             </asp:Repeater>
 
-                             <asp:DropDownList ID="ddlFacility"  runat="server" class="custom__dropdown robotomd" ></asp:DropDownList>
+                             <asp:DropDownList ID="ddlFacility"  runat="server" class="custom__dropdown robotomd" TabIndex="8" ></asp:DropDownList>
 
                         </div>
                     </div>
