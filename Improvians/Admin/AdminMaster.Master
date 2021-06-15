@@ -77,7 +77,7 @@
                         <ul class="list-unstyled">
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a href="#" title="Employee">
+                                <a class="current" href="#" title="Employee">
                                     <i class="side-icon fas fa-users"></i>
                                     <span class="side-title">Employee</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -104,7 +104,7 @@
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a  href="#" title="Customer">
+                                <a class="current" href="#" title="Customer">
                                     <i class="side-icon fas fa-user"></i>
                                     <span class="side-title">Customer</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -130,7 +130,7 @@
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a href="#" title="Sales Representative">
+                                <a class="current" href="#" title="Sales Representative">
                                     <i class="side-icon fas fa-user-tie"></i>
                                     <span class="side-title">Sales Representative</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -155,7 +155,7 @@
                                 </ul>
                             </li>
                             <li class="has__dropdown">
-                                <a href="ViewPlantProductionProfile.aspx" title="Plant Production Profile">
+                                <a class="current" href="ViewPlantProductionProfile.aspx" title="Plant Production Profile">
                                     <i class="side-icon fas fa-seedling"></i>
                                     <span class="side-title">Plant Production Profile</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -185,7 +185,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="NotificationPreference.aspx" title="Notification Preference">
+                                <a class="current"href="NotificationPreference.aspx" title="Notification Preference">
                                     <i class="side-icon fas fa-comment-dots"></i>
                                     <span class="side-title">Notification Preference</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -193,7 +193,7 @@
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a href="production-plant-profile.html" title="Form's Dropdown">
+                                <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
                                     <i class="side-icon fas fa-file-invoice"></i>
                                     <span class="side-title">Form's Dropdown</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -228,7 +228,7 @@
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a href="production-plant-profile.html" title="Form's Dropdown">
+                                <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
                                     <i class="side-icon fas fa-question-circle"></i>
                                     <span class="side-title">Help Management</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -261,7 +261,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="TaskTypeWorkHoursMaster.aspx" title="Task Type Work Hours Master">
+                                <a class="current" href="TaskTypeWorkHoursMaster.aspx" title="Task Type Work Hours Master">
                                     <i class="side-icon fas fa-stopwatch"></i>
                                     <span class="side-title">Task Type Work Hours</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -269,7 +269,7 @@
                             </li>
                             <li class="has__dropdown">
                                 <!-- Add this class which has dropdown -->
-                                <a class="" href="production-plant-profile.html" title="Automation Controls">
+                                <a class="current" href="production-plant-profile.html" title="Automation Controls">
                                     <i class="side-icon fas fa-cogs"></i>
                                     <span class="side-title">Automation Controls</span>
                                     <i class="side-control fas fa-angle-right"></i>
@@ -287,7 +287,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="PullData.aspx" title="Reset and Pull Data">
+                                <a class="current" href="PullData.aspx" title="Reset and Pull Data">
                                     <i class="side-icon fas fa-stopwatch"></i>
                                     <span class="side-title">Reset and Pull Data</span>
                                     <i class="side-control fas fa-angle-right"></i>
