@@ -642,7 +642,7 @@ namespace Evo
                 nv.Add("@#TraysInspected", txtTrays.Text);
                 nv.Add("@ID", item.ID.ToString());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@Role", ddlSupervisor.SelectedValue);
+                nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@ISAG",item.AGD);
                 nv.Add("@TaskRequestKey",item.TaskRequestKey);
                 nv.Add("@Comments", txtGcomments.Text);
