@@ -102,7 +102,7 @@ namespace Evo.Admin
 
                     lblmsg.Text = "Employee Added ";
                     lblmsg.ForeColor = System.Drawing.Color.Green;
-                    if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12")
+                    if (ddlDesignation.SelectedValue == "1" || ddlDesignation.SelectedValue == "7" || ddlDesignation.SelectedValue == "12" || ddlDesignation.SelectedValue == "15" || ddlDesignation.SelectedValue == "16")
                     {
                         string Facility = "";
                         foreach (RepeaterItem item in repFacility.Items)

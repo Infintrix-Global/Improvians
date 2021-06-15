@@ -331,6 +331,11 @@ namespace Evo
             {
                 dt = objCommon.GetDataTable("SP_GetGerminationRequestAssistantGrower", nv);
             }
+            else if(Session["Role"].ToString() == "15")
+            {
+                dt = objCommon.GetDataTable("SP_GetGerminationRequestHeadGrower", nv);
+            }
+
             else
             {
                 dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
