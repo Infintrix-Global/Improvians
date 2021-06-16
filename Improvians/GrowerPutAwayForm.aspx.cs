@@ -953,8 +953,8 @@ namespace Evo
             if (row != null)
             {
 
-
-              //  DropDownList ddlLocation1 = (DropDownList)row.FindControl("ddlLocation");
+              
+                //  DropDownList ddlLocation1 = (DropDownList)row.FindControl("ddlLocation");
 
                 DropDownList ddlMain = (DropDownList)row.FindControl("ddlMain");
                 DropDownList ddlSupervisor = (DropDownList)row.FindControl("ddlSupervisor");
@@ -981,7 +981,8 @@ namespace Evo
 
                     txtSlotPositionStart.Text = dt1.Rows[0]["SlotPositionStart"].ToString();
                     txtSlotPositionEnd.Text = dt1.Rows[0]["SlotPositionEnd"].ToString();
-
+                    GridSplitJob.Columns[4].Visible = true;
+                    GridSplitJob.Columns[5].Visible = true;
 
                     NameValueCollection nv = new NameValueCollection();
                     DataTable dt = new DataTable();

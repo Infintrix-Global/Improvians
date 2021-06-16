@@ -223,7 +223,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                      <asp:TemplateField HeaderText="Slot Position Start" HeaderStyle-Width="190">
+                                      <asp:TemplateField HeaderText="Slot Position Start" Visible="false" HeaderStyle-Width="190">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtSlotPositionStart"  Width="130px" Enabled="false"  Text='<%# Eval("SlotPositionStart")%>' CssClass="input__control" runat="server"></asp:TextBox>
                                             
@@ -231,7 +231,7 @@
                                     </asp:TemplateField>
 
 
-                                      <asp:TemplateField HeaderText="Slot Position End" HeaderStyle-Width="190">
+                                      <asp:TemplateField HeaderText="Slot Position End" Visible="false" HeaderStyle-Width="190">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtSlotPositionEnd"  Width="130px"  Enabled="false" Text='<%# Eval("SlotPositionEnd")%>' CssClass="input__control" runat="server"></asp:TextBox>
                                             

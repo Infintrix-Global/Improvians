@@ -332,18 +332,19 @@ namespace Evo
 
             if (txtDumpTrays.Text != "")
             {
-                if (Convert.ToInt32(txtDumpTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
-                {
-                    lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtDumpTrays.Text)).ToString();
+                //if (Convert.ToInt32(txtDumpTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
+                //{
+                //    lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtDumpTrays.Text)).ToString();
 
-                }
-                else
-                {
-                    txtDumpTrays.Text = "";
+                //}
+                //else
+                //{
+                // //   txtDumpTrays.Text = "";
 
-                    // lblRemainingTrays.Text = TraysRequest;
-                }
+                //    // lblRemainingTrays.Text = TraysRequest;
+                //}
 
+                lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtDumpTrays.Text)).ToString();
 
             }
         }

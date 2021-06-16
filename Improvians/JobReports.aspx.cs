@@ -531,8 +531,8 @@ namespace Evo
                     DropDownList ddList = (DropDownList)e.Row.FindControl("ddlBenchLocation");
 
                     ddList.DataSource = objBAL.GetLocation(Session["Facility"].ToString()); ;
-                    ddList.DataTextField = "p2";
-                    ddList.DataValueField = "p2";
+                    ddList.DataTextField = "BenchName";
+                    ddList.DataValueField = "BenchName";
                     ddList.DataBind();
                 }
             }

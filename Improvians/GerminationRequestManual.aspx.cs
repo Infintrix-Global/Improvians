@@ -58,8 +58,8 @@ namespace Evo
         public void BindBenchLocation(string ddlMain)
         {
             ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
-            ddlBenchLocation.DataTextField = "p2";
-            ddlBenchLocation.DataValueField = "p2";
+            ddlBenchLocation.DataTextField = "BenchName";
+            ddlBenchLocation.DataValueField = "BenchName";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
         }

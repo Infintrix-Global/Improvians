@@ -107,6 +107,25 @@ namespace Evo.Bal
         }
 
 
+        public DataTable GetMainLocation1()
+        {
+            General objGeneral = new General();
+            DataTable dt = new DataTable();
+            try
+            {
+                strQuery = "Select distinct s.[Location Code] l1, s.[Location Code] l2 from [GTI$IA Subsection] s order by s.[Location Code]";
+                //strQuery = " Select  distinct Facility from AutomationBenchControls order by Facility";
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
         public DataTable GetLocation(string MainLocation)
         {
             General objGeneral = new General();

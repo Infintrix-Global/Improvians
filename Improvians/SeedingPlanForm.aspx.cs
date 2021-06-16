@@ -453,7 +453,7 @@ namespace Evo
 
 
 
-                ddlBenchLocation.DataSource = objCOm.GetMainLocation();
+                ddlBenchLocation.DataSource = objCOm.GetMainLocation1();
                 ddlBenchLocation.DataTextField = "l1";
                 ddlBenchLocation.DataValueField = "l1";
                 ddlBenchLocation.DataBind();
