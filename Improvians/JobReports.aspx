@@ -273,14 +273,14 @@
 
                             <asp:Panel ID="plant_production_schedule" ClientIDMode="Static" runat="server" class="collapse mt-3 mt-sm-0 ">
                                 <div class="data__table data__table-height">
-                                    <asp:GridView ID="GV6" runat="server" AutoGenerateColumns="False"
+                                    <asp:GridView ID="GV6" runat="server" AutoGenerateColumns="False" OnRowDataBound="GV6_RowDataBound"
                                         class="striped"
                                         GridLines="None" ShowHeaderWhenEmpty="True">
                                         <Columns>
                                             <asp:TemplateField HeaderText="Activity Type" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                 <ItemTemplate>
 
-                                                    <asp:Label ID="lblSD" runat="server" Text='<%# Eval("activitycode")  %>'></asp:Label>
+                                                    <asp:Label ID="lblactivitycode" runat="server" Text='<%# Eval("activitycode")  %>'></asp:Label>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -292,6 +292,11 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="Completion Date" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblGV6CompletionDate" runat="server" Text=""></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
                                 </div>

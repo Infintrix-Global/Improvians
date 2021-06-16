@@ -447,6 +447,8 @@ namespace Evo
 
                 //  string lotseed = (row.Cells[1].FindControl("lblactualseed") as Label).Text;
                 Label lotseed = (Label)e.Row.FindControl("lblactualseed");
+
+
                 //int  SeedsAllocated = 0;
                 //  if (txtSeedsAllocated.Text =="")
                 //  {

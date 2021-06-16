@@ -21,7 +21,8 @@
                     <div class="col-12 col-lg-6 col-xl-5">
                         <div class="data__table">
 
-                            <asp:GridView ID="GridBanchLocation" runat="server" PageSize="10" OnPageIndexChanging="GridBanchLocation_PageIndexChanging" AllowPaging="True"
+                            <asp:GridView ID="GridBanchLocation" runat="server" PageSize="10" OnPageIndexChanging="GridBanchLocation_PageIndexChanging" AllowPaging="True" 
+                                OnRowDataBound ="GridBanchLocation_RowDataBound"
                                 AutoGenerateColumns="false">
                                 <Columns>
 
@@ -42,7 +43,7 @@
                                                 <asp:ListItem Text="Manual" Value="Manual" Selected="True"></asp:ListItem>
                                                 <asp:ListItem Text="Auto" Value="Auto"></asp:ListItem>
                                             </asp:DropDownList>
-
+                                              <asp:Label ID="lblAutomation" Visible="false" runat="server" Text='<%# Eval("Automation")%>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -57,7 +58,7 @@
                     <div class="row mt-4 align-items-end">
 
                         <div class="col-12 col-md-auto col-lg-4 mb-3">
-                            <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action"  ValidationGroup="e" OnClick="btnSubmit_Click" runat="server" />
+                            <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" Visible="false"  ValidationGroup="e" OnClick="btnSubmit_Click" runat="server" />
 
                         </div>
 

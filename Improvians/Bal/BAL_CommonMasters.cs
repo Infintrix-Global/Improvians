@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using Evo.Bal;
-
+using Evo.BAL_Classes;
 
 namespace Evo.Bal
 {
@@ -89,12 +89,12 @@ namespace Evo.Bal
 
         public DataTable GetMainLocation()
         {
-            Evo_General objGeneral = new Evo_General();
+            General objGeneral = new General();
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select distinct s.[Location Code] l1, s.[Location Code] l2 from [GTI$IA Subsection] s order by s.[Location Code]";
-                
+                //strQuery = "Select distinct s.[Location Code] l1, s.[Location Code] l2 from [GTI$IA Subsection] s order by s.[Location Code]";
+                strQuery = " Select  distinct Facility from AutomationBenchControls order by Facility";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 
@@ -109,14 +109,16 @@ namespace Evo.Bal
 
         public DataTable GetLocation(string MainLocation)
         {
-            Evo_General objGeneral = new Evo_General();
+            General objGeneral = new General();
             DataTable dt = new DataTable();
             try
             {
                 // strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '"+ MainLocation + "'";
-                strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Location Code] = '" + MainLocation + "'  AND s.[Position Code] Not in ('" + MainLocation + "') ";
+                //strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Location Code] = '" + MainLocation + "'  AND s.[Position Code] Not in ('" + MainLocation + "') ";
 
-               
+                strQuery = " Select  distinct BenchName from AutomationBenchControls where  Facility ='" + MainLocation + "'  order by BenchName ";
+
+
               dt = objGeneral.GetDatasetByCommand(strQuery);
 
 

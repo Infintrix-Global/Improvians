@@ -388,8 +388,8 @@ namespace Evo
                 Label lblSupervisor = (Label)e.Row.FindControl("lblSupervisor");
 
                 ddlMain.DataSource = objCOm.GetMainLocation();
-                ddlMain.DataTextField = "l1";
-                ddlMain.DataValueField = "l1";
+                ddlMain.DataTextField = "Facility";
+                ddlMain.DataValueField = "Facility";
                 ddlMain.DataBind();
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
@@ -419,8 +419,8 @@ namespace Evo
                 DropDownList ddlSupervisor = (DropDownList)row.FindControl("ddlSupervisor");
 
                 ddlLocation.DataSource = objCOm.GetLocation(ddlMain.SelectedValue);
-                ddlLocation.DataTextField = "p2";
-                ddlLocation.DataValueField = "p2";
+                ddlLocation.DataTextField = "BenchName";
+                ddlLocation.DataValueField = "BenchName";
                 ddlLocation.DataBind();
                 ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
@@ -466,8 +466,8 @@ namespace Evo
         public void BindLocationNew(ref DropDownList ddlLocation, string ddlMain)
         {
             ddlLocation.DataSource = objCOm.GetLocation(ddlMain);
-            ddlLocation.DataTextField = "p2";
-            ddlLocation.DataValueField = "p2";
+            ddlLocation.DataTextField = "BenchName";
+            ddlLocation.DataValueField = "BenchName";
             ddlLocation.DataBind();
             ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
@@ -797,7 +797,7 @@ namespace Evo
             {
                 string unit = "", ddlTAX1 = "", ddlStatusVal = "", hdnWOEmployeeIDVal = "", SupervisorID;
                 string MainId = "", LocationId = "";
-
+                string SlotPositionStart = "", SlotPositionEnd = "";
                 List<GrowerputDetils> objinvoice = new List<GrowerputDetils>();
 
                 foreach (GridViewRow item in GridSplitJob.Rows)
@@ -808,11 +808,14 @@ namespace Evo
                     LocationId = ((DropDownList)item.FindControl("ddlLocation")).SelectedValue;
                     TextBox txtTrays = (TextBox)item.FindControl("txtTrays");
                     SupervisorID = ((DropDownList)item.FindControl("ddlSupervisor")).SelectedValue;
+                    TextBox txtSlotPositionStart = (TextBox)item.FindControl("txtSlotPositionStart");
+                    TextBox txtSlotPositionEnd = (TextBox)item.FindControl("txtSlotPositionEnd");
 
-                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID);
+
+                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID, txtSlotPositionStart.Text, txtSlotPositionEnd.Text);
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice, 1,PutAwayFacility, "", "","");
+                    AddGrowerput(ref objinvoice, 1,PutAwayFacility, "", "","","","");
 
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;
@@ -831,7 +834,7 @@ namespace Evo
             GridSplitJob.DataBind();
         }
 
-        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, string FacilityID, string GreenHouseID, string Trays,string SupervisorID)
+        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, string FacilityID, string GreenHouseID, string Trays,string SupervisorID,string SlotPositionStart,string SlotPositionEnd)
 
         {
             GrowerputDetils objInv = new GrowerputDetils();
@@ -842,6 +845,8 @@ namespace Evo
             objInv.GreenHouseID = GreenHouseID;
             objInv.Trays = Trays;
             objInv.SupervisorID = SupervisorID;
+            objInv.SlotPositionStart = SlotPositionStart;
+            objInv.SlotPositionEnd= SlotPositionEnd;
             objGP.Add(objInv);
             ViewState["ojbpro"] = objGP;
         }
@@ -939,6 +944,81 @@ namespace Evo
                 }
             }
         }
+
+        protected void ddlLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string Fid1 = "";
+            DropDownList ddlLocation = (DropDownList)sender;
+            GridViewRow row = (GridViewRow)ddlLocation.NamingContainer;
+            if (row != null)
+            {
+
+
+              //  DropDownList ddlLocation1 = (DropDownList)row.FindControl("ddlLocation");
+
+                DropDownList ddlMain = (DropDownList)row.FindControl("ddlMain");
+                DropDownList ddlSupervisor = (DropDownList)row.FindControl("ddlSupervisor");
+                TextBox txtSlotPositionStart = (TextBox)row.FindControl("txtSlotPositionStart");
+                TextBox txtSlotPositionEnd = (TextBox)row.FindControl("txtSlotPositionEnd");
+                TextBox txtTrays = (TextBox)row.FindControl("txtTrays");
+                DataTable dt1 = new DataTable();
+                NameValueCollection nv1 = new NameValueCollection();
+
+                nv1.Add("@BanchLocation", ddlLocation.SelectedValue);
+                nv1.Add("@Facility", "");
+                nv1.Add("@Mode", "3");
+                dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
+
+                if (dt1 != null && dt1.Rows.Count > 0)
+                {
+                    int TotalTrays = 0;
+                    TotalTrays = (Convert.ToInt32(lblSeededTrays.Text) * Convert.ToInt32(dt1.Rows[0]["PerTrays"])) / 100;
+                    txtTrays.Text = TotalTrays.ToString();
+                   
+                    lblRemaining.Text = (Convert.ToInt32(Convert.ToInt32(lblSeededTrays.Text) - Convert.ToInt32(lblTTrays.Text)) - TotalTrays).ToString();
+                    lblTTrays.Text = (Convert.ToInt32(lblTTrays.Text) + TotalTrays).ToString();
+
+
+                    txtSlotPositionStart.Text = dt1.Rows[0]["SlotPositionStart"].ToString();
+                    txtSlotPositionEnd.Text = dt1.Rows[0]["SlotPositionEnd"].ToString();
+
+
+                    NameValueCollection nv = new NameValueCollection();
+                    DataTable dt = new DataTable();
+                    nv.Add("@RoleID", "16");
+                    nv.Add("@Facility", ddlMain.SelectedValue);
+                    dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                    ddlSupervisor.DataSource = dt;
+                    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                    ddlSupervisor.DataTextField = "EmployeeName";
+                    ddlSupervisor.DataValueField = "ID";
+                    ddlSupervisor.DataBind();
+                    ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                   // AddGrowerPutRow(true);
+                }
+                else
+                {
+                    txtSlotPositionStart.Text = "";
+                    txtSlotPositionEnd.Text = "";
+
+                    NameValueCollection nv = new NameValueCollection();
+                    DataTable dt = new DataTable();
+                    nv.Add("@RoleID", Session["Role"].ToString());
+                    nv.Add("@Facility", ddlMain.SelectedValue);
+                    dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                    ddlSupervisor.DataSource = dt;
+                    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                    ddlSupervisor.DataTextField = "EmployeeName";
+                    ddlSupervisor.DataValueField = "ID";
+                    ddlSupervisor.DataBind();
+                    ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                }
+            }
+
+         
+        }
     }
 }
 
@@ -952,5 +1032,8 @@ public class GrowerputDetils
     public string GreenHouseID { get; set; }
     public string Trays { get; set; }
     public string SupervisorID { get; set; }
-    
+    public string SlotPositionStart { get; set; }
+    public string SlotPositionEnd { get; set; }
+
+
 }
