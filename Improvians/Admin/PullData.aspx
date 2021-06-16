@@ -58,7 +58,7 @@
                                     ShowHeaderWhenEmpty="True" >
                                     <Columns>
 
-                                        <asp:TemplateField HeaderText="Job No."  HeaderStyle-CssClass="autostyle2">
+                                        <asp:TemplateField HeaderText="Employee Name"  HeaderStyle-CssClass="autostyle2">
                                             <ItemTemplate>
 
                                                 <asp:Label ID="lblEmployeeName" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>

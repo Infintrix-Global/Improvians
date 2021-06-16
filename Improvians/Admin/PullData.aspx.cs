@@ -783,6 +783,7 @@ namespace Evo.Admin
             nvLog.Add("@Login", Session["LoginID"].ToString());
             _isInsertedLog = objCommon.GetDataExecuteScaler("SP_AddSyncPullDataHistory", nvLog);
 
+            BindGridSyncPullDataHistory();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(" + SelectedItems + " ' Seeding Plan Save Successful ')", true);
         }
 
