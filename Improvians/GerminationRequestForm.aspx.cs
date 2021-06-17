@@ -323,7 +323,7 @@ namespace Evo
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
             nv.Add("@AssignedBy", ddlAssignedBy.SelectedValue);
-
+            nv.Add("@LoginID", Session["LoginID"].ToString());
 
             //   dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
 
