@@ -40,7 +40,7 @@ namespace Evo.Bal
                 if (traysize != "0")
                     strQuery += " And  j.[Variant Code]= " + "'" + traysize + "'";
                 if (cname != "0")
-                    strQuery += " And  j.[Bill-to Name] like " + "'%" + cname1 + "%'";
+                    strQuery += " And  j.[Bill-to Name] like " + "'%" +   cname + "%'";
                  strQuery += " order by alloc desc, loc desc, sodate";
                // strQuery += " order by sodate";
                 objGeneral.AddParameterWithValueToSQLCommand("@FromDate", FromDate);
