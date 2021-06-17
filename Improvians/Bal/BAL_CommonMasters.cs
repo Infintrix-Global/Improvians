@@ -109,7 +109,7 @@ namespace Evo.Bal
 
         public DataTable GetMainLocation1()
         {
-            General objGeneral = new General();
+            Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
