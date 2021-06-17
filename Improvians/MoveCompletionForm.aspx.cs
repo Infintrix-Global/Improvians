@@ -328,8 +328,14 @@ namespace Evo
 
         protected void txtDumpTrays_TextChanged(object sender, EventArgs e)
         {
-            lblRemainingTrays.Text = (Convert.ToInt32(TraysTotal) - Convert.ToInt32(txtTrays.Text)).ToString();
-
+            if (txtTrays.Text != "")
+            {
+                lblRemainingTrays.Text = (Convert.ToInt32(TraysTotal) - Convert.ToInt32(txtTrays.Text)).ToString();
+            }
+            else
+            {
+                lblRemainingTrays.Text = TraysTotal.ToString();
+            }
             if (txtDumpTrays.Text != "")
             {
                 //if (Convert.ToInt32(txtDumpTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
