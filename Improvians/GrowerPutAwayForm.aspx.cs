@@ -382,7 +382,11 @@ namespace Evo
                 DropDownList ddlLocation = (DropDownList)e.Row.FindControl("ddlLocation");
                 Label lblMain = (Label)e.Row.FindControl("lblMain");
                 Label lblLocation = (Label)e.Row.FindControl("lblLocation");
+                TextBox txtSlotPositionStart = (TextBox)e.Row.FindControl("txtSlotPositionStart");
+                TextBox txtSlotPositionEnd = (TextBox)e.Row.FindControl("txtSlotPositionEnd");
 
+                DropDownList ddlSlotPositionStart = (DropDownList)e.Row.FindControl("ddlSlotPositionStart");
+                DropDownList ddlSlotPositionEnd = (DropDownList)e.Row.FindControl("ddlSlotPositionEnd");
 
                 DropDownList ddlSupervisor = (DropDownList)e.Row.FindControl("ddlSupervisor");
                 Label lblSupervisor = (Label)e.Row.FindControl("lblSupervisor");
@@ -394,11 +398,30 @@ namespace Evo
                 ddlMain.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
                 BindLocationNew(ref ddlLocation, lblMain.Text);
-                BindSupervisorListNew(ref ddlSupervisor, lblMain.Text);
+                BindSupervisorListNew(ref ddlSupervisor, lblMain.Text, lblLocation.Text);
                 ddlMain.SelectedValue = lblMain.Text;
                 ddlLocation.SelectedValue = lblLocation.Text;
                 ddlSupervisor.SelectedValue = lblSupervisor.Text;
                 // Fid += "'" + ddlMain.SelectedValue + "',";
+
+                for (var i = 0; i < 54; i++)
+                {
+                    ListItem item = new ListItem();
+                    item.Text = i.ToString();
+                    item.Value = i.ToString();
+                    ddlSlotPositionStart.Items.Add(item);
+                }
+
+                for (var i = 0; i < 54; i++)
+                {
+                    ListItem item = new ListItem();
+                    item.Text = i.ToString();
+                    item.Value = i.ToString();
+                    ddlSlotPositionEnd.Items.Add(item);
+                }
+
+                ddlSlotPositionStart.SelectedValue = txtSlotPositionStart.Text;
+                ddlSlotPositionEnd.SelectedValue = txtSlotPositionEnd.Text;
 
             }
 
@@ -472,22 +495,71 @@ namespace Evo
             ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
-        public void BindSupervisorListNew(ref DropDownList ddlSupervisor, string ddlMain)
+        public void BindSupervisorListNew(ref DropDownList ddlSupervisor, string ddlMain,string lblLocation)
         {
 
+            string BlId = "";
+            if(lblLocation =="")
+            {
+                BlId = "0";
+            }
+            else
+            {
+                BlId = BlId;
+            }
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
 
-            NameValueCollection nv = new NameValueCollection();
-            DataTable dt = new DataTable();
-            nv.Add("@RoleID", Session["Role"].ToString());
-            nv.Add("@Facility", ddlMain);
-            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+            nv1.Add("@BanchLocation", lblLocation);
+            nv1.Add("@Facility", "");
+            nv1.Add("@Mode", "3");
+            dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
 
-            ddlSupervisor.DataSource = dt;
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlSupervisor.DataTextField = "EmployeeName";
-            ddlSupervisor.DataValueField = "ID";
-            ddlSupervisor.DataBind();
-            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+
+                NameValueCollection nv = new NameValueCollection();
+                DataTable dt = new DataTable();
+                nv.Add("@RoleID", "16");
+                nv.Add("@Facility", ddlMain);
+                dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                ddlSupervisor.DataSource = dt;
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlSupervisor.DataTextField = "EmployeeName";
+                ddlSupervisor.DataValueField = "ID";
+                ddlSupervisor.DataBind();
+                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
+
+            }
+
+            else
+            {
+
+
+                NameValueCollection nv = new NameValueCollection();
+                DataTable dt = new DataTable();
+                nv.Add("@RoleID", Session["Role"].ToString());
+                nv.Add("@Facility", ddlMain);
+                dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                ddlSupervisor.DataSource = dt;
+                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                ddlSupervisor.DataTextField = "EmployeeName";
+                ddlSupervisor.DataValueField = "ID";
+                ddlSupervisor.DataBind();
+                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            }
+
+
+
+
+
+
+
+            
 
 
         }
@@ -810,12 +882,13 @@ namespace Evo
                     SupervisorID = ((DropDownList)item.FindControl("ddlSupervisor")).SelectedValue;
                     TextBox txtSlotPositionStart = (TextBox)item.FindControl("txtSlotPositionStart");
                     TextBox txtSlotPositionEnd = (TextBox)item.FindControl("txtSlotPositionEnd");
+                    Label lblperTrays = (Label)item.FindControl("lblperTrays");
+                 
 
-
-                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID, txtSlotPositionStart.Text, txtSlotPositionEnd.Text);
+                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID, txtSlotPositionStart.Text, txtSlotPositionEnd.Text, lblperTrays.Text);
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice, 1,PutAwayFacility, "", "","","","");
+                    AddGrowerput(ref objinvoice, 1,PutAwayFacility, "", "","","","","");
 
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;
@@ -834,7 +907,7 @@ namespace Evo
             GridSplitJob.DataBind();
         }
 
-        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, string FacilityID, string GreenHouseID, string Trays,string SupervisorID,string SlotPositionStart,string SlotPositionEnd)
+        private void AddGrowerput(ref List<GrowerputDetils> objGP, int ID, string FacilityID, string GreenHouseID, string Trays,string SupervisorID,string SlotPositionStart,string SlotPositionEnd,string PerTTrays)
 
         {
             GrowerputDetils objInv = new GrowerputDetils();
@@ -847,6 +920,7 @@ namespace Evo
             objInv.SupervisorID = SupervisorID;
             objInv.SlotPositionStart = SlotPositionStart;
             objInv.SlotPositionEnd= SlotPositionEnd;
+            objInv.PerTTrays = PerTTrays;
             objGP.Add(objInv);
             ViewState["ojbpro"] = objGP;
         }
@@ -953,14 +1027,16 @@ namespace Evo
             if (row != null)
             {
 
-              
-                //  DropDownList ddlLocation1 = (DropDownList)row.FindControl("ddlLocation");
 
+                //  DropDownList ddlLocation1 = (DropDownList)row.FindControl("ddlLocation");
+                DropDownList ddlSlotPositionStart = (DropDownList)row.FindControl("ddlSlotPositionStart");
+                DropDownList ddlSlotPositionEnd = (DropDownList)row.FindControl("ddlSlotPositionEnd");
                 DropDownList ddlMain = (DropDownList)row.FindControl("ddlMain");
                 DropDownList ddlSupervisor = (DropDownList)row.FindControl("ddlSupervisor");
                 TextBox txtSlotPositionStart = (TextBox)row.FindControl("txtSlotPositionStart");
                 TextBox txtSlotPositionEnd = (TextBox)row.FindControl("txtSlotPositionEnd");
                 TextBox txtTrays = (TextBox)row.FindControl("txtTrays");
+                Label lbltraysTotal = (Label)row.FindControl("lblperTrays");
                 DataTable dt1 = new DataTable();
                 NameValueCollection nv1 = new NameValueCollection();
 
@@ -972,18 +1048,28 @@ namespace Evo
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {
                     int TotalTrays = 0;
-                    TotalTrays = (Convert.ToInt32(lblSeededTrays.Text) * Convert.ToInt32(dt1.Rows[0]["PerTrays"])) / 100;
+                    decimal availableSlot = 0;
+                    availableSlot = (Convert.ToDecimal(dt1.Rows[0]["SlotPositionEnd"]) - Convert.ToDecimal(dt1.Rows[0]["SlotPositionStart"])) +1;
+                    //  decimal Pre = ((Convert .ToInt32(dt1.Rows[0]["SlotPositionEnd"]) - Convert .ToInt32 (dt1.Rows[0]["SlotPositionStart"])) * 100) / 52;
+                    decimal  availableSlot1 = Convert.ToDecimal(availableSlot / 52);
+                    decimal Pre = 1- availableSlot1;
+                    decimal Pre1 = Pre * 100;
+                    //  TotalTrays = (Convert.ToInt32(lblSeededTrays.Text) * Convert.ToInt32(dt1.Rows[0]["PerTrays"])) / 100;
+
+                    //TotalTrays = Convert.ToInt32(((Convert.ToInt32(lblSeededTrays.Text) - Convert.ToInt32(lblRemaining.Text)) * Pre1) / 100);
+                    TotalTrays = Convert.ToInt32(Convert.ToInt32(lblSeededTrays.Text) * Convert.ToInt32(availableSlot));
+
                     txtTrays.Text = TotalTrays.ToString();
-                   
+                    lbltraysTotal.Text = string.Format("{0:f2}", Pre1);
                     lblRemaining.Text = (Convert.ToInt32(Convert.ToInt32(lblSeededTrays.Text) - Convert.ToInt32(lblTTrays.Text)) - TotalTrays).ToString();
                     lblTTrays.Text = (Convert.ToInt32(lblTTrays.Text) + TotalTrays).ToString();
 
 
                     txtSlotPositionStart.Text = dt1.Rows[0]["SlotPositionStart"].ToString();
                     txtSlotPositionEnd.Text = dt1.Rows[0]["SlotPositionEnd"].ToString();
-                    GridSplitJob.Columns[4].Visible = true;
                     GridSplitJob.Columns[5].Visible = true;
-
+                    GridSplitJob.Columns[6].Visible = true;
+                    GridSplitJob.Columns[3].Visible = true;
                     NameValueCollection nv = new NameValueCollection();
                     DataTable dt = new DataTable();
                     nv.Add("@RoleID", "16");
@@ -996,7 +1082,27 @@ namespace Evo
                     ddlSupervisor.DataValueField = "ID";
                     ddlSupervisor.DataBind();
                     ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-                   // AddGrowerPutRow(true);
+
+
+                    for (var i = 0; i < 54; i++)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+                        ddlSlotPositionStart.Items.Add(item);
+                    }
+
+                    for (var i = 0; i < 54; i++)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+                        ddlSlotPositionEnd.Items.Add(item);
+                    }
+
+                    ddlSlotPositionStart.SelectedValue = txtSlotPositionStart.Text;
+                    ddlSlotPositionEnd.SelectedValue = txtSlotPositionEnd.Text;
+                    // AddGrowerPutRow(true);
                 }
                 else
                 {
@@ -1020,6 +1126,11 @@ namespace Evo
 
          
         }
+
+
+
+
+        
     }
 }
 
@@ -1036,5 +1147,5 @@ public class GrowerputDetils
     public string SlotPositionStart { get; set; }
     public string SlotPositionEnd { get; set; }
 
-
+    public string PerTTrays { get; set; }
 }

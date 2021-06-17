@@ -413,15 +413,23 @@ namespace Evo
              
               Label lblID = (Label)e.Row.FindControl("lblID");
 
-              DataTable   dt = objCom.GetSeedLot(lblID.Text); 
-                if(dt !=null && dt.Rows.Count >0)
+                if(lblID.Text== "JB0200002")
                 {
-                    e.Row.Visible = true;
+
                 }
                 else
                 {
-                    e.Row.Visible = false;
+                    DataTable dt = objCom.GetSeedLot(lblID.Text);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        e.Row.Visible = true;
+                    }
+                    else
+                    {
+                        e.Row.Visible = false;
+                    }
                 }
+              
             }
         }
     }

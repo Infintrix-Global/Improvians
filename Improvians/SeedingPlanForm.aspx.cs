@@ -88,6 +88,11 @@ namespace Evo
         {
             AllData = objSP.GetDataSeedingPlan(txtFromDate.Text.Trim(), txtToDate.Text.Trim(), ddlSeedlineLocation.SelectedValue, ddlItem.SelectedValue, ddlSeedAllocated.SelectedValue, ddlTraySize.SelectedValue, ddlCustomer.SelectedValue);
 
+            DataTable dtManual = objSP.GetDataSeedingPlanApp();
+
+           
+
+
             if (AllData != null && AllData.Rows.Count > 0)
             {
                 DataTable dt11 = new DataTable();
@@ -112,6 +117,10 @@ namespace Evo
                 {
                     dtOnlyLeftWO = AllData;
                 }
+
+                dtOnlyLeftWO.Merge(dtManual);
+                dtOnlyLeftWO.AcceptChanges();
+
                 lblTotal.Text = dtOnlyLeftWO.Rows.Count.ToString() + " Records";
                 DGJob.DataSource = dtOnlyLeftWO;
                 DGJob.DataBind();
@@ -235,6 +244,7 @@ namespace Evo
         {
             try
             {
+
                 long _isInserted = 1;
                 int SelectedItems = 0;
                 // int KeyValues = 0;
@@ -253,6 +263,8 @@ namespace Evo
 
                     if (item.RowType == DataControlRowType.DataRow)
                     {
+
+
                         Label lblSeedline = (item.Cells[0].FindControl("lblSeedline") as Label);
 
                         Label lblAllocated = (item.Cells[0].FindControl("lblAllocated") as Label);
@@ -278,6 +290,14 @@ namespace Evo
                         if (chckrw.Checked == true)
                         {
 
+                            if (lbljobcode.Text == "JB0200002")
+                            {
+                                long _isInserted3 = 0;
+                                NameValueCollection nvReset = new NameValueCollection();
+                                nvReset.Add("@JobNo", "JB0200002");
+                                _isInserted3 = objCommon.GetDataInsertORUpdate("SP_DeleteJobNo", nvReset);
+
+                            }
 
                             string lblSOTrays1 = lblSOTrays.Text;
                             if (lblAllocated.Text == "Yes" && ddlBenchLocation.SelectedValue != "" && Txtgtrays.Text != "" && Txtgplantdt.Text != "")

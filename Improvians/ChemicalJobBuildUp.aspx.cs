@@ -430,6 +430,7 @@ namespace Evo
 
             DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
 
+
             if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
             {
                 dt.Merge(dtManual);
