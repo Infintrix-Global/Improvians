@@ -21,7 +21,7 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
-                
+              string cname1 = cname.Replace("'", "''");
 
                 strQuery = "select w.No_ wo, b.[Job No_] jobcode, j.[Bill-to Name] cname, p.[Starting Date] sodate, j.[Item Description] itmdescp, j.[Item No_] itm, j.[Variant Code] ts, b.[Container Qty_] sotrays, j.[Bill-to Customer No_] cusno, j.[Delivery Date] duedate,b.[Genus Code] GenusCode,w.[Location Code] loc,";
                 strQuery += " w.[Calc_ Quantity] wotrays, w.[Planned Date] wodate, case when j.[Job Status] =1 then 'Yes' else 'No'end alloc  , case when j.[Shortcut Property 2 Value] = 'Yes' then 'ORG' else 'CONV'end Soil  ";
@@ -40,7 +40,7 @@ namespace Evo.Bal
                 if (traysize != "0")
                     strQuery += " And  j.[Variant Code]= " + "'" + traysize + "'";
                 if (cname != "0")
-                    strQuery += " And  j.[Bill-to Name]= " + "'" + cname + "'";
+                    strQuery += " And  j.[Bill-to Name] like " + "'%" + cname1 + "%'";
                  strQuery += " order by alloc desc, loc desc, sodate";
                // strQuery += " order by sodate";
                 objGeneral.AddParameterWithValueToSQLCommand("@FromDate", FromDate);

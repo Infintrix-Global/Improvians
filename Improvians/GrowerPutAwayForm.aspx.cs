@@ -1047,7 +1047,7 @@ namespace Evo
 
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {
-                    int TotalTrays = 0;
+                    Decimal TotalTrays = 0;
                     decimal availableSlot = 0;
                     availableSlot = (Convert.ToDecimal(dt1.Rows[0]["SlotPositionEnd"]) - Convert.ToDecimal(dt1.Rows[0]["SlotPositionStart"])) +1;
                     //  decimal Pre = ((Convert .ToInt32(dt1.Rows[0]["SlotPositionEnd"]) - Convert .ToInt32 (dt1.Rows[0]["SlotPositionStart"])) * 100) / 52;
@@ -1057,12 +1057,13 @@ namespace Evo
                     //  TotalTrays = (Convert.ToInt32(lblSeededTrays.Text) * Convert.ToInt32(dt1.Rows[0]["PerTrays"])) / 100;
 
                     //TotalTrays = Convert.ToInt32(((Convert.ToInt32(lblSeededTrays.Text) - Convert.ToInt32(lblRemaining.Text)) * Pre1) / 100);
-                    TotalTrays = Convert.ToInt32(Convert.ToInt32(lblSeededTrays.Text) * Convert.ToInt32(availableSlot));
+                    TotalTrays = Convert.ToDecimal(Convert.ToDecimal(lblSeededTrays.Text) / Convert.ToInt32(availableSlot));
 
-                    txtTrays.Text = TotalTrays.ToString();
+                    
+                    txtTrays.Text = string.Format("{0:f2}", TotalTrays); 
                     lbltraysTotal.Text = string.Format("{0:f2}", Pre1);
-                    lblRemaining.Text = (Convert.ToInt32(Convert.ToInt32(lblSeededTrays.Text) - Convert.ToInt32(lblTTrays.Text)) - TotalTrays).ToString();
-                    lblTTrays.Text = (Convert.ToInt32(lblTTrays.Text) + TotalTrays).ToString();
+                    lblRemaining.Text = string.Format("{0:f2}",  (Convert.ToInt32(Convert.ToDecimal(lblSeededTrays.Text) - Convert.ToDecimal(lblTTrays.Text)) - TotalTrays));
+                    lblTTrays.Text = (Convert.ToDecimal(lblTTrays.Text) + TotalTrays).ToString();
 
 
                     txtSlotPositionStart.Text = dt1.Rows[0]["SlotPositionStart"].ToString();
