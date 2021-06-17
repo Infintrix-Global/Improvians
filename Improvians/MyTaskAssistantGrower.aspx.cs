@@ -261,7 +261,7 @@ namespace Evo
             nv.Add("@ToDate", "");
             nv.Add("@AssignedBy", "0");
             nv.Add("@Crop", "0");
-
+            nv.Add("@LoginID", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetGerminationRequestAssistantGrower", nv);
             BindData(dt, Ger, "GermDate");
         }
