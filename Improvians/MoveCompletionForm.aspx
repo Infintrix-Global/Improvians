@@ -113,6 +113,7 @@
                     <asp:Label ID="lblMoveAssignID" runat="server" Visible="false"></asp:Label>
                     <label>Remaining Trays:</label>
                     <asp:Label ID="lblRemainingTrays" runat="server"></asp:Label>
+                       <asp:Label ID="lblRemainingTraysTotal" Visible="false" runat="server"></asp:Label>
                 </div>
             </div>
             <div id="userinput" runat="server" class="assign__task d-flex">
@@ -145,9 +146,9 @@
 
 
 
-                           <div class="col">
+                        <div class="col">
                             <label># Dump Trays</label>
-                            <asp:TextBox ID="txtDumpTrays" TextMode="Number" OnTextChanged="txtDumpTrays_TextChanged" AutoPostBack="true"  runat="server" CssClass="input__control"></asp:TextBox>
+                            <asp:TextBox ID="txtDumpTrays" TextMode="Number" OnTextChanged="txtDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
                         </div>
 
                         <div class="col">
@@ -161,14 +162,78 @@
                             </span>
                         </div>
 
-                        <div class="col-auto align-self-center">
-                            <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" ValidationGroup="md" OnClick="btnSubmit_Click" />
-                        </div>
-                        <div class="col-auto align-self-center">
-                            <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
-                        </div>
+
                     </div>
+
+
                 </asp:Panel>
+            </div>
+
+            <div class="row pt-3 align-items-center">
+                <div class="col-auto col-sm-auto">
+                    <asp:RadioButtonList ID="RadioMoveCompletion" Width="100%" runat="server" AutoPostBack="true" ValidationGroup="x" OnSelectedIndexChanged="RadioMoveCompletion_SelectedIndexChanged" RepeatDirection="Horizontal">
+                        <asp:ListItem Text="Move Trays to New Bench" Value="1" class="custom-control custom-radio mr-3 mt-2"></asp:ListItem>
+                        <asp:ListItem Text="Move Trays to New Facility" Value="2" class="custom-control custom-radio mr-3 mt-2"></asp:ListItem>
+
+                    </asp:RadioButtonList>
+                </div>
+
+
+            </div>
+
+            <asp:Panel ID="PanelFacility" Visible="false" runat="server">
+                <div class="row">
+                    <div class="col-md-3 col-xl-2">
+                        <label>To Facility </label>
+                        <asp:DropDownList ID="ddlFacility" runat="server" class="custom__dropdown robotomd">
+                        </asp:DropDownList>
+
+                    </div>
+                    <div class="col-md-3 col-xl-2">
+                        <label># Trays Moved</label>
+                        <asp:TextBox ID="txtFTrays" TextMode="Number" OnTextChanged="txtFTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
+
+                    </div>
+                    <div class="col-md-3 col-xl-2">
+                        <label># Dump Trays</label>
+                        <asp:TextBox ID="txtFDumpTrays" TextMode="Number" OnTextChanged="txtFDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
+
+                    </div>
+                </div>
+            </asp:Panel>
+
+            <asp:Panel ID="Panelbench" Visible="false" runat="server">
+                <div class="row">
+                    <div class="col-md-3 col-xl-2">
+                        <label>Bench Location </label>
+                        <asp:DropDownList ID="ddlBenchLocation" runat="server" class="custom__dropdown robotomd">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-md-3 col-xl-2">
+                        <label># Trays Moved</label>
+                        <asp:TextBox ID="txtBTrays" TextMode="Number" OnTextChanged="txtBTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
+
+                    </div>
+                    <div class="col-md-3 col-xl-2">
+                        <label># Dump Trays</label>
+                        <asp:TextBox ID="txtBDumpTrays"  TextMode="Number" OnTextChanged="txtBDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
+
+                    </div>
+                    <div class="col-md-3 col-xl-2">
+                        <label>Barcode of putaway Location</label>
+                        <asp:TextBox ID="txtBBarcodeofputawayLocation" runat="server" CssClass="input__control"></asp:TextBox>
+
+                    </div>
+                </div>
+            </asp:Panel>
+            
+            <div class="row mt-4">
+                <div class="col-auto align-self-center">
+                    <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" runat="server" ValidationGroup="md" OnClick="btnSubmit_Click" />
+                </div>
+                <div class="col-auto align-self-center">
+                    <asp:Button Text="Reset" ID="btnReset" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnReset_Click" />
+                </div>
             </div>
         </div>
     </div>

@@ -168,7 +168,7 @@ namespace Evo
                 JobReports.HRef = "ReportSeedlinePlanner.aspx";
             }
 
-            if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12")
+            if (Session["Role"].ToString() == "1" || Session["Role"].ToString() == "2" || Session["Role"].ToString() == "12" || Session["Role"].ToString() == "15")
             {
 
                 CreateTask.HRef = "CreateTask.aspx";

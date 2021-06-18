@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evo.Bal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Evo
     public partial class MoveCompletionForm : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objCOm = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,6 +25,7 @@ namespace Evo
                 txtMoveDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
 
                 BindGridMove();
+                BindToFacility();
                 BindToLocation();
             }
         }
@@ -92,16 +95,7 @@ namespace Evo
             }
         }
 
-        public void BindToLocation()
-        {
-            //NameValueCollection nv = new NameValueCollection();
-            //nv.Add("@FacilityID", lblToFacility.Text);
-            //ddlLocation.DataSource = objCommon.GetDataTable("SP_GetGreenhouseByFacility", nv); ;
-            //ddlLocation.DataTextField = "GreenHouseName";
-            //ddlLocation.DataValueField = "GreenHouseID";
-            //ddlLocation.DataBind();
-            //ddlLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        }
+   
 
         public void BindGridMove()
         {
@@ -120,11 +114,13 @@ namespace Evo
             {
 
                 lblRemainingTrays.Text = dt.Tables[0].Rows[0]["Trays"].ToString();
+                lblRemainingTraysTotal.Text = dt.Tables[0].Rows[0]["Trays"].ToString();
                 TraysTotal = dt.Tables[0].Rows[0]["Trays"].ToString();
             }
             else
             {
                 lblRemainingTrays.Text = (Convert.ToInt32(dt.Tables[0].Rows[0]["Trays"].ToString()) - Convert.ToInt32(dt.Tables[1].Rows[0]["CompletedTrays"].ToString())).ToString();
+                lblRemainingTraysTotal.Text = (Convert.ToInt32(dt.Tables[0].Rows[0]["Trays"].ToString()) - Convert.ToInt32(dt.Tables[1].Rows[0]["CompletedTrays"].ToString())).ToString();
                 TraysTotal = lblRemainingTrays.Text;
             }
         }
@@ -274,24 +270,24 @@ namespace Evo
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
+            TraysTotalDetails();
+
+            //if (txtTrays.Text != "")
+            //{
+            //    if (Convert.ToInt32(txtTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
+            //    {
+            //        lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
+
+            //    }
+            //    else
+            //    {
+            //       // txtTrays.Text = "";
+
+            //        // lblRemainingTrays.Text = TraysRequest;
+            //    }
 
 
-            if (txtTrays.Text != "")
-            {
-                if (Convert.ToInt32(txtTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
-                {
-                    lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtTrays.Text)).ToString();
-
-                }
-                else
-                {
-                    txtTrays.Text = "";
-
-                    // lblRemainingTrays.Text = TraysRequest;
-                }
-
-
-            }
+            //}
         }
 
         protected void gvMove_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -328,24 +324,165 @@ namespace Evo
 
         protected void txtDumpTrays_TextChanged(object sender, EventArgs e)
         {
-            lblRemainingTrays.Text = (Convert.ToInt32(TraysTotal) - Convert.ToInt32(txtTrays.Text)).ToString();
+            TraysTotalDetails();
+            //if (txtTrays.Text != "")
+            //{
+            //    lblRemainingTrays.Text = (Convert.ToInt32(TraysTotal) - Convert.ToInt32(txtTrays.Text)).ToString();
+            //}
+            //else
+            //{
+            //    lblRemainingTrays.Text = TraysTotal.ToString();
+            //}
+            //if (txtDumpTrays.Text != "")
+            //{
+            //if (Convert.ToInt32(txtDumpTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
+            //{
+            //    lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtDumpTrays.Text)).ToString();
+
+            //}
+            //else
+            //{
+            // //   txtDumpTrays.Text = "";
+
+            //    // lblRemainingTrays.Text = TraysRequest;
+            //}
+
+            //  lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtDumpTrays.Text)).ToString();
+
+            // }
+        }
+
+
+        public void TraysTotalDetails()
+        {
+            int Mtrays = 0, MDumpTrays = 0; 
+            int Btrays = 0, BDumpTrays = 0; 
+            int Ftrays = 0, FDumpTrays = 0;
+            int TrayTotal = 0;
+            if(txtTrays.Text !="")
+            {
+                Mtrays = Convert.ToInt32(txtTrays.Text);
+            }
+            else
+            {
+                Mtrays = 0;
+            }
 
             if (txtDumpTrays.Text != "")
             {
-                if (Convert.ToInt32(txtDumpTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
-                {
-                    lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTrays.Text) - Convert.ToInt32(txtDumpTrays.Text)).ToString();
-
-                }
-                else
-                {
-                    txtDumpTrays.Text = "";
-
-                    // lblRemainingTrays.Text = TraysRequest;
-                }
-
-
+                MDumpTrays = Convert.ToInt32(txtDumpTrays.Text);
             }
+            else
+            {
+                MDumpTrays = 0;
+            }
+            //---------------------------
+
+
+            if (txtFTrays.Text != "")
+            {
+                Ftrays = Convert.ToInt32(txtFTrays.Text);
+            }
+            else
+            {
+                Ftrays = 0;
+            }
+
+            if (txtFDumpTrays.Text != "")
+            {
+                FDumpTrays = Convert.ToInt32(txtFDumpTrays.Text);
+            }
+            else
+            {
+                FDumpTrays = 0;
+            }
+
+
+            if (txtBTrays.Text != "")
+            {
+                Btrays = Convert.ToInt32(txtBTrays.Text);
+            }
+            else
+            {
+                Btrays = 0;
+            }
+
+            if (txtBDumpTrays.Text != "")
+            {
+                BDumpTrays = Convert.ToInt32(txtBDumpTrays.Text);
+            }
+            else
+            {
+                BDumpTrays = 0;
+            }
+
+           
+            TrayTotal = Mtrays + MDumpTrays + Btrays + BDumpTrays + Ftrays + FDumpTrays;
+
+            lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTraysTotal.Text) - TrayTotal).ToString();
+
+        }
+
+        public void BindToLocation()
+        {
+            ddlBenchLocation.DataSource = objCOm.GetLocation(Session["Facility"].ToString());
+            ddlBenchLocation.DataTextField = "BenchName";
+            ddlBenchLocation.DataValueField = "BenchName";
+            ddlBenchLocation.DataBind();
+            ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+        public void BindToFacility()
+        {
+            ddlFacility.DataSource = objCOm.GetMainLocation();
+            ddlFacility.DataTextField = "Facility";
+            ddlFacility.DataValueField = "Facility";
+            ddlFacility.DataBind();
+            ddlFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+
+        
+
+        protected void RadioMoveCompletion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if(RadioMoveCompletion.SelectedValue=="1")
+            {
+                PanelFacility.Visible = false;
+                Panelbench.Visible = true;
+            }
+            else if(RadioMoveCompletion.SelectedValue == "2")
+            {
+                PanelFacility.Visible = true;
+                Panelbench.Visible = false;
+            }
+            else
+            {
+                PanelFacility.Visible = false;
+                Panelbench.Visible = false;
+            }
+            
+        }
+
+        protected void txtFTrays_TextChanged(object sender, EventArgs e)
+        {
+            TraysTotalDetails();
+        }
+
+        protected void txtFDumpTrays_TextChanged(object sender, EventArgs e)
+        {
+            TraysTotalDetails();
+        }
+
+        protected void txtBTrays_TextChanged(object sender, EventArgs e)
+        {
+            TraysTotalDetails();
+        }
+
+        protected void txtBDumpTrays_TextChanged(object sender, EventArgs e)
+        {
+            TraysTotalDetails();
         }
     }
 }

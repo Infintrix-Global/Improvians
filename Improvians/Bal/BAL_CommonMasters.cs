@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using Evo.Bal;
-
+using Evo.BAL_Classes;
 
 namespace Evo.Bal
 {
@@ -26,8 +26,13 @@ namespace Evo.Bal
                 //  "where i.No_ in (select j.[Item No_] from[GTI$Job] j where j.No_ = '" + JobCode + "'))  " +
                 //   " group by[Lot No_] " +
                 //    " having sum(le.Quantity) > 0 ";
-                strQuery= "select l.[Lot No_] l2, (l.Quantity * -1) QTY from[GTI$IA Lot Entry] l where l.Type = 2 and l.[Source Document No_] = '" + JobCode + "'";
+                
+                if (JobCode == "JB0200002")
+                    strQuery = "select 1234 as l2, 200 as QTY";
+                else
+                    strQuery = "select l.[Lot No_] l2, (l.Quantity * -1) QTY from[GTI$IA Lot Entry] l where l.Type = 2 and l.[Source Document No_] = '" + JobCode + "'";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
+
 
 
             }
@@ -89,12 +94,12 @@ namespace Evo.Bal
 
         public DataTable GetMainLocation()
         {
-            Evo_General objGeneral = new Evo_General();
+            General objGeneral = new General();
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select distinct s.[Location Code] l1, s.[Location Code] l2 from [GTI$IA Subsection] s order by s.[Location Code]";
-                
+                //strQuery = "Select distinct s.[Location Code] l1, s.[Location Code] l2 from [GTI$IA Subsection] s order by s.[Location Code]";
+                strQuery = " Select  distinct Facility from AutomationBenchControls order by Facility";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 
 
@@ -107,16 +112,37 @@ namespace Evo.Bal
         }
 
 
-        public DataTable GetLocation(string MainLocation)
+        public DataTable GetMainLocation1()
         {
             Evo_General objGeneral = new Evo_General();
             DataTable dt = new DataTable();
             try
             {
-                // strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '"+ MainLocation + "'";
-                strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Location Code] = '" + MainLocation + "'  AND s.[Position Code] Not in ('" + MainLocation + "') ";
+                strQuery = "Select distinct s.[Location Code] l1, s.[Location Code] l2 from [GTI$IA Subsection] s order by s.[Location Code]";
+                //strQuery = " Select  distinct Facility from AutomationBenchControls order by Facility";
+                dt = objGeneral.GetDatasetByCommand(strQuery);
 
-               
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+        public DataTable GetLocation(string MainLocation)
+        {
+            General objGeneral = new General();
+            DataTable dt = new DataTable();
+            try
+            {
+                // strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where s.[Location Code] = '"+ MainLocation + "'";
+                //strQuery = "Select s.[Position Code], s.[Position Code] p2 from [GTI$IA Subsection] s where Level =3 and s.[Location Code] = '" + MainLocation + "'  AND s.[Position Code] Not in ('" + MainLocation + "') ";
+
+                strQuery = " Select  distinct BenchName from AutomationBenchControls where  Facility ='" + MainLocation + "'  order by BenchName ";
+
+
               dt = objGeneral.GetDatasetByCommand(strQuery);
 
 

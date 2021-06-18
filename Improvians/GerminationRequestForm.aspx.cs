@@ -323,7 +323,7 @@ namespace Evo
             nv.Add("@FromDate", txtFromDate.Text);
             nv.Add("@ToDate", txtToDate.Text);
             nv.Add("@AssignedBy", ddlAssignedBy.SelectedValue);
-
+            nv.Add("@LoginID", Session["LoginID"].ToString());
 
             //   dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
 
@@ -331,6 +331,11 @@ namespace Evo
             {
                 dt = objCommon.GetDataTable("SP_GetGerminationRequestAssistantGrower", nv);
             }
+            else if(Session["Role"].ToString() == "15")
+            {
+                dt = objCommon.GetDataTable("SP_GetGerminationRequestHeadGrower", nv);
+            }
+
             else
             {
                 dt = objCommon.GetDataTable("SP_GetGerminationRequest", nv);
@@ -637,7 +642,7 @@ namespace Evo
                 nv.Add("@#TraysInspected", txtTrays.Text);
                 nv.Add("@ID", item.ID.ToString());
                 nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@Role", ddlSupervisor.SelectedValue);
+                nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@ISAG",item.AGD);
                 nv.Add("@TaskRequestKey",item.TaskRequestKey);
                 nv.Add("@Comments", txtGcomments.Text);

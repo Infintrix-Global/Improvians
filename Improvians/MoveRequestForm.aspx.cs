@@ -395,8 +395,8 @@ namespace Evo
         public void BindFacility()
         {
             ddlToFacility.DataSource = objBAL.GetMainLocation();
-            ddlToFacility.DataTextField = "l1";
-            ddlToFacility.DataValueField = "l1";
+            ddlToFacility.DataTextField = "Facility";
+            ddlToFacility.DataValueField = "Facility";
             ddlToFacility.DataBind();
             ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
             ddlToFacility.SelectedValue = Session["Facility"].ToString();
@@ -406,8 +406,8 @@ namespace Evo
         public void BindBench_Location()
         {
             ddlToGreenHouse.DataSource = objBAL.GetLocation(ddlToFacility.SelectedValue);
-            ddlToGreenHouse.DataTextField = "p2";
-            ddlToGreenHouse.DataValueField = "p2";
+            ddlToGreenHouse.DataTextField = "BenchName";
+            ddlToGreenHouse.DataValueField = "BenchName";
             ddlToGreenHouse.DataBind();
             ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }

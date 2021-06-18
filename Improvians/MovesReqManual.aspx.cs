@@ -61,8 +61,8 @@ namespace Evo
         public void BindFacility()
         {
             ddlToFacility.DataSource = objBAL.GetMainLocation();
-            ddlToFacility.DataTextField = "l1";
-            ddlToFacility.DataValueField = "l1";
+            ddlToFacility.DataTextField = "Facility";
+            ddlToFacility.DataValueField = "Facility";
             ddlToFacility.DataBind();
             ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
@@ -73,8 +73,8 @@ namespace Evo
         public void BindBenchLocation(string ddlMain)
         {
             ddlBenchLocation.DataSource = objBAL.GetLocation(ddlMain);
-            ddlBenchLocation.DataTextField = "p2";
-            ddlBenchLocation.DataValueField = "p2";
+            ddlBenchLocation.DataTextField = "BenchName";
+            ddlBenchLocation.DataValueField = "BenchName";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
         }
@@ -92,8 +92,8 @@ namespace Evo
                 //  NameValueCollection nv = new NameValueCollection();
                 //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
                 ddlToGreenHouse.DataSource = objBAL.GetLocation(ddlToFacility.SelectedValue);
-                ddlToGreenHouse.DataTextField = "p2";
-                ddlToGreenHouse.DataValueField = "p2";
+                ddlToGreenHouse.DataTextField = "BenchName";
+                ddlToGreenHouse.DataValueField = "BenchName";
                 ddlToGreenHouse.DataBind();
                 ddlToGreenHouse.Items.Insert(0, new ListItem("--- Select ---", "0"));
 

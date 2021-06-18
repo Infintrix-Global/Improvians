@@ -250,8 +250,6 @@ namespace Evo
         }
 
 
-
-
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             BindGridSprayReq(ddlJobNo.SelectedValue, 1);

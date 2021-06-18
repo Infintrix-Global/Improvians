@@ -531,8 +531,8 @@ namespace Evo
                     DropDownList ddList = (DropDownList)e.Row.FindControl("ddlBenchLocation");
 
                     ddList.DataSource = objBAL.GetLocation(Session["Facility"].ToString()); ;
-                    ddList.DataTextField = "p2";
-                    ddList.DataValueField = "p2";
+                    ddList.DataTextField = "BenchName";
+                    ddList.DataValueField = "BenchName";
                     ddList.DataBind();
                 }
             }
@@ -702,7 +702,34 @@ namespace Evo
             }
         }
 
+        protected void GV6_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+                Label lblactivitycode = (Label)e.Row.FindControl("lblactivitycode");
+                Label lblGV6CompletionDate = (Label)e.Row.FindControl("lblGV6CompletionDate");
 
-       
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+
+                nv.Add("@Activitycode", lblactivitycode.Text);
+                nv.Add("@jobNo",JobCode);
+              
+                dt = objCommon.GetDataTable("SP_GetGerminationCompletionDateJobReport", nv);
+
+                if(dt!=null && dt.Rows.Count>0)
+                {
+                    if (dt.Rows[0]["InspectionDate"].ToString() != "")
+                    {
+                        lblGV6CompletionDate.Text = Convert.ToDateTime(dt.Rows[0]["InspectionDate"]).ToString("MM/dd/yyyy");
+                    }
+                }
+
+                // InspectionDate
+
+            }
+        }
     }
 }

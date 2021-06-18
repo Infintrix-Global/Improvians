@@ -16,6 +16,7 @@ namespace Evo
     {
         Bal_SeedingPlan objSP = new Bal_SeedingPlan();
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objCom = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -404,6 +405,32 @@ namespace Evo
             }
         }
 
-     
+        protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+             
+              Label lblID = (Label)e.Row.FindControl("lblID");
+
+                if(lblID.Text== "JB0200002")
+                {
+
+                }
+                else
+                {
+                    DataTable dt = objCom.GetSeedLot(lblID.Text);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        e.Row.Visible = true;
+                    }
+                    else
+                    {
+                        e.Row.Visible = false;
+                    }
+                }
+              
+            }
+        }
     }
 }

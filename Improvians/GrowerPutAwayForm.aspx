@@ -181,7 +181,8 @@
                             </div>
                             <div class="col-auto col-sm-6 col-md-3 mb-3">
                                 <label class="d-block robotobold">Remaining Seeded Trays</label>
-                                <asp:Label ID="lblRemaining" runat="server"></asp:Label>
+                                <asp:Label ID="lblRemaining" Text="0" runat="server"></asp:Label>
+                                 <asp:Label ID="lblTTrays" Visible="false" Text="0" runat="server"></asp:Label>
                             </div>
                         </div>
                         <div class="data__table mt-3">
@@ -203,7 +204,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-Width="300px">
                                         <ItemTemplate>
-                                            <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" Width="250px" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd"  OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" Width="250px" runat="server"></asp:DropDownList>
                                             <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
                                             <span class="error_message ">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlLocation" ValidationGroup="e"
@@ -212,7 +213,13 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
+                                     <asp:TemplateField HeaderText="% Bench Occupancy" Visible="false" HeaderStyle-Width="190">
+                                        <ItemTemplate>
 
+                                            <asp:Label ID="lblperTrays" Width="130px"  Text='<%# Eval("PerTTrays")%>'  runat="server"></asp:Label>
+                                         
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Trays" HeaderStyle-Width="190">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" Width="130px" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
@@ -221,6 +228,27 @@
                                             </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+                                      <asp:TemplateField HeaderText="Slot Position Start" Visible="false" HeaderStyle-Width="190">
+                                        <ItemTemplate>
+                                                <asp:DropDownList ID="ddlSlotPositionStart" class="custom__dropdown robotomd"  Width="150px" runat="server"></asp:DropDownList>
+
+                                            <asp:TextBox ID="txtSlotPositionStart" Visible="false"  Width="130px" Enabled="false"  Text='<%# Eval("SlotPositionStart")%>' CssClass="input__control" runat="server"></asp:TextBox>
+                                            
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+
+                                      <asp:TemplateField HeaderText="Slot Position End" Visible="false" HeaderStyle-Width="190">
+                                        <ItemTemplate>
+                                             <asp:DropDownList ID="ddlSlotPositionEnd" class="custom__dropdown robotomd"  Width="150px" runat="server"></asp:DropDownList>
+
+                                            <asp:TextBox ID="txtSlotPositionEnd"  Width="130px" Visible="false"  Enabled="false" Text='<%# Eval("SlotPositionEnd")%>' CssClass="input__control" runat="server"></asp:TextBox>
+                                            
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+
 
                                      <asp:TemplateField HeaderText="Assignment" HeaderStyle-Width="300">
                                         <ItemTemplate>
