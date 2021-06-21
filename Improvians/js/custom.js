@@ -142,4 +142,8 @@ jQuery(document).ready(function ($) {
     initDatePicker();
 
 
+    $(window).on("load", function () {
+        $(".goog-te-combo").addClass("custom__dropdown input__control-auto");
+    });
+
 });
