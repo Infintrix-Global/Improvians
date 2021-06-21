@@ -255,6 +255,7 @@ namespace Evo
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@InspectionDate", txtInspectionDate.Text);
             nv.Add("@GTAID", gtaID);
+            nv.Add("@GTRID", gtRID);
             nv.Add("@#TraysInspected", txtTrays.Text);
             nv.Add("@Germination", lblGerm.Text);
             nv.Add("@WorkOrderID", lblwoid.Text);
