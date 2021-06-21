@@ -148,7 +148,7 @@
 
                         <div class="col">
                             <label># Dump Trays</label>
-                            <asp:TextBox ID="txtDumpTrays" TextMode="Number" OnTextChanged="txtDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
+                            <asp:TextBox ID="txtDumpTrays" TextMode="Number" Text="0" OnTextChanged="txtDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
                         </div>
 
                         <div class="col">
@@ -196,7 +196,7 @@
                     </div>
                     <div class="col-md-3 col-xl-2">
                         <label># Dump Trays</label>
-                        <asp:TextBox ID="txtFDumpTrays" TextMode="Number" OnTextChanged="txtFDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
+                        <asp:TextBox ID="txtFDumpTrays" TextMode="Number" Text="0" OnTextChanged="txtFDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
 
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                     </div>
                     <div class="col-md-3 col-xl-2">
                         <label># Dump Trays</label>
-                        <asp:TextBox ID="txtBDumpTrays"  TextMode="Number" OnTextChanged="txtBDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
+                        <asp:TextBox ID="txtBDumpTrays"  TextMode="Number" Text="0" OnTextChanged="txtBDumpTrays_TextChanged" AutoPostBack="true" runat="server" CssClass="input__control"></asp:TextBox>
 
                     </div>
                     <div class="col-md-3 col-xl-2">
