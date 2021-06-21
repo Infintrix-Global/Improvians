@@ -270,13 +270,13 @@ namespace Evo
                             Response.Redirect("CropReportRequestForm.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                         case "Chemical":
-                            Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey + "&Tkey=" + taskKey);
+                            Response.Redirect("ChemicalTaskRequest.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                         case "Move":
                             Response.Redirect("MoveReqAsssignment.aspx?jobId=" + job + "&benchLoc=" + benchLoc);
                             break;
                         case "Fertilizer":
-                            Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey + "&Tkey=" + taskKey);
+                            Response.Redirect("SprayTaskRequest.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);
                             break;
                         case "Irrigation":
                             Response.Redirect(TaskName + "CompletionForm.aspx?benchLoc=" + benchLoc + "&Tkey=" + taskKey);

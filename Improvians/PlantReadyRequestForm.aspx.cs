@@ -363,7 +363,7 @@ namespace Evo
             bool check = false;
             foreach (GridViewRow row in gvPlantReady.Rows)
             {
-                var checkJob = (row.FindControl("lbljobID") as Label).Text;
+                var checkJob = (row.FindControl("lbljobcode1") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
                 var tKey = gvPlantReady.DataKeys[row.RowIndex].Values[11].ToString();
                 i--;

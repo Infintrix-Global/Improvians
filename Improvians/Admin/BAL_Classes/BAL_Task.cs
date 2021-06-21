@@ -75,6 +75,24 @@ namespace Evo.Admin.BAL_Classes
             return ds;
         }
 
+
+
+        public DataSet GetTaskTypeDetsils(int eid)
+        {
+            try
+            {
+
+                General objGeneral = new General();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", eid);
+
+                ds = objGeneral.GetDatasetByCommand_SP("GetTaskTypeWorkHoursDetailById1");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds;
+        }
+
         public DataSet GetCropHealthByID(int eid)
         {
             try

@@ -67,9 +67,29 @@ namespace Evo
                 BindTask();
                 BindViewDumpDetilas(0);
                 BindGridGeneraComplition(Did);
+                BintTaskType();
             }
         }
-      
+
+
+        public void BintTaskType()
+        {
+
+            NameValueCollection nv = new NameValueCollection();
+
+            DataTable dt = new DataTable();
+
+            nv.Add("@mode", "22");
+
+            dt = objCommon.GetDataTable("GET_Common", nv);
+
+            ddlTaskType.DataSource = dt;
+            ddlTaskType.DataTextField = "TaskType";
+            ddlTaskType.DataValueField = "ID";
+            ddlTaskType.DataBind();
+            ddlTaskType.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
         public void BindViewDumpDetilas(int RDid)
         {
             DataTable dt = new DataTable();
@@ -209,7 +229,7 @@ namespace Evo
             txtFrom.Text = dt.Rows[0]["MoveFrom"].ToString();
             txtTo.Text = dt.Rows[0]["MoveTo"].ToString();
 
-            if (ddlTaskType.SelectedItem.Value == "3")
+            if (dt.Rows[0]["id1"].ToString() == "3")
             {
                 divFrom.Style["display"] = "block";
                 divTo.Style["display"] = "block";

@@ -90,11 +90,11 @@
 
 
 
-                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                 <%--   <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblAssBy" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>--%>
 
 
 
@@ -344,11 +344,11 @@
                                 <label>Task Type</label>
 
                                 <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
-                                    <asp:ListItem Text="--Select--" Value="0" />
+                                   <%-- <asp:ListItem Text="--Select--" Value="0" />
                                     <asp:ListItem Text="Add Bird Netting" Value="1" />
                                     <asp:ListItem Text="Remove Bird Netting" Value="2" />
                                     <asp:ListItem Text="Move" Value="3" />
-                                    <asp:ListItem Text="Other" Value="4" />
+                                    <asp:ListItem Text="Other" Value="4" />--%>
                                 </asp:DropDownList>
 
                             </div>

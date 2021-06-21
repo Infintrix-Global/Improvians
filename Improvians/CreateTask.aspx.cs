@@ -42,7 +42,7 @@ namespace Evo
                 Bindcname();
                 BindBenchLocation(Session["Facility"].ToString());
                 dtTrays.Clear();
-
+                BintTaskType();
                 BindSupervisor();
 
                 BindFacility();
@@ -806,6 +806,28 @@ namespace Evo
             ddlFertilizer.DataBind();
             ddlFertilizer.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
+
+
+        public void BintTaskType()
+        {
+
+            NameValueCollection nv = new NameValueCollection();
+
+            DataTable dt = new DataTable();
+          
+            nv.Add("@mode", "22");
+          
+            dt = objCommon.GetDataTable("GET_Common", nv);
+
+            ddlTaskType.DataSource = dt;
+            ddlTaskType.DataTextField = "TaskType";
+            ddlTaskType.DataValueField = "ID";
+            ddlTaskType.DataBind();
+            ddlTaskType.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
+
+
+
 
         protected void btnFReset_Click(object sender, EventArgs e)
         {
