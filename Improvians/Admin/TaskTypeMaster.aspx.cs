@@ -28,7 +28,7 @@ namespace Evo.Admin
         {
             try
             {
-                DataSet dt1 = objTask.GetTaskTypeByID(eid);
+                DataSet dt1 = objTask.GetTaskTypeDetsils(eid);
 
 
                 if (dt1.Tables[0].Rows.Count > 0)
