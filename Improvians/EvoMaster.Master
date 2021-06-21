@@ -55,8 +55,8 @@
     <link rel="preload" href="fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-    
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+
     <link rel="stylesheet" href="css/sumoselect.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -68,6 +68,7 @@
 <body class="has__footer">
     <form id="form1" runat="server" enctype="multipart/form-data">
         <header>
+
             <div class="site__container">
 
 
@@ -76,8 +77,19 @@
                         <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
                     </a>
 
+                    <div class="ml-auto mr-md-3 mr-2">
+                        <div id="google_translate_element"></div>
 
-                    <div class="dropdown alert__dropdown ml-auto" id="notificationDiv1" runat="server">
+                        <script type="text/javascript">
+                            function googleTranslateElementInit() {
+                                new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+                            }
+                        </script>
+
+                        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                    </div>
+
+                    <div class="dropdown alert__dropdown" id="notificationDiv1" runat="server">
                         <div class="dropdown-toggle" data-display="static" id="alert__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-bell"></i>
                             <%-- <span class="alert__badge">--%>
@@ -174,12 +186,12 @@
             </h4>
         </div>
         <div class="main">
-           <%--   <asp:ScriptManager ID="sc" runat="server"></asp:ScriptManager>
+            <%--   <asp:ScriptManager ID="sc" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel runat="server" ID="upMain">
                 <ContentTemplate>--%>
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-              <%--  </ContentTemplate>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <%--  </ContentTemplate>
             </asp:UpdatePanel>--%>
         </div>
 
@@ -224,7 +236,7 @@
         </footer>
 
         <script src="js/jquery.min.js"></script>
-        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <script src="js/jquery.sumoselect.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
