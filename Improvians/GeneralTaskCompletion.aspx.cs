@@ -229,7 +229,7 @@ namespace Evo
             txtFrom.Text = dt.Rows[0]["MoveFrom"].ToString();
             txtTo.Text = dt.Rows[0]["MoveTo"].ToString();
 
-            if (ddlTaskType.SelectedItem.Value == "3")
+            if (dt.Rows[0]["id1"].ToString() == "3")
             {
                 divFrom.Style["display"] = "block";
                 divTo.Style["display"] = "block";
