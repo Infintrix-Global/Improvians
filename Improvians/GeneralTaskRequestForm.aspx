@@ -204,11 +204,11 @@
                         <div class="col-12 col-md-4 col-lg-3 mb-3">
                             <label>Task Type</label>
                             <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
-                                <asp:ListItem Text="--Select--" Value="0" />
+                              <%--  <asp:ListItem Text="--Select--" Value="0" />
                                 <asp:ListItem Text="Add Bird Netting" Value="1" />
                                 <asp:ListItem Text="Remove Bird Netting" Value="2" />
                                 <asp:ListItem Text="Move" Value="3" />
-                                <asp:ListItem Text="Other" Value="4" />
+                                <asp:ListItem Text="Other" Value="4" />--%>
                             </asp:DropDownList>
                             <%--<span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlAssignments" ValidationGroup="x"

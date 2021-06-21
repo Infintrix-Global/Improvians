@@ -31,7 +31,32 @@ namespace Evo
 
                 BindTask();
                 BindOperatorList();
+                BintTaskType();
             }
+        }
+
+
+
+
+
+
+
+        public void BintTaskType()
+        {
+
+            NameValueCollection nv = new NameValueCollection();
+
+            DataTable dt = new DataTable();
+
+            nv.Add("@mode", "22");
+
+            dt = objCommon.GetDataTable("GET_Common", nv);
+
+            ddlTaskType.DataSource = dt;
+            ddlTaskType.DataTextField = "TaskType";
+            ddlTaskType.DataValueField = "ID";
+            ddlTaskType.DataBind();
+            ddlTaskType.Items.Insert(0, new ListItem("--- Select ---", "0"));
         }
 
         public void BindGridCropHealth(int Chid)

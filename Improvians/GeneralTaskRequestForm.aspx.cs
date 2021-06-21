@@ -24,7 +24,7 @@ namespace Evo
 
                 //txtFromDate.Text = Fdate;
                 //txtToDate.Text = TDate;
-
+                BintTaskType();
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
                 Bindcname("0", "0", "0");
@@ -35,6 +35,26 @@ namespace Evo
             }
         }
 
+
+
+
+        public void BintTaskType()
+        {
+
+            NameValueCollection nv = new NameValueCollection();
+
+            DataTable dt = new DataTable();
+
+            nv.Add("@mode", "22");
+
+            dt = objCommon.GetDataTable("GET_Common", nv);
+
+            ddlTaskType.DataSource = dt;
+            ddlTaskType.DataTextField = "TaskType";
+            ddlTaskType.DataValueField = "ID";
+            ddlTaskType.DataBind();
+            ddlTaskType.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        }
         private string JobCode
         {
             get
