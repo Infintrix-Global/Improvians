@@ -138,7 +138,7 @@ namespace Evo
 
             int TotalTrays = 0;
             int DumpTrays = 0;
-            if (txtDumpTrays.Text == "0")
+            if (txtDumpTrays.Text == "")
             {
                 DumpTrays = 0;
             }
@@ -147,7 +147,7 @@ namespace Evo
                 DumpTrays = Convert.ToInt32(txtDumpTrays.Text);
             }
 
-            TotalTrays = Convert.ToInt32(txtTrays.Text) + DumpTrays;
+             TotalTrays = Convert.ToInt32(txtTrays.Text) + DumpTrays;
 
             if (Convert.ToInt32(TraysTotal) == TotalTrays)
             {
