@@ -359,6 +359,7 @@ namespace Evo
         {
             var i = gvSpray.Rows.Count;
             bool check = false;
+          
             foreach (GridViewRow row in gvSpray.Rows)
             {
                 //var checkJob = (row.FindControl("lbljobID") as Label).Text;

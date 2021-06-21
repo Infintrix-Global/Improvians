@@ -90,11 +90,11 @@
 
 
 
-                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                 <%--   <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblAssBy" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
+                    </asp:TemplateField>--%>
 
 
 
