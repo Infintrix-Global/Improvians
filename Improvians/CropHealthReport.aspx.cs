@@ -1278,7 +1278,7 @@ namespace Evo
                 nv.Add("@Comments", txtcomments.Text);
                 nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
-
+                nv.Add("@GrowerputawayID", "0");
                 result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
 
             }

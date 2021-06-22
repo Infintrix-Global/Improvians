@@ -497,7 +497,9 @@ namespace Evo
         public string AGD;
         public string GreenHouseID;
         public string jobcode;
-        
+        public string GrowerputawayID;
+    
+
     }
 
    
