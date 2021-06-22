@@ -502,6 +502,7 @@ namespace Evo
                 ViewState["benchloc"] = gvPlantReady.DataKeys[rowIndex].Values[4].ToString();
                 TaskRequestKey = gvPlantReady.DataKeys[rowIndex].Values[5].ToString();
 
+                GrowerPutAwayId.Value = gvPlantReady.DataKeys[rowIndex].Values[6].ToString();
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@DumpId", HiddenFieldDid.Value);
@@ -565,7 +566,7 @@ namespace Evo
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Did", HiddenFieldDid.Value);
             nv.Add("@Comments", txtCommentsDump.Text);
-            nv.Add("@wo", "0");
+            nv.Add("@wo", GrowerPutAwayId.Value);
             nv.Add("@ManualID", HiddenFieldJid.Value);
             nv.Add("@DumpDate", txtDumpDate.Text);
             nv.Add("@QuantityOfTray", txtQuantityofTray.Text);
