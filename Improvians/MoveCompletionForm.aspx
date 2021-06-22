@@ -169,7 +169,7 @@
                 </asp:Panel>
             </div>
 
-            <div class="row pt-3 align-items-center">
+            <div  id="MoveCompletion" runat="server" visible="false" class="row pt-3 align-items-center">
                 <div class="col-auto col-sm-auto">
                     <asp:RadioButtonList ID="RadioMoveCompletion" Width="100%" runat="server" AutoPostBack="true" ValidationGroup="x" OnSelectedIndexChanged="RadioMoveCompletion_SelectedIndexChanged" RepeatDirection="Horizontal">
                         <asp:ListItem Text="Move Trays to New Bench" Value="1" class="custom-control custom-radio mr-3 mt-2"></asp:ListItem>

@@ -421,6 +421,15 @@ namespace Evo
 
             lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTraysTotal.Text) - TrayTotal).ToString();
 
+            if(lblRemainingTrays .Text!="0")
+            {
+                MoveCompletion.Visible = true;
+            }
+            else
+            {
+                MoveCompletion.Visible = false;
+            }
+
         }
 
         public void BindToLocation()
