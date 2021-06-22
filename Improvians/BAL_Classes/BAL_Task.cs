@@ -313,7 +313,7 @@ namespace Evo.BAL_Classes
                 strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, GPD.Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode,'0' as jid " +
                             "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo " +
 
-                            "where GPD.IsActive=1 ";
+                            "where GPD.IsActive=0 ";
                 if (!string.IsNullOrEmpty(FacilityLocation))
                 {
                     strQuery += " and FacilityID ='" + FacilityLocation + "'";

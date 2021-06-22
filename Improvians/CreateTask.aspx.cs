@@ -1785,7 +1785,7 @@ namespace Evo
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     nv.Add("@ChId", "0");
                     nv.Add("@Comments", txtMoveComments.Text.Trim());
-                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                   
                     nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
                     //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
@@ -1866,7 +1866,7 @@ namespace Evo
                     nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@DumpDate", txtDumpDate.Text);
                     nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
-                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
                     //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
@@ -2079,7 +2079,7 @@ namespace Evo
                     nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                     nv.Add("@CropDate", txtDumpDate.Text);
                     nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
-                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
                     //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddCropReportRequestManuaCreateTask", nv);
@@ -2625,7 +2625,7 @@ namespace Evo
                         nv.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                         nv.Add("@DumpDate", txtDumpDate.Text);
                         nv.Add("@RoleId", "0");
-                        //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                        nv.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                         nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
                         //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                         result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTaskStart", nv);

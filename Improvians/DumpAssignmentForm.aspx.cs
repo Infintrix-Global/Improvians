@@ -19,8 +19,8 @@ namespace Evo
             if (!IsPostBack)
             {
                 string Fdate = "", TDate = "", FRDate = "";
-                Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
-                TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
+              //  Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+               // TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
                 FRDate = System.DateTime.Now.ToString("yyyy-MM-dd");
                 // txtFertilizationDate.Text = FRDate;
                 txtFromDate.Text = Fdate;

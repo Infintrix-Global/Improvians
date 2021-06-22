@@ -2033,6 +2033,7 @@ namespace Evo
                 nv.Add("@DumpDate", txtDumpDate.Text);
                 nv.Add("@RoleId", Session["Role"].ToString());
                 nv.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                nv.Add("@GrowerputawayID", "");
                 result = objCommon.GetDataExecuteScaler("SP_AddDumpRequestManuaCreateTask", nv);
 
             }
