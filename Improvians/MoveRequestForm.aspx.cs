@@ -510,7 +510,7 @@ namespace Evo
             nv.Add("@mvoeId", HiddenFieldDid.Value);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
             nv.Add("@ManualID", HiddenFieldJid.Value);
-            nv.Add("@ManualID", HiddenFieldJid.Value);
+        
             nv.Add("@TaskRequestKey", TaskRequestKey);
             
 
