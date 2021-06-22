@@ -542,6 +542,7 @@ namespace Evo
                 FertilizationCode = Convert.ToInt32(FCode);
             }
 
+
             if (txtResetSprayTaskForDays.Text != "")
             {
                 SprayTaskForDaysDate = (Convert.ToDateTime(System.DateTime.Now.ToShortDateString()).AddDays(Convert.ToInt32(txtResetSprayTaskForDays.Text))).ToString();
@@ -609,31 +610,7 @@ namespace Evo
 
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
-                //if ((row.FindControl("chkSelect") as CheckBox).Checked)
-                //{
-                //if ((row.FindControl("lblGrowerputawayID") as Label).Text == "0")
-                //{
-                //    long result = 0;
-                //    NameValueCollection nv = new NameValueCollection();
-                //    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                //    nv.Add("@Type", "Fertilizer");
-                //    nv.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                //    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
-                //    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                //    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
-                //    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                //    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
-                //    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                //    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
-                //    //nv.Add("@WorkOrder", lblwo.Text);
-                //    nv.Add("@LoginID", Session["LoginID"].ToString());
-                //    nv.Add("@FertilizationCode", FertilizationCode.ToString());
-                //    nv.Add("@FertilizationDate", txtDate.Text);
-
-                //    result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManual", nv);
-                //}
-                //else
-                //{
+               
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
@@ -654,6 +631,8 @@ namespace Evo
                 //}
                 //}
             }
+
+
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
             //objTask.AddFertilizerRequestDetails(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text,txtComments.Text);

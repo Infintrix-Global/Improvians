@@ -145,6 +145,7 @@ namespace Evo
             gvMoveReq.DataSource = dt;
             gvMoveReq.DataBind();
 
+
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
@@ -430,6 +431,8 @@ namespace Evo
                 lblBenchlocation.Text = gvMoveReq.DataKeys[rowIndex].Values[4].ToString();
                 lblTotalTrays.Text = gvMoveReq.DataKeys[rowIndex].Values[5].ToString();
                 lblDescription.Text = gvMoveReq.DataKeys[rowIndex].Values[6].ToString();
+                HiddenFieldGrowerPutAwayId.Value= gvMoveReq.DataKeys[rowIndex].Values[8].ToString();
+
 
                 TaskRequestKey = gvMoveReq.DataKeys[rowIndex].Values[7].ToString();
                 DataTable dt = new DataTable();
@@ -497,7 +500,7 @@ namespace Evo
             nv.Add("@MoveNumberOfTrays", txtMoveNumberOfTrays.Text);
 
             nv.Add("@FromFacility", Session["LoginID"].ToString());
-            nv.Add("@GrowerPutAwayID", "0");
+            nv.Add("@GrowerPutAwayID", HiddenFieldGrowerPutAwayId.Value);
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@ToFacility", ddlToFacility.SelectedValue);
             nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
@@ -507,8 +510,11 @@ namespace Evo
             nv.Add("@mvoeId", HiddenFieldDid.Value);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
             nv.Add("@ManualID", HiddenFieldJid.Value);
+            nv.Add("@ManualID", HiddenFieldJid.Value);
             nv.Add("@TaskRequestKey", TaskRequestKey);
             
+
+
             result = objCommon.GetDataInsertORUpdate("SP_AddMoveRequestASManua", nv);
 
             NameValueCollection nameValue = new NameValueCollection();

@@ -884,6 +884,7 @@ namespace Evo
                         FertilizationCode = Convert.ToInt32(dt1.Rows[0]["FCode"]);
                         Batchlocation1 = Batchlocation;
 
+
                         string Countbanch = "";
                         DataTable dt15 = new DataTable();
                         NameValueCollection nv15 = new NameValueCollection();
