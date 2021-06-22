@@ -531,7 +531,7 @@ h2:not(.mb-3) + .breadcrumb {
     margin-right: 7.5px;
 }
 
-.custom__dropdown, .filter__control, .input__control, .SumoSelect > .SelectBox {
+.custom__dropdown, .filter__control, .input__control, .SumoSelect > .SelectBox, .goog-te-combo {
     font-size: 16px;
     width: 100%;
     height: 60px;
@@ -567,7 +567,7 @@ textarea.input__control {
     width: 260px;
 }
 
-.custom__dropdown, .SumoSelect > .SelectBox {
+.custom__dropdown, .SumoSelect > .SelectBox, .goog-te-combo {
     background-color: #ffffff;
     color: #2a2a2a;
     -webkit-appearance: none;
@@ -1621,13 +1621,13 @@ svg text {
 
 @media only screen and (max-width: 1839px) {
     .has__footer { padding-bottom: 140px; }
-    .custom__dropdown, .filter__control, .input__control, .SumoSelect > .SelectBox {
+    .custom__dropdown, .filter__control, .input__control, .SumoSelect > .SelectBox, .goog-te-combo {
         height: 45px;
         line-height: 45px;
         border-radius: 10px;
         max-width: 100%;
     }
-    .custom__dropdown, .SumoSelect > .SelectBox { background-position: right 20px center; }
+    .custom__dropdown, .SumoSelect > .SelectBox, .goog-te-combo { background-position: right 20px center; }
     .bttn { border-radius: 10px; padding: 9px 22px; }
     .header__tabs ul { margin: 4px auto; }
     .dashboard__block { border-radius: 15px; }
@@ -1699,7 +1699,7 @@ svg text {
     .data__table .bttn-action { width: auto; padding-left: 15px; padding-right: 15px; }
     .graph__yaxis { margin-right: 30px; }
     .graph__xaxis { font-size: 16px; }
-    .custom__dropdown { background-position: right 15px center; padding-right: 45px; }
+    .custom__dropdown, .goog-te-combo { background-position: right 15px center; padding-right: 45px; }
     .filter__search { background-position: left 15px center; padding-left: 45px; }
     .filter__control + * { margin-left: 15px; }
     
@@ -1942,7 +1942,7 @@ svg text {
 }
 
 @media only screen and (max-width: 639px) {
-    .custom__dropdown, .filter__control, .input__control { height: 45px; line-height: 45px; }
+    .custom__dropdown, .filter__control, .input__control, .goog-te-combo { height: 45px; line-height: 45px; }
     .dashboard__matrix { max-width: calc(50% - 15px); flex: 1 0 50%; }
     .dashboard__matrix:nth-child(-n+3) { margin-bottom: 20px; }
     .dashboard__matrix:nth-child(3) { margin-bottom: 40px; }
@@ -1954,9 +1954,9 @@ svg text {
     .account__dropdown .account__user { font-size: 16px; }
     .account__dropdown img { max-width: 48px; width: 48px; height: 48px; }
     .account__dropdown .account__user { margin-right: 5px; }
-    .custom__dropdown, .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon) { padding: 0 15px; }
-    .custom__dropdown, .custom__dropdown.filter__control:not(.filter__search), .input__control.input__control-icon { padding-right: 35px; }
-    .bttn, .custom__dropdown, .filter__control, .input__control { border-radius: 6px; }
+    .custom__dropdown, .filter__control:not(.input__control-icon):not(.filter__search), .input__control:not(.input__control-icon), .goog-te-combo { padding: 0 15px; }
+    .custom__dropdown, .custom__dropdown.filter__control:not(.filter__search), .input__control.input__control-icon, .goog-te-combo { padding-right: 35px; }
+    .bttn, .custom__dropdown, .filter__control, .input__control, .goog-te-combo { border-radius: 6px; }
 
     .task_request-buttons { max-width: 100%; }
     .request__block-head { width: calc(50% - 15px); }
@@ -1978,8 +1978,8 @@ svg text {
     .header__tabs ul { margin-bottom: 0; padding-bottom: 10px; }
     .floating__footer a { padding: 10px 15px; }
     .floating__footer a span { font-size: 14px; line-height: 18px; margin-top: 5px; }
-    .custom__dropdown, .filter__control, .input__control { padding: 0 20px; }
-    .custom__dropdown { padding-right: 30px; background-position: right 12px center; }
+    .custom__dropdown, .filter__control, .input__control, .goog-te-combo { padding: 0 20px; }
+    .custom__dropdown, .goog-te-combo { padding-right: 30px; background-position: right 12px center; }
     .input__control-icon { padding-left: 38px; }
     .filter__search { background-position: left 12px center; padding-left: 38px; }
     .block__head + .activity__graph { margin-bottom: -20px; }
