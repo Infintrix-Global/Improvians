@@ -57,6 +57,7 @@
 				<siteMapNode url="~/GeneralTaskCompletion.aspx" title="Completion"/>
 			</siteMapNode>
 		</siteMapNode>
+		<siteMapNode url="~/JobReports.aspx" title="Job Information"/>
 		<siteMapNode url="~/CreateTask.aspx" title="Create Task"  />
 		<siteMapNode url="~/TaskDistributionChart.aspx" title="Task Distribution" />
 		<siteMapNode url="~/Help.aspx" title="Help"/>
