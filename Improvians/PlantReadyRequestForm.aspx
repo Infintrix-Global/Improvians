@@ -164,7 +164,10 @@
                                     <asp:Label ID="lblTaskRequestKey" Visible="false" runat="server" Text='<%# Eval("TaskRequestKey")  %>'></asp:Label>
                                      <asp:Label ID="lbljobcode1" Visible="false" runat="server" Text='<%# Eval("jobcode")  %>'></asp:Label>
                                     <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
+                                    <asp:Label ID="lblGrowerputawayID21" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
 
+
+                                    
                                 </ItemTemplate>
                             </asp:TemplateField>
 

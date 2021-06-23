@@ -295,7 +295,20 @@ namespace Evo
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            BindGridIrrigation(ddlJobNo.SelectedValue, 1);
+
+
+
+            string Jno = "";
+            if (txtSearchJobNo.Text == "")
+            {
+                Jno = ddlJobNo.SelectedValue;
+
+            }
+            else
+            {
+                Jno = txtSearchJobNo.Text;
+            }
+            BindGridIrrigation(Jno, 1);
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -337,6 +350,7 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+            txtSearchJobNo.Text = "";
             RadioButtonListSourse.Items[0].Selected = false;
             RadioButtonListSourse.ClearSelection();
             RadioButtonListGno.Items[0].Selected = false;
@@ -689,8 +703,8 @@ namespace Evo
 
 
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
-                        "";
+                    cmd.CommandText = " select distinct GPD.jobcode from gti_jobs_seeds_plan GTS inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo  where  GPD.FacilityID ='" + Facility + "'  AND GPD.jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
+                     "";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;

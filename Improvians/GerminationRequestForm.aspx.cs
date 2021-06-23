@@ -759,6 +759,7 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+            txtSearchJobNo.Text = "";
             string Fdate = "", TDate = "";
             Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
             TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
@@ -838,7 +839,18 @@ namespace Evo
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             lstJob.Clear();
-            BindGridGerm(ddlJobNo.SelectedValue, 1);
+
+            string Jno = "";
+            if(txtSearchJobNo.Text =="")
+            {
+                Jno = ddlJobNo.SelectedValue;
+
+            }
+            else
+            {
+                Jno = txtSearchJobNo.Text;
+            }
+            BindGridGerm(Jno, 1);
         }
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -889,7 +901,7 @@ namespace Evo
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '" + prefixText + "%' order by jobcode" +
+                    cmd.CommandText = " select distinct GPD.jobcode from gti_jobs_seeds_plan GTS inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo  where  GPD.FacilityID ='" + Facility + "'  AND GPD.jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
                         "";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);

@@ -243,8 +243,40 @@ namespace Evo
             nv.Add("@CropType", ddlCopTYpe.SelectedValue);
             dt = objCommon.GetDataTable("SP_GetProductionPlannerTask", nv);
             DataView dataView = dt.DefaultView;
-            gvGerm.DataSource = dt;
+
+           // DataTable dt1 = objCom.GetSeedLot(lblID.Text);
+            //if (dt != null && dt.Rows.Count > 0)
+            //{
+            //    e.Row.Visible = true;
+            //}
+            //else
+            //{
+            //    e.Row.Visible = false;
+            //}
+
+
+            DataTable dtCopy = dt.Clone();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataTable dt1 = objCom.GetSeedLot(dt.Rows[i]["jobcode"].ToString());
+
+                if (dt1 != null && dt1.Rows.Count > 0)
+                {
+                    dtCopy.ImportRow(dt.Rows[i]);
+                }
+                else
+                {
+                  
+                }
+               
+            }
+
+
+
+            gvGerm.DataSource = dtCopy;
             gvGerm.DataBind();
+
             return dataView;
         }
 
@@ -419,15 +451,15 @@ namespace Evo
                 }
                 else
                 {
-                    DataTable dt = objCom.GetSeedLot(lblID.Text);
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        e.Row.Visible = true;
-                    }
-                    else
-                    {
-                        e.Row.Visible = false;
-                    }
+                    //DataTable dt = objCom.GetSeedLot(lblID.Text);
+                    //if (dt != null && dt.Rows.Count > 0)
+                    //{
+                    //    e.Row.Visible = true;
+                    //}
+                    //else
+                    //{
+                    //    e.Row.Visible = false;
+                    //}
                 }
               
             }

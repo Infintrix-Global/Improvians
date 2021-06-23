@@ -1439,7 +1439,7 @@ namespace Evo
                     nv.Add("@PlantDate", txtPlantDate.Text);
                     nv.Add("@Role", Session["Role"].ToString());
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
-                    //  nv4.Add("@Jid", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                    nv.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
                     //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTask", nv);
@@ -3351,7 +3351,9 @@ namespace Evo
             objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
         }
 
-
-
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq("", txtSearchJobNo.Text);
+        }
     }
 }

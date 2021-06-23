@@ -75,7 +75,7 @@
         <div class="data__table">
             <asp:GridView ID="gvTask" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowDataBound="gvTask_RowDataBound"
                 class="striped" AllowSorting="true" PageSize="10" OnPageIndexChanging="gvTask_PageIndexChanging"
-                GridLines="None" OnRowCommand="gvTask_RowCommand" DataKeyNames="wo,ID,jid,jobcode,GreenHouseID,TaskRequestKey"
+                GridLines="None" OnRowCommand="gvTask_RowCommand" DataKeyNames="wo,ID,jid,jobcode,GreenHouseID,TaskRequestKey,GrowerPutAwayId"
                 ShowHeaderWhenEmpty="True" Width="100%">
                 <Columns>
                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-CssClass="autostyle2">
@@ -197,6 +197,8 @@
                             <label>Assignment </label>
                             <asp:HiddenField ID="HiddenFieldJid" runat="server" />
                             <asp:HiddenField ID="HiddenFieldDid" runat="server" />
+                               <asp:HiddenField ID="HiddenFieldGrowerPutAwayId" runat="server" />
+                            
                             <%--<asp:Label ID="lblSupervisorID" runat="server" Visible="false"></asp:Label>--%>
                             <asp:DropDownList ID="ddlGeneralAssignment" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>

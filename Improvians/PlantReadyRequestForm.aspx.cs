@@ -253,7 +253,20 @@ namespace Evo
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             lstJob.Clear();
-            BindGridPlantReady(ddlJobNo.SelectedValue, 1);
+
+
+            string Jno = "";
+            if (txtSearchJobNo.Text == "")
+            {
+                Jno = ddlJobNo.SelectedValue;
+
+            }
+            else
+            {
+                Jno = txtSearchJobNo.Text;
+            }
+
+            BindGridPlantReady(Jno, 1);
         }
         protected void RadioButtonListSourse_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -352,6 +365,7 @@ namespace Evo
             //        row.CssClass = "highlighted";
             //    }
             //}
+
             if (p != 1 && !string.IsNullOrEmpty(JobCode) && !string.IsNullOrEmpty(benchLoc))
             {
                 highlight(dt.Rows.Count);
@@ -426,6 +440,7 @@ namespace Evo
         }
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
+            txtSearchJobNo.Text = "";
             RadioButtonListSourse.Items[0].Selected = false;
             RadioButtonListSourse.ClearSelection();
             BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
@@ -455,6 +470,8 @@ namespace Evo
                 lblDescription.Text = gvPlantReady.DataKeys[rowIndex].Values[9].ToString();
                 ViewState["tKey"] = gvPlantReady.DataKeys[rowIndex].Values[11].ToString();
 
+
+           
                 txtPlantDate.Text = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6]).ToString("yyyy-MM-dd");
                 ddlSupervisor.Focus();
 
@@ -472,7 +489,7 @@ namespace Evo
                 }
 
                 lstJob.Clear();
-                lstJob.Add(new Job { ID = Convert.ToInt32(lblPRRId.Text), JobID = lblJid.Text, TaskRequestKey = ViewState["tKey"].ToString(), AGD = lblIsAssistant.Text, GreenHouseID = lblBenchlocation.Text, jobcode = lblJobID.Text });
+                lstJob.Add(new Job { ID = Convert.ToInt32(lblPRRId.Text), JobID = lblJid.Text, TaskRequestKey = ViewState["tKey"].ToString(), AGD = lblIsAssistant.Text, GreenHouseID = lblBenchlocation.Text, jobcode = lblJobID.Text,GrowerputawayID =lblGrowerID.Text });
 
             }
 
@@ -617,6 +634,11 @@ namespace Evo
                 nv.Add("@TaskRequestKey",item.TaskRequestKey);
                 nv.Add("@jobcode", item.jobcode);
                 nv.Add("@GreenHouseID", item.GreenHouseID);
+                nv.Add("@GrowerputawayID", item.GrowerputawayID);
+
+
+
+
 
                 result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
 
@@ -749,9 +771,8 @@ namespace Evo
 
 
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
-                        "";
-
+                    cmd.CommandText = " select distinct GPD.jobcode from gti_jobs_seeds_plan GTS inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo  where  GPD.FacilityID ='" + Facility + "'  AND GPD.jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
+                 "";
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;
                     conn.Open();
@@ -795,9 +816,10 @@ namespace Evo
                 Label lblIsAG = (Label)row.FindControl("lblIsAssistant");
                 Label lblTaskRequestKey = (Label)row.FindControl("lblTaskRequestKey");
                 Label lbljobcode = (Label)row.FindControl("lbljobcode1");
+                Label lblGrowerputawayID = (Label)row.FindControl("lblGrowerputawayID21");
                 if (chkSelect.Checked)
                 {
-                    lstJob.Add(new Job { ID = Convert.ToInt32(lID.Text), JobID = lJobID.Text, TaskRequestKey = lblTaskRequestKey.Text, AGD = lblIsAG.Text, GreenHouseID = lblBenchLocation.Text, jobcode = lbljobcode.Text });
+                    lstJob.Add(new Job { ID = Convert.ToInt32(lID.Text), JobID = lJobID.Text, TaskRequestKey = lblTaskRequestKey.Text, AGD = lblIsAG.Text, GreenHouseID = lblBenchLocation.Text, jobcode = lbljobcode.Text,GrowerputawayID= lblGrowerputawayID.Text });
                 }
                 else
                 {

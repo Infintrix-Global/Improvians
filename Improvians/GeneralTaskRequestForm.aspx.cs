@@ -529,6 +529,7 @@ namespace Evo
                 ViewState["jobcode"] = gvTask.DataKeys[rowIndex].Values[3].ToString();
                 ViewState["benchloc"] = gvTask.DataKeys[rowIndex].Values[4].ToString();
 
+                HiddenFieldGrowerPutAwayId.Value = gvTask.DataKeys[rowIndex].Values[6].ToString();
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@GeneralId", HiddenFieldDid.Value);
@@ -670,7 +671,9 @@ namespace Evo
             nv.Add("@GeneralDate", txtGeneralDate.Text);
             nv.Add("@TaskRequestKey", TaskRequestKey);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+            nv.Add("@GrowerPutAwayId", HiddenFieldGrowerPutAwayId.Value);
 
+            
             result = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequestManual", nv);
 
             if (result > 0)
@@ -762,8 +765,8 @@ namespace Evo
 
 
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
-                        "";
+                    cmd.CommandText = " select distinct GPD.jobcode from gti_jobs_seeds_plan GTS inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo  where  GPD.FacilityID ='" + Facility + "'  AND GPD.jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
+                       "";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;

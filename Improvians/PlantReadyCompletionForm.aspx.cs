@@ -129,7 +129,7 @@ namespace Evo
             //  nv.Add("@wo", "");
             nv.Add("@JobCode", ddlJobNo.SelectedValue);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
-            nv.Add("@Facility", ddlFacility.SelectedValue);
+            nv.Add("@Facility", Session["Facility"].ToString());
             //  nv.Add("@Mode", "9");
             nv.Add("@LoginID", Session["LoginID"].ToString());
             dt = objCommon.GetDataTable("SP_GetOperatorPlantReadyTask", nv);
