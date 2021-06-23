@@ -139,7 +139,7 @@
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
 
                 <label>Job No</label>
-                <asp:TextBox ID="txtSearchJobNo" runat="server" class="input__control robotomd"></asp:TextBox>
+                <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="false" class="input__control robotomd"></asp:TextBox>
 
 
                 <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"

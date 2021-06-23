@@ -529,6 +529,7 @@ namespace Evo
                 ViewState["jobcode"] = gvTask.DataKeys[rowIndex].Values[3].ToString();
                 ViewState["benchloc"] = gvTask.DataKeys[rowIndex].Values[4].ToString();
 
+                HiddenFieldGrowerPutAwayId.Value = gvTask.DataKeys[rowIndex].Values[6].ToString();
                 DataTable dt = new DataTable();
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@GeneralId", HiddenFieldDid.Value);
@@ -670,7 +671,9 @@ namespace Evo
             nv.Add("@GeneralDate", txtGeneralDate.Text);
             nv.Add("@TaskRequestKey", TaskRequestKey);
             nv.Add("@RoleId", dt.Rows[0]["RoleID"].ToString());
+            nv.Add("@GrowerPutAwayId", HiddenFieldGrowerPutAwayId.Value);
 
+            
             result = objCommon.GetDataInsertORUpdate("SP_AddGeneralRequestManual", nv);
 
             if (result > 0)

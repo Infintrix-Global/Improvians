@@ -3351,7 +3351,9 @@ namespace Evo
             objCommon.GetAllNotifications(Session["LoginID"].ToString(), Session["Facility"].ToString(), r1, lblCount);
         }
 
-
-
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            BindGridFerReq("", txtSearchJobNo.Text);
+        }
     }
 }
