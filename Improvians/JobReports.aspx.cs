@@ -43,7 +43,7 @@ namespace Evo
         {
             if (Session["LoginID"] == null)
             {
-                Response.Redirect("~/CustomerLogin.aspx");
+                Response.Redirect(WebConfigurationManager.AppSettings["LoginURL"]);
             }
             if (Session["Role"].ToString() == "13" || Session["Role"].ToString() == "14")
             {
@@ -344,8 +344,8 @@ namespace Evo
         {
 
 
-          //  ddlJobNo.Items.Clear();
-          //  ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
+            //  ddlJobNo.Items.Clear();
+            //  ddlJobNo.DataSource = objBAL.GetJobsForBenchLocation(ddlBench);
 
             DataTable dt = new DataTable();
 
@@ -374,7 +374,7 @@ namespace Evo
         protected void btlSearchBenchLocation_Click(object sender, EventArgs e)
         {
             txtSearchJobNo.Text = "";
-         
+
             BindJobCode(txtBatchLocation.Text);
         }
 
@@ -436,7 +436,7 @@ namespace Evo
                 lblJobNo.Text = JobCode;
                 PanelView.Visible = true;
                 BindGridOne();
-            }           
+            }
         }
 
         [System.Web.Script.Services.ScriptMethod()]
@@ -706,7 +706,7 @@ namespace Evo
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                
+
                 Label lblactivitycode = (Label)e.Row.FindControl("lblactivitycode");
                 Label lblGV6CompletionDate = (Label)e.Row.FindControl("lblGV6CompletionDate");
 
@@ -715,11 +715,11 @@ namespace Evo
                 NameValueCollection nv = new NameValueCollection();
 
                 nv.Add("@Activitycode", lblactivitycode.Text);
-                nv.Add("@jobNo",JobCode);
-              
+                nv.Add("@jobNo", JobCode);
+
                 dt = objCommon.GetDataTable("SP_GetGerminationCompletionDateJobReport", nv);
 
-                if(dt!=null && dt.Rows.Count>0)
+                if (dt != null && dt.Rows.Count > 0)
                 {
                     if (dt.Rows[0]["InspectionDate"].ToString() != "")
                     {
