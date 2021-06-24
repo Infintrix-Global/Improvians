@@ -276,9 +276,11 @@ namespace Evo.Bal
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "select top 1 h.Code, h.[Container Code], h.[Genus Code], l.[Activity Code], l.[Date Shift] DateShift 	 ";
-                strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
-                strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='" + ActivityCode + "' and  h.[Genus Code]='" + GenusCode + "'  and h.[Container Code]='" + ContainerCode + "' ";
+                //strQuery = "select top 1 h.Code, h.[Container Code], h.[Genus Code], l.[Activity Code], l.[Date Shift] DateShift 	 ";
+                //strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
+                //strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='" + ActivityCode + "' and  h.[Genus Code]='" + GenusCode + "'  and h.[Container Code]='" + ContainerCode + "' ";
+
+                strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '" + ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "' ";
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
