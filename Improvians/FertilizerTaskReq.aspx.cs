@@ -403,7 +403,7 @@ namespace Evo
             {
                 var checkJob = (row.FindControl("lblID") as Label).Text;
                 var checklocation = (row.FindControl("lblGreenHouseID") as Label).Text;
-                var tKey = gvFer.DataKeys[row.RowIndex].Values[4].ToString();
+                var tKey = (row.FindControl("lblTaskRequestKey") as Label).Text;
 
                 i--;
                 if (checkJob == JobCode && checklocation == benchLoc && tKey == TaskKey)
