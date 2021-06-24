@@ -729,6 +729,7 @@ namespace Evo
                                 string WONo = (row.FindControl("lblwo") as Label).Text;
                                 string jid = "";
                                 FertilizationDate = FertilizationDate;
+
                                 NameValueCollection nv11 = new NameValueCollection();
                                 nv11.Add("@GrowerPutAwayId", (row.FindControl("lblGrowerputawayID") as Label).Text);
                                 nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);

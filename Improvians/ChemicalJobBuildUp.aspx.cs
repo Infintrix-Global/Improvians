@@ -692,7 +692,7 @@ namespace Evo
                                 }
                                 else
                                 {
-                                    jid = (row.FindControl("lblwo") as Label).Text;
+                                    jid = (row.FindControl("lblJidF") as Label).Text;
                                 }
 
 

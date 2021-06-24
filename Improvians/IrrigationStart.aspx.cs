@@ -592,13 +592,17 @@ namespace Evo
 
                             if (ReSetIrrigateDate == "" || DateTime.Parse(IrrigateDate) >= DateTime.Parse(ReSetIrrigateDate))
                             {
+
+                                string WONo = (row.FindControl("lblwo") as Label).Text;
+                                string jid = "";
+
                                 IrrigateDate = IrrigateDate;
 
                                 NameValueCollection nv11 = new NameValueCollection();
 
-                                nv11.Add("@GrowerPutAwayIrrigatId", "");
-                                nv11.Add("@wo", "");
-                                nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
+                                nv11.Add("@GrowerPutAwayIrrigatId", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                                nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);
+                              //  nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
                                 nv11.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
                                 nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
                                 nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
@@ -613,6 +617,34 @@ namespace Evo
                                 nv11.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                                 nv11.Add("@DateCountNo", DateCountNo);
 
+                                if (WONo != "")
+                                {
+                                    NameValueCollection nv = new NameValueCollection();
+                                    // nv.Add("@jid", _isInserted.ToString());
+
+                                    nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                                    nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
+                                    nv.Add("@germcount", "");
+                                    nv.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
+                                    nv.Add("@PlantDueDate", (row.FindControl("lblPlantDueDate") as Label).Text);
+                                    nv.Add("@PlantReadyDate", (row.FindControl("lblPlantReadyDate") as Label).Text);
+                                    nv.Add("@Wo", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                                    _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_ManualNextFolaw", nv);
+                                    jid = _isInserted.ToString();
+                                }
+                                else
+                                {
+                                    jid = (row.FindControl("lblJidF") as Label).Text;
+                                }
+
+                                nv11.Add("@Jid", jid);
                                 _isIGCodeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsIrrigationMenual", nv11);
                                 break;
                             }
