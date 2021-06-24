@@ -557,7 +557,7 @@ namespace Evo
                 nv.Add("@jid", (row.FindControl("lblJid") as Label).Text);
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
-                nv.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
+                nv.Add("@jobcode", "0");
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
 
             }
