@@ -201,6 +201,23 @@ namespace Evo
             }
         }
 
+
+        private string JobMainTray
+        {
+            get
+            {
+                if (ViewState["JobMainTray"] != null)
+                {
+                    return (string)ViewState["JobMainTray"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["JobMainTray"] = value;
+            }
+        }
+
         private string JobCode
         {
             get
@@ -232,6 +249,8 @@ namespace Evo
                 ViewState["FR_ID"] = value;
             }
         }
+
+
 
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -485,6 +504,7 @@ namespace Evo
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
                 //}
             }
+            JobMainTray = tray.ToString();
             txtTrays.Text = tray.ToString();
         }
 
@@ -516,13 +536,14 @@ namespace Evo
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
             }
-
+            txtTrays.Text = "";
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
             }
-            txtTrays.Text = (Convert.ToInt32(txtTrays.Text) + tray).ToString();
+
+            txtTrays.Text = (Convert.ToInt32(JobMainTray) + tray).ToString();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

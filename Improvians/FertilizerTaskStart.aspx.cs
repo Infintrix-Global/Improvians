@@ -366,6 +366,21 @@ namespace Evo
                 txtComments.Text = dt.Rows[0]["Comments"].ToString();
             }
         }
+        private string JobMainTray
+        {
+            get
+            {
+                if (ViewState["JobMainTray"] != null)
+                {
+                    return (string)ViewState["JobMainTray"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["JobMainTray"] = value;
+            }
+        }
 
         public void BindGridFerReq()
         {
@@ -388,6 +403,7 @@ namespace Evo
             {
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
             }
+            JobMainTray = tray.ToString();
             txtTrays.Text = tray.ToString();
         }
 
@@ -422,6 +438,7 @@ namespace Evo
                 gvJobHistory.DataBind();
             }
             decimal tray = 0;
+            txtTrays.Text = "";
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
@@ -430,7 +447,7 @@ namespace Evo
                 //}
 
             }
-            txtTrays.Text = (Convert.ToDecimal(txtTrays.Text) + tray).ToString();
+            txtTrays.Text = (Convert.ToDecimal(JobMainTray) + tray).ToString();
         }
 
         private string FR_ID

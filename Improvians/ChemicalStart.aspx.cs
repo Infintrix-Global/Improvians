@@ -333,6 +333,21 @@ namespace Evo
             ListBoxBenchesInHouse.DataValueField = "PositionCode";
             ListBoxBenchesInHouse.DataBind();
         }
+        private string JobMainTray
+        {
+            get
+            {
+                if (ViewState["JobMainTray"] != null)
+                {
+                    return (string)ViewState["JobMainTray"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["JobMainTray"] = value;
+            }
+        }
 
         public void BindGridFerReq()
         {
@@ -353,6 +368,7 @@ namespace Evo
             {
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
             }
+            JobMainTray = tray.ToString();
             txtTrays.Text = tray.ToString();
         }
 
@@ -382,7 +398,7 @@ namespace Evo
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
             }
-
+            txtTrays.Text = "";
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
@@ -392,7 +408,7 @@ namespace Evo
                 //}
 
             }
-            txtTrays.Text = (Convert.ToDecimal (txtTrays.Text)+ tray).ToString();
+            txtTrays.Text = (Convert.ToDecimal (JobMainTray) + tray).ToString();
 
         }
        
