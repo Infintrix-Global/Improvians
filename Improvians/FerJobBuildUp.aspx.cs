@@ -764,7 +764,7 @@ namespace Evo
                                     nv.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                                     nv.Add("@PlantDueDate", (row.FindControl("lblPlantDueDate") as Label).Text);
                                     nv.Add("@PlantReadyDate", (row.FindControl("lblPlantReadyDate") as Label).Text);
-
+                                    nv.Add("@Wo", (row.FindControl("lblGrowerputawayID") as Label).Text);
                                     _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_ManualNextFolaw", nv);
                                     jid = _isInserted.ToString();
                                 }
