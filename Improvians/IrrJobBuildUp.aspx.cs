@@ -504,9 +504,10 @@ namespace Evo
                 nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
                 nv.Add("@Role", ddlSupervisor.SelectedValue);
                 nv.Add("@ISAG", "0");
-                nv.Add("@jid", Jid);
+                nv.Add("@jid", (row.FindControl("lblJidF") as Label).Text);
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
+                nv.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
 
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
 
@@ -556,7 +557,7 @@ namespace Evo
                 nv.Add("@jid", (row.FindControl("lblJid") as Label).Text);
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
-
+                nv.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
 
             }
