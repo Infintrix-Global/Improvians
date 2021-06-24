@@ -175,7 +175,7 @@
                     </div>
                 </div>
             </asp:Panel>
-            <div class="portlet-body">
+            <div runat="server" id="VPantReady" class="portlet-body">
                 <h3 class="text-left dark_txt mb-2">Task Request Flow</h3>
 
                 <div class="data__table">

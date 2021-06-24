@@ -123,6 +123,8 @@ namespace Evo
             }
             else
             {
+                GridPlantComplition.DataSource = null;
+                GridPlantComplition.DataBind();
                 PanelComplitionDetsil.Visible = false;
             }
         }
@@ -144,7 +146,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
 
-            nv.Add("@TaskRequestKey", TaskRequestKey);
+          
             if (Request.QueryString["PRAID"] != "0")
             {
                 nv.Add("@Login", "0");
@@ -153,9 +155,29 @@ namespace Evo
             {
                 nv.Add("@Login", Session["LoginID"].ToString());
             }
+
+            if (TaskRequestKey == "")
+            {
+                nv.Add("@TaskRequestKey", "0");
+            }
+            else
+            {
+                nv.Add("@TaskRequestKey", TaskRequestKey);
+            }
+
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenPlantReadytViewStart1", nv);
-            GridViewDumpView.DataSource = dt;
-            GridViewDumpView.DataBind();
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                GridViewDumpView.DataSource = dt;
+                GridViewDumpView.DataBind();
+            }
+            else
+            {
+                VPantReady.Visible = false;
+                GridViewDumpView.DataSource = null;
+                GridViewDumpView.DataBind();
+            }
+
 
         }
         public void BindGridCropHealth(int Chid)
