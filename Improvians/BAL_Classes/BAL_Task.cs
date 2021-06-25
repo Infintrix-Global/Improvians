@@ -271,7 +271,7 @@ namespace Evo.BAL_Classes
                 strQuery = "Select GTS.jobcode,GTS.wo,0 as jid,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, MC.TraysMoved as Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode,GTS.plan_date,GTS.due_date" +
                             "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo inner join MoveCompletionDetails MC on MC.GrowerPutAwayId=GPD.GrowerPutAwayId " +
 
-                            "where GPD.IsActive=0 ";
+                            "where GPD.IsActive=0  and GTS.IsMain ='' ";
                 if (!string.IsNullOrEmpty(FacilityLocation))
                 {
                     strQuery += " and  FacilityID ='" + FacilityLocation + "'";
@@ -310,8 +310,8 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, GPD.Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode,'0' as jid " +
-                            "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo " +
+                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID,MC.TraysMoved as Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode,'0' as jid " +
+                            "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo inner join MoveCompletionDetails MC on MC.GrowerPutAwayId=GPD.GrowerPutAwayId " +
 
                             "where GPD.IsActive=0 ";
                 if (!string.IsNullOrEmpty(FacilityLocation))

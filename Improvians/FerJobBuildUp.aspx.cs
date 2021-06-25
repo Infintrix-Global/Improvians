@@ -201,6 +201,23 @@ namespace Evo
             }
         }
 
+
+        private string JobMainTray
+        {
+            get
+            {
+                if (ViewState["JobMainTray"] != null)
+                {
+                    return (string)ViewState["JobMainTray"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["JobMainTray"] = value;
+            }
+        }
+
         private string JobCode
         {
             get
@@ -232,6 +249,8 @@ namespace Evo
                 ViewState["FR_ID"] = value;
             }
         }
+
+
 
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -485,6 +504,7 @@ namespace Evo
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
                 //}
             }
+            JobMainTray = tray.ToString();
             txtTrays.Text = tray.ToString();
         }
 
@@ -516,13 +536,14 @@ namespace Evo
                 gvJobHistory.DataSource = dt;
                 gvJobHistory.DataBind();
             }
-
+            txtTrays.Text = "";
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
             }
-            txtTrays.Text = (Convert.ToInt32(txtTrays.Text) + tray).ToString();
+
+            txtTrays.Text = (Convert.ToInt32(JobMainTray) + tray).ToString();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -610,7 +631,7 @@ namespace Evo
 
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
-               
+
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
@@ -724,11 +745,16 @@ namespace Evo
 
                             if (ReSetSprayDate == "" || DateTime.Parse(FertilizationDate) >= DateTime.Parse(ReSetSprayDate))
                             {
+
+
+                                string WONo = (row.FindControl("lblwo") as Label).Text;
+                                string jid = "";
                                 FertilizationDate = FertilizationDate;
+
                                 NameValueCollection nv11 = new NameValueCollection();
-                                nv11.Add("@GrowerPutAwayId", "");
-                                nv11.Add("@wo", "");
-                                nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
+                                nv11.Add("@GrowerPutAwayId", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                                nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);
+                              
                                 nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
                                 nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
                                 nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
@@ -741,6 +767,35 @@ namespace Evo
                                 nv11.Add("@ID", "");
                                 nv11.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
                                 nv11.Add("@DateCountNo", DateCountNo);
+
+                                if (WONo != "")
+                                {
+                                    NameValueCollection nv = new NameValueCollection();
+                                    // nv.Add("@jid", _isInserted.ToString());
+
+                                    nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
+                                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                                    nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
+                                    nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                                    nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                                    nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
+                                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                                    nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
+                                    nv.Add("@germcount", "");
+                                    nv.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
+                                    nv.Add("@PlantDueDate", (row.FindControl("lblPlantDueDate") as Label).Text);
+                                    nv.Add("@PlantReadyDate", (row.FindControl("lblPlantReadyDate") as Label).Text);
+                                    nv.Add("@Wo", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                                    _isInserted = objCommon.GetDataExecuteScaler("SP_Addgti_jobs_Seeding_Plan_ManualNextFolaw", nv);
+                                    jid = _isInserted.ToString();
+                                }
+                                else
+                                {
+                                    jid = (row.FindControl("lblJidF") as Label).Text;
+                                }
+
+                                nv11.Add("@Jid", jid);
 
                                 _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsFertilizationMenual", nv11);
 
@@ -803,8 +858,8 @@ namespace Evo
                             {
                                 FertilizationDate = FertilizationDate;
                                 NameValueCollection nv11 = new NameValueCollection();
-                                nv11.Add("@GrowerPutAwayId", "");
-                                nv11.Add("@wo", "");
+                                nv11.Add("@GrowerPutAwayId", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                                nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);
                                 nv11.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
                                 nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
                                 nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);

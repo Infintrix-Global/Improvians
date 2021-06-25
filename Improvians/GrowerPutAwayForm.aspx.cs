@@ -645,7 +645,8 @@ namespace Evo
                             foreach (DataRow row in dtFez.Rows)
                             {
                                 Fcount++;
-                                string AD = row[col].ToString().Replace("\u0002", "");
+                                //  string AD = row[col].ToString().Replace("\u0002", "");
+                                string AD = row[col].ToString();
 
                                 FertilizationDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(AD))).ToString();
 
@@ -699,7 +700,8 @@ namespace Evo
                             foreach (DataRow row in dtChemical.Rows)
                             {
                                 Ccount++;
-                                string FDay = row[col].ToString().Replace("\u0002", "");
+                                // string FDay = row[col].ToString().Replace("\u0002", "");
+                                string FDay = row[col].ToString();
                                 ChemicalDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(FDay))).ToString();
                                 string TodatDate;
                                 string ReSetChemicalDate = "";
@@ -747,7 +749,10 @@ namespace Evo
                             foreach (DataRow row in dtISD.Rows)
                             {
                                 Irrcount++;
-                                string IDay = row[col].ToString().Replace("\u0002", "");
+                                //string IDay = row[col].ToString().Replace("\u0002", "");
+
+                                string IDay = row[col].ToString();
+
                                 IrrigateDate = (Convert.ToDateTime(lblSeedDate.Text).AddDays(Convert.ToInt32(IDay))).ToString();
 
                                 string TodatDate1;

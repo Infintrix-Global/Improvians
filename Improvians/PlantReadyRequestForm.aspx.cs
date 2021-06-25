@@ -523,7 +523,7 @@ namespace Evo
                     nv.Add("@Itemdesc", "");
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@ChId", "0");
-                    nv.Add("@wo", "");
+                    nv.Add("@wo", lblGrowerID.Text);
                     nv.Add("@Comments", txtPlantComments.Text.Trim());
                     nv.Add("@PlantDate", txtPlantDate.Text);
                     nv.Add("@Role", Session["Role"].ToString());

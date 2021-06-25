@@ -45,6 +45,8 @@
                                     <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblJidF" runat="server" Text='<%# Eval("jid")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
+                                     <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate")  %>' Visible="false"></asp:Label>
+                                    <asp:Label ID="lblPlantReadyDate" runat="server" Text='<%# Eval("PlantReadyDate")  %>' Visible="false"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
