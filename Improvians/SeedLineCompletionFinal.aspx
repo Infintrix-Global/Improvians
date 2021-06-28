@@ -20,8 +20,8 @@
         <h2 class="head__title-icon mb-4">Seedline Planner Task Completion Form</h2>
 
         <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
-       
-        <asp:GridView ID="gvGerm" runat="server" AllowPaging="True"  AutoGenerateColumns="False"
+
+        <asp:GridView ID="gvGerm" runat="server" AllowPaging="True" AutoGenerateColumns="False"
             AllowSorting="true" PageSize="10" OnRowDataBound="gvGerm_RowDataBound"
             GridLines="None"
             ShowHeaderWhenEmpty="True" Width="100%">
@@ -102,7 +102,7 @@
                                 <asp:Label ID="lblJobID" runat="server" Visible="false"></asp:Label>
 
                                 <asp:Label ID="lblduedate" runat="server" Visible="false"></asp:Label>
-                                
+
                                 <asp:Label ID="lblSeedingDate" runat="server" Visible="false"></asp:Label>
                             </h4>
                         </div>
@@ -151,68 +151,69 @@
                             <label class="d-block">No Of Trays To Be Seeded</label>
                             <asp:Label ID="lblTrays" runat="server" Visible="false"></asp:Label>
                             <asp:Label ID="txtTrays" class="pt-2" runat="server" Text=""></asp:Label>
-                           
+
                         </div>
 
                         <div class="col-12 mt-3">
-                            <h4 class="mb-1">Seed Lot Usage: <asp:Label ID="lblTraySize" runat="server" Visible="false"></asp:Label></h4>
+                            <h4 class="mb-1">Seed Lot Usage:
+                                <asp:Label ID="lblTraySize" runat="server" Visible="false"></asp:Label></h4>
 
-                            <h6 class="mb-2">
-                                NO. OF SEEDS REQUIRED TO FULFILL ORDER:
+                            <h6 class="mb-2">NO. OF SEEDS REQUIRED TO FULFILL ORDER:
                                 <asp:Label ID="lblSeedRequired" runat="server"></asp:Label>
                             </h6>
                         </div>
-                        
+
                         <div class="col-12 my-3">
                             <div class="data__table">
-                                <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped"
+                                <asp:GridView ID="gvDetails" runat="server" AutoGenerateColumns="false" class="striped" ShowFooter="true"
                                     GridLines="None" OnRowDataBound="gvDetails_RowDataBound" OnRowDeleting="gvDetails_RowDeleting"
                                     ShowHeaderWhenEmpty="True">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="100">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblRowNumber" runat="server" Text="<%# Container.DataItemIndex + 1 %>" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+
+                                      <asp:BoundField DataField="RowNumber" HeaderText="NO." />
                                         <asp:TemplateField HeaderText="Seedlot">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLotName" Text='<%# Eval("l2")  %>' runat="server"></asp:Label>
+                                                <asp:HiddenField ID="hdnWOEmployeeID" runat="server" Value='<%# Eval("ID")%>'></asp:HiddenField>
+                                                <%-- <asp:Label ID="lblLotName" Text='<%# Eval("l2")  %>' runat="server"></asp:Label>--%>
+                                                <asp:TextBox ID="txtSeedlot" Text='<%# Eval("seedLot")  %>' class="input__control" runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="# of Seed">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblactualseed" Text='<%# Eval("QTY","{0:####}")  %>' runat="server"></asp:Label>
+                                                <%--     <asp:Label ID="lblactualseed" Text='<%# Eval("QTY","{0:####}")  %>' runat="server"></asp:Label>--%>
+                                                <asp:TextBox ID="txtSeed" Text='<%# Eval("SeedLotID","{0:####}")  %>' class="input__control" runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
 
                                         <asp:TemplateField HeaderText="Actual # of tray Seeded">
                                             <ItemTemplate>
                                                 <%--<asp:Label ID="lblactualseed" Text='<%# Bind("#ActualTray")  %>' runat="server" ></asp:Label>--%>
-                                                <asp:TextBox ID="txtActualTray" class="input__control" Text="" runat="server" AutoPostBack="true" OnTextChanged="txtActualTray_TextChanged"></asp:TextBox>
+                                                <asp:TextBox ID="txtActualTray" class="input__control" Text='<%# Eval("NoOftray")  %>' runat="server" AutoPostBack="true" OnTextChanged="txtActualTray_TextChanged"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Calculated # of Seed">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSeed" runat="server" Text=""></asp:Label>
+                                                <asp:Label ID="lblSeed" runat="server" Text='<%# Eval("CalculatedSeed")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        
+
                                         <asp:TemplateField HeaderStyle-Width="18%" HeaderText="Initial Seed Lot Weight">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtInitialSeedLotWeightLB" Width="90px" class="input__control" placeholder="Lb"  runat="server" Text=""></asp:TextBox>
-                                                <asp:TextBox ID="txtInitialSeedLotWeightOZ" Width="90px" class="input__control" placeholder="Oz"  runat="server" Text=""></asp:TextBox>
+                                                <asp:TextBox ID="txtInitialSeedLotWeightLB" Width="90px" class="input__control" placeholder="Lb" runat="server" Text='<%# Eval("InitialSeedLotWeightLB")  %>'></asp:TextBox>
+                                                <asp:TextBox ID="txtInitialSeedLotWeightOZ" Width="90px" class="input__control" placeholder="Oz" runat="server" Text='<%# Eval("InitialSeedLotWeightOZ")  %>'></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderStyle-Width="18%" HeaderText="Final Seed Lot Weight">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtFinalSeedLotWeightLB" Width="90px" class="input__control" runat="server" placeholder="Lb" Text=""></asp:TextBox>
-                                                  <asp:TextBox ID="txtFinalSeedLotWeightOZ" Width="90px" class="input__control" runat="server" placeholder="Oz" Text=""></asp:TextBox>
+                                                <asp:TextBox ID="txtFinalSeedLotWeightLB" Width="90px" class="input__control" runat="server" placeholder="Lb" Text='<%# Eval("FinalSeedLotWeightLB")  %>'></asp:TextBox>
+                                                <asp:TextBox ID="txtFinalSeedLotWeightOZ" Width="90px" class="input__control" runat="server" placeholder="Oz" Text='<%# Eval("FinalSeedLotWeightOZ")  %>'></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                       <%--  <asp:TemplateField HeaderText="Unit">
+                                        <%--  <asp:TemplateField HeaderText="Unit">
                                             <ItemTemplate>
                                                  <asp:DropDownList ID="ddlUnit" runat="server" class="custom__dropdown robotomd">
                                                     <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
@@ -231,7 +232,7 @@
                                                     <asp:ListItem Text="Misses" Value="Misses"></asp:ListItem>
                                                     <asp:ListItem Text="Bad Quality Seed " Value="Bad Quality Seed "></asp:ListItem>
                                                 </asp:DropDownList>
-
+                                                 <asp:Label ID="lblLotComments" Visible="false" runat="server" Text='<%# Eval("LotComments")  %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -240,6 +241,9 @@
                                                 <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action" />
 
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Button ID="ButtonAdd" OnClick="ButtonAdd_Click" runat="server" ValidationGroup="e" CausesValidation="false" Text="Add New" CssClass="bttn bttn-primary bttn-action w-auto" />
+                                            </FooterTemplate>
                                         </asp:TemplateField>
                                     </Columns>
                                     <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -251,7 +255,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <h4 class="pt-3">Seeding Details:</h4>
 
                     <div class="row">
@@ -291,6 +295,9 @@
                                 <asp:ListItem Text="Too much Perlite" Value="Too much Perlite"></asp:ListItem>
                                 <asp:ListItem Text="Extra fine Perlite" Value="Extra fine Perlite"></asp:ListItem>
                             </asp:DropDownList>
+
+
+                             
                         </div>
 
                         <div class="col-12 mt-3">

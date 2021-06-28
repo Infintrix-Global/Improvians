@@ -35,6 +35,10 @@ namespace Evo
                     ICode = Request.QueryString["ICode"].ToString();
                 }
 
+                if (Request.QueryString["AssignedBy"] != null)
+                {
+                    AssignedBy = Request.QueryString["AssignedBy"].ToString();
+                }
                 BenchUp = "'" + Bench + "'";
 
                 if (Request.QueryString["TaskRequestKey"] != null)
@@ -63,6 +67,22 @@ namespace Evo
             set
             {
                 ViewState["BenchUp"] = value;
+            }
+        }
+
+        private string AssignedBy
+        {
+            get
+            {
+                if (ViewState["AssignedBy"] != null)
+                {
+                    return (string)ViewState["AssignedBy"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["AssignedBy"] = value;
             }
         }
         private string TaskRequestKey
@@ -564,7 +584,10 @@ namespace Evo
 
           
             objTask.UpdateIsActiveFerRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
-            AddJobNextDate();
+            if (AssignedBy == "System")
+            {
+                AddJobNextDate();
+            }
             string url = "";
             if (Session["Role"].ToString() == "1")
             {

@@ -48,6 +48,12 @@ namespace Evo
                     TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
                 }
 
+                if (Request.QueryString["AssignedBy"] != null)
+                {
+                    AssignedBy = Request.QueryString["AssignedBy"].ToString();
+                }
+
+                
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
 
@@ -78,6 +84,23 @@ namespace Evo
             }
         }
 
+        private string AssignedBy
+        {
+            get
+            {
+                if (ViewState["AssignedBy"] != null)
+                {
+                    return (string)ViewState["AssignedBy"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["AssignedBy"] = value;
+            }
+        }
+
+        
 
         private string TaskRequestKey
         {
@@ -667,7 +690,11 @@ namespace Evo
             //  objTask.UpdateIsActiveDatat(BenchUp);
 
             objTask.UpdateIsActiveFerRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
-            AddJobNextDate();
+         
+            if(AssignedBy== "System")
+            { 
+                AddJobNextDate();
+            }
             string url = "";
             if (Session["Role"].ToString() == "1")
             {

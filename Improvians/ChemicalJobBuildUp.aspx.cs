@@ -47,6 +47,11 @@ namespace Evo
                     StartButton = Request.QueryString["Start"].ToString();
                 }
 
+                if (Request.QueryString["AssignedBy"] != null)
+                {
+                    AssignedBy = Request.QueryString["AssignedBy"].ToString();
+                }
+
                 if (Request.QueryString["jobCode"] != null)
                 {
                     JobCode = Request.QueryString["jobCode"].ToString();
@@ -74,6 +79,21 @@ namespace Evo
             set
             {
                 ViewState["BenchUp"] = value;
+            }
+        }
+        private string AssignedBy
+        {
+            get
+            {
+                if (ViewState["AssignedBy"] != null)
+                {
+                    return (string)ViewState["AssignedBy"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["AssignedBy"] = value;
             }
         }
 
@@ -586,7 +606,10 @@ namespace Evo
             objTask.UpdateIsActiveChemicalRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
             //    "'" + Bench + "'"
 
-            AddJobNextDate();
+            if (AssignedBy == "System")
+            {
+                AddJobNextDate();
+            }
             Evo.BAL_Classes.General objGeneral = new General();
             objGeneral.SendMessage(int.Parse(ddlsupervisor.SelectedValue), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
             string url = "";

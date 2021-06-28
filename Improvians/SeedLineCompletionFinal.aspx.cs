@@ -20,8 +20,8 @@ namespace Evo
         BAL_Task objTask = new BAL_Task();
         protected void Page_Load(object sender, EventArgs e)
         {
+          
 
-           
             if (!IsPostBack)
             {
                 //BindFacility();
@@ -185,9 +185,9 @@ namespace Evo
                     {
 
 
-                        string ID = (row.Cells[0].FindControl("lblLotName") as Label).Text;
+                        string ID = (row.Cells[0].FindControl("txtSeedlot") as TextBox).Text;
                         string ActualTray = (row.Cells[2].FindControl("txtActualTray") as TextBox).Text;
-                        string SeedNo = (row.Cells[3].FindControl("lblSeed") as Label).Text;
+                        string SeedNo = (row.Cells[3].FindControl("txtSeed") as TextBox).Text;
                         //  string Type = (row.Cells[4].FindControl("ddlType") as DropDownList).Text;
                         //  string Partial = (row.Cells[5].FindControl("txtPartial") as TextBox).Text;
                         string InitialSeedLotWeightLb = (row.FindControl("txtInitialSeedLotWeightLB") as TextBox).Text;
@@ -284,9 +284,22 @@ namespace Evo
 
         public void BindGridDetailsNew()
         {
+            List<SeedLineTrayDetails> objinvoice = new List<SeedLineTrayDetails>();
             dtTrays = objCom.GetSeedLot(lblJobID.Text);
 
-            gvDetails.DataSource = dtTrays;
+
+            if (dtTrays != null && dtTrays.Rows.Count > 0)
+            {
+                // AddGrowerput(ref objinvoice, 1, "", "", "", "", "", "", "", "", "");
+                for (int i = 0; i < dtTrays.Rows.Count; i++)
+                {
+                    AddGrowerput(ref objinvoice, 1, Convert.ToDecimal(dtTrays.Rows[i]["QTY"]).ToString("0.00"), dtTrays.Rows[i]["l2"].ToString(), "", "", "", "", "", "", "");
+                }
+            }
+            
+
+
+            gvDetails.DataSource = objinvoice;
             gvDetails.DataBind();
         }
 
@@ -361,20 +374,95 @@ namespace Evo
         //    txtSeedsAllocated.Focus();
         //}
 
-        private void AddGrowerput(ref List<SeedLineTrayDetails> objGP, string seedLotID, string seedLot, string ActualSeed, string NoOfTray, string Seed, string type, string LeftOver)
+
+        private void AddGrowerPutRow(bool AddBlankRow)
+        {
+            try
+            {
+                string ddlLotComments = "", hdnWOEmployeeIDVal = "", SupervisorID;
+                string MainId = "", LocationId = "";
+                string SlotPositionStart = "", SlotPositionEnd = "";
+                List<SeedLineTrayDetails> objinvoice = new List<SeedLineTrayDetails>();
+            
+                foreach (GridViewRow item in gvDetails.Rows)
+                {
+                    hdnWOEmployeeIDVal = ((HiddenField)item.FindControl("hdnWOEmployeeID")).Value;
+
+                   
+                    ddlLotComments = ((DropDownList)item.FindControl("ddlLotComments")).SelectedValue;
+
+                    TextBox txtSeedlot = (TextBox)item.FindControl("txtSeedlot");
+                    TextBox txtSeed = (TextBox)item.FindControl("txtSeed");
+                    TextBox txtActualTray = (TextBox)item.FindControl("txtActualTray");
+
+                    Label lblSeed = (Label)item.FindControl("lblSeed");
+                    TextBox txtInitialSeedLotWeightLB = (TextBox)item.FindControl("txtInitialSeedLotWeightLB");
+                    TextBox txtInitialSeedLotWeightOZ = (TextBox)item.FindControl("txtInitialSeedLotWeightOZ");
+                    TextBox txtFinalSeedLotWeightLB = (TextBox)item.FindControl("txtFinalSeedLotWeightLB");
+                    TextBox txtFinalSeedLotWeightOZ = (TextBox)item.FindControl("txtFinalSeedLotWeightOZ");
+                  
+
+                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), txtSeed.Text, txtSeedlot.Text, txtActualTray.Text, lblSeed.Text, txtInitialSeedLotWeightLB.Text, txtInitialSeedLotWeightOZ.Text, txtFinalSeedLotWeightLB.Text, txtFinalSeedLotWeightOZ.Text, ddlLotComments);
+                }
+                if (AddBlankRow)
+                {
+                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), "", "", "", "", "", "", "", "", "");
+                    //dtTrays = objCom.GetSeedLot(lblJobID.Text);
+                    //if(dtTrays !=null && dtTrays.Rows.Count>0)
+                    //{
+                    //    AddGrowerput(ref objinvoice, 1, "", "", "", "", "", "", "", "", "");
+                    //}
+                    //{
+                      
+                    //}
+                   
+                }
+                GrowerPutData = objinvoice;
+                gvDetails.DataSource = objinvoice;
+                gvDetails.DataBind();
+                ViewState["Data"] = objinvoice;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
+
+
+
+        private void AddGrowerput(ref List<SeedLineTrayDetails> objGP, int ID, string seedLotID, string seedLot, string ActualSeed, string CalculatedSeed, string InitialSeedLotWeightLB, string InitialSeedLotWeightOZ,string FinalSeedLotWeightLB, string FinalSeedLotWeightOZ, string LotComments)
         {
             SeedLineTrayDetails objInv = new SeedLineTrayDetails();
-            objInv.SeedLot = seedLot;
+
+            objInv.ID = ID;
             objInv.RowNumber = objGP.Count + 1;
+            objInv.SeedLot = seedLot;
             objInv.SeedLotID = seedLotID;
             objInv.ActualSeed = ActualSeed;
-            objInv.Type = type;
-            objInv.LeftOver = LeftOver;
-            objInv.Seed = Seed;
-            objInv.NoOftray = NoOfTray;
+          
+            objInv.InitialSeedLotWeightLB = InitialSeedLotWeightLB;
+            objInv.InitialSeedLotWeightOZ = InitialSeedLotWeightOZ;
+            objInv.FinalSeedLotWeightLB = FinalSeedLotWeightLB;
+            objInv.FinalSeedLotWeightOZ = FinalSeedLotWeightOZ;
+
+            objInv.LotComments = LotComments;
+          //  objInv.NoOftray = NoOfTray;
+            objInv.CalculatedSeed = CalculatedSeed;
+
             objGP.Add(objInv);
 
-            ViewState["Growerput"] = objGP;
+
+        //     public string CalculatedSeed { get; set; }
+        //public string InitialSeedLotWeightLB { get; set; }
+        //public string InitialSeedLotWeightOZ { get; set; }
+        //public string FinalSeedLotWeightLB { get; set; }
+        //public string FinalSeedLotWeightOZ { get; set; }
+        //public string LotComments { get; set; }
+
+
+        ViewState["Growerput"] = objGP;
         }
 
 
@@ -522,6 +610,12 @@ namespace Evo
             }
         }
 
+        protected void ButtonAdd_Click(object sender, EventArgs e)
+        {
+            AddGrowerPutRow(true);
+
+        }
+
         //protected void gvDetails_RowDataBound(object sender, GridViewRowEventArgs e)
         //{
         //    if (e.Row.RowType == DataControlRowType.DataRow)
@@ -549,4 +643,12 @@ public class SeedLineTrayDetails
     public string Type { get; set; }
 
     public string LeftOver { get; set; }
+
+    public string CalculatedSeed { get; set; }
+    public string InitialSeedLotWeightLB { get; set; }
+    public string InitialSeedLotWeightOZ { get; set; }
+    public string FinalSeedLotWeightLB { get; set; }
+    public string FinalSeedLotWeightOZ { get; set; }
+    public string LotComments { get; set; }
+
 }

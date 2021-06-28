@@ -451,21 +451,20 @@ namespace Evo
                 //nv.Add("@wo", WO);
                 //nv.Add("@mode", "4");
 
-                NameValueCollection nv = new NameValueCollection();
-                nv.Add("@OperatorID", Session["LoginID"].ToString());
-                nv.Add("@Notes", "");
-                nv.Add("@PRID", PRID);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@PlantExpirationDate", "");
+                //NameValueCollection nv = new NameValueCollection();
+                //nv.Add("@OperatorID", Session["LoginID"].ToString());
+                //nv.Add("@Notes", "");
+                //nv.Add("@PRID", PRID);
+                //nv.Add("@LoginID", Session["LoginID"].ToString());
+                //nv.Add("@PlantExpirationDate", "");
 
-                long result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignmentNew", nv);
+                //long result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignmentNew", nv);
 
                 //  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
 
-                if (result > 0)
-                {
-                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}&PRID={2}&IsF={3}&TaskRequestKey={4}", result, ChId, PRID, 0, TaskRequestKey));
-                }
+                
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&Chid={1}&PRID={2}&IsF={3}&TaskRequestKey={4}", 0, ChId, PRID, 0, TaskRequestKey));
+                
             }
         }
 

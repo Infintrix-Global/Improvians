@@ -43,6 +43,12 @@ namespace Evo
                 {
                     JobCode = Request.QueryString["jobCode"].ToString();
                 }
+
+                if (Request.QueryString["AssignedBy"] != null)
+                {
+                    AssignedBy = Request.QueryString["AssignedBy"].ToString();
+                }
+
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
                 BenchUp = "'" + Bench + "'";
@@ -67,6 +73,24 @@ namespace Evo
             set
             {
                 ViewState["BenchUp"] = value;
+            }
+        }
+
+
+
+        private string AssignedBy
+        {
+            get
+            {
+                if (ViewState["AssignedBy"] != null)
+                {
+                    return (string)ViewState["AssignedBy"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["AssignedBy"] = value;
             }
         }
         public void BindGridFerReqView(string Foce)
@@ -504,7 +528,10 @@ namespace Evo
             //Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddChemicalRequestMenualUpdate", nv123);
 
             objTask.UpdateIsActiveChemicalRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
-            AddJobNextDate();
+            if (AssignedBy == "System")
+            {
+                AddJobNextDate();
+            }
             string url = "";
             if (Session["Role"].ToString() == "1")
             {

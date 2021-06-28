@@ -466,8 +466,9 @@ namespace Evo
                 string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
                 string CCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
                 string TaskRequestKey = gvFer.DataKeys[rowIndex].Values[4].ToString();
+                string AssignedBy = gvFer.DataKeys[rowIndex].Values[5].ToString();
                 //  Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1},&CCode={2}", BatchLocation, jobCode, CCode));
-                Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestKey={3}", BatchLocation, jobCode, CCode, TaskRequestKey));
+                Response.Redirect(String.Format("~/ChemicalJobBuildUp.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestKey={3}&AssignedBy={4}", BatchLocation, jobCode, CCode, TaskRequestKey, AssignedBy));
             }
 
             if (e.CommandName == "GStart")
@@ -477,8 +478,8 @@ namespace Evo
                 string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
                 string CCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
                 string TaskRequestKey = gvFer.DataKeys[rowIndex].Values[4].ToString();
-
-                Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestKey={3}", BatchLocation, jobCode, CCode, TaskRequestKey));
+                string AssignedBy = gvFer.DataKeys[rowIndex].Values[5].ToString();
+                Response.Redirect(String.Format("~/ChemicalStart.aspx?Bench={0}&jobCode={1}&CCode={2}&TaskRequestKey={3}&AssignedBy={4}", BatchLocation, jobCode, CCode, TaskRequestKey, AssignedBy));
             }
         }
 

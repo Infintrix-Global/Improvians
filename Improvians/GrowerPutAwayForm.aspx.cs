@@ -404,21 +404,21 @@ namespace Evo
                 ddlSupervisor.SelectedValue = lblSupervisor.Text;
                 // Fid += "'" + ddlMain.SelectedValue + "',";
 
-                for (var i = 0; i < 54; i++)
-                {
-                    ListItem item = new ListItem();
-                    item.Text = i.ToString();
-                    item.Value = i.ToString();
-                    ddlSlotPositionStart.Items.Add(item);
-                }
+                //for (double i = 0.5; i < 54; i+=0.5)
+                //{
+                //    ListItem item = new ListItem();
+                //    item.Text = i.ToString();
+                //    item.Value = i.ToString();
+                //    ddlSlotPositionStart.Items.Add(item);
+                //}
 
-                for (var i = 0; i < 54; i++)
-                {
-                    ListItem item = new ListItem();
-                    item.Text = i.ToString();
-                    item.Value = i.ToString();
-                    ddlSlotPositionEnd.Items.Add(item);
-                }
+                //for (double i = 0.5; i < 54; i+=0.5)
+                //{
+                //    ListItem item = new ListItem();
+                //    item.Text = i.ToString();
+                //    item.Value = i.ToString();
+                //    ddlSlotPositionEnd.Items.Add(item);
+                //}
 
                 ddlSlotPositionStart.SelectedValue = txtSlotPositionStart.Text;
                 ddlSlotPositionEnd.SelectedValue = txtSlotPositionEnd.Text;
@@ -1054,11 +1054,17 @@ namespace Evo
                 {
                     int TotalTrays = 0;
                     decimal availableSlot = 0;
+
+
+
                     availableSlot = (Convert.ToDecimal(dt1.Rows[0]["SlotPositionEnd"]) - Convert.ToDecimal(dt1.Rows[0]["SlotPositionStart"])) +1;
                     //  decimal Pre = ((Convert .ToInt32(dt1.Rows[0]["SlotPositionEnd"]) - Convert .ToInt32 (dt1.Rows[0]["SlotPositionStart"])) * 100) / 52;
                     decimal  availableSlot1 = Convert.ToDecimal(availableSlot / 52);
                     decimal Pre = 1- availableSlot1;
                     decimal Pre1 = Pre * 100;
+
+
+
                     //  TotalTrays = (Convert.ToInt32(lblSeededTrays.Text) * Convert.ToInt32(dt1.Rows[0]["PerTrays"])) / 100;
 
                     //TotalTrays = Convert.ToInt32(((Convert.ToInt32(lblSeededTrays.Text) - Convert.ToInt32(lblRemaining.Text)) * Pre1) / 100);
@@ -1091,7 +1097,8 @@ namespace Evo
                     ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
 
 
-                    for (var i = 0; i < 53; i++)
+
+                    for (double i = 1; i < 53; i++)
                     {
                         ListItem item = new ListItem();
                         item.Text = i.ToString();
@@ -1099,7 +1106,7 @@ namespace Evo
                         ddlSlotPositionStart.Items.Add(item);
                     }
 
-                    for (var i = 0; i < 53; i++)
+                    for (double i = 1; i < 53; i++)
                     {
                         ListItem item = new ListItem();
                         item.Text = i.ToString();
@@ -1107,12 +1114,29 @@ namespace Evo
                         ddlSlotPositionEnd.Items.Add(item);
                     }
 
-                    ddlSlotPositionStart.SelectedValue = txtSlotPositionStart.Text;
-                    ddlSlotPositionEnd.SelectedValue = txtSlotPositionEnd.Text;
+                    //ddlSlotPositionStart.SelectedValue = txtSlotPositionStart.Text;
+                    //ddlSlotPositionEnd.SelectedValue = txtSlotPositionEnd.Text;
                     // AddGrowerPutRow(true);
                 }
                 else
                 {
+                    for (double i = 0.5; i < 54; i += 0.5)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+                        ddlSlotPositionStart.Items.Add(item);
+                    }
+
+                    for (double i = 0.5; i < 54; i += 0.5)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+                        ddlSlotPositionEnd.Items.Add(item);
+                    }
+
+
                     txtSlotPositionStart.Text = "";
                     txtSlotPositionEnd.Text = "";
 

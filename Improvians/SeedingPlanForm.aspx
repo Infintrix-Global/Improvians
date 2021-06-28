@@ -279,8 +279,6 @@
                                                     <asp:Label ID="lblCreateDate" Visible="false" runat="server" Text='<%# Eval("createon","{0:MM/dd/yyyy}") %>'></asp:Label>
                                                     <asp:Label ID="lbldue_date" Visible="false" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}") %>'></asp:Label>
 
-
-
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 

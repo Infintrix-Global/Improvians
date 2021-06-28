@@ -534,7 +534,8 @@ namespace Evo
                 string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
                 string FCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
                 string TaskRequestKey = gvFer.DataKeys[rowIndex].Values[4].ToString();
-                Response.Redirect(String.Format("~/FerJobBuildUp.aspx?Bench={0}&jobCode={1}&FCode={2}&TaskRequestKey={3}", BatchLocation, jobCode, FCode, TaskRequestKey));
+                string AssignedBy = gvFer.DataKeys[rowIndex].Values[5].ToString();
+                Response.Redirect(String.Format("~/FerJobBuildUp.aspx?Bench={0}&jobCode={1}&FCode={2}&TaskRequestKey={3}&AssignedBy={4}", BatchLocation, jobCode, FCode, TaskRequestKey, AssignedBy));
             }
 
             if (e.CommandName == "GStart")
@@ -544,8 +545,8 @@ namespace Evo
                 string jobCode = gvFer.DataKeys[rowIndex].Values[1].ToString();
                 string FCode = gvFer.DataKeys[rowIndex].Values[2].ToString();
                 string TaskRequestKey = gvFer.DataKeys[rowIndex].Values[4].ToString();
-
-                Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}&TaskRequestKey={3}", BatchLocation, jobCode, FCode, TaskRequestKey));
+                string AssignedBy = gvFer.DataKeys[rowIndex].Values[5].ToString();
+                Response.Redirect(String.Format("~/FertilizerTaskStart.aspx?Bench={0}&jobCode={1}&FCode={2}&TaskRequestKey={3}&AssignedBy={4}", BatchLocation, jobCode, FCode, TaskRequestKey, AssignedBy));
             }
         }
 

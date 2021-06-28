@@ -71,13 +71,32 @@ namespace Evo
                     BindGridCropHealthImage(Request.QueryString["Chid"].ToString());
                 }
                 BindPlantReady(Convert.ToInt32(Request.QueryString["PRID"]));
-
+                PRID = Request.QueryString["PRID"].ToString();
                 BindViewDetilas(Convert.ToInt32(Request.QueryString["PRID"]));
                 BindSupervisorList();
               
                 BindGridPalntReadyComplition(PRAID);
             }
         }
+
+
+
+        private string PRID
+        {
+            get
+            {
+                if (ViewState["PRID"] != null)
+                {
+                    return (string)ViewState["PRID"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["PRID"] = value;
+            }
+        }
+
 
         public void BindGridCropHealthImage(string ChId)
         {
@@ -219,7 +238,7 @@ namespace Evo
                 {
                     return (string)ViewState["PRAID"];
                 }
-                return "";
+                return "0";
             }
             set
             {
@@ -262,7 +281,7 @@ namespace Evo
             //  nv.Add("@OperatorID",Session["LoginID"].ToString());
             //   nv.Add("@Notes", txtNots.Text);
             //    nv.Add("@JobID", "");
-            nv.Add("@PRAID", PRAID);
+           
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@CropId", "");
             nv.Add("@UpdatedReadyDate", txtUpdatedReadyDate.Text);
@@ -270,8 +289,18 @@ namespace Evo
             nv.Add("@RootQuality", ddlRootQuality.SelectedItem.Text);
             nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
 
-            result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyCompletion", nv);
-
+            if (Request.QueryString["PRAID"].ToString() == "0")
+            {
+                nv.Add("@PRRID", PRID);
+                nv.Add("@Jid", lbljid.Text);
+                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyCompletionNew", nv);
+            }
+            else
+            {
+                nv.Add("@PRAID", PRAID);
+        
+                result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyCompletion", nv);
+            }
             GridViewRow row = gvPlantReady.Rows[0];
             var txtJobNo = (row.FindControl("lblID") as Label).Text;
             var txtBenchLocation = (row.FindControl("lblGreenHouse") as Label).Text;

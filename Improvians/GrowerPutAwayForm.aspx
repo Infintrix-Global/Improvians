@@ -213,7 +213,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="% Bench Occupancy" Visible="false" HeaderStyle-Width="190">
+                                     <asp:TemplateField HeaderText="% Bench Occupancy"  HeaderStyle-Width="190">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblperTrays" Width="130px"  Text='<%# Eval("PerTTrays")%>'  runat="server"></asp:Label>
@@ -229,7 +229,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                      <asp:TemplateField HeaderText="Slot Position Start" Visible="false" HeaderStyle-Width="190">
+                                      <asp:TemplateField HeaderText="Slot Position Start"  HeaderStyle-Width="190">
                                         <ItemTemplate>
                                                 <asp:DropDownList ID="ddlSlotPositionStart" class="custom__dropdown robotomd"  Width="150px" runat="server"></asp:DropDownList>
 
@@ -239,7 +239,7 @@
                                     </asp:TemplateField>
 
 
-                                      <asp:TemplateField HeaderText="Slot Position End" Visible="false" HeaderStyle-Width="190">
+                                      <asp:TemplateField HeaderText="Slot Position End"  HeaderStyle-Width="190">
                                         <ItemTemplate>
                                              <asp:DropDownList ID="ddlSlotPositionEnd" class="custom__dropdown robotomd"  Width="150px" runat="server"></asp:DropDownList>
 

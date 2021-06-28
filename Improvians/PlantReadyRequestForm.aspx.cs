@@ -532,32 +532,38 @@ namespace Evo
                     nv.Add("@TaskRequestKey", ViewState["tKey"].ToString());
 
 
-                    result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManuaCreateTaskStartNew", nv);
-                    NameValueCollection nv5 = new NameValueCollection();
+                    result = objCommon.GetDataExecuteScaler("SP_AddPlantReadyRequestManulStartTocompleted", nv);
+                    //NameValueCollection nv5 = new NameValueCollection();
 
-                    nv5.Add("@PRTA", result.ToString());
-                    DataTable dt = objCommon.GetDataTable("SP_GetPlantReadyTaskAssignmentSelect", nv5);
+                    //nv5.Add("@PRTA", result.ToString());
+                    //DataTable dt = objCommon.GetDataTable("SP_GetPlantReadyTaskAssignmentSelect", nv5);
 
-                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result.ToString(), dt.Rows[0]["PRID"].ToString()));
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&IsF={2}&TaskRequestKey={3}", 0, result,0, ViewState["tKey"].ToString()));
+
+
                 }
                 else
                 {
-                    NameValueCollection nv = new NameValueCollection();
-                    nv.Add("@OperatorID", Session["LoginID"].ToString());
-                    nv.Add("@Notes", "");
-                    nv.Add("@PRID", lblPRRId.Text);
-                    nv.Add("@LoginID", Session["LoginID"].ToString());
-                    nv.Add("@PlantExpirationDate", "");
+                    //NameValueCollection nv = new NameValueCollection();
+                    //nv.Add("@OperatorID", Session["LoginID"].ToString());
+                    //nv.Add("@Notes", "");
+                    //nv.Add("@PRID", lblPRRId.Text);
+                    //nv.Add("@LoginID", Session["LoginID"].ToString());
+                    //nv.Add("@PlantExpirationDate", "");
 
-                    long result1 = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignmentNew", nv);
+                    //long result1 = objCommon.GetDataExecuteScaler("SP_AddPlantReadyTaskAssignmentNew", nv);
 
-                    //  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
+                    ////  int result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyTaskAssignment", nv);
 
-                    if (result1 > 0)
-                    {
-                        Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result1, lblPRRId.Text));
-                        //Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result.ToString(), dt.Rows[0]["PRID"].ToString()));
-                    }
+                    //if (result1 > 0)
+                    //{
+                    //    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result1, lblPRRId.Text));
+                    //    //Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}", result.ToString(), dt.Rows[0]["PRID"].ToString()));
+                    //}
+
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&IsF={2}&TaskRequestKey={3}", 0, lblPRRId.Text, 0, ViewState["tKey"].ToString()));
+
+
                 }
             }
 
