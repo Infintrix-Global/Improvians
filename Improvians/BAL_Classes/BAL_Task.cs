@@ -595,7 +595,7 @@ namespace Evo.BAL_Classes
                 }
                 else
                 {
-                    strQuery = " update GrowerPutAwayDetailsFertilizationMenual set IsFertilize=2  where GreenHouseID in (" + BenchLocation + ") and  and FertilizeSeedDate <= GETDATE() ";
+                    strQuery = " update GrowerPutAwayDetailsFertilizationMenual set IsFertilize=2  where GreenHouseID in (" + BenchLocation + ") and   FertilizeSeedDate <= GETDATE() ";
                 }
 
 
