@@ -587,14 +587,17 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
+
+
                 if (RoleId == 1)
                 {
                     strQuery = " update GrowerPutAwayDetailsFertilizationMenual set IsFertilize=1  where GreenHouseID in (" + BenchLocation + ")";
                 }
                 else
                 {
-                    strQuery = " update GrowerPutAwayDetailsFertilizationMenual set IsFertilize=2  where GreenHouseID in (" + BenchLocation + ")";
+                    strQuery = " update GrowerPutAwayDetailsFertilizationMenual set IsFertilize=2  where GreenHouseID in (" + BenchLocation + ") and  and FertilizeSeedDate <= GETDATE() ";
                 }
+
 
                 objGeneral.GetExecuteNonQueryByCommand(strQuery);
             }
@@ -640,7 +643,7 @@ namespace Evo.BAL_Classes
                 }
                 else
                 {
-                    strQuery = " update GrowerPutAwayDetailsChemicalMenual set IsChemical=2  where GreenHouseID in (" + BenchLocation + ")";
+                    strQuery = " update GrowerPutAwayDetailsChemicalMenual set IsChemical=2  where GreenHouseID in (" + BenchLocation + ") and ChemicalSeedDate <= GETDATE() ";
                 }
 
                 objGeneral.GetExecuteNonQueryByCommand(strQuery);
@@ -660,7 +663,7 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
-                strQuery = " update GrowerPutAwayDetailsIrrigationMenual set ISIrrigation=1  where GreenHouseID in (" + BenchLocation + ")";
+                strQuery = " update GrowerPutAwayDetailsIrrigationMenual set ISIrrigation=1  where GreenHouseID in (" + BenchLocation + ") ";
 
 
                 objGeneral.GetExecuteNonQueryByCommand(strQuery);
@@ -686,7 +689,7 @@ namespace Evo.BAL_Classes
                 }
                 else
                 {
-                    strQuery = " update GrowerPutAwayDetailsIrrigationMenual set ISIrrigation=2  where GreenHouseID in (" + BenchLocation + ")";
+                    strQuery = " update GrowerPutAwayDetailsIrrigationMenual set ISIrrigation=2  where GreenHouseID in (" + BenchLocation + ") and IrrigateSeedDate <= GETDATE() ";
                 }
 
                 objGeneral.GetExecuteNonQueryByCommand(strQuery);

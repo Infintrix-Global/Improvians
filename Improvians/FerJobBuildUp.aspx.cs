@@ -689,12 +689,14 @@ namespace Evo
             //   Mresult12 = objCommon.GetDataInsertORUpdate("SP_AddFertilizerRequestMenualUpdate", nv123);
             //  objTask.UpdateIsActiveDatat(BenchUp);
 
+
             objTask.UpdateIsActiveFerRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
-         
-            if(AssignedBy== "System")
+            if (AssignedBy== "System")
             { 
                 AddJobNextDate();
+
             }
+          
             string url = "";
             if (Session["Role"].ToString() == "1")
             {

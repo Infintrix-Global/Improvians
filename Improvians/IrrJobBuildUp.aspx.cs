@@ -583,7 +583,7 @@ namespace Evo
             }
 
           
-            objTask.UpdateIsActiveFerRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
+            objTask.UpdateIsActiveIrrigationRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
             if (AssignedBy == "System")
             {
                 AddJobNextDate();
