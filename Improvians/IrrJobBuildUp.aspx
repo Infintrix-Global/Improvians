@@ -51,7 +51,11 @@
                                             <asp:Label ID="lblPlantReadyDate" runat="server" Text='<%# Eval("PlantReadyDate")  %>' Visible="false"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
+                                    <asp:TemplateField HeaderText="Customer" ItemStyle-Width="20%" HeaderStyle-CssClass="autostyle2">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblCustomer" runat="server" Text='<%# Eval("cname")  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="Labeitemno" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
@@ -80,7 +84,7 @@
 
                                     <asp:TemplateField HeaderText="Description" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
-                                            <asp:Label ID="Label13" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
+                                            <asp:Label ID="lblitemdescp1" runat="server" Text='<%# Eval("itemdescp")  %>'></asp:Label>
                                             <asp:Label ID="lblSeededDate1" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>

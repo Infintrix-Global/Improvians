@@ -644,14 +644,14 @@ namespace Evo
                                     NameValueCollection nv = new NameValueCollection();
                                     // nv.Add("@jid", _isInserted.ToString());
 
-                                    nv.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
-                                    nv.Add("@Item", (row.FindControl("lblitem") as Label).Text);
-                                    nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
+                                    nv.Add("@jobcode", (row.FindControl("lbljobID") as Label).Text);
+                                    nv.Add("@Item", (row.FindControl("Labeitemno") as Label).Text);
+                                    nv.Add("@Itemdesc", (row.FindControl("lblitemdescp1") as Label).Text);
                                     nv.Add("@Customer", (row.FindControl("lblCustomer") as Label).Text);
                                     nv.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                                     nv.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
                                     nv.Add("@TraySize", (row.FindControl("lblTraySize") as Label).Text);
-                                    nv.Add("@TotalTray", (row.FindControl("lblTotTray") as Label).Text);
+                                    nv.Add("@TotalTray", (row.FindControl("lbltotTray") as Label).Text);
                                     nv.Add("@Seeddate", (row.FindControl("lblSeededDate1") as Label).Text);
                                     nv.Add("@germcount", "");
                                     nv.Add("@GenusCode", (row.FindControl("lblGenusCode") as Label).Text);
