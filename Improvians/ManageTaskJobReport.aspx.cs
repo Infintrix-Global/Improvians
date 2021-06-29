@@ -321,6 +321,7 @@ namespace Evo
                 nvR.Add("@BenchLocation", BatchLocation);
                 nvR.Add("@JobNo", jobCode);
                 nvR.Add("@RequestType", TaskRequestType);
+                nv.Add("@TaskRequestKey", TaskRequestKey);
                 dtR = objCommon.GetDataTable("GetManageTaskJobHistoryjobViewDetsilsRequest", nvR);
 
                 if (dt != null && dt.Rows.Count > 0)

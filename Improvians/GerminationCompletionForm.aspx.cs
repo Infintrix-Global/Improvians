@@ -106,6 +106,7 @@ namespace Evo
 
         }
 
+
         public void BindGridGerm(int p)
         {
             DataTable dt = new DataTable();

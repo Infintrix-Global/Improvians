@@ -106,7 +106,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetTaskAssignmentChemicalView", nv);
             if (dt != null && dt.Rows.Count > 0)
             {
-                ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
+                //ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
                 ddlMethod.SelectedItem.Text = dt.Rows[0]["Method"].ToString();
                 txtComments.Text = dt.Rows[0]["Comments"].ToString();
             }
@@ -884,6 +884,33 @@ namespace Evo
             BindGridFerDetails("'" + Bench + "'");
             PanelBench.Visible = false;
             PanelBenchesInHouse.Visible = false;
+        }
+
+
+        private string getBenchLocation()
+        {
+            int c = 0;
+            string x = "";
+            string chkSelected = "";
+            foreach (ListItem item in ddlFertilizer.Items)
+            {
+                if (item.Selected)
+                {
+                    c = 1;
+                    x += item.Text + ",";
+                }
+            }
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
+            }
+            return chkSelected;
+        }
+
+
+        protected void ddlFertilizer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedValues = getBenchLocation();
         }
     }
 }
