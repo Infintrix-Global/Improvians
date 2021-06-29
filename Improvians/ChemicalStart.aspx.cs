@@ -102,7 +102,7 @@ namespace Evo
             dt = objCommon.GetDataTable("SP_GetTaskAssignmentChemicalView", nv);
             if (dt != null && dt.Rows.Count > 0)
             {
-                ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
+                //ddlFertilizer.SelectedItem.Text = dt.Rows[0]["Fertilizer"].ToString();
                 ddlMethod.SelectedItem.Text = dt.Rows[0]["Method"].ToString();
                 txtComments.Text = dt.Rows[0]["Comments"].ToString();
             }
@@ -520,7 +520,7 @@ namespace Evo
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtTrays, FR_ID, ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
+            objTask.AddChemicalRequestDetails(dtTrays, FR_ID,selectedChemicaValues, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
 
             //long Mresult12 = 0;
             //NameValueCollection nv123 = new NameValueCollection();
@@ -802,6 +802,47 @@ namespace Evo
             BindGridFerDetails("'" + Bench + "'");
             PanelBench.Visible = false;
             PanelBenchesInHouse.Visible = false;
+        }
+
+
+        private string getChemicalSelect()
+        {
+            int c = 0;
+            string x = "";
+            string chkSelected = "";
+            foreach (ListItem item in ddlFertilizer.Items)
+            {
+                if (item.Selected)
+                {
+                    c = 1;
+                    x += item.Text + ",";
+                }
+            }
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
+            }
+            return chkSelected;
+        }
+
+        private string selectedChemicaValues
+        {
+            get
+            {
+                if (ViewState["selectedChemicaValues"] != null)
+                {
+                    return (string)ViewState["selectedChemicaValues"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["selectedChemicaValues"] = value;
+            }
+        }
+        protected void ddlFertilizer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedChemicaValues = getChemicalSelect();
         }
     }
 }

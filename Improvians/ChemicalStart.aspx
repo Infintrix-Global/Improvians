@@ -232,7 +232,10 @@
                                 <asp:Label ID="lbltype" runat="server" Text="Chemical"></asp:Label>
                             </label>
 
-                            <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                           <%-- <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+
+                              <asp:ListBox ID="ddlFertilizer" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlFertilizer_SelectedIndexChanged"  runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                             <label class="d-block">Method</label>

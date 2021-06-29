@@ -614,7 +614,10 @@
                                         <asp:Label ID="lbltype" runat="server" Text="Chemical"></asp:Label>
                                     </label>
                                     <br />
-                                    <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                   <%-- <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+
+                                      <asp:ListBox ID="ddlChemical" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlChemical_SelectedIndexChanged"  runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+
                                 </div>
                                 <div class="col-lg-4 col-xl-3 mb-3">
                                     <label class="d-block">Method</label>

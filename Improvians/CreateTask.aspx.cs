@@ -1680,7 +1680,7 @@ namespace Evo
                     {
 
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                        objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), ddlChemical.SelectedItem.Text, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+                        objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), selectedChemicaValues, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
                         Batchlocation2 = Batchlocation;
                     }
                     objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
@@ -3354,6 +3354,48 @@ namespace Evo
         protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
         {
             BindGridFerReq("", txtSearchJobNo.Text);
+        }
+
+
+        private string getChemicalSelect()
+        {
+            int c = 0;
+            string x = "";
+            string chkSelected = "";
+            foreach (ListItem item in ddlChemical.Items)
+            {
+                if (item.Selected)
+                {
+                    c = 1;
+                    x += item.Text + ",";
+                }
+            }
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
+            }
+            return chkSelected;
+        }
+
+        private string selectedChemicaValues
+        {
+            get
+            {
+                if (ViewState["selectedChemicaValues"] != null)
+                {
+                    return (string)ViewState["selectedChemicaValues"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["selectedChemicaValues"] = value;
+            }
+        }
+
+        protected void ddlChemical_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedChemicaValues = getChemicalSelect();
         }
     }
 }

@@ -119,8 +119,8 @@ namespace Evo.BAL_Classes
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     objGeneral.ClearParameters();
-                    objGeneral.AddParameterWithValueToSQLCommand("@ChemicalId", FertilizationID);
-                    objGeneral.AddParameterWithValueToSQLCommand("@Fertilizer", dt.Rows[i]["Fertilizer"].ToString());
+                    objGeneral.AddParameterWithValueToSQLCommand("@ChemicalId", ChemicalIReqid);
+                    objGeneral.AddParameterWithValueToSQLCommand("@Fertilizer", FertilizationID);
                 
                     objGeneral.AddParameterWithValueToSQLCommand("@Tray", dt.Rows[i]["Tray"].ToString());
                     objGeneral.AddParameterWithValueToSQLCommand("@SQFT", dt.Rows[i]["SQFT"].ToString());

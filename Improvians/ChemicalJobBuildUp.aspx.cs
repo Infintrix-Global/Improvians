@@ -601,7 +601,7 @@ namespace Evo
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtTrays, resultRID.ToString(), ddlFertilizer.SelectedItem.Text, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
+            objTask.AddChemicalRequestDetails(dtTrays, resultRID.ToString(), selectedChemicaValues, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
 
             objTask.UpdateIsActiveChemicalRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
             //    "'" + Bench + "'"
@@ -887,7 +887,7 @@ namespace Evo
         }
 
 
-        private string getBenchLocation()
+        private string getChemicalSelect()
         {
             int c = 0;
             string x = "";
@@ -907,10 +907,25 @@ namespace Evo
             return chkSelected;
         }
 
+        private string selectedChemicaValues
+        {
+            get
+            {
+                if (ViewState["selectedChemicaValues"] != null)
+                {
+                    return (string)ViewState["selectedChemicaValues"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["selectedChemicaValues"] = value;
+            }
+        }
 
         protected void ddlFertilizer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedValues = getBenchLocation();
+                selectedChemicaValues = getChemicalSelect();
         }
     }
 }
