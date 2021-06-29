@@ -644,8 +644,6 @@ namespace Evo
 
 
 
-
-
                 result = objCommon.GetDataInsertORUpdate("SP_AddPlantReadyRequestNew", nv);
 
                 NameValueCollection nameValue = new NameValueCollection();

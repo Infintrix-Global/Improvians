@@ -80,6 +80,7 @@ namespace Evo
                 }
 
                 if (Request.QueryString["BatchLoc"] != null && Request.QueryString["JobCode"] != null)
+                
                 {
 
                     BindGridFerReq(Bench, "'" + JobCode + "'");

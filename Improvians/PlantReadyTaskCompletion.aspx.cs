@@ -288,7 +288,8 @@ namespace Evo
             nv.Add("@PlantExpirationDate", txtPlantExpirationDate.Text);
             nv.Add("@RootQuality", ddlRootQuality.SelectedItem.Text);
             nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
-
+            nv.Add("@Notes",txtComments.Text);
+            
             if (Request.QueryString["PRAID"].ToString() == "0")
             {
                 nv.Add("@PRRID", PRID);

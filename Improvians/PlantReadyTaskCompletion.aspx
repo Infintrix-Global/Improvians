@@ -8,7 +8,7 @@
 
         <div class="data__table">
             <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
-              <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="lbljid" Visible="false" runat="server" Text="Label"></asp:Label>
             <asp:GridView ID="gvPlantReady" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                 class="striped" AllowSorting="true"
                 GridLines="None" PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging"
@@ -73,7 +73,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-              
+
 
 
 
@@ -156,7 +156,7 @@
                     <div class="col-md-12">
                         <div class="portlet-body">
                             <div class="data__table">
-                                <asp:DataList ID="CropePhotos" runat="server"  BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
+                                <asp:DataList ID="CropePhotos" runat="server" BorderStyle="None" RepeatDirection="Horizontal" RepeatColumns="4">
                                     <ItemTemplate>
                                         <div>
 
@@ -245,21 +245,21 @@
                             GridLines="None"
                             ShowHeaderWhenEmpty="True" Width="100%">
                             <Columns>
-                                
-                                    <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
-                                        <ItemTemplate>
-                                            <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Completed By">
-                                        <ItemTemplate>
+                                <asp:TemplateField HeaderText="Sr. No." HeaderStyle-Width="10%">
+                                    <ItemTemplate>
+                                        <asp:Label ID="SrNo" runat="server" Text="<%#Container.DataItemIndex + 1%>"></asp:Label>
 
-                                            <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Completed By">
+                                    <ItemTemplate>
 
-                                        </ItemTemplate>
+                                        <asp:Label ID="lblCAassignedby" runat="server" Text='<%#Bind("AassignedTo") %>'></asp:Label>
 
-                                    </asp:TemplateField>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Updated Ready Date" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -370,10 +370,10 @@
 
                         </div>
 
-                        <%-- <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                                    <label class="d-block">Notes</label>
-                                    <asp:TextBox ID="txtNots" TextMode="MultiLine" class="w-100 input__control" runat="server"></asp:TextBox>
-                                </div>--%>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <label>Comments </label>
+                            <asp:TextBox ID="txtComments" TextMode="MultiLine" class="w-100 input__control" runat="server"></asp:TextBox>
+                        </div>
                     </div>
                     <br />
                     <div class="row">

@@ -271,7 +271,7 @@ namespace Evo.BAL_Classes
                 strQuery = "Select GTS.jobcode,GTS.wo,0 as jid,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID, MC.TraysMoved as Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode,GTS.plan_date,GTS.due_date" +
                             "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo inner join MoveCompletionDetails MC on MC.GrowerPutAwayId=GPD.GrowerPutAwayId " +
 
-                            "where GPD.IsActive=0  and GTS.IsMain ='' ";
+                            "where GPD.IsActive=0  ";
                 if (!string.IsNullOrEmpty(FacilityLocation))
                 {
                     strQuery += " and  FacilityID ='" + FacilityLocation + "'";
@@ -310,7 +310,7 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID,MC.TraysMoved as Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode,'0' as jid " +
+                strQuery = "Select GTS.jobcode,GTS.wo,GPD.GrowerPutAwayId,cname,GTS.itemdescp,GTS.itemno,GPD.FacilityID,GPD.GreenHouseID,MC.TraysMoved as Trays,GTS.TraySize,STC.SeededDate as SeededDate,GTS.GenusCode,0 as jid " +
                             "  from gti_jobs_seeds_plan GTS inner join SeedLineTaskCompletion STC on STC.wo=GTS.wo inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo inner join MoveCompletionDetails MC on MC.GrowerPutAwayId=GPD.GrowerPutAwayId " +
 
                             "where GPD.IsActive=0 ";
@@ -426,7 +426,7 @@ namespace Evo.BAL_Classes
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "Select GJSPM.jobcode,'0' as wo,GJSPM.jid,'0' as GrowerPutAwayId,GJSPM.cname,GJSPM.itemdescp,GJSPM.itemno,  " +
+                strQuery = "Select GJSPM.jobcode,'0' as wo,GJSPM.jid,0 as GrowerPutAwayId,GJSPM.cname,GJSPM.itemdescp,GJSPM.itemno,  " +
                             " GJSPM.loc_seedline as FacilityID,GJSPM.GreenHouseID, GJSPM.Trays,GJSPM.TraySize,GJSPM.SeedDate as SeededDate,GJSPM.GenusCode from [gti_jobs_seeds_plan_Manual] GJSPM where 1=1 ";
 
                 if (!string.IsNullOrEmpty(FacilityLocation))
