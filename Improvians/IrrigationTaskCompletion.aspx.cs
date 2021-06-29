@@ -23,7 +23,7 @@ namespace Evo
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 BindenchLocation();
                 BindgvIrrigation();
-                BindGridIrrDetailsViewReq();
+               
             }
         }
 
@@ -34,7 +34,7 @@ namespace Evo
             nv1.Add("@IrrigationCode", IrrigationCode);
             dt1 = objCommon.GetDataTable("SP_GetIrrigationRequestGreenHouseDetails", nv1);
 
-            // lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
+            lblBenchLocation.Text = dt1.Rows[0]["GreenHouseID"].ToString();
         }
 
         private string wo
@@ -69,18 +69,7 @@ namespace Evo
             }
         }
 
-        public void BindGridIrrDetailsViewReq()
-        {
-            DataTable dt = new DataTable();
-            NameValueCollection nv = new NameValueCollection();
-            nv.Add("@ICode", IrrigationCode);
-
-            dt = objCommon.GetDataTable("SP_GetIrrigationTaskAssignmentView", nv);
-
-            GridViewViewDetails.DataSource = dt;
-            GridViewViewDetails.DataBind();
-
-        }
+      
         public void BindgvIrrigation()
         {
             string ChId = "";
@@ -113,24 +102,9 @@ namespace Evo
             {
                 ChId = ChId;
             }
-            BindGridCropHealth(Convert.ToInt32(ChId));
+         
         }
-        public void BindGridCropHealth(int Chid)
-        {
-            DataTable dt1 = new DataTable();
-            NameValueCollection nv1 = new NameValueCollection();
-            nv1.Add("@Chid", Chid.ToString());
-            dt1 = objCommon.GetDataTable("SP_GetCropHealthReportSelect", nv1);
-            if (dt1 != null && dt1.Rows.Count > 0)
-            {
-                PanelCropHealth.Visible = true;
-                gvCropHealth.DataSource = dt1;
-                gvCropHealth.DataBind();
-                lblCommment.Text = dt1.Rows[0]["CropHealthCommit"].ToString();
-            }
-        }
-
-
+      
         protected void gvIrrigation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvIrrigation.PageIndex = e.NewPageIndex;

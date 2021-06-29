@@ -25,7 +25,7 @@
                                             <asp:HyperLink runat="server" NavigateUrl='<%# Eval("jobcode","~/JobReports.aspx?JobCode={0}")%>' Text='<%#Eval("jobcode") %>' Font-Underline="true" />
 
                                             <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
-                                            <asp:Label ID="lblirID" runat="server" Text='<%# Eval("IrrigationId")  %>' Visible="false"></asp:Label>
+                                          <%--  <asp:Label ID="lblirID" runat="server" Text='<%# Eval("IrrigationId")  %>' Visible="false"></asp:Label>--%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
@@ -78,11 +78,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
+                                   <%-- <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblEmployeeName" runat="server" Text='<%# Eval("EmployeeName")  %>'></asp:Label>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
                                 </Columns>
 
                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />

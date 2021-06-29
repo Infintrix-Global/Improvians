@@ -572,7 +572,7 @@ namespace Evo
                 nv.Add("@NoOfPasses", "");
                 nv.Add("@ResetSprayTaskForDays", txtResetSprayTaskForDays.Text);
 
-                nv.Add("@Role", ddlSupervisor.SelectedValue);
+                nv.Add("@Role", Session["Role"].ToString());
                 nv.Add("@ISAG", "0");
                 nv.Add("@jid", (row.FindControl("lblJid") as Label).Text);
                 nv.Add("@TaskRequestKey", TaskRequestKey);
@@ -584,6 +584,7 @@ namespace Evo
 
           
             objTask.UpdateIsActiveIrrigationRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
+
             if (AssignedBy == "System")
             {
                 AddJobNextDate();

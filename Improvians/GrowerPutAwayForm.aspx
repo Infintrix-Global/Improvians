@@ -213,14 +213,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="% Bench Occupancy"  HeaderStyle-Width="190">
-                                        <ItemTemplate>
-
-                                            <asp:Label ID="lblperTrays" Width="130px"  Text='<%# Eval("PerTTrays")%>'  runat="server"></asp:Label>
-                                         
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Trays" HeaderStyle-Width="190">
+                                      <asp:TemplateField HeaderText="No of Trays" HeaderStyle-Width="190">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" Width="130px" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
                                             <span class="error_message">
@@ -228,6 +221,15 @@
                                             </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="% Bench Occupancy"  HeaderStyle-Width="190">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblperTrays" Width="130px"  Text='<%# Eval("PerTTrays")%>'  runat="server"></asp:Label>
+                                         
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                  
 
                                       <asp:TemplateField HeaderText="Slot Position Start"  HeaderStyle-Width="190">
                                         <ItemTemplate>
