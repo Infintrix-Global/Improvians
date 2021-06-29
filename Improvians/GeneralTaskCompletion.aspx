@@ -56,7 +56,7 @@
                                  <asp:Label ID="Label20" runat="server" Text='<%# Eval("SeedDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                   <%-- <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
+                    <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>
                             <asp:Label ID="lblTType" runat="server" Text='<%# Eval("TaskType")  %>'></asp:Label>
                         </ItemTemplate>
@@ -80,7 +80,7 @@
                         <ItemTemplate>
                             <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>--%>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="General Task Date" HeaderStyle-CssClass="autostyle2">
                         <ItemTemplate>

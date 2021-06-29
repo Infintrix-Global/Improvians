@@ -218,6 +218,7 @@ namespace Evo
             dt = dtCompletion;
             gvTask.DataSource = dt;
             gvTask.DataBind();
+
             lbljid.Text = dt.Rows[0]["jid"].ToString();
             DateTime dNow = new DateTime();
             dNow = Convert.ToDateTime(dt.AsEnumerable().Select(r => r.Field<DateTime>("GeneralTaskDate")).FirstOrDefault().ToString("yyyy/MM/dd"));
