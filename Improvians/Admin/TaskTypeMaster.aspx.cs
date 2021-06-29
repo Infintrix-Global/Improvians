@@ -133,7 +133,7 @@ namespace Evo.Admin
 
                 int eid = Convert.ToInt32(e.CommandArgument);
                 Session["tasktypeId"] = eid;
-                objCommon.RemoveChemical(eid);
+                objCommon.RemoveTaskTypeMaster(eid);
                 GetTaskTypeList();
             }
         }

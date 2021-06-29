@@ -859,6 +859,28 @@ namespace Evo.Admin
             }
             return _isDeleted;
         }
+
+
+        public int RemoveTaskTypeMaster(int ID)
+        {
+            int _isDeleted = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@id", ID);
+                _isDeleted = objGeneral.GetExecuteScalarByCommand_SP("DeleteTaskTypeMaster");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return _isDeleted;
+        }
+
+
+
+
+
         public int RemoveTaskTypeWorkHours(int employeeID)
         {
             int _isDeleted = -1;
