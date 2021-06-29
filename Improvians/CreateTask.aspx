@@ -616,7 +616,7 @@
                                     <br />
                                    <%-- <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
 
-                                      <asp:ListBox ID="ddlChemical" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlChemical_SelectedIndexChanged"  runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+                                      <asp:ListBox ID="ddlChemical" SelectionMode="Multiple"   runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
 
                                 </div>
                                 <div class="col-lg-4 col-xl-3 mb-3">

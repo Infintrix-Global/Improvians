@@ -1680,7 +1680,7 @@ namespace Evo
                     {
 
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
-                        objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), selectedChemicaValues, ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
+                        objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), getChemicalSelect(), ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
                         Batchlocation2 = Batchlocation;
                     }
                     objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
@@ -3377,25 +3377,6 @@ namespace Evo
             return chkSelected;
         }
 
-        private string selectedChemicaValues
-        {
-            get
-            {
-                if (ViewState["selectedChemicaValues"] != null)
-                {
-                    return (string)ViewState["selectedChemicaValues"];
-                }
-                return "";
-            }
-            set
-            {
-                ViewState["selectedChemicaValues"] = value;
-            }
-        }
-
-        protected void ddlChemical_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedChemicaValues = getChemicalSelect();
-        }
+       
     }
 }

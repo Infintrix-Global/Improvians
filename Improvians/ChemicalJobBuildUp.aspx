@@ -243,7 +243,7 @@
 
                          <%--   <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
 
-                               <asp:ListBox ID="ddlFertilizer" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlFertilizer_SelectedIndexChanged"  runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+                               <asp:ListBox ID="ddlFertilizer" SelectionMode="Multiple"  runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
 
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">

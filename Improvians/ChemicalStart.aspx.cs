@@ -520,7 +520,7 @@ namespace Evo
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtTrays, FR_ID,selectedChemicaValues, ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
+            objTask.AddChemicalRequestDetails(dtTrays, FR_ID, getChemicalSelect(), ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtComments.Text);
 
             //long Mresult12 = 0;
             //NameValueCollection nv123 = new NameValueCollection();
@@ -825,24 +825,6 @@ namespace Evo
             return chkSelected;
         }
 
-        private string selectedChemicaValues
-        {
-            get
-            {
-                if (ViewState["selectedChemicaValues"] != null)
-                {
-                    return (string)ViewState["selectedChemicaValues"];
-                }
-                return "";
-            }
-            set
-            {
-                ViewState["selectedChemicaValues"] = value;
-            }
-        }
-        protected void ddlFertilizer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedChemicaValues = getChemicalSelect();
-        }
+      
     }
 }
