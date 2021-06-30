@@ -561,6 +561,7 @@ textarea.input__control {
     resize: none;
     padding: 15px;
     line-height: 22px;
+    vertical-align: top;
 }
 
 .textarea__notes {
