@@ -21,7 +21,7 @@
 
 
                         <div class="col-12 text-center order-md-1">
-                            <asp:Button ID="btAdd" runat="server" Text="Reset and Pull Data" class="submit-bttn bttn bttn-primary" OnClick="btAdd_Click" />
+                            <asp:Button ID="btAdd" runat="server" Text="Reset and Pull Data" Visible="false"  CssClass="submit-bttn bttn bttn-primary" OnClick="btAdd_Click" />
 
                             <asp:Button ID="btnPullData" runat="server" Text="Sync up Data" class="submit-bttn bttn bttn-primary" OnClick="btnPullData_Click" />
 
@@ -34,15 +34,6 @@
 
                 </div>
             </asp:Panel>
-
-
-
-
-
-
-
-
-
 
         </div>
         <div class="filter__row d-flex">

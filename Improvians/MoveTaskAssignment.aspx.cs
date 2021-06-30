@@ -107,7 +107,7 @@ namespace Evo
             nv.Add("@CoordinatorId", ddlShippingCoordinator.SelectedValue);
             nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
             nv.Add("@CreateBy", Session["LoginID"].ToString());
-            result = objCommon.GetDataExecuteScaler("SP_AddAssign_Task_Shipping_Coordinator", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddAssign_Task_Shipping_CoordinatorStart", nv);
 
             if (result > 0)
             {

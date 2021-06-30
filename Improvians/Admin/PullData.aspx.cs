@@ -729,16 +729,15 @@ namespace Evo.Admin
 
                 DataTable dt11 = new DataTable();
                 NameValueCollection nv111 = new NameValueCollection();
-                nv111.Add("@TraySize", TraySize);
                 nv111.Add("@GCode", GenusCode);
 
-                dt11 = objCommon.GetDataTable("spGetDateDhift", nv111);
+                dt11 = objCommon.GetDataTable("spGetPlantProductionGeneralConfiguration", nv111);
 
                 if (dt11 != null && dt11.Rows.Count > 0)
                 {
                     int Irrcount = 0;
 
-                    int DF = Convert.ToInt32(dt11.Rows[0]["dateshift"]);
+                    int DF = Convert.ToInt32(dt11.Rows[0]["PlantDueDate"]);
                     if (DF > 0)
                     {
                         PlanDate = (Convert.ToDateTime(seeddate).AddDays(DF)).ToString();
