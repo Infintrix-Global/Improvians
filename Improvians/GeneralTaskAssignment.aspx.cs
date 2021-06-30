@@ -218,7 +218,7 @@ namespace Evo
             nv.Add("@BenchLocation", txtBenchLocation);
 
 
-            result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskAssignment", nv);
+            result = objCommon.GetDataExecuteScaler("SP_AddGeneralTaskAssignmentNew", nv);
             if (result > 0)
             {
                 NameValueCollection nameValue = new NameValueCollection();
