@@ -130,11 +130,16 @@ namespace Evo
             //    nv.Add("@GTRid", gtRID);
             //}
             dt = objCommon.GetDataTable("SP_GetTaskAssignmenGerminationTaskRequestView1", nv);
-           
 
-            GridViewGermination.DataSource = dt;
-            GridViewGermination.DataBind();
-
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                GridViewGermination.DataSource = dt;
+                GridViewGermination.DataBind();
+            }
+            else
+            {
+                Panel1.Visible = false;
+            }
         }
 
         public void BindGridCalView(string GTAID)

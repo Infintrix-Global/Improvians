@@ -539,8 +539,7 @@ namespace Evo
                     //DataTable dt = objCommon.GetDataTable("SP_GetPlantReadyTaskAssignmentSelect", nv5);
 
                     Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&IsF={2}&TaskRequestKey={3}", 0, result,0, ViewState["tKey"].ToString()));
-
-
+                
                 }
                 else
                 {
