@@ -15,29 +15,16 @@
                 <asp:Panel ID="pnlint" runat="server">
 
                     <div class="row">
-
-
-
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <h3 class="robotobold">
                                 <label>Bench Location</label><br />
                                 <asp:Label ID="lblBenchLocation" runat="server" Text=""></asp:Label>
                             </h3>
                         </div>
-
-                        <div class="col-lg-6">
-                        </div>
-
-
-
                     </div>
 
-                    <br />
                     <asp:Panel ID="PanelCropHealth" Visible="false" runat="server">
-                        <br />
-                        <h2 class="text-left">Crop Health Report </h2>
-
-                        <br />
+                        <h2 class="text-left mb-3">Crop Health Report </h2>
                         <div class="portlet-body">
 
                             <div class="data__table">
@@ -104,43 +91,28 @@
                     <br />
 
                     <div class="row">
-
-                        <div class="col-lg-3">
+                        <div class="col-12 mb-3">
                             <label class="d-block">Chemical Spary Date</label>
 
                             <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                         </div>
 
-                        <div class="col-lg-3">
-                            <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
+                        <div class="col-12 mb-3">
+                            <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="input__control input__control-auto" placeholder="Notes" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col-lg-3">
-                        </div>
-                        <div class="col-lg-3">
+
+                        <div class="col-12 mb-3">
                             <%-- <label>Job No.</label><br />--%>
-
-
                             <h3 class="robotobold">
-                                <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
+                                <asp:Label ID="lblJobID" runat="server"></asp:Label
+                            </h3>
                             <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
-
-
                         </div>
 
-                    </div>
+                        <div class="col-12 mb-3">
+                            <asp:Button Text="Submit" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
 
-                    <div class="row">
-
-
-                        <div class="row align-items-center mt-sm-3">
-
-
-                            <div class="col-12 my-3">
-                                <asp:Button Text="Submit" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
-
-                                <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
-
-                            </div>
+                            <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
                         </div>
                     </div>
                 </asp:Panel>
