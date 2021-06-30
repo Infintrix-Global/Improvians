@@ -64,10 +64,11 @@ namespace Evo
                 {
                     TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
                 }
+                BintTaskType();
                 BindTask();
                 BindViewDumpDetilas(0);
                 BindGridGeneraComplition(Did);
-                BintTaskType();
+               
             }
         }
 

@@ -565,7 +565,7 @@ namespace Evo
             {
                 string ChId = "";
                 string Did = gvTask.DataKeys[rowIndex].Values[1].ToString();
-                string TaskRequestKey = gvTask.DataKeys[rowIndex].Values[1].ToString();
+                string TaskRequestKey = gvTask.DataKeys[rowIndex].Values[5].ToString();
                 if (ChId == "")
                 {
                     ChId = "0";
