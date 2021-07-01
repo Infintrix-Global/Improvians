@@ -462,40 +462,45 @@ namespace Evo
             if (dt1 != null && dt1.Rows.Count > 0)
             {
 
-                NameValueCollection nv = new NameValueCollection();
-                DataTable dt = new DataTable();
-                nv.Add("@RoleID", "16");
-                nv.Add("@Facility", ddlMain);
-                dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+                if (dt1.Rows[0]["Automation"].ToString() == "Auto")
+                {
 
-                ddlSupervisor.DataSource = dt;
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                    NameValueCollection nv = new NameValueCollection();
+                    DataTable dt = new DataTable();
+                    nv.Add("@RoleID", "16");
+                    nv.Add("@Facility", ddlMain);
+                    dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                    ddlSupervisor.DataSource = dt;
+                    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                    ddlSupervisor.DataTextField = "EmployeeName";
+                    ddlSupervisor.DataValueField = "ID";
+                    ddlSupervisor.DataBind();
+                    ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                }
+                else
+                {
+                    NameValueCollection nv = new NameValueCollection();
+                    DataTable dt = new DataTable();
+                    nv.Add("@RoleID", Session["Role"].ToString());
+                    nv.Add("@Facility", ddlMain);
+                    dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                    ddlSupervisor.DataSource = dt;
+                    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                    ddlSupervisor.DataTextField = "EmployeeName";
+                    ddlSupervisor.DataValueField = "ID";
+                    ddlSupervisor.DataBind();
+                    ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                }
+
+                   
 
 
 
             }
 
-            else
-            {
-
-
-                NameValueCollection nv = new NameValueCollection();
-                DataTable dt = new DataTable();
-                nv.Add("@RoleID", Session["Role"].ToString());
-                nv.Add("@Facility", ddlMain);
-                dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
-
-                ddlSupervisor.DataSource = dt;
-                //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-                ddlSupervisor.DataTextField = "EmployeeName";
-                ddlSupervisor.DataValueField = "ID";
-                ddlSupervisor.DataBind();
-                ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
-            }
+           
 
 
 
@@ -837,12 +842,16 @@ namespace Evo
                     LocationId = ((DropDownList)item.FindControl("ddlLocation")).SelectedValue;
                     TextBox txtTrays = (TextBox)item.FindControl("txtTrays");
                     SupervisorID = ((DropDownList)item.FindControl("ddlSupervisor")).SelectedValue;
+
+                    SlotPositionStart = ((DropDownList)item.FindControl("ddlSlotPositionStart")).SelectedValue;
+                    SlotPositionEnd = ((DropDownList)item.FindControl("ddlSlotPositionEnd")).SelectedValue;
+
                     TextBox txtSlotPositionStart = (TextBox)item.FindControl("txtSlotPositionStart");
                     TextBox txtSlotPositionEnd = (TextBox)item.FindControl("txtSlotPositionEnd");
                     Label lblperTrays = (Label)item.FindControl("lblperTrays");
 
 
-                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID, txtSlotPositionStart.Text, txtSlotPositionEnd.Text, lblperTrays.Text);
+                    AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID, SlotPositionStart, SlotPositionEnd, lblperTrays.Text);
                 }
                 if (AddBlankRow)
                     AddGrowerput(ref objinvoice, 1, PutAwayFacility, "", "", "", "", "", "");
@@ -1173,7 +1182,7 @@ namespace Evo
                     int TotalTrays = 0;
                     decimal availableSlot = 0;
 
-                    if (dt1.Rows[0]["Automation"] == "Auto")
+                    if (dt1.Rows[0]["Automation"].ToString() == "Auto")
                     {
 
 

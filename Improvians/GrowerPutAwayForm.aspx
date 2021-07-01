@@ -204,11 +204,13 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-Width="300px">
                                         <ItemTemplate>
+                                            <span class="d-flex">
                                             <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd"  OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" Width="250px" runat="server"></asp:DropDownList>
                                             <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
                                             <span class="error_message ">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlLocation" ValidationGroup="e"
                                                     SetFocusOnError="true" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            </span>
                                             </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
