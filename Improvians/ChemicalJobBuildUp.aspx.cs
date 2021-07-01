@@ -518,7 +518,7 @@ namespace Evo
             {
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
             }
-            txtTrays.Text = (Convert.ToInt32(JobMainTray) + tray).ToString();
+            txtTrays.Text = tray.ToString();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -608,6 +608,7 @@ namespace Evo
 
 
             long result = 0;
+            int TotalTrays = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
 
@@ -617,13 +618,14 @@ namespace Evo
 
                 string TodatDate;
                 string ReSetSprayDate = "";
-
+             
                 TodatDate = System.DateTime.Now.ToShortDateString();
 
 
 
                 if (Batchlocation1 == "" || Batchlocation1 != Batchlocation)
                 {
+                    TotalTrays =0;
                     dtTrays.Clear();
                     DataTable dt1 = new DataTable();
                     NameValueCollection nv1 = new NameValueCollection();
@@ -664,7 +666,7 @@ namespace Evo
                 }
 
 
-
+                TotalTrays += Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
@@ -719,7 +721,7 @@ namespace Evo
 
 
 
-                   dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
+                    dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
                     objTask.AddChemicalRequestDetails(dtTrays, result.ToString(), getChemicalSelect(), ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
                     Batchlocation2 = Batchlocation;
                 }

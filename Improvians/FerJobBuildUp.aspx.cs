@@ -589,7 +589,7 @@ namespace Evo
                 tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
             }
 
-            txtTrays.Text = (Convert.ToInt32(JobMainTray) + tray).ToString();
+            txtTrays.Text =  tray.ToString();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
