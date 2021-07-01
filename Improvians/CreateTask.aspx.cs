@@ -953,6 +953,15 @@ namespace Evo
                         dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
                         objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
                         Batchlocation2 = Batchlocation;
+
+                        NameValueCollection nvn = new NameValueCollection();
+                        nvn.Add("@LoginID", Session["LoginID"].ToString());
+                        nvn.Add("@SupervisorID", Assigned);
+                        nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                        nvn.Add("@TaskName", "Fertilizer");
+                        nvn.Add("@TaskRequestKey", TaskRequestKey);
+                        nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
                     }
                     objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
 
@@ -1316,6 +1325,25 @@ namespace Evo
                     //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
 
                     result16 = objCommon.GetDataExecuteScaler("SP_AddIrrigationRequestManualCreateTask", nv);
+
+                    if (Batchlocation2 == "" || Batchlocation2 != Batchlocation)
+                    {
+                        var txtBenchLocation = (row.FindControl("lblGreenHouse") as Label).Text;
+
+                        Batchlocation2 = Batchlocation;
+
+                        NameValueCollection nvn = new NameValueCollection();
+                        nvn.Add("@LoginID", Session["LoginID"].ToString());
+                        nvn.Add("@SupervisorID", Assigned);
+                        nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
+                        nvn.Add("@TaskName", "Irrigation");
+                        nvn.Add("@TaskRequestKey", TaskRequestKey);
+                        nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
+
+                    }
+
 
                     objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
                     string message = "Assignment Successful";
@@ -1682,6 +1710,18 @@ namespace Evo
                         dtCTrays.Rows.Add(ddlChemical.SelectedItem.Text, txtChemicalTrays.Text, txtSQFT.Text);
                         objTask.AddChemicalRequestDetails(dtCTrays, result.ToString(), getChemicalSelect(), ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedValue, txtCComments.Text);
                         Batchlocation2 = Batchlocation;
+
+
+                        NameValueCollection nvn = new NameValueCollection();
+                        nvn.Add("@LoginID", Session["LoginID"].ToString());
+                        nvn.Add("@SupervisorID", Assigned);
+                        nvn.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                        nvn.Add("@TaskName", "Chemical");
+                        nvn.Add("@TaskRequestKey", TaskRequestKey);
+                        nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                        var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+
+
                     }
                     objGeneral.SendMessage(int.Parse(Assigned), "New Chemical Task Assigned", "New Chemical Task Assigned", "Chemical");
 

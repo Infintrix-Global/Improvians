@@ -58,9 +58,10 @@ namespace Evo
                 }
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
-                BenchUp = "'" + Bench + "'";
+                 BenchUp = "'" + Bench + "'";
+               // BenchUp = Bench;
                 BindGridFerReq();
-                BindGridFerDetails("'" + Bench + "'");
+                BindGridFerDetails(Bench);
                 BindGridFerReqView(Request.QueryString["CCode"].ToString());
                 BindSupervisor();
                 BindSQFTofBench("'" + Bench + "'");
@@ -231,6 +232,7 @@ namespace Evo
         {
             // SelectBenchLocation();
             string chkSelected = "";
+            string SQFTofBench = "";
             if (RadioBench.SelectedValue == "1")
             {
                 // Bench
@@ -240,6 +242,7 @@ namespace Evo
                 PanelHouse.Visible = false;
                 int P1 = 0;
                 string Q1 = "";
+                string B1 = "";
                 string YourString = Bench;
                 YourString = YourString.Remove(YourString.Length - 1);
                 DataTable dt12 = objFer.GetSelectBench(YourString);
@@ -256,12 +259,13 @@ namespace Evo
                             //strJsonData = row[col].ToString();
 
                             P1 = 1;
-                            Q1 += "'" + row[col].ToString() + "',";
+                            Q1 +=  row[col].ToString() + ",";
+                            B1 += "'" + row[col].ToString() + "',";
                         }
                         if (P1 > 0)
                         {
                             chkSelected = Q1.Remove(Q1.Length - 1, 1);
-
+                            SQFTofBench = B1.Remove(B1.Length - 1, 1);
                         }
                         else
                         {
@@ -269,15 +273,17 @@ namespace Evo
                     }
                     else
                     {
-                        chkSelected = "'" + Bench + "'";
+                        // chkSelected = "'" + Bench + "'";
+                        chkSelected = Bench;
+                        SQFTofBench = "'" + Bench + "'";
                     }
 
-                    BenchUp = chkSelected;
+                    BenchUp = SQFTofBench;
                     DataTable dt123 = new DataTable();
                     gvJobHistory.DataSource = dt123;
                     gvJobHistory.DataBind();
                     BindGridFerDetails(chkSelected);
-                    BindSQFTofBench(chkSelected);
+                    BindSQFTofBench(SQFTofBench);
                 }
             }
             else if (RadioBench.SelectedValue == "2")
@@ -295,6 +301,7 @@ namespace Evo
                 PanelHouse.Visible = true;
                 int P = 0;
                 string Q = "";
+                string B = "";
                 string[] words = Regex.Split(Bench, @"\W+");
 
                 DataTable dt = objFer.GetSelectBenchLocation(words[0], words[1]);
@@ -307,12 +314,13 @@ namespace Evo
                         //strJsonData = row[col].ToString();
 
                         P = 1;
-                        Q += "'" + row[col].ToString() + "',";
+                        B += "'" + row[col].ToString() + "',";
+                        Q += row[col].ToString() + ",";
                     }
                     if (P > 0)
                     {
                         chkSelected = Q.Remove(Q.Length - 1, 1);
-
+                        SQFTofBench = B.Remove(B.Length - 1, 1);
                     }
                     else
                     {
@@ -321,15 +329,17 @@ namespace Evo
                 }
                 else
                 {
-                    chkSelected = "'" + Bench + "'";
+                    //chkSelected = "'" + Bench + "'"
+                    chkSelected = Bench;
+                    SQFTofBench = "'" + Bench + "'";
                 }
 
-                BenchUp = chkSelected;
+                BenchUp = SQFTofBench;
                 DataTable dt123 = new DataTable();
                 gvJobHistory.DataSource = dt123;
                 gvJobHistory.DataBind();
                 BindGridFerDetails(chkSelected);
-                BindSQFTofBench(chkSelected);
+                BindSQFTofBench(SQFTofBench);
             }
             else
             {
@@ -341,25 +351,30 @@ namespace Evo
         {
             int c = 0;
             string x = "";
+            string B = "";
             string chkSelected = "";
+            string SQFTofBench = "";
             foreach (ListItem item in ListBoxBenchesInHouse.Items)
             {
                 if (item.Selected)
                 {
                     c = 1;
-                    x += "'" + item.Text + "',";
+                    B += "'" + item.Text + "',";
+                    x += item.Text + ",";
                 }
             }
             if (c > 0)
             {
                 chkSelected = x.Remove(x.Length - 1, 1);
+                SQFTofBench = B.Remove(B.Length - 1, 1);
+
             }
             else
             {
             }
-            BenchUp = chkSelected;
+            BenchUp = SQFTofBench;
             BindGridFerDetails(chkSelected);
-            BindSQFTofBench(chkSelected);
+            BindSQFTofBench(SQFTofBench);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -367,7 +382,7 @@ namespace Evo
             string chkSelected = "";
             if (RadioBench.SelectedValue == "1")
             {
-                chkSelected = "'" + lblBench1.Text + "'";
+                chkSelected = lblBench1.Text;
             }
             else if (RadioBench.SelectedValue == "2")
             {
@@ -379,7 +394,8 @@ namespace Evo
                     if (item.Selected)
                     {
                         c = 1;
-                        x += "'" + item.Text + "',";
+                        x +=  item.Text + ",";
+                        //x += "'" + item.Text + "',";
                     }
                 }
                 if (c > 0)
@@ -461,31 +477,41 @@ namespace Evo
 
         public void BindGridFerDetails(string BenchLoc)
         {
+            //DataTable dt = new DataTable();
+            //NameValueCollection nv = new NameValueCollection();
+            //nv.Add("@BenchLocation", BenchLoc);
+            //dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+
+            //DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
+
+
+            //if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
+            //{
+            //    dt.Merge(dtManual);
+            //    dt.AcceptChanges();
+            //    gvJobHistory.DataSource = dt;
+            //    gvJobHistory.DataBind();
+            //}
+            //else if (dtManual != null && dtManual.Rows.Count > 0)
+            //{
+            //    gvJobHistory.DataSource = dtManual;
+            //    gvJobHistory.DataBind();
+            //}
+            //else
+            //{
+            //    gvJobHistory.DataSource = dt;
+            //    gvJobHistory.DataBind();
+            //}
+
+
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             nv.Add("@BenchLocation", BenchLoc);
-            dt = objCommon.GetDataTable("SP_GetFertilizerRequestDetails", nv);
+            nv.Add("@Facility", Session["Facility"].ToString());
+            dt = objCommon.GetDataTable("SP_GetSeedDetails", nv);
 
-            DataTable dtManual = objTask.GetManualRequestStart1(Session["Facility"].ToString(), BenchLoc, "'" + JobCode + "'");
-
-
-            if (dt != null && dt.Rows.Count > 0 && dtManual != null && dtManual.Rows.Count > 0)
-            {
-                dt.Merge(dtManual);
-                dt.AcceptChanges();
-                gvJobHistory.DataSource = dt;
-                gvJobHistory.DataBind();
-            }
-            else if (dtManual != null && dtManual.Rows.Count > 0)
-            {
-                gvJobHistory.DataSource = dtManual;
-                gvJobHistory.DataBind();
-            }
-            else
-            {
-                gvJobHistory.DataSource = dt;
-                gvJobHistory.DataBind();
-            }
+            gvJobHistory.DataSource = dt;
+            gvJobHistory.DataBind();
             txtTrays.Text = "";
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
@@ -497,86 +523,148 @@ namespace Evo
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            //int ChemicalCode = 0;
+            //string SprayTaskForDaysDate = "";
+
+
             int ChemicalCode = 0;
+            string Batchlocation = "", Batchlocation1 = "", Batchlocation2 = "";
+            string TaskRequestKey = "";
             string SprayTaskForDaysDate = "";
 
-            if (CCode == "0")
-            {
-                DataTable dt = new DataTable();
-                NameValueCollection nv1 = new NameValueCollection();
-                nv1.Add("@Mode", "16");
-                dt = objCommon.GetDataTable("GET_Common", nv1);
-                ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
-            }
-            else
-            {
-                ChemicalCode = Convert.ToInt32(CCode);
-            }
+            //if (CCode == "0")
+            //{
+            //    DataTable dt = new DataTable();
+            //    NameValueCollection nv1 = new NameValueCollection();
+            //    nv1.Add("@Mode", "16");
+            //    dt = objCommon.GetDataTable("GET_Common", nv1);
+            //    ChemicalCode = Convert.ToInt32(dt.Rows[0]["CCode"]);
+            //}
+            //else
+            //{
+            //    ChemicalCode = Convert.ToInt32(CCode);
+            //}
 
-            if (txtResetSprayTaskForDays.Text != "")
-            {
-                SprayTaskForDaysDate = (Convert.ToDateTime(System.DateTime.Now.ToShortDateString()).AddDays(Convert.ToInt32(txtResetSprayTaskForDays.Text))).ToString();
+            //if (txtResetSprayTaskForDays.Text != "")
+            //{
+            //    SprayTaskForDaysDate = (Convert.ToDateTime(System.DateTime.Now.ToShortDateString()).AddDays(Convert.ToInt32(txtResetSprayTaskForDays.Text))).ToString();
 
-            }
-            else
-            {
-                SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
+            //}
+            //else
+            //{
+            //    SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
 
-            }
-
-
-            long resultRID = 0;
-            foreach (GridViewRow row in gvFer.Rows)
-            {
-                long Mresult = 0;
-                NameValueCollection nv = new NameValueCollection();
-
-                nv.Add("@Type", "Chemical");
-                nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
-                nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                //nv.Add("@WorkOrder", lblwo.Text);
-                nv.Add("@LoginID", Session["LoginID"].ToString());
-                nv.Add("@ChemicalCode", ChemicalCode.ToString());
-                nv.Add("@ChemicalDate", txtDate.Text);
-                nv.Add("@Comments", txtComments.Text);
-                nv.Add("@Method", ddlMethod.SelectedValue);
-                nv.Add("@Jid", Jid);
-                nv.Add("@TaskRequestKey", TaskRequestKey);
-                nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
-                nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
-
-                resultRID = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
-
-                NameValueCollection nameValue = new NameValueCollection();
-                nameValue.Add("@LoginID", Session["LoginID"].ToString());
-                nameValue.Add("@jobcode", JobCode);
-                nameValue.Add("@GreenHouseID", Bench);
-                nameValue.Add("@TaskName", "Chemical");
-
-                var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+            //}
 
 
-                NameValueCollection nvkey = new NameValueCollection();
-                nvkey.Add("@Id", resultRID.ToString());
-                nvkey.Add("@Mode", "2");
-                DataTable dtkey = objCommon.GetDataTable("SP_GetTaskRequest", nvkey);
-                TaskRequestKey = dtkey.Rows[0]["TaskRequestKey"].ToString();
+            //long resultRID = 0;
+            //foreach (GridViewRow row in gvFer.Rows)
+            //{
+            //    long Mresult = 0;
+            //    NameValueCollection nv = new NameValueCollection();
+
+            //    nv.Add("@Type", "Chemical");
+            //    nv.Add("@WorkOrder", (row.FindControl("lblwo") as Label).Text);
+            //    nv.Add("@GrowerPutAwayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
+            //    //nv.Add("@WorkOrder", lblwo.Text);
+            //    nv.Add("@LoginID", Session["LoginID"].ToString());
+            //    nv.Add("@ChemicalCode", ChemicalCode.ToString());
+            //    nv.Add("@ChemicalDate", txtDate.Text);
+            //    nv.Add("@Comments", txtComments.Text);
+            //    nv.Add("@Method", ddlMethod.SelectedValue);
+            //    nv.Add("@Jid", Jid);
+            //    nv.Add("@TaskRequestKey", TaskRequestKey);
+            //    nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+            //    nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+            //    nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
+
+            //    resultRID = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
+
+            //    NameValueCollection nameValue = new NameValueCollection();
+            //    nameValue.Add("@LoginID", Session["LoginID"].ToString());
+            //    nameValue.Add("@jobcode", JobCode);
+            //    nameValue.Add("@GreenHouseID", Bench);
+            //    nameValue.Add("@TaskName", "Chemical");
+
+            //    var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
 
 
-                NameValueCollection nvn = new NameValueCollection();
-                nvn.Add("@LoginID", Session["LoginID"].ToString());
-                nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
-                nvn.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
-                nvn.Add("@TaskName", "Chemical");
-                nvn.Add("@TaskRequestKey", TaskRequestKey);
-                nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
-            }
+            //    NameValueCollection nvkey = new NameValueCollection();
+            //    nvkey.Add("@Id", resultRID.ToString());
+            //    nvkey.Add("@Mode", "2");
+            //    DataTable dtkey = objCommon.GetDataTable("SP_GetTaskRequest", nvkey);
+            //    TaskRequestKey = dtkey.Rows[0]["TaskRequestKey"].ToString();
+
+
+            //    NameValueCollection nvn = new NameValueCollection();
+            //    nvn.Add("@LoginID", Session["LoginID"].ToString());
+            //    nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+            //    nvn.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+            //    nvn.Add("@TaskName", "Chemical");
+            //    nvn.Add("@TaskRequestKey", TaskRequestKey);
+            //    nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+            //    var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+            //}
+
 
             long result = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
+
+                dtTrays.Clear();
+
+                Batchlocation = (row.FindControl("lblGreenHouse") as Label).Text;
+
+                string TodatDate;
+                string ReSetSprayDate = "";
+
+                TodatDate = System.DateTime.Now.ToShortDateString();
+
+
+
+                if (Batchlocation1 == "" || Batchlocation1 != Batchlocation)
+                {
+                    dtTrays.Clear();
+                    DataTable dt1 = new DataTable();
+                    NameValueCollection nv1 = new NameValueCollection();
+                    nv1.Add("@Mode", "16");
+                    dt1 = objCommon.GetDataTable("GET_Common", nv1);
+                    ChemicalCode = Convert.ToInt32(dt1.Rows[0]["CCode"]);
+
+                    Batchlocation1 = Batchlocation;
+
+                    string Countbanch = "";
+                    DataTable dt15 = new DataTable();
+                    NameValueCollection nv15 = new NameValueCollection();
+                    nv15.Add("@Mode", "2");
+                    nv15.Add("@GreenHouseID", Batchlocation1);
+                    dt15 = objCommon.GetDataTable("SP_GetTaskRequestKeyBanchlocation", nv15);
+                    Countbanch = dt15.Rows[0]["Countbanch"].ToString();
+
+                    TaskRequestKey = Batchlocation + "_" + "Chemical" + "_" + Countbanch;
+
+
+                }
+                else
+                {
+                    ChemicalCode = ChemicalCode;
+
+                }
+
+
+                if (txtResetSprayTaskForDays.Text != "")
+                {
+                    SprayTaskForDaysDate = (Convert.ToDateTime(System.DateTime.Now.ToShortDateString()).AddDays(Convert.ToInt32(txtResetSprayTaskForDays.Text))).ToString();
+
+                }
+                else
+                {
+                    SprayTaskForDaysDate = System.DateTime.Now.ToShortDateString();
+
+                }
+
+
+
 
                 NameValueCollection nv = new NameValueCollection();
                 nv.Add("@SupervisorID", ddlsupervisor.SelectedValue);
@@ -598,12 +686,47 @@ namespace Evo
 
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
 
+
+                if (Batchlocation2 == "" || Batchlocation2 != Batchlocation)
+                {
+
+                    NameValueCollection nameValue = new NameValueCollection();
+                    nameValue.Add("@LoginID", Session["LoginID"].ToString());
+                    nameValue.Add("@jobcode", JobCode);
+                    nameValue.Add("@GreenHouseID", Bench);
+                    nameValue.Add("@TaskName", "Chemical");
+
+                    var check = objCommon.GetDataInsertORUpdate("SP_RemoveCompletedTaskNotification", nameValue);
+
+
+                    NameValueCollection nvkey = new NameValueCollection();
+                    nvkey.Add("@Id", result.ToString());
+                    nvkey.Add("@Mode", "2");
+                    DataTable dtkey = objCommon.GetDataTable("SP_GetTaskRequest", nvkey);
+                    TaskRequestKey = dtkey.Rows[0]["TaskRequestKey"].ToString();
+
+
+                    NameValueCollection nvn = new NameValueCollection();
+                    nvn.Add("@LoginID", Session["LoginID"].ToString());
+                    nvn.Add("@SupervisorID", ddlsupervisor.SelectedValue);
+                    nvn.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                    nvn.Add("@TaskName", "Chemical");
+                    nvn.Add("@TaskRequestKey", TaskRequestKey);
+                    nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                    var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
+                
+
+
+
+
+                   dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
+                    objTask.AddChemicalRequestDetails(dtTrays, result.ToString(), getChemicalSelect(), ChemicalCode, Batchlocation, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
+                    Batchlocation2 = Batchlocation;
+                }
             }
 
-            dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtTrays.Text, txtSQFT.Text);
-            objTask.AddChemicalRequestDetails(dtTrays, resultRID.ToString(), getChemicalSelect(), ChemicalCode, lblbench.Text, txtResetSprayTaskForDays.Text, ddlMethod.SelectedItem.Text, txtComments.Text);
-
-            objTask.UpdateIsActiveChemicalRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
+           
+          objTask.UpdateIsActiveChemicalRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
             //    "'" + Bench + "'"
 
             if (AssignedBy == "System")
@@ -694,7 +817,7 @@ namespace Evo
                                 NameValueCollection nv11 = new NameValueCollection();
                                 nv11.Add("@GrowerPutAwayId", (row.FindControl("lblGrowerputawayID") as Label).Text);
                                 nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);
-                              //  nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
+                                //  nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
                                 nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
                                 nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
                                 nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
@@ -751,65 +874,70 @@ namespace Evo
 
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
+
+                string JNo = "";
+                JNo = (row.FindControl("lblID") as Label).Text;
                 DataTable dtChemical = objSP.GetSeedDateDatanew("SPRAYING", (row.FindControl("lblGenusCodeH") as Label).Text, (row.FindControl("lblTraySize") as Label).Text);
 
                 NameValueCollection nvChemChDate = new NameValueCollection();
 
                 nvChemChDate.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
                 DataTable ChChemidt = objCommon.GetDataTable("SP_GetChemicalCheckResetSprayTask", nvChemChDate);
-
-                if (dtChemical != null && dtChemical.Rows.Count > 0)
+                if (JNo != JobCode)
                 {
-                    DataColumn col = dtChemical.Columns["DateShift"];
-                    int Ccount = 0;
-                    foreach (DataRow row1 in dtChemical.Rows)
+                    if (dtChemical != null && dtChemical.Rows.Count > 0)
                     {
-                        Ccount++;
-                        string seeddate = (row.FindControl("lblSeededDate11") as Label).Text;
-                        string ChemicalDate = string.Empty;
-                        //string FDay = row1[col].ToString().Replace("\u0002", "");
-                        string FDay = row1[col].ToString();
-                        ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(FDay))).ToString();
-                        string TodatDate;
-                        string ReSetChemicalDate = "";
-                        string DateCountNo = "0";
-
-                        TodatDate = System.DateTime.Now.ToShortDateString();
-                        DateCountNo = Ccount.ToString();
-
-                        if (ChChemidt != null && ChChemidt.Rows.Count > 0)
+                        DataColumn col = dtChemical.Columns["DateShift"];
+                        int Ccount = 0;
+                        foreach (DataRow row1 in dtChemical.Rows)
                         {
-                            if (ChChemidt.Rows[0]["ResetSprayTaskForDays"].ToString() != "")
+                            Ccount++;
+                            string seeddate = (row.FindControl("lblSeededDate11") as Label).Text;
+                            string ChemicalDate = string.Empty;
+                            //string FDay = row1[col].ToString().Replace("\u0002", "");
+                            string FDay = row1[col].ToString();
+                            ChemicalDate = (Convert.ToDateTime(seeddate).AddDays(Convert.ToInt32(FDay))).ToString();
+                            string TodatDate;
+                            string ReSetChemicalDate = "";
+                            string DateCountNo = "0";
+
+                            TodatDate = System.DateTime.Now.ToShortDateString();
+                            DateCountNo = Ccount.ToString();
+
+                            if (ChChemidt != null && ChChemidt.Rows.Count > 0)
                             {
-                                ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                                if (ChChemidt.Rows[0]["ResetSprayTaskForDays"].ToString() != "")
+                                {
+                                    ReSetChemicalDate = Convert.ToDateTime(ChChemidt.Rows[0]["CreateDate"]).AddDays(Convert.ToInt32(ChChemidt.Rows[0]["ResetSprayTaskForDays"])).ToString();
+                                }
                             }
-                        }
 
-                        if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
-                        {
-                            if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
+                            if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
                             {
-                                ChemicalDate = ChemicalDate;
+                                if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
+                                {
+                                    ChemicalDate = ChemicalDate;
 
-                                NameValueCollection nv11 = new NameValueCollection();
-                                nv11.Add("@GrowerPutAwayId", (row.FindControl("lblGrowerputawayID") as Label).Text);
-                                nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);
-                                nv11.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
-                                nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
-                                nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
-                                nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                                nv11.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
+                                    NameValueCollection nv11 = new NameValueCollection();
+                                    nv11.Add("@GrowerPutAwayId", (row.FindControl("lblGrowerputawayID") as Label).Text);
+                                    nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);
+                                    nv11.Add("@Jid", (row.FindControl("lblJid") as Label).Text);
+                                    nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
+                                    nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
+                                    nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
+                                    nv11.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
 
-                                nv11.Add("@SeedDate", seeddate);
-                                nv11.Add("@CreateBy", Session["LoginID"].ToString());
-                                nv11.Add("@Supervisor", "0");
-                                nv11.Add("@ID", "");
-                                nv11.Add("@ChemicalSeedDate", ChemicalDate);
-                                nv11.Add("@GenusCode", (row.FindControl("lblGenusCodeH") as Label).Text);
-                                nv11.Add("@DateCountNo", DateCountNo);
+                                    nv11.Add("@SeedDate", seeddate);
+                                    nv11.Add("@CreateBy", Session["LoginID"].ToString());
+                                    nv11.Add("@Supervisor", "0");
+                                    nv11.Add("@ID", "");
+                                    nv11.Add("@ChemicalSeedDate", ChemicalDate);
+                                    nv11.Add("@GenusCode", (row.FindControl("lblGenusCodeH") as Label).Text);
+                                    nv11.Add("@DateCountNo", DateCountNo);
 
-                                _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsChemicalMenual", nv11);
-                                break;
+                                    _isFCdeInserted = objCommon.GetDataExecuteScaler("SP_AddGrowerPutAwayDetailsChemicalMenual", nv11);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -881,7 +1009,7 @@ namespace Evo
             ListBoxBenchesInHouse.Items.Clear();
             //To unselect all Items
             RadioBench.ClearSelection();
-            BindGridFerDetails("'" + Bench + "'");
+            BindGridFerDetails(Bench);
             PanelBench.Visible = false;
             PanelBenchesInHouse.Visible = false;
         }
@@ -907,6 +1035,6 @@ namespace Evo
             return chkSelected;
         }
 
-       
+
     }
 }

@@ -470,10 +470,10 @@ namespace Evo.BAL_Classes
                 {
                     strQuery += " and GJSPM.GreenHouseID in (" + BenchLocation + ")";
                 }
-                if (!string.IsNullOrEmpty(JobCode))
-                {
-                    strQuery += " and jobcode not in (" + JobCode + ")";
-                }
+                //if (!string.IsNullOrEmpty(JobCode))
+                //{
+                //    strQuery += " and jobcode not in (" + JobCode + ")";
+                //}
 
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
