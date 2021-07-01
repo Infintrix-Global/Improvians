@@ -144,6 +144,7 @@ jQuery(document).ready(function ($) {
 
     $(window).on("load", function () {
         $(".goog-te-combo").addClass("custom__dropdown input__control-auto");
+        $(".goog-te-combo option:first-child").html('Translate');
     });
-
+    
 });

@@ -161,6 +161,8 @@
                         </div>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account__dropdown">
+                            <span class="dropdown-item">
+                                <asp:Label ID="lblUser" runat="server" Visible="true"></asp:Label></span>
                             <a class="dropdown-item" href="ChangePassword.aspx">Change Password</a>
                             <a class="dropdown-item" href="Help.aspx">Help</a>
                             <a class="dropdown-item" href="Login.aspx">Log Out</a>
