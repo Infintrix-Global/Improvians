@@ -30,7 +30,7 @@ namespace Evo
         {
             if (!IsPostBack)
             {
-                lblEmpName.Text = Session["EmployeeName"].ToString();
+                lblEmpName.Text= lblUser.Text= Session["EmployeeName"].ToString();
                 if (!string.IsNullOrEmpty(Session["Photo"].ToString()))
                 {
                     imgprofilepic.ImageUrl = @"~\EmployeeProfile\" + Session["Photo"].ToString();
