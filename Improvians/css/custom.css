@@ -1612,6 +1612,11 @@ svg text {
     line-height: 0;
 }
 
+select option:disabled {
+    background: #ececec;
+    opacity: 0.8;
+}
+
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
     .container {

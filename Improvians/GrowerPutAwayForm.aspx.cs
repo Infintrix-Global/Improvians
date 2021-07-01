@@ -1049,7 +1049,7 @@ namespace Evo
                 TextBox txtSlotPositionStart = (TextBox)row.FindControl("txtSlotPositionStart");
                 TextBox txtSlotPositionEnd = (TextBox)row.FindControl("txtSlotPositionEnd");
                 TextBox txtTrays = (TextBox)row.FindControl("txtTrays");
-                Label lbltraysTotal = (Label)row.FindControl("lblperTrays");
+                Label lblperTrays = (Label)row.FindControl("lblperTrays");
                 DataTable dt1 = new DataTable();
                 NameValueCollection nv1 = new NameValueCollection();
 
@@ -1057,6 +1057,14 @@ namespace Evo
                 nv1.Add("@Facility", "");
                 nv1.Add("@Mode", "3");
                 dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
+
+
+                DataTable dtSlot = new DataTable();
+                NameValueCollection nvSlot = new NameValueCollection();
+                nvSlot.Add("@BanchLocation", ddlLocation.SelectedValue);
+                nvSlot.Add("@Facility", "");
+                dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPosition", nvSlot);
+
 
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {
@@ -1067,7 +1075,13 @@ namespace Evo
                     {
 
 
-                        availableSlot = (Convert.ToDecimal(dt1.Rows[0]["SlotPositionEnd"]) - Convert.ToDecimal(dt1.Rows[0]["SlotPositionStart"])) + 1;
+                        if (dtSlot != null && dtSlot.Rows.Count > 0)
+                        {
+                            for (int i = 0; i < dtSlot.Rows.Count; i++)
+                            {
+                                availableSlot += (Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionEnd"]) - Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionStart"]));
+                            }
+                        }
 
                         //  decimal Pre = ((Convert .ToInt32(dt1.Rows[0]["SlotPositionEnd"]) - Convert .ToInt32 (dt1.Rows[0]["SlotPositionStart"])) * 100) / 52;
                         decimal availableSlot1 = Convert.ToDecimal(availableSlot / Convert.ToDecimal(dt1.Rows[0]["TotalSlot"]));
@@ -1078,12 +1092,12 @@ namespace Evo
 
 
                         txtTrays.Text = TotalTrays.ToString();
-                        lbltraysTotal.Text = string.Format("{0:f2}", Pre1);
+                        lblperTrays.Text = string.Format("{0:f2}", Pre1);
                         lblRemaining.Text = ((Convert.ToInt32(lblSeededTrays.Text) - Convert.ToInt32(lblTTrays.Text)) - TotalTrays).ToString();
                         lblTTrays.Text = (Convert.ToInt32(lblTTrays.Text) + TotalTrays).ToString();
 
 
-                    
+
                         //GridSplitJob.Columns[5].Visible = true;
                         //GridSplitJob.Columns[6].Visible = true;
                         //GridSplitJob.Columns[3].Visible = true;
@@ -1107,6 +1121,9 @@ namespace Evo
                             ListItem item = new ListItem();
                             item.Text = i.ToString();
                             item.Value = i.ToString();
+                            if (isSlotAvailable(dtSlot, i))
+                                //item.Attributes.Add("enable","disabled");
+                                item.Attributes["disabled"] = "disabled";
                             ddlSlotPositionStart.Items.Add(item);
                         }
 
@@ -1115,30 +1132,38 @@ namespace Evo
                             ListItem item = new ListItem();
                             item.Text = i.ToString();
                             item.Value = i.ToString();
+                            if (isSlotAvailable(dtSlot, i))
+                                //item.Attributes.Add("enable","disabled");
+                                item.Attributes["disabled"] = "disabled";
                             ddlSlotPositionEnd.Items.Add(item);
                         }
+
+
                     }
                     else
                     {
 
-                        availableSlot = (Convert.ToDecimal(dt1.Rows[0]["SlotPositionEnd"]) - Convert.ToDecimal(dt1.Rows[0]["SlotPositionStart"])) + 1;
 
+
+                        if (dtSlot != null && dtSlot.Rows.Count > 0)
+                        {
+                            for (int i = 0; i < dtSlot.Rows.Count; i++)
+                            {
+                                availableSlot += (Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionEnd"]) - Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionStart"]));
+                            }
+                        }
                         //  decimal Pre = ((Convert .ToInt32(dt1.Rows[0]["SlotPositionEnd"]) - Convert .ToInt32 (dt1.Rows[0]["SlotPositionStart"])) * 100) / 52;
                         decimal availableSlot1 = Convert.ToDecimal(availableSlot / Convert.ToDecimal(dt1.Rows[0]["TotalSlot"]));
                         decimal Pre = 1 - availableSlot1;
                         decimal Pre1 = Pre * 100;
 
-                        TotalTrays = Convert.ToInt32(dt1.Rows[0]["PerTrays"]) * Convert.ToInt32(availableSlot);
+                       // TotalTrays = Convert.ToInt32(dt1.Rows[0]["PerTrays"]) * Convert.ToInt32(availableSlot);
 
 
                         txtTrays.Text = TotalTrays.ToString();
-                        lbltraysTotal.Text = string.Format("{0:f2}", Pre1);
+                        lblperTrays.Text = string.Format("{0:f2}", Pre1);
                         lblRemaining.Text = ((Convert.ToInt32(lblSeededTrays.Text) - Convert.ToInt32(lblTTrays.Text)) - TotalTrays).ToString();
                         lblTTrays.Text = (Convert.ToInt32(lblTTrays.Text) + TotalTrays).ToString();
-
-
-
-
 
 
                         for (double i = 0.5; i < 54; i += 0.5)
@@ -1146,6 +1171,10 @@ namespace Evo
                             ListItem item = new ListItem();
                             item.Text = i.ToString();
                             item.Value = i.ToString();
+                            if (isSlotAvailable(dtSlot, i))
+                                //item.Attributes.Add("enable","disabled");
+                                item.Attributes["disabled"] = "disabled";
+
                             ddlSlotPositionStart.Items.Add(item);
                         }
 
@@ -1154,6 +1183,9 @@ namespace Evo
                             ListItem item = new ListItem();
                             item.Text = i.ToString();
                             item.Value = i.ToString();
+                            if (isSlotAvailable(dtSlot, i))
+                                //item.Attributes.Add("enable","disabled");
+                                item.Attributes["disabled"] = "disabled";
                             ddlSlotPositionEnd.Items.Add(item);
                         }
 
@@ -1176,9 +1208,6 @@ namespace Evo
                     }
 
 
-                    //ddlSlotPositionStart.SelectedValue = txtSlotPositionStart.Text;
-                    //ddlSlotPositionEnd.SelectedValue = txtSlotPositionEnd.Text;
-                    // AddGrowerPutRow(true);
                 }
 
             }
@@ -1187,7 +1216,19 @@ namespace Evo
         }
 
 
-
+        public bool isSlotAvailable(DataTable dtSlot, double slot)
+        {
+            if (dtSlot != null && dtSlot.Rows.Count > 0)
+            {
+                for (int i = 0; i < dtSlot.Rows.Count; i++)
+                {
+                    if (slot >= Convert.ToDouble(dtSlot.Rows[i]["SlotPositionStart"]) && slot <= Convert.ToDouble(dtSlot.Rows[i]["SlotPositionEnd"]))
+                        return true;
+                }
+               
+            }
+            return false;
+        }
 
 
     }
