@@ -49,6 +49,14 @@ namespace Evo.Admin
 
         }
 
+        protected void btndummyJob_Click(object sender, EventArgs e)
+        {
+            long _isInserted3 = 0;
+            NameValueCollection nvReset = new NameValueCollection();
+            _isInserted3 = objCommon.GetDataInsertORUpdate("SP_AddResetdummy", nvReset);
+
+        }
+
         protected void btAdd_Click(object sender, EventArgs e)
         {
             long _isInserted3 = 0;
@@ -843,5 +851,7 @@ namespace Evo.Admin
 
 
         }
+
+       
     }
 }

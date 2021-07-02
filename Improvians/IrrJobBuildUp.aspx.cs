@@ -46,11 +46,13 @@ namespace Evo
                     TaskRequestKey = Request.QueryString["TaskRequestKey"].ToString();
                 }
                 txtSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+                lblbench.Text = Bench;
+               
                 BindGridIrrigation();
                 BindSupervisorList();
                 BindGridIrrDetails(Bench);
                 BindGridIrrDetailsViewReq();
-                lblbench.Text = Bench;
+                BindSlotSelect();
             }
         }
 
@@ -163,6 +165,123 @@ namespace Evo
                 ViewState["Jid"] = value;
             }
         }
+
+
+        private string GrowerPutAwayId
+        {
+            get
+            {
+                if (ViewState["GrowerPutAwayId"] != null)
+                {
+                    return (string)ViewState["GrowerPutAwayId"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["GrowerPutAwayId"] = value;
+            }
+        }
+
+
+        
+
+        public void BindSlotSelect()
+        {
+
+
+
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+
+            nv1.Add("@BanchLocation", lblbench.Text);
+            nv1.Add("@Facility", "");
+            nv1.Add("@Mode", "3");
+            dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
+
+
+           
+
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                int TotalTrays = 0;
+                decimal availableSlot = 0;
+
+                if (dt1.Rows[0]["Automation"].ToString() == "Auto")
+                {
+
+
+                    for (double i = 1; i < 53; i++)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+                       
+                        ddlSlotPositionStart.Items.Add(item);
+                    }
+
+                    for (double i = 1; i < 53; i++)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+                      
+                        ddlSlotPositionEnd.Items.Add(item);
+                    }
+
+
+                }
+                else
+                {
+
+
+
+
+
+                    for (double i = 0.5; i < 54; i += 0.5)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+                      
+
+                        ddlSlotPositionStart.Items.Add(item);
+                    }
+
+                    for (double i = 0.5; i < 54; i += 0.5)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+                      
+                        ddlSlotPositionEnd.Items.Add(item);
+                    }
+
+
+
+                }
+
+                DataTable dtSlot = new DataTable();
+                NameValueCollection nvSlot = new NameValueCollection();
+                nvSlot.Add("@GrowerPutAwayId", GrowerPutAwayId.ToString());
+               
+                dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPositionSelect", nvSlot);
+
+                if(dtSlot != null && dtSlot.Rows.Count >0)
+                {
+                    ddlSlotPositionStart.SelectedValue = dt1.Rows[0]["SlotPositionStart"].ToString();
+                    ddlSlotPositionEnd.SelectedValue = dt1.Rows[0]["SlotPositionEnd"].ToString();
+                }
+
+
+            }
+
+
+
+
+
+        }
+
 
 
         protected void RadioBench_SelectedIndexChanged(object sender, EventArgs e)
@@ -409,6 +528,7 @@ namespace Evo
             int tray = 0;
 
             Jid = dt.Rows[0]["GrowerPutAwayId"].ToString();
+            GrowerPutAwayId = dt.Rows[0]["GrowerPutAwayId"].ToString();
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
                 tray = tray + Convert.ToInt32((row.FindControl("lbltotTray") as Label).Text);
@@ -419,19 +539,58 @@ namespace Evo
         {
 
 
-            NameValueCollection nv = new NameValueCollection();
-            DataTable dt = new DataTable();
-            nv.Add("@RoleID", Session["Role"].ToString());
-            nv.Add("@Facility", Session["Facility"].ToString());
-            dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
 
-            ddlSupervisor.DataSource = dt;
-            //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
-            ddlSupervisor.DataTextField = "EmployeeName";
-            ddlSupervisor.DataValueField = "ID";
-            ddlSupervisor.DataBind();
-            ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+            nv1.Add("@BanchLocation", lblbench.Text);
+            nv1.Add("@Facility", "");
+            nv1.Add("@Mode", "3");
+            dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
 
+
+
+
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                int TotalTrays = 0;
+                decimal availableSlot = 0;
+
+                if (dt1.Rows[0]["Automation"].ToString() == "Auto")
+                {
+
+                    NameValueCollection nv = new NameValueCollection();
+                    DataTable dt = new DataTable();
+                    nv.Add("@RoleID", "16");
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                    ddlSupervisor.DataSource = dt;
+                    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                    ddlSupervisor.DataTextField = "EmployeeName";
+                    ddlSupervisor.DataValueField = "ID";
+                    ddlSupervisor.DataBind();
+                    ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                }
+                else
+                {
+
+
+
+                    NameValueCollection nv = new NameValueCollection();
+                    DataTable dt = new DataTable();
+                    nv.Add("@RoleID", Session["Role"].ToString());
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+                    ddlSupervisor.DataSource = dt;
+                    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                    ddlSupervisor.DataTextField = "EmployeeName";
+                    ddlSupervisor.DataValueField = "ID";
+                    ddlSupervisor.DataBind();
+                    ddlSupervisor.Items.Insert(0, new ListItem("--Select--", "0"));
+                }
+
+            }
         }
 
         public void BindGridIrrDetailsViewReq()
@@ -651,6 +810,9 @@ namespace Evo
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
                 nv.Add("@jobcode", "0");
+                nv.Add("@SlotPositionStart", ddlSlotPositionStart.SelectedValue);
+                nv.Add("@SlotPositionEnd",ddlSlotPositionEnd.SelectedValue);
+                
                 result = objCommon.GetDataInsertORUpdate("SP_AddIrrigationRequestNew", nv);
 
                 if (Batchlocation2 == "" || Batchlocation2 != Batchlocation)

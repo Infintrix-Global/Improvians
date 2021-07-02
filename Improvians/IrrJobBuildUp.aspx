@@ -215,30 +215,43 @@
             <div id="userinput" runat="server" class="row justify-content-center">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                             <label>Assignment</label>
                             <asp:DropDownList ID="ddlSupervisor" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                             <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
                             <asp:TextBox ID="txtWaterRequired" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                             <label class="d-block">Spray Date</label>
                             <asp:TextBox ID="txtSprayDate" CssClass="input__control" TextMode="Date" runat="server"></asp:TextBox>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                             <label>Minimum Days Until Next Irrigationn</label>
                             <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                        </div>
+
+                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <label>Slot Position Start #</label>
+                            <asp:DropDownList ID="ddlSlotPositionStart" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        </div>
+                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <label>Slot Position End #</label>
+                            <asp:DropDownList ID="ddlSlotPositionEnd" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                        </div>
+
+
+                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                <label>Comments</label>
+                            <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Comments" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <br />
                     <div class="row">
-                        <div class="col-lg-3">
-                            <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="w-100 input__control" placeholder="Notes" runat="server"></asp:TextBox>
-                        </div>
+                       
                         <div class="col-lg-3">
                         </div>
                     </div>

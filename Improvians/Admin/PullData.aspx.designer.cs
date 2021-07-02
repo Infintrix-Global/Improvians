@@ -33,6 +33,15 @@ namespace Evo.Admin
         protected global::System.Web.UI.WebControls.Button btAdd;
 
         /// <summary>
+        /// btndummyJob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btndummyJob;
+
+        /// <summary>
         /// btnPullData control.
         /// </summary>
         /// <remarks>
