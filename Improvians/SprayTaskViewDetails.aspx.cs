@@ -131,7 +131,21 @@ namespace Evo
 
 
 
-        
+        private string TraysTotal
+        {
+            get
+            {
+                if (ViewState["TraysTotal"] != null)
+                {
+                    return (string)ViewState["TraysTotal"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["TraysTotal"] = value;
+            }
+        }
 
         public void BindGridSprayReq()
         {
@@ -153,6 +167,12 @@ namespace Evo
             {
                 ChId = ChId;
             }
+            int tray = 0;
+            foreach (GridViewRow row in gvSpray.Rows)
+            {
+                tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
+            }
+            TraysTotal = tray.ToString();
             BindGridCropHealth(Convert.ToInt32(ChId));
             BindGridCropHealthImage(ChId);
         }
@@ -232,8 +252,13 @@ namespace Evo
             BindGridSprayReq();
         }
 
-
-
-    
+        protected void GridViewDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lblTray = (Label)e.Row.FindControl("lblTray");
+                lblTray.Text = TraysTotal;
+            }
+        }
     }
 }

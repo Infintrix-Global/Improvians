@@ -492,7 +492,8 @@ namespace Evo
             {
                 Label lblGermDate = (Label)e.Row.FindControl("lblFDate");
                 string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
-
+                Label lblFertilizationCode = (Label)e.Row.FindControl("lblFertilizationCode");
+                Label lblTray = (Label)e.Row.FindControl("lblTray");
                 DateTime dtime = Convert.ToDateTime(dtimeString);
 
                 DateTime nowtime = Convert.ToDateTime(DateTime.Now.ToString("yyyy/MM/dd"));
@@ -514,7 +515,18 @@ namespace Evo
                 //GridViewFields.DataSource = dt;
                 //GridViewFields.DataBind();
 
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
 
+                nv.Add("@FertilizationCode", lblFertilizationCode.Text);
+                dt = objCommon.GetDataTable("SP_GetFertilizerBenchLocationView", nv);
+                int tray = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    tray += Convert.ToInt32(row["Trays"]);
+                }
+
+                lblTray.Text = tray.ToString();
 
 
                 //DataTable dt1 = new DataTable();

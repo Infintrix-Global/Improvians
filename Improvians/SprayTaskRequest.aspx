@@ -128,9 +128,10 @@
 
                                     <asp:TemplateField HeaderText="Tray">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblTray" runat="server" Text='<%#Bind("totalTrays") %>'></asp:Label>
+                                            <asp:Label ID="lblTray" runat="server" Text=""></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
 
                                     <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>

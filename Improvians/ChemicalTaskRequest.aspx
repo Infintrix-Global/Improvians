@@ -128,7 +128,7 @@
 
                                     <asp:TemplateField HeaderText="Tray">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblTray" runat="server" Text='<%#Bind("totalTrays") %>'></asp:Label>
+                                            <asp:Label ID="lblTray" runat="server" Text=""></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 

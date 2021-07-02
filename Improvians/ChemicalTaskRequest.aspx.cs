@@ -420,6 +420,10 @@ namespace Evo
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 Label lblGermDate = (Label)e.Row.FindControl("lblChemicalDate");
+                Label lblFertilizationCode = (Label)e.Row.FindControl("lblFertilizationCode");
+                Label lblTray = (Label)e.Row.FindControl("lblTray");
+
+
                 string dtimeString = Convert.ToDateTime(lblGermDate.Text).ToString("yyyy/MM/dd");
 
                 DateTime dtime = Convert.ToDateTime(dtimeString);
@@ -430,6 +434,19 @@ namespace Evo
                 {
                     e.Row.CssClass = "overdue";
                 }
+
+                DataTable dt = new DataTable();
+                NameValueCollection nv = new NameValueCollection();
+
+                nv.Add("@ChemicalCode", lblFertilizationCode.Text);
+                dt = objCommon.GetDataTable("SP_GetChemicalBenchLocationView", nv);
+                int tray = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    tray += Convert .ToInt32(row["Trays"]);
+                }
+
+                lblTray.Text = tray.ToString();
             }
         }
 

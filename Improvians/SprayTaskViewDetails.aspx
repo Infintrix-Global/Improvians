@@ -195,7 +195,7 @@
                     <h3 class="text-left dark_txt mb-2">Task Request Flow</h3>
                     <div class="portlet-body">
                         <div class="data__table">
-                            <asp:GridView ID="GridViewDetails"
+                            <asp:GridView ID="GridViewDetails" OnRowDataBound="GridViewDetails_RowDataBound"
                                 AutoGenerateColumns="false" runat="server">
                                 <Columns>
 
@@ -247,7 +247,7 @@
                                     <asp:TemplateField HeaderText="Tray">
                                         <ItemTemplate>
 
-                                            <asp:Label ID="lblTray" runat="server" Text='<%#Bind("Tray") %>'></asp:Label>
+                                            <asp:Label ID="lblTray" runat="server" Text=""></asp:Label>
 
 
                                         </ItemTemplate>

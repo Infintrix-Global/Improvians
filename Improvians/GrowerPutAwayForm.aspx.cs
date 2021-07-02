@@ -1069,7 +1069,7 @@ namespace Evo
                     int TotalTrays = 0;
                     decimal availableSlot = 0;
 
-                    if (dt1.Rows[0]["Automation"] == "Auto")
+                    if (dt1.Rows[0]["Automation"].ToString() == "Auto")
                     {
 
 
