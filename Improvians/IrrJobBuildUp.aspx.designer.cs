@@ -168,6 +168,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtResetSprayTaskForDays;
 
         /// <summary>
+        /// SlotStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SlotStart;
+
+        /// <summary>
         /// ddlSlotPositionStart control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSlotPositionStart;
+
+        /// <summary>
+        /// SlotEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SlotEnd;
 
         /// <summary>
         /// ddlSlotPositionEnd control.

@@ -443,24 +443,6 @@ namespace Evo
             {
 
              
-              Label lblID = (Label)e.Row.FindControl("lblID");
-
-                if(lblID.Text== "JB0200002")
-                {
-
-                }
-                else
-                {
-                    //DataTable dt = objCom.GetSeedLot(lblID.Text);
-                    //if (dt != null && dt.Rows.Count > 0)
-                    //{
-                    //    e.Row.Visible = true;
-                    //}
-                    //else
-                    //{
-                    //    e.Row.Visible = false;
-                    //}
-                }
               
             }
         }

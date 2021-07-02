@@ -785,13 +785,24 @@
                                             SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </span>
                                 </div>
-                                <div class="d-none d-sm-block w-100"></div>
-                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+
+                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label>Number Of Trays </label>
 
                                     <asp:TextBox ID="txtMoveNumberOfTrays" runat="server" CssClass="input__control"></asp:TextBox>
                                     <span class="error_message"></span>
                                 </div>
+                                <div runat="server" id="SlotStart" class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>Slot Position Start #</label>
+                                    <asp:DropDownList ID="ddlSlotPositionStart" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+                                <div runat="server" id="SlotEnd" class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>Slot Position End #</label>
+                                    <asp:DropDownList ID="ddlSlotPositionEnd" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+
+                               
+                               
                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label>Date </label>
 
@@ -799,13 +810,14 @@
                                     <span class="error_message"></span>
 
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label>Comments </label>
 
                                     <asp:TextBox ID="txtMoveComments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
+                            </div>
+                            <div class="row">
+                               
                             </div>
                             <div class="row">
                                 <div class="col-12">

@@ -229,7 +229,17 @@ namespace Evo
                         ddlSlotPositionEnd.Items.Add(item);
                     }
 
+                    DataTable dtSlot = new DataTable();
+                    NameValueCollection nvSlot = new NameValueCollection();
+                    nvSlot.Add("@GrowerPutAwayId", GrowerPutAwayId.ToString());
 
+                    dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPositionSelect", nvSlot);
+
+                    if (dtSlot != null && dtSlot.Rows.Count > 0)
+                    {
+                        ddlSlotPositionStart.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionStart"]).ToString();
+                        ddlSlotPositionEnd.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionEnd"]).ToString();
+                    }
                 }
                 else
                 {
@@ -261,17 +271,7 @@ namespace Evo
 
                 }
 
-                DataTable dtSlot = new DataTable();
-                NameValueCollection nvSlot = new NameValueCollection();
-                nvSlot.Add("@GrowerPutAwayId", GrowerPutAwayId.ToString());
                
-                dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPositionSelect", nvSlot);
-
-                if(dtSlot != null && dtSlot.Rows.Count >0)
-                {
-                    ddlSlotPositionStart.SelectedValue = dt1.Rows[0]["SlotPositionStart"].ToString();
-                    ddlSlotPositionEnd.SelectedValue = dt1.Rows[0]["SlotPositionEnd"].ToString();
-                }
 
 
             }
@@ -575,8 +575,9 @@ namespace Evo
                 {
 
 
-
-                    NameValueCollection nv = new NameValueCollection();
+                    SlotStart.Visible = false;
+                    SlotEnd.Visible = false;
+                     NameValueCollection nv = new NameValueCollection();
                     DataTable dt = new DataTable();
                     nv.Add("@RoleID", Session["Role"].ToString());
                     nv.Add("@Facility", Session["Facility"].ToString());

@@ -234,11 +234,11 @@
                             <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                         </div>
 
-                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                         <div runat="server" id="SlotStart" class="col-sm-6 col-md-4 col-lg-3 mb-3">
                             <label>Slot Position Start #</label>
                             <asp:DropDownList ID="ddlSlotPositionStart" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>
-                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                         <div runat="server" id="SlotEnd" class="col-sm-6 col-md-4 col-lg-3 mb-3">
                             <label>Slot Position End #</label>
                             <asp:DropDownList ID="ddlSlotPositionEnd" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>

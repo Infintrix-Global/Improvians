@@ -290,11 +290,11 @@ namespace Evo
                         if (chckrw.Checked == true)
                         {
 
-                            if (lbljobcode.Text == "JB0200002")
+                            if (lbljobcode.Text == "JB0200002" || lbljobcode.Text == "JB0200003" || lbljobcode.Text == "JB0200004")
                             {
                                 long _isInserted3 = 0;
                                 NameValueCollection nvReset = new NameValueCollection();
-                                nvReset.Add("@JobNo", "JB0200002");
+                                nvReset.Add("@JobNo", lbljobcode.Text);
                                 _isInserted3 = objCommon.GetDataInsertORUpdate("SP_DeleteJobNo", nvReset);
 
                             }

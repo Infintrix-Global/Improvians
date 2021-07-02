@@ -54,6 +54,7 @@ namespace Evo.Admin
             long _isInserted3 = 0;
             NameValueCollection nvReset = new NameValueCollection();
             _isInserted3 = objCommon.GetDataInsertORUpdate("SP_AddResetdummy", nvReset);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(' Dummy job Reset Successful ')", true);
 
         }
 

@@ -33,6 +33,7 @@ namespace Evo
         BAL_Task objTask = new BAL_Task();
         clsCommonMasters objCom = new clsCommonMasters();
         General objGeneral = new General();
+        BAL_CommonMasters objCOm = new BAL_CommonMasters();
         static string ReceiverEmail = "";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -115,6 +116,13 @@ namespace Evo
             }
         }
 
+
+    
+
+
+
+
+
         public void Bindcname()
         {
 
@@ -190,12 +198,14 @@ namespace Evo
 
             //dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
 
-            DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
+            //DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
+
+            DataTable dtNV = objCOm.GetLocation(ddlMain);
 
 
             ddlBenchLocation.DataSource = dtNV;
-            ddlBenchLocation.DataTextField = "GreenHouseID";
-            ddlBenchLocation.DataValueField = "GreenHouseID";
+            ddlBenchLocation.DataTextField = "BenchName";
+            ddlBenchLocation.DataValueField = "BenchName";
             ddlBenchLocation.DataBind();
             ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", ""));
 
@@ -503,6 +513,7 @@ namespace Evo
                 dt.AcceptChanges();
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
+                BindSlotSelect(dt.Rows[0]["GreenHouseID"].ToString(), dt.Rows[0]["GrowerPutAwayId"].ToString());
 
             }
             else if (dtManual != null && dtManual.Rows.Count > 0)
@@ -510,12 +521,15 @@ namespace Evo
                 gvFer.DataSource = dtManual;
                 gvFer.DataBind();
 
+                BindSlotSelect(dtManual.Rows[0]["GreenHouseID"].ToString(), dtManual.Rows[0]["GrowerPutAwayId"].ToString());
+
             }
             else
             {
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
 
+                BindSlotSelect(dt.Rows[0]["GreenHouseID"].ToString(), dt.Rows[0]["GrowerPutAwayId"].ToString());
 
             }
 
@@ -563,6 +577,135 @@ namespace Evo
                 BindSQFTofBench(chkSelected);
             }
         }
+
+
+        public void BindSlotSelect(string bench,string GPId)
+        {
+
+
+
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+
+            nv1.Add("@BanchLocation", bench);
+            nv1.Add("@Facility", "");
+            nv1.Add("@Mode", "3");
+            dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
+
+
+
+
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                int TotalTrays = 0;
+                decimal availableSlot = 0;
+
+                if (dt1.Rows[0]["Automation"].ToString() == "Auto")
+                {
+
+
+                    for (double i = 1; i < 53; i++)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+
+                        ddlSlotPositionStart.Items.Add(item);
+                    }
+
+                    for (double i = 1; i < 53; i++)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+
+                        ddlSlotPositionEnd.Items.Add(item);
+                    }
+                    ddlLogisticManager.Items.Clear();
+                    NameValueCollection nv = new NameValueCollection();
+                    DataTable dt = new DataTable();
+                    nv.Add("@RoleID", "16");
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacilityNew", nv);
+
+                    ddlLogisticManager.DataSource = dt;
+                    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                    ddlLogisticManager.DataTextField = "EmployeeName";
+                    ddlLogisticManager.DataValueField = "ID";
+                    ddlLogisticManager.DataBind();
+                    ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
+
+                    DataTable dtSlot = new DataTable();
+                    NameValueCollection nvSlot = new NameValueCollection();
+                    nvSlot.Add("@GrowerPutAwayId", GPId.ToString());
+
+                    dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPositionSelect", nvSlot);
+
+                    if (dtSlot != null && dtSlot.Rows.Count > 0)
+                    {
+                        ddlSlotPositionStart.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionStart"]).ToString();
+                        ddlSlotPositionEnd.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionEnd"]).ToString();
+                    }
+                }
+                else
+                {
+
+                    SlotStart.Visible = false;
+                    SlotEnd.Visible = false;
+                    NameValueCollection nv = new NameValueCollection();
+                    DataTable dt = new DataTable();
+                    nv.Add("@RoleID", Session["Role"].ToString());
+                    nv.Add("@Facility", Session["Facility"].ToString());
+                    dt = objCommon.GetDataTable("SP_GetRoleForAssignementFacility", nv);
+
+                    ddlLogisticManager.DataSource = dt;
+                    //ddlSupervisor.DataSource = objCommon.GetDataTable("SP_GetGreenHouseSupervisor", nv); ;
+                    ddlLogisticManager.DataTextField = "EmployeeName";
+                    ddlLogisticManager.DataValueField = "ID";
+                    ddlLogisticManager.DataBind();
+                    ddlLogisticManager.Items.Insert(0, new ListItem("--Select--", "0"));
+
+
+
+                    for (double i = 0.5; i < 54; i += 0.5)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+
+
+                        ddlSlotPositionStart.Items.Add(item);
+                    }
+
+                    for (double i = 0.5; i < 54; i += 0.5)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+
+                        ddlSlotPositionEnd.Items.Add(item);
+                    }
+
+
+
+                }
+
+               
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+
 
         protected void gvFer_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -670,6 +813,9 @@ namespace Evo
                 Panel_Bench.Visible = true;
                 Bench1 = ddlBenchLocation.SelectedItem.Text;
                 BindGridFerReq("'" + Bench1 + "'", "");
+
+               // BindSlotSelect(Bench1);
+
 
             }
 
