@@ -756,7 +756,7 @@ namespace Evo
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
 
-            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtcomments.Text);
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, "0", FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtcomments.Text,txtNoOfPasses.Text);
             long result16 = 0;
             NameValueCollection nv11 = new NameValueCollection();
             nv11.Add("@Chid", Chid);

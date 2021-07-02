@@ -364,21 +364,10 @@
                             </span>
                         </div>
 
-                        <%--  <div class="col-lg-3">
-                                <label>Bench Irrigation Flow Rate [Gallons/min]</label>
-                                <asp:TextBox ID="txtBenchIrrigationFlowRate" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                            </div>
-                            <div class="col-lg-3">
-                                <label>Bench Irrigation Coverage [Gallons/Sqft]</label>
-                                <asp:TextBox ID="txtBenchIrrigationCoverage" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                            </div>
-                            <div class="col-lg-3">
-                                <label>Spray Coverage per minutes [sqft/min]</label>
-                                <asp:TextBox ID="txtSprayCoverageperminutes" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-
-                            </div>--%>
+                        <div class="col-sm-6 col-lg col-xl-3 mb-3">
+                            <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
+                            <asp:TextBox ID="txtNoOfPasses" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
+                        </div>
                         <div class="col-sm-6 col-lg col-xl-3 mb-3">
                             <label>Minimum Days Until Next Fertilization</label>
                             <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>

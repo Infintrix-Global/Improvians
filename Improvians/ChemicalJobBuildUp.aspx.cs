@@ -685,8 +685,7 @@ namespace Evo
                 nv.Add("@Comments", txtComments.Text);
                 nv.Add("@Method", ddlMethod.SelectedValue);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
-                nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
-                
+             
                 result = objCommon.GetDataExecuteScaler("SP_AddChemicalRequest", nv);
 
 

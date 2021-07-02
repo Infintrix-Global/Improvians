@@ -951,7 +951,7 @@ namespace Evo
                     if (Batchlocation2 == "" || Batchlocation2 != Batchlocation)
                     {
                         dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
-                        objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim());
+                        objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim(),txtNoOfPasses.Text);
                         Batchlocation2 = Batchlocation;
 
                         NameValueCollection nvn = new NameValueCollection();

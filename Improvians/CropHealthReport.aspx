@@ -530,6 +530,11 @@
                                     <label class="d-block">SQFT of Bench</label>
                                     <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                                 </div>
+                                <div class="mb-3 col-xl-2 col-md-6 col-12">
+                                    <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
+                                    <asp:TextBox ID="txtNoOfPasses" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
+                                </div>
+
                                 <%--<div class="mb-3 col-xl-3 col-md-6 col-12">
                                         <label>Bench Irrigation Flow Rate [Gallons/min]</label>
                                         <asp:TextBox ID="txtBenchIrrigationFlowRate" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>

@@ -53,7 +53,7 @@
                                     <asp:Label ID="lblGenusCode" runat="server" Text='<%# Eval("GenusCode")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblwo" runat="server" Text='<%# Eval("wo")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblGrowerputawayID" runat="server" Text='<%# Eval("GrowerPutAwayId")  %>' Visible="false"></asp:Label>
-                                     <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate")  %>' Visible="false"></asp:Label>
+                                    <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("PlantDueDate")  %>' Visible="false"></asp:Label>
                                     <asp:Label ID="lblPlantReadyDate" runat="server" Text='<%# Eval("PlantReadyDate")  %>' Visible="false"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -208,7 +208,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                         
+
                             <asp:TemplateField HeaderText="Plant Type" HeaderStyle-CssClass="autostyle2">
                                 <ItemTemplate>
                                     <asp:Label ID="lblSeededDate1" Visible="false" runat="server" Text='<%# Eval("SeededDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
@@ -350,6 +350,12 @@
                                     SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
                             </span>
                         </div>
+
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
+                            <asp:TextBox ID="txtNoOfPasses" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
+                        </div>
+
 
                         <div class="col-sm-6 col-lg col-xl-3 mb-3">
                             <label>Minimum Days Until Next Fertilization</label>

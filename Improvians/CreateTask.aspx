@@ -7,14 +7,13 @@
 
         function Confirm() {
             var value = ConfirmFerDateCheck();
-         //   alert('value ' + value);
-            if (value == true)
-            {
+            //   alert('value ' + value);
+            if (value == true) {
                 var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
-                 //  alert('txt1' + txt1);
-                 var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-                 var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
-                 var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
+                //  alert('txt1' + txt1);
+                var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
+                var txtToday = document.getElementById('<%= ToDaydate.ClientID %>').value;
+                var txttoSDate = document.getElementById('<%= SprayTaskForDaysDate.ClientID %>').value;
                 if (txttoSDate > txtToday)
                     return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
                 else
@@ -43,16 +42,15 @@
         function ConfirmChemica() {
             var value = ConfirmCheDateCheck();
             //   alert('value ' + value);
-            if (value == true)
-            {
-                 var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
-                 var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-                  var txtToday = document.getElementById('<%= ToDaydateCem.ClientID %>').value;
-                  var txttoSDate = document.getElementById('<%= SprayTaskForDaysDateCem.ClientID %>').value;
-                  if (txttoSDate > txtToday)
-                            return confirm("Chemical Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
-                   else
-                return true;
+            if (value == true) {
+                var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
+                var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
+                var txtToday = document.getElementById('<%= ToDaydateCem.ClientID %>').value;
+                var txttoSDate = document.getElementById('<%= SprayTaskForDaysDateCem.ClientID %>').value;
+                if (txttoSDate > txtToday)
+                    return confirm("Chemical Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+                else
+                    return true;
             }
             else
                 return false;
@@ -65,8 +63,7 @@
             var Cem_Date = document.getElementById('<%= CemDate.ClientID %>').value;
             var txt2 = document.getElementById('<%= txtChemicalSprayDate.ClientID %>').value;
 
-            if (Cem_Date == txt2)
-            {
+            if (Cem_Date == txt2) {
                 $('#confirmModalCem').modal('show');
                 return false;
             }//return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
@@ -80,16 +77,15 @@
 
             var value = ConfirmIrrigationDateCheck();
             //   alert('value ' + value);
-            if (value == true)
-            {
+            if (value == true) {
 
                 var txt1 = document.getElementById('<%= lblDayOfShip.ClientID %>').value;
-                 var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
-                 var txtToday = document.getElementById('<%= ToDaydateIrr.ClientID %>').value;
-                 var txttoSDate = document.getElementById('<%= SprayTaskForDaysDateirr.ClientID %>').value;
-                 if (txttoSDate > txtToday)
-                       return confirm("Irrigation Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
-                 else
+                var txt2 = document.getElementById('<%= lblDateOfShip.ClientID %>').value;
+                var txtToday = document.getElementById('<%= ToDaydateIrr.ClientID %>').value;
+                var txttoSDate = document.getElementById('<%= SprayTaskForDaysDateirr.ClientID %>').value;
+                if (txttoSDate > txtToday)
+                    return confirm("Irrigation Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
+                else
                     return true;
             }
             else
@@ -102,8 +98,7 @@
             var Irr_Date = document.getElementById('<%= IrrDate.ClientID %>').value;
             var txt2 = document.getElementById('<%= txtirrigationSprayDate.ClientID %>').value;
 
-            if (Irr_Date == txt2)
-            {
+            if (Irr_Date == txt2) {
                 $('#confirmModalIrr').modal('show');
                 return false;
             }//return confirm("Fertilization Reset of " + txt1 + " days has been applied on this bench location on " + txt2 + ". Are you sure you want to proceed.?");
@@ -224,7 +219,7 @@
                     </asp:Panel>
                     <asp:Panel ID="PanelBenchesInHouse" Visible="false" runat="server">
 
-                        <asp:ListBox Height="150px" ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged"  runat="server"></asp:ListBox>
+                        <asp:ListBox Height="150px" ID="ListBoxBenchesInHouse" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ListBoxBenchesInHouse_SelectedIndexChanged" runat="server"></asp:ListBox>
                     </asp:Panel>
                     <asp:Panel ID="PanelHouse" Visible="false" runat="server">
                     </asp:Panel>
@@ -314,7 +309,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                       <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
+                                    <asp:TemplateField HeaderText="Plant Due Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblPlantDueDate" runat="server" Text='<%# Eval("due_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
@@ -329,7 +324,7 @@
                                             <asp:Label ID="lblPlantReadyDate" runat="server" Text='<%# Eval("plan_date","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                 
+
 
                                 </Columns>
 
@@ -566,6 +561,10 @@
                                 <asp:TextBox ID="txtSQFT" Enabled="false" runat="server" CssClass="input__control"></asp:TextBox>
                             </div>
                             <div class="col-lg-4 col-xl-3 mb-3">
+                                <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
+                                <asp:TextBox ID="txtNoOfPasses" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-4 col-xl-3 mb-3">
                                 <label>Minimum Days Until Next Fertilization</label>
                                 <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
                                 <asp:TextBox ID="txtBenchIrrigationFlowRate" Visible="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
@@ -614,9 +613,9 @@
                                         <asp:Label ID="lbltype" runat="server" Text="Chemical"></asp:Label>
                                     </label>
                                     <br />
-                                   <%-- <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
+                                    <%-- <asp:DropDownList ID="ddlChemical" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>--%>
 
-                                      <asp:ListBox ID="ddlChemical" SelectionMode="Multiple"   runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+                                    <asp:ListBox ID="ddlChemical" SelectionMode="Multiple" runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
 
                                 </div>
                                 <div class="col-lg-4 col-xl-3 mb-3">
@@ -897,7 +896,7 @@
                                                 <label>Task Type</label>
 
                                                 <asp:DropDownList ID="ddlTaskType" runat="server" OnSelectedIndexChanged="ddlTaskType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
-                                                 <%--   <asp:ListItem Text="--Select--" Value="0" />
+                                                    <%--   <asp:ListItem Text="--Select--" Value="0" />
                                                     <asp:ListItem Text="Add Bird Netting" Value="1" />
                                                     <asp:ListItem Text="Remove Bird Netting" Value="2" />
                                                     <asp:ListItem Text="Move" Value="3" />
@@ -1022,16 +1021,16 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                   You already have system assigned fertilization task for this reset period under your My Task. On proceeding, those task will be removed from you My Task.?
+                        You already have system assigned fertilization task for this reset period under your My Task. On proceeding, those task will be removed from you My Task.?
                     </div>
                     <div class="modal-footer">
                         <%--<button type="button" class="bttn bttn-primary">Proceed</button>
                         --%>
                         <asp:Button ID="btnChekFSubmit" runat="server" OnClick="btnChekFSubmit_Click" class="bttn bttn-primary" Text="Proceed" />
 
-                         <asp:Button ID="btnChekFCancel" runat="server" OnClick="btnChekFCancel_Click"  data-dismiss="modal" class="bttn bttn-secondary" Text="Cancel" />
+                        <asp:Button ID="btnChekFCancel" runat="server" OnClick="btnChekFCancel_Click" data-dismiss="modal" class="bttn bttn-secondary" Text="Cancel" />
 
-                     
+
                     </div>
                 </div>
             </div>
@@ -1048,16 +1047,16 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                      You already have system assigned Chemical task for this reset period under your My Task. On proceeding, those task will be removed from you My Task.?
+                        You already have system assigned Chemical task for this reset period under your My Task. On proceeding, those task will be removed from you My Task.?
                     </div>
                     <div class="modal-footer">
                         <%--<button type="button" class="bttn bttn-primary">Proceed</button>
                         --%>
                         <asp:Button ID="btnChekCemSubmit" runat="server" OnClick="btnChekCemSubmit_Click" class="bttn bttn-primary" Text="Proceed" />
 
-                         <asp:Button ID="btnChekCemCancel" runat="server" OnClick="btnChekCemCancel_Click"  data-dismiss="modal" class="bttn bttn-secondary" Text="Cancel" />
+                        <asp:Button ID="btnChekCemCancel" runat="server" OnClick="btnChekCemCancel_Click" data-dismiss="modal" class="bttn bttn-secondary" Text="Cancel" />
 
-                     
+
                     </div>
                 </div>
             </div>
@@ -1072,16 +1071,16 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                     You already have system assigned Irrigation task for this reset period under your My Task. On proceeding, those task will be removed from you My Task.?
+                        You already have system assigned Irrigation task for this reset period under your My Task. On proceeding, those task will be removed from you My Task.?
                     </div>
                     <div class="modal-footer">
                         <%--<button type="button" class="bttn bttn-primary">Proceed</button>
                         --%>
                         <asp:Button ID="btnChekIrrigationSubmit_Click" runat="server" OnClick="btnChekIrrigationSubmit_Click_Click" class="bttn bttn-primary" Text="Proceed" />
 
-                         <asp:Button ID="btnChekIrrigationCancel_Click" runat="server" OnClick="btnChekIrrigationCancel_Click_Click"  data-dismiss="modal" class="bttn bttn-secondary" Text="Cancel" />
+                        <asp:Button ID="btnChekIrrigationCancel_Click" runat="server" OnClick="btnChekIrrigationCancel_Click_Click" data-dismiss="modal" class="bttn bttn-secondary" Text="Cancel" />
 
-                     
+
                     </div>
                 </div>
             </div>

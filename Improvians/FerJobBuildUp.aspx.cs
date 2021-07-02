@@ -752,6 +752,8 @@ namespace Evo
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
+                nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
+
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
                 //}
@@ -762,7 +764,7 @@ namespace Evo
 
                     dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
 
-                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtComments.Text.Trim());
+                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtComments.Text.Trim(),txtNoOfPasses.Text.Trim());
                     Batchlocation2 = Batchlocation;
 
 

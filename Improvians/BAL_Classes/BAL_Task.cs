@@ -76,7 +76,7 @@ namespace Evo.BAL_Classes
         }
 
 
-        public int AddFertilizerRequestDetailsCreatTask(DataTable dt, string FertilizationID, int FertilizationCode, string bencLoc, string BenchIrrigationFlowRat, string BenchIrrigationCoverage, string SprayCoverageperminutes, string ResetSprayTaskForDays,string Comments)
+        public int AddFertilizerRequestDetailsCreatTask(DataTable dt, string FertilizationID, int FertilizationCode, string bencLoc, string BenchIrrigationFlowRat, string BenchIrrigationCoverage, string SprayCoverageperminutes, string ResetSprayTaskForDays,string Comments,string NoOfPasses)
         {
             int _isInserted = -1;
             try
@@ -97,8 +97,8 @@ namespace Evo.BAL_Classes
                     objGeneral.AddParameterWithValueToSQLCommand("@SprayCoverageperminutes", SprayCoverageperminutes);
                     objGeneral.AddParameterWithValueToSQLCommand("@ResetSprayTaskForDays", ResetSprayTaskForDays);
                     objGeneral.AddParameterWithValueToSQLCommand("@Comments", Comments);
-
-
+                    objGeneral.AddParameterWithValueToSQLCommand("@NoOfPasses", NoOfPasses);
+                    
                     _isInserted = objGeneral.GetExecuteNonQueryByCommand_SP("SP_AddFertilizerDetailsCreateTask");
                 }
             }
