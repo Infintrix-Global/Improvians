@@ -142,9 +142,20 @@ jQuery(document).ready(function ($) {
     initDatePicker();
 
 
-    $(window).on("load", function () {
+    function translateManipulate() {
         $(".goog-te-combo").addClass("custom__dropdown input__control-auto");
         $(".goog-te-combo option:first-child").html('Translate');
+    }
+
+    $(window).on("load", function () {
+        translateManipulate();
     });
-    
+
+    translateManipulate();
+
+    setTimeout(function () { translateManipulate(); }, 200);
+
+    jQuery('#google_translate_element').one("DOMSubtreeModified", function () {
+        translateManipulate();
+    });
 });

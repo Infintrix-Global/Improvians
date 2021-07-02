@@ -156,13 +156,11 @@
                     <div class="dropdown account__dropdown ml-3">
                         <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <asp:Image ImageUrl="images/user-profile.jpg" alt="John Smith" Width="128" runat="server" ID="imgprofilepic" />
-                            <span class="account__user robotomd">
-                                <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
+                            <span class="account__user robotomd"><asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
                         </div>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account__dropdown">
-                            <span class="dropdown-item">
-                                <asp:Label ID="lblUser" runat="server" Visible="true"></asp:Label></span>
+                            <span class="dropdown-item dropdown-user"><asp:Label ID="lblUser" runat="server" Visible="true"></asp:Label></span>
                             <a class="dropdown-item" href="ChangePassword.aspx">Change Password</a>
                             <a class="dropdown-item" href="Help.aspx">Help</a>
                             <a class="dropdown-item" href="Login.aspx">Log Out</a>
