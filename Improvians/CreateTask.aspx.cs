@@ -46,12 +46,12 @@ namespace Evo
                 BintTaskType();
                 BindSupervisor();
 
-                BindFacility();
+                //BindFacility();
                 BindSupervisorList();
                 BindFertilizer();
                 BindJobCode("");
                 BindChemical();
-
+                BindBench_Location();
                 txtGerDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtFDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 txtChemicalSprayDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
@@ -637,17 +637,17 @@ namespace Evo
 
 
 
-                    DataTable dtSlot = new DataTable();
-                    NameValueCollection nvSlot = new NameValueCollection();
-                    nvSlot.Add("@GrowerPutAwayId", GPId.ToString());
+                    //DataTable dtSlot = new DataTable();
+                    //NameValueCollection nvSlot = new NameValueCollection();
+                    //nvSlot.Add("@GrowerPutAwayId", GPId.ToString());
 
-                    dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPositionSelect", nvSlot);
+                    //dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPositionSelect", nvSlot);
 
-                    if (dtSlot != null && dtSlot.Rows.Count > 0)
-                    {
-                        ddlSlotPositionStart.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionStart"]).ToString();
-                        ddlSlotPositionEnd.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionEnd"]).ToString();
-                    }
+                    //if (dtSlot != null && dtSlot.Rows.Count > 0)
+                    //{
+                    //    ddlSlotPositionStart.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionStart"]).ToString();
+                    //    ddlSlotPositionEnd.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionEnd"]).ToString();
+                    //}
                 }
                 else
                 {
@@ -1901,21 +1901,21 @@ namespace Evo
             updateNotification();
         }
 
-        public void BindFacility()
-        {
-            ddlToFacility.DataSource = objBAL.GetMainLocation();
-            ddlToFacility.DataTextField = "Facility";
-            ddlToFacility.DataValueField = "Facility";
-            ddlToFacility.DataBind();
-            ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
-            ddlToFacility.SelectedValue = Session["Facility"].ToString();
-            BindBench_Location();
-        }
+        //public void BindFacility()
+        //{
+        //    ddlToFacility.DataSource = objBAL.GetMainLocation();
+        //    ddlToFacility.DataTextField = "Facility";
+        //    ddlToFacility.DataValueField = "Facility";
+        //    ddlToFacility.DataBind();
+        //    ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
+        //    ddlToFacility.SelectedValue = Session["Facility"].ToString();
+        //    BindBench_Location();
+        //}
 
         public void BindBench_Location()
         {
             //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
-            ddlToGreenHouse.DataSource = objBAL.GetLocation(ddlToFacility.SelectedValue);
+            ddlToGreenHouse.DataSource = objBAL.GetLocation(Session["Facility"].ToString());
             ddlToGreenHouse.DataTextField = "BenchName";
             ddlToGreenHouse.DataValueField = "BenchName";
             ddlToGreenHouse.DataBind();
@@ -1932,11 +1932,11 @@ namespace Evo
         protected void MoveReset_Click(object sender, EventArgs e)
         {
             BindSupervisor();
-            BindFacility();
+      //      BindFacility();
             BindBench_Location();
             txtMoveComments.Text = "";
             txtMoveDate.Text = "";
-            txtMoveNumberOfTrays.Text = "";
+          //  txtMoveNumberOfTrays.Text = "";
             //btnMoveRequest.Attributes.Add("class", "request__block-collapse collapse show");
 
         }
@@ -1957,11 +1957,11 @@ namespace Evo
 
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@FromFacility", (row.FindControl("lblFacility") as Label).Text);
-                    nv.Add("@ToFacility", ddlToFacility.SelectedValue);
+                    nv.Add("@ToFacility", "");
                     nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
                     nv.Add("@FormBanchlocation", (row.FindControl("lblGreenHouse") as Label).Text);
                     nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
-                    nv.Add("@RTrays", txtMoveNumberOfTrays.Text);
+                    nv.Add("@RTrays", "");
                     nv.Add("@MoveDate", txtMoveDate.Text);
                     nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
 
@@ -2654,7 +2654,7 @@ namespace Evo
 
 
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
+                    cmd.CommandText = " select distinct jobcode from gti_jobs_seeds_plan where jstatus=0 and  loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
                         "";
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
@@ -2864,11 +2864,11 @@ namespace Evo
 
                         nv.Add("@LoginID", Session["LoginID"].ToString());
                         nv.Add("@FromFacility", (row.FindControl("lblFacility") as Label).Text);
-                        nv.Add("@ToFacility", ddlToFacility.SelectedValue);
+                        nv.Add("@ToFacility", "");
                         nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
                         nv.Add("@FormBanchlocation", (row.FindControl("lblGreenHouse") as Label).Text);
                         nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
-                        nv.Add("@RTrays", txtMoveNumberOfTrays.Text);
+                        nv.Add("@RTrays", "");
                         nv.Add("@MoveDate", txtMoveDate.Text);
                         nv.Add("@SeedDate", (row.FindControl("lblSeededDate") as Label).Text);
 
@@ -3563,6 +3563,108 @@ namespace Evo
             return chkSelected;
         }
 
-       
+
+        public void BindSlotSelectBanch(string bench)
+        {
+
+
+
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+
+            nv1.Add("@BanchLocation", bench);
+            nv1.Add("@Facility", "");
+            nv1.Add("@Mode", "3");
+            dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
+
+
+
+
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                int TotalTrays = 0;
+                decimal availableSlot = 0;
+
+                if (dt1.Rows[0]["Automation"].ToString() == "Auto")
+                {
+
+
+                    for (double i = 1; i < 53; i++)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+
+                        ddlToSlotPositionStart.Items.Add(item);
+                    }
+
+                    for (double i = 1; i < 53; i++)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+
+                        ddlToSlotPositionEnd.Items.Add(item);
+                    }
+                   
+
+
+                }
+                else
+                {
+
+
+                    for (double i = 0.5; i < 54; i += 0.5)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+
+
+                        ddlToSlotPositionStart.Items.Add(item);
+                    }
+
+                    for (double i = 0.5; i < 54; i += 0.5)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = i.ToString();
+                        item.Value = i.ToString();
+
+                        ddlToSlotPositionEnd.Items.Add(item);
+                    }
+
+
+
+                }
+
+
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+        protected void ddlToGreenHouse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindSlotSelectBanch(ddlToGreenHouse.SelectedValue);
+        }
+
+        protected void ddlToSlotPositionStart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            int FromSlotPosition = 0;
+            int ToSlotPosition = 0;
+            FromSlotPosition = (Convert.ToInt32(ddlSlotPositionEnd.SelectedValue) - Convert.ToInt32(ddlSlotPositionStart.SelectedValue)) + 1;
+
+            ToSlotPosition = FromSlotPosition + Convert.ToInt32(ddlToSlotPositionStart.SelectedValue);
+
+            ddlToSlotPositionEnd.SelectedValue = ToSlotPosition.ToString();
+        }
     }
 }

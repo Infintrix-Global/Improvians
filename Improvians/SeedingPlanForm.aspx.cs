@@ -532,7 +532,7 @@ namespace Evo
             Panel PanelView = (Panel)e.Item.FindControl("PanelView");
             Panel PanelView1 = (Panel)e.Item.FindControl("PanelView1");
             General objGeneral = new General();
-            string strSQL = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
+            string strSQL = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and jstatus=0";
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             DGJob.DataSource = dt;
             DGJob.DataBind();

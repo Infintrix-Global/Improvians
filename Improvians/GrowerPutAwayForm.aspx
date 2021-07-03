@@ -135,9 +135,11 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>  --%>
 
+
+
                                 <asp:TemplateField HeaderText="Job Source" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblsource" data-head="Job Source" runat="server" Text="Navision"></asp:Label>
+                                        <asp:Label ID="lblsource" data-head="Job Source" runat="server" Text="App"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
@@ -224,7 +226,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="% Bench Occupancy"  HeaderStyle-Width="190">
+                                     <asp:TemplateField HeaderText="% Bench Availability"  HeaderStyle-Width="190">
                                         <ItemTemplate>
 
                                             <asp:Label ID="lblperTrays" Width="130px"  Text='<%# Eval("PerTTrays")%>'  runat="server"></asp:Label>

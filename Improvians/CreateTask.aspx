@@ -769,38 +769,49 @@
                                             SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Enter Request Date" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                               <%-- <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label>To Facility Location </label>
                                     <asp:DropDownList ID="ddlToFacility" runat="server" class="custom__dropdown robotomd" AutoPostBack="true" OnSelectedIndexChanged="ddlToFacility_SelectedIndexChanged"></asp:DropDownList>
                                     <span class="error_message">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="ddlToFacility" ValidationGroup="md"
                                             SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select To Facility" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </span>
+                                </div>--%>
+
+                                 <div runat="server" id="SlotStart" class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>From Slot Position Start #</label>
+                                    <asp:DropDownList ID="ddlSlotPositionStart" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
+                                <div runat="server" id="SlotEnd" class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>From Slot Position End #</label>
+                                    <asp:DropDownList ID="ddlSlotPositionEnd" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                </div>
+
+
                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
-                                    <label>To Bench Location </label>
-                                    <asp:DropDownList ID="ddlToGreenHouse" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                    <label>To End Putaway Location </label>
+                                    <asp:DropDownList ID="ddlToGreenHouse" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlToGreenHouse_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
                                     <span class="error_message">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="ddlToGreenHouse" ValidationGroup="md"
                                             SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Greenhouse" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </span>
                                 </div>
 
-                                 <div class="col-12 col-md-4 col-lg-3 mb-3">
+                                <%-- <div class="col-12 col-md-4 col-lg-3 mb-3">
                                     <label>Number Of Trays </label>
 
                                     <asp:TextBox ID="txtMoveNumberOfTrays" runat="server" CssClass="input__control"></asp:TextBox>
                                     <span class="error_message"></span>
+                                </div>--%>
+                               
+                                 <div runat="server" id="Div1" class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>To Slot Position Start #</label>
+                                    <asp:DropDownList ID="ddlToSlotPositionStart" runat="server" OnSelectedIndexChanged="ddlToSlotPositionStart_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
-                                <div runat="server" id="SlotStart" class="col-12 col-md-4 col-lg-3 mb-3">
-                                    <label>Slot Position Start #</label>
-                                    <asp:DropDownList ID="ddlSlotPositionStart" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                <div runat="server" id="Div2" class="col-12 col-md-4 col-lg-3 mb-3">
+                                    <label>To Slot Position End #</label>
+                                    <asp:DropDownList ID="ddlToSlotPositionEnd" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                                 </div>
-                                <div runat="server" id="SlotEnd" class="col-12 col-md-4 col-lg-3 mb-3">
-                                    <label>Slot Position End #</label>
-                                    <asp:DropDownList ID="ddlSlotPositionEnd" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                </div>
-
                                
                                
                                 <div class="col-12 col-md-4 col-lg-3 mb-3">

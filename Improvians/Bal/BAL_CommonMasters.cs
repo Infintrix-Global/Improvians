@@ -28,7 +28,7 @@ namespace Evo.Bal
                 //    " having sum(le.Quantity) > 0 ";
                 
                 if (JobCode == "JB0200002" || JobCode == "JB0200003" || JobCode == "JB0200004")
-                    strQuery = "select 1234 as l2, 200 as QTY";
+                    strQuery = "select 1234 as l2, 82500 as QTY";
                 else
                     strQuery = "select l.[Lot No_] l2, (l.Quantity * -1) QTY from[GTI$IA Lot Entry] l where l.Type = 2 and l.[Source Document No_] = '" + JobCode + "'";
                 dt = objGeneral.GetDatasetByCommand(strQuery);
