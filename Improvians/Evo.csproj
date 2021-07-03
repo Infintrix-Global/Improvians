@@ -519,6 +519,7 @@
     <Content Include="TaskDistributionChart.aspx" />
     <Content Include="TrackTaskSeedlinePlanner.aspx" />
     <Content Include="ViewJobDetails.aspx" />
+    <Content Include="ViewPutAway.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1458,6 +1459,13 @@
     </Compile>
     <Compile Include="ViewJobDetails.aspx.designer.cs">
       <DependentUpon>ViewJobDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPutAway.aspx.cs">
+      <DependentUpon>ViewPutAway.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewPutAway.aspx.designer.cs">
+      <DependentUpon>ViewPutAway.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

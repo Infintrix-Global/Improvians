@@ -375,6 +375,12 @@ namespace Evo
                         
                     }
 
+                    if (TaskRequestType == "Put Away")
+                    {
+
+                        Response.Redirect(String.Format("~/ViewPutAway.aspx?PageType={0}&GrowerPutAwayId={1}", "ManageTask", dt.Rows[0]["GrowerPutAwayId"].ToString()));
+
+                    }
                 }
                 else if (dtR != null && dtR.Rows.Count > 0)
                 {
@@ -425,6 +431,14 @@ namespace Evo
                     {
 
                         Response.Redirect(String.Format("~/CropHealthReportView.aspx?PageType={0}&Did={1}&Chid={2}&DrId={3}&TaskRequestKey={4}", "ManageTask", 0, 0, dtR.Rows[0]["CropHealthReportId"].ToString(), dtR.Rows[0]["TaskRequestKey"].ToString()));
+
+                    }
+
+
+                    if (TaskRequestType == "Put Away")
+                    {
+
+                        Response.Redirect(String.Format("~/ViewPutAway.aspx?PageType={0}&GrowerPutAwayId={1}", "ManageTask", dtR.Rows[0]["GrowerPutAwayId"].ToString()));
 
                     }
                 }
