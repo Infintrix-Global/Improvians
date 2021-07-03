@@ -184,7 +184,7 @@
                             <div class="col-auto col-sm-6 col-md-3 mb-3">
                                 <label class="d-block robotobold">Remaining Seeded Trays</label>
                                 <asp:Label ID="lblRemaining" Text="0" runat="server"></asp:Label>
-                                 <asp:Label ID="lblTTrays" Visible="false" Text="0" runat="server"></asp:Label>
+                                <asp:Label ID="lblTTrays" Visible="false" Text="0" runat="server"></asp:Label>
                             </div>
                         </div>
                         <div class="data__table mt-3">
@@ -198,7 +198,7 @@
                                             <asp:DropDownList ID="ddlMain" OnSelectedIndexChanged="ddlMain_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown w-auto robotomd" runat="server"></asp:DropDownList>
 
                                             <asp:Label ID="lblMain" Visible="false" runat="server" Text='<%# Eval("FacilityID")%>'></asp:Label>
-                                           <%-- <span class="error_message d-block">
+                                            <%-- <span class="error_message d-block">
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlMain" ValidationGroup="e"
                                                     SetFocusOnError="true" InitialValue="0" ErrorMessage="Select Facility" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </span>--%>
@@ -207,62 +207,66 @@
                                     <asp:TemplateField HeaderText="Bench Location" HeaderStyle-Width="300px">
                                         <ItemTemplate>
                                             <span class="d-flex">
-                                            <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd"  OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" Width="250px" runat="server"></asp:DropDownList>
-                                            <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
-                                            <span class="error_message ">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlLocation" ValidationGroup="e"
-                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                                            </span>
-                                            </span>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                      <asp:TemplateField HeaderText="No of Trays" HeaderStyle-Width="190">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" Width="130px" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
-                                            <span class="error_message">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ErrorMessage="*" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                                <asp:DropDownList ID="ddlLocation" class="custom__dropdown robotomd" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" Width="250px" runat="server"></asp:DropDownList>
+                                                <asp:Label ID="lblLocation" Visible="false" runat="server" Text='<%# Eval("GreenHouseID")%>'></asp:Label>
+                                                <span class="error_message ">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlLocation" ValidationGroup="e"
+                                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
                                             </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="% Bench Availability"  HeaderStyle-Width="190">
+                                    <asp:TemplateField HeaderText="No of Trays" HeaderStyle-Width="190">
                                         <ItemTemplate>
-
-                                            <asp:Label ID="lblperTrays" Width="130px"  Text='<%# Eval("PerTTrays")%>'  runat="server"></asp:Label>
-                                         
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                  
-
-                                      <asp:TemplateField HeaderText="Slot Position Start"  HeaderStyle-Width="190">
-                                        <ItemTemplate>
-                                                <asp:DropDownList ID="ddlSlotPositionStart" class="custom__dropdown robotomd"  Width="150px" runat="server"></asp:DropDownList>
-
-                                            <asp:TextBox ID="txtSlotPositionStart" Visible="false"  Width="130px" Enabled="false"  Text='<%# Eval("SlotPositionStart")%>' CssClass="input__control" runat="server"></asp:TextBox>
-                                            
+                                            <span class="d-flex">
+                                                <asp:TextBox ID="txtTrays" OnTextChanged="txtTrays_TextChanged" Width="130px" AutoPostBack="true" Text='<%# Eval("Trays")%>' CssClass="input__control" runat="server"></asp:TextBox>
+                                                <span class="error_message">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTrays" ErrorMessage="*" ForeColor="Red" SetFocusOnError="true" ValidationGroup="e"></asp:RequiredFieldValidator>
+                                                </span>
+                                            </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-                                      <asp:TemplateField HeaderText="Slot Position End"  HeaderStyle-Width="190">
+                                    <asp:TemplateField HeaderText="% Bench Availability" HeaderStyle-Width="190">
                                         <ItemTemplate>
-                                             <asp:DropDownList ID="ddlSlotPositionEnd" class="custom__dropdown robotomd"  Width="150px" runat="server"></asp:DropDownList>
 
-                                            <asp:TextBox ID="txtSlotPositionEnd"  Width="130px" Visible="false"  Enabled="false" Text='<%# Eval("SlotPositionEnd")%>' CssClass="input__control" runat="server"></asp:TextBox>
-                                            
+                                            <asp:Label ID="lblperTrays" Width="130px" Text='<%# Eval("PerTTrays")%>' runat="server"></asp:Label>
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
 
-
-                                     <asp:TemplateField HeaderText="Assignment" HeaderStyle-Width="300">
+                                    <asp:TemplateField HeaderText="Slot Position Start" HeaderStyle-Width="190">
                                         <ItemTemplate>
-                                           <asp:DropDownList ID="ddlSupervisor" class="custom__dropdown robotomd" Width="250px" runat="server"></asp:DropDownList>
-                                            <asp:Label ID="lblSupervisor" Visible="false" runat="server" Text='<%# Eval("SupervisorID")%>'></asp:Label>
-                                            <span class="error_message ">
-                                                <asp:RequiredFieldValidator ID="RequireValidator33" runat="server" ControlToValidate="ddlSupervisor" ValidationGroup="e"
-                                                    SetFocusOnError="true" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:DropDownList ID="ddlSlotPositionStart" class="custom__dropdown robotomd" Width="150px" runat="server"></asp:DropDownList>
+
+                                            <asp:TextBox ID="txtSlotPositionStart" Visible="false" Width="130px" Enabled="false" Text='<%# Eval("SlotPositionStart")%>' CssClass="input__control" runat="server"></asp:TextBox>
+
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Slot Position End" HeaderStyle-Width="190">
+                                        <ItemTemplate>
+                                            <asp:DropDownList ID="ddlSlotPositionEnd" class="custom__dropdown robotomd" Width="150px" runat="server"></asp:DropDownList>
+
+                                            <asp:TextBox ID="txtSlotPositionEnd" Width="130px" Visible="false" Enabled="false" Text='<%# Eval("SlotPositionEnd")%>' CssClass="input__control" runat="server"></asp:TextBox>
+
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+
+
+                                    <asp:TemplateField HeaderText="Assignment" HeaderStyle-Width="300">
+                                        <ItemTemplate>
+                                            <span class="d-flex">
+                                                <asp:DropDownList ID="ddlSupervisor" class="custom__dropdown robotomd" Width="250px" runat="server"></asp:DropDownList>
+                                                <asp:Label ID="lblSupervisor" Visible="false" runat="server" Text='<%# Eval("SupervisorID")%>'></asp:Label>
+                                                <span class="error_message ">
+                                                    <asp:RequiredFieldValidator ID="RequireValidator33" runat="server" ControlToValidate="ddlSupervisor" ValidationGroup="e"
+                                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                </span>
                                             </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -271,7 +275,7 @@
                                         <ItemTemplate>
                                             <asp:Button Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" CommandName="Delete" ID="btnRemove" runat="server" CssClass="bttn bttn-primary bttn-action d-block ml-auto" />
                                         </ItemTemplate>
-                               <%--         <FooterStyle HorizontalAlign="Right" />--%>
+                                        <%--         <FooterStyle HorizontalAlign="Right" />--%>
 
                                         <FooterTemplate>
                                             <asp:Button ID="ButtonAdd" OnClick="ButtonAddGridInvoice_Click" runat="server" ValidationGroup="e" CausesValidation="false" Text="Add Put Away Location" CssClass="bttn bttn-primary bttn-action w-auto" />
@@ -281,7 +285,7 @@
                             </asp:GridView>
                         </div>
                         <div class="row mt-4 align-items-end">
-                            
+
                             <div class="col-12 col-md-auto col-lg-4 mb-3">
                                 <asp:Button Text="Submit" ID="btnSubmit" CssClass="bttn bttn-primary bttn-action" ValidationGroup="e" OnClick="btnSubmit_Click" runat="server" />
                                 <asp:Button Text="Reset" ID="btnReset" CssClass="ml-2 bttn bttn-primary bttn-action" OnClick="btnReset_Click" runat="server" />
