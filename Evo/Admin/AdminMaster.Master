@@ -1,0 +1,336 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="Evo.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Growers Transplanting, Inc</title>
+
+    <!-- Cross platform favicon setup & app themeing -->
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#005a01">
+
+    <!-- SEO tags -->
+    <meta name="description" content="Growers Transplanting, Inc">
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Admin Panel - Growers Transplanting, Inc" />
+    <meta property="og:description" content="Growers Transplanting, Inc" />
+    <meta property="og:url" content="/" />
+    <meta property="og:site_name" content="Growers Transplanting" />
+    <meta property="og:image" content="growers-transplanting.jpg" />
+    <meta property="og:image:secure_url" content="growers-transplanting.jpg" />
+    <meta property="og:image:width" content="1104" />
+    <meta property="og:image:height" content="736" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="Growers Transplanting, Inc" />
+    <meta name="twitter:title" content="Admin Panel - Growers Transplanting, Inc" />
+    <meta name="twitter:site" content="@growerstransplanting" />
+    <meta name="twitter:image" content="growers-transplanting.jpg" />
+    <meta name="twitter:creator" content="@growerstransplanting" />
+
+    <link rel="preload" href="fonts/fa/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/fa/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/fa/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="admin__page">
+                <aside class="admin__sidebar site__transition">
+                    <div class="admin__logo">
+                        <a href="AdminDashBoard.aspx" title="Growers Transplanting Inc">
+                            <img src="images/logo.png" alt="Growers Transplanting Inc" width="294" height="51" />
+                        </a>
+                    </div>
+
+                    <div class="aside__list">
+                        <ul class="list-unstyled">
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="#" title="Employee">
+                                    <i class="side-icon fas fa-users"></i>
+                                    <span class="side-title">Employee</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <li>
+                                        <a class="" href="AddEmployee.aspx" title="Add Employee">
+                                            <i class="side-icon far fa-user"></i>
+                                            <span class="side-title">Add</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="" href="ViewEmployee.aspx" title="View Employee">
+                                            <i class="side-icon fas fa-eye"></i>
+                                            <span class="side-title">View</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="#" title="Customer">
+                                    <i class="side-icon fas fa-user"></i>
+                                    <span class="side-title">Customer</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <li>
+                                        <a class="" href="AddCustomer.aspx" title="Add Customer">
+                                            <i class="side-icon far fa-user"></i>
+                                            <span class="side-title">Add</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="ViewCustomer.aspx" title="View Customer">
+                                            <i class="side-icon fas fa-eye"></i>
+                                            <span class="side-title">View</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="#" title="Sales Representative">
+                                    <i class="side-icon fas fa-user-tie"></i>
+                                    <span class="side-title">Sales Representative</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <li>
+                                        <a class="" href="AddSalesRepresentative.aspx" title="Add Sales Representative">
+                                            <i class="side-icon far fa-user"></i>
+                                            <span class="side-title">Add</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="ViewSalesRepresentative.aspx" title="View Sales Representative">
+                                            <i class="side-icon fas fa-eye"></i>
+                                            <span class="side-title">View</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has__dropdown">
+                                <a class="current" href="ViewPlantProductionProfile.aspx" title="Plant Production Profile">
+                                    <i class="side-icon fas fa-seedling"></i>
+                                    <span class="side-title">Plant Production Profile</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                                <ul class="list-unstyled dropdown__list">
+                                    <li>
+                                        <a class="" href="ViewPlantProductionProfile.aspx" title="Plant Production Table">
+                                            <i class="side-icon fas fa-seedling"></i>
+                                            <span class="side-title">Plant Production Table</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="GeneralConfiguration.aspx" title="Germination Configuration">
+                                            <i class="side-icon fas fa-cogs"></i>
+                                            <span class="side-title">Germination Configuration</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="PlantReadyConfiguration.aspx" title="Plant Ready Configuration">
+                                            <i class="side-icon fas fa-cog"></i>
+                                            <span class="side-title">Plant Ready Configuration</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="current"href="NotificationPreference.aspx" title="Notification Preference">
+                                    <i class="side-icon fas fa-comment-dots"></i>
+                                    <span class="side-title">Notification Preference</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
+                                    <i class="side-icon fas fa-file-invoice"></i>
+                                    <span class="side-title">Form's Dropdown</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <!-- Here need "dropdown__list" class -->
+                                    <li>
+                                        <a class="" href="ChemicalMaster.aspx" title="Chemical Master">
+                                            <i class="side-icon fas fa-flask"></i>
+                                            <span class="side-title">Chemical</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="TaskTypeMaster.aspx" title="TaskType Master">
+                                            <i class="side-icon far fa-file-alt"></i>
+                                            <span class="side-title">General Task</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="CropHealthMaster.aspx" title="Master">
+                                            <i class="side-icon fas fa-file-medical-alt"></i>
+                                            <span class="side-title">Crop Health Report</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="production-plant-profile.html" title="Form's Dropdown">
+                                    <i class="side-icon fas fa-question-circle"></i>
+                                    <span class="side-title">Help Management</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <!-- Here need "dropdown__list" class -->
+                                    <li>
+                                        <a class="" href="HelpDocument.aspx" title="Document">
+                                            <i class="side-icon fa-file-download"></i>
+                                            <span class="side-title">Document</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="HelpContact.aspx" title="Contact">
+                                            <i class="side-icon far fa-id-card"></i>
+                                            <span class="side-title">Contact</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="HelpFAQ.aspx" title="FAQ">
+                                            <i class="side-icon far fa-list-alt"></i>
+                                            <span class="side-title">FAQ</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="current" href="TaskTypeWorkHoursMaster.aspx" title="Task Type Work Hours Master">
+                                    <i class="side-icon fas fa-stopwatch"></i>
+                                    <span class="side-title">Task Type Work Hours</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="has__dropdown">
+                                <!-- Add this class which has dropdown -->
+                                <a class="current" href="production-plant-profile.html" title="Automation Controls">
+                                    <i class="side-icon fas fa-cogs"></i>
+                                    <span class="side-title">Automation Controls</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+
+                                <ul class="list-unstyled dropdown__list">
+                                    <!-- Here need "dropdown__list" class -->
+                                    <li>
+                                        <a class="current" href="AutomationBenchControls.aspx" title="Benches">
+                                            <i class="side-icon fas fa-bars"></i>
+                                            <span class="side-title">Benches</span>
+                                            <i class="side-control fas fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="current" href="PullData.aspx" title="Reset and Pull Data">
+                                    <i class="side-icon fas fa-stopwatch"></i>
+                                    <span class="side-title">Reset and Pull Data</span>
+                                    <i class="side-control fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <div class="admin__main">
+                    <header class="admin__header">
+                        <div class="admin__container">
+                            <div class="d-flex align-items-center">
+
+                                <button type="button" class="menu-toggle">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+
+
+
+                                <div class="dropdown account__dropdown ml-auto">
+                                    <div class="dropdown-toggle" id="account__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="images/user-profile.jpg" alt="John Smith" width="128" height="128" />
+                                        <span class="account__user robotomd">
+                                            <asp:Label ID="lblEmpName" runat="server" Visible="true"></asp:Label></span>
+                                    </div>
+
+                                    <div class="dropdown-menu" aria-labelledby="account__dropdown">
+                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="../Login.aspx">Log Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <script src="js/jquery.min.js"></script>
+                <script defer="defer" src="js/popper.min.js"></script>
+                <script defer="defer" src="js/bootstrap.min.js"></script>
+                <script defer="defer" src="js/custom.js"></script>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
