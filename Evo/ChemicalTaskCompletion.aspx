@@ -97,7 +97,7 @@
                             <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                         </div>
 
-                        <div class="col-12 mb-3">
+                        <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-3">
                             <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="input__control input__control-auto" placeholder="Notes" runat="server"></asp:TextBox>
                         </div>
 

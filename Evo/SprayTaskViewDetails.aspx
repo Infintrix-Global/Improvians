@@ -261,6 +261,19 @@
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
+
+
+                                       <asp:TemplateField HeaderText="No Of Passes">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblNoOfPasses" runat="server" Text='<%#Bind("NoOfPasses") %>'></asp:Label>
+
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+
+
+                                    
                                     <asp:TemplateField HeaderText="Comments">
                                         <ItemTemplate>
 

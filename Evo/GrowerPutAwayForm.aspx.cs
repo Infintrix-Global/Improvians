@@ -854,7 +854,7 @@ namespace Evo
                     AddGrowerput(ref objinvoice, Convert.ToInt32(hdnWOEmployeeIDVal), MainId, LocationId, txtTrays.Text, SupervisorID, SlotPositionStart, SlotPositionEnd, lblperTrays.Text);
                 }
                 if (AddBlankRow)
-                    AddGrowerput(ref objinvoice, 1, PutAwayFacility, "", "", "", "", "", "");
+                    AddGrowerput(ref objinvoice, 1, PutAwayFacility, "0", "", "", "", "", "");
 
                 GrowerPutData = objinvoice;
                 GridSplitJob.DataSource = objinvoice;

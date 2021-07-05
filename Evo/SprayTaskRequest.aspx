@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="SprayTaskRequest.aspx.cs" Inherits="Evo.SprayTaskRequest" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -14,12 +15,12 @@
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
 
-                <cc1:autocompleteextender servicemethod="SearchCustomers"
-                    minimumprefixlength="2"
-                    completioninterval="100" enablecaching="false" completionsetcount="10"
-                    targetcontrolid="txtSearchJobNo"
-                    id="AutoCompleteExtender1" runat="server" firstrowselected="false">
-                </cc1:autocompleteextender>
+                <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                    MinimumPrefixLength="2"
+                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                    TargetControlID="txtSearchJobNo"
+                    ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                </cc1:AutoCompleteExtender>
 
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
@@ -133,11 +134,19 @@
                                     </asp:TemplateField>
 
 
+                                    <asp:TemplateField HeaderText="No Of Passes">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblNoOfPasses" runat="server" Text='<%#Bind("NoOfPasses") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Fertilization Date" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblFDate" runat="server" Text='<%# Eval("FertilizationDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+
                                     <asp:TemplateField HeaderText="Assigned By" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblAssignedBy" data-head="Assigened By" runat="server" Text='<%# Eval("AssignedBy")  %>'></asp:Label>

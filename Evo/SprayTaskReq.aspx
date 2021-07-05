@@ -110,21 +110,25 @@
                             <asp:TextBox ID="txtSprayDate" class="input__control input__control-auto" TextMode="Date" runat="server"></asp:TextBox>
                         </div>
 
-                        <div class="col-12 mb-3">
-                            <asp:TextBox ID="txtNotes" TextMode="MultiLine" class="input__control input__control-auto" placeholder="Notes" runat="server"></asp:TextBox>
+                        <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-3">
+                            <asp:TextBox ID="txtNotes" TextMode="MultiLine"  class="input__control" placeholder="Notes" runat="server"></asp:TextBox>
                         </div>
+
 
                         <div class="col-12">
                             <h3 class="robotobold mb-3">
                                 <asp:Label ID="lblJobID" runat="server"></asp:Label></h3>
-                            <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
+                                <asp:Label ID="lblGrowerID" Visible="false" runat="server"></asp:Label>
                         </div>
+
 
                         <div class="col-12 mb-3">
                             <asp:Button Text="Submit" ID="btnSubmit" CssClass="ml-2 submit-bttn bttn bttn-primary" runat="server" OnClick="btnSubmit_Click" />
 
                             <asp:Button Text="Reset" ID="btnReset" runat="server" CssClass="submit-bttn bttn bttn-primary" OnClick="btnReset_Click" />
                         </div>
+
+
                     </div>
                 </asp:Panel>
             </div>
