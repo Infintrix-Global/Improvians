@@ -198,9 +198,9 @@ namespace Evo
 
             //dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
 
-            DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
+          //  DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
 
-            //DataTable dtNV = objCOm.GetLocation(ddlMain);
+            DataTable dtNV = objCOm.GetLocation(ddlMain);
 
 
             ddlBenchLocation.DataSource = dtNV;

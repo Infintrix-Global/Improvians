@@ -118,9 +118,11 @@ namespace Evo
                     dtOnlyLeftWO = AllData;
                 }
 
-                dtOnlyLeftWO.Merge(dtManual);
-                dtOnlyLeftWO.AcceptChanges();
-
+                if (dtManual != null && dtManual.Rows.Count > 0)
+                {
+                    dtOnlyLeftWO.Merge(dtManual);
+                    dtOnlyLeftWO.AcceptChanges();
+                }
                 lblTotal.Text = dtOnlyLeftWO.Rows.Count.ToString() + " Records";
                 DGJob.DataSource = dtOnlyLeftWO;
                 DGJob.DataBind();

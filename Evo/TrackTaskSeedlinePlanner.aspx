@@ -9,12 +9,7 @@
 
         <div class="row">
 
-            <div runat ="server" ID="FID" class="col-lg-2">
-                <label>Seedline Facility </label>
-                <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-            </div>
-
-            <div class="col-lg-2">
+             <div class="col-lg-2">
                 <label>Job No</label>
                 <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
 
@@ -26,6 +21,13 @@
                 </cc1:AutoCompleteExtender>
 
             </div>
+
+            <div runat ="server" ID="FID" class="col-lg-2">
+                <label>Seedline Facility </label>
+                <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+
+           
             <div class="col-lg-2">
                 <label>Crop Type </label>
                 <asp:DropDownList ID="ddlCopTYpe" AutoPostBack="true" OnSelectedIndexChanged="ddlCopTYpe_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>

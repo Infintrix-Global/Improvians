@@ -324,8 +324,23 @@ namespace Evo
 
 
                     string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct GPD.jobcode from gti_jobs_seeds_plan GTS inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo  where  GPD.FacilityID ='" + Facility + "'  AND GPD.jobcode like '%" + prefixText + "%'  order by jobcode" +
+                    string RoleId = HttpContext.Current.Session["Role"].ToString();
+
+
+                    if (RoleId == "10")
+                    {
+                        cmd.CommandText = " select distinct GTS.jobcode from gti_jobs_seeds_plan GTS   where  GTS.FacilityID ='" + Facility + "'  AND GTS.jobcode like '%" + prefixText + "%'  order by jobcode" +
                     "";
+                    }
+                    else
+                    {
+                        cmd.CommandText = " select distinct GTS.jobcode from gti_jobs_seeds_plan GTS   where   GTS.jobcode like '%" + prefixText + "%'  order by jobcode" +
+                   "";
+                    }
+                        
+
+
+                    
 
                     cmd.Parameters.AddWithValue("@SearchText", prefixText);
                     cmd.Connection = conn;
