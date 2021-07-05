@@ -198,7 +198,7 @@ namespace Evo
 
             //dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
 
-            //DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
+            DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
 
             DataTable dtNV = objCOm.GetLocation(ddlMain);
 
@@ -652,8 +652,7 @@ namespace Evo
                 else
                 {
 
-                    SlotStart.Visible = false;
-                    SlotEnd.Visible = false;
+                  
                     NameValueCollection nv = new NameValueCollection();
                     DataTable dt = new DataTable();
                     nv.Add("@RoleID", Session["Role"].ToString());
