@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="ManageTaskJobReport.aspx.cs" Inherits="Evo.ManageTaskJobReport" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         function InIEvent() {
@@ -12,6 +13,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc" runat="server"></asp:ScriptManager>
+
     <script type="text/javascript">
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(InIEvent);
     </script>
@@ -21,6 +23,19 @@
             <asp:UpdatePanel runat="server" ID="upFilter">
                 <ContentTemplate>
                     <div class="row">
+
+                        <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                            <label>Job No</label>
+                            <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
+
+                            <cc1:AutoCompleteExtender ServiceMethod="SearchCustomers"
+                                MinimumPrefixLength="2"
+                                CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                                TargetControlID="txtSearchJobNo"
+                                ID="AutoCompleteExtender1" runat="server" FirstRowSelected="false">
+                            </cc1:AutoCompleteExtender>
+
+                        </div>
                         <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                             <label>Bench Location </label>
                             <asp:DropDownList ID="ddlBenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
@@ -42,22 +57,22 @@
                             <label>Assigned To </label>
                             <asp:DropDownList ID="ddlAssignedBy" runat="server" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>
+
+                    </div>
+
+                    <div class="row mb-1 mb-md-4 align-items-end">
                         <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                             <label>Task Request Type </label>
                             <asp:DropDownList ID="ddlTaskRequestType" runat="server" OnSelectedIndexChanged="ddlTaskRequestType_SelectedIndexChanged" AutoPostBack="true" class="custom__dropdown robotomd">
                             </asp:DropDownList>
                         </div>
-                    </div>
-
-                    <div class="row mb-1 mb-md-4 align-items-end">
-
                         <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                             <label>Work From Date</label>
                             <asp:TextBox ID="txtFromDate" runat="server" class="jsDatePicker input__control robotomd"></asp:TextBox>
                         </div>
                         <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                             <label>Work To Date </label>
-                            <asp:TextBox ID="txtToDate" runat="server"   class="jsDatePicker input__control robotomd"></asp:TextBox>
+                            <asp:TextBox ID="txtToDate" runat="server" class="jsDatePicker input__control robotomd"></asp:TextBox>
                         </div>
                         <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                             <asp:Button Text="Search" ID="btnSearch" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearch_Click" />
@@ -83,7 +98,7 @@
 
                                                 <asp:TemplateField HeaderText="Bench Location" ItemStyle-Width="10%" HeaderStyle-CssClass="autostyle2">
                                                     <ItemTemplate>
-                                                         <asp:Label ID="lblTaskRequestKey" Visible="false" runat="server" Text='<%# Eval("TaskRequestKey")  %>'></asp:Label>
+                                                        <asp:Label ID="lblTaskRequestKey" Visible="false" runat="server" Text='<%# Eval("TaskRequestKey")  %>'></asp:Label>
                                                         <asp:Label ID="lblBenchLocation" runat="server" Text='<%# Eval("BenchLocation")  %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>

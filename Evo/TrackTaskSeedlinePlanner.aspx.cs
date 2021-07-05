@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Web;
@@ -23,7 +25,7 @@ namespace Evo
                 BindFacility();
                 BindCropType();
             
-                BindGridGerm();
+                BindGridGerm("0");
             }
         }
 
@@ -102,17 +104,17 @@ namespace Evo
 
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm();
+            BindGridGerm("0");
         }
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm();
+            BindGridGerm(ddlJobNo.SelectedValue);
         }
 
         protected void ddlFacility_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm();
+            BindGridGerm("0");
         }
 
 
@@ -120,15 +122,16 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
+            txtSearchJobNo.Text = "";
             BindCropType();
             Bindcname();
             BindJobCode();
             BindFacility();
-            BindGridGerm();
+            BindGridGerm("0");
 
         }
 
-        public void BindGridGerm()
+        public void BindGridGerm(string JobNo)
         {
 
             string Facility1 = "";
@@ -146,7 +149,7 @@ namespace Evo
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
             // nv.Add("@LoginID", Session["LoginID"].ToString());
-            nv.Add("@JobCode", ddlJobNo.SelectedValue);
+            nv.Add("@JobCode", JobNo);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Facility1);
             nv.Add("@CropTYpe", ddlCopTYpe.SelectedValue);
@@ -163,7 +166,7 @@ namespace Evo
         protected void gvGerm_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvGerm.PageIndex = e.NewPageIndex;
-            BindGridGerm();
+            BindGridGerm("0");
         }
 
         protected void gvGerm_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -180,7 +183,7 @@ namespace Evo
                 Label lblStatusValues = (Label)e.Row.FindControl("lblStatusValues");
                 Label lblPudawayDate = (Label)e.Row.FindControl("lblPudawayDate");
                 Label lblPutawayStatusValues = (Label)e.Row.FindControl("lblPutawayStatusValues");
-                if (lblStatusValues.Text == "1" || lblStatusValues.Text == "2")
+                if (lblStatusValues.Text == "1" || lblStatusValues.Text == "2" || lblStatusValues.Text == "4")
                 {
                     lblstatus.Text = "Completed";
                 }
@@ -189,7 +192,7 @@ namespace Evo
                     lblstatus.Text = "Pending";
                 }
 
-                if (lblStatusValues.Text == "2")
+                if (lblStatusValues.Text == "2" || lblStatusValues.Text == "4")
                 {
                     lblPudawayDate.Text = lblPudawayDate.Text;
                 }
@@ -205,7 +208,18 @@ namespace Evo
         {
             try
             {
-                BindGridGerm();
+
+                string JNo = "";
+                if(txtSearchJobNo.Text!="")
+                {
+                    JNo = txtSearchJobNo.Text;
+                }
+                else
+                {
+                    JNo = ddlJobNo.SelectedValue;
+                }
+
+                BindGridGerm(JNo);
                 string search = "";
                 //if (txtSearch.Text != "")
                 //{
@@ -290,7 +304,50 @@ namespace Evo
 
         protected void ddlCopTYpe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridGerm();
+            BindGridGerm("0");
+        }
+
+
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> SearchCustomers(string prefixText, int count)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                    //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                    string Facility = HttpContext.Current.Session["Facility"].ToString();
+                    cmd.CommandText = " select distinct GPD.jobcode from gti_jobs_seeds_plan GTS inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo  where  GPD.FacilityID ='" + Facility + "'  AND GPD.jobcode like '%" + prefixText + "%'  order by jobcode" +
+                    "";
+
+                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    List<string> customers = new List<string>();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(sdr["jobcode"].ToString());
+                        }
+                    }
+                    conn.Close();
+
+                    return customers;
+                }
+            }
+        }
+
+        protected void txtSearchJobNo_TextChanged(object sender, EventArgs e)
+        {
+            BindGridGerm(txtSearchJobNo.Text);
         }
     }
 }
