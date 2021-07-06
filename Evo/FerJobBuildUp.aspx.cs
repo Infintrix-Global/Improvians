@@ -752,7 +752,7 @@ namespace Evo
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
-                nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
+              
 
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
