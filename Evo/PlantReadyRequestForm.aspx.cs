@@ -21,7 +21,7 @@ namespace Evo
         static List<Job> lstJob = new List<Job>();
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
 
             if (!IsPostBack)
             {
@@ -42,7 +42,7 @@ namespace Evo
                 BindCrop();
                 BindGridPlantReady("0", 0);
                 BindSupervisorList();
-              
+
             }
         }
 
@@ -117,7 +117,7 @@ namespace Evo
             ddlBenchLocation.DataTextField = "BenchLocation";
             ddlBenchLocation.DataValueField = "BenchLocation";
             ddlBenchLocation.DataBind();
-          //  ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            //  ddlBenchLocation.Items.Insert(0, new ListItem("--- Select ---", "0"));
 
 
         }
@@ -328,7 +328,7 @@ namespace Evo
 
         public void BindGridPlantReady(string JobCode, int p)
         {
-          
+
 
 
             DataTable dt = new DataTable();
@@ -353,7 +353,7 @@ namespace Evo
             {
                 dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
             }
-         
+
             gvPlantReady.DataSource = dt;
             gvPlantReady.DataBind();
 
@@ -457,7 +457,7 @@ namespace Evo
                 divLabel.Visible = true;
                 userinput.Visible = true;
                 divReschedule.Visible = false;
-               // btnMSubmit.Visible = false;
+                // btnMSubmit.Visible = false;
                 btnSubmit.Visible = true;
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 lblJobID.Text = gvPlantReady.DataKeys[rowIndex].Values[1].ToString();
@@ -471,7 +471,7 @@ namespace Evo
                 ViewState["tKey"] = gvPlantReady.DataKeys[rowIndex].Values[11].ToString();
 
 
-           
+
                 txtPlantDate.Text = Convert.ToDateTime(gvPlantReady.DataKeys[rowIndex].Values[6]).ToString("yyyy-MM-dd");
                 ddlSupervisor.Focus();
 
@@ -489,7 +489,7 @@ namespace Evo
                 }
 
                 lstJob.Clear();
-                lstJob.Add(new Job { ID = Convert.ToInt32(lblPRRId.Text), JobID = lblJid.Text, TaskRequestKey = ViewState["tKey"].ToString(), AGD = lblIsAssistant.Text, GreenHouseID = lblBenchlocation.Text, jobcode = lblJobID.Text,GrowerputawayID =lblGrowerID.Text });
+                lstJob.Add(new Job { ID = Convert.ToInt32(lblPRRId.Text), JobID = lblJid.Text, TaskRequestKey = ViewState["tKey"].ToString(), AGD = lblIsAssistant.Text, GreenHouseID = lblBenchlocation.Text, jobcode = lblJobID.Text, GrowerputawayID = lblGrowerID.Text });
 
             }
 
@@ -538,8 +538,8 @@ namespace Evo
                     //nv5.Add("@PRTA", result.ToString());
                     //DataTable dt = objCommon.GetDataTable("SP_GetPlantReadyTaskAssignmentSelect", nv5);
 
-                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&IsF={2}&TaskRequestKey={3}", 0, result,0, ViewState["tKey"].ToString()));
-                
+                    Response.Redirect(String.Format("~/PlantReadyTaskCompletion.aspx?PRAID={0}&PRID={1}&IsF={2}&TaskRequestKey={3}", 0, result, 0, ViewState["tKey"].ToString()));
+
                 }
                 else
                 {
@@ -631,12 +631,12 @@ namespace Evo
                 nv.Add("@SupervisorID", ddlSupervisor.SelectedValue);
                 nv.Add("@ManualID", item.JobID);
                 nv.Add("@Comments", txtPlantComments.Text);
-                nv.Add("@PRid",item.ID.ToString());
+                nv.Add("@PRid", item.ID.ToString());
                 nv.Add("@PlantDate", txtPlantDate.Text);
                 nv.Add("@LoginID", Session["LoginID"].ToString());
                 nv.Add("@RoleId", Session["Role"].ToString());
                 nv.Add("@IsAssistant", item.AGD);
-                nv.Add("@TaskRequestKey",item.TaskRequestKey);
+                nv.Add("@TaskRequestKey", item.TaskRequestKey);
                 nv.Add("@jobcode", item.jobcode);
                 nv.Add("@GreenHouseID", item.GreenHouseID);
                 nv.Add("@GrowerputawayID", item.GrowerputawayID);
@@ -731,7 +731,7 @@ namespace Evo
                 Label lbljid = (Label)e.Row.FindControl("lbljid");
                 CheckBox chkSelect = (CheckBox)e.Row.FindControl("chkSelect");
 
-                Job item = lstJob.Find(x => x.JobID ==lbljid.Text);
+                Job item = lstJob.Find(x => x.JobID == lbljid.Text);
                 if (lstJob.Contains(item))
                     chkSelect.Checked = true;
 
@@ -765,33 +765,59 @@ namespace Evo
         {
             using (SqlConnection conn = new SqlConnection())
             {
+                //    conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                //    using (SqlCommand cmd = new SqlCommand())
+                //    {
+                //        //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
+                //        //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
+                //        //" AND t.[Job No_] like '" + prefixText + "%'";
+
+
+                //     //   string Facility = HttpContext.Current.Session["Facility"].ToString();
+                //     //   cmd.CommandText = " select distinct GPD.jobcode from gti_jobs_seeds_plan GTS inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo  where  GPD.FacilityID ='" + Facility + "'  AND GPD.jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
+                //     //"";
+                //     //   cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                //     //   cmd.Connection = conn;
+                //     //   conn.Open();
+                //       List<string> customers = new List<string>();
+                //     //   using (SqlDataReader sdr = cmd.ExecuteReader())
+                //     //   {
+                //     //       while (sdr.Read())
+                //     //       {
+                //     //           customers.Add(sdr["jobcode"].ToString());
+                //     //       }
+                //     //   }
+                //     //   conn.Close();
+
+
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
-                using (SqlCommand cmd = new SqlCommand())
+                using (SqlCommand cmdPreference = new SqlCommand("SP_GetPlantReadyRequestJobSearch", conn))
                 {
-                    //and t.[Location Code]= '" + Session["Facility"].ToString() + "'
-                    //cmd.CommandText = "select distinct t.[Job No_] as jobcode  from[GTI$IA Job Tracking Entry] t, [GTI$Job] j where j.No_ = t.[Job No_] and j.[Job Status] = 2  " +
-                    //" AND t.[Job No_] like '" + prefixText + "%'";
-
-
-                    string Facility = HttpContext.Current.Session["Facility"].ToString();
-                    cmd.CommandText = " select distinct GPD.jobcode from gti_jobs_seeds_plan GTS inner join GrowerPutAwayDetails GPD on GPD.wo=GTS.wo  where  GPD.FacilityID ='" + Facility + "'  AND GPD.jobcode like '%" + prefixText + "%' union select distinct jobcode from gti_jobs_seeds_plan_Manual where loc_seedline ='" + Facility + "'  AND jobcode like '%" + prefixText + "%' order by jobcode" +
-                 "";
-                    cmd.Parameters.AddWithValue("@SearchText", prefixText);
-                    cmd.Connection = conn;
-                    conn.Open();
+                    cmdPreference.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    cmdPreference.Parameters.AddWithValue("@JobCode", prefixText);
+                    cmdPreference.Parameters.AddWithValue("@Facility", HttpContext.Current.Session["Facility"].ToString());
+                    cmdPreference.Parameters.AddWithValue("@Role", HttpContext.Current.Session["Role"].ToString());
+                    da.SelectCommand = cmdPreference;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
                     List<string> customers = new List<string>();
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    if (dt != null && dt.Rows.Count > 0)
                     {
-                        while (sdr.Read())
+                        foreach (DataRow row in dt.Rows)
                         {
-                            customers.Add(sdr["jobcode"].ToString());
+                            customers.Add(row["jobcode"].ToString());
                         }
                     }
-                    conn.Close();
-
                     return customers;
                 }
+
+
             }
+
+
+
+
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
@@ -800,7 +826,7 @@ namespace Evo
             divReschedule.Visible = false;
             divLabel.Visible = false;
 
-          //  btnMSubmit.Visible = true;
+            //  btnMSubmit.Visible = true;
             btnSubmit.Visible = true;
 
 
@@ -822,7 +848,7 @@ namespace Evo
                 Label lblGrowerputawayID = (Label)row.FindControl("lblGrowerputawayID21");
                 if (chkSelect.Checked)
                 {
-                    lstJob.Add(new Job { ID = Convert.ToInt32(lID.Text), JobID = lJobID.Text, TaskRequestKey = lblTaskRequestKey.Text, AGD = lblIsAG.Text, GreenHouseID = lblBenchLocation.Text, jobcode = lbljobcode.Text,GrowerputawayID= lblGrowerputawayID.Text });
+                    lstJob.Add(new Job { ID = Convert.ToInt32(lID.Text), JobID = lJobID.Text, TaskRequestKey = lblTaskRequestKey.Text, AGD = lblIsAG.Text, GreenHouseID = lblBenchLocation.Text, jobcode = lbljobcode.Text, GrowerputawayID = lblGrowerputawayID.Text });
                 }
                 else
                 {
@@ -832,7 +858,7 @@ namespace Evo
                 }
 
             }
-             lblmsg.Text = lstJob.Count.ToString() + " records selected";
+            lblmsg.Text = lstJob.Count.ToString() + " records selected";
         }
     }
 }

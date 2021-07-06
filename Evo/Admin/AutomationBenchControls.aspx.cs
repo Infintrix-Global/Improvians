@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evo.Bal;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Evo.Admin
     public partial class AutomationBenchControls : System.Web.UI.Page
     {
         CommonControl objCommon = new CommonControl();
+        BAL_CommonMasters objCOm = new BAL_CommonMasters();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,8 +33,8 @@ namespace Evo.Admin
             nv.Add("@Facility", ddlFacility.SelectedValue);
             nv.Add("@Mode", "1");
             dt = objCommon.GetDataTable("SP_GetBanchLocation", nv);
-            // dt = objCommon.GetDataTable("SP_GetBanchLocationAutomation", nv);
 
+            //  dt = objCOm.GetLocationTEST();
             GridBanchLocation.DataSource = dt;
             GridBanchLocation.DataBind();
 
@@ -135,10 +137,10 @@ namespace Evo.Admin
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 DropDownList ddlMain = (DropDownList)e.Row.FindControl("ddlMain");
-              
+
                 Label lblAutomation = (Label)e.Row.FindControl("lblAutomation");
 
-                if(lblAutomation.Text!="")
+                if (lblAutomation.Text != "")
                 {
                     ddlMain.SelectedValue = lblAutomation.Text;
                 }

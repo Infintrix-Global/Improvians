@@ -270,6 +270,7 @@ namespace Evo
             // nv.Add("@JobID", Session["JobID"].ToString());
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Jid", Jid);
+            nv.Add("@Comments", txtGcomments.Text);
             result = objCommon.GetDataInsertORUpdate("SP_AddGerminationCompletion", nv);
 
 

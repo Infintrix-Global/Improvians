@@ -357,7 +357,11 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-
+                                   <asp:TemplateField HeaderText="Comments" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblComments" runat="server" Text='<%# Eval("Comments")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
                             </Columns>
 
@@ -386,6 +390,12 @@
                             <asp:RangeValidator ID="Range1" ControlToValidate="txtTrays" MinimumValue="1" MaximumValue="20" Type="Integer" Text="The value must be from 1 to 20" runat="server"></asp:RangeValidator>
 
                             <asp:Label runat="server" ID="lblSeedlot" Visible="false"></asp:Label>
+                        </div>
+
+                         <div class="col">
+                            <label>Comments </label>
+                            <asp:TextBox ID="txtGcomments" TextMode="MultiLine" runat="server" CssClass="input__control"></asp:TextBox>
+                       
                         </div>
 
                     </div>
