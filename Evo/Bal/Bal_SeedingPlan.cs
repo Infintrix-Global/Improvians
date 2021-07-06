@@ -66,7 +66,7 @@ namespace Evo.Bal
 
                 strQuery = "Select wo,jobcode,cname,sodate, 'Fake CELERY ORG - 256' as itmdescp,'Fake BR-IMPERIAL ORG' as itm,TraySize as ts,320.00000000000000000000 as sotrays,cusno,due_date as duedate,GenusCode,loc_seedline as loc, ";
                 strQuery += " 320.00000000000000000000 as wotrays,due_date as wodate, 'Yes' as alloc,'ORG' as Soil ";
-                strQuery += " from gti_jobs_seeds_plan where jobcode in ('JB0200002','JB0200003','JB0200004') and jstatus=1";
+                strQuery += " from gti_jobs_seeds_plan where jobcode in ('JB0200002','JB0200003','JB0200004') and jstatus=6";
              
                 dt = objGeneral.GetDatasetByCommand(strQuery);
 

@@ -293,7 +293,7 @@ namespace Evo
                 // AddGrowerput(ref objinvoice, 1, "", "", "", "", "", "", "", "", "");
                 for (int i = 0; i < dtTrays.Rows.Count; i++)
                 {
-                    AddGrowerput(ref objinvoice, 1, Convert.ToDecimal(dtTrays.Rows[i]["QTY"]).ToString(), dtTrays.Rows[i]["l2"].ToString(), "", "", "", "", "", "", "");
+                    AddGrowerput(ref objinvoice, 1, Convert.ToInt32(dtTrays.Rows[i]["QTY"]).ToString(), dtTrays.Rows[i]["l2"].ToString(), "", "", "", "", "", "", "");
                 }
             }
             
