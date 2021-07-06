@@ -1179,7 +1179,7 @@ namespace Evo
 
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {
-                    int TotalTrays = 0;
+                    decimal TotalTrays = 0;
                     decimal availableSlot = 0;
 
                     if (dt1.Rows[0]["Automation"].ToString() == "Auto")
@@ -1199,7 +1199,7 @@ namespace Evo
                         decimal Pre = 1 - availableSlot1;
                         decimal Pre1 = Pre * 100;
 
-                        TotalTrays = Convert.ToInt32(dt1.Rows[0]["PerTrays"]) * Convert.ToInt32(availableSlot);
+                       // TotalTrays = Convert.ToDecimal(dt1.Rows[0]["PerTrays"]) * Convert.ToDecimal(availableSlot);
 
 
                         txtTrays.Text = TotalTrays.ToString();
