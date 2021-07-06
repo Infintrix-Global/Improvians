@@ -331,6 +331,11 @@
                             <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>
 
+                          <div class="col-sm-6 col-lg col-xl-3 mb-3">
+                            <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
+                            <asp:TextBox ID="txtNoOfPasses" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
+                        </div>
+
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <label>Concentration [ppm]</label>
                             <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" Text="150" runat="server" CssClass="input__control"></asp:TextBox>
@@ -364,10 +369,7 @@
                             </span>
                         </div>
 
-                        <div class="col-sm-6 col-lg col-xl-3 mb-3">
-                            <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
-                            <asp:TextBox ID="txtNoOfPasses" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
-                        </div>
+                      
                         <div class="col-sm-6 col-lg col-xl-3 mb-3">
                             <label>Minimum Days Until Next Fertilization</label>
                             <asp:TextBox ID="txtResetSprayTaskForDays" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>

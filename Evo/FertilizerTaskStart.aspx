@@ -317,23 +317,6 @@
                                 <asp:Label ID="lbltype" runat="server" Text="Fertilizer"></asp:Label></label><br />
                             <asp:DropDownList ID="ddlFertilizer" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
                         </div>
-
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <label>Concentration [ppm]</label>
-                            <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" Text="150" runat="server" CssClass="input__control"></asp:TextBox>
-                            <span class="error_message">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="e" SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
-                            </span>
-                        </div>
-                        <%-- <div class="col">
-                                <label>Unit </label>
-                                <asp:DropDownList ID="ddlUnit" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                                <span class="error_message">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlUnit" ValidationGroup="md"
-                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Unit" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>
-                            </div>--%>
-
                         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                             <label>Trays</label>
                             <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
@@ -355,6 +338,23 @@
                             <label class="pr-2 pr-lg-0 d-lg-block"># of passes</label>
                             <asp:TextBox ID="txtNoOfPasses" CssClass="input__control" placeholder="" runat="server"></asp:TextBox>
                         </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <label>Concentration [ppm]</label>
+                            <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" Text="150" runat="server" CssClass="input__control"></asp:TextBox>
+                            <span class="error_message">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="e" SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
+                            </span>
+                        </div>
+                        <%-- <div class="col">
+                                <label>Unit </label>
+                                <asp:DropDownList ID="ddlUnit" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+                                <span class="error_message">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlUnit" ValidationGroup="md"
+                                        SetFocusOnError="true" InitialValue="0" ErrorMessage="Please Select Unit" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </span>
+                            </div>--%>
+
+                        
 
 
                         <div class="col-sm-6 col-lg col-xl-3 mb-3">

@@ -555,15 +555,6 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlFertilizer;
 
         /// <summary>
-        /// txtQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQty;
-
-        /// <summary>
         /// txtFTrays control.
         /// </summary>
         /// <remarks>
@@ -589,6 +580,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNoOfPasses;
+
+        /// <summary>
+        /// txtQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQty;
 
         /// <summary>
         /// txtResetSprayTaskForDays control.
