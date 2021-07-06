@@ -929,7 +929,7 @@ namespace Evo
                             }
                         }
 
-                        if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate1))
+                        if (DateTime.Parse(IrrigateDate) > DateTime.Parse(TodatDate1))
                         {
 
                             if (ReSetIrrigateDate == "" || DateTime.Parse(IrrigateDate) >= DateTime.Parse(ReSetIrrigateDate))
@@ -1046,7 +1046,7 @@ namespace Evo
                                 }
                             }
 
-                            if (DateTime.Parse(IrrigateDate) >= DateTime.Parse(TodatDate1))
+                            if (DateTime.Parse(IrrigateDate) > DateTime.Parse(TodatDate1))
                             {
 
                                 if (ReSetIrrigateDate == "" || DateTime.Parse(IrrigateDate) >= DateTime.Parse(ReSetIrrigateDate))

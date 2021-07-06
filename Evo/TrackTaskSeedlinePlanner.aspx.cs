@@ -132,6 +132,7 @@ namespace Evo
         }
 
         public void BindGridGerm(string JobNo)
+        
         {
 
             string Facility1 = "";
@@ -329,7 +330,7 @@ namespace Evo
 
                     if (RoleId == "10")
                     {
-                        cmd.CommandText = " select distinct GTS.jobcode from gti_jobs_seeds_plan GTS   where  GTS.FacilityID ='" + Facility + "'  AND GTS.jobcode like '%" + prefixText + "%'  order by jobcode" +
+                        cmd.CommandText = " select distinct GTS.jobcode from gti_jobs_seeds_plan GTS   where  GTS.loc_seedline ='" + Facility + "'  AND GTS.jobcode like '%" + prefixText + "%'  order by GTS.jobcode" +
                     "";
                     }
                     else

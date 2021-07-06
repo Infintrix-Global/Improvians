@@ -885,7 +885,7 @@ namespace Evo
                             }
                         }
 
-                        if (DateTime.Parse(FertilizationDate) >= DateTime.Parse(TodatDate))
+                        if (DateTime.Parse(FertilizationDate) > DateTime.Parse(TodatDate))
                         {
 
                             if (ReSetSprayDate == "" || DateTime.Parse(FertilizationDate) >= DateTime.Parse(ReSetSprayDate))
@@ -1000,7 +1000,7 @@ namespace Evo
                                 }
                             }
 
-                            if (DateTime.Parse(FertilizationDate) >= DateTime.Parse(TodatDate))
+                            if (DateTime.Parse(FertilizationDate) > DateTime.Parse(TodatDate))
                             {
 
                                 if (ReSetSprayDate == "" || DateTime.Parse(FertilizationDate) >= DateTime.Parse(ReSetSprayDate))

@@ -807,7 +807,7 @@ namespace Evo
                             }
                         }
 
-                        if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
+                        if (DateTime.Parse(ChemicalDate) > DateTime.Parse(TodatDate))
                         {
                             if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
                             {
@@ -914,7 +914,7 @@ namespace Evo
                                 }
                             }
 
-                            if (DateTime.Parse(ChemicalDate) >= DateTime.Parse(TodatDate))
+                            if (DateTime.Parse(ChemicalDate) > DateTime.Parse(TodatDate))
                             {
                                 if (ReSetChemicalDate == "" || DateTime.Parse(ChemicalDate) >= DateTime.Parse(ReSetChemicalDate))
                                 {
