@@ -15,10 +15,11 @@
 				<siteMapNode url="~/MoveCompletionForm.aspx" title="Completion"/>
 			</siteMapNode>
 
-			<siteMapNode url="~/GerminationCompletionForm.aspx" title="Germination Count Task Completion"/>
+			<siteMapNode url="~/GerminationCompletionForm.aspx" title="Germination Count Task">
+				<siteMapNode url="~/GreenHouseTaskCompletion.aspx" title="Completion"/>
+			</siteMapNode>
 			<siteMapNode url="~/GerminationAssignmentForm.aspx" title="Germination Count Task">
 				<siteMapNode url="~/GerminationTaskAssignment.aspx" title="Assignment"/>
-				<siteMapNode url="~/GreenHouseTaskCompletion.aspx" title="Completion"/>
 			</siteMapNode>
 
 			<siteMapNode url="~/FerJobBuildUp.aspx" title="Fertilization"/>
