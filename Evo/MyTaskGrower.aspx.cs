@@ -62,6 +62,9 @@ namespace Evo
             lblMove.Text = dt.Tables[9].Rows.Count.ToString();
             lblGeneralTotal.Text = dt.Tables[10].Rows.Count.ToString();
             //lnkMove.Text = dt.Tables[5].Rows.Count.ToString();
+
+
+
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {

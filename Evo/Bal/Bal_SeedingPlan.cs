@@ -272,15 +272,15 @@ namespace Evo.Bal
 
         public DataTable GetSeedDateData(string ActivityCode, string GenusCode, string ContainerCode)
         {
-            Evo_General objGeneral = new Evo_General();
+            General objGeneral = new General();
             DataTable dt = new DataTable();
             try
             {
-                //strQuery = "select top 1 h.Code, h.[Container Code], h.[Genus Code], l.[Activity Code], l.[Date Shift] DateShift 	 ";
-                //strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
-                //strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='" + ActivityCode + "' and  h.[Genus Code]='" + GenusCode + "'  and h.[Container Code]='" + ContainerCode + "' ";
 
-                strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '" + ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "' ";
+                // strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '" + ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "' ";
+
+                strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '" + ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "'  and dateshift >=0";
+
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
@@ -312,11 +312,9 @@ namespace Evo.Bal
             return dt;
         }
 
-
-
-        public DataTable GetSeedDateDatanew(string ActivityCode, string GenusCode, string ContainerCode)
+        public DataTable GetSeedDateDatanewDateShift(string ActivityCode, string GenusCode, string ContainerCode ,int dateshiftId)
         {
-            Evo_General objGeneral = new Evo_General();
+            General objGeneral = new General();
             DataTable dt = new DataTable();
             try
             {
@@ -324,7 +322,29 @@ namespace Evo.Bal
                 //strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
                 //strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='" + ActivityCode + "' and  h.[Genus Code]='" + GenusCode + "'  and h.[Container Code]='" + ContainerCode + "' ";
 
-                 strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '"+ ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "' ";
+                strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '" + ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "' and dateshift >=0 and and pid >="+ dateshiftId + " ";
+
+                dt = objGeneral.GetDatasetByCommand(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+
+        public DataTable GetSeedDateDatanew(string ActivityCode, string GenusCode, string ContainerCode)
+        {
+            General objGeneral = new General();
+            DataTable dt = new DataTable();
+            try
+            {
+                //strQuery = "select  h.Code, h.[Container Code], h.[Genus Code], l.[Activity Code], l.[Date Shift] DateShift 	 ";
+                //strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
+                //strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='" + ActivityCode + "' and  h.[Genus Code]='" + GenusCode + "'  and h.[Container Code]='" + ContainerCode + "' ";
+
+                 strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '"+ ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "' and dateshift >=0 ";
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }
@@ -337,11 +357,11 @@ namespace Evo.Bal
 
         public DataTable GetSeedDateDateShift(string ActivityCode, string GenusCode, string ContainerCode)
         {
-            Evo_General objGeneral = new Evo_General();
+            General objGeneral = new General();
             DataTable dt = new DataTable();
             try
             {
-                strQuery = "  Select * from [gti_jobs_prodprofile] where crop='"+ GenusCode + "' and activitycode='"+ ActivityCode + "' and traycode ='"+ ContainerCode + "'	 ";
+                strQuery = "  Select * from [gti_jobs_prodprofile] where crop='"+ GenusCode + "' and activitycode='"+ ActivityCode + "' and traycode ='"+ ContainerCode + "' and dateshift >=0	 ";
               
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }

@@ -873,6 +873,10 @@ namespace Evo
                         string TodatDate;
                         string ReSetSprayDate = "";
                         string DateCountNo = "0";
+                        string DateShiftId = "0";
+
+                        DateShiftId= dtFez.Columns["pid"].ToString();
+
 
                         DateCountNo = Fcount.ToString();
                         TodatDate = System.DateTime.Now.ToShortDateString();

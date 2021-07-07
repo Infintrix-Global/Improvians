@@ -584,6 +584,9 @@ namespace Evo
                         string IrrigateNoCount = string.Empty;
                         string FertilizeNoCount = string.Empty;
                         string ChemicalNoCount = string.Empty;
+                        string FDateShiftId = "0";
+                        string CDateShiftId = "0";
+                        string IDateShiftId = "0";
                         NameValueCollection nvChDate = new NameValueCollection();
 
                         nvChDate.Add("@GreenHouseID", ddlLocation.SelectedValue);
@@ -592,7 +595,7 @@ namespace Evo
                         if (dtFez != null && dtFez.Rows.Count > 0)
                         {
                             DataColumn col = dtFez.Columns["DateShift"];
-
+                            DataColumn DSFIDcol = dtFez.Columns["Pid"];
                             int Fcount = 0;
                             foreach (DataRow row in dtFez.Rows)
                             {
@@ -622,6 +625,7 @@ namespace Evo
                                     {
                                         FertilizationDate = FertilizationDate;
                                         FertilizeNoCount = Fcount.ToString();
+                                        FDateShiftId = row[DSFIDcol].ToString();
                                         break;
                                     }
                                     else
@@ -648,6 +652,7 @@ namespace Evo
                         if (dtChemical != null && dtChemical.Rows.Count > 0)
                         {
                             DataColumn col = dtChemical.Columns["DateShift"];
+                            DataColumn CDSFcol = dtChemical.Columns["Pid"];
                             int Ccount = 0;
                             foreach (DataRow row in dtChemical.Rows)
                             {
@@ -672,6 +677,8 @@ namespace Evo
                                     {
                                         ChemicalDate = ChemicalDate;
                                         ChemicalNoCount = Ccount.ToString();
+                                        CDateShiftId = row[CDSFcol].ToString();
+
                                         break;
                                     }
                                     else
@@ -697,6 +704,7 @@ namespace Evo
                         if (dtISD != null && dtISD.Rows.Count > 0)
                         {
                             DataColumn col = dtISD.Columns["DateShift"];
+                            DataColumn IDSFcol = dtISD.Columns["Pid"];
                             int Irrcount = 0;
                             foreach (DataRow row in dtISD.Rows)
                             {
@@ -724,6 +732,7 @@ namespace Evo
                                     {
                                         IrrigateDate = IrrigateDate;
                                         IrrigateNoCount = Irrcount.ToString();
+                                        IDateShiftId = row[IDSFcol].ToString();
                                         break;
                                     }
                                     else
@@ -763,6 +772,9 @@ namespace Evo
                         nv.Add("@SlotPositionEnd", ddlSlotPositionEnd.SelectedValue);
                         nv.Add("@perTrays", lblperTrays.Text);
 
+                        nv.Add("@FDateShiftId", FDateShiftId);
+                        nv.Add("@CDateShiftId", CDateShiftId);
+                        nv.Add("@IDateShiftId", IDateShiftId);
 
                         if (txtTrays.Text != "")
                         {
