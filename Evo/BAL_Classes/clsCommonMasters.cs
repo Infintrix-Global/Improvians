@@ -374,7 +374,14 @@ public class ReportChartDetails
     public List<ChartDetails> lstChartDetail { get; set; }
 }
 
-
+[Serializable]
+public class LiveMapDetails
+{
+    public string Bench { get; set; }
+    public string JobID { get; set; }
+    public string SlotPositionStart { get; set; }
+    public string SlotPositionEnd { get; set; }
+}
 
 
 
