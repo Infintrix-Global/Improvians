@@ -74,7 +74,7 @@ namespace Evo
             {
                 //amytask.HRef = "SeedingPlanForm.aspx";
                 amytask.HRef = "MyTaskSeedlinePlanner.aspx";
-                 ddlFacility.Visible = false;
+                ddlFacility.Visible = false;
                 //  JobReports.HRef = "ReportSeedlinePlanner.aspx";
             }
             if (Session["Role"].ToString() == "8")
@@ -89,7 +89,7 @@ namespace Evo
             {
                 amytask.HRef = "MyTaskProductionPlanner.aspx";
                 JobReports.HRef = "TrackTaskSeedlinePlanner.aspx";
-               // ddlFacility.Visible = false;
+                // ddlFacility.Visible = false;
             }
             if (Session["Role"].ToString() == "11")
             {
@@ -230,6 +230,44 @@ namespace Evo
                     conn.Close();
                     return lstChartDetails;
                 }
+            }
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<LiveMapDetails> GetLiveMapData()
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                List<LiveMapDetails> lstLiveMapDetails = new List<LiveMapDetails>();
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["Evo"].ConnectionString;
+                string strRoles = string.Empty;
+                using (SqlCommand cmdPreference = new SqlCommand("SP_GetLiveMapData", conn))
+                {
+                    cmdPreference.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    cmdPreference.Parameters.AddWithValue("@Facility", "Enc1");
+                    da.SelectCommand = cmdPreference;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dtrow in dt.Rows)
+                        {
+                            LiveMapDetails details = new LiveMapDetails();
+                            details.JobID = dtrow[0].ToString();
+                            details.Bench = dtrow[1].ToString();
+                            details.SlotPositionStart = dtrow[2].ToString();
+                            details.SlotPositionEnd = dtrow[3].ToString();
+
+                            lstLiveMapDetails.Add(details);
+                        }
+                        conn.Close();
+                        return lstLiveMapDetails;
+                    }
+
+                }
+                return lstLiveMapDetails;
             }
         }
     }
