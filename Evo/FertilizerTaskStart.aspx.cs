@@ -590,7 +590,7 @@ namespace Evo
             script += "window.location = '";
             script += url;
             script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Redirect", script, true);
 
             Clear();            
 

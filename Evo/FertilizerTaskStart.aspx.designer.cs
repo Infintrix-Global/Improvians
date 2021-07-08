@@ -33,6 +33,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.Label lblbench;
 
         /// <summary>
+        /// upFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upFilter;
+
+        /// <summary>
         /// lblmsg control.
         /// </summary>
         /// <remarks>
@@ -213,6 +222,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtTrays;
 
         /// <summary>
+        /// Filteredtextboxextender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender2;
+
+        /// <summary>
         /// txtSQFT control.
         /// </summary>
         /// <remarks>
@@ -258,6 +276,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtQty;
 
         /// <summary>
+        /// TextBox1_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender TextBox1_FilteredTextBoxExtender;
+
+        /// <summary>
         /// RequiredFieldValidator5 control.
         /// </summary>
         /// <remarks>
@@ -274,6 +301,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtResetSprayTaskForDays;
+
+        /// <summary>
+        /// FilteredTextBoxExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender1;
 
         /// <summary>
         /// txtComments control.

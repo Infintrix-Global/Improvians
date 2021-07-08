@@ -14,7 +14,7 @@
             }
         }
     </script>
-          
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
@@ -23,9 +23,9 @@
             <img src="./images/dashboard_fertilization.png" width="137" height="136" alt="Fertilization / Chemical">
             Fertilization
         </h2>
-         <script type="text/javascript">
-             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(InIEvent);
-         </script>
+        <script type="text/javascript">
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(InIEvent);
+        </script>
         <asp:UpdatePanel runat="server" ID="upFilter">
             <ContentTemplate>
                 <div class="row">
@@ -200,23 +200,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <%--     <asp:TemplateField HeaderText="Task Type" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblDateCountNo" runat="server" Text='<%# Eval("DateCountNo")  %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Item" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("itemno")  %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Facility Location" HeaderStyle-CssClass="autostyle2">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblFacility" runat="server" Text='<%# Eval("FacilityID")  %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>--%>
                                 </Columns>
 
                                 <PagerStyle CssClass="paging" HorizontalAlign="Right" />
@@ -282,11 +265,6 @@
                                 <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
                                 <asp:TextBox ID="txtTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
-                                <%-- <span class="error_message">
-                                    <asp:Label ID="lblerrmsg" runat="server" ForeColor="red"></asp:Label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtTrays" ValidationGroup="md"
-                                        SetFocusOnError="true" ErrorMessage="Please Enter Trays" ForeColor="Red"></asp:RequiredFieldValidator>
-                                </span>--%>
                             </div>
                             <div class="col-12 col-sm-6 col-md-3">
                                 <label>SQFT </label>
@@ -298,9 +276,6 @@
                                         SetFocusOnError="true" ErrorMessage="Please Enter SQFT" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </span>
                             </div>
-                            <%--  <div class="col align-self-center">
-                                <asp:Button ID="btnAddTray" OnClick="btnAddTray_Click" class="submit-bttn bttn bttn-primary mb-0" runat="server" Text="Add" TabIndex="13" ValidationGroup="md" />
-                            </div>--%>
                             <div class="col-12">
                                 <div class="data__table">
                                     <asp:Panel ID="pnlPoints" runat="server" CssClass="pnlpoint">
@@ -308,13 +283,6 @@
                                             GridLines="None" CaptionAlign="NotSet" Width="801px" ForeColor="Black" OnRowDeleting="gvFerDetails_RowDeleting"
                                             ShowHeaderWhenEmpty="true">
                                             <Columns>
-                                                <%--  <asp:TemplateField HeaderText="Sr. No." ItemStyle-Width="10%">
-                                                        <ItemTemplate>
-                                                            <span class="auto-style1">
-                                                                <asp:Label ID="Label1" runat="server" ></asp:Label></span>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>--%>
-
                                                 <asp:TemplateField HeaderText="Fertilizer" ItemStyle-Width="10%">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblFertilizer" runat="server" Text='<%# Bind("[Fertilizer]")  %>'></asp:Label>
