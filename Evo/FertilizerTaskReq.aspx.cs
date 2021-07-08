@@ -695,7 +695,8 @@ namespace Evo
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
+                if (!string.IsNullOrEmpty((row.FindControl("lblTotTray") as Label).Text))
+                    tray = tray + Convert.ToInt32((row.FindControl("lblTotTray") as Label).Text);
                 //}
             }
             txtTrays.Text = tray.ToString();

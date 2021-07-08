@@ -420,7 +420,8 @@ namespace Evo
             decimal tray = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
+                if (!string.IsNullOrEmpty((row.FindControl("lblTotTray") as Label).Text))
+                    tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
             }
             JobMainTray = tray.ToString();
             txtTrays.Text = tray.ToString();
@@ -462,7 +463,8 @@ namespace Evo
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray1") as Label).Text);
+                if (!string.IsNullOrEmpty((row.FindControl("lblTotTray") as Label).Text))
+                    tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray1") as Label).Text);
                 //}
 
             }
@@ -520,12 +522,12 @@ namespace Evo
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequestManualCreateTaskStartJobbuil", nv);
                 FR_ID = result.ToString();
 
-             
+
             }
 
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
-               
+
 
                 long result = 0;
                 NameValueCollection nv = new NameValueCollection();
@@ -549,7 +551,7 @@ namespace Evo
             }
 
             dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
-            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text, txtComments.Text,txtNoOfPasses.Text);
+            objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, FR_ID, FertilizationCode, lblbench.Text, "", "", "", txtResetSprayTaskForDays.Text, txtComments.Text, txtNoOfPasses.Text);
 
             //long Mresult1 = 0;
             //NameValueCollection nv123 = new NameValueCollection();
@@ -592,7 +594,7 @@ namespace Evo
             script += "'; }";
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Redirect", script, true);
 
-            Clear();            
+            Clear();
 
         }
         public void AddJobNextDate()
@@ -652,7 +654,7 @@ namespace Evo
                                 nv11.Add("@GrowerPutAwayId", (row.FindControl("lblGrowerputawayID") as Label).Text);
                                 nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);
 
-                               // nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
+                                // nv11.Add("@Jid", (row.FindControl("lblJidF") as Label).Text);
                                 nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
                                 nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
                                 nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
@@ -699,7 +701,7 @@ namespace Evo
                             }
                         }
                     }
-                    
+
                 }
             }
 
