@@ -53,7 +53,7 @@ namespace Evo
                     AssignedBy = Request.QueryString["AssignedBy"].ToString();
                 }
 
-                
+
                 txtDate.Text = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
                 lblbench.Text = Bench;
 
@@ -100,7 +100,7 @@ namespace Evo
             }
         }
 
-        
+
 
         private string TaskRequestKey
         {
@@ -586,10 +586,11 @@ namespace Evo
             decimal tray = 0;
             foreach (GridViewRow row in gvJobHistory.Rows)
             {
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
+                if (!string.IsNullOrEmpty((row.FindControl("lblTotTray") as Label).Text))
+                    tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
             }
 
-            txtTrays.Text =  tray.ToString();
+            txtTrays.Text = tray.ToString();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -752,7 +753,7 @@ namespace Evo
                 nv.Add("@TaskRequestKey", TaskRequestKey);
                 nv.Add("@BanchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
                 nv.Add("@ResetTaskForDays", SprayTaskForDaysDate);
-              
+
 
                 result = objCommon.GetDataExecuteScaler("SP_AddFertilizerRequest", nv);
 
@@ -764,7 +765,7 @@ namespace Evo
 
                     dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtTrays.Text, txtSQFT.Text);
 
-                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtComments.Text.Trim(),txtNoOfPasses.Text.Trim());
+                    objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtComments.Text.Trim(), txtNoOfPasses.Text.Trim());
                     Batchlocation2 = Batchlocation;
 
 
@@ -796,7 +797,7 @@ namespace Evo
                 }
             }
 
-         
+
 
 
             long Mresult12 = 0;
@@ -807,12 +808,12 @@ namespace Evo
 
 
             objTask.UpdateIsActiveFerRole(BenchUp, Convert.ToInt32(Session["Role"].ToString()));
-            if (AssignedBy== "System")
-            { 
+            if (AssignedBy == "System")
+            {
                 AddJobNextDate();
 
             }
-          
+
             string url = "";
             if (Session["Role"].ToString() == "1")
             {
@@ -831,7 +832,7 @@ namespace Evo
             script += "window.location = '";
             script += url;
             script += "'; }";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Redirect", script, true);
             Clear();
 
             var res = (Master.FindControl("r1") as Repeater);
@@ -875,7 +876,7 @@ namespace Evo
                         string DateCountNo = "0";
                         string DateShiftId = "0";
 
-                        DateShiftId= dtFez.Columns["pid"].ToString();
+                        DateShiftId = dtFez.Columns["pid"].ToString();
 
 
                         DateCountNo = Fcount.ToString();
@@ -903,7 +904,7 @@ namespace Evo
                                 NameValueCollection nv11 = new NameValueCollection();
                                 nv11.Add("@GrowerPutAwayId", (row.FindControl("lblGrowerputawayID") as Label).Text);
                                 nv11.Add("@wo", (row.FindControl("lblwo") as Label).Text);
-                              
+
                                 nv11.Add("@jobcode", (row.FindControl("lblID") as Label).Text);
                                 nv11.Add("@FacilityID", (row.FindControl("lblFacility") as Label).Text);
                                 nv11.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);

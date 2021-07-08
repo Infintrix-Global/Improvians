@@ -524,7 +524,7 @@ namespace Evo
                 BindSlotSelect(dtManual.Rows[0]["GreenHouseID"].ToString(), dtManual.Rows[0]["GrowerPutAwayId"].ToString());
 
             }
-            else
+            else if (dt != null && dt.Rows.Count > 0)
             {
                 gvFer.DataSource = dt;
                 gvFer.DataBind();
@@ -544,7 +544,8 @@ namespace Evo
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)
                 //{
-                tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
+                if (!string.IsNullOrEmpty((row.FindControl("lblTotTray") as Label).Text))
+                    tray = tray + Convert.ToDecimal((row.FindControl("lblTotTray") as Label).Text);
                 //}
                 BatchLocd = (row.FindControl("lblGreenHouse") as Label).Text;
 
