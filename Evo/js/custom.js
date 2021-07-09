@@ -127,7 +127,7 @@ jQuery(document).ready(function ($) {
     }
 
     if ($('.SelectBox').length > 0) {
-        $('.SelectBox').SumoSelect({ placeholder: '--- Select ---' });
+        $('.SelectBox').SumoSelect({ placeholder: '--- Select ---', triggerChangeCombined: false });
     }
 
     //If date field
