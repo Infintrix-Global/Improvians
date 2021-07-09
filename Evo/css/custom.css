@@ -1626,6 +1626,14 @@ select option:disabled {
     background: #ececec;
     opacity: 0.8;
 }
+.paging td {
+    padding: 0;
+}
+
+.paging td a, .paging td > span {
+    padding: 10px 15px;
+    display: block;
+}
 
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {
