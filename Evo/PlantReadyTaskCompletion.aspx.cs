@@ -287,6 +287,8 @@ namespace Evo
             nv.Add("@UpdatedReadyDate", txtUpdatedReadyDate.Text);
             nv.Add("@PlantExpirationDate", txtPlantExpirationDate.Text);
             nv.Add("@RootQuality", ddlRootQuality.SelectedItem.Text);
+            nv.Add("@PlantQuality", ddlPlantQuality.SelectedItem.Text);
+
             nv.Add("@PlantHeight", ddlPlantHeight.SelectedItem.Text);
             nv.Add("@Notes",txtComments.Text);
             

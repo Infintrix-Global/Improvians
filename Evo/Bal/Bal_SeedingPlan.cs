@@ -322,7 +322,7 @@ namespace Evo.Bal
                 //strQuery += " from [GTI$IA Activity Scheme] h, [GTI$IA Activity Scheme Line] l ";
                 //strQuery += "where h.Code = l.[Activity Scheme Code]	 and l.[Activity Code] ='" + ActivityCode + "' and  h.[Genus Code]='" + GenusCode + "'  and h.[Container Code]='" + ContainerCode + "' ";
 
-                strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '" + ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "' and dateshift >=0 and and pid >="+ dateshiftId + " ";
+                strQuery = " Select *, dateshift as DateShift  from gti_jobs_prodprofile where activitycode = '" + ActivityCode + "' and crop = '" + GenusCode + "'  and traycode = '" + ContainerCode + "' and dateshift >=0  and pid >"+ dateshiftId + " ";
 
                 dt = objGeneral.GetDatasetByCommand(strQuery);
             }

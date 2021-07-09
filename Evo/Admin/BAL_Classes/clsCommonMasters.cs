@@ -655,6 +655,28 @@ namespace Evo.Admin
             }
             return ds.Tables[0];
         }
+
+
+
+        public DataTable GetPlantReadyShiftNoData()
+        {
+            try
+            {
+                objGeneral.ClearParameters();
+
+              
+                ds = objGeneral.GetDatasetByCommand_SP("GetPlantReadyShiftNo");
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds.Tables[0];
+        }
+
+
+
+
+
         public DataTable GetPlantProductionCrop()
         {
             try
@@ -701,6 +723,25 @@ namespace Evo.Admin
             return _isUpdated;
 
         }
+
+        public int UpdatePlantReadyDateShifNo(int PlantReady)
+        {
+            int _isUpdated = -1;
+            try
+            {
+                objGeneral.ClearParameters();
+                objGeneral.AddParameterWithValueToSQLCommand("@ShiftNo", PlantReady);
+                _isUpdated = objGeneral.GetExecuteNonQueryByCommand_SP("UpdatePlantPlantReadyDateShiftNo");
+            }
+            catch (Exception ex)
+            {
+            }
+            return _isUpdated;
+
+        }
+
+
+
         public int AddPlantProductionCrop(string Crop, int Germination1, int Germination2, int Germination3)
         {
             int _isUpdated = -1;

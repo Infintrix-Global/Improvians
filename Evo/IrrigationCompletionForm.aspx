@@ -1,34 +1,58 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EvoMaster.Master" AutoEventWireup="true" CodeBehind="IrrigationCompletionForm.aspx.cs" Inherits="Evo.IrrigationCompletionForm1" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
     <div class="site__container">
         <h2 class="head__title-icon">
             <img src="./images/dashboard_irrigation.png" width="137" height="142" alt="Irrigation">
             Irrigation Completion Form
         </h2>
 
-        <%--  <div class="filter__row d-flex">
-                <div class="row">
-                    <div class="col m3">
-                        <label>Customer </label>
-                        <asp:DropDownList ID="ddlCustomer" AutoPostBack="true" OnSelectedIndexChanged="ddlCustomer_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
+        <div class="row">
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Job No</label>
+                <asp:TextBox ID="txtSearchJobNo" runat="server" OnTextChanged="txtSearchJobNo_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
 
-                    <div class="col m3">
-                        <label>Facility </label>
-                        <asp:DropDownList ID="ddlFacility" AutoPostBack="true" OnSelectedIndexChanged="ddlFacility_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <div class="col m3">
-                        <label>Job No </label>
-                        <asp:DropDownList ID="ddlJobNo" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-                    </div>
-                    <div class="col m3">
-                        <br />
-                        <asp:Button Text="Reset" ID="btnResetSearch" CssClass="bttn bttn-primary bttn-action" runat="server" OnClick="btnResetSearch_Click" />
-                    </div>
-                </div>
-            </div>--%>
+                <cc1:autocompleteextender servicemethod="SearchCustomers"
+                    minimumprefixlength="2"
+                    completioninterval="100" enablecaching="false" completionsetcount="10"
+                    targetcontrolid="txtSearchJobNo"
+                    id="AutoCompleteExtender1" runat="server" firstrowselected="false">
+                </cc1:autocompleteextender>
+
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Bench Location </label>
+                <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" DataTextField="BenchLocation" DataValueField="BenchLocation" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
+
+                <%-- <asp:TextBox ID="txtBatchLocation" runat="server" OnTextChanged="txtBatchLocation_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
+                <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
+                    MinimumPrefixLength="2"
+                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                    TargetControlID="txtBatchLocation"
+                    ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
+                </cc1:AutoCompleteExtender>--%>
+            </div>
+
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Job No </label>
+                <asp:DropDownList ID="ddlJobNo" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlJobNo_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+            <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                <label>Assigned By </label>
+                <asp:DropDownList ID="ddlAssignedBy" runat="server" AutoPostBack="true" DataTextField="AssignedBy" DataValueField="AssignedBy" OnSelectedIndexChanged="ddlAssignedBy_SelectedIndexChanged" class="custom__dropdown robotomd"></asp:DropDownList>
+            </div>
+         
+                 <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
+                     <br />
+              
+                <asp:Button Text="Reset" ID="btnSearchRest" runat="server" CssClass="mr-2 bttn bttn-primary bttn-action mb-3 mb-md-0" OnClick="btnSearchRest_Click" />
+
+            </div>
+        </div>
 
         <div class="row">
             <div class=" col m12">

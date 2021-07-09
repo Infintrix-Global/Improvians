@@ -23,6 +23,7 @@ namespace Evo.Admin
             if (!IsPostBack)
             {
                 GetConfiguration();
+                GetPlantReadyShiftNoDataBind();
             }
         }
 
@@ -38,7 +39,8 @@ namespace Evo.Admin
             DataTable dt = objCommon.GetPlantProductionConfiguration();
             DataRow dr = dt.Rows[0];
             txtPlantReady.Text = dr["PlantDueDate"].ToString();
-
+          
+            
             GridProfile.DataSource = objCommon.GetPlantProductionCrop();
             GridProfile.DataBind();
         }
@@ -66,6 +68,25 @@ namespace Evo.Admin
                     long result = objCommon.AddPlantProductionCropPlantReady(Crop, Convert.ToInt32(PlantReady.Text));
                 }
             }
+        }
+
+
+        public void GetPlantReadyShiftNoDataBind()
+        {
+            DataTable dt = objCommon.GetPlantReadyShiftNoData();
+            DataRow dr = dt.Rows[0];
+          
+            txtDateShiftNo.Text = dr["ShiftNo"].ToString();
+
+        }
+
+
+
+
+        protected void btnPlantReadyDate_Click(object sender, EventArgs e)
+        {
+            long result = objCommon.UpdatePlantReadyDateShifNo(Convert.ToInt32(txtDateShiftNo.Text));
+            GetPlantReadyShiftNoDataBind();
         }
     }
 

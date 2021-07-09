@@ -272,6 +272,12 @@
                                         <asp:Label ID="lblPlantExpirationDate" runat="server" Text='<%# Eval("PlantExpirationDate","{0:MM/dd/yyyy}")  %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                
+                                <asp:TemplateField HeaderText="Plant Quality" HeaderStyle-CssClass="autostyle2">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblPlantQuality" runat="server" Text='<%# Eval("PlantQuality")  %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Root Quality" HeaderStyle-CssClass="autostyle2">
                                     <ItemTemplate>
@@ -338,6 +344,18 @@
                             <label class="d-block">Plant Quality</label>
 
 
+                            <asp:DropDownList ID="ddlPlantQuality" class="custom__dropdown" runat="server">
+                                <asp:ListItem Text="--SELECT--" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="1- Poor" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="2- Good" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="3- Excellent" Value="3"></asp:ListItem>
+
+                            </asp:DropDownList>
+                        </div>
+                         <div class="col-12 col-sm-6 col-lg-3">
+                            <label class="d-block">Root quality</label>
+
+
                             <asp:DropDownList ID="ddlRootQuality" class="custom__dropdown" runat="server">
                                 <asp:ListItem Text="--SELECT--" Value="0"></asp:ListItem>
                                 <asp:ListItem Text="1- Poor" Value="1"></asp:ListItem>
@@ -346,8 +364,7 @@
 
                             </asp:DropDownList>
                         </div>
-
-                        <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="col-12 col-sm-6 col-lg-3 p-3">
                             <label class="d-block">Plant Height [inches]</label>
                             <%--   <asp:TextBox ID="txtPlantHeight" class="input__control" runat="server"></asp:TextBox>
                             --%>
@@ -370,7 +387,7 @@
 
                         </div>
 
-                        <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="col-12 col-sm-6 col-lg-3 p-3">
                             <label>Comments </label>
                             <asp:TextBox ID="txtComments" TextMode="MultiLine" class="w-100 input__control" runat="server"></asp:TextBox>
                         </div>
