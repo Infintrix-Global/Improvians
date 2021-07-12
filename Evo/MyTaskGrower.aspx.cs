@@ -473,6 +473,18 @@ namespace Evo
 
         private void BindGridPR()
         {
+
+            DataTable dtSHDate = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            dtSHDate = objCommon.GetDataTable("GetPlantReadyShiftNo", nv);
+
+            string Fdate = "", TDate = "";
+            Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(Convert.ToInt32(dtSHDate.Rows[0]["ShiftNo"])).ToString("yyyy-MM-dd");
+      
+
+
             dt = new DataTable();
             nv.Clear();
             nv.Add("@JobCode", "0");
@@ -483,12 +495,12 @@ namespace Evo
             nv.Add("@Status", "");
             nv.Add("@Jobsource", "0");
             nv.Add("@GermNo", "0");
-            nv.Add("@FromDate","");
-            nv.Add("@ToDate","");
+            nv.Add("@FromDate", Fdate);
+            nv.Add("@ToDate", TDate);
             nv.Add("@AssignedBy", "0");
 
             dt = objCommon.GetDataTable("SP_GetPlantReadyRequest", nv);
-            BindData(dt, PR, "SeededDate");
+            BindData(dt, PR, "PlantReadySeedDate");
         }
 
         private void BindGridCrop()
