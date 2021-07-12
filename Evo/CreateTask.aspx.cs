@@ -1589,13 +1589,7 @@ namespace Evo
 
                 string message = "Assignment Successful";
                 string url = "CreateTask.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Redirect", script, true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
             }
 
             updateNotification();
