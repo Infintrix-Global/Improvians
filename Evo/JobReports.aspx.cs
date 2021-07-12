@@ -291,7 +291,7 @@ namespace Evo
         {
 
             string sql = "select j.No_ jobcode, j.[Shortcut Property 1 Value] germct, j.[Bill-to Name] cname, j.[Item No_] itemno, j.[Item Description] itemdescp," +
-                            " sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, j.[Original Production Qty_] / j.[Variant Code] origtrays," +
+                            " sum(t.Quantity) trays, j.[Delivery Date] ready_date, m.[Production Phase] pphase, " +
                             " j.[Source No_] + '-' + convert(nvarchar, j.[Source Line No_] / 1000) solines, j.[Variant Code] ts, j.[Source No_] so,j.[Source Line No_] / 1000 soline, " +
                             " j.[Genus Code] crop, j.[Shortcut Property 10 Value] overage, j.[Delivery Date] duedate, j.[Original Start Date] plandate," +
                             " CASE WHEN m.[Closed at Date] < '2000-01-01' THEN m.[Posting Date] ELSE m.[Closed at Date] END seeddt ," +
