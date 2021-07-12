@@ -726,7 +726,53 @@ jQuery(document).ready(function($){
                                 }
                             }
     
-                                        
+                            $("#livebench").on("change", function () {
+                                if ($(this).val() !== '' && $(this).val() !== null) {
+                                    var selectedBench = $(this).val();
+
+                                    console.log(selectedBench);
+
+                                    if ($(".sys__bench[data-bench=" + selectedBench + "]").length > 0) {
+                                        benchTopPos = $(".sys__bench[data-bench=" + selectedBench + "]").offset().top;
+
+                                        $('html, body').stop().animate({
+                                            scrollTop: benchTopPos
+                                        }, 2000);
+
+                                        $(".sys__bench[data-bench=" + selectedBench + "]").addClass("blinker").delay(3500).queue(function () {
+                                            $(this).removeClass("blinker").dequeue();
+                                        });
+
+                                    } else {
+                                        //alert("Bench Not Found");
+                                    }
+                                }
+                            });
+
+                            $("#livejobno").on("change", function () {
+                                if ($(this).val() !== '' && $(this).val() !== null) {
+                                    var selectedJob = $(this).val();
+
+                                    console.log(selectedJob);
+
+                                    if ((selectedJob !== 0) && ($("[data-jobid=" + selectedJob + "]").length > 0)) {
+                                        var jobBench = $("[data-jobid=" + selectedJob + "]").parents(".sys__bench");
+                                            jobTopPos = $(jobBench).offset().top;
+
+                                        $('html, body').stop().animate({
+                                            scrollTop: jobTopPos
+                                        }, 2000);
+
+                                        $("[data-jobid=" + selectedJob + "]").addClass("blinker").delay(3500).queue(function () {
+                                            $(this).removeClass("blinker").dequeue();
+                                        });
+
+                                    } else {
+                                        //alert("Job Not Found");
+                                    }
+                                }
+                            });
+                            
                             if($('[data-toggle="tooltip"]').length > 0) {
                                 $('[data-toggle="tooltip"]').tooltip();
                             }
