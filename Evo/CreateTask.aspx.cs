@@ -117,7 +117,7 @@ namespace Evo
         }
 
 
-    
+
 
 
 
@@ -198,7 +198,7 @@ namespace Evo
 
             //dt = objCommon.GetDataTable("SP_GetBatchLocation", nv);
 
-          //  DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
+            //  DataTable dtNV = objCom.GetLocationDetsil(ddlMain);
 
             DataTable dtNV = objCOm.GetLocation(ddlMain);
 
@@ -581,7 +581,7 @@ namespace Evo
         }
 
 
-        public void BindSlotSelect(string bench,string GPId)
+        public void BindSlotSelect(string bench, string GPId)
         {
 
 
@@ -654,7 +654,7 @@ namespace Evo
                 else
                 {
 
-                  
+
                     NameValueCollection nv = new NameValueCollection();
                     DataTable dt = new DataTable();
                     nv.Add("@RoleID", Session["Role"].ToString());
@@ -693,7 +693,7 @@ namespace Evo
 
                 }
 
-               
+
 
 
             }
@@ -815,7 +815,7 @@ namespace Evo
                 Bench1 = ddlBenchLocation.SelectedItem.Text;
                 BindGridFerReq("'" + Bench1 + "'", "");
 
-               // BindSlotSelect(Bench1);
+                // BindSlotSelect(Bench1);
 
 
             }
@@ -1098,7 +1098,7 @@ namespace Evo
                     if (Batchlocation2 == "" || Batchlocation2 != Batchlocation)
                     {
                         dtTrays.Rows.Add(ddlFertilizer.SelectedItem.Text, txtQty.Text, "", txtFTrays.Text, txtSQFT.Text);
-                        objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim(),txtNoOfPasses.Text);
+                        objTask.AddFertilizerRequestDetailsCreatTask(dtTrays, result2.ToString(), FertilizationCode, Batchlocation, "", "", "", txtResetSprayTaskForDays.Text, txtFComments.Text.Trim(), txtNoOfPasses.Text);
                         Batchlocation2 = Batchlocation;
 
                         NameValueCollection nvn = new NameValueCollection();
@@ -1112,44 +1112,16 @@ namespace Evo
                     }
                     objGeneral.SendMessage(int.Parse(Assigned), "New Fertilizer Task Assigned", "New Fertilizer Task Assigned", "Crop Health Report");
 
-
-
-
                     string message = "Assignment Successful";
                     string url = "CreateTask.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
 
                     if (IsF == 1)
                     {
                         string BenchUp = "'" + Batchlocation + "'";
                         objTask.UpdateIsActiveDatat(BenchUp);
                     }
-                    //string message1 = "$('#confirmModal').modal('show')";
-                    //string script1 = "window.onload = function(){";
-                    //script1 += message1;
-                    //script1 += "'; }";
-                    //ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script1, true);
-
-
-
-
-
-                    //$('#confirmModal').modal('show');
-
-                    //NameValueCollection nvn = new NameValueCollection();
-                    //nvn.Add("@LoginID", Session["LoginID"].ToString());
-                    //nvn.Add("@SupervisorID", Assigned);
-                    //nvn.Add("@Jobcode", (row.FindControl("lblID") as Label).Text);
-                    //nvn.Add("@TaskName", "Fertilizer");
-                    //nvn.Add("@GreenHouseID", (row.FindControl("lblGreenHouse") as Label).Text);
-                    //var nresult = objCommon.GetDataExecuteScaler("SP_AddNotification", nvn);
-
+                  
                 }
             }
             if (!hasValue)
@@ -1225,20 +1197,11 @@ namespace Evo
             else
             {
                 if (result16 > 0)
-                {
-                    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assignment Successful')", true);
+                {                  
                     objGeneral.SendMessage(int.Parse(Assigned), "New Germination Task Assigned", "New Germination Task Assigned", "Germination");
                     string message = "Assignment Successful";
                     string url = "CreateTask.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-                    // lblmsg.Text = "Assignment Successful";
-                    //  clear();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
                 }
                 else
                 {
@@ -1495,13 +1458,7 @@ namespace Evo
                     objGeneral.SendMessage(int.Parse(Assigned), "New Irrigation Task Assigned", "New Irrigation Task Assigned", "Irrigation");
                     string message = "Assignment Successful";
                     string url = "CreateTask.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
                     if (FID == 1)
                     {
                         string BenchUp = "'" + Batchlocation + "'";
@@ -1632,13 +1589,7 @@ namespace Evo
 
                 string message = "Assignment Successful";
                 string url = "CreateTask.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
             }
 
             updateNotification();
@@ -1874,13 +1825,7 @@ namespace Evo
 
                     string message = "Assignment Successful";
                     string url = "CreateTask.aspx";
-                    string script = "window.onload = function(){ alert('";
-                    script += message;
-                    script += "');";
-                    script += "window.location = '";
-                    script += url;
-                    script += "'; }";
-                    ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
 
                     if (Fid == 1)
                     {
@@ -1933,11 +1878,11 @@ namespace Evo
         protected void MoveReset_Click(object sender, EventArgs e)
         {
             BindSupervisor();
-      //      BindFacility();
+            //      BindFacility();
             BindBench_Location();
             txtMoveComments.Text = "";
             txtMoveDate.Text = "";
-          //  txtMoveNumberOfTrays.Text = "";
+            //  txtMoveNumberOfTrays.Text = "";
             //btnMoveRequest.Attributes.Add("class", "request__block-collapse collapse show");
 
         }
@@ -1973,7 +1918,7 @@ namespace Evo
                     nv.Add("@Itemdesc", (row.FindControl("lblitemdesc") as Label).Text);
                     nv.Add("@ChId", "0");
                     nv.Add("@Comments", txtMoveComments.Text.Trim());
-                   
+
                     nv.Add("@Jid", (row.FindControl("lblJIdPU") as Label).Text);
                     //  nv4.Add("@GrowerputawayID", (row.FindControl("lblGrowerputawayID") as Label).Text);
                     result = objCommon.GetDataExecuteScaler("SP_AddMoveRequestManualCreateTask", nv);
@@ -1999,13 +1944,7 @@ namespace Evo
 
                 string message = "Assignment Successful";
                 string url = "CreateTask.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
             }
 
             updateNotification();
@@ -2072,13 +2011,7 @@ namespace Evo
 
                 string message = "Assignment Successful";
                 string url = "CreateTask.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
             }
             updateNotification();
         }
@@ -2284,13 +2217,7 @@ namespace Evo
 
                 string message = "Assignment Successful";
                 string url = "CreateTask.aspx";
-                string script = "window.onload = function(){ alert('";
-                script += message;
-                script += "');";
-                script += "window.location = '";
-                script += url;
-                script += "'; }";
-                ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('" + message + "'); window.location='" + url + "';", true);
             }
 
             updateNotification();
@@ -3607,7 +3534,7 @@ namespace Evo
 
                         ddlToSlotPositionEnd.Items.Add(item);
                     }
-                   
+
 
 
                 }
@@ -3658,7 +3585,7 @@ namespace Evo
 
         protected void ddlToSlotPositionStart_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             int FromSlotPosition = 0;
             int ToSlotPosition = 0;
             FromSlotPosition = (Convert.ToInt32(ddlSlotPositionEnd.SelectedValue) - Convert.ToInt32(ddlSlotPositionStart.SelectedValue)) + 1;
