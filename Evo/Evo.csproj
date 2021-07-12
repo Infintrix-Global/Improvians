@@ -393,6 +393,7 @@
     <Content Include="js\jquery.sumoselect.min.js" />
     <Content Include="js\jquery.uploadify.js" />
     <Content Include="CustomerLogin.aspx" />
+    <Content Include="Livemap.aspx" />
     <Content Include="ManageTaskJobReport.aspx" />
     <Content Include="MoveCompletionStart.aspx" />
     <Content Include="MoveReqAsssignment.aspx" />
@@ -1012,6 +1013,13 @@
     </Compile>
     <Compile Include="CustomerLogin.aspx.designer.cs">
       <DependentUpon>CustomerLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Livemap.aspx.cs">
+      <DependentUpon>Livemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Livemap.aspx.designer.cs">
+      <DependentUpon>Livemap.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageTaskJobReport.aspx.cs">
       <DependentUpon>ManageTaskJobReport.aspx</DependentUpon>
