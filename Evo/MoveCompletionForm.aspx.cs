@@ -95,7 +95,23 @@ namespace Evo
             }
         }
 
-   
+
+        private string RemTraysTotal
+        {
+            get
+            {
+                if (ViewState["RemTraysTotal"] != null)
+                {
+                    return (string)ViewState["RemTraysTotal"];
+                }
+                return "";
+            }
+            set
+            {
+                ViewState["RemTraysTotal"] = value;
+            }
+        }
+
 
         public void BindGridMove()
         {
@@ -136,33 +152,67 @@ namespace Evo
             //if (Convert.ToDouble(txtTrays.Text) <= Convert.ToDouble(lblRemainingTrays.Text))
             //{
 
-            int TotalTrays = 0;
-            int DumpTrays = 0;
-            if (txtDumpTrays.Text == "")
-            {
-                DumpTrays = 0;
-            }
-            else
-            {
-                DumpTrays = Convert.ToInt32(txtDumpTrays.Text);
-            }
+            //int TotalTrays = 0;
+            //int DumpTrays = 0;
+            //if (txtDumpTrays.Text == "")
+            //{
+            //    DumpTrays = 0;
+            //}
+            //else
+            //{
+            //    DumpTrays = Convert.ToInt32(txtDumpTrays.Text);
+            //}
 
-             TotalTrays = Convert.ToInt32(txtTrays.Text) + DumpTrays;
+            // TotalTrays = Convert.ToInt32(txtTrays.Text) + DumpTrays;
 
-            if (Convert.ToInt32(TraysTotal) == TotalTrays)
+            if (Convert.ToInt32(TraysTotal) == Convert.ToInt32(RemTraysTotal))
             {
                 long result = 0;
+                string TypeID = "";
                 NameValueCollection nv = new NameValueCollection();
                 //nv.Add("@MoveID", MoveID);
+                //nv.Add("GrowerPutAwayId", GrowerPutAwayId);
+                //nv.Add("MoveAssignID", lblMoveAssignID.Text);
+                //nv.Add("@MoveDate", txtMoveDate.Text.Trim());
+                //nv.Add("@Put_Away_Location", txtPutAwayLocation.Text.Trim());
+                //nv.Add("@TraysMoved", txtTrays.Text.Trim());
+                //nv.Add("@Barcode", txtBarcode.Text.Trim());
+                //nv.Add("@CreateBy", Session["LoginID"].ToString());
+                //result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
+
+                if(RadioMoveCompletion.SelectedValue=="1")
+                {
+                    TypeID = "Bench";
+                }
+                else if(RadioMoveCompletion.SelectedValue == "2")
+                {
+                    TypeID = "Facility";
+                }
+                else
+                {
+                    TypeID = "";
+                }
                 nv.Add("GrowerPutAwayId", GrowerPutAwayId);
                 nv.Add("MoveAssignID", lblMoveAssignID.Text);
-                //nv.Add("@Wo",wo);
                 nv.Add("@MoveDate", txtMoveDate.Text.Trim());
                 nv.Add("@Put_Away_Location", txtPutAwayLocation.Text.Trim());
                 nv.Add("@TraysMoved", txtTrays.Text.Trim());
                 nv.Add("@Barcode", txtBarcode.Text.Trim());
                 nv.Add("@CreateBy", Session["LoginID"].ToString());
-                result = objCommon.GetDataExecuteScalerRetObj("SP_AddMoveCompletionDetails", nv);
+
+                nv.Add("@Facility", ddlFacility.SelectedValue);
+                nv.Add("@FacilityMoveTrays", txtFTrays.Text);
+                nv.Add("@FacilityDump", txtFDumpTrays.Text);
+                nv.Add("@type", TypeID);
+                nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+                nv.Add("@BenchLocationDump", txtBDumpTrays.Text);
+                nv.Add("@BenchLocationTrays", txtBTrays.Text);
+
+
+
+
+                
+                result = objCommon.GetDataExecuteScalerRetObj("SP_AddGrowPutAwayMoveCompletionDetails", nv);
 
                 GridViewRow row = gvMove.Rows[0];
                 var txtJobNo = (row.FindControl("lblID") as Label).Text;
@@ -198,7 +248,7 @@ namespace Evo
 
                         int result1 = objCommon.GetDataInsertORUpdate("SP_AddCompletMoveForm", nv1);
 
-
+                        
                     }
 
 
@@ -272,6 +322,16 @@ namespace Evo
         {
             TraysTotalDetails();
 
+
+            if (lblRemainingTrays.Text != "0")
+            {
+                MoveCompletion.Visible = true;
+            }
+            else
+            {
+                MoveCompletion.Visible = false;
+            }
+
             //if (txtTrays.Text != "")
             //{
             //    if (Convert.ToInt32(txtTrays.Text) <= Convert.ToInt32(lblRemainingTrays.Text))
@@ -325,6 +385,17 @@ namespace Evo
         protected void txtDumpTrays_TextChanged(object sender, EventArgs e)
         {
             TraysTotalDetails();
+
+            if (lblRemainingTrays.Text != "0")
+            {
+                MoveCompletion.Visible = true;
+            }
+            else
+            {
+                MoveCompletion.Visible = false;
+            }
+
+
             //if (txtTrays.Text != "")
             //{
             //    lblRemainingTrays.Text = (Convert.ToInt32(TraysTotal) - Convert.ToInt32(txtTrays.Text)).ToString();
@@ -419,16 +490,10 @@ namespace Evo
            
             TrayTotal = Mtrays + MDumpTrays + Btrays + BDumpTrays + Ftrays + FDumpTrays;
 
+            RemTraysTotal = TrayTotal.ToString();
             lblRemainingTrays.Text = (Convert.ToInt32(lblRemainingTraysTotal.Text) - TrayTotal).ToString();
 
-            if(lblRemainingTrays .Text!="0")
-            {
-                MoveCompletion.Visible = true;
-            }
-            else
-            {
-                MoveCompletion.Visible = false;
-            }
+         
 
         }
 

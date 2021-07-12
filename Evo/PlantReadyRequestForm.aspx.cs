@@ -26,13 +26,13 @@ namespace Evo
             if (!IsPostBack)
             {
                 string Fdate = "", TDate = "", FRDate = "";
-                Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
-                TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
-                FRDate = System.DateTime.Now.ToString("yyyy-MM-dd");
+                //Fdate = Convert.ToDateTime(System.DateTime.Now).AddDays(-7).ToString("yyyy-MM-dd");
+                //TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(14).ToString("yyyy-MM-dd");
+                //FRDate = System.DateTime.Now.ToString("yyyy-MM-dd");
                 // txtFertilizationDate.Text = FRDate;
                 //   txtFromDate.Text = Fdate;
                 //  txtToDate.Text = TDate;
-
+                BindSelectShifNo();
 
                 BindBenchLocation(Session["Facility"].ToString(), "0", "0", "0");
                 BindJobCode("0", "0", "0");
@@ -95,6 +95,25 @@ namespace Evo
 
             }
         }
+
+
+        public void BindSelectShifNo()
+        {
+            lstJob.Clear();
+            DataTable dt = new DataTable();
+            NameValueCollection nv = new NameValueCollection();
+
+            dt = objCommon.GetDataTable("GetPlantReadyShiftNo", nv);
+
+            string Fdate = "", TDate = "";
+            Fdate = Convert.ToDateTime(System.DateTime.Now).ToString("yyyy-MM-dd");
+            TDate = (Convert.ToDateTime(System.DateTime.Now)).AddDays(Convert.ToInt32(dt.Rows[0]["ShiftNo"])).ToString("yyyy-MM-dd");
+              txtFromDate.Text = Fdate;
+            txtToDate.Text = TDate;
+        }
+
+
+
         public void BindBenchLocation(string ddlMain, string jobNo, string Customer, string Code)
         {
             lstJob.Clear();

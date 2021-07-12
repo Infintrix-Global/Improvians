@@ -515,7 +515,9 @@ namespace Evo
 
         protected void txtTrays_TextChanged(object sender, EventArgs e)
         {
+
             CalData();
+          
         }
 
         public void CalData()
@@ -534,6 +536,8 @@ namespace Evo
             }
 
             lblRemaining.Text = (Convert.ToInt32(lblSeededTrays.Text) - Total).ToString();
+
+           
         }
 
         public void Clear()
@@ -1202,7 +1206,7 @@ namespace Evo
                         {
                             for (int i = 0; i < dtSlot.Rows.Count; i++)
                             {
-                                availableSlot += (Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionEnd"]) - Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionStart"]));
+                                availableSlot += ((Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionEnd"]) - Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionStart"]))+1);
                             }
                         }
 
@@ -1273,7 +1277,7 @@ namespace Evo
                         {
                             for (int i = 0; i < dtSlot.Rows.Count; i++)
                             {
-                                availableSlot += (Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionEnd"]) - Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionStart"]));
+                                availableSlot += ((Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionEnd"]) - Convert.ToDecimal(dtSlot.Rows[i]["SlotPositionStart"])) + Convert.ToDecimal ("0.5"));
                             }
                         }
                         //  decimal Pre = ((Convert .ToInt32(dt1.Rows[0]["SlotPositionEnd"]) - Convert .ToInt32 (dt1.Rows[0]["SlotPositionStart"])) * 100) / 52;

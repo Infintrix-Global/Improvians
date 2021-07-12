@@ -14,7 +14,7 @@
             <asp:Label ID="lblmsg" runat="server"></asp:Label>
             <div class="card_grid">
                 <div class="row">
-                    <div class="col-12 col-lg-5 col-xl-6">                       
+                    <div class="col-12 col-lg-5 col-xl-6">
                         <div class="card mb-3">
                             <div class="card-header">
                                 <h4 class="mb-0">Plant Ready Timeframe</h4>
@@ -42,7 +42,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCrop" Text='<%# Eval("Crop")%>' runat="server"></asp:Label>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>                                          
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Plant Ready" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtPlantReady" class="input__control input__control-auto input__control-sm text-center" Text='<%# Eval("PlantDueDate")%>' Width="50px" runat="server"></asp:TextBox>
@@ -60,6 +60,27 @@
                         </div>
                     </div>
 
+                </div>
+                <div class="row">
+
+                    <div class="col-12 col-lg-5 col-xl-6">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h4 class="mb-0">Plant Ready Show Data</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="mr-2 d-block robotomd">Plant Ready Date</label>
+                                    <asp:TextBox ID="txtDateShiftNo" class="input__control input__control-auto input__control-sm text-center mr-2" Text="8" Width="50px" runat="server"></asp:TextBox>
+                                    <span>Plant Ready Date</span>
+                                </div>
+                                <asp:Button ID="btnPlantReadyDate" runat="server" OnClick="btnPlantReadyDate_Click" CausesValidation="true" 
+                                    Text="Update" CssClass="bttn bttn-sm mt-3" />
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

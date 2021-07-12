@@ -223,10 +223,10 @@ namespace Evo
 
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
-            Bindcname();
-            BindJobCode();
-          //  BindFacility();
-            BindCropType();
+          //  Bindcname();
+          //  BindJobCode();
+          ////  BindFacility();
+          //  BindCropType();
             BindGridGerm("0");
         }
 

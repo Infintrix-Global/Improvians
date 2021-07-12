@@ -540,6 +540,7 @@ namespace Evo
             string x = "'" + Bench1 + "'" + ",";
             string chkSelected = "";
             int c = 0;
+
             foreach (GridViewRow row in gvFer.Rows)
             {
                 //if ((row.FindControl("chkSelect") as CheckBox).Checked)

@@ -888,7 +888,27 @@ namespace Evo
 
             foreach (GridViewRow row in GridIrrigation.Rows)
             {
-                DataTable dtISD = objSP.GetSeedDateDatanew("IRRIGATE", (row.FindControl("lblGenusCode") as Label).Text, (row.FindControl("lblTraySize") as Label).Text);
+                int Irrcount = 0;
+                DataTable dtDShId = new DataTable();
+                DataTable dtISD = new DataTable();
+                NameValueCollection nv1DSID = new NameValueCollection();
+                nv1DSID.Add("@Crop", (row.FindControl("lblGenusCode") as Label).Text);
+                nv1DSID.Add("@JobCode", (row.FindControl("lbljobID") as Label).Text);
+                nv1DSID.Add("@BenchLocation", (row.FindControl("lblGreenHouse") as Label).Text);
+                nv1DSID.Add("@Facility", (row.FindControl("lblFacility") as Label).Text);
+                nv1DSID.Add("@Type", "Irrigation");
+                dtDShId = objCommon.GetDataTable("SP_GetFertilizerDateShiftId", nv1DSID);
+
+                if (dtDShId != null && dtDShId.Rows.Count > 0)
+                {
+
+                    Irrcount = Convert.ToInt32(dtDShId.Rows[0]["CountNo"]);
+                     dtISD = objSP.GetSeedDateDatanewDateShift("IRRIGATE", (row.FindControl("lblGenusCode") as Label).Text, (row.FindControl("lblTraySize") as Label).Text, Convert.ToInt32(dtDShId.Rows[0]["DateShiftId"]));
+                }
+                else
+                {
+                     dtISD = objSP.GetSeedDateDatanewDateShift("IRRIGATE", (row.FindControl("lblGenusCode") as Label).Text, (row.FindControl("lblTraySize") as Label).Text,0);
+                }
 
                 int IrrigateCode = 0;
                 DataTable dtIG = new DataTable();
@@ -904,7 +924,7 @@ namespace Evo
 
                 if (dtISD != null && dtISD.Rows.Count > 0)
                 {
-                    int Irrcount = 0;
+                   
                     DataColumn col = dtISD.Columns["DateShift"];
                     foreach (DataRow row1 in dtISD.Rows)
                     {

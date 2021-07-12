@@ -49,11 +49,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="From Facility" HeaderStyle-CssClass="autostyle2">
+                                    <%--<asp:TemplateField HeaderText="From Facility" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>
                                             <asp:Label ID="lblFacilityFrom" runat="server" Text='<%# Eval("loc_seedline")  %>'></asp:Label>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
 
                                     <asp:TemplateField HeaderText="To Facility" HeaderStyle-CssClass="autostyle2">
                                         <ItemTemplate>

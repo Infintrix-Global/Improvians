@@ -91,10 +91,10 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            // nv.Add("@WoId", wo);
+            nv.Add("@Facility", Session["Facility"].ToString());
             nv.Add("@GrowerPutAwayId", GrowerPutAwayId);
             //nv.Add("@mode","1");
-            dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTaskByMoveID", nv);
+            dt = objCommon.GetDataTable("SP_GetMoveSiteTeamTaskByMoveID1", nv);
             gvMove.DataSource = dt;
             gvMove.DataBind();
 
