@@ -681,8 +681,7 @@ jQuery(document).ready(function($){
                     type: 'POST',
                     dataType: 'json',
                     contentType: 'application/json',
-                    url: 'https://webportal.growerstrans.com/TESTGEM/DashBoard.aspx/GetLiveMapData',
-                    //url: 'http://127.0.0.1:5500/js/benchjobs.json',
+                    url: 'DashBoard.aspx/GetLiveMapData',
                     data: '{}',
                     success: function (response) {
                         var benchJobCount = response.d;
