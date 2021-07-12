@@ -1194,6 +1194,24 @@ namespace Evo
         protected global::System.Web.UI.WebControls.DropDownList ddlSlotPositionEnd;
 
         /// <summary>
+        /// ddlToFacility control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlToFacility;
+
+        /// <summary>
+        /// RequiredFieldValidator14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator14;
+
+        /// <summary>
         /// ddlToGreenHouse control.
         /// </summary>
         /// <remarks>

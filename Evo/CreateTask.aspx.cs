@@ -46,7 +46,7 @@ namespace Evo
                 BintTaskType();
                 BindSupervisor();
 
-                //BindFacility();
+                BindFacility();
                 BindSupervisorList();
                 BindFertilizer();
                 BindJobCode("");
@@ -594,6 +594,11 @@ namespace Evo
             nv1.Add("@Mode", "3");
             dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
 
+            DataTable dtSlot = new DataTable();
+            NameValueCollection nvSlot = new NameValueCollection();
+            nvSlot.Add("@BanchLocation", bench);
+            nvSlot.Add("@Facility", "");
+            dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPosition", nvSlot);
 
 
 
@@ -606,23 +611,31 @@ namespace Evo
                 {
 
 
+                    ddlSlotPositionStart.Items.Clear();
                     for (double i = 1; i < 53; i++)
                     {
-                        ListItem item = new ListItem();
-                        item.Text = i.ToString();
-                        item.Value = i.ToString();
-
-                        ddlSlotPositionStart.Items.Add(item);
+                        ListItem item1 = new ListItem();
+                        item1.Text = i.ToString();
+                        item1.Value = i.ToString();
+                        if (isSlotAvailable(dtSlot, i))
+                            //item.Attributes.Add("enable","disabled");
+                            item1.Attributes["disabled"] = "disabled";
+                        ddlSlotPositionStart.Items.Add(item1);
                     }
 
+                    ddlSlotPositionEnd.Items.Clear();
                     for (double i = 1; i < 53; i++)
                     {
-                        ListItem item = new ListItem();
-                        item.Text = i.ToString();
-                        item.Value = i.ToString();
-
-                        ddlSlotPositionEnd.Items.Add(item);
+                        ListItem item1 = new ListItem();
+                        item1.Text = i.ToString();
+                        item1.Value = i.ToString();
+                        if (isSlotAvailable(dtSlot, i))
+                            //item.Attributes.Add("enable","disabled");
+                            item1.Attributes["disabled"] = "disabled";
+                        ddlSlotPositionEnd.Items.Add(item1);
                     }
+
+
                     ddlLogisticManager.Items.Clear();
                     NameValueCollection nv = new NameValueCollection();
                     DataTable dt = new DataTable();
@@ -639,17 +652,7 @@ namespace Evo
 
 
 
-                    //DataTable dtSlot = new DataTable();
-                    //NameValueCollection nvSlot = new NameValueCollection();
-                    //nvSlot.Add("@GrowerPutAwayId", GPId.ToString());
-
-                    //dtSlot = objCommon.GetDataTable("SP_GetGrowerPutAwaySlotPositionSelect", nvSlot);
-
-                    //if (dtSlot != null && dtSlot.Rows.Count > 0)
-                    //{
-                    //    ddlSlotPositionStart.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionStart"]).ToString();
-                    //    ddlSlotPositionEnd.SelectedValue = Convert.ToInt32(dtSlot.Rows[0]["SlotPositionEnd"]).ToString();
-                    //}
+                   
                 }
                 else
                 {
@@ -675,21 +678,25 @@ namespace Evo
                         ListItem item = new ListItem();
                         item.Text = i.ToString();
                         item.Value = i.ToString();
-
+                        if (isSlotAvailable(dtSlot, i))
+                            //item.Attributes.Add("enable","disabled");
+                            item.Attributes["disabled"] = "disabled";
 
                         ddlSlotPositionStart.Items.Add(item);
                     }
-
+                    ddlSlotPositionEnd.Items.Clear();
                     for (double i = 0.5; i < 54; i += 0.5)
                     {
                         ListItem item = new ListItem();
                         item.Text = i.ToString();
                         item.Value = i.ToString();
-
+                        if (isSlotAvailable(dtSlot, i))
+                            //item.Attributes.Add("enable","disabled");
+                            item.Attributes["disabled"] = "disabled";
                         ddlSlotPositionEnd.Items.Add(item);
                     }
 
-
+                 
 
                 }
 
@@ -706,6 +713,19 @@ namespace Evo
 
 
 
+        public bool isSlotAvailable(DataTable dtSlot, double slot)
+        {
+            if (dtSlot != null && dtSlot.Rows.Count > 0)
+            {
+                for (int i = 0; i < dtSlot.Rows.Count; i++)
+                {
+                    if (slot >= Convert.ToDouble(dtSlot.Rows[i]["SlotPositionStart"]) && slot <= Convert.ToDouble(dtSlot.Rows[i]["SlotPositionEnd"]))
+                        return true;
+                }
+
+            }
+            return false;
+        }
 
 
         protected void gvFer_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -1847,21 +1867,21 @@ namespace Evo
             updateNotification();
         }
 
-        //public void BindFacility()
-        //{
-        //    ddlToFacility.DataSource = objBAL.GetMainLocation();
-        //    ddlToFacility.DataTextField = "Facility";
-        //    ddlToFacility.DataValueField = "Facility";
-        //    ddlToFacility.DataBind();
-        //    ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
-        //    ddlToFacility.SelectedValue = Session["Facility"].ToString();
-        //    BindBench_Location();
-        //}
+        public void BindFacility()
+        {
+            ddlToFacility.DataSource = objBAL.GetMainLocation();
+            ddlToFacility.DataTextField = "Facility";
+            ddlToFacility.DataValueField = "Facility";
+            ddlToFacility.DataBind();
+            ddlToFacility.Items.Insert(0, new ListItem("--- Select ---", "0"));
+            ddlToFacility.SelectedValue = Session["Facility"].ToString();
+            BindBench_Location();
+        }
 
         public void BindBench_Location()
         {
             //  nv.Add("@FacilityID", ddlToFacility.SelectedValue);
-            ddlToGreenHouse.DataSource = objBAL.GetLocation(Session["Facility"].ToString());
+            ddlToGreenHouse.DataSource = objBAL.GetLocation (ddlToFacility.SelectedValue);
             ddlToGreenHouse.DataTextField = "BenchName";
             ddlToGreenHouse.DataValueField = "BenchName";
             ddlToGreenHouse.DataBind();
@@ -1903,7 +1923,7 @@ namespace Evo
 
                     nv.Add("@LoginID", Session["LoginID"].ToString());
                     nv.Add("@FromFacility", (row.FindControl("lblFacility") as Label).Text);
-                    nv.Add("@ToFacility", "");
+                    nv.Add("@ToFacility", ddlToFacility.SelectedValue);
                     nv.Add("@ToGreenHouse", ddlToGreenHouse.SelectedValue);
                     nv.Add("@FormBanchlocation", (row.FindControl("lblGreenHouse") as Label).Text);
                     nv.Add("@Trays", (row.FindControl("lblTotTray") as Label).Text);
@@ -2147,6 +2167,8 @@ namespace Evo
         protected void chckchanged1(object sender, EventArgs e)
         {
             CheckBox chckheader = (CheckBox)gvFer.HeaderRow.FindControl("CheckBoxall");
+
+            int IsF = 0;
             foreach (GridViewRow row in gvFer.Rows)
             {
                 CheckBox chckrw = (CheckBox)row.FindControl("chkSelect");
@@ -2154,13 +2176,24 @@ namespace Evo
                 {
                     chckrw.Checked = true;
 
-
+                    IsF++; 
 
                 }
                 else
                 {
                     chckrw.Checked = false;
                 }
+            }
+
+            if(IsF > 1)
+            {
+                ddlSlotPositionStart.Enabled = false;
+                ddlSlotPositionEnd.Enabled = false;
+            }
+            else
+            {
+                ddlSlotPositionStart.Enabled = true;
+                ddlSlotPositionEnd.Enabled = true;
             }
 
         }
@@ -3318,6 +3351,7 @@ namespace Evo
         {
             string Trays1 = "";
             int Trays = 0;
+            int IsF =0;
             foreach (GridViewRow row in gvFer.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
@@ -3326,6 +3360,7 @@ namespace Evo
                     string TodatDate = System.DateTime.Now.ToShortDateString();
                     if (chkRow.Checked)
                     {
+                        IsF++;
                         Trays1 = (row.FindControl("lblTotTray") as Label).Text;
 
                         Trays = Trays + Convert.ToInt32(Trays1);
@@ -3452,6 +3487,18 @@ namespace Evo
                         }
                     }
                 }
+
+                if (IsF > 1)
+                {
+                    ddlSlotPositionStart.Enabled = false;
+                    ddlSlotPositionEnd.Enabled = false;
+                }
+                else
+                {
+                    ddlSlotPositionStart.Enabled = true;
+                    ddlSlotPositionEnd.Enabled = true;
+                }
+
             }
 
             txtFTrays.Text = Trays.ToString();
@@ -3531,7 +3578,6 @@ namespace Evo
                         ListItem item = new ListItem();
                         item.Text = i.ToString();
                         item.Value = i.ToString();
-
                         ddlToSlotPositionEnd.Items.Add(item);
                     }
 
@@ -3547,7 +3593,6 @@ namespace Evo
                         ListItem item = new ListItem();
                         item.Text = i.ToString();
                         item.Value = i.ToString();
-
 
                         ddlToSlotPositionStart.Items.Add(item);
                     }
@@ -3588,11 +3633,46 @@ namespace Evo
 
             int FromSlotPosition = 0;
             int ToSlotPosition = 0;
-            FromSlotPosition = (Convert.ToInt32(ddlSlotPositionEnd.SelectedValue) - Convert.ToInt32(ddlSlotPositionStart.SelectedValue)) + 1;
 
-            ToSlotPosition = FromSlotPosition + Convert.ToInt32(ddlToSlotPositionStart.SelectedValue);
 
-            ddlToSlotPositionEnd.SelectedValue = ToSlotPosition.ToString();
+            DataTable dt1 = new DataTable();
+            NameValueCollection nv1 = new NameValueCollection();
+
+            nv1.Add("@BanchLocation", ddlToGreenHouse.SelectedValue);
+            nv1.Add("@Facility", "");
+            nv1.Add("@Mode", "3");
+            dt1 = objCommon.GetDataTable("SP_GetBanchLocation", nv1);
+
+
+
+
+            if (dt1 != null && dt1.Rows.Count > 0)
+            {
+                int TotalTrays = 0;
+                int availableSlot = 0;
+
+            
+
+                if (dt1.Rows[0]["Automation"].ToString() == "Auto")
+                {
+                    FromSlotPosition = (Convert.ToInt32(ddlSlotPositionEnd.SelectedValue) - Convert.ToInt32(ddlSlotPositionStart.SelectedValue)) + 1;
+
+                    ToSlotPosition = FromSlotPosition + Convert.ToInt32(ddlToSlotPositionStart.SelectedValue);
+
+                    ddlToSlotPositionEnd.SelectedValue = ToSlotPosition.ToString();
+                }
+                else
+                {
+                    double FromSlotPosition1 = (Convert.ToDouble(ddlSlotPositionEnd.SelectedValue) - Convert.ToDouble(ddlSlotPositionStart.SelectedValue));
+                    double ToSlotPosition1 = FromSlotPosition1 + Convert.ToDouble(ddlToSlotPositionStart.SelectedValue);
+
+
+                    ddlToSlotPositionEnd.SelectedValue = ToSlotPosition1.ToString();
+                }
+            }
+                 
+
+
         }
     }
 }
