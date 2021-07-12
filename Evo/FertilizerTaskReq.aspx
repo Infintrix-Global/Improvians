@@ -247,7 +247,10 @@
                             <div class="w-100"></div>
                             <div class="col-12 col-sm-6 col-md-3">
                                 <label>Quantity</label>
-                                <asp:TextBox ID="txtQty" AutoPostBack="true" TextMode="Number" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtQty" AutoPostBack="true" OnTextChanged="txtQty_TextChanged" runat="server" CssClass="input__control"></asp:TextBox>
+                                <cc1:FilteredTextBoxExtender ID="Filteredtextboxextender2" runat="server"
+                                Enabled="True" TargetControlID="txtQty" FilterType="Numbers">
+                            </cc1:FilteredTextBoxExtender>
                                 <span class="error_message">
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtQty" ValidationGroup="e"
                                         SetFocusOnError="true" ErrorMessage="Please Enter Quantity" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -264,7 +267,10 @@
                             <div class="col-12 col-sm-6 col-md-3 mb-3">
                                 <label>Trays</label>
                                 <asp:Label ID="lblUnMovedTrays" runat="server" Visible="false"></asp:Label>
-                                <asp:TextBox ID="txtTrays" Enabled="false" TextMode="Number" runat="server" CssClass="input__control"></asp:TextBox>
+                                <asp:TextBox ID="txtTrays" Enabled="false"  runat="server" CssClass="input__control"></asp:TextBox>
+                                <cc1:FilteredTextBoxExtender ID="Filteredtextboxextender1" runat="server"
+                                Enabled="True" TargetControlID="txtTrays" FilterType="Numbers">
+                            </cc1:FilteredTextBoxExtender>
                             </div>
                             <div class="col-12 col-sm-6 col-md-3">
                                 <label>SQFT </label>

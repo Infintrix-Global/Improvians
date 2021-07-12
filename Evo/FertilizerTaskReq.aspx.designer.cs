@@ -276,6 +276,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtQty;
 
         /// <summary>
+        /// Filteredtextboxextender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender2;
+
+        /// <summary>
         /// RequiredFieldValidator5 control.
         /// </summary>
         /// <remarks>
@@ -319,6 +328,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTrays;
+
+        /// <summary>
+        /// Filteredtextboxextender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender1;
 
         /// <summary>
         /// txtSQFT control.

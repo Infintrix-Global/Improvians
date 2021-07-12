@@ -123,6 +123,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.HiddenField IrrDate;
 
         /// <summary>
+        /// upFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upFilter;
+
+        /// <summary>
         /// txtSearchJobNo control.
         /// </summary>
         /// <remarks>
@@ -465,6 +474,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtTGerTrays;
 
         /// <summary>
+        /// Filteredtextboxextender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender1;
+
+        /// <summary>
         /// txtGcomments control.
         /// </summary>
         /// <remarks>
@@ -564,6 +582,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtFTrays;
 
         /// <summary>
+        /// Filteredtextboxextender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender2;
+
+        /// <summary>
         /// txtSQFT control.
         /// </summary>
         /// <remarks>
@@ -591,6 +618,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtQty;
 
         /// <summary>
+        /// Filteredtextboxextender3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender3;
+
+        /// <summary>
         /// txtResetSprayTaskForDays control.
         /// </summary>
         /// <remarks>
@@ -598,6 +634,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtResetSprayTaskForDays;
+
+        /// <summary>
+        /// Filteredtextboxextender4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender4;
 
         /// <summary>
         /// txtBenchIrrigationFlowRate control.
@@ -609,6 +654,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtBenchIrrigationFlowRate;
 
         /// <summary>
+        /// Filteredtextboxextender5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender5;
+
+        /// <summary>
         /// txtBenchIrrigationCoverage control.
         /// </summary>
         /// <remarks>
@@ -618,6 +672,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtBenchIrrigationCoverage;
 
         /// <summary>
+        /// Filteredtextboxextender6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender6;
+
+        /// <summary>
         /// txtSprayCoverageperminutes control.
         /// </summary>
         /// <remarks>
@@ -625,6 +688,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSprayCoverageperminutes;
+
+        /// <summary>
+        /// Filteredtextboxextender7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender7;
 
         /// <summary>
         /// txtFComments control.
@@ -762,6 +834,15 @@ namespace Evo
         protected global::System.Web.UI.WebControls.TextBox txtChemicalTrays;
 
         /// <summary>
+        /// Filteredtextboxextender8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender8;
+
+        /// <summary>
         /// txtChemicalSQFTofBench control.
         /// </summary>
         /// <remarks>
@@ -796,6 +877,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtResetChemicalSprayTask;
+
+        /// <summary>
+        /// Filteredtextboxextender9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender9;
 
         /// <summary>
         /// txtCComments control.
@@ -895,6 +985,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtirrigationResetSprayTaskForDays;
+
+        /// <summary>
+        /// Filteredtextboxextender10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender10;
 
         /// <summary>
         /// txtIrrComments control.
@@ -1246,6 +1345,15 @@ namespace Evo
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQuantityofTray;
+
+        /// <summary>
+        /// Filteredtextboxextender11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender Filteredtextboxextender11;
 
         /// <summary>
         /// txtCommentsDump control.
