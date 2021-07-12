@@ -292,7 +292,7 @@ namespace Evo
                         if (chckrw.Checked == true)
                         {
 
-                            if (lbljobcode.Text == "JB0200002" || lbljobcode.Text == "JB0200003" || lbljobcode.Text == "JB0200004")
+                            if (lbljobcode.Text == "JB0200002" || lbljobcode.Text == "JB0200003" || lbljobcode.Text == "JB0200004" || lbljobcode.Text == "JB0200005" || lbljobcode.Text == "JB0200006")
                             {
                                 long _isInserted3 = 0;
                                 NameValueCollection nvReset = new NameValueCollection();
