@@ -687,8 +687,6 @@ jQuery(document).ready(function($){
                         var benchJobCount = response.d;
                             benchJobCount = Object.keys(benchJobCount).length,
                             jsonData = response;
-
-                        console.log(jsonData);
                         
                         if(benchJobCount != 0) {
                             for (var i = 0; i < benchJobCount; i++) {
