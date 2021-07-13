@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="sc1" runat="server"></asp:ScriptManager>
-    <div class="site__container">
+    <div class="site__container">pt>
         <h2 class="head__title-icon mb-3">
             <img src="./images/dashboard_fertilization-chemical.png" width="137" height="136" alt="Chemical">
             Chemical
@@ -27,7 +27,7 @@
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
-                <asp:ListBox ID="ddlBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+                <asp:ListBox ID="ddlBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="servr"  CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
                 
                </div>
 
