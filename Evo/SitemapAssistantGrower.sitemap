@@ -2,7 +2,10 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
 	<siteMapNode url="~/Dashboard.aspx" title="Dashboard" >
 		<siteMapNode url="~/MyTaskAssistantGrower.aspx" title="My Tasks"  >
-			<siteMapNode url="~/MyTaskLogisticManager.aspx" title="Put Away"  />
+			<siteMapNode url="~/MyTaskLogisticManager.aspx" title="Put Away" >
+				<siteMapNode url="~/MoveTaskAssignment.aspx" title="Assignment"/>
+				<siteMapNode url="~/MoveCompletionForm.aspx" title="Completion"/>
+			</siteMapNode>
 			<siteMapNode url="~/ChemicalRequestForm.aspx" title="Chemical" >
 				<siteMapNode url="~/ChemicalJobBuildUp.aspx" title="Job Buildup"  />
 				<siteMapNode url="~/ChemicalStart.aspx" title="Chemical"  />
