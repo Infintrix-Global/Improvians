@@ -12,6 +12,9 @@
                 $('.SelectBox').SumoSelect({ placeholder: '--- Select ---' });
             }
         }
+
+
+
         function Confirm() {
             var value = ConfirmFerDateCheck();
             //   alert('value ' + value);
