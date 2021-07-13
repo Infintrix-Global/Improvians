@@ -223,6 +223,7 @@
     <Content Include="Admin\ViewCustomer.aspx" />
     <Content Include="Admin\ViewPlantProductionProfile.aspx" />
     <Content Include="Admin\ViewEmployee.aspx" />
+    <Content Include="bin\ajaxcontroltoolkit.dll" />
     <Content Include="css\sumoselect.css" />
     <Content Include="ForgetCustomerPassword.aspx" />
     <Content Include="ForgetPassword.aspx" />
@@ -1571,7 +1572,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\EmailTemplates\" />
-    <Folder Include="bin\" />
     <Folder Include="uploads\" />
   </ItemGroup>
   <PropertyGroup>
