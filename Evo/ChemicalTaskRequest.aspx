@@ -24,15 +24,9 @@
             </div>
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">
                 <label>Bench Location </label>
-                <asp:DropDownList ID="ddlBenchLocation" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server" class="custom__dropdown robotomd"></asp:DropDownList>
-
-                <%-- <asp:TextBox ID="txtBatchLocation" runat="server" OnTextChanged="txtBatchLocation_TextChanged" AutoPostBack="true" class="input__control robotomd"></asp:TextBox>
-                <cc1:AutoCompleteExtender ServiceMethod="SearchBenchLocation"
-                    MinimumPrefixLength="2"
-                    CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
-                    TargetControlID="txtBatchLocation"
-                    ID="AutoCompleteExtender2" runat="server" FirstRowSelected="false">
-                </cc1:AutoCompleteExtender>--%>
+                <asp:ListBox ID="ddlBenchLocation" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlBenchLocation_SelectedIndexChanged" runat="server"  CssClass="SelectBox custom__dropdown robotomd"></asp:ListBox>
+                
+              
             </div>
 
             <div class="col-xl-2 col-md-4 col-sm-6 mb-3">

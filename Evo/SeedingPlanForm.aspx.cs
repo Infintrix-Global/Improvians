@@ -534,7 +534,7 @@ namespace Evo
             Panel PanelView = (Panel)e.Item.FindControl("PanelView");
             Panel PanelView1 = (Panel)e.Item.FindControl("PanelView1");
             General objGeneral = new General();
-            string strSQL = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and jstatus=0";
+            string strSQL = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and jstatus=0 and jobcode not in ('JB0200002','JB0200003','JB0200004','JB0200005','JB0200006')";
             DataTable dt = objGeneral.GetDatasetByCommand(strSQL);
             DGJob.DataSource = dt;
             DGJob.DataBind();
@@ -545,7 +545,7 @@ namespace Evo
 
 
             General objGeneral1 = new General();
-            string strSQLCount = "select  * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "'";
+            string strSQLCount = "select  * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and jstatus=0 and jobcode not in ('JB0200002','JB0200003','JB0200004','JB0200005','JB0200006')";
             DataTable dt12 = objGeneral1.GetDatasetByCommand(strSQLCount);
 
 
@@ -553,7 +553,7 @@ namespace Evo
             {
                 PanelView.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "'";
+                string strSQL1 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "' and jstatus=0 and jobcode not in ('JB0200002','JB0200003','JB0200004','JB0200005','JB0200006')";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob1.DataSource = dt1;
                 DGJob1.DataBind();
@@ -566,7 +566,7 @@ namespace Evo
             {
                 PanelView.Visible = true;
                 General objGeneral21 = new General();
-                string strSQL11 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "' ";
+                string strSQL11 = "select Top 35 * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "' and jstatus=0 and jobcode not in ('JB0200002','JB0200003','JB0200004','JB0200005','JB0200006')";
                 DataTable dt11 = objGeneral21.GetDatasetByCommand(strSQL11);
                 DGJob1.DataSource = dt11;
                 DGJob1.DataBind();
@@ -580,7 +580,7 @@ namespace Evo
 
                 PanelView1.Visible = true;
                 General objGeneral2 = new General();
-                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "'";
+                string strSQL1 = "select * from gti_jobs_seeds_plan where loc_seedline='" + lblFacility.Text + "' and CONVERT(date,createon)='" + lblDate.Text + "' and ID > '" + A + "' and jstatus=0 and jobcode not in ('JB0200002','JB0200003','JB0200004','JB0200005','JB0200006')";
                 DataTable dt1 = objGeneral2.GetDatasetByCommand(strSQL1);
                 DGJob2.DataSource = dt1;
                 DGJob2.DataBind();

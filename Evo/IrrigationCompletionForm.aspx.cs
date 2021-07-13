@@ -69,7 +69,7 @@ namespace Evo
 
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBench) ? ddlBench : "0");
+            nv.Add("@BenchLocation", getBenchLocation());
             nv.Add("@Customer", "0");
             nv.Add("@JobNo", "0");
             nv.Add("@GenusCode", "0");
@@ -95,7 +95,7 @@ namespace Evo
            
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@BenchLocation", "0");
+            nv.Add("@BenchLocation", getBenchLocation());
             nv.Add("@jobcode","0");
             nv.Add("@AssignedBy", "0");
             nv.Add("@LoginID", Session["LoginID"].ToString());
@@ -122,7 +122,7 @@ namespace Evo
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataView dataView = BindGridGerm(0,"0");
-            BindJobCode(ddlBenchLocation.SelectedValue);
+            BindJobCode(getBenchLocation());
             //if (ddlJobNo.SelectedIndex == 0)
             //{
             //    ddlJobNo.DataSource = dataView.ToTable(true, "Jobcode");
@@ -180,7 +180,7 @@ namespace Evo
         {
             DataTable dt = new DataTable();
             NameValueCollection nv = new NameValueCollection();
-            nv.Add("@BenchLocation",ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation", getBenchLocation());
             nv.Add("@jobcode", JobNo);
             nv.Add("@AssignedBy", ddlAssignedBy.SelectedValue);
             nv.Add("@LoginID", Session["LoginID"].ToString());
@@ -200,6 +200,27 @@ namespace Evo
 
             return dataView;
         }
+
+        private string getBenchLocation()
+        {
+            int c = 0;
+            string x = "";
+            string chkSelected = "";
+            foreach (ListItem item in ddlBenchLocation.Items)
+            {
+                if (item.Selected)
+                {
+                    c = 1;
+                    x += item.Text + ",";
+                }
+            }
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
+            }
+            return chkSelected;
+        }
+
         private void highlight(int limit)
         {
             var i = gvGerm.Rows.Count;

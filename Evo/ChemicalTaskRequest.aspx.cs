@@ -97,7 +97,7 @@ namespace Evo
 
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation", getBenchLocation());
             nv.Add("@Customer", ddlCustomer.SelectedValue);
             nv.Add("@JobNo", ddlJobNo.SelectedValue);
             nv.Add("@GenusCode", "0");
@@ -119,7 +119,7 @@ namespace Evo
 
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", ddlBench);
+            nv.Add("@BenchLocation", getBenchLocation());
             nv.Add("@Customer", Cust);
             nv.Add("@JobNo", jobNo);
             nv.Add("@GenusCode", ddlCrop.SelectedValue);
@@ -168,7 +168,7 @@ namespace Evo
 
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", !string.IsNullOrEmpty(ddlBench) ? ddlBench : "0");
+            nv.Add("@BenchLocation", getBenchLocation());
             nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
             nv.Add("@JobNo", "0");
             nv.Add("@GenusCode", !string.IsNullOrEmpty(Code) ? Code : "0");
@@ -194,7 +194,7 @@ namespace Evo
 
             nv.Add("@LoginID", Session["LoginID"].ToString());
             nv.Add("@Facility", ddlMain);
-            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation", getBenchLocation());
             nv.Add("@Customer", !string.IsNullOrEmpty(Customer) ? Customer : "0");
             nv.Add("@JobNo", !string.IsNullOrEmpty(jobNo) ? jobNo : "0");
             nv.Add("@GenusCode", !string.IsNullOrEmpty(Code) ? Code : "0");
@@ -215,7 +215,7 @@ namespace Evo
 
         protected void ddlCrop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlBenchLocation.SelectedIndex == 0)
+            if (ddlBenchLocation.SelectedIndex == -1)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
                 BindJobCode(ddlBenchLocation.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
@@ -226,7 +226,7 @@ namespace Evo
         }
         protected void ddlCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlBenchLocation.SelectedIndex == 0)
+            if (ddlBenchLocation.SelectedIndex == -1)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
             if (ddlJobNo.SelectedIndex == 0)
                 BindJobCode(ddlBenchLocation.SelectedValue, ddlCustomer.SelectedValue, ddlCrop.SelectedValue);
@@ -238,7 +238,7 @@ namespace Evo
 
         protected void ddlJobNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlCustomer.SelectedIndex == 0)
+            if (ddlCustomer.SelectedIndex == -1)
                 Bindcname("0", ddlJobNo.SelectedValue, ddlCrop.SelectedValue);
             if (ddlBenchLocation.SelectedIndex == 0)
                 BindBenchLocation(Session["Facility"].ToString(), ddlJobNo.SelectedValue, "0", ddlCrop.SelectedValue);
@@ -249,8 +249,6 @@ namespace Evo
         }
 
 
-
-
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             BindGridSprayReq(ddlJobNo.SelectedValue, 1);
@@ -258,13 +256,14 @@ namespace Evo
 
         protected void ddlBenchLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string selectedValues = getBenchLocation();
             //BindJobCode(ddlBenchLocation.SelectedValue);
             if (ddlCustomer.SelectedIndex == 0)
-                Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
+                Bindcname(selectedValues, "0", "0");
             if (ddlJobNo.SelectedIndex == 0)
-                BindJobCode(ddlBenchLocation.SelectedValue, "0", "0");
+                BindJobCode(selectedValues, "0", "0");
             if (ddlAssignedBy.SelectedIndex == 0)
-                BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0");
+                BindAssignByList(selectedValues, "0", "0");
             if (ddlCrop.SelectedIndex == 0)
                 BindCrop();
             BindGridSprayReq(ddlJobNo.SelectedValue, 1);
@@ -293,6 +292,27 @@ namespace Evo
 
         }
 
+
+        private string getBenchLocation()
+        {
+            int c = 0;
+            string x = "";
+            string chkSelected = "";
+            foreach (ListItem item in ddlBenchLocation.Items)
+            {
+                if (item.Selected)
+                {
+                    c = 1;
+                    x += item.Text + ",";
+                }
+            }
+            if (c > 0)
+            {
+                chkSelected = x.Remove(x.Length - 1, 1);
+            }
+            return chkSelected;
+        }
+
         protected void btnSearchRest_Click(object sender, EventArgs e)
         {
             RadioButtonListSourse.Items[0].Selected = false;
@@ -313,9 +333,9 @@ namespace Evo
             txtFromDate.Text = "";
             txtToDate.Text = "";
             //BindJobCode(ddlBenchLocation.SelectedValue);
-            Bindcname(ddlBenchLocation.SelectedValue, "0", "0");
-            BindJobCode(ddlBenchLocation.SelectedValue, "0", "0");
-            BindAssignByList(ddlBenchLocation.SelectedValue, "0", "0");
+            Bindcname(getBenchLocation(), "0", "0");
+            BindJobCode(getBenchLocation(), "0", "0");
+            BindAssignByList(getBenchLocation(), "0", "0");
             BindGridSprayReq(ddlJobNo.SelectedValue, 1);
         }
 
@@ -329,7 +349,7 @@ namespace Evo
             nv.Add("@JobCode", JobCode);
             nv.Add("@CustomerName", ddlCustomer.SelectedValue);
             nv.Add("@Facility", Session["Facility"].ToString());
-            nv.Add("@BenchLocation", ddlBenchLocation.SelectedValue);
+            nv.Add("@BenchLocation", getBenchLocation());
             nv.Add("@Crop", ddlCrop.SelectedValue);
             nv.Add("@Status", "");
             nv.Add("@Jobsource", RadioButtonListSourse.SelectedValue);
