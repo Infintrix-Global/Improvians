@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
     if ('serviceWorker' in navigator) {
         console.log('CLIENT: service worker registration in progress.');
-        navigator.serviceWorker.register('/sw.js').then(function() {
+        navigator.serviceWorker.register('./sw.js').then(function() {
             console.log('CLIENT: service worker registration complete.');
         }, function() {
             console.log('CLIENT: service worker registration failure.');
@@ -160,8 +160,8 @@ jQuery(document).ready(function($){
         });
     }
 
-    if($('.SlectBox').length > 0) {
-        $('.SlectBox').SumoSelect({
+    if($('.SelectBox').length > 0) {
+        $('.SelectBox').SumoSelect({
             placeholder: '--- Select ---',
             forceCustomRendering: true
         });
