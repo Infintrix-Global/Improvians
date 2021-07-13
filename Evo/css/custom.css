@@ -2176,8 +2176,8 @@ select option:disabled {
 
 .boom {
     position: absolute;
-    top: 180px;
-    right: 24px;
+    top: 20px;
+    left: 22px;
     width: 10px;
     height: 60px;
     background: #ff6930;
@@ -2530,6 +2530,22 @@ select option:disabled {
 .goog-te-banner-frame.skiptranslate { display: none !important; }
 .goog-logo-link { display: none !important; }
 .goog-te-gadget { color: transparent !important; }
+
+.modal-header .close { position: absolute; right: 15px; }
+.modal-benchview { max-width: 960px; }
+.modal__benchblock { position: relative; }
+.modal__boomgroup .boom { height: calc(100% + 10px); }
+.modal__boomgroup .boom::before { line-height: 15px; font-size: 13px; }
+.modal__bencharea { display: flex; position: relative; }
+.modal__bencharea .bench__label { display: none; }
+.modal__bencharea .sys__bench {
+    flex: 1 0 calc(100% - 0px);
+    max-width: calc(100% - 0px);
+    min-height: 100px;
+}
+
+.modal.modal-static .modal-dialog{ transform: none; }
+.modal.modal-static .modal-header .close{ transform: scale(1.3); }
 
 /*Media Queries*/
 @media only screen and (min-width: 1368px) {

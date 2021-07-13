@@ -394,13 +394,6 @@
 
                                         <select name="livejobno" onchange="" id="livejobno" class="custom__dropdown input__control-auto robotomd">
                                             <option selected="selected" value="">--- Select ---</option>
-                                            <option value="JB0200004">JB0200004</option>
-                                            <option value="JB031356">JB031356</option>
-                                            <option value="JB031589">JB031589</option>
-                                            <option value="JB031591">JB031591</option>
-                                            <option value="JB033345">JB033345</option>
-                                            <option value="JB034284">JB034284</option>
-                                            <option value="JB037353">JB037353</option>
                                         </select>
                                     </div>
                                 </div>
@@ -420,9 +413,7 @@
                                 <div class="sys__conveyor conveyor__unloading"></div>
 
                                 <div class="sys__bencharea">
-                                    <div class="boom__group">
-                                        <div class="boom" data-x="0" data-y="0"></div>
-                                    </div>
+                                    <div class="boom__group"></div>
                                 </div>
                                         
                                 <div class="sys__conveyor conveyor__loading"></div>
@@ -438,16 +429,57 @@
     </div>
 
     <!-- Bench Popup -->
-    <div class="modal fade" id="bench-view" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
+    <div class="modal fade show" id="bench-view" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-benchview modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h4 class="modal-title mx-auto" id="staticBackdropLabel">Modal title</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="modal__benchblock">
+                        <div class="modal__boomgroup"></div>
+
+                        <div class="modal__bencharea">
+                        </div>
+                    </div>
+
+                    <div id="bench-availability" class="text-center py-2">Bench Availability: <span id="bench-percent">30%</span></div>
+
+                    <div id="bench-grid" class="data__table mt-4">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Job ID</th>
+                                    <th>Customer</th>
+                                    <th>Plant Type</th>
+                                    <th>Total Tray</th>
+                                    <th>Tray Size</th>
+                                    <th>Seeded Date</th>
+                                    <th>Plant Due Date</th>
+                                    <th>Plant Ready Date</th>
+                                    <th>Slot Start</th>
+                                    <th>Slot End</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>JB0200004</td>
+                                    <td>C & G FARMS	</td>
+                                    <td>CELERY-RIVALRY - 393</td>
+                                    <td>715</td>
+                                    <td>393</td>
+                                    <td>04/24/2021</td>
+                                    <td>06/26/2021</td>
+                                    <td>06/05/2021</td>
+                                    <td>10</td>
+                                    <td>16</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

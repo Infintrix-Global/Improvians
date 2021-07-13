@@ -635,10 +635,10 @@ jQuery(document).ready(function($){
             var benchRowHTML = '';
                 benchRowHTML += '<div class="sys__benchtrack ' + benchClass + '">';
                 benchRowHTML += '<div class="sys__bench" data-bench="' + benches[i][0] + '">';
-                benchRowHTML += '<span class="bench__label">' + benches[i][0] + '</span>';
+                benchRowHTML += '<a href="#bench-view" data-toggle="modal" class="bench__label">' + benches[i][0] + '</a>';
                 benchRowHTML += '</div>';
                 benchRowHTML += '<div class="sys__bench" data-bench="' + benches[i][1] + '">';
-                benchRowHTML += '<span class="bench__label">' + benches[i][1] + '</span>';
+                benchRowHTML += '<a href="#bench-view" data-toggle="modal" class="bench__label">' + benches[i][1] + '</a>';
                 benchRowHTML += '</div>';
                 benchRowHTML += '</div>';
             
@@ -681,12 +681,14 @@ jQuery(document).ready(function($){
                     type: 'POST',
                     dataType: 'json',
                     contentType: 'application/json',
-                    url: 'https://webportal.growerstrans.com/TESTGEM/DashBoard.aspx/GetLiveMapData',
+                    url: 'DashBoard.aspx/GetLiveMapData',
                     data: '{}',
                     success: function (response) {
                         var benchJobCount = response.d;
                             benchJobCount = Object.keys(benchJobCount).length,
                             jsonData = response;
+
+                        console.log(jsonData);
                         
                         if(benchJobCount != 0) {
                             for (var i = 0; i < benchJobCount; i++) {
@@ -773,7 +775,59 @@ jQuery(document).ready(function($){
                         //alert("Error loading data! Please try again.");
                     }
                 });
+
+                //Boom Placing
+                var booms = [
+                    ['ENC1-OUTSIDE-07-B', '3'],
+                    ['ENC1-OUTSIDE-07-B', '15']
+                ];
+
+                setTimeout(function () {
+                    $.each(booms, function (key, value) {
+                        if ($(".sys__bencharea [data-bench='" + value[0] + "']").length > 0) {
+                            var boomTop = $(".sys__bencharea .sys__benchtrack [data-bench='" + value[0] + "']").position().top,
+                                boomLeft = 0 + parseFloat($(".sys__bencharea .sys__benchtrack  [data-bench='" + value[0] + "']").position().left);
+                            boomLeft = boomLeft + parseFloat($(".sys__bencharea .sys__benchtrack [data-bench='" + value[0] + "']").find("[data-slot='" + value[1] + "']").position().left);
+
+                            $(".boom__group").append('<div style="top: ' + boomTop + 'px; left: ' + boomLeft + 'px;" class="boom" data-slot="' + value[1] + '" data-bench="' + value[0] + '"></div>');
+
+                        } else {
+                            alert("Bench Not Found for boom!");
+                        }
+                    });
+                }, 400);
             }
+        });
+
+        function createModalBench(currentBench, currentBenchName) {
+            var benchModal = $("#bench-view");
+            benchModal.find(".modal-title").text(currentBenchName);
+            benchModal.find(".modal__bencharea").html("").append('<div class="sys__bench" data-bench="' + currentBenchName + '"></div>');
+            benchModal.find(".sys__bench").html(currentBench.html());
+
+
+            if ($(".sys__bencharea .boom__group .boom[data-bench='" + currentBenchName + "']").length > 0) {
+                setTimeout(function () {
+                    $(".sys__bencharea .boom__group .boom[data-bench='" + currentBenchName + "']").each(function () {
+                        var modalBoomSlot = $(this).attr("data-slot"),
+                            modalBoomWidth = $(".modal__bencharea .sys__tray").outerWidth(),
+                            modalBoomTop = $(".modal__bencharea .sys__bench").position().top,
+                            modalBoomLeft = $(".modal__bencharea .sys__tray[data-slot='" + modalBoomSlot + "']").position().left;
+
+                        $(".modal__boomgroup").append('<div style="top: ' + modalBoomTop + 'px; left: ' + modalBoomLeft + 'px; width: ' + modalBoomWidth + 'px;" class="boom" data-slot="' + modalBoomSlot + '"></div>');
+                    });
+                }, 1000);
+            } else {
+                $(".modal__boomgroup").html("");
+            }
+        }
+
+        $(".bench__label").on("click", function (e) {
+            e.preventDefault();
+            var currentBench = $(this).parents(".sys__bench"),
+                currentBenchName = $(currentBench).attr("data-bench");
+
+            createModalBench(currentBench, currentBenchName);
         });
     }
 
