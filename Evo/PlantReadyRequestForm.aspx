@@ -129,7 +129,7 @@
         <div class="row">
             <div class=" col m12">
                   <asp:Label runat="server" Text="" ID="lblmsg"></asp:Label>
-                <div class="data__table data__mobile">
+                <div class="data__table">
                     <asp:GridView ID="gvPlantReady" runat="server"  AutoGenerateColumns="False" OnRowDataBound="gvPlantReady_RowDataBound"
                         class="striped" AllowSorting="true"   PageSize="10" OnPageIndexChanging="gvPlantReady_PageIndexChanging" AllowPaging="True"
                         GridLines="None" OnRowCommand="gvPlantReady_RowCommand" DataKeyNames="wo,jobcode,GrowerPutAwayId,PRRID,jid,IsAssistant,PlantReadySeedDate,GreenHouseID,Trays,itemdescp,GrowerPutAwayPlantReadyId,TaskRequestKey"
