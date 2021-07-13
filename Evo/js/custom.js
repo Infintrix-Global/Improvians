@@ -1,11 +1,11 @@
 jQuery(document).ready(function($){
     if ('serviceWorker' in navigator) {
         console.log('CLIENT: service worker registration in progress.');
-        navigator.serviceWorker.register('/sw.js').then(function() {
+        navigator.serviceWorker.register('./sw.js').then(function () {
             console.log('CLIENT: service worker registration complete.');
-        }, function() {
-            console.log('CLIENT: service worker registration failure.');
-        });
+        }).catch(function (err) {
+            console.log("Service Worker Failed to Register", err);
+        })
     } else {
         console.log('CLIENT: service worker is not supported.');
     }
@@ -160,8 +160,8 @@ jQuery(document).ready(function($){
         });
     }
 
-    if($('.SlectBox').length > 0) {
-        $('.SlectBox').SumoSelect({
+    if($('.SelectBox').length > 0) {
+        $('.SelectBox').SumoSelect({
             placeholder: '--- Select ---',
             forceCustomRendering: true
         });
@@ -681,7 +681,7 @@ jQuery(document).ready(function($){
                     type: 'POST',
                     dataType: 'json',
                     contentType: 'application/json',
-                    url: 'DashBoard.aspx/GetLiveMapData',
+                    url: 'https://webportal.growerstrans.com/TESTGEM/DashBoard.aspx/GetLiveMapData',
                     data: '{}',
                     success: function (response) {
                         var benchJobCount = response.d;
@@ -693,9 +693,6 @@ jQuery(document).ready(function($){
                                 var jobData = jsonData['d'][i];
 
                                 if ($(".sys__bench[data-bench='" + jobData.Bench + "']").length > 0) {
-
-                                    console.log(parseFloat(jobData.SlotPositionStart));
-                                    console.log(parseFloat(jobData.SlotPositionEnd));
 
                                     var slotEND = parseFloat(jobData.SlotPositionEnd);
                                     var slotSTART = parseFloat(jobData.SlotPositionStart);
@@ -712,9 +709,6 @@ jQuery(document).ready(function($){
                                         slotSTART = (slotSTART == 0) ? 1 : slotSTART,
                                         slotEND = (slotEND == 0) ? 1 : slotEND;
 
-                                    //console.log(slotSTART);
-                                    //console.log(slotEND);
-
                                     var leftPos = $(".sys__bench[data-bench='" + jobData.Bench + "']").find("[data-slot=" + slotEND + "]").position().left + slotEndOffset;
 
                                     var jobWidth = $(".sys__bench[data-bench='" + jobData.Bench + "']").find("[data-slot=" + slotSTART + "]").position().left + slotStartOffset;
@@ -723,13 +717,13 @@ jQuery(document).ready(function($){
 
                                     $(".sys__bench[data-bench='" + jobData.Bench + "']").prepend('<a target="_blank" href="https://webportal.growerstrans.com/GEM/JobReports.aspx?JobCode=' + jobData.JobID + '" class="bench__job" style="left:' + leftPos + 'px; width:' + jobWidth + 'px; background:' + jobColors[i] + ';" data-toggle="tooltip" data-placement="top" data-jobid="' + jobData.JobID + '" title="' + jobData.JobID + '">' + jobData.JobID + '</a>');
                                 }
+
+                                $("#livejobno").append("<option value='" + jobData.JobID + "'>" + jobData.JobID + "</option>");
                             }
     
                             $("#livebench").on("change", function () {
                                 if ($(this).val() !== '' && $(this).val() !== null) {
                                     var selectedBench = $(this).val();
-
-                                    console.log(selectedBench);
 
                                     if ($(".sys__bench[data-bench=" + selectedBench + "]").length > 0) {
                                         benchTopPos = $(".sys__bench[data-bench=" + selectedBench + "]").offset().top;
@@ -751,8 +745,6 @@ jQuery(document).ready(function($){
                             $("#livejobno").on("change", function () {
                                 if ($(this).val() !== '' && $(this).val() !== null) {
                                     var selectedJob = $(this).val();
-
-                                    console.log(selectedJob);
 
                                     if ((selectedJob !== 0) && ($("[data-jobid=" + selectedJob + "]").length > 0)) {
                                         var jobBench = $("[data-jobid=" + selectedJob + "]").parents(".sys__bench");
